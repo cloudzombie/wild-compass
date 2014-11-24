@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :pots
+
+  resources :bags
+
   resources :lots
 
   devise_for :users

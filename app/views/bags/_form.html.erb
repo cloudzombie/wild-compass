@@ -1,0 +1,17 @@
+<%= form_for(@bag) do |f| %>
+  <% if @bag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bag.errors.count, "error") %> prohibited this bag from being saved:</h2>
+
+      <ul>
+      <% @bag.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
