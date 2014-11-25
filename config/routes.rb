@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'root#redirect'
+
   resources :pots
 
   resources :bags
