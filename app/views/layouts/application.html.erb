@@ -6,9 +6,29 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="skin-blue">        
+	<%= render "layouts/navbar" %>
 
-<%= yield %>
+    	<div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <%= render "layouts/sidebar" %>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <%= render "layouts/content_header" %>
+
+                <!-- Main content -->
+                <section class="content">
+                	<%= yield %>
+                    <!-- Small boxes (Stat box) -->
+                    
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+    </body>
+</html>
 
 </body>
 </html>
