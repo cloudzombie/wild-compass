@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :plants
+
   # Root redirect
   root to: 'root#redirect'
 
