@@ -1,6 +1,13 @@
 class PlantsController < ApplicationController
-  expose(:plant, params: :plant_params) { Plant.find(params[:id]) }
-  expose(:plants) { Plants.all }
+  expose(:plant, params: :plant_params) do
+    unless params[:id].nil?
+      Plant.find(params[:id])
+    else
+      Plant.new
+    end
+  end
+
+  expose(:plants) { Plant.all }
 
   def create
     self.plant = Plant.new(plant_params)
