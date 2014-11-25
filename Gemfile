@@ -41,3 +41,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'devise'
 
 gem 'adminlte-rails'
+
+# Use decent exposure instead @vars in controllers
+gem 'decent_exposure'
