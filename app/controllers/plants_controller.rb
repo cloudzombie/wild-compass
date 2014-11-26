@@ -1,4 +1,5 @@
 class PlantsController < ApplicationController
+
   expose(:plant, params: :plant_params) do
     unless params[:id].nil?
       Plant.find(params[:id])
