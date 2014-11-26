@@ -1,10 +1,10 @@
-<%= form_for(@pot) do |f| %>
-  <% if @pot.errors.any? %>
+<%= form_for(pot) do |f| %>
+  <% if pot.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@pot.errors.count, "error") %> prohibited this pot from being saved:</h2>
+      <h2><%= pluralize(pot.errors.count, "error") %> prohibited this pot from being saved:</h2>
 
       <ul>
-      <% @pot.errors.full_messages.each do |message| %>
+      <% pot.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
