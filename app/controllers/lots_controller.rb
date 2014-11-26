@@ -1,5 +1,5 @@
 class LotsController < ApplicationController
-  expose(:lot) do
+  expose(:lot, params: :lot_params) do
     unless params[:id].nil?
       Lot.find(params[:id])
     else
