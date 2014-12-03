@@ -13,6 +13,7 @@
     <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
             <tr>
+                <th></th>
                 <th>Cultivar</th>
                 <th>ID</th>
                 <th>Format</th>
@@ -21,28 +22,42 @@
                 <th>Origine</th>
                 <th>Actions</th>
             </tr>
+            <% plants.each do |plant| %>
+              <tr>
+                <td><%= plant.cultivar %></td>
+                <td><%= plant.id %></td>
+                <td><%= plant.format %></td>
+                <td><%= plant.status %></td>
+                <td><%= plant.rfid %></td>
+                <td><%= plant.origine %></td>
+                <td>
+                <%= link_to 'Show', plant %>
+                <%= link_to 'Edit', edit_plant_path(plant) %>
+                <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
             <tr>
                 <td>BB</td>
                 <td>001</td>
                 <td>60G</td>
-                <td><span class="label label-success">Croissance</span></td>
-                <td>########</td>
-                <td>Bouture</td>
-                <td>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-success btn-flat">Action</button>
+                <td><div class="btn-group">
+                    <button type="button" class="btn btn-success btn-flat">Croissance</button>
                     <button type="button" class="btn btn-success btn-flat dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#"></a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#"></a></li>
                     </ul>
-                  </div>
+                  </div></td>
+                <td>########</td>
+                <td>Bouture</td>
+                <td>
+                  
                 </td>
             </tr>
             <tr>
@@ -99,13 +114,7 @@
   </thead>
 
   <tbody>
-    <% plants.each do |plant| %>
-      <tr>
-        <td><%= link_to 'Show', plant %></td>
-        <td><%= link_to 'Edit', edit_plant_path(plant) %></td>
-        <td><%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+
   </tbody>
 </table>
 
