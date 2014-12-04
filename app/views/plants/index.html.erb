@@ -23,6 +23,7 @@
                 <th>Origine</th>
                 <th>Actions</th>
             </tr>
+
             <% plants.each do |plant| %>
               <tr>
                 <td><%= check_box_tag plant %></td>
@@ -31,7 +32,9 @@
                 <td><%= plant.format %></td>
                 <td>
                   <div class="btn-group">
-                    <button type="button" class="btn <%= status_btn_color_for (plant.status)%> btn-flat"><%= plant.status %></button>
+                    <button type="button" class="btn <%= status_btn_color_for(plant.status) %> btn-flat">
+                        <%= plant.status %>
+                    </button>
                     <button type="button" class="btn btn-success btn-flat dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
@@ -48,9 +51,10 @@
                 <td><%= plant.rfid %></td>
                 <td><%= plant.origin %></td>
                 <td>
-                <%= link_to 'Show', plant %>
-                <%= link_to 'Edit', edit_plant_path(plant) %>
-                <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <%= link_to 'Show', plant %>
+                    <%= link_to 'Edit', edit_plant_path(plant) %>
+                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
               </tr>
             <% end %>
         </table>
