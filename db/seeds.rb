@@ -21,7 +21,12 @@ formats = Format.create([
   { name: :"6L"      }
 ])
 
-cultivars = Cultivar.ceate
+cultivars = Cultivar.create([
+  { name: :"BB"     },
+  { name: :"YO"	 },
+  { name: :"CA"	 },
+  { name: :"LG"      }
+])
 
 RFIDs = RFID.create([
   { name: :"#######" }
