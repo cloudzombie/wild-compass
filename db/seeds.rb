@@ -13,3 +13,22 @@ statuses = Status.create([
   { name: :growing   },
   { name: :destroyed }
 ])
+
+formats = Format.create([
+  { name: :"65g"     },
+  { name: :"45g"	 },
+  { name: :"15g"	 },
+  { name: :"6L"      }
+])
+
+cultivars = Cultivar.ceate
+
+RFIDs = RFID.create([
+  { name: :"#######" }
+])
+
+Lots = Lot.create([
+  { name: :"Lot001" },
+  { name: :"Lot002" },
+  { name: :"Lot003" }
+])
