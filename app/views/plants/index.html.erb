@@ -1,19 +1,20 @@
   <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Responsive Hover Table</h3>
+        <h3 class="box-title">Listing plants</h3>
         <div class="box-tools">
             <div class="input-group">
                 <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                 <div class="input-group-btn">
                     <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                 </div>
+
             </div>
         </div>
     </div><!-- /.box-header -->
     <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
             <tr>
-                <th></th>
+                <th><%= check_box_tag 'selectAll', class: "checkBoxTable" %></th>
                 <th>Cultivar</th>
                 <th>ID</th>
                 <th>Format</th>
@@ -24,7 +25,7 @@
             </tr>
             <% plants.each do |plant| %>
               <tr>
-                <td></td>
+                <td><%= check_box_tag plant %></td>
                 <td><%= plant.cultivar %></td>
                 <td><%= plant.id %></td>
                 <td><%= plant.format %></td>
@@ -37,10 +38,10 @@
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
+                        <li><a href="#">Change RFID</a></li>
+                        <li><a href="#">Récolter</a></li>
                         <li class="divider"></li>
-                        <li><a href="#"></a></li>
+                        <li><a href="#">Détruire</a></li>
                     </ul>
                   </div>
                 </td>
@@ -52,88 +53,27 @@
                 <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
             <% end %>
-            <tr>
-                <td>BB</td>
-                <td>001</td>
-                <td>60G</td>
-                <td><div class="btn-group">
-                    <button type="button" class="btn btn-success btn-flat">Croissance</button>
-                    <button type="button" class="btn btn-success btn-flat dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"></a></li>
-                    </ul>
-                  </div></td>
-                <td>########</td>
-                <td>Bouture</td>
-                <td>
-                  
-                </td>
-            </tr>
-            <tr>
-                <td>BB</td>
-                <td>002</td>
-                <td>60G</td>
-                <td><span class="label label-primary">Détruit</span></td>
-                <td>########</td>
-                <td>Bouture</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>BB</td>
-                <td>003</td>
-                <td>60G</td>
-                <td><span class="label label-warning">Séchage</span></td>
-                <td>########</td>
-                <td>Bouture</td>
-            </tr>
-            <tr>
-                <td>BB</td>
-                <td>004</td>
-                <td>60G</td>
-                <td><span class="label label-warning">"Curing"</span></td>
-                <td>########</td>
-                <td>Bouture</td>
-            </tr>          
-            <tr>
-                <td>YO</td>
-                <td>005</td>
-                <td>60G</td>
-                <td><span class="label label-success">Récolte</span></td>
-                <td>########</td>
-                <td>Bouture</td>
-            </tr>
-            <tr>
-                <td>YO</td>
-                <td>006</td>
-                <td>60G</td>
-                <td><span class="label label-danger">Anomalie</span></td>
-                <td>########</td>
-                <td>Bouture</td>
-            </tr>
         </table>
     </div><!-- /.box-body -->
-</div>
-<h1>Listing plants</h1>
+    <div class="box-footer">
+      <div class="box-tools">
+        <div class="btn-group">
+          <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <button type="button" class="btn btn-info btn-flat">Action</button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
+        <%= link_to 'New Plant', new_plant_path, class: "btn btn-flat btn-success"  %>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      </div>
+    </div>
+  </div>
 
-  <tbody>
-
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Plant', new_plant_path %>
