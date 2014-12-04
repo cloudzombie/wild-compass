@@ -24,12 +24,28 @@
             </tr>
             <% plants.each do |plant| %>
               <tr>
+                <td></td>
                 <td><%= plant.cultivar %></td>
                 <td><%= plant.id %></td>
                 <td><%= plant.format %></td>
-                <td><%= plant.status %></td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn <%= status_btn_color_for (plant.status)%> btn-flat"><%= plant.status %></button>
+                    <button type="button" class="btn btn-success btn-flat dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                  </div>
+                </td>
                 <td><%= plant.rfid %></td>
-                <td><%= plant.origine %></td>
+                <td><%= plant.origin %></td>
                 <td>
                 <%= link_to 'Show', plant %>
                 <%= link_to 'Edit', edit_plant_path(plant) %>
