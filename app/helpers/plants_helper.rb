@@ -1,5 +1,5 @@
 module PlantsHelper
-	def status_btn_color_for
+	def status_btn_color_for (plants.status)
 		case plants.status
 			when "growing", "harvest"
 				"btn-success"
