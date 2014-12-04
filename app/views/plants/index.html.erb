@@ -22,6 +22,7 @@
                 <th>Origine</th>
                 <th>Actions</th>
             </tr>
+
             <% plants.each do |plant| %>
               <tr>
                 <td></td>
@@ -30,7 +31,9 @@
                 <td><%= plant.format %></td>
                 <td>
                   <div class="btn-group">
-                    <button type="button" class="btn <%= status_btn_color_for(plant.status) %> btn-flat"><%= plant.status %></button>
+                    <button type="button" class="btn <%= status_btn_color_for(plant.status) %> btn-flat">
+                        <%= plant.status %>
+                    </button>
                     <button type="button" class="btn btn-success btn-flat dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
@@ -47,76 +50,12 @@
                 <td><%= plant.rfid %></td>
                 <td><%= plant.origin %></td>
                 <td>
-                <%= link_to 'Show', plant %>
-                <%= link_to 'Edit', edit_plant_path(plant) %>
-                <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <%= link_to 'Show', plant %>
+                    <%= link_to 'Edit', edit_plant_path(plant) %>
+                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
               </tr>
             <% end %>
-            <tr>
-                <td>BB</td>
-                <td>001</td>
-                <td>60G</td>
-                <td><div class="btn-group">
-                    <button type="button" class="btn btn-success btn-flat">Croissance</button>
-                    <button type="button" class="btn btn-success btn-flat dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"></a></li>
-                    </ul>
-                  </div></td>
-                <td>########</td>
-                <td>Bouture</td>
-                <td>
-                  
-                </td>
-            </tr>
-            <tr>
-                <td>BB</td>
-                <td>002</td>
-                <td>60G</td>
-                <td><span class="label label-primary">Détruit</span></td>
-                <td>########</td>
-                <td>Bouture</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>BB</td>
-                <td>003</td>
-                <td>60G</td>
-                <td><span class="label label-warning">Séchage</span></td>
-                <td>########</td>
-                <td>Bouture</td>
-            </tr>
-            <tr>
-                <td>BB</td>
-                <td>004</td>
-                <td>60G</td>
-                <td><span class="label label-warning">"Curing"</span></td>
-                <td>########</td>
-                <td>Bouture</td>
-            </tr>          
-            <tr>
-                <td>YO</td>
-                <td>005</td>
-                <td>60G</td>
-                <td><span class="label label-success">Récolte</span></td>
-                <td>########</td>
-                <td>Bouture</td>
-            </tr>
-            <tr>
-                <td>YO</td>
-                <td>006</td>
-                <td>60G</td>
-                <td><span class="label label-danger">Anomalie</span></td>
-                <td>########</td>
-                <td>Bouture</td>
-            </tr>
         </table>
     </div><!-- /.box-body -->
 </div>

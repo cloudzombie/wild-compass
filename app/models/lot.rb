@@ -18,4 +18,10 @@ class Lot < ActiveRecord::Base
   ### Bags
   
   has_many :bags
+
+
+
+  def to_s
+    "#{ name.titleize unless name.nil? }"
+  end
 end
