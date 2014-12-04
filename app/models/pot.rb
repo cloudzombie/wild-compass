@@ -31,4 +31,8 @@ class Pot < ActiveRecord::Base
   def lot=(lot)
     bag.lot = lot
   end
+
+  def to_s
+    "#{ name.titleize unless name.nil? }"
+  end
 end

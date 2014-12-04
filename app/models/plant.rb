@@ -19,4 +19,8 @@ class Plant < ActiveRecord::Base
   belongs_to :rfid
 
   belongs_to :lot
+  
+  def to_s
+    "#{ name.titleize unless name.nil? }"
+  end
 end

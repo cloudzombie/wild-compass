@@ -25,4 +25,8 @@ class Bag < ActiveRecord::Base
   ### Plants
 
   has_many :plants, through: :lot
+
+  def to_s
+    "#{ name.titleize unless name.nil? }"
+  end
 end
