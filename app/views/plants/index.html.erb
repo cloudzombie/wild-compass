@@ -14,7 +14,7 @@
     <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
             <tr>
-                <th><%= check_box_tag 'selectAll', class: "checkBoxTable" %></th>
+                <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
                 <th>Cultivar</th>
                 <th>ID</th>
                 <th>Format</th>
@@ -23,60 +23,146 @@
                 <th>Origine</th>
                 <th>Actions</th>
             </tr>
-
             <% plants.each do |plant| %>
               <tr>
-                <td><%= check_box_tag plant %></td>
-                <td><%= plant.cultivar %></td>
+                <td></td>
+                <td>YY<%= plant.cultivar %></td>
                 <td><%= plant.id %></td>
-                <td><%= plant.format %></td>
+                <td>4L<%= plant.format %></td>
                 <td>
-                  <div class="btn-group">
-                  <%= link_to "#{plant.status}", "#", class: "btn btn-flat #{status_btn_color_for(plant.status)}" %>
+                  <div class="input-group input-group-sm">
+                  <button class="btn-sm btn-flat btn-success">Growing</button>                 
                  
-                    <button type="button" class="btn btn-success btn-flat dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="btn-sm btn-flat dropdown-toggle btn-success" data-toggle="dropdown">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#"></a></li>
-                        <li><a href="#">Change RFID</a></li>
-                        <li><a href="#">Récolter</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Détruire</a></li>
+                        <li><a href="#">Growing</a></li>
+                        <li><a href="#">Curing</a></li>
+                        <li><a href="#">Drying</a></li>
                     </ul>
                   </div>
                 </td>
-                <td><%= plant.rfid %></td>
+                <td>#######<%= plant.rfid %></td>
                 <td><%= plant.origin %></td>
                 <td>
-                    <%= link_to 'Show', plant %>
-                    <%= link_to 'Edit', edit_plant_path(plant) %>
-                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
+                    <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
+                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-flat btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+                          <tr>
+                <td></td>
+                <td>YY</td>
+                <td>12</td>
+                <td>6L</td>
+                <td>
+                  <div class="input-group input-group-sm">
+                  <button class="btn-sm btn-flat btn-danger">Require Attention</button>                 
+                 
+                    <button type="button" class="btn-sm btn-flat dropdown-toggle btn-danger" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Growing</a></li>
+                        <li><a href="#">Curing</a></li>
+                        <li><a href="#">Drying</a></li>
+                    </ul>
+                  </div>
+                </td>
+                <td>#######</td>
+                <td>Clone</td>
+                <td>
+                <a type="button" class="btn-sm btn-flat btn-success">Show</a>
+                <a type="button" class="btn-sm btn-flat btn-primary">Edit</a>
+                <a type="button" class="btn-sm btn-flat btn-danger">Destroy</ba>                   
+                </td>
+              </tr>
+            <% plants.each do |plant| %>
+              <tr>
+                <td></td>
+                <td>YY<%= plant.cultivar %></td>
+                <td><%= plant.id %></td>
+                <td>4L<%= plant.format %></td>
+                <td>
+                  <div class="input-group input-group-sm">
+                  <button class="btn-sm btn-flat btn-warning">Drying</button>                 
+                 
+                    <button type="button" class="btn-sm btn-flat dropdown-toggle btn-warning" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Growing</a></li>
+                        <li><a href="#">Curing</a></li>
+                        <li><a href="#">Drying</a></li>
+                    </ul>
+                  </div>
+                </td>
+                <td>#######<%= plant.rfid %></td>
+                <td><%= plant.origin %></td>
+                <td>
+                  
+                    <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
+                    <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
+                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-flat btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+
+            <% plants.each do |plant| %>
+              <tr>
+                <td></td>
+                <td>BB<%= plant.cultivar %></td>
+                <td><%= plant.id %></td>
+                <td>6L<%= plant.format %></td>
+                <td>
+                  <div class="input-group input-group-sm">
+                  <button class="btn-sm btn-flat btn-success">Ready to Harvest</button>                 
+                 
+                    <button type="button" class="btn-sm btn-flat dropdown-toggle btn-success" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Growing</a></li>
+                        <li><a href="#">Curing</a></li>
+                        <li><a href="#">Drying</a></li>
+                    </ul>
+                  </div>
+                </td>
+                <td>#######<%= plant.rfid %></td>
+                <td><%= plant.origin %></td>
+                <td>
+                  
+                    <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
+                    <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
+                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-flat btn-danger" %>
                 </td>
               </tr>
             <% end %>
         </table>
-    </div><!-- /.box-body -->
-    <div class="box-footer">
-      <div class="box-tools">
+    </div><!-- /.box-body -->    
+  </div>
+    <div class="tableFooter">
         <div class="btn-group">
-          <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-          </button>
-          <button type="button" class="btn btn-info btn-flat">Action</button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
+            <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <button type="button" class="btn btn-info btn-flat">Action</button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Curing</a></li>
+                <li><a href="#">Drying</a></li>
+                <li><a href="#">Change RFID</a></li>
+                <li><a href="#">Vers Lots</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Récolter</a></li>
+                <li><a href="#">Détruire</a></li>
+            </ul>
         </div>
         <%= link_to 'New Plant', new_plant_path, class: "btn btn-flat btn-success"  %>
-
-      </div>
     </div>
-  </div>
-

@@ -23,13 +23,13 @@ formats = Format.create([
 
 cultivars = Cultivar.create([
   { name: :"BB"     },
-  { name: :"YO"	 },
-  { name: :"CA"	 },
-  { name: :"LG"      }
+  { name: :"YO"	 	},
+  { name: :"CA"	 	},
+  { name: :"LG"     }
 ])
 
 RFIDs = RFID.create([
-  { name: :"#######" }
+  { name: :"#######"}
 ])
 
 Lots = Lot.create([
