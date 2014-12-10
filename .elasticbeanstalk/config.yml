@@ -1,0 +1,10 @@
+branch-defaults:
+  development:
+    environment: null
+global:
+  application_name: wild-compass
+  default_ec2_keyname: CUCM
+  default_platform: Ruby 2.1 (Puma)
+  default_region: null
+  profile: null
+  sc: git
