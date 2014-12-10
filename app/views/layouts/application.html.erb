@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WildCompass</title>
+  <title>Wild Compass</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<% if user_signed_in? %>
+<body class="skin-black">        
+	<%= render "layouts/navbar" %>
 
+    	<div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <%= render "layouts/sidebar" %>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side" >
+                <!-- Content Header (Page header) -->
+                <%= render "layouts/content_header" %>
+
+                <!-- Main content -->
+                <section class="content">
+                	<%= yield %>
+                    <!-- Small boxes (Stat box) -->
+                    
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+    </body>
+<% else %>
+<body class="bg-black">
 <%= yield %>
+<% end %>
+</html>
 
 </body>
 </html>
