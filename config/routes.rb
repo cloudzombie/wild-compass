@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   # Root redirect
   root to: 'root#redirect'
 
@@ -14,7 +14,13 @@ Rails.application.routes.draw do
                                     registrations:  'users/registrations' }
   resources :users
 
+  namespace :user do
+    resources :roles
+    resources :groups
+  end
+
   # Resources
+  resources :orders
   resources :plants
   resources :jars
   resources :bags
