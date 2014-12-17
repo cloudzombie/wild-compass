@@ -1,4 +1,4 @@
-id,type,strain,initial_weight,weight,lot_id
+id,type,strain,initial_weight,weight,origin
 40,b,YO,439900,,14
 64,b,YO,208000,,14
 68,b,YO,461400,,14
