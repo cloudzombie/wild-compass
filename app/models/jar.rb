@@ -1,7 +1,7 @@
-class Pot < ActiveRecord::Base
+class Jar < ActiveRecord::Base
 
   #####################
-  ### Pot           ###
+  ### Jar           ###
   #####################
   ### bag:    Bag   ###
   ### plants: Plant ###

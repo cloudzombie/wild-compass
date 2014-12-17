@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204020823) do
+ActiveRecord::Schema.define(version: 20141217164005) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 20141204020823) do
   create_table "formats", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  create_table "jars", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "bag_id"
     t.string   "name"
   end
 
@@ -54,13 +61,6 @@ ActiveRecord::Schema.define(version: 20141204020823) do
   add_index "plants", ["format_id"], name: "index_plants_on_format_id"
   add_index "plants", ["rfid_id"], name: "index_plants_on_rfid_id"
   add_index "plants", ["status_id"], name: "index_plants_on_status_id"
-
-  create_table "pots", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "bag_id"
-    t.string   "name"
-  end
 
   create_table "rfids", force: true do |t|
     t.datetime "created_at"
