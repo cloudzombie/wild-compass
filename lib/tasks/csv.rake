@@ -57,4 +57,22 @@ namespace :csv do
       puts "Created lot:\n\tid:\t\t\t#{lot.id}\n\tname:\t\t\t#{lot.name}\n\tstrain:\t\t\t#{lot.strain}\n\tcategory:\t\t#{lot.category}\n\tinitial_weight:\t\t#{lot.initial_weight}\n\tweight:\t\t\t#{lot.weight}\n\torigin:\t\t\t#{lot.origin}\n\n"
     end
   end
+
+  desc "Import orders data from csv file"
+  task :import_orders, [ :filename ] => :environment do |t, args|
+    raise "No input CSV file specified" if args.filename.nil?
+
+    puts "Importing order data..."
+
+    CSV.foreach(args.filename, { headers: :first_row }) do |col|
+      
+      order = Order.create!(
+        customer:  col[0],
+        shipped:   col[1],
+        timestamp: DateTime.parse(col[2])
+      )
+
+      puts "Created order:\n\tcustomer:\t\t\t#{order.customer}\n\tshipped:\t\t\t#{order.shipped}\n\ttimestamp:\t\t\t#{order.timestamp}\n\n"
+    end
+  end
 end
