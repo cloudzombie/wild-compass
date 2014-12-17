@@ -16,7 +16,7 @@ namespace :csv do
         origin:           col[4]
       )
 
-      puts "Created bag:\n\tid:\t\t#{bag.id}\n\tinitial_weight:\t\t#{bag.initial_weight}\n\tweight:\t\t#{bag.weight}\n\torigin:\t\t#{bag.origin}\n\n"
+      puts "Created bag:\n\tid:\t\t\t#{bag.id}\n\tinitial_weight:\t\t#{bag.initial_weight}\n\tweight:\t\t\t#{bag.weight}\n\torigin:\t\t\t#{bag.origin}\n\n"
     end
   end
 
@@ -48,13 +48,13 @@ namespace :csv do
       lot = Lot.create!(
         name:           col[0],
         strain:         col[1],
-        type:           col[2],
+        category:       col[2],
         initial_weight: col[3],
         weight:         col[4],
         origin:         col[5]
       )
 
-      puts "Created lot:\n\tid:\t\t#{lot.id}\n\tname:\t\t#{lot.name}\n\tstrain:\t\t#{lot.strain}\n\ttype:\t\t#{lot.type}\n\tinitial_weight:\t\t#{lot.initial_weight}\n\tweight:\t\t#{lot.weight}\n\torigin:\t\t#{lot.origin}\n\n"
+      puts "Created lot:\n\tid:\t\t\t#{lot.id}\n\tname:\t\t\t#{lot.name}\n\tstrain:\t\t\t#{lot.strain}\n\tcategory:\t\t#{lot.category}\n\tinitial_weight:\t\t#{lot.initial_weight}\n\tweight:\t\t\t#{lot.weight}\n\torigin:\t\t\t#{lot.origin}\n\n"
     end
   end
 end
