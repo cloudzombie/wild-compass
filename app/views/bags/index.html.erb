@@ -19,37 +19,26 @@
     <table class="table table-hover">
       <tr>
         <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
-        <th>Cultivar</th>
-        <th>ID</th>
-        <th>Format</th>
-        <th>Status</th>
-        <th>Origine</th>
-        <th>Déscendance</th>
-        <th>Actions</th>
+        <th>ID :</th>
+        <th>Strain :</th>
+        <th>Type :</th>
+        <th>Initial Weight :<th>
+        <th>Weight :</th>
+        <th>Origin :</th>
+        <th>Actions :</th>
       </tr>
             
       <% bags.each do |bag| %>
       <tr>
         <td></td>
         <td><%= bag.id %></td>
-        <td><%= bag %></td>
+        <td><%= bag.lot.strain unless bag.lot.nil? %></td>
+        <td><%= bag.lot.category unless bag.lot.nil? %></td>
+        <td><%= bag.initial_weight %></td>
         <td><%= bag.weight %></td>
+        <td><%= bag.lot %></td>
         <td>
-          <div class="input-group input-group-sm">
-            <button class="btn-sm btn-flat btn-warning">Opened</button>                 
-            <button type="button" class="btn-sm btn-flat dropdown-toggle btn-warning" data-toggle="dropdown">
-              <span class="caret"></span>
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Sealed</a></li>
-              <li><a href="#">Opened</a></li>
-            </ul>
-          </div>
-        </td>
-        <td>Lot#001</td>
-        <td>Pot#011</td>
-        <td>
+          <%= link_to 'New jar', new_jar_path, class: "btn-sm btn-flat btn-warning" %>
           <%= link_to 'Show', bag, class: "btn-sm btn-flat btn-success" %>
           <%= link_to 'Edit', edit_bag_path(bag), class: "btn-sm btn-flat btn-primary" %>
           <%= link_to 'Destroy', bag, method: :delete, data: { confirm: 'Are you sure?' },
