@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20141217194132) do
     t.datetime "updated_at"
     t.integer  "lot_id"
     t.string   "name"
-    t.integer  "origin"
     t.integer  "weight"
+    t.integer  "origin"
     t.integer  "initial_weight"
   end
 
@@ -40,18 +40,18 @@ ActiveRecord::Schema.define(version: 20141217194132) do
     t.datetime "updated_at"
     t.integer  "bag_id"
     t.string   "name"
-    t.integer  "origin"
     t.integer  "weight"
+    t.integer  "origin"
   end
 
   create_table "lots", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "weight"
     t.string   "type"
     t.string   "strain"
     t.integer  "origin"
-    t.integer  "weight"
     t.integer  "initial_weight"
   end
 
