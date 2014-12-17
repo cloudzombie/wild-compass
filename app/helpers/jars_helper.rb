@@ -1,2 +1,2 @@
-module PotsHelper
+module JarsHelper
 end

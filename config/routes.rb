@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :users
 
   # Resources
-  resources :pots
+  resources :jars
   resources :bags
   resources :lots
 end
