@@ -21,6 +21,8 @@
         <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
         <th>ID :</th>
         <th>Name :</th>
+        <th>Strain :</th>
+        <th>Type :</th>
         <th>Initial Weight </th>
         <th>Weight :</th>
         <th>Actions :</th>
@@ -31,20 +33,12 @@
         <td></td>
         <td><%= lot.id %></td>
         <td><%= lot %></td>
+        <td><%= lot.strain %></td>
+        <td><%= lot.category %></td>
         <td><%= lot.initial_weight %></td>
         <td><%= lot.weight %></td>
         <td>
-          <a href="#" class="btn-sm btn-flat btn-primary">
-            Plants <i style="margin-left:5px"class="fa fa-plus"></i>
-          </a>
-        </td>
-        <td>
-          <a href="#" class="btn-sm btn-flat btn-success">
-            Bags <i style="margin-left:5px"class="fa fa-plus"></i>
-          </a>
-        </td>
-        <td>
-          <a class="btn-sm btn-flat btn-warning">New Bags</a>
+          <%= link_to 'New bag', new_bag_path, class: "btn btn-flat btn-warning"  %>
           <%= link_to 'Show', lot, class: "btn-sm btn-flat btn-success" %>
           <%= link_to 'Edit', lot, class: "btn-sm btn-flat btn-primary" %>
           <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' },

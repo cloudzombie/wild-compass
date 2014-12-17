@@ -21,6 +21,7 @@
         <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
         <th>ID :</th>
         <th>Strain :</th>
+        <th>Type :</th>
         <th>Initial Weight :<th>
         <th>Weight :</th>
         <th>Origin :</th>
@@ -31,11 +32,13 @@
       <tr>
         <td></td>
         <td><%= bag.id %></td>
-        <td><%= bag.lot.strain %></td>
+        <td><%= bag.lot.strain unless bag.lot.nil? %></td>
+        <td><%= bag.lot.category unless bag.lot.nil? %></td>
         <td><%= bag.initial_weight %></td>
         <td><%= bag.weight %></td>
         <td><%= bag.lot %></td>
         <td>
+          <%= link_to 'New jar', new_jar_path, class: "btn-sm btn-flat btn-warning" %>
           <%= link_to 'Show', bag, class: "btn-sm btn-flat btn-success" %>
           <%= link_to 'Edit', edit_bag_path(bag), class: "btn-sm btn-flat btn-primary" %>
           <%= link_to 'Destroy', bag, method: :delete, data: { confirm: 'Are you sure?' },

@@ -22,6 +22,7 @@
         <th>ID :</th>
         <th>Weight :</th>
         <th>Strain :</th>
+        <th>Type :</th>
         <th>Origin :</th>
         <th>Actions :</th>
       </tr>
@@ -32,6 +33,7 @@
         <td><%= jar.id %></td>
         <td><%= jar.weight %></td>
         <td><%= jar.bag.lot.strain %></td>
+        <td><%= jar.bag.lot.category %></td>
         <td><%= jar.bag %></td>
         <td>
           <a class="btn-sm btn-flat btn-warning">New Bags</a>

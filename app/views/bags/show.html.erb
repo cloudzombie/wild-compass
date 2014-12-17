@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <ul style="list-style-type: none; padding-left: 0;">
-  <li><strong>Name :</strong><%= bag %></li>
+  <li><strong>ID :</strong><%= bag.id %></li>
+  <li><strong>Strain :</strong><%= bag.lot.strain unless bag.lot.nil? %></li>
+  <li><strong>Type :</strong><%= bag.lot.category unless bag.lot.nil? %></li>
+  <li><strong>Initial Weight :</strong><%= bag.initial_weight %></li>
   <li><strong>Weight :</strong><%= bag.weight %></li>
+  <li><strong>Origin :</strong> <%= bag.lot unless bag.lot.nil? %> <- <%= bag.lot.plant unless bag.lot.nil? %></li>
 </ul>
 
 <%= link_to 'Edit', edit_bag_path(bag) %> |
