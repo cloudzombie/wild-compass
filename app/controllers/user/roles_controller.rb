@@ -1,0 +1,47 @@
+class User::RolesController < ApplicationController
+  before_action :set_user_role, only: [:show, :edit, :update, :destroy]
+
+  respond_to :html
+
+  def index
+    @user_roles = User::Role.all
+    respond_with(@user_roles)
+  end
+
+  def show
+    respond_with(@user_role)
+  end
+
+  def new
+    @user_role = User::Role.new
+    respond_with(@user_role)
+  end
+
+  def edit
+  end
+
+  def create
+    @user_role = User::Role.new(role_params)
+    @user_role.save
+    respond_with(@user_role)
+  end
+
+  def update
+    @user_role.update(role_params)
+    respond_with(@user_role)
+  end
+
+  def destroy
+    @user_role.destroy
+    respond_with(@user_role)
+  end
+
+  private
+    def set_user_role
+      @user_role = User::Role.find(params[:id])
+    end
+
+    def user_role_params
+      params[:user_role]
+    end
+end

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  namespace :user do
+    resources :roles
+  end
+
+  namespace :user do
+    resources :groups
+  end
+
   # Root redirect
   root to: 'root#redirect'
 
