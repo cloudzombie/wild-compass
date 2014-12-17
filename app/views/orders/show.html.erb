@@ -2,8 +2,14 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @order.customer %>
+  <%= order.customer %>
 </p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
+<ul>
+  <% order.order_lines.each do |line| %>
+    <li><%= line %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_order_path(order) %> |
 <%= link_to 'Back', orders_path %>
