@@ -11,9 +11,9 @@ namespace :csv do
     CSV.foreach(args.filename, { headers: :first_row }) do |col|
       
       bag = Bag.create!(
-        initial_weight:   col[2],
-        weight:           col[3],
-        origin:           col[4]
+        initial_weight: col[2],
+        weight:         col[3],
+        lot_id:         col[4]         
       )
 
       puts "Created bag:\n\tid:\t\t\t#{bag.id}\n\tinitial_weight:\t\t#{bag.initial_weight}\n\tweight:\t\t\t#{bag.weight}\n\torigin:\t\t\t#{bag.origin}\n\n"
