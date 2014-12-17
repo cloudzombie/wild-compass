@@ -6,6 +6,7 @@ class Jar < ActiveRecord::Base
   ### bag:    Bag   ###
   ### plants: Plant ###
   ### lot:    Lot   ###
+  ### weight: int   ###
   #####################
 
 

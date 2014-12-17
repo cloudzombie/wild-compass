@@ -1,13 +1,13 @@
 <table class="table table-striped">
   <tr>
     <th>Name :</th>
-    <th></th>
+    <th>Weight :</th>
   </tr>
 
   <% inventory_lines.each do |line| %>
     <tr>
-      <td><%= line.name %></td>
-      <td></td>
+      <td><%= line %></td>
+      <td><%= line.weight unless line.kind_of? Plant || line.weight.nil?  %></td>
     </tr>
   <% end %>
 </table>

@@ -1,6 +1,6 @@
 class InventoryController < ApplicationController
 
-  expose(:inventory_lines)  { Plant.all + Bag.all + Jar.all + Lot.all }
+  expose(:inventory_lines)  {  Bag.all # + Plant.all + Jar.all + Lot.all }
 
   def home
   end

@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<ul style="list-style-type: none; padding-left: 0;">
+  <li><strong>Name :</strong><%= bag %></li>
+  <li><strong>Weight :</strong><%= bag.weight %></li>
+</ul>
+
 <%= link_to 'Edit', edit_bag_path(bag) %> |
 <%= link_to 'Back', bags_path %>

@@ -6,6 +6,7 @@ class Bag < ActiveRecord::Base
   ### lot:    Lot   ###
   ### jars:   Jar   ###
   ### plants: Plant ###
+  ### weight: int   ###
   #####################
 
 

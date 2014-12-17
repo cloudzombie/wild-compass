@@ -5,6 +5,7 @@ class Lot < ActiveRecord::Base
   #####################
   ### plants: Plant ###
   ### bags:   Bag   ###
+  ### weight: int   ###
   #####################
 
 

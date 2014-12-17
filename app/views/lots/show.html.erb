@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<strong><%= lot.name %></strong><br>
+<ul style="list-style-type: none; padding-left: 0;">
+  <li><strong>Name :</strong><%= lot %><li>
+  <li><strong>Weight :</strong><%= lot.weight %><li>
+</ul>
 
 <%= link_to 'Edit', edit_lot_path(lot) %> |
 <%= link_to 'Back', lots_path %>

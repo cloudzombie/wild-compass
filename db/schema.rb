@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217164005) do
+ActiveRecord::Schema.define(version: 20141217180133) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lot_id"
     t.string   "name"
+    t.integer  "weight"
   end
 
   create_table "cultivars", force: true do |t|
@@ -37,12 +38,14 @@ ActiveRecord::Schema.define(version: 20141217164005) do
     t.datetime "updated_at"
     t.integer  "bag_id"
     t.string   "name"
+    t.integer  "weight"
   end
 
   create_table "lots", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "weight"
   end
 
   create_table "plants", force: true do |t|
