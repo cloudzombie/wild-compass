@@ -1,0 +1,20 @@
+<%= form_for(jar) do |f| %>
+  <% if jar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(jar.errors.count, "error") %> prohibited this jar from being saved:</h2>
+
+      <ul>
+      <% jar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

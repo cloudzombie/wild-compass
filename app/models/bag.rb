@@ -4,7 +4,7 @@ class Bag < ActiveRecord::Base
   ### Bag           ###
   #####################
   ### lot:    Lot   ###
-  ### pots:   Pot   ###
+  ### jars:   Jar   ###
   ### plants: Plant ###
   #####################
 
@@ -16,9 +16,9 @@ class Bag < ActiveRecord::Base
 
 
 
-  ### Pots
+  ### Jars
 
-  has_many :pots
+  has_many :jars
 
 
 
