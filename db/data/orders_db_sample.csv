@@ -1,7 +1,7 @@
-id,customer,shipped,timestamp
-4,John Doe,1,12/17/14 03:20 PM
-5,John Doe,2,12/17/14 03:20 PM
-6,John Doe,3,12/17/14 03:20 PM
-7,John Doe,4,12/17/14 03:20 PM
-8,John Doe,5,12/17/14 03:20 PM
-9,John Doe,6,12/17/14 03:20 PM
+customer,shipped,timestamp
+John Doe,1,12/17/14 03:20 PM
+John Doe,2,12/17/14 03:20 PM
+John Doe,3,12/17/14 03:20 PM
+John Doe,4,12/17/14 03:20 PM
+John Doe,5,12/17/14 03:20 PM
+John Doe,6,12/17/14 03:20 PM
