@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217194132) do
+ActiveRecord::Schema.define(version: 20141217212134) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20141217194132) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "weight"
-    t.string   "type"
+    t.string   "category"
     t.string   "strain"
     t.integer  "origin"
     t.integer  "initial_weight"
