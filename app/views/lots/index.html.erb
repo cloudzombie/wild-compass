@@ -13,23 +13,20 @@
     </div><!-- /.box-header -->
     <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
-            <tr>
+            <tr>d
                 <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
                 <th>ID</th>
-                <th>Nom</th>
-                <th>Origine</th>
-                <th>Descendance</th>
+                <th>Lot Number</th>
+                <th>Type</th>
                 <th>Actions</th>
             </tr>
             <% lots.each do |lot| %>
               <tr>
                 <td></td>
-                <td>000</td>
-                <td><%= lot.name %></td>
-                <td><a href="#" class="btn-sm btn-flat btn-primary"> Plants <i style="margin-left:5px"class="fa fa-plus"></i></a></td>
-                <td><a href="#" class="btn-sm btn-flat btn-success"> Bags <i style="margin-left:5px"class="fa fa-plus"></i></a></td>
+                <td><%= lot.id %>
+                <td><a href="#" class="btn-sm btn-flat btn-primary"> <%= lot.name %> <i style="margin-left:5px"class="fa fa-plus"></i></a></td>
                 <td>
-                  <a class="btn-sm btn-flat btn-warning">New Bags</a>
+                  <a class="btn-sm btn-flat btn-warning">New Bag</a>
                    <%= link_to 'Show', lot, class: "btn-sm btn-flat btn-success" %>
                     <%= link_to 'Edit', lot, class: "btn-sm btn-flat btn-primary" %>
                     <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-flat btn-danger" %>
