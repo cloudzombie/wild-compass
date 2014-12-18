@@ -1,3 +1,26 @@
 class Order < ActiveRecord::Base
+
+
+
+  ### Order lines
+
   has_many :order_lines
+
+
+
+  ### Customer
+
+  validates :customer, presence: true
+
+
+
+  ### Total weight
+
+  def total_weight
+    w = 0
+    order_lines.each do |line|
+      w += line.quantity.to_i * (line.product.nil? ? 0 : line.product.weight.to_i)
+    end
+    w
+  end
 end

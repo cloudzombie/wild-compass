@@ -19,90 +19,36 @@
     <table class="table table-hover">
       <tr>
         <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
-        <th>Shipped Date :</th>
-        <th>Order Date :</th>
         <th>ID :</th>
         <th>Customer :</th>
-        <th>Weight :</th>
-        <th>Strain :</th>
-        <th>Type :</th>
-        <th>Origin :</th>
-      </tr>
-      <tr>
-        <td></td>
-        <td>27-Dec-2015</td>
-        <td>29-Dec-2015</td>
-        <td>1</td>
-        <td>John Doe</td>
-        <td>7.4 g</td>
-        <td>YO</td>
-        <td>B</td>
-        <td>Bag #1</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>22-Dec-2015</td>
-        <td>23-Dec-2015</td>
-        <td>2</td>
-        <td>John Doe</td>
-        <td>7 g</td>
-        <td>YO</td>
-        <td>B</td>
-        <td>Bag #1</td>
-        <td></td>
-      </tr>
-            <tr>
-        <td></td>
-        <td>10-Dec-2015</td>
-        <td>12-Dec-2015</td>
-        <td>3</td>
-        <td>John Doe</td>
-        <td>7.3 g</td>
-        <td>YO</td>
-        <td>B</td>
-        <td>Bag #1</td>
-        <td></td>
-      </tr>
-            <tr>
-        <td></td>
-        <td>13-Nov-2015</td>
-        <td>16-Nov-2015</td>
-        <td>4</td>
-        <td>John Doe</td>
-        <td>7 g</td>
-        <td>YO</td>
-        <td>B</td>
-        <td>Bag #1</td>
-        <td></td>
-      </tr>
-            <tr>
-        <td></td>
-        <td>22-Oct-2015</td>
-        <td>23-Oct-2015</td>
-        <td>5</td>
-        <td>John Doe</td>
-        <td>7.7 g</td>
-        <td>YO</td>
-        <td>B</td>
-        <td>Bag #1</td>
-        <td></td>
+        <th>Description :</th>
+        <th>Total Weight :</th>
+        <th>Order Date :</th>
+        <th>Shipped Date :</th>
+        <th>Actions :</th>
       </tr>
 
       <% orders.each do |order| %>
       <tr>
         <td></td>
         <td><%= order.id %></td>
-        <td><%= order.weight %></td>
-        <td><%= order.bag.lot.strain %></td>
-        <td><%= order.bag.lot.category %></td>
-        <td><%= order.bag %></td>
+        <td><%= order.customer %></td>
+        <td>
+          <ul style="list-style-type: none; padding-left: 0;">
+          <% order.order_lines.each do |line| %>
+            <li><%= line %></li>
+          <% end %>
+          </ul>
+        </td>
+        <td><%= order.total_weight %></td>
+        <td><%= order.ordered_at %></td>
+        <td><%= order.shipped_at %></td>
         <td>
           <a class="btn-sm btn-flat btn-warning">New Bags</a>
-          <%= link_to 'Show', lot, class: "btn-sm btn-flat btn-success" %>
-          <%= link_to 'Edit', lot, class: "btn-sm btn-flat btn-primary" %>
-          <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' },
-                      class: "btn-sm btn-flat btn-danger" %>
+          <%= link_to 'Show',    order, class: "btn-sm btn-flat btn-success" %>
+          <%= link_to 'Edit',    order, class: "btn-sm btn-flat btn-primary" %>
+          <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' },
+                       class: "btn-sm btn-flat btn-danger" %>
         </td>
       </tr>
       <% end %>
