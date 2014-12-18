@@ -47,6 +47,6 @@ class BagsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
-      params.require(:bag).permit(:initial_weight, :lot)
+      params.require(:bag).permit(:initial_weight, :lot_id)
     end
 end
