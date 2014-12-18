@@ -8,6 +8,7 @@
                class="form-control input-sm pull-right"
                style="width: 150px;"
                placeholder="Search"/>
+
         <div class="input-group-btn">
           <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
         </div>
@@ -22,7 +23,7 @@
         <th>ID :</th>
         <th>Name :</th>
         <th>Strain :</th>
-        <th>Type :</th>
+        <th>Category :</th>
         <th>Initial Weight </th>
         <th>Current Weight :</th>
         <th>Last time used :</th>
@@ -36,8 +37,16 @@
         <td><%= lot %></td>
         <td><%= lot.strain %></td>
         <td><%= lot.category %></td>
-        <td><%= number_with_precision(lot.initial_weight/1000, :precision => 2) %> g</td>
-        <td><%= number_with_precision(lot.weight/1000, :precision => 2) %> g</td>
+        <td>
+          <%= number_with_precision(
+            (lot.initial_weight.nil? ? 0 : lot.initial_weight) / 1000.0, precision: 2)
+          %> g
+        </td>
+        <td>
+          <%= number_with_precision(
+            (lot.weight.nil? ? 0 : lot.weight) / 1000.0, precision: 2)
+          %> g
+        </td>
         <td>29-Dec-2015</td>
         <td>
           <%= link_to 'New bag', new_bag_path, class: "btn-sm btn-flat btn-warning"  %>

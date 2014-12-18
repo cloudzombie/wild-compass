@@ -22,6 +22,12 @@ class Lot < ActiveRecord::Base
 
 
 
+  ### Weight
+
+  validates :weight, presence: true, numericality: { greater_than: 0 }
+
+
+
   def to_s
     "#{ name.titleize unless name.nil? }"
   end
