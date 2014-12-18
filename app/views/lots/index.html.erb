@@ -49,7 +49,7 @@
         </td>
         <td>29-Dec-2015</td>
         <td>
-          <%= link_to 'New bag', new_bag_path, class: "btn-sm btn-flat btn-warning"  %>
+          <%= link_to 'New bag', new_bag_path(lot: lot.id), class: "btn-sm btn-flat btn-warning"  %>
           <%= link_to 'Show', lot, class: "btn-sm btn-flat btn-success" %>
           <!--<%= link_to 'Edit', lot, class: "btn-sm btn-flat btn-primary" %>
           <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' },

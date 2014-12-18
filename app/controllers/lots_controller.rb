@@ -44,6 +44,8 @@ class LotsController < ApplicationController
     end
   end
 
+  
+
   private
     def lot_params
       params.require(:lot).permit(:name, :weight)
