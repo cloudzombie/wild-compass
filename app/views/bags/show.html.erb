@@ -8,7 +8,50 @@
   <li><strong>Weight :</strong><%= bag.initial_weight/1000 %> g</li>
   <li><strong>Origin - Lot :</strong><%= bag.lot unless bag.lot.nil? %></li>
   <li><strong>Origin - Plant :</strong> Plant_YO #001</li>
+  <li><strong>Jars - Orders :</strong></li>
 </ul>
+<div class="row">
+<div class="box-body table-responsive no-padding col-lg-3">
+    <table class="table table-hover">
+      <tr>
+        <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
+        <th>ID :</th>
+        <th>Weight :</th>
+        <th>Date :</th>
+        <th>Actions :</th>
+      </tr>
+      <tr>
+        <th></th>
+        <td>1402</td>
+        <th>5.00 g</th>
+        <th>29-Dec-2015</th>
+        <th><button type="button" class="btn-sm btn-info btn-flat">Show</button></th>
+      </tr>
+      <tr>
+        <th></th>
+        <td>1390</td>
+        <th>5.02 g</th>
+        <th>20-Dec-2015</th>
+        <th><button type="button" class="btn-sm btn-info btn-flat">Show</button></th>
+      </tr>
+      <tr>
+        <th></th>
+        <td>1385</td>
+        <th>10.01 g</th>
+        <th>18-Dec-2015</th>
+        <th><button type="button" class="btn-sm btn-info btn-flat">Show</button></th>
+      </tr>
+      <tr>
+        <th></th>
+        <td>1350</td>
+        <th>7.07 g</th>
+        <th>11-Dec-2015</th>
+        <th><button type="button" class="btn-sm btn-info btn-flat">Show</button></th>
+      </tr>
+      </table>
+     </div>
+     </div>
 
-<%= link_to 'Edit', edit_bag_path(bag) %> |
+
+<!--<%= link_to 'Edit', edit_bag_path(bag) %> | -->
 <%= link_to 'Back', bags_path %>

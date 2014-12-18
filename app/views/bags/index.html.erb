@@ -24,6 +24,7 @@
         <th>Type :</th>
         <th>Initial Weight :</th>
         <th>Weight :</th>
+        <th>Last Time Used :</th>
         <th>Origin :</th>
         <th>Actions :</th>
       </tr>
@@ -34,8 +35,9 @@
         <td><%= bag.id %></td>
         <td><%= bag.lot.strain unless bag.lot.nil? %></td>
         <td><%= bag.lot.category unless bag.lot.nil? %></td>
-        <td><%= bag.initial_weight / 1000 %> g</td>
+        <td><%= number_with_precision(bag.initial_weight/1000, :precision => 2) %> g</td>
         <td><%= "#{(bag.weight / 1000).to_s + " g" unless bag.weight.nil?}"%></td>
+        <td><%= "#{(27 - bag.id).to_s + "-Dec-2015" unless bag.weight.nil?}"%></td>
         <td><%= link_to bag.lot, bag.lot, class: "btn-sm btn-flat btn-success" %></td>
         <td>
           <%= link_to 'New jar', new_jar_path, class: "btn-sm btn-flat btn-warning" %>
