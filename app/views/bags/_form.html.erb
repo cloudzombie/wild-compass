@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <%= f.label :lot %>
-    <%= f.text_field :lot, value: params[:lot], class: 'form-control' %>
+    <%= f.collection_select :lot, Lot.all, :id, :name, :selected => params[:lot] %>
   </div>
 
   <div class="form-group">
