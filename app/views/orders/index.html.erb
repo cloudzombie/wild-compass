@@ -19,13 +19,13 @@
     <table class="table table-hover">
       <tr>
         <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
-        <th>ID :</th>
-        <th>Customer :</th>
-        <th>Description :</th>
-        <th>Total Weight :</th>
-        <th>Order Date :</th>
-        <th>Shipped Date :</th>
-        <th>Actions :</th>
+        <th><%= sortable :id %></th>
+        <th><%= sortable :customer %></th>
+        <th>Description</th>
+        <th>Total Weight</th>
+        <th><%= sortable :ordered_at %></th>
+        <th><%= sortable :shipped_at %></th>
+        <th>Actions</th>
       </tr>
 
       <% orders.each do |order| %>

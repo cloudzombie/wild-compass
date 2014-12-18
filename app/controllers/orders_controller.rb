@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   expose(:order, params: :order_params) { id_param.nil? ? Order.new : Order.find(id_param) }
-  expose(:orders) { Order.all }
+  expose(:orders) { Order.order(sort_column + ' ' + sort_direction) }
 
   def create
     self.order = Order.new(order_params)
@@ -25,5 +27,13 @@ class OrdersController < ApplicationController
 
     def order_params
       params.require(:order).permit(:customer, :order_lines)
+    end
+
+    def sort_column
+      %w(id customer total_weight ordered_at shipped_at).include?(params[:sort]) ? params[:sort] : 'ordered_at'
+    end
+
+    def sort_direction
+      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 end
