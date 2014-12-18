@@ -1,4 +1,5 @@
 class LotsController < ApplicationController
+  helper_method :sort_column, :sort_direction
 
   expose(:lot, params: :lot_params) do
     unless params[:id].nil?
@@ -8,7 +9,7 @@ class LotsController < ApplicationController
     end
   end
 
-  expose(:lots) { Lot.all }
+  expose(:lots) { Lot.order(sort_column + ' ' + sort_direction) }
 
   def create
     self.lot = Lot.new(lot_params)
@@ -49,5 +50,13 @@ class LotsController < ApplicationController
   private
     def lot_params
       params.require(:lot).permit(:name, :weight)
+    end
+
+    def sort_column
+      %w(id name strain category initial_weight current_weight updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
+    end
+
+    def sort_direction
+      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 end
