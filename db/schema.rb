@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217213335) do
+ActiveRecord::Schema.define(version: 20141218193451) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -72,6 +72,9 @@ ActiveRecord::Schema.define(version: 20141217213335) do
     t.datetime "updated_at"
     t.integer  "shipped"
     t.datetime "timestamp"
+    t.datetime "orderDate"
+    t.datetime "shippedDate"
+    t.datetime "lastTimedUsed"
   end
 
   create_table "plants", force: true do |t|

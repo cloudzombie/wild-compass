@@ -24,7 +24,8 @@
         <th>Strain :</th>
         <th>Type :</th>
         <th>Initial Weight </th>
-        <th>Weight :</th>
+        <th>Current Weight :</th>
+        <th>Last time used :</th>
         <th>Actions :</th>
       </tr>
 
@@ -35,14 +36,15 @@
         <td><%= lot %></td>
         <td><%= lot.strain %></td>
         <td><%= lot.category %></td>
-        <td><%= lot.initial_weight %></td>
-        <td><%= lot.weight %></td>
+        <td><%= number_with_precision(lot.initial_weight/1000, :precision => 2) %> g</td>
+        <td><%= number_with_precision(lot.weight/1000, :precision => 2) %> g</td>
+        <td>29-Dec-2015</td>
         <td>
-          <%= link_to 'New bag', new_bag_path, class: "btn btn-flat btn-warning"  %>
+          <%= link_to 'New bag', new_bag_path, class: "btn-sm btn-flat btn-warning"  %>
           <%= link_to 'Show', lot, class: "btn-sm btn-flat btn-success" %>
-          <%= link_to 'Edit', lot, class: "btn-sm btn-flat btn-primary" %>
+          <!--<%= link_to 'Edit', lot, class: "btn-sm btn-flat btn-primary" %>
           <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' },
-                      class: "btn-sm btn-flat btn-danger" %>
+                      class: "btn-sm btn-flat btn-danger" %> -->
         </td>
       </tr>
       <% end %>

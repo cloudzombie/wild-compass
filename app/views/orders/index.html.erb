@@ -19,15 +19,77 @@
     <table class="table table-hover">
       <tr>
         <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
+        <th>Shipped Date :</th>
+        <th>Order Date :</th>
         <th>ID :</th>
+        <th>Customer :</th>
         <th>Weight :</th>
         <th>Strain :</th>
         <th>Type :</th>
         <th>Origin :</th>
-        <th>Actions :</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>27-Dec-2015</td>
+        <td>29-Dec-2015</td>
+        <td>1</td>
+        <td>John Doe</td>
+        <td>7.4 g</td>
+        <td>YO</td>
+        <td>B</td>
+        <td>Bag #1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>22-Dec-2015</td>
+        <td>23-Dec-2015</td>
+        <td>2</td>
+        <td>John Doe</td>
+        <td>7 g</td>
+        <td>YO</td>
+        <td>B</td>
+        <td>Bag #1</td>
+        <td></td>
+      </tr>
+            <tr>
+        <td></td>
+        <td>10-Dec-2015</td>
+        <td>12-Dec-2015</td>
+        <td>3</td>
+        <td>John Doe</td>
+        <td>7.3 g</td>
+        <td>YO</td>
+        <td>B</td>
+        <td>Bag #1</td>
+        <td></td>
+      </tr>
+            <tr>
+        <td></td>
+        <td>13-Nov-2015</td>
+        <td>16-Nov-2015</td>
+        <td>4</td>
+        <td>John Doe</td>
+        <td>7 g</td>
+        <td>YO</td>
+        <td>B</td>
+        <td>Bag #1</td>
+        <td></td>
+      </tr>
+            <tr>
+        <td></td>
+        <td>22-Oct-2015</td>
+        <td>23-Oct-2015</td>
+        <td>5</td>
+        <td>John Doe</td>
+        <td>7.7 g</td>
+        <td>YO</td>
+        <td>B</td>
+        <td>Bag #1</td>
+        <td></td>
       </tr>
 
-      <% orders.each do |lot| %>
+      <% orders.each do |order| %>
       <tr>
         <td></td>
         <td><%= order.id %></td>
@@ -49,19 +111,7 @@
 </div>
 
 <div class="tableFooter">
-  <div class="btn-group">
-    <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
-      <span class="caret"></span>
-      <span class="sr-only">Toggle Dropdown</span>
-    </button>
-    <button type="button" class="btn btn-info btn-flat">Action</button>
-    <ul class="dropdown-menu" role="menu">
-      <li><a href="#"></a></li>
-      <li><a href="#">Create Bags</a></li>
-      <li class="divider"></li>
-      <li><a href="#">Détruire</a></li>
-    </ul>
-  </div>
-  <%= link_to 'New lot', new_lot_path, class: "btn btn-flat btn-success"  %>
+  
+   
 </div>
 
