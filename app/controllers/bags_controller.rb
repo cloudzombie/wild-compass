@@ -12,7 +12,7 @@ class BagsController < ApplicationController
 
   def create
     self.bag = Bag.new(bag_params)
-
+    
     respond_to do |format|
       if bag.save
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
@@ -47,6 +47,6 @@ class BagsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
-      params.require(:bag).permit(:name, :weight)
+      params.require(:bag).permit(:initial_weight, :lot)
     end
 end
