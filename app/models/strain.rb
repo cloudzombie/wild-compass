@@ -1,6 +1,6 @@
 class Strain < ActiveRecord::Base
 
-	has_many :lots
+  has_many :lots
 
   has_many :plants
 

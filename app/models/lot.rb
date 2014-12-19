@@ -30,7 +30,9 @@ class Lot < ActiveRecord::Base
   
   has_many :bags
 
+  ### Jar
 
+  has_many :jars, through: :bag
 
   ### Weight
 

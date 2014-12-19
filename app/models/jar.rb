@@ -29,8 +29,7 @@ class Jar < ActiveRecord::Base
   ### Plants
 
   has_many :plants, through: :bag
-
-
+  
 
   ### Lot
 

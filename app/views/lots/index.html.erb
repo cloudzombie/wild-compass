@@ -40,7 +40,7 @@
         <td><%= lot.category %></td>
         <td>
           <%= number_with_precision(
-            (lot.initial_weight.nil? ? 0 : lot.initial_weight) / 1000.0, precision: 2)
+            (lot.initial_weight.nil? ? 0 : lot.initial_weight), precision: 2)
           %> g
         </td>
         <td>
