@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219053719) do
+ActiveRecord::Schema.define(version: 20141219065404) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lot_id"
     t.string   "name"
-    t.integer  "origin"
     t.integer  "current_weight"
+    t.integer  "origin"
     t.integer  "initial_weight"
+    t.integer  "history_id"
   end
 
   create_table "cultivars", force: true do |t|
@@ -35,25 +36,45 @@ ActiveRecord::Schema.define(version: 20141219053719) do
     t.string   "name"
   end
 
+  create_table "histories", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "history_lines", force: true do |t|
+    t.integer  "history_id"
+    t.integer  "source_id"
+    t.string   "source_type"
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "history_lines", ["history_id"], name: "index_history_lines_on_history_id"
+
   create_table "jars", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "bag_id"
     t.string   "name"
-    t.integer  "origin"
     t.integer  "current_weight"
+    t.integer  "origin"
     t.integer  "initial_weight"
+    t.integer  "history_id"
   end
 
   create_table "lots", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "current_weight"
     t.string   "category"
     t.string   "strain"
     t.integer  "origin"
-    t.integer  "current_weight"
     t.integer  "initial_weight"
+    t.integer  "history_id"
     t.integer  "plant_id"
   end
 
@@ -86,6 +107,7 @@ ActiveRecord::Schema.define(version: 20141219053719) do
     t.integer  "rfid_id"
     t.string   "origin"
     t.string   "name"
+    t.integer  "history_id"
   end
 
   add_index "plants", ["cultivar_id"], name: "index_plants_on_cultivar_id"

@@ -1,13 +1,22 @@
 class Jar < ActiveRecord::Base
 
-  #####################
-  ### Jar           ###
-  #####################
-  ### bag:    Bag   ###
-  ### plants: Plant ###
-  ### lot:    Lot   ###
-  ### weight: int   ###
-  #####################
+  ###############################
+  ### Jar                     ###
+  ###############################
+  ### history: History        ###
+  ### bag:     Bag            ###
+  ### plants:  Plant          ###
+  ### lot:     Lot            ###
+  ### initial_weight: integer ###
+  ### current_weight: integer ###
+  ###############################
+
+  before_create :create_history
+  before_save :create_history, unless: :history_exists?
+
+  ### History
+
+  belongs_to :history
 
 
 
@@ -33,7 +42,22 @@ class Jar < ActiveRecord::Base
     bag.lot = lot
   end
 
+
+
+  ### Utils
+
   def to_s
     "#{ name.titleize unless name.nil? }"
   end
+
+  private
+
+    def create_history
+      self.history = History.create
+    end
+
+    def history_exists?
+      !history.nil?
+    end
+
 end
