@@ -5,8 +5,8 @@ class BagsController < ApplicationController
   expose(:bags) { Bag.order(sort_column + ' ' + sort_direction) }
 
   def create
+
     self.bag = Bag.new(bag_params)
-    
     respond_to do |format|
       if bag.save
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
