@@ -10,7 +10,7 @@ class BagsController < ApplicationController
     respond_to do |format|
       bag.name = "#{SecureRandom.uuid}_Bag#{bag.lot.strain}#{Time.now.strftime("%m%y")}"
       if bag.save
-        Transaction.from( bag.lot ).to( bag ).take( bag.current_weight ).commit
+        Transaction.from( bag.lot).to( bag ).take( bag.initial_weight ).commit
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
         format.json { render :show, status: :created, location: bag }
       else
@@ -18,7 +18,7 @@ class BagsController < ApplicationController
         format.json { render json: bag.errors, status: :unprocessable_entity }
       end
     end
-  end
+  end 
 
   def update
     respond_to do |format|
@@ -43,7 +43,7 @@ class BagsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
-      params.require(:bag).permit(:initial_weight, :lot_id, :name, :created_a)
+      params.require(:bag).permit(:initial_weight, :lot_id, :name, :created_a, :current_weight)
     end
 
     def id_param

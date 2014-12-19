@@ -21,19 +21,22 @@ formats = Format.create([
   { name: :"6L"      }
 ])
 
-cultivars = Cultivar.create([
-  { name: :"BB"     },
-  { name: :"YO"	 	},
-  { name: :"CA"	 	},
-  { name: :"LG"     }
+strains = Strain.create([
+  { name: :"Big Blue Bubble Buds", acronym: :"Bb"  },
+  { name: :"Yo Diamond", acronym: :"Yo"	 	},
+  { name: :"Good Meds", acronym: :"Gm"	 	},
+  { name: :"Snow Leopard", acronym: :"LG"     },
+  { name: :"Mk", acronym: :"Mk"  },
+  { name: :"Casey x Ww" , acronym: :"CxWw"   },
+  { name: :"Space Queen", acronym: :"Sq"   },
+  { name: :"Critical Cheese", acronym: :"Cc"     },
+  { name: :"Norther Lights 5", acronym: :"NlxBb" ,info: :"Nl x Bb" },
+  { name: :"(Pmayi)", acronym: :"Pm1"   },
+  { name: :"(Pmayi)", acronym: :"Pm2"   },
+  { name: :"(Krona x Norther California", acronym: :"Ks"     },
+  { name: :"(Cambodian x Mes Gold x Lumbo Gold x Thai x Maui)", acronym: :"Pg"  },
+  { name: :"Socal Master Kush", acronym: :"Sc"   },
+  { name: :"Prayer Tower", acronym: :"Pt"   },
+  { name: :"Shark Shock", acronym: :"Ss"     },
 ])
 
-RFIDs = RFID.create([
-  { name: :"#######"}
-])
-
-Lots = Lot.create([
-  { name: :"Lot001" },
-  { name: :"Lot002" },
-  { name: :"Lot003" }
-])

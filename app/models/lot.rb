@@ -16,7 +16,9 @@ class Lot < ActiveRecord::Base
 
   belongs_to :history
 
+  ### Strain
 
+  belongs_to :strain
 
   ### Plants
 

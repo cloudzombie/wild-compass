@@ -7,8 +7,11 @@ class LotsController < ApplicationController
   
   def create
     self.lot = Lot.new(lot_params)
-    respond_to do |format|
+
+    respond_to do |format|     
+
       if lot.save
+        lot.current_weight = lot.initial_weight 
         format.html { redirect_to lot, notice: 'Lot was successfully created.' }
         format.json { render :show, status: :created, location: lot }
       else
@@ -41,7 +44,7 @@ class LotsController < ApplicationController
   private
 
     def lot_params
-      params.require(:lot).permit(:name, :current_weight)
+      params.require(:lot).permit(:name, :initial_weight, :strain_id, :category, :current_weight)
     end
 
     def id_param

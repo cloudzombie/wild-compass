@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219065404) do
+ActiveRecord::Schema.define(version: 20141219104221) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lot_id"
     t.string   "name"
-    t.integer  "current_weight"
     t.integer  "origin"
+    t.integer  "current_weight"
     t.integer  "initial_weight"
     t.integer  "history_id"
   end
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20141219065404) do
     t.datetime "updated_at"
     t.integer  "bag_id"
     t.string   "name"
-    t.integer  "current_weight"
     t.integer  "origin"
+    t.integer  "current_weight"
     t.integer  "initial_weight"
     t.integer  "history_id"
   end
@@ -69,13 +69,14 @@ ActiveRecord::Schema.define(version: 20141219065404) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.integer  "current_weight"
     t.string   "category"
     t.string   "strain"
     t.integer  "origin"
+    t.integer  "current_weight"
     t.integer  "initial_weight"
-    t.integer  "history_id"
     t.integer  "plant_id"
+    t.integer  "history_id"
+    t.integer  "strain_id"
   end
 
   create_table "order_lines", force: true do |t|
@@ -125,6 +126,14 @@ ActiveRecord::Schema.define(version: 20141219065404) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+  end
+
+  create_table "strains", force: true do |t|
+    t.string   "name"
+    t.string   "acronym"
+    t.string   "info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_groups", force: true do |t|
