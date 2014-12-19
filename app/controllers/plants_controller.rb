@@ -46,6 +46,6 @@ class PlantsController < ApplicationController
 
   private
     def plant_params
-      params.require(:plant).permit(:name, :cultivar, :format, :status, :rfid, :origin, :lot)
+      params.require(:plant).permit(:name, :strain, :format, :status, :rfid, :origin, :lot, :initial_weight, :current_weight)
     end
 end
