@@ -11,4 +11,9 @@ module ApplicationHelper
       link_to title, { sort: column, direction: direction }
     end
   end
+
+  def percent_of_weight(object)
+    object.current_weight.to_f / object.initial_weight.to_f * 100
+  end
+
 end

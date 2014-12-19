@@ -36,8 +36,8 @@
           </div>
           <div class="col-lg-2">
             <div class="progress vertical">
-              <div class="progress-bar progress-bar-yellow" role="progressbar" aria-valuenow="<%= percent_of_weight(bag.current_weight, bag.initial_weight) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(bag.current_weight, bag.initial_weight) %>%">
-                <span class="sr-only"><%= percent_of_weight(bag.current_weight, bag.initial_weight) %>%</span>
+              <div class="progress-bar progress-bar-yellow" role="progressbar" aria-valuenow="<%= percent_of_weight(bag) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(bag) %>%">
+                <span class="sr-only"><%= percent_of_weight(bag) %>%</span>
               </div>
             </div>
           </div>
@@ -81,8 +81,8 @@
           </div>
           <div class="col-lg-2">
             <div class="progress vertical">
-              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%= percent_of_weight(bag.lot.current_weight, bag.lot.initial_weight) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(bag.lot.current_weight, bag.lot.initial_weight) %>%">
-                <span class="sr-only"><%= percent_of_weight(bag.lot.current_weight, bag.lot.initial_weight) %>%</span>
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%= percent_of_weight(bag.lot) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(bag.lot) %>%">
+                <span class="sr-only"><%= percent_of_weight(bag.lot) %>%</span>
               </div>
             </div>
           </div>
@@ -104,7 +104,7 @@
           </div>
         </div>
         <div class="box-body">
-          <% bag.history.history_lines.each do |lines| %>
+          <% #bag.history.history_lines.each do |lines| %>
           <div class="box box-solid collapsed-box">
             <div class="box-header">
               <h3 class="box-title">Default Solid Box</h3>
@@ -117,7 +117,7 @@
           
             </div> 
           </div>
-          <% end %>
+          <% # end %>
         </div> 
       </div>
     </div>

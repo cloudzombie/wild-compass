@@ -49,10 +49,10 @@
         </td>
         <td><%= bag.created_at.to_s :short %></td>
         <td><%= bag.updated_at.to_s :short %></td>
-        <td><%= link_to_unless bag.lot.nil?, bag.lot, bag.lot, class: "btn-sm btn-flat btn-info" %></td>
+        <td><%= link_to "#{fa_icon('tag')} #{bag.lot}".html_safe, lot_path(bag.lot), class: "btn-sm btn-flat btn-info" %></td>
         <td>
-          <%= link_to 'New jar', new_jar_path, class: "btn-sm btn-flat btn-warning" %>
-          <%= link_to 'Show', bag, class: "btn-sm btn-flat btn-success" %>
+          <%= link_to '<i class="fa fa-flask"></i> New jar'.html_safe, new_jar_path, class: "btn-sm btn-flat btn-danger" %>
+          <%= link_to '<i class="fa fa-tag"></i> Show'.html_safe, bag, class: "btn-sm btn-flat btn-warning" %>
         </td>
       </tr>
       <% end %>
