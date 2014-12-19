@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
 <h4><%= bag.name %></h4>
 <div class="row">
+  <div class="col-lg-2">
+    <div class="box-header">
+      <h3 class="box-title">Links</h3>
+    </div>
+    <a class="btn btn-block btn-danger" data-toggle="modal" data-target=".newJar"><i class="fa fa-flask"></i> New Jar</a>
+    <%= link_to '<i class="fa fa-tags"></i> '.html_safe + bag.lot, bag.lot, class: "btn btn-block btn-info" %>
+  </div>
   <div class="col-lg-5">
     <div class="box box-solid box-warning">
       <div class="box-header">
@@ -10,7 +17,7 @@
       <div class="box-body">
         <div class="row">
           <div class="col-lg-10">
-            <dl class="dl-horizontal">
+            <dl class="dl-horizontal description">
               <dt>ID :</dt>
               <dd><%= bag.id %></dd>
               <dt>Name :</dt>
@@ -38,49 +45,59 @@
       </div> 
     </div>
   </div>
-  <div class="col-lg-7">
+  <div class="col-lg-5">
     <div class="box box-solid box-info">
       <div class="box-header">
         <i class="fa fa-tags"></i>
-        <h3 class="box-title">Origin - <%= bag.lot.name %></h3>
+        <h3 class="box-title">Origin</h3>
       </div>
-      <div class="box-body table-responsive">
-        <table class"table">
-          <tr>
-            <th>ID :</th>
-            <th>Name :</th>
-            <th>Strain :</th>
-            <th>Type :</th>
-            <th>Initial Weight :</th>
-            <th>Current Weight :</th>
-            <th>Created At :</th>
-            <th>Updated At :</th>
-          </tr>
-          <tr>
-            <td><%= bag.lot.id %></td>
-            <td><%= bag.lot.name %></td>
-            <td><%= bag.lot.strain %></td>
-            <td><%= bag.lot.category %></td>
-            <td><%= number_with_precision(
-            (bag.lot.initial_weight.nil? ? 0 : bag.lot.initial_weight) / 1000.0, precision: 2)
-          %> g</td>
-            <td><%= number_with_precision(
-            (bag.lot.current_weight.nil? ? 0 : bag.lot.current_weight) / 1000.0, precision: 2)
-          %> g</td>
-          <td><%= bag.lot.created_at.to_s :short %></td>
-          <td><%= bag.lot.updated_at.to_s :short %></td>
-          </tr>
-        </table>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-lg-10">
+            <dl class="dl-horizontal description">
+              <dt>ID :</dt>
+              <dd><%= bag.lot.id %></dd>
+              <dt>Name :</dt>
+              <dd><%= bag.lot.name %></dd>
+              <dt>Strain :</dt>
+              <dd><%= bag.lot.strain %></dd>
+              <dt>Type :</dt>
+              <dd><%= bag.lot.category %></dd>
+              <dt>Initial Weight :</dt>
+              <dd><%= number_with_precision(
+                (bag.lot.initial_weight.nil? ? 0 : bag.lot.initial_weight) / 1000.0, precision: 2)
+                %> g
+              </dd>
+              <dt>Current Weight :</dt>
+              <dd><%= number_with_precision(
+                (bag.lot.current_weight.nil? ? 0 : bag.lot.current_weight) / 1000.0, precision: 2)
+                %> g
+              </dd>
+              <dt>Created At :</dt>
+              <dd><%= bag.lot.created_at.to_s :short %></dd>
+              <dt>Updated At :</dt>
+              <dd><%= bag.lot.updated_at.to_s :short %></dd>
+            </dl>
+          </div>
+          <div class="col-lg-2">
+            <div class="progress vertical">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%= percent_of_weight(bag.lot.current_weight, bag.lot.initial_weight) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(bag.lot.current_weight, bag.lot.initial_weight) %>%">
+                <span class="sr-only"><%= percent_of_weight(bag.lot.current_weight, bag.lot.initial_weight) %>%</span>
+              </div>
+            </div>
+          </div>
       </div> 
     </div>
   </div>
 </div>
   <div class="row">
+    <div class="col-lg-2">
+    </div>
     <div class="col-lg-5">
       <div class="box box-solid box-danger">
         <div class="box-header">
           <i class="fa fa-flask"></i>
-          <h3 class="box-title">History(Jars)</h3>
+          <h3 class="box-title">History</h3>
           <div class="box-tools pull-right">
             <!--<button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>-->
