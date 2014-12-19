@@ -39,15 +39,15 @@ class Bag < ActiveRecord::Base
   ### Weight
 
   def increase_current_weight(quantity)
-    update_column(:current_weight, current_weight + quantity)
+    update_attributes current_weight: current_weight + quantity
   end
 
   def decrease_current_weight(quantity)
-    update_column(:current_weight, current_weight - quantity)
+    update_attributes current_weight: current_weight - quantity
   end
 
-  validates :current_weight, presence: true, numericality: { greater_than: 0 }
-  validates :initial_weight, presence: true, numericality: { greater_than: 0 }
+  validates :current_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :initial_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
   
 
 

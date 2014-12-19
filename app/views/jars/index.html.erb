@@ -38,7 +38,7 @@
         <td><%= jar.bag.lot.category unless jar.bag.nil? || jar.bag.lot.nil? %></td>
         <td>
           <%= number_with_precision(
-            (jar.current_weight.nil? ? 0 : jar.current_weight) , precision: 2)
+            (jar.current_weight.nil? ? 0 : jar.current_weight) / 1000.0 , precision: 2)
           %> g
         </td>
         <td><%= link_to_unless jar.bag.nil?, "#{fa_icon('tag')} #{jar.bag.id} #{jar.bag.lot.strain.acronym}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %></td>

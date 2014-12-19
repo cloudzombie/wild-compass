@@ -13,16 +13,23 @@ class Transaction
     self
   end
 
-  def commit
+  def commit(opts = nil)
     raise "source is nil" if @source.nil?
     raise "target is nil" if @target.nil?
     raise "quantity is nil or zero" if @quantity.to_i == 0
 
-    @source.decrease_current_weight(@quantity.to_i)
-    @target.increase_current_weight(@quantity.to_i)
+    if opts[:initial]
+      @source.decrease_current_weight(@quantity.to_i)
+
+      @source.history.add_line(@source, @target, @quantity, :decrease_current_weight)
+      @target.history.add_line(@target, @source, @quantity, :increase_current_weight)
+    else
+      @source.decrease_current_weight(@quantity.to_i)
+      @target.increase_current_weight(@quantity.to_i)
     
-    @source.history.add_line(@source, @target, @quantity, :decrease_current_weight)
-    @target.history.add_line(@target, @source, @quantity, :increase_current_weight)
+      @source.history.add_line(@source, @target, @quantity, :decrease_current_weight)
+      @target.history.add_line(@target, @source, @quantity, :increase_current_weight)
+    end
 
     true
   end
@@ -32,5 +39,5 @@ class Transaction
     def initialize(source)
       @source = source
     end
-    
+
 end

@@ -7,12 +7,8 @@ class LotsController < ApplicationController
   
   def create
     self.lot = Lot.new(lot_params)
-
     respond_to do |format|     
-       
-        lot.initial_weight *= 1000
-        lot.current_weight = lot.initial_weight 
-
+      lot.current_weight = lot.initial_weight 
       if lot.save
         format.html { redirect_to lot, notice: 'Lot was successfully created.' }
         format.json { render :show, status: :created, location: lot }

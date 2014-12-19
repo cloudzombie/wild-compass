@@ -5,11 +5,12 @@ class JarsController < ApplicationController
   expose(:jars) { Jar.order(sort_column + ' ' + sort_direction) }
 
   def create
+    jar.current_weight = jar.initial_weight
     self.jar = Jar.new(jar_params)
     respond_to do |format|
       jar.name = "j-#{jar.bag.lot.strain.acronym}#{Time.now.strftime('%d%m%y')}"
       if jar.save
-        Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit
+        Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit( initial: true )
         format.html { redirect_to jar, notice: 'jar was successfully created.' }
         format.json { render :show, status: :created, location: jar }
       else
