@@ -1,13 +1,21 @@
 <table class="table table-striped">
   <tr>
-    <th>Name :</th>
-    <th>Weight :</th>
+    <th></th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Initial Weight</th>
+    <th>Current Weight</th>
+    <th>Actions</th>
   </tr>
 
   <% inventory_lines.each do |line| %>
     <tr>
+      <td></td>
       <td><%= line %></td>
-      <td><%= line.weight unless line.kind_of? Plant || line.weight.nil?  %></td>
+      <td><%= line.class %></td>
+      <td><%= line.initial_weight unless line.kind_of? Plant || line.initial_weight.nil?  %></td>
+      <td><%= line.current_weight unless line.kind_of? Plant || line.current_weight.nil?  %></td>
+      <td></td>
     </tr>
   <% end %>
 </table>
