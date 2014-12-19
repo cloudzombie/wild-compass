@@ -17,7 +17,7 @@ class Plant < ActiveRecord::Base
 
   belongs_to :history
 
-  belongs_to :cultivar
+  belongs_to :strain
 
   belongs_to :format
 
