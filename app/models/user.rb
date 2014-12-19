@@ -4,18 +4,18 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :user_group
-  belongs_to :user_role
+  belongs_to :group, class_name: 'User::Group', foreign_key: 'user_group_id'
+  belongs_to :role, class_name: 'User::Role', foreign_key: 'user_role_id'
 
   def to_s
     "#{ name.titleize unless name.nil? }"
   end
 
   def admin?
-    user_role.admin? || user_group.admin?
+    role.admin? || group.admin?
   end
 
   def manager?
-    user_role.manager? || user_group.manager?
+    role.manager? || group.manager?
   end
 end

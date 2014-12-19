@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219181124) do
+ActiveRecord::Schema.define(version: 20141219183259) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20141219181124) do
     t.string   "strain"
     t.integer  "origin"
     t.integer  "initial_weight"
-    t.integer  "history_id"
     t.integer  "plant_id"
+    t.integer  "history_id"
     t.integer  "strain_id"
   end
 
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20141219181124) do
     t.datetime "updated_at"
     t.boolean  "manager",    default: false
     t.boolean  "admin",      default: false
+    t.string   "name"
   end
 
   create_table "user_groups", force: true do |t|
@@ -154,6 +155,7 @@ ActiveRecord::Schema.define(version: 20141219181124) do
     t.datetime "updated_at"
     t.boolean  "manager",    default: false
     t.boolean  "admin",      default: false
+    t.string   "name"
   end
 
   create_table "users", force: true do |t|
@@ -171,6 +173,7 @@ ActiveRecord::Schema.define(version: 20141219181124) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "user_group_id"
+    t.integer  "user_role_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
