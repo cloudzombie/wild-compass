@@ -228,10 +228,10 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Account</a>
+                                <%= link_to 'Account', current_user %>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
                             </div>
                         </li>
                     </ul>
