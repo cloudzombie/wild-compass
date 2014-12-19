@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219183259) do
+ActiveRecord::Schema.define(version: 20141219193610) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lot_id"
     t.string   "name"
-    t.integer  "origin"
     t.integer  "current_weight"
+    t.integer  "origin"
     t.integer  "initial_weight"
     t.integer  "history_id"
   end
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20141219183259) do
     t.datetime "updated_at"
     t.integer  "bag_id"
     t.string   "name"
-    t.integer  "origin"
     t.integer  "current_weight"
+    t.integer  "origin"
     t.integer  "initial_weight"
     t.integer  "history_id"
   end
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 20141219183259) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "current_weight"
     t.string   "category"
     t.string   "strain"
     t.integer  "origin"
-    t.integer  "current_weight"
     t.integer  "initial_weight"
     t.integer  "plant_id"
     t.integer  "history_id"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20141219183259) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lot_id"
-    t.integer  "cultivar_id"
+    t.integer  "strain_id"
     t.integer  "format_id"
     t.integer  "status_id"
     t.integer  "rfid_id"
@@ -111,10 +111,10 @@ ActiveRecord::Schema.define(version: 20141219183259) do
     t.integer  "history_id"
   end
 
-  add_index "plants", ["cultivar_id"], name: "index_plants_on_cultivar_id"
   add_index "plants", ["format_id"], name: "index_plants_on_format_id"
   add_index "plants", ["rfid_id"], name: "index_plants_on_rfid_id"
   add_index "plants", ["status_id"], name: "index_plants_on_status_id"
+  add_index "plants", ["strain_id"], name: "index_plants_on_strain_id"
 
   create_table "rfids", force: true do |t|
     t.datetime "created_at"

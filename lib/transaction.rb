@@ -18,8 +18,6 @@ class Transaction
     raise "target is nil" if @target.nil?
     raise "quantity is nil or zero" if @quantity.to_i == 0
 
-  
-
     @source.decrease_current_weight(@quantity.to_i)
     @target.increase_current_weight(@quantity.to_i)
     
@@ -34,4 +32,5 @@ class Transaction
     def initialize(source)
       @source = source
     end
+    
 end
