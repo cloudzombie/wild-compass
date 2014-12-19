@@ -6,12 +6,14 @@ class BagsController < ApplicationController
 
   def create
     self.bag = Bag.new(bag_params)
-    
+
     respond_to do |format|
-      bag.initial_weight *= 1000.0
+
+      bag.initial_weight *= 1000.0 #g -> mg
       bag.current_weight = bag.initial_weight
-      lotNewWeight = bag.lot.current_weight - bag.initial_weight
-      bag.lot.update_attribute  (:current_weight, lotNewWeight)
+      bag.lot.update_column(:current_weight, (bag.lot.current_weight - bag.initial_weight)) #update lot's current_weight
+      bag.name = SecureRandom.uuid + "_Bag" + bag.lot.strain + Time.now.strftime("%m%y")
+
       if bag.save
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
         format.json { render :show, status: :created, location: bag }
@@ -45,7 +47,7 @@ class BagsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
-      params.require(:bag).permit(:initial_weight, :lot_id)
+      params.require(:bag).permit(:initial_weight, :lot_id, :name, :created_a)
     end
 
     def id_param

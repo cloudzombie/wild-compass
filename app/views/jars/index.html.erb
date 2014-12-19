@@ -47,7 +47,7 @@
             (jar.current_weight.nil? ? 0 : jar.current_weight) / 1000.0, precision: 2)
           %> g
         </td>
-        <td><%= jar.bag %></td>
+        <td><%= link_to_unless jar.bag.nil?, jar.bag, jar.bag, class: "btn-sm btn-flat btn-info" %></td>
         <td><%= jar.created_at.to_s :short %></td>
         <td><%= jar.updated_at.to_s :short %></td>
         <td>
