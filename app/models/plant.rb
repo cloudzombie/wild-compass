@@ -9,6 +9,12 @@ class Plant < ActiveRecord::Base
   ### rfid:     Rfid     ###
   ### lot:      Lot      ###
   ##########################
+  
+
+
+  ### History
+
+  belongs_to :history
 
   belongs_to :cultivar
 

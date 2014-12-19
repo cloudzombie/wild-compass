@@ -3,15 +3,13 @@ class History < ActiveRecord::Base
   ##################################
   ### History                    ###
   ##################################
-  ### historiable:   poly        ###
   ### history_lines: HistoryLine ###
   ##################################
 
-
-
-  ### Historiable
-
-  belongs_to :historiable, polymorphic: true
+  def add_line(source, target, quantity)
+    history_lines << HistoryLine.create(source: source, target: target, quantity: quantity)
+    save
+  end
 
 
 

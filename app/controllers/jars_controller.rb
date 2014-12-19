@@ -6,14 +6,10 @@ class JarsController < ApplicationController
 
   def create
     self.jar = Jar.new(jar_params)
-
     respond_to do |format|
-
-      jar.bag.update_column(:current_weight, (jar.bag.current_weight - jar.current_weight )) #update bag's current_weight
-     
-      jar.name = SecureRandom.uuid + "_Jar" + jar.bag.lot.strain + Time.now.strftime("%m%y")
-
+      jar.name = "#{SecureRandom.uuid}_Jar#{jar.bag.lot.strain}#{Time.now.strftime('%m%y')}"
       if jar.save
+        Transaction.from( jar.bag ).to( jar ).take( jar.bag.current_weight ).commit
         format.html { redirect_to jar, notice: 'jar was successfully created.' }
         format.json { render :show, status: :created, location: jar }
       else

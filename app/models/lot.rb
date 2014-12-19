@@ -1,12 +1,19 @@
 class Lot < ActiveRecord::Base
 
-  #####################
-  ### Lot           ###
-  #####################
-  ### plants: Plant ###
-  ### bags:   Bag   ###
-  ### weight: int   ###
-  #####################
+  ########################
+  ### Lot              ###
+  ########################
+  ### history: History ###
+  ### plants:  Plant   ###
+  ### bags:    Bag     ###
+  ### weight:  integer ###
+  ########################
+
+
+
+  ### History
+
+  belongs_to :history
 
 
 

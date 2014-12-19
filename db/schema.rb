@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219061843) do
+ActiveRecord::Schema.define(version: 20141219065404) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141219061843) do
     t.integer  "current_weight"
     t.integer  "origin"
     t.integer  "initial_weight"
+    t.integer  "history_id"
   end
 
   create_table "cultivars", force: true do |t|
@@ -36,13 +37,9 @@ ActiveRecord::Schema.define(version: 20141219061843) do
   end
 
   create_table "histories", force: true do |t|
-    t.integer  "hystoriable_id"
-    t.string   "hystoriable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "histories", ["hystoriable_id", "hystoriable_type"], name: "index_histories_on_hystoriable_id_and_hystoriable_type"
 
   create_table "history_lines", force: true do |t|
     t.integer  "history_id"
@@ -65,6 +62,7 @@ ActiveRecord::Schema.define(version: 20141219061843) do
     t.integer  "current_weight"
     t.integer  "origin"
     t.integer  "initial_weight"
+    t.integer  "history_id"
   end
 
   create_table "lots", force: true do |t|
@@ -76,6 +74,7 @@ ActiveRecord::Schema.define(version: 20141219061843) do
     t.string   "strain"
     t.integer  "origin"
     t.integer  "initial_weight"
+    t.integer  "history_id"
   end
 
   create_table "order_lines", force: true do |t|
@@ -107,6 +106,7 @@ ActiveRecord::Schema.define(version: 20141219061843) do
     t.integer  "rfid_id"
     t.string   "origin"
     t.string   "name"
+    t.integer  "history_id"
   end
 
   add_index "plants", ["cultivar_id"], name: "index_plants_on_cultivar_id"

@@ -4,7 +4,7 @@ class HistoryLine < ActiveRecord::Base
   ### HistoryLine       ###
   #########################
   ### quantity: integer ###
-  ### hisotry:  History ###
+  ### history:  History ###
   ### source:   poly    ###
   ### target:   poly    ###
   #########################

@@ -9,6 +9,12 @@ class Bag < ActiveRecord::Base
   ### weight: int     ###
   #######################
 
+  
+
+  ### History
+
+  belongs_to :history
+
 
 
   ### Lot

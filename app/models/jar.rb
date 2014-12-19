@@ -1,13 +1,21 @@
 class Jar < ActiveRecord::Base
 
-  #####################
-  ### Jar           ###
-  #####################
-  ### bag:    Bag   ###
-  ### plants: Plant ###
-  ### lot:    Lot   ###
-  ### weight: int   ###
-  #####################
+  ###############################
+  ### Jar                     ###
+  ###############################
+  ### history: History        ###
+  ### bag:     Bag            ###
+  ### plants:  Plant          ###
+  ### lot:     Lot            ###
+  ### initial_weight: integer ###
+  ### current_weight: integer ###
+  ###############################
+
+
+
+  ### History
+
+  belongs_to :history
 
 
 
@@ -33,7 +41,12 @@ class Jar < ActiveRecord::Base
     bag.lot = lot
   end
 
+
+
+  ### Utils
+
   def to_s
     "#{ name.titleize unless name.nil? }"
   end
+
 end
