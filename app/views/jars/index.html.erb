@@ -8,6 +8,7 @@
                class="form-control input-sm pull-right"
                style="width: 150px;"
                placeholder="Search"/>
+
         <div class="input-group-btn">
           <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
         </div>
@@ -18,29 +19,40 @@
   <div class="box-body table-responsive no-padding">
     <table class="table table-hover">
       <tr>
-        <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
-        <th>ID :</th>
-        <th>Weight :</th>
-        <th>Strain :</th>
-        <th>Type :</th>
-        <th>Origin :</th>
-        <th>Actions :</th>
+        <th><input id="accept" name="accept" type="checkbox" style="height:100%; width:100%" /></th>
+        <th><%= sortable :id, 'ID' %></th>
+        <th>Strain</th>
+        <th>Category</th>
+        <th><%= sortable :initial_weight %></th>
+        <th><%= sortable :current_weight %></th>
+        <th>Origin</th>
+        <th><%= sortable :created_at %></th>
+        <th><%= sortable :updated_at %></th>
+        <th>Actions</th>
       </tr>
 
-      <% jars.each do |lot| %>
+      <% jars.each do |jar| %>
       <tr>
         <td></td>
         <td><%= jar.id %></td>
-        <td><%= jar.current_weight %></td>
-        <td><%= jar.bag.lot.strain unless jar.bag.nil? %></td>
-        <td><%= jar.bag.lot.category unless jar.bag.nil? %></td>
+        <td><%= jar.bag.lot.strain unless jar.bag.nil? || jar.bag.lot.nil? %></td>
+        <td><%= jar.bag.lot.category unless jar.bag.nil? || jar.bag.lot.nil? %></td>
+        <td>
+          <%= number_with_precision(
+            (jar.initial_weight.nil? ? 0 : jar.initial_weight) / 1000.0, precision: 2)
+          %> g
+        </td>
+        <td>
+          <%= number_with_precision(
+            (jar.current_weight.nil? ? 0 : jar.current_weight) / 1000.0, precision: 2)
+          %> g
+        </td>
         <td><%= jar.bag %></td>
+        <td><%= jar.created_at.to_s :short %></td>
+        <td><%= jar.updated_at.to_s :short %></td>
         <td>
           <a class="btn-sm btn-flat btn-warning">New Bags</a>
-          <%= link_to 'Show', lot, class: "btn-sm btn-flat btn-success" %>
-          <%= link_to 'Edit', lot, class: "btn-sm btn-flat btn-primary" %>
-          <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' },
-                      class: "btn-sm btn-flat btn-danger" %>
+          <%= link_to 'Show', jar, class: "btn-sm btn-flat btn-success" %>
         </td>
       </tr>
       <% end %>

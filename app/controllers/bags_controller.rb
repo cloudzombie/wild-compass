@@ -5,7 +5,6 @@ class BagsController < ApplicationController
   expose(:bags) { Bag.order(sort_column + ' ' + sort_direction) }
 
   def create
-
     self.bag = Bag.new(bag_params)
     respond_to do |format|
       bag.initial_weight *= 1000.0

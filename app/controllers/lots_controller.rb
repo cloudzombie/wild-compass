@@ -1,19 +1,12 @@
 class LotsController < ApplicationController
+  helper_method :sort_column, :sort_direction
 
-  expose(:lot, params: :lot_params) do
-    unless params[:id].nil?
-      Lot.find(params[:id])
-    else
-      Lot.new
-    end
-  end
-
-  expose(:lots) { Lot.all }
+  expose(:lot, params: :lot_params) { id_param.nil? ? Lot.new : Lot.find(id_param) }
+  expose(:lots) { Lot.order(sort_column + ' ' + sort_direction) }
   expose(:bag) { Bag.new }
   
   def create
     self.lot = Lot.new(lot_params)
-
     respond_to do |format|
       if lot.save
         format.html { redirect_to lot, notice: 'Lot was successfully created.' }
@@ -45,10 +38,21 @@ class LotsController < ApplicationController
     end
   end
 
-
-
   private
+
     def lot_params
       params.require(:lot).permit(:name, :current_weight)
+    end
+
+    def id_param
+      params[:id]
+    end
+
+    def sort_column
+      %w(id name initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
+    end
+
+    def sort_direction
+      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 end

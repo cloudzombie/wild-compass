@@ -20,14 +20,15 @@
     <table class="table table-hover">
       <tr>
         <th><%= check_box_tag :accept %></th>
-        <th>ID :</th>
-        <th>Name :</th>
-        <th>Strain :</th>
-        <th>Category :</th>
-        <th>Initial Weight </th>
-        <th>Current Weight :</th>
-        <th>Last time used :</th>
-        <th>Actions :</th>
+        <th><%= sortable :id, 'ID' %></th>
+        <th><%= sortable :name %></th>
+        <th>Strain</th>
+        <th>Category</th>
+        <th><%= sortable :initial_weight %></th>
+        <th><%= sortable :current_weight %></th>
+        <th><%= sortable :created_at %></th>
+        <th><%= sortable :updated_at %></th>
+        <th>Actions</th>
       </tr>
 
       <% lots.each do |lot| %>
@@ -47,13 +48,11 @@
             (lot.current_weight.nil? ? 0 : lot.current_weight) / 1000.0, precision: 2)
           %> g
         </td>
-        <td>29-Dec-2015</td>
+        <td><%= lot.created_at.to_s :short %></td>
+        <td><%= lot.updated_at.to_s :short %></td>
         <td>
-        <a href="#" class="btn-sm btn-flat btn-warning" data-toggle="modal" data-target=".newBag">New bag</a>
+          <a href="#" class="btn-sm btn-flat btn-warning" data-toggle="modal" data-target=".newBag">New bag</a>
           <%= link_to 'Show', lot, class: "btn-sm btn-flat btn-success" %>
-          <!--<%= link_to 'Edit', lot, class: "btn-sm btn-flat btn-primary" %>
-          <%= link_to 'Destroy', lot, method: :delete, data: { confirm: 'Are you sure?' },
-                      class: "btn-sm btn-flat btn-danger" %> -->
         </td>
       </tr>
       <% end %>

@@ -1,14 +1,8 @@
 class JarsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   
-  expose(:jar, params: :jar_params) do
-    unless params[:id].nil?
-      Jar.find(params[:id])
-    else
-      Jar.new
-    end
-  end
-
-  expose(:jars) { Jar.all }
+  expose(:jar, params: :jar_params) { id_param.nil? ? Jar.new : Jar.find(id_param) }
+  expose(:jars) { Jar.order(sort_column + ' ' + sort_direction) }
 
   def create
     self.jar = Jar.new(jar_params)
@@ -48,5 +42,17 @@ class JarsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def jar_params
       params.require(:jar).permit(:name, :weight)
+    end
+
+    def id_param
+      params[:id]
+    end
+
+    def sort_column
+      %w(id current_weight initial_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
+    end
+
+    def sort_direction
+      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 end
