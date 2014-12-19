@@ -17,3 +17,10 @@
  *= require ionicons
  *= require admin-lte
  */
+
+ #logo {
+  width: 60%;
+  height: 60%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
