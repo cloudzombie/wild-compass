@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20141219065404) do
     t.integer  "origin"
     t.integer  "initial_weight"
     t.integer  "history_id"
+    t.integer  "plant_id"
   end
 
   create_table "order_lines", force: true do |t|

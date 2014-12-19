@@ -1,65 +1,119 @@
 <p id="notice"><%= notice %></p>
 <h4><%= bag.name %></h4>
-<ul style="list-style-type: none; padding-left: 0;">
-  <li><strong>ID :</strong><%= bag.id %></li>
-  <li><strong>Strain :</strong><%= bag.lot.strain unless bag.lot.nil? %></li>
-  <li><strong>Type :</strong><%= bag.lot.category unless bag.lot.nil? %></li>
-  <li><strong>Initial Weight :</strong>
-    <%= number_with_precision(
-      (bag.initial_weight.nil? ? 0 : bag.initial_weight) / 1000.0, precision: 2)
-    %> g
-  </li>
-  <li><strong>Current Weight :</strong>
-    <%= number_with_precision(
-      (bag.current_weight.nil? ? 0 : bag.current_weight) / 1000.0, precision: 2)
-    %> g
-  </li>
-  <li><strong>Origin - Lot :</strong><%= bag.lot unless bag.lot.nil? %></li>
-  <li><strong>Origin - Plant :</strong> Plant_YO #001</li>
-  <li><strong>Jars - Orders :</strong></li>
-</ul>
 <div class="row">
-<div class="box-body table-responsive no-padding col-lg-3">
-    <table class="table table-hover">
-      <tr>
-        <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
-        <th>ID :</th>
-        <th>Weight :</th>
-        <th>Date :</th>
-        <th>Actions :</th>
-      </tr>
-      <tr>
-        <th></th>
-        <td>1402</td>
-        <th>5.00 g</th>
-        <th>29-Dec-2015</th>
-        <th><button type="button" class="btn-sm btn-info btn-flat">Show</button></th>
-      </tr>
-      <tr>
-        <th></th>
-        <td>1390</td>
-        <th>5.02 g</th>
-        <th>20-Dec-2015</th>
-        <th><button type="button" class="btn-sm btn-info btn-flat">Show</button></th>
-      </tr>
-      <tr>
-        <th></th>
-        <td>1385</td>
-        <th>10.01 g</th>
-        <th>18-Dec-2015</th>
-        <th><button type="button" class="btn-sm btn-info btn-flat">Show</button></th>
-      </tr>
-      <tr>
-        <th></th>
-        <td>1350</td>
-        <th>7.07 g</th>
-        <th>11-Dec-2015</th>
-        <th><button type="button" class="btn-sm btn-info btn-flat">Show</button></th>
-      </tr>
-      </table>
-     </div>
-     </div>
+  <div class="col-lg-5">
+    <div class="box box-solid box-warning">
+      <div class="box-header">
+      <i class="fa fa-tag"></i>
+      <h3 class="box-title">Description</h3>
+      </div> 
+      <div class="box-body">
+        <div class="row">
+          <div class="col-lg-10">
+            <dl class="dl-horizontal">
+              <dt>ID :</dt>
+              <dd><%= bag.id %></dd>
+              <dt>Name :</dt>
+              <dd><%= bag %></dd>
+              <dt>Strain :</dt>
+              <dd><%= bag.lot.strain %></dd>
+              <dt>Initial Weight: </dt>
+              <dd><%= bag.initial_weight %></dd>
+              <dt>Current Weight: </dt>
+              <dd><%= bag.current_weight %></dd>
+              <dt>Created At :</dt>
+              <dd><%= bag.created_at.to_s :short %></dd>
+              <dt>Created At :</dt>
+              <dd><%= bag.updated_at.to_s :short %></dd> 
+            </dl>
+          </div>
+          <div class="col-lg-2">
+            <div class="progress vertical">
+              <div class="progress-bar progress-bar-yellow" role="progressbar" aria-valuenow="<%= percent_of_weight(bag.current_weight, bag.initial_weight) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(bag.current_weight, bag.initial_weight) %>%">
+                <span class="sr-only"><%= percent_of_weight(bag.current_weight, bag.initial_weight) %>%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+  <div class="col-lg-7">
+    <div class="box box-solid box-info">
+      <div class="box-header">
+        <i class="fa fa-tags"></i>
+        <h3 class="box-title">Origin - <%= bag.lot.name %></h3>
+      </div>
+      <div class="box-body table-responsive">
+        <table class"table">
+          <tr>
+            <th>ID :</th>
+            <th>Name :</th>
+            <th>Strain :</th>
+            <th>Type :</th>
+            <th>Initial Weight :</th>
+            <th>Current Weight :</th>
+            <th>Created At :</th>
+            <th>Updated At :</th>
+          </tr>
+          <tr>
+            <td><%= bag.lot.id %></td>
+            <td><%= bag.lot.name %></td>
+            <td><%= bag.lot.strain %></td>
+            <td><%= bag.lot.category %></td>
+            <td><%= number_with_precision(
+            (bag.lot.initial_weight.nil? ? 0 : bag.lot.initial_weight) / 1000.0, precision: 2)
+          %> g</td>
+            <td><%= number_with_precision(
+            (bag.lot.current_weight.nil? ? 0 : bag.lot.current_weight) / 1000.0, precision: 2)
+          %> g</td>
+          <td><%= bag.lot.created_at.to_s :short %></td>
+          <td><%= bag.lot.updated_at.to_s :short %></td>
+          </tr>
+        </table>
+      </div> 
+    </div>
+  </div>
+</div>
+  <div class="row">
+    <div class="col-lg-5">
+      <div class="box box-solid box-danger">
+        <div class="box-header">
+          <i class="fa fa-flask"></i>
+          <h3 class="box-title">History(Jars)</h3>
+          <div class="box-tools pull-right">
+            <!--<button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>-->
+          </div>
+        </div>
+        <div class="box-body">
+          <table>
+            <tr>
+              <th>Date :</th>
+              <th>Jar :</th>
+              <th>Jar Weight :</th>
+              <th>Bag Weight :</th>
+            </tr>
+            <% bag.jars.each do |jar| %>
+              <tr>
+                <td><%= jar.created_at.to_s :short %></td>
+                <td><%= jar.id %></td>
+                <td>
+                  <%= number_with_precision(
+                    (jar.current_weight.nil? ? 0 : jar.current_weight) / 1000.0, precision: 2)
+                  %> g
+                </td>
+                <td></td>
+              </tr>
+            <% end %>
+          </table>
+        </div> 
+      </div>
+    </div>
+    <div class="col-lg-3">
+    </div>
+  </div>
 
-
+    
 <!--<%= link_to 'Edit', edit_bag_path(bag) %> | -->
 <%= link_to 'Back', bags_path %>
