@@ -17,7 +17,7 @@ class Transaction
     raise "source is nil" if @source.nil?
     raise "target is nil" if @target.nil?
 
-    @target.update_column(:current_weight, @source.current_weight.to_i)
+    @target.update_column(:current_weight, @quantity.to_i)
     @target.save
 
     @source.update_column(:current_weight, @source.current_weight.to_i - @quantity.to_i)

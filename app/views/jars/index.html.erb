@@ -23,7 +23,6 @@
         <th><%= sortable :id, 'ID' %></th>
         <th>Strain</th>
         <th>Category</th>
-        <th><%= sortable :initial_weight %></th>
         <th><%= sortable :current_weight %></th>
         <th>Origin</th>
         <th><%= sortable :created_at %></th>
@@ -39,19 +38,14 @@
         <td><%= jar.bag.lot.category unless jar.bag.nil? || jar.bag.lot.nil? %></td>
         <td>
           <%= number_with_precision(
-            (jar.initial_weight.nil? ? 0 : jar.initial_weight) / 1000.0, precision: 2)
+            (jar.current_weight.nil? ? 0 : jar.current_weight) , precision: 2)
           %> g
         </td>
-        <td>
-          <%= number_with_precision(
-            (jar.current_weight.nil? ? 0 : jar.current_weight) / 1000.0, precision: 2)
-          %> g
-        </td>
-        <td><%= link_to_unless jar.bag.nil?, jar.bag, jar.bag, class: "btn-sm btn-flat btn-info" %></td>
+        <td><%= link_to_unless jar.bag.nil?, "#{fa_icon('tag')} #{jar.bag.id} #{jar.bag.lot.strain.acronym}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %></td>
         <td><%= jar.created_at.to_s :short %></td>
         <td><%= jar.updated_at.to_s :short %></td>
         <td>
-          <a class="btn-sm btn-flat btn-warning">New Bags</a>
+          <a class="btn-sm btn-flat btn-info">New Order</a>
           <%= link_to 'Show', jar, class: "btn-sm btn-flat btn-success" %>
         </td>
       </tr>

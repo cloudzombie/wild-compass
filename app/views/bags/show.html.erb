@@ -25,10 +25,15 @@
               <dt>Strain :</dt>
               <dd><%= bag.lot.strain %></dd>
               <dt>Initial Weight: </dt>
-              <dd><%= bag.initial_weight %></dd>
-              <dt>Current Weight: </dt>
-              <dd><%= bag.current_weight %></dd>
-              <dt>Created At :</dt>
+              <dd><%= number_with_precision(
+                (bag.initial_weight.nil? ? 0 : bag.initial_weight) , precision: 2)
+                %> g
+              </dd>
+              <dt>Current Weight :</dt>
+              <dd><%= number_with_precision(
+                (bag.current_weight.nil? ? 0 : bag.current_weight) , precision: 2)
+                %> g
+              </dd>
               <dd><%= bag.created_at.to_s :short %></dd>
               <dt>Created At :</dt>
               <dd><%= bag.updated_at.to_s :short %></dd> 
