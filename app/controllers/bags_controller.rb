@@ -6,9 +6,12 @@ class BagsController < ApplicationController
 
   def create
     self.bag = Bag.new(bag_params)
+    
     respond_to do |format|
       bag.initial_weight *= 1000.0
       bag.current_weight = bag.initial_weight
+      lotNewWeight = bag.lot.current_weight - bag.initial_weight
+      bag.lot.update_attribute  (:current_weight, lotNewWeight)
       if bag.save
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
         format.json { render :show, status: :created, location: bag }
