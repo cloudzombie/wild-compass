@@ -7,7 +7,7 @@ class JarsController < ApplicationController
   def create
     self.jar = Jar.new(jar_params)
     respond_to do |format|
-      jar.name = "#{SecureRandom.uuid}_jar_#{jar.bag.lot.strain}_#{Time.now.strftime('%m%y')}"
+      jar.name = "j-#{jar.bag.lot.strain.acronym}#{Time.now.strftime('%d%m%y')}"
       if jar.save
         Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit
         format.html { redirect_to jar, notice: 'jar was successfully created.' }

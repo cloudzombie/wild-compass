@@ -24,6 +24,8 @@
               <dd>Bag<%= " #{bag.id} #{bag.lot.strain.acronym} " + bag.created_at.strftime('%m%y') %></dd>
               <dt>Strain :</dt>
               <dd><%= bag.lot.strain %></dd>
+              <dt>Type :</dt>
+              <dd><%= bag.lot.category %></dd>
               <dt>Initial Weight: </dt>
               <dd><%= number_with_precision(
                 (bag.initial_weight.nil? ? 0 : bag.initial_weight) , precision: 2)

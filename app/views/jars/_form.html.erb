@@ -1,7 +1,7 @@
 <%= form_for(jar) do |f| %>
   <div class="form-group">
     <%= f.label :bag_id %>
-    <%= f.collection_select :bag_id, Bag.all, :id, :id, {}, selected: params[:bag], class: 'form-control' %>
+    <%= f.collection_select :bag_id, Bag.all, :name, :name, {}, selected: params[:bag], class: 'form-control' %>
     <%= display_error_for jar, :bag_id %>
   </div>
 
