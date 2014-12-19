@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219104221) do
+ActiveRecord::Schema.define(version: 20141219101703) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lot_id"
     t.string   "name"
-    t.integer  "origin"
     t.integer  "current_weight"
+    t.integer  "origin"
     t.integer  "initial_weight"
     t.integer  "history_id"
   end
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20141219104221) do
     t.datetime "updated_at"
     t.integer  "bag_id"
     t.string   "name"
-    t.integer  "origin"
     t.integer  "current_weight"
+    t.integer  "origin"
     t.integer  "initial_weight"
     t.integer  "history_id"
   end
@@ -69,13 +69,13 @@ ActiveRecord::Schema.define(version: 20141219104221) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "current_weight"
     t.string   "category"
     t.string   "strain"
     t.integer  "origin"
-    t.integer  "current_weight"
     t.integer  "initial_weight"
-    t.integer  "plant_id"
     t.integer  "history_id"
+    t.integer  "plant_id"
     t.integer  "strain_id"
   end
 

@@ -3,6 +3,7 @@
   <div class="form-group">
     <%= f.label :customer %><br>
     <%= f.text_field :customer, class: 'form-control' %>
+    <%= display_error_for order, :customer %>
   </div>
 
   <div class="form-group">
