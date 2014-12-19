@@ -7,33 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <% if user_signed_in? %>
-<body class="skin-black">        
-	<%= render "layouts/navbar" %>
+  <body class="skin-black">        
+	  <%= render "layouts/navbar" %>
 
-    	<div class="wrapper row-offcanvas row-offcanvas-left">
-            <!-- Left side column. contains the logo and sidebar -->
-            <%= render "layouts/sidebar" %>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+            
+      <!-- Left side column. contains the logo and sidebar -->
+      <%= render "layouts/sidebar" %>
 
-            <!-- Right side column. Contains the navbar and content of the page -->
-            <aside class="right-side" >
-                <!-- Content Header (Page header) -->
-                <%= render "layouts/content_header" %>
+      <!-- Right side column. Contains the navbar and content of the page -->
+      <aside class="right-side" >
+                
+        <!-- Content Header (Page header) -->
+        <%= render "layouts/content_header" %>
 
-                <!-- Main content -->
-                <section class="content">
-                	<%= yield %>
-                    <!-- Small boxes (Stat box) -->
-                    
-                </section><!-- /.content -->
-            </aside><!-- /.right-side -->
-        </div><!-- ./wrapper -->
-    </body>
+        <!-- Main content -->
+        <section class="content">
+          <%= yield %>            
+        </section><!-- /.content -->
+      </aside><!-- /.right-side -->
+    </div><!-- ./wrapper -->
+  </body>
 <% else %>
-<body class="bg-black">
-<%= yield %>
+  <body class="bg-black">
+    <%= yield %>
+  </body>
 <% end %>
-<%= debug(params) %>
-</html>
-
-</body>
 </html>
