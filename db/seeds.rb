@@ -40,3 +40,25 @@ strains = Strain.create([
   { name: :"Shark Shock", acronym: :"Ss"     },
 ])
 
+user_roles = User::Role.create([{ admin: false, manager: false, name: 'user'       },
+                                { admin: false, manager: true,  name: 'manager'    },
+                                { admin: true,  manager: false, name: 'admin'      },
+                                { admin: true,  manager: true,  name: 'super_user' }])
+
+user_group_roles = User::Group::Role.create([{ admin: false, manager: false, name: 'users'       },
+                                             { admin: false, manager: true,  name: 'managers'    },
+                                             { admin: true,  manager: false, name: 'admins'      },
+                                             { admin: true,  manager: true,  name: 'super_users' }])
+
+user_groups = User::Group.create([{ role: User::Group::Role.users       },
+                                  { role: User::Group::Role.managers    },
+                                  { role: User::Group::Role.admins      },
+                                  { role: User::Group::Role.super_users }])
+
+password = 'wildcompass'
+users = User.create([{ name: 'Super User',
+                       email: 'su_admin@wild.compass',
+                       password: password,
+                       password_confirmation: password,
+                       role: User::Role.super_user,
+                       group: User::Group.super_users }])

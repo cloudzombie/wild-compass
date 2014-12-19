@@ -9,15 +9,20 @@ Rails.application.routes.draw do
   # Inventory
   get 'inventory', to: 'inventory#home'
 
+
+
   # Users and sessions
   devise_for :users, controllers: { sessions:       'users/sessions',
                                     registrations:  'users/registrations' }
   resources :users
 
+  # Users
   namespace :user do
     resources :roles
     resources :groups
   end
+
+
 
   # Resources
   resources :orders

@@ -2,11 +2,13 @@
   <div class="form-group">
     <%= f.label :bag_id %>
     <%= f.collection_select :bag_id, Bag.all, :id, :current_weight, {}, selected: params[:bag], class: 'form-control' %>
+    <%= display_error_for jar, :bag_id %>
   </div>
 
   <div class="form-group">
     <%= f.label :current_weight %>
     <%= f.text_field :current_weight, class: 'form-control' %>
+    <%= display_error_for jar, :current_weight %>
   </div>
 
   <div class="actions">
