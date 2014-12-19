@@ -12,6 +12,11 @@ module ApplicationHelper
     end
   end
 
+  def percent_of_weight(object)
+    object.current_weight.to_f / object.initial_weight.to_f * 100
+  end
+
+
   def display_error_for(model, attribute)
     return '' if model.errors[attribute].empty?
     out = ''
@@ -22,4 +27,5 @@ module ApplicationHelper
       #{out}
     </ul>\n".html_safe
   end
+  
 end
