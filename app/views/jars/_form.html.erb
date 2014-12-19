@@ -1,21 +1,13 @@
 <%= form_for(jar) do |f| %>
-  <% if jar.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(jar.errors.count, "error") %> prohibited this jar from being saved:</h2>
+  <div class="form-group">
+    <%= f.label :bag_id %>
+    <%= f.collection_select :bag_id, Bag.all, :id, :current_weight, {}, selected: params[:bag], class: 'form-control' %>
+  </div>
 
-      <ul>
-      <% jar.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :weight %>
-  <%= f.text_field :weight %>
+  <div class="form-group">
+    <%= f.label :current_weight %>
+    <%= f.text_field :current_weight, class: 'form-control' %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

@@ -8,6 +8,9 @@ class JarsController < ApplicationController
     self.jar = Jar.new(jar_params)
 
     respond_to do |format|
+      jar.current_weight *= 1000.0
+      jar.bag.update_column(:current_weight, (jar.bag.current_weight - jar.current_weight )) #update bag's current_weight
+     
       if jar.save
         format.html { redirect_to jar, notice: 'jar was successfully created.' }
         format.json { render :show, status: :created, location: jar }
@@ -41,7 +44,7 @@ class JarsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def jar_params
-      params.require(:jar).permit(:name, :weight)
+      params.require(:jar).permit( :current_weight, :bag_id)
     end
 
     def id_param
