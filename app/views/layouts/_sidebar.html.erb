@@ -67,9 +67,6 @@
           <li class="<%= params[:controller] == 'user/groups' ? 'active' : nil %>">
             <%= link_to "#{fa_icon('group')} <span>Groups</span>".html_safe, user_groups_path %>
           </li>
-          <li class="<%= params[:controller] == 'user/roles' ? 'active' : nil %>">
-            <%= link_to "#{fa_icon('shield')} <span>Roles</span>".html_safe, user_roles_path %>
-          </li>
         </ul>
       </li>
       <% end %>
