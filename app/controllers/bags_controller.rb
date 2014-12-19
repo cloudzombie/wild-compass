@@ -8,7 +8,7 @@ class BagsController < ApplicationController
     self.bag = Bag.new(bag_params)
     bag.current_weight =  bag.initial_weight
     respond_to do |format|
-      bag.name = "#{SecureRandom.uuid}_Bag#{bag.lot.strain}#{Time.now.strftime("%m%y")}"
+      bag.name = "B-#{bag.lot.strain.acronym}#{Time.now.strftime('%d%m%y')}"
       if bag.save
         Transaction.from( bag.lot).to( bag ).take( bag.initial_weight ).commit( initial: true )
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
