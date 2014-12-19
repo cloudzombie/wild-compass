@@ -21,7 +21,7 @@
               <dt>ID :</dt>
               <dd><%= bag.id %></dd>
               <dt>Name :</dt>
-              <dd><%= bag %></dd>
+              <dd>Bag<%= " #{bag.id} #{bag.lot.strain.acronym} " + bag.created_at.strftime('%m%y') %></dd>
               <dt>Strain :</dt>
               <dd><%= bag.lot.strain %></dd>
               <dt>Initial Weight: </dt>
@@ -34,8 +34,9 @@
                 (bag.current_weight.nil? ? 0 : bag.current_weight) , precision: 2)
                 %> g
               </dd>
+              <dt>Created At:</dt>
               <dd><%= bag.created_at.to_s :short %></dd>
-              <dt>Created At :</dt>
+              <dt>Updated At :</dt>
               <dd><%= bag.updated_at.to_s :short %></dd> 
             </dl>
           </div>
@@ -63,7 +64,7 @@
               <dt>ID :</dt>
               <dd><%= bag.lot.id %></dd>
               <dt>Name :</dt>
-              <dd><%= bag.lot.name %></dd>
+              <dd>Lot <%= "#{bag.lot.id} #{bag.lot.strain.acronym} " + bag.lot.created_at.strftime('%m%y') %></dd>
               <dt>Strain :</dt>
               <dd><%= bag.lot.strain %></dd>
               <dt>Type :</dt>
@@ -95,34 +96,49 @@
     </div>
   </div>
 </div>
+</div>
   <div class="row">
     <div class="col-lg-2">
     </div>
-    <div class="col-lg-5">
+    <div class="col-lg-7">
       <div class="box box-solid box-danger">
         <div class="box-header">
           <i class="fa fa-flask"></i>
           <h3 class="box-title">History</h3>
-          <div class="box-tools pull-right">
-            <!--<button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>-->
-          </div>
-        </div>
+         </div>
         <div class="box-body">
-          <% #bag.history.history_lines.each do |lines| %>
-          <div class="box box-solid collapsed-box">
-            <div class="box-header">
-              <h3 class="box-title">Default Solid Box</h3>
-              <div class="box-tools pull-right">
-                <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
+        <ul class="timeline">
+    <!-- timeline time label -->
+    <li class="time-label">
+        <span class="">
+            <span class="time"><%= bag.created_at.to_s :short %></span>
+        </span>
+    </li>
+    <!-- /.timeline-label -->
+
+      <% bag.history.history_lines.each do |lines| %>
+
+      <!-- timeline item -->
+        <li>
+            <!-- timeline icon -->
+            <i class="fa fa-flask bg-red"></i>
+            <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> <%= lines.created_at.to_s :short %></span>
+                <h3 class="timeline-header">New Jar</h3>
+                <div class="timeline-body">
+            
+                <br/>
+                  <a class="btn btn-warning btn-xs"><i class="fa fa-tag"></i><%= ' '+ bag.id.to_s + ' ' + bag.lot.strain.acronym %></a> send <%= lines.quantity %> g to <%= link_to "#{fa_icon('flask')} #{lines.target.id} #{bag.lot.strain.acronym}".html_safe, jar_path, class: "btn btn-danger btn-xs" %>
+                  </div>
+                <div class="timeline-footer">
+                Done by User
+                </div>
             </div>
-            <div class="box-body" style="display: none;">
-          
-            </div> 
-          </div>
-          <% # end %>
+        </li>
+        <!-- END timeline item -->
+      
+          <%  end %>
+          </ul>
         </div> 
       </div>
     </div>
