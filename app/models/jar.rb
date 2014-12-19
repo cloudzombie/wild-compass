@@ -11,6 +11,7 @@ class Jar < ActiveRecord::Base
   ### current_weight: integer ###
   ###############################
 
+  before_create :create_history
   before_save :create_history, unless: :history_exists?
 
   ### History

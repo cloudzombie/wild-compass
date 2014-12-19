@@ -8,13 +8,9 @@ class BagsController < ApplicationController
     self.bag = Bag.new(bag_params)
 
     respond_to do |format|
-
-      bag.initial_weight *= 1000.0 #g -> mg
-      bag.current_weight = bag.initial_weight
-      bag.lot.update_column(:current_weight, (bag.lot.current_weight - bag.initial_weight)) #update lot's current_weight
-      bag.name = SecureRandom.uuid + "_Bag" + bag.lot.strain + Time.now.strftime("%m%y")
-
+      bag.name = "#{SecureRandom.uuid}_Bag#{bag.lot.strain}#{Time.now.strftime("%m%y")}"
       if bag.save
+        Transaction.from( bag.lot ).to( bag ).take( bag.current_weight ).commit
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
         format.json { render :show, status: :created, location: bag }
       else

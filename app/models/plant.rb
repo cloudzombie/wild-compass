@@ -10,6 +10,7 @@ class Plant < ActiveRecord::Base
   ### lot:      Lot      ###
   ##########################
   
+  before_create :create_history
   before_save :create_history, unless: :history_exists?
 
   ### History
@@ -39,5 +40,5 @@ class Plant < ActiveRecord::Base
     def history_exists?
       !history.nil?
     end
-    
+
 end

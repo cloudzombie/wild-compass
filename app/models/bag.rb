@@ -9,6 +9,7 @@ class Bag < ActiveRecord::Base
   ### weight: int     ###
   #######################
 
+  before_create :create_history
   before_save :create_history, unless: :history_exists?
 
   ### History
@@ -46,5 +47,5 @@ class Bag < ActiveRecord::Base
     def history_exists?
       !history.nil?
     end
-    
+
 end

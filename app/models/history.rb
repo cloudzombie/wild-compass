@@ -6,9 +6,8 @@ class History < ActiveRecord::Base
   ### history_lines: HistoryLine ###
   ##################################
 
-  def add_line(source, target, quantity)
+  def add_line(source, target, quantity, event)
     history_lines << HistoryLine.create(source: source, target: target, quantity: quantity)
-    save
   end
 
 

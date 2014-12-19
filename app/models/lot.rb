@@ -9,6 +9,7 @@ class Lot < ActiveRecord::Base
   ### weight:  integer ###
   ########################
 
+  before_create :create_history
   before_save :create_history, unless: :history_exists?
 
   ### History
@@ -31,7 +32,8 @@ class Lot < ActiveRecord::Base
 
   ### Weight
 
-  validates :weight, presence: true, numericality: { greater_than: 0 }
+  validates :current_weight, presence: true, numericality: { greater_than: 0 }
+  validates :initial_weight, presence: true, numericality: { greater_than: 0 }
 
 
 
