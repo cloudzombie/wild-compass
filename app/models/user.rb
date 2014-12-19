@@ -4,15 +4,18 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  belongs_to :user_group
+  belongs_to :user_role
+
   def to_s
     "#{ name.titleize unless name.nil? }"
   end
 
   def admin?
-    false
+    user_role.admin? || user_group.admin?
   end
 
   def manager?
-    false
+    user_role.manager? || user_group.manager?
   end
 end

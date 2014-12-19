@@ -40,3 +40,11 @@ strains = Strain.create([
   { name: :"Shark Shock", acronym: :"Ss"     },
 ])
 
+password = 'wildcompass'
+users = User.create([
+  { name: 'Super User',
+    email: 'su_admin@wild.compass',
+    password: password,
+    password_confirmation: password
+  }
+])
