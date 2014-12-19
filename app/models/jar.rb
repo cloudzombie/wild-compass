@@ -11,7 +11,7 @@ class Jar < ActiveRecord::Base
   ### current_weight: integer ###
   ###############################
 
-
+  before_save :create_history, unless: :history_exists?
 
   ### History
 
@@ -48,5 +48,15 @@ class Jar < ActiveRecord::Base
   def to_s
     "#{ name.titleize unless name.nil? }"
   end
+
+  private
+
+    def create_history
+      self.history = History.create
+    end
+
+    def history_exists?
+      !history.nil?
+    end
 
 end
