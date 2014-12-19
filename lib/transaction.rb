@@ -16,15 +16,13 @@ class Transaction
   def commit
     raise "source is nil" if @source.nil?
     raise "target is nil" if @target.nil?
+    raise "quantity is nil or zero" if @quantity.to_i == 0
 
-    @target.update_column(:current_weight, @source.current_weight.to_i)
-    @target.save
+    @source.decrease_current_weight(@quantity.to_i)
+    @target.increase_current_weight(@quantity.to_i)
+    @source.history.add_line(@source, @target, @quantity, :decrease_current_weight)
+    @target.history.add_line(@target, @source, @quantity, :increase_current_weight)
 
-    @source.update_column(:current_weight, @source.current_weight.to_i - @quantity.to_i)
-    @source.save
-    
-    @source.history.add_line(@source, @target, @quantity, :decrease)
-    @target.history.add_line(@target, @source, @quantity, :increase)
     true
   end
 

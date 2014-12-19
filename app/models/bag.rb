@@ -34,6 +34,23 @@ class Bag < ActiveRecord::Base
 
   has_many :plants, through: :lot
 
+
+
+  ### Weight
+
+  def increase_current_weight(quantity)
+    update_column(:current_weight, current_weight + quantity)
+  end
+
+  def decrease_current_weight(quantity)
+    update_column(:current_weight, current_weight - quantity)
+  end
+
+  validates :current_weight, presence: true, numericality: { greater_than: 0 }
+  validates :initial_weight, presence: true, numericality: { greater_than: 0 }
+  
+
+
   def to_s
     "#{ name.titleize unless name.nil? }"
   end
