@@ -3,7 +3,7 @@ class BagsController < ApplicationController
   
   expose(:bag, params: :bag_params) { id_param.nil? ? Bag.new : Bag.find(id_param) }
   expose(:bags) { Bag.order(sort_column + ' ' + sort_direction) }
-
+  expose(:jar) { Jar.new }
   def create
     self.bag = Bag.new(bag_params)
     bag.current_weight =  bag.initial_weight

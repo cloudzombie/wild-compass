@@ -8,7 +8,7 @@ class JarsController < ApplicationController
     self.jar = Jar.new(jar_params)
     jar.initial_weight = jar.current_weight
     respond_to do |format|
-      jar.name = "#{SecureRandom.uuid}_Jar#{jar.bag.lot.strain unless jar.bag.lot.nil? }#{Time.now.strftime('%m%y')}"
+      jar.name = "#{SecureRandom.uuid}_jar_#{jar.bag.lot.strain}_#{Time.now.strftime('%m%y')}"
       if jar.save
         Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit( initial: true )
         format.html { redirect_to jar, notice: 'jar was successfully created.' }
@@ -43,7 +43,7 @@ class JarsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def jar_params
-      params.require(:jar).permit( :current_weight, :bag_id, :name)
+      params.require(:jar).permit( :current_weight, :bag_id, :name, :initial_weight)
     end
 
     def id_param
