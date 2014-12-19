@@ -26,6 +26,17 @@ class Plant < ActiveRecord::Base
   belongs_to :rfid
 
   belongs_to :lot
+
+  def increase_current_weight(quantity)
+    update_column(:current_weight, current_weight + quantity)
+  end
+
+  def decrease_current_weight(quantity)
+    update_column(:current_weight, current_weight - quantity)
+  end
+
+  validates :current_weight, presence: true, numericality: { greater_than: 0 }
+  validates :initial_weight, presence: true, numericality: { greater_than: 0 }
   
   def to_s
     "#{ name.titleize unless name.nil? }"
