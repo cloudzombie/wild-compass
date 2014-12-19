@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219174729) do
+ActiveRecord::Schema.define(version: 20141219181124) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -136,14 +136,24 @@ ActiveRecord::Schema.define(version: 20141219174729) do
     t.datetime "updated_at"
   end
 
+  create_table "user_group_roles", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "manager",    default: false
+    t.boolean  "admin",      default: false
+  end
+
   create_table "user_groups", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_group_role_id"
   end
 
   create_table "user_roles", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "manager",    default: false
+    t.boolean  "admin",      default: false
   end
 
   create_table "users", force: true do |t|
