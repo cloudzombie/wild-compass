@@ -8,6 +8,7 @@
                class="form-control input-sm pull-right"
                style="width: 150px;"
                placeholder="Search"/>
+
         <div class="input-group-btn">
           <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
         </div>
@@ -19,13 +20,14 @@
     <table class="table table-hover">
       <tr>
         <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
-        <th>ID :</th>
-        <th>Strain :</th>
-        <th>Type :</th>
-        <th>Initial Weight :</th>
-        <th>Weight :</th>
-        <th>Last Time Used :</th>
-        <th>Origin :</th>
+        <th><%= sortable :id, 'ID' %></th>
+        <th>Strain</th>
+        <th>Category</th>
+        <th><%= sortable :initial_weight %></th>
+        <th><%= sortable :current_weight %></th>
+        <th><%= sortable :created_at %></th>
+        <th><%= sortable :updated_at %></th>
+        <th><%= sortable :lot_id, 'Origin' %></th>
         <th>Actions :</th>
       </tr>
             
@@ -37,14 +39,12 @@
         <td><%= bag.lot.category unless bag.lot.nil? %></td>
         <td><%= "#{(bag.initial_weight / 1000.0).to_s + " g" unless bag.initial_weight.nil?}" %></td>
         <td><%= "#{(bag.current_weight / 1000.0).to_s + " g" unless bag.current_weight.nil?}"%></td>
-        <td><%= "#{(27 - bag.id).to_s + "-Dec-2015" unless bag.current_weight.nil?}"%></td>
-        <td><%= link_to bag.lot, bag.lot, class: "btn-sm btn-flat btn-info" %></td>
+        <td><%= bag.created_at.to_s :short %></td>
+        <td><%= bag.updated_at.to_s :short %></td>
+        <td><%= link_to_unless bag.lot.nil?, bag.lot, bag.lot, class: "btn-sm btn-flat btn-info" %></td>
         <td>
           <%= link_to 'New jar', new_jar_path, class: "btn-sm btn-flat btn-warning" %>
           <%= link_to 'Show', bag, class: "btn-sm btn-flat btn-success" %>
-          <!--<%= link_to 'Edit', edit_bag_path(bag), class: "btn-sm btn-flat btn-primary" %>
-          <%= link_to 'Destroy', bag, method: :delete, data: { confirm: 'Are you sure?' },
-                      class: "btn-sm btn-flat btn-danger" %>-->
         </td>
       </tr>
       <% end %>

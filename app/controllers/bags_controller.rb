@@ -1,14 +1,8 @@
 class BagsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   
-  expose(:bag, params: :bag_params) do
-    unless params[:id].nil?
-      Bag.find(params[:id])
-    else
-      Bag.new
-    end
-  end
-
-  expose(:bags) { Bag.all }
+  expose(:bag, params: :bag_params) { id_param.nil? ? Bag.new : Bag.find(id_param) }
+  expose(:bags) { Bag.order(sort_column + ' ' + sort_direction) }
 
   def create
 
@@ -48,5 +42,17 @@ class BagsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
       params.require(:bag).permit(:initial_weight, :lot_id)
+    end
+
+    def id_param
+      params[:id]
+    end
+
+    def sort_column
+      %w(id initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
+    end
+
+    def sort_direction
+      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 end
