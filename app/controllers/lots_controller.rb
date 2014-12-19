@@ -9,7 +9,8 @@ class LotsController < ApplicationController
   end
 
   expose(:lots) { Lot.all }
-
+  expose(:bag) { Bag.new }
+  
   def create
     self.lot = Lot.new(lot_params)
 
