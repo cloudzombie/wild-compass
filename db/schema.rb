@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218232338) do
+ActiveRecord::Schema.define(version: 20141219061843) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lot_id"
     t.string   "name"
-    t.integer  "origin"
     t.integer  "current_weight"
+    t.integer  "origin"
     t.integer  "initial_weight"
   end
 
@@ -35,13 +35,35 @@ ActiveRecord::Schema.define(version: 20141218232338) do
     t.string   "name"
   end
 
+  create_table "histories", force: true do |t|
+    t.integer  "hystoriable_id"
+    t.string   "hystoriable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "histories", ["hystoriable_id", "hystoriable_type"], name: "index_histories_on_hystoriable_id_and_hystoriable_type"
+
+  create_table "history_lines", force: true do |t|
+    t.integer  "history_id"
+    t.integer  "source_id"
+    t.string   "source_type"
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "history_lines", ["history_id"], name: "index_history_lines_on_history_id"
+
   create_table "jars", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "bag_id"
     t.string   "name"
-    t.integer  "origin"
     t.integer  "current_weight"
+    t.integer  "origin"
     t.integer  "initial_weight"
   end
 
@@ -49,10 +71,10 @@ ActiveRecord::Schema.define(version: 20141218232338) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "current_weight"
     t.string   "category"
     t.string   "strain"
     t.integer  "origin"
-    t.integer  "current_weight"
     t.integer  "initial_weight"
   end
 
