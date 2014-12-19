@@ -5,8 +5,8 @@ class JarsController < ApplicationController
   expose(:jars) { Jar.order(sort_column + ' ' + sort_direction) }
 
   def create
+    jar.current_weight = jar.initial_weight
     self.jar = Jar.new(jar_params)
-    jar.initial_weight = jar.current_weight
     respond_to do |format|
       jar.name = "#{SecureRandom.uuid}_jar_#{jar.bag.lot.strain}_#{Time.now.strftime('%m%y')}"
       if jar.save
