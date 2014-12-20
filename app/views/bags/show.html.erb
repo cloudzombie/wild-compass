@@ -118,19 +118,38 @@
     </li>
     <!-- /.timeline-label -->
 
+    <!-- timeline item -->
+        <li>
+            <!-- timeline icon -->
+            <i class="fa fa-tag bg-yellow"></i>
+            <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> <%= bag.created_at.to_s :short %></span>
+                <h3 class="timeline-header">New Bag</h3>
+                <div class="timeline-body">
+            
+                <br/>
+                  <%= link_to "#{fa_icon('tags')} #{bag.lot}".html_safe, lot_path, class: "btn btn-info btn-xs" %> send <%= bag.initial_weight/1000 %> g to <%= link_to "#{fa_icon('tag')} #{bag}".html_safe, bag_path, class: "btn btn-warning btn-xs" %>
+                  </div>
+                <div class="timeline-footer">
+                Done by User
+                </div>
+            </div>
+        </li>
+        <!-- END timeline item -->
+
       <% bag.history.history_lines.each do |lines| %>
 
       <!-- timeline item -->
         <li>
             <!-- timeline icon -->
-            <i class="fa fa-flask bg-red"></i>
+            <i class="fa fa-flask bg-warning"></i>
             <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> <%= lines.created_at.to_s :short %></span>
                 <h3 class="timeline-header">New Jar</h3>
                 <div class="timeline-body">
             
                 <br/>
-                  <%= link_to "#{fa_icon('tag')} #{bag}".html_safe, bag_path, class: "btn btn-warning btn-xs" %> send <%= lines.quantity/1000 %> g to <%= link_to "#{fa_icon('flask')} #{lines.source}".html_safe, jar_path, class: "btn btn-danger btn-xs" %>
+                  <%= link_to "#{fa_icon('tag')} #{lines.target}".html_safe, bag_path, class: "btn btn-info btn-xs" %> send <%= lines.quantity/1000 %> g to <%= link_to "#{fa_icon('flask')} #{lines.source}".html_safe, jar_path, class: "btn btn-danger btn-xs" %>
                   </div>
                 <div class="timeline-footer">
                 Done by User

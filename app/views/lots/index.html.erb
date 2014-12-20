@@ -51,8 +51,8 @@
         <td><%= lot.created_at.to_s :short %></td>
         <td><%= lot.updated_at.to_s :short %></td>
         <td>
-          <a href="#" class="btn-sm btn-flat btn-warning" data-toggle="modal" data-target=".newBag">New bag</a>
-          <%= link_to 'Show', lot, class: "btn-sm btn-flat btn-success" %>
+          <a href="#" class="btn-sm btn-flat btn-warning" data-toggle="modal" data-target=".newBag"><i class="fa fa-tag"></i> New bag</a>
+          <%= link_to "#{fa_icon('tags')} Show".html_safe, lot, class: "btn-sm btn-flat btn-info" %>
         </td>
       </tr>
       <% end %>
