@@ -58,4 +58,4 @@ gem 'elastic-beanstalk'
 
 gem 'rails_12factor', group: :production
 
-# gem 'puma', group: :production
+gem 'puma', group: :production
