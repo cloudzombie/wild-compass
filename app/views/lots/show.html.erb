@@ -28,11 +28,11 @@
               <dd><%= lot.category %></dd>
               <dt>Initial Weight : </dt>
               <dd><%= number_with_precision(
-                (lot.initial_weight.nil? ? 0 : lot.initial_weight) , precision: 2)
+                (lot.initial_weight.nil? ? 0 : lot.initial_weight), precision: 2)
                 %> g</dd>
               <dt>Current Weight :</dt>	
               <dd><%= number_with_precision(
-                (lot.current_weight.nil? ? 0 : lot.current_weight) / 1000.0, precision: 2)
+                (lot.current_weight.nil? ? 0 : lot.current_weight), precision: 2)
                 %> g</dd>
               <dt>Created At :</dt>
               <dd><%= lot.created_at.to_s :short %></dd>
@@ -101,26 +101,62 @@
 
           <% lot.history.history_lines.each do |lines| %>
 
-			<!-- timeline item -->
-		   	<li>
+          <% case lines.target.class %>
+          <% when lot %>
+    			<!-- timeline item -->
+    		   	<li>
 		        <!-- timeline icon -->
-		        <i class="fa fa-tags bg-yellow"></i>
+		        <i class="fa fa-tags bg-green"></i>
 		        <div class="timeline-item">
-		            <span class="time"><i class="fa fa-clock-o"></i> <%= lines.created_at.to_s :short %></span>
-		            <h3 class="timeline-header">New Bag</h3>
-       				  <div class="timeline-body">
-       			
-       				  <br/>
-		           		<a class="btn btn-info btn-xs"><i class="fa fa-tags"></i><%= lot %></a> send <%= lines.quantity %> g to <%= link_to "bag #{lines.target.id}", bag_path, class: "btn btn-warning btn-xs" %>
-		              </div>
-		            <div class="timeline-footer">
-		            Done by User
+            <span class="time"><i class="fa fa-clock-o"></i> <%= lines.created_at.to_s :short %></span>
+            <h3 class="timeline-header">New Bag</h3>
+   				  <div class="timeline-body">
+   			
+   				  <br/>
+           		<a class="btn btn-info btn-xs"><i class="fa fa-tags"></i><%= lot %></a> send <%= lines.quantity %> g to <%= link_to "bag #{lines.target.id}", bag_path, class: "btn btn-warning btn-xs" %>
+                  </div>
+                  <div class="timeline-footer">
+                  Done by User
+                  </div>
 		            </div>
-		        </div>
-		    </li>
-		    <!-- END timeline item -->
-      
-          <%  end %>
+		          </li> 
+            <% when bag %>
+            <!-- timeline item -->
+            <li>
+            <!-- timeline icon -->
+            <i class="fa fa-tags bg-yellow"></i>
+            <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> <%= lines.created_at.to_s :short %></span>
+            <h3 class="timeline-header">New Bag</h3>
+            <div class="timeline-body">
+        
+            <br/>
+              <a class="btn btn-info btn-xs"><i class="fa fa-tags"></i><%= lot %></a> send <%= lines.quantity %> g to <%= link_to "bag #{lines.target.id}", bag_path, class: "btn btn-warning btn-xs" %>
+                  </div>
+                  <div class="timeline-footer">
+                  Done by User
+                  </div>
+                </div>
+              </li> 
+            <% when jar %> 
+            <!-- timeline item -->
+            <li>
+            <!-- timeline icon -->
+            <i class="fa fa-tags bg-yellow"></i>
+            <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> <%= lines.created_at.to_s :short %></span>
+            <h3 class="timeline-header">New Bag</h3>
+            <div class="timeline-body">
+        
+            <br/>
+              <a class="btn btn-info btn-xs"><i class="fa fa-tags"></i><%= lot %></a> send <%= lines.quantity %> g to <%= link_to "bag #{lines.target.id}", bag_path, class: "btn btn-warning btn-xs" %>
+                  </div>
+                  <div class="timeline-footer">
+                  Done by User
+                  </div>
+                </div>
+              </li>     
+            <% end %>
           </ul>
         </div> 
       </div>
