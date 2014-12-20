@@ -53,3 +53,5 @@ gem 'adminlte-rails'
 
 # Use decent exposure instead @vars in controllers
 gem 'decent_exposure'
+
+gem 'elastic-beanstalk'

@@ -43,7 +43,7 @@
         <%= link_to "#{fa_icon('shopping-cart')} <span>Orders</span>".html_safe, orders_path %>
       </li>
       <li class="<%= params[:controller] == 'plants' ? 'active' : nil %>">
-        <%= link_to "#{fa_icon('leaf')} <span>Plants</span>".html_safe, plants_path %>
+      <!--  <%= link_to "#{fa_icon('leaf')} <span>Plants</span>".html_safe, plants_path %> -->
       </li>
       <li class="<%= params[:controller] == 'lots' ? 'active' : nil %>">
         <%= link_to "#{fa_icon('tags')} <span>Lots</span>".html_safe, lots_path %>
