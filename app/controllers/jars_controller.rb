@@ -6,9 +6,9 @@ class JarsController < ApplicationController
 
   def create
     self.jar = Jar.new(jar_params)
-    jar.current_weight =  jar.initial_weight
+    jar.current_weight = jar.initial_weight
+    jar.name = "J-#{jar.bag}-#{Time.now.strftime('%d%m%y')}"
     respond_to do |format|
-      jar.name = "J-#{jar.bag}-#{Time.now.strftime('%d%m%y')}"
       if jar.save
         Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit( initial: true )
         format.html { redirect_to jar, notice: 'jar was successfully created.' }

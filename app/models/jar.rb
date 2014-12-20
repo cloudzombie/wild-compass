@@ -11,12 +11,13 @@ class Jar < ActiveRecord::Base
   ### current_weight: integer ###
   ###############################
 
-  before_create :create_history
-  before_save :create_history, unless: :history_exists?
+  
 
   ### History
 
   belongs_to :history
+  before_create :create_history
+  before_save :create_history, unless: :history_exists?
 
 
 
@@ -24,13 +25,20 @@ class Jar < ActiveRecord::Base
 
   belongs_to :bag
 
+  validates :bag, presence: true
+
+
+
   ### Order_line
 
   belongs_to :order_line
 
+
+
   ### Plants
 
   has_many :plants, through: :bag
+  
   
 
   ### Lot
@@ -62,7 +70,7 @@ class Jar < ActiveRecord::Base
   ### Utils
 
   def to_s
-    "#{ name.titleize unless name.nil? }"
+    "#{ name.upcase unless name.nil? }"
   end
 
   private
