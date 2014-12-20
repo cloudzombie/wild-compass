@@ -7,7 +7,11 @@ gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
 gem 'pg', group: :production
+<<<<<<< HEAD
 
+=======
+gem 'rails_12factor', group: :production
+>>>>>>> 8603b2338633d85ae37057497e6d9ee30c602625
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -56,6 +60,7 @@ gem 'adminlte-rails'
 
 # Use decent exposure instead @vars in controllers
 gem 'decent_exposure'
+<<<<<<< HEAD
 
 gem 'elastic-beanstalk'
 
@@ -64,3 +69,5 @@ gem 'rails_12factor', group: :production
 gem 'nokogiri'
 
 # gem 'puma', group: :production
+=======
+>>>>>>> 8603b2338633d85ae37057497e6d9ee30c602625
