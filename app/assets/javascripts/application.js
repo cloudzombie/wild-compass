@@ -14,6 +14,6 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require tree .
 //= require bootstrap.min
 //= require admin-lte
+//= require_tree .
