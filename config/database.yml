@@ -25,6 +25,6 @@ production:
   pool: 5
   timeout: 5000
   encoding: unicode
-  database: thc_wc_db
+  database: thc_wc_rds
   username: wild_compass_14
   password: Anamorphosis17
