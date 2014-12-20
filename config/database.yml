@@ -25,6 +25,7 @@ production:
   pool: 5
   timeout: 5000
   encoding: unicode
-  database: thc_wc_rds
+  host: thc-wc-rds.cdgs1ho4rubd.us-east-1.rds.amazonaws.com:5432
+  database: thc_wc_db
   username: wild_compass_14
   password: Anamorphosis17
