@@ -24,7 +24,9 @@ class Jar < ActiveRecord::Base
 
   belongs_to :bag
 
+  ### Order_line
 
+  belongs_to :order_line
 
   ### Plants
 
