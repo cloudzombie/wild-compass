@@ -9,16 +9,21 @@ class Lot < ActiveRecord::Base
   ### weight:  integer ###
   ########################
 
-  before_create :create_history
-  before_save :create_history, unless: :history_exists?
+
 
   ### History
 
   belongs_to :history
+  before_create :create_history
+  before_save :create_history, unless: :history_exists?
+
+
 
   ### Strain
 
   belongs_to :strain
+
+
 
   ### Plants
 
@@ -30,9 +35,13 @@ class Lot < ActiveRecord::Base
   
   has_many :bags
 
+
+
   ### Jar
 
   has_many :jars, through: :bag
+
+
 
   ### Weight
 
