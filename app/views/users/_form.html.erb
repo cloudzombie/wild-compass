@@ -1,9 +1,27 @@
 <%= form_for(user) do |f| %>
   
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
     <%= display_error_for user, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control' %>
+    <%= display_error_for user, :email %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :role %>
+    <%= f.collection_select(:user_role_id, User::Role.all, :id, :to_s, {}, { class: 'form-control' }) %>
+    <%= display_error_for user, :role %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :group %>
+    <%= f.collection_select(:user_group_id, User::Group.all, :id, :to_s, {}, { class: 'form-control' }) %>
+    <%= display_error_for user, :group %>
   </div>
 
   <div class="actions">

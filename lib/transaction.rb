@@ -9,7 +9,7 @@ class Transaction
   end
 
   def take(quantity)
-    @quantity = quantity * 1000
+    @quantity = quantity
     self
   end
 

@@ -26,4 +26,10 @@ class User::Group < ActiveRecord::Base
   def self.super_users
     find(4)
   end
+
+  validates :name, presence: true
+
+  def to_s
+    "#{ name.titleize unless name.nil? }"
+  end
 end
