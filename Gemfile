@@ -60,4 +60,4 @@ gem 'rails_12factor', group: :production
 
 gem 'nokogiri'
 
-# gem 'puma', group: :production
+gem 'puma', group: :production
