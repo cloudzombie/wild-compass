@@ -56,14 +56,9 @@ gem 'adminlte-rails'
 
 # Use decent exposure instead @vars in controllers
 gem 'decent_exposure'
-<<<<<<< HEAD
 
-gem 'elastic-beanstalk'
+# gem 'elastic-beanstalk'
 
 gem 'rails_12factor', group: :production
 
 gem 'nokogiri'
-
-# gem 'puma', group: :production
-=======
->>>>>>> 8603b2338633d85ae37057497e6d9ee30c602625
