@@ -1,7 +1,7 @@
 app: wild-compass
 region: us-east-1
 # http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html
-solution_stack_name: 64bit Amazon Linux 2014.09 running Ruby 1.9.3
+solution_stack_name: 64bit Amazon Linux 2014.03 v1.0.9 running Ruby 1.9.3
 
 development:
   strategy: inplace_update
