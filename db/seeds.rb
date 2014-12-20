@@ -50,10 +50,10 @@ user_group_roles = User::Group::Role.create([{ admin: false, manager: false, nam
                                              { admin: true,  manager: false, name: 'admins'      },
                                              { admin: true,  manager: true,  name: 'super_users' }])
 
-user_groups = User::Group.create([{ role: User::Group::Role.users       },
-                                  { role: User::Group::Role.managers    },
-                                  { role: User::Group::Role.admins      },
-                                  { role: User::Group::Role.super_users }])
+user_groups = User::Group.create([{ role: User::Group::Role.users,       name: 'users'       },
+                                  { role: User::Group::Role.managers,    name: 'managers'    },
+                                  { role: User::Group::Role.admins,      name: 'admins'      },
+                                  { role: User::Group::Role.super_users, name: 'super_users' }])
 
 password = 'wildcompass'
 users = User.create([{ name: 'Super User',

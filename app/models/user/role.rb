@@ -16,4 +16,10 @@ class User::Role < ActiveRecord::Base
   def self.super_user
     find(4)
   end
+
+  validates :name, presence: true
+
+  def to_s
+    "#{ name.titleize unless name.nil? }"
+  end
 end

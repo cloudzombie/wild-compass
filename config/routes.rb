@@ -15,13 +15,13 @@ Rails.application.routes.draw do
   resources :users
 
   # Users
-  namespace :user do
-    resources :groups
-    # resources :roles
-    # namespace :group do
-    # resources :roles  
-    # end
-  end
+  # namespace :user do
+  #   resources :groups
+  #   # resources :roles
+  #   # namespace :group do
+  #   # resources :roles  
+  #   # end
+  # end
 
   # Resources
   resources :orders
