@@ -53,7 +53,7 @@ class Bag < ActiveRecord::Base
 
 
   def to_s
-    "#{ name.titleize unless name.nil? }"
+    "#{ name.upcase unless name.nil? }"
   end
 
   private

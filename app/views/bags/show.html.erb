@@ -28,12 +28,12 @@
               <dd><%= bag.lot.category %></dd>
               <dt>Initial Weight: </dt>
               <dd><%= number_with_precision(
-                (bag.initial_weight.nil? ? 0 : bag.initial_weight) , precision: 2)
+                (bag.initial_weight.nil? ? 0 : bag.initial_weight) / 1000.0, precision: 2)
                 %> g
               </dd>
               <dt>Current Weight :</dt>
               <dd><%= number_with_precision(
-                (bag.current_weight.nil? ? 0 : bag.current_weight) , precision: 2)
+                (bag.current_weight.nil? ? 0 : bag.current_weight) / 1000.0, precision: 2)
                 %> g
               </dd>
               <dt>Created At:</dt>
@@ -73,7 +73,7 @@
               <dd><%= bag.lot.category %></dd>
               <dt>Initial Weight :</dt>
               <dd><%= number_with_precision(
-                (bag.lot.initial_weight.nil? ? 0 : bag.lot.initial_weight), precision: 2)
+                (bag.lot.initial_weight.nil? ? 0 : bag.lot.initial_weight) / 1000.0, precision: 2)
                 %> g
               </dd>
               <dt>Current Weight :</dt>

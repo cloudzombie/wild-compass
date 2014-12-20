@@ -34,14 +34,14 @@
       <tr>
         <td></td>
         <td><%= jar.id %></td>
-        <td><%= jar.bag.lot.strain unless jar.bag.nil? || jar.bag.lot.nil? %></td>
-        <td><%= jar.bag.lot.category unless jar.bag.nil? || jar.bag.lot.nil? %></td>
+        <td><%= jar.lot.strain unless jar.lot.nil? %></td>
+        <td><%= jar.lot.category unless jar.lot.nil? %></td>
         <td>
           <%= number_with_precision(
             (jar.current_weight.nil? ? 0 : jar.current_weight) / 1000.0 , precision: 2)
           %> g
         </td>
-        <td><%= link_to_unless jar.bag.nil?, "#{fa_icon('tag')} #{jar.bag.id} #{jar.bag.lot.strain.acronym}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %></td>
+        <td><%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %></td>
         <td><%= jar.created_at.to_s :short %></td>
         <td><%= jar.updated_at.to_s :short %></td>
         <td>

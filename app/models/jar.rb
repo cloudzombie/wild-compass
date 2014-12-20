@@ -25,6 +25,8 @@ class Jar < ActiveRecord::Base
 
   belongs_to :bag
 
+  validates :bag, presence: true
+
 
 
   ### Order_line
@@ -36,6 +38,7 @@ class Jar < ActiveRecord::Base
   ### Plants
 
   has_many :plants, through: :bag
+  
   
 
   ### Lot
@@ -67,7 +70,7 @@ class Jar < ActiveRecord::Base
   ### Utils
 
   def to_s
-    "#{ name.titleize unless name.nil? }"
+    "#{ name.upcase unless name.nil? }"
   end
 
   private
