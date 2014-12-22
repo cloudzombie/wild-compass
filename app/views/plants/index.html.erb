@@ -1,4 +1,4 @@
-  <div class="box">
+  <div class="box box-solid box-success">
     <div class="box-header">
         <h3 class="box-title">Listing plants</h3>
         <div class="box-tools">
@@ -14,13 +14,11 @@
     <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
             <tr>
-                <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
                 <th><%= check_box_tag :accept %></th>
                 <th>ID</th>
                 <th><%= :name %></th>
                 <th>Strain :</th>
                 <th>Status :</th>
-                <th><%=  %></th>
                 <th><%= :created_at %></th>
                 <th><%= :updated_at %></th>
                 <th>Format</th>
@@ -30,35 +28,27 @@
             </tr>
             <% plants.each do |plant| %>
               <tr>
-                <td></td>
-                <td><%= :id %></td>
-                <td><%= :name %></td>
-                <td><%= :strain %></td>
+                <td><%= check_box_tag :accept %></td>
+                <td><%= plant.id %></td>
+                <td><%= plant.name %></td>
+                <td><%= plant.strain %></td>
                 <td>
-                  <div class="input-group input-group-sm">
-                  <button class="btn-sm btn-flat btn-success">Growing</button>                 
-                 
-                    <button type="button" class="btn-sm btn-flat dropdown-toggle btn-success" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Growing</a></li>
-                        <li><a href="#">Curing</a></li>
-                        <li><a href="#">Drying</a></li>
-                    </ul>
+                <%= form_for(plant) do |f| %>
+                  <div class="form-group">
+                    <%= f.collection_select(:status_id, Status.all, :id, :to_s, {}, { class: 'form-control' }) %>
+                    <%= display_error_for plant, :status %>
                   </div>
+                <% end %>
                 </td>
-                <td><%= :created_at %></td>
-                <td><%= :updated_at %></td>
-                <td><%= :format %></td>
+                <td><%= plant.created_at.to_s :short %></td>
+                <td><%= plant.updated_at.to_s :short %></td>
+                <td><%= plant.format %></td>
                 <td><!-- <%= :RFID %> --></td>
                 <td><!-- <%= :origin %> --></td>
                 <td>
                     <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
                     <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
-                    <!--
-                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-flat btn-danger" %>-->
+                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-flat btn-danger" %>
                 </td>
               </tr>
             <% end %>            

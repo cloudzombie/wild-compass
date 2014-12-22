@@ -12,6 +12,12 @@
     <%= display_error_for user, :email %>
   </div>
 
+   <div class="form-group">
+    <%= f.label :password %>
+    <%= f.text_field :password, class: 'form-control' %>
+    <%= display_error_for user, :password %>
+  </div>
+
   <div class="form-group">
     <%= f.label :role %>
     <%= f.collection_select(:user_role_id, User::Role.all, :id, :to_s, {}, { class: 'form-control' }) %>
