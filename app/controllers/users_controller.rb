@@ -1,13 +1,6 @@
 class UsersController < ApplicationController
   
-  expose(:user, params: :user_params) do
-    unless params[:id].nil?
-      User.find(params[:id])
-    else
-      User.new
-    end
-  end
-
+  expose(:user, params: :user_params) { id_param.nil? ? User.new : User.find(id_param) }
   expose(:users) { User.all }
   
   def create
@@ -48,5 +41,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_role_id, :user_group_id)
+    end
+
+    def id_param
+      params[:id]
     end
 end
