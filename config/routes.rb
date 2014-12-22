@@ -10,9 +10,16 @@ Rails.application.routes.draw do
   get 'inventory', to: 'inventory#home'
 
   # Users and sessions
-  devise_for :users, controllers: { sessions:       'users/sessions',
-                                    registrations:  'users/registrations' }
+
   resources :users
+
+  devise_scope :user do
+    get 'sign_in', to: 'users/sessions#new'
+    delete 'sign_out', to: 'users/sessions#destroy'
+  end
+
+  devise_for :users, controllers: { sessions:       'users/sessions',
+                                    registrations:  'users/registrations' }  
 
   # Users
   # namespace :user do
