@@ -28,11 +28,11 @@
               <dd><%= lot.category %></dd>
               <dt>Initial Weight : </dt>
               <dd><%= number_with_precision(
-                (lot.initial_weight.nil? ? 0 : lot.initial_weight), precision: 2)
+                (lot.initial_weight.nil? ? 0 : lot.initial_weight) / 1000.0, precision: 2)
                 %> g</dd>
               <dt>Current Weight :</dt>	
               <dd><%= number_with_precision(
-                (lot.current_weight.nil? ? 0 : lot.current_weight), precision: 2)
+                (lot.current_weight.nil? ? 0 : lot.current_weight) / 1000.0, precision: 2)
                 %> g</dd>
               <dt>Created At :</dt>
               <dd><%= lot.created_at.to_s :short %></dd>
