@@ -6,7 +6,7 @@ class JarsController < ApplicationController
 
   def create
     self.jar = Jar.new(jar_params)
-    jar.initial_weight *= 1000   
+    jar.initial_weight *= 1000.0  
     jar.current_weight = jar.initial_weight
     jar.name = "J-#{jar.bag}-#{Time.now.strftime('%d%m%y')}"
     respond_to do |format|
