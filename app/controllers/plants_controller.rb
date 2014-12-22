@@ -9,10 +9,11 @@ class PlantsController < ApplicationController
   end
 
   expose(:plants) { Plant.all }
+  
 
   def create
     self.plant = Plant.new(plant_params)
-
+    plant.current_weight = plant.initial_weight = 0
     respond_to do |format|
       if plant.save
         format.html { redirect_to plant, notice: 'Plant was successfully created.' }

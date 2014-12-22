@@ -51,7 +51,7 @@
         <td><%= bag.updated_at.to_s :short %></td>
         <td><%= link_to "#{fa_icon('tag')} #{bag.lot}".html_safe, lot_path(bag.lot), class: "btn-sm btn-flat btn-info" %></td>
         <td>
-          <a href="#" class="btn-sm btn-flat btn-danger" data-toggle="modal" data-target=".newJar"><i class="fa fa-flask"></i> New Jar</a>
+          <a href="#" class="btn-sm btn-flat btn-danger" data-toggle="modal" data-target=".new-jar"><i class="fa fa-flask"></i> New Jar</a>
           <%= link_to '<i class="fa fa-tag"></i> Show'.html_safe, bag, class: "btn-sm btn-flat btn-warning" %>
         </td>
       </tr>
@@ -61,7 +61,7 @@
 </div><!-- /.box -->
 
 <div class="tableFooter">
-  <div class="btn-group">
+ <!-- <div class="btn-group">
     <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
       <span class="caret"></span>
       <span class="sr-only">Toggle Dropdown</span>
@@ -76,15 +76,24 @@
       <li><a href="#">Récolter</a></li>
       <li><a href="#">Détruire</a></li>
     </ul>
-  </div>
-  <%= link_to 'New bag', new_jar_path, class: "btn btn-flat btn-success"  %>
+  </div>-->
+    <a href="#" class="btn btn-flat btn-warning" data-toggle="modal" data-target=".new-bag"><i class="fa fa-tag"></i> New Bag</a>
 </div>
 
-<div class="modal fade newJar" tabindex="-1" role="dialog" aria-labelledby="New Jar" aria-hidden="true">
+<div class="modal fade new-jar" tabindex="-1" role="dialog" aria-labelledby="New Jar" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <h3>Create a new jar</h3>
       <%= render 'jars/form', bag: bag %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade new-bag" tabindex="-1" role="dialog" aria-labelledby="New Jar" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <h3>Create a new bag</h3>
+      <%= render 'bags/form' %>
     </div>
   </div>
 </div>

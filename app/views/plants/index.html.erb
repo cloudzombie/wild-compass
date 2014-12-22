@@ -15,20 +15,25 @@
         <table class="table table-hover">
             <tr>
                 <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
-                <th>Cultivar</th>
+                <th><%= check_box_tag :accept %></th>
                 <th>ID</th>
+                <th><%= :name %></th>
+                <th>Strain :</th>
+                <th>Status :</th>
+                <th><%=  %></th>
+                <th><%= :created_at %></th>
+                <th><%= :updated_at %></th>
                 <th>Format</th>
-                <th>Status</th>
                 <th>RFID</th>
-                <th>Origine</th>
+                <th>Origin</th>
                 <th>Actions</th>
             </tr>
             <% plants.each do |plant| %>
               <tr>
                 <td></td>
-                <td>YY<%= plant.cultivar %></td>
-                <td><%= plant.id %></td>
-                <td>4L<%= plant.format %></td>
+                <td><%= :id %></td>
+                <td><%= :name %></td>
+                <td><%= :strain %></td>
                 <td>
                   <div class="input-group input-group-sm">
                   <button class="btn-sm btn-flat btn-success">Growing</button>                 
@@ -44,125 +49,32 @@
                     </ul>
                   </div>
                 </td>
-                <td>#######<%= plant.rfid %></td>
-                <td><%= plant.origin %></td>
+                <td><%= :created_at %></td>
+                <td><%= :updated_at %></td>
+                <td><%= :format %></td>
+                <td><!-- <%= :RFID %> --></td>
+                <td><!-- <%= :origin %> --></td>
                 <td>
                     <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
                     <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
-                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-flat btn-danger" %>
+                    <!--
+                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-flat btn-danger" %>-->
                 </td>
               </tr>
-            <% end %>
-                          <tr>
-                <td></td>
-                <td>YY</td>
-                <td>12</td>
-                <td>6L</td>
-                <td>
-                  <div class="input-group input-group-sm">
-                  <button class="btn-sm btn-flat btn-danger">Require Attention</button>                 
-                 
-                    <button type="button" class="btn-sm btn-flat dropdown-toggle btn-danger" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Growing</a></li>
-                        <li><a href="#">Curing</a></li>
-                        <li><a href="#">Drying</a></li>
-                    </ul>
-                  </div>
-                </td>
-                <td>#######</td>
-                <td>Clone</td>
-                <td>
-                <a type="button" class="btn-sm btn-flat btn-success">Show</a>
-                <a type="button" class="btn-sm btn-flat btn-primary">Edit</a>
-                <a type="button" class="btn-sm btn-flat btn-danger">Destroy</ba>                   
-                </td>
-              </tr>
-            <% plants.each do |plant| %>
-              <tr>
-                <td></td>
-                <td>YY<%= plant.cultivar %></td>
-                <td><%= plant.id %></td>
-                <td>4L<%= plant.format %></td>
-                <td>
-                  <div class="input-group input-group-sm">
-                  <button class="btn-sm btn-flat btn-warning">Drying</button>                 
-                 
-                    <button type="button" class="btn-sm btn-flat dropdown-toggle btn-warning" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Growing</a></li>
-                        <li><a href="#">Curing</a></li>
-                        <li><a href="#">Drying</a></li>
-                    </ul>
-                  </div>
-                </td>
-                <td>#######<%= plant.rfid %></td>
-                <td><%= plant.origin %></td>
-                <td>
-                  
-                    <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
-                    <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
-                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-flat btn-danger" %>
-                </td>
-              </tr>
-            <% end %>
-
-            <% plants.each do |plant| %>
-              <tr>
-                <td></td>
-                <td>BB<%= plant.cultivar %></td>
-                <td><%= plant.id %></td>
-                <td>6L<%= plant.format %></td>
-                <td>
-                  <div class="input-group input-group-sm">
-                  <button class="btn-sm btn-flat btn-success">Ready to Harvest</button>                 
-                 
-                    <button type="button" class="btn-sm btn-flat dropdown-toggle btn-success" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Growing</a></li>
-                        <li><a href="#">Curing</a></li>
-                        <li><a href="#">Drying</a></li>
-                    </ul>
-                  </div>
-                </td>
-                <td>#######<%= plant.rfid %></td>
-                <td><%= plant.origin %></td>
-                <td>
-                  
-                    <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
-                    <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
-                    <%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-sm btn-flat btn-danger" %>
-                </td>
-              </tr>
-            <% end %>
+            <% end %>            
         </table>
     </div><!-- /.box-body -->    
   </div>
     <div class="tableFooter">
-        <div class="btn-group">
-            <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
-                <span class="caret"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <button type="button" class="btn btn-info btn-flat">Action</button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Curing</a></li>
-                <li><a href="#">Drying</a></li>
-                <li><a href="#">Change RFID</a></li>
-                <li><a href="#">Vers Lots</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Récolter</a></li>
-                <li><a href="#">Détruire</a></li>
-            </ul>
-        </div>
-        <%= link_to 'New Plant', new_plant_path, class: "btn btn-flat btn-success"  %>
+        
+        <a href="#" class="btn btn-flat btn-success" data-toggle="modal" data-target=".new-plant"><i class="fa fa-leaf"></i> New Plant</a>
     </div>
+
+<div class="modal fade new-plant" tabindex="-1" role="dialog" aria-labelledby="New Plant" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <h3>Create a new plant</h3>
+      <%= render 'plants/form' %>
+    </div>
+  </div>
+</div>
