@@ -7,6 +7,7 @@ class BagsController < ApplicationController
 
   def create
     self.bag = Bag.new(bag_params)
+    bag.initial_weight *= 1000.0   
     bag.current_weight = bag.initial_weight
     if (bag.name == "")
         bag.name = "B-#{bag.lot.strain.acronym}#{Time.now.strftime('%d%m%y')}"
