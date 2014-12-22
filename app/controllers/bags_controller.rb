@@ -8,7 +8,9 @@ class BagsController < ApplicationController
   def create
     self.bag = Bag.new(bag_params)
     bag.current_weight = bag.initial_weight
-    bag.name = "B-#{bag.lot.strain.acronym}#{Time.now.strftime('%d%m%y')}"
+    if (bag.name == "")
+        bag.name = "B-#{bag.lot.strain.acronym}#{Time.now.strftime('%d%m%y')}"
+    end
     respond_to do |format|
       if bag.save
         Transaction.from( bag.lot).to( bag ).take( bag.initial_weight ).commit( initial: true )
