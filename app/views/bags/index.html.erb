@@ -21,6 +21,7 @@
       <tr>
         <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
         <th><%= sortable :id, 'ID' %></th>
+        <th><%= sortable :name %></th>
         <th>Strain</th>
         <th>Category</th>
         <th><%= sortable :initial_weight %></th>
@@ -35,6 +36,7 @@
       <tr>
         <td></td>
         <td><%= bag.id %></td>
+        <td><%= bag %></td>
         <td><%= bag.lot.strain unless bag.lot.nil? %></td>
         <td><%= bag.lot.category unless bag.lot.nil? %></td>
         <td>

@@ -54,7 +54,7 @@ class BagsController < ApplicationController
     end
 
     def sort_column
-      %w(id initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
+      %w(id name initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
     end
 
     def sort_direction
