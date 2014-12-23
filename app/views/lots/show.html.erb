@@ -102,7 +102,7 @@
           <% lot.history.history_lines.each do |lines| %>
 
           <% case lines.target.class %>
-          <% when lot %>
+          <% when Lot %>
     			<!-- timeline item -->
     		   	<li>
 		        <!-- timeline icon -->
@@ -120,7 +120,7 @@
                   </div>
 		            </div>
 		          </li> 
-            <% when bag %>
+            <% when Bag %>
             <!-- timeline item -->
             <li>
             <!-- timeline icon -->
@@ -138,7 +138,7 @@
                   </div>
                 </div>
               </li> 
-            <% when jar %> 
+            <% when Jar %> 
             <!-- timeline item -->
             <li>
             <!-- timeline icon -->

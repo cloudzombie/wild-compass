@@ -7,7 +7,7 @@
 
   <div class="form-group">
     <%= f.label :initial_weight %>
-    <%= f.text_field :initial_weight, class: 'form-control' %>
+    <%= f.text_field :initial_weight, class: 'form-control', value: number_with_precision(bag.initial_weight, precision: 2) %>
     <%= display_error_for bag, :initial_weight %>
   </div>
 
