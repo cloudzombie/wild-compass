@@ -78,20 +78,6 @@
     <a href="#" class="btn btn-flat btn-warning" data-toggle="modal" data-target=".new-bag"><i class="fa fa-tag"></i> New Bag</a>
 </div>
 
-<div class="modal fade new-jar" tabindex="-1" role="dialog" aria-labelledby="New Jar" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <h3>Create a new jar</h3>
-      <%= render 'jars/form', bag: bag %>
-    </div>
-  </div>
-</div>
+<%= render 'jars/modal/new', bag: bag %>
 
-<div class="modal fade new-bag" tabindex="-1" role="dialog" aria-labelledby="New Jar" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <h3>Create a new bag</h3>
-      <%= render 'bags/form' %>
-    </div>
-  </div>
-</div>
+<%= render 'bags/modal/new' %>

@@ -5,8 +5,9 @@
     <div class="box-header">
       <h3 class="box-title">Links</h3>
     </div>
-    <a class="btn btn-block btn-warning" data-toggle="modal" data-target=".newJar"><i class="fa fa-flask"></i> New Bag</a>
-    <a class="btn btn-block btn-success" data-toggle="modal" data-target=".newJar"><i class="fa fa-leaf"></i> Origin Plant</a>
+    
+    <%= link_to "#{fa_icon('flask')} New Bag".html_safe, '#', class: 'btn btn-block btn-warning', data: { toggle: 'modal', target: '.new-bag' } %>
+    <%= link_to "#{fa_icon('leaf')} Origin Plant".html_safe, '#', class: 'btn btn-block btn-success' %>
   </div>
   <div class="col-lg-5">
     <div class="box box-solid box-info">
@@ -169,3 +170,5 @@
     
 <!--<%= link_to 'Edit', edit_lot_path(lot) %> | -->
 <%= link_to 'Back', lots_path %>
+
+<%= render 'bags/modal/new' %>
