@@ -66,7 +66,7 @@ class Jar < ActiveRecord::Base
 
   validates :current_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :initial_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :weight, numericality: { greater_than_or_equal_to: 0 }
+  validates :weight, presence: false, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
 
 
 

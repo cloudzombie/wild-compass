@@ -13,7 +13,7 @@ class BagsController < ApplicationController
 
     respond_to do |format|
       if bag.save
-        Transaction.from( bag.lot).to( bag ).take( bag.initial_weight ).commit( initial: true )
+        Transaction.from( bag.lot).to( bag ).take( bag.weight ).commit( initial: true )
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
         format.json { render :show, status: :created, location: bag }
       else

@@ -60,7 +60,7 @@ class JarsController < ApplicationController
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    def weight
+    def set_weight
       jar.weight = jar.weight.to_d
       jar.current_weight = jar.initial_weight = jar.weight
     end

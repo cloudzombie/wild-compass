@@ -17,15 +17,16 @@ class Transaction
     raise "source is nil" if @source.nil?
     raise "target is nil" if @target.nil?
     raise "quantity is nil or zero" if @quantity.nil? || @quantity.to_d == 0.0
+    raise 'source current weight is inferior to transaction quantity' if @source.current_weight.to_d < @quantity.to_d
 
     if opts[:initial]
-      @source.decrease_current_weight(@quantity.to_d)
+      @source.decrease_current_weight(@quantity)
 
       @source.history.add_line(@source, @target, @quantity, :decrease_current_weight)
       @target.history.add_line(@target, @source, @quantity, :increase_current_weight)
     else
-      @source.decrease_current_weight(@quantity.to_d)
-      @target.increase_current_weight(@quantity.to_d)
+      @source.decrease_current_weight(@quantity)
+      @target.increase_current_weight(@quantity)
     
       @source.history.add_line(@source, @target, @quantity, :decrease_current_weight)
       @target.history.add_line(@target, @source, @quantity, :increase_current_weight)
