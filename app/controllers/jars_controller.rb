@@ -45,7 +45,7 @@ class JarsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def jar_params
-      params.require(:jar).permit( :current_weight, :bag_id, :name, :initial_weight)
+      params.require(:jar).permit(:weight, :current_weight, :bag_id, :name, :initial_weight)
     end
 
     def id_param
@@ -53,7 +53,7 @@ class JarsController < ApplicationController
     end
 
     def sort_column
-      %w(id weight current_weight initial_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
+      %w(id current_weight initial_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
     end
 
     def sort_direction
@@ -61,6 +61,7 @@ class JarsController < ApplicationController
     end
 
     def weight
+      jar.weight = jar.weight.to_d
       jar.current_weight = jar.initial_weight = jar.weight
     end
 

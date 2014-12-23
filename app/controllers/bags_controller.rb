@@ -46,7 +46,7 @@ class BagsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
-      params.require(:bag).permit(:initial_weight, :lot_id, :name, :created_a, :current_weight)
+      params.require(:bag).permit(:weight, :initial_weight, :lot_id, :name, :created_a, :current_weight)
     end
 
     def id_param
@@ -54,7 +54,7 @@ class BagsController < ApplicationController
     end
 
     def sort_column
-      %w(id weight initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
+      %w(id initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
     end
 
     def sort_direction
@@ -66,6 +66,7 @@ class BagsController < ApplicationController
     end
 
     def set_weight
+      bag.weight = bag.weight.to_d
       bag.current_weight = bag.initial_weight = bag.weight
     end
 end

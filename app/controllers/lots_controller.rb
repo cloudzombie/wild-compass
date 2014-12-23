@@ -44,7 +44,7 @@ class LotsController < ApplicationController
   private
 
     def lot_params
-      params.require(:lot).permit(:name, :initial_weight, :strain_id, :category, :current_weight)
+      params.require(:lot).permit(:name, :weight, :initial_weight, :strain_id, :category, :current_weight)
     end
 
     def id_param
@@ -52,7 +52,7 @@ class LotsController < ApplicationController
     end
 
     def sort_column
-      %w(id name weight initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
+      %w(id name initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
     end
 
     def sort_direction
@@ -60,6 +60,7 @@ class LotsController < ApplicationController
     end
 
     def set_weight
+      lot.weight = lot.weight.to_d
       lot.current_weight = lot.initial_weight = lot.weight
     end
 end
