@@ -27,14 +27,12 @@
               <dt>Type :</dt>
               <dd><%= jar.bag.lot.category %></dd>
               <dt>Initial Weight: </dt>
-              <dd><%= number_with_precision(
-                (jar.initial_weight.nil? ? 0 : jar.initial_weight) / 1000.0, precision: 2)
-                %> g
+              <dd>
+                <%= number_with_precision((jar.initial_weight.nil? ? 0 : jar.initial_weight), precision: 2)%> g
               </dd>
               <dt>Current Weight :</dt>
-              <dd><%= number_with_precision(
-                (jar.current_weight.nil? ? 0 : jar.current_weight) / 1000.0, precision: 2)
-                %> g
+              <dd>
+                <%= number_with_precision((jar.current_weight.nil? ? 0 : jar.current_weight), precision: 2)%> g
               </dd>
               <dt>Created At:</dt>
               <dd><%= jar.created_at.to_s :short %></dd>
@@ -72,14 +70,12 @@
               <dt>Type :</dt>
               <dd><%= jar.bag.lot.category %></dd>
               <dt>Initial Weight :</dt>
-              <dd><%= number_with_precision(
-                (jar.bag.lot.initial_weight.nil? ? 0 : jar.bag.lot.initial_weight) / 1000.0, precision: 2)
-                %> g
+              <dd>
+                <%= number_with_precision((jar.bag.lot.initial_weight.nil? ? 0 : jar.bag.lot.initial_weight), precision: 2)%> g
               </dd>
               <dt>Current Weight :</dt>
-              <dd><%= number_with_precision(
-                (jar.bag.lot.current_weight.nil? ? 0 : jar.bag.lot.current_weight) / 1000.0, precision: 2)
-                %> g
+              <dd>
+                <%= number_with_precision((jar.bag.lot.current_weight.nil? ? 0 : jar.bag.lot.current_weight), precision: 2)%> g
               </dd>
               <dt>Created At :</dt>
               <dd><%= jar.bag.lot.created_at.to_s :short %></dd>
@@ -126,7 +122,8 @@
                 <h3 class="timeline-header">New Lot : <%= jar.bag.lot %></h3>
                 <div class="timeline-body">
                 <br/>
-                  <a class="btn btn-success btn-xs"><i class="fa fa-leaf"></i><%= ' '+ jar.bag.id.to_s + ' ' + jar.bag.lot.strain.acronym %></a> send <%= jar.bag.lot.initial_weight / 1000 %> g to <%= link_to "#{fa_icon('tag')} #{jar.bag.lot} #{jar.bag.lot.strain.acronym}".html_safe, jar_path, class: "btn btn-info btn-xs" %>
+                  <a class="btn btn-success btn-xs"><i class="fa fa-leaf"></i>
+                    <%= ' '+ jar.bag.id.to_s + ' ' + jar.bag.lot.strain.acronym %></a> send <%= jar.bag.lot.initial_weight %> g to <%= link_to "#{fa_icon('tag')} #{jar.bag.lot} #{jar.bag.lot.strain.acronym}".html_safe, jar_path, class: "btn btn-info btn-xs" %>
                   </div>
                 <div class="timeline-footer">
                 Done by User

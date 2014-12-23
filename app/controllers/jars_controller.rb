@@ -6,9 +6,10 @@ class JarsController < ApplicationController
 
   def create
     self.jar = Jar.new(jar_params)
-    jar.initial_weight *= 10_000.0  
-    jar.current_weight = jar.initial_weight
-    jar.name = "J-#{jar.bag}-#{Time.now.strftime('%d%m%y')}"
+
+    set_weight
+    set_name if jar.name.nil? || jar.name.empty?
+    
     respond_to do |format|
       if jar.save
         Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit( initial: true )
@@ -52,10 +53,18 @@ class JarsController < ApplicationController
     end
 
     def sort_column
-      %w(id current_weight initial_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
+      %w(id weight current_weight initial_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
     end
 
     def sort_direction
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
+    end
+
+    def weight
+      jar.current_weight = jar.initial_weight = jar.weight
+    end
+
+    def set_name
+      jar.name = "J-#{jar.bag}-#{Time.now.strftime('%d%m%y')}"
     end
 end

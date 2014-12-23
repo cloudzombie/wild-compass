@@ -38,14 +38,10 @@
         <td><%= bag.lot.strain unless bag.lot.nil? %></td>
         <td><%= bag.lot.category unless bag.lot.nil? %></td>
         <td>
-          <%= number_with_precision(
-            (bag.initial_weight.nil? ? 0 : bag.initial_weight) / 1_000.0, precision: 2)
-          %> g
+          <%= number_with_precision((bag.initial_weight.nil? ? 0 : bag.initial_weight), precision: 2)%> g
         </td>
         <td>
-          <%= number_with_precision(
-            (bag.current_weight.nil? ? 0 : bag.current_weight) / 1_000.0, precision: 2)
-          %> g
+          <%= number_with_precision((bag.current_weight.nil? ? 0 : bag.current_weight), precision: 2)%> g
         </td>
         <td><%= bag.created_at.to_s :short %></td>
         <td><%= bag.updated_at.to_s :short %></td>

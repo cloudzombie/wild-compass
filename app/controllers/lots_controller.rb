@@ -7,9 +7,10 @@ class LotsController < ApplicationController
 
   def create
     self.lot = Lot.new(lot_params)
-    respond_to do |format|  
-      lot.initial_weight *= 10.0
-      lot.current_weight = lot.initial_weight 
+
+    set_weight
+
+    respond_to do |format|
       if lot.save
         format.html { redirect_to lot, notice: 'Lot was successfully created.' }
         format.json { render :show, status: :created, location: lot }
@@ -51,10 +52,14 @@ class LotsController < ApplicationController
     end
 
     def sort_column
-      %w(id name initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
+      %w(id name weight initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
     end
 
     def sort_direction
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
+    end
+
+    def set_weight
+      lot.current_weight = lot.initial_weight = lot.weight
     end
 end

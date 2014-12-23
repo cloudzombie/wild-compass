@@ -27,14 +27,12 @@
               <dt>Type :</dt>
               <dd><%= bag.lot.category %></dd>
               <dt>Initial Weight: </dt>
-              <dd><%= number_with_precision(
-                (bag.initial_weight.nil? ? 0 : bag.initial_weight) / 1000.0, precision: 2)
-                %> g
+              <dd>
+                <%= number_with_precision((bag.initial_weight.nil? ? 0 : bag.initial_weight), precision: 2) %> g
               </dd>
               <dt>Current Weight :</dt>
-              <dd><%= number_with_precision(
-                (bag.current_weight.nil? ? 0 : bag.current_weight) / 1000.0, precision: 2)
-                %> g
+              <dd>
+                <%= number_with_precision((bag.current_weight.nil? ? 0 : bag.current_weight), precision: 2) %> g
               </dd>
               <dt>Created At:</dt>
               <dd><%= bag.created_at.to_s :short %></dd>
@@ -72,14 +70,12 @@
               <dt>Type :</dt>
               <dd><%= bag.lot.category %></dd>
               <dt>Initial Weight :</dt>
-              <dd><%= number_with_precision(
-                (bag.lot.initial_weight.nil? ? 0 : bag.lot.initial_weight) / 1000.0, precision: 2)
-                %> g
+              <dd>
+                <%= number_with_precision((bag.lot.initial_weight.nil? ? 0 : bag.lot.initial_weight), precision: 2) %> g
               </dd>
               <dt>Current Weight :</dt>
-              <dd><%= number_with_precision(
-                (bag.lot.current_weight.nil? ? 0 : bag.lot.current_weight) / 1000.0, precision: 2)
-                %> g
+              <dd>
+                <%= number_with_precision((bag.lot.current_weight.nil? ? 0 : bag.lot.current_weight), precision: 2) %> g
               </dd>
               <dt>Created At :</dt>
               <dd><%= bag.lot.created_at.to_s :short %></dd>
@@ -128,7 +124,7 @@
                 <div class="timeline-body">
             
                 <br/>
-                  <%= link_to "#{fa_icon('tags')} #{bag.lot}".html_safe, lot_path, class: "btn btn-info btn-xs" %> send <%= bag.initial_weight/1000 %> g to <%= link_to "#{fa_icon('tag')} #{bag}".html_safe, bag_path, class: "btn btn-warning btn-xs" %>
+                  <%= link_to "#{fa_icon('tags')} #{bag.lot}".html_safe, lot_path, class: "btn btn-info btn-xs" %> send <%= bag.initial_weight %> g to <%= link_to "#{fa_icon('tag')} #{bag}".html_safe, bag_path, class: "btn btn-warning btn-xs" %>
                   </div>
                 <div class="timeline-footer">
                 Done by User
@@ -149,7 +145,7 @@
                 <div class="timeline-body">
             
                 <br/>
-                  <%= link_to "#{fa_icon('tag')} #{lines.target}".html_safe, bag_path, class: "btn btn-info btn-xs" %> send <%= lines.quantity/1000 %> g to <%= link_to "#{fa_icon('flask')} #{lines.source}".html_safe, jar_path, class: "btn btn-danger btn-xs" %>
+                  <%= link_to "#{fa_icon('tag')} #{lines.target}".html_safe, bag_path, class: "btn btn-info btn-xs" %> send <%= lines.quantity %> g to <%= link_to "#{fa_icon('flask')} #{lines.source}".html_safe, jar_path, class: "btn btn-danger btn-xs" %>
                   </div>
                 <div class="timeline-footer">
                 Done by User

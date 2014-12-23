@@ -7,11 +7,10 @@ class BagsController < ApplicationController
 
   def create
     self.bag = Bag.new(bag_params)
-    bag.initial_weight = bag.initial_weight * 10_000.0   
-    bag.current_weight = bag.initial_weight
-    if (bag.name == "")
-        bag.name = "B-#{bag.lot.strain.acronym}#{Time.now.strftime('%d%m%y')}"
-    end
+
+    set_weight
+    set_name if bag.name.nil? || bag.name.empty?
+
     respond_to do |format|
       if bag.save
         Transaction.from( bag.lot).to( bag ).take( bag.initial_weight ).commit( initial: true )
@@ -55,10 +54,18 @@ class BagsController < ApplicationController
     end
 
     def sort_column
-      %w(id initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
+      %w(id weight initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
     end
 
     def sort_direction
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
+    end
+
+    def set_name
+      bag.name = "B-#{bag.lot.strain.acronym}#{Time.now.strftime('%d%m%y')}"
+    end
+
+    def set_weight
+      bag.current_weight = bag.initial_weight = bag.weight
     end
 end

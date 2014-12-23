@@ -9,6 +9,8 @@ class Bag < ActiveRecord::Base
   ### weight: int     ###
   #######################
 
+  attr_accessor :weight
+
 
 
   ### History
@@ -49,6 +51,7 @@ class Bag < ActiveRecord::Base
 
   validates :current_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :initial_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :weight, numericality: { greater_than_or_equal_to: 0 }
   
 
 

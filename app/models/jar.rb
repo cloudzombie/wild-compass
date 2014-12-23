@@ -11,6 +11,8 @@ class Jar < ActiveRecord::Base
   ### current_weight: integer ###
   ###############################
 
+  attr_accessor :weight
+
   
 
   ### History
@@ -64,6 +66,7 @@ class Jar < ActiveRecord::Base
 
   validates :current_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :initial_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :weight, numericality: { greater_than_or_equal_to: 0 }
 
 
 

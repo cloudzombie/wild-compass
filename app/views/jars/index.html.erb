@@ -37,11 +37,11 @@
         <td><%= jar.lot.strain unless jar.lot.nil? %></td>
         <td><%= jar.lot.category unless jar.lot.nil? %></td>
         <td>
-          <%= number_with_precision(
-            (jar.current_weight.nil? ? 0 : jar.current_weight) / 1000.0 , precision: 2)
-          %> g
+          <%= number_with_precision((jar.current_weight.nil? ? 0 : jar.current_weight), precision: 2)%> g
         </td>
-        <td><%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %></td>
+        <td>
+          <%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %>
+        </td>
         <td><%= jar.created_at.to_s :short %></td>
         <td><%= jar.updated_at.to_s :short %></td>
         <td>
