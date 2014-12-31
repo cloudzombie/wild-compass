@@ -43,7 +43,7 @@ gem 'jquery-turbolinks'
 # gem 'debugger', group: [:development, :test]
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin]
+gem 'tzinfo-data', platforms: [ :mingw, :mswin, :x64_mingw ]
 
 # Authentication
 gem 'devise'
