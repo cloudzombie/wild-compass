@@ -51,15 +51,26 @@ gem 'devise'
 # Authorization
 gem 'cancan'
 
+# Adminlte assets
 gem 'adminlte-rails'
 
 # Use decent exposure instead @vars in controllers
 gem 'decent_exposure'
 
+# For deployment on AWS
 # gem 'elastic-beanstalk'
 
+# 12 factors (needed for Heroku)
 gem 'rails_12factor', group: :production
 
+# HTML and XML tree parser
 gem 'nokogiri'
 
+# Generates UML
 gem 'railroady', group: [ :development, :test ], git: 'git@github.com:preston/railroady.git'
+
+# PDF Generator
+gem 'wicked_pdf'
+
+# Provides the wkhtmltopdf binaries (required by wicked_pdf)
+gem 'wkhtmltopdf-binary'

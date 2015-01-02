@@ -1,0 +1,19 @@
+<table class="table table-striped">
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Initial Weight (g)</th>
+    <th>Current Weight (g)</th>
+  </tr>
+
+  <% lots.each do |lot| %>
+    <tr>
+      <td></td>
+      <td><%= lot %></td>
+      <td><%= lot.class %></td>
+      <td><%= lot.initial_weight %></td>
+      <td><%= lot.current_weight %></td>
+    </tr>
+  <% end %>
+</table>

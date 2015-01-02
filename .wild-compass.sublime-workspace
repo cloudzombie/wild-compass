@@ -3,10 +3,62 @@
 	{
 		"selected_items":
 		[
+			[
+				"in",
+				"inventory_report"
+			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "app/views/dashboard/home.html.erb",
+			"settings":
+			{
+				"buffer_size": 10234,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/inventory/home.html.erb",
+			"settings":
+			{
+				"buffer_size": 562,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/inventory/_bags.html.erb",
+			"settings":
+			{
+				"buffer_size": 388,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/inventory/_lots.html.erb",
+			"settings":
+			{
+				"buffer_size": 388,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/controllers/inventory_controller.rb",
+			"settings":
+			{
+				"buffer_size": 654,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "config/routes.rb",
+			"settings":
+			{
+				"buffer_size": 836,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -44,6 +96,15 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Maxime/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Maxime/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Maxime/Documents/wild-compass/config/initializers/mime_types.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/initializers/wicked_pdf.rb",
+		"/C/Users/Maxime/Documents/wild-compass/Gemfile",
+		"/C/Users/Maxime/Documents/wild-compass/crash.log",
+		"/C/Ruby21-x64/lib/ruby/gems/2.1.0/gems/railroady-1.3.0/tasks/railroady.rake",
+		"/C/Ruby21-x64/lib/ruby/gems/2.1.0/gems/railroady-1.3.0/lib/railroady.rb",
+		"/C/Users/Maxime/.ssh/id_rsa.pub",
 		"/C/Users/Maxime/Documents/radiant-sands/app/assets/javascripts/application.js",
 		"/C/Ruby21-x64/lib/ruby/gems/2.1.0/gems/execjs-2.2.2/lib/execjs/runtimes.rb",
 		"/C/Ruby21-x64/lib/ruby/gems/2.1.0/gems/execjs-2.2.1/lib/execjs/runtimes.rb",
@@ -69,6 +130,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"line",
+			":",
+			"line",
 			"execjs",
 			"'",
 			"''",
@@ -90,8 +154,175 @@
 	"groups":
 	[
 		{
+			"selected": 5,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/views/dashboard/home.html.erb",
+					"settings":
+					{
+						"buffer_size": 10234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								693,
+								693
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views/inventory/home.html.erb",
+					"settings":
+					{
+						"buffer_size": 562,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								562,
+								562
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/inventory/_bags.html.erb",
+					"settings":
+					{
+						"buffer_size": 388,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								357,
+								357
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/views/inventory/_lots.html.erb",
+					"settings":
+					{
+						"buffer_size": 388,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								357,
+								357
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/controllers/inventory_controller.rb",
+					"settings":
+					{
+						"buffer_size": 654,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								654,
+								654
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "config/routes.rb",
+					"settings":
+					{
+						"buffer_size": 836,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								242,
+								242
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

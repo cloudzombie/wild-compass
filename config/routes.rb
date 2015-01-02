@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   # Inventory
   get 'inventory', to: 'inventory#home'
+  get 'inventory/download', to: 'inventory#download'
 
   # Users and sessions
 
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: { sessions:       'users/sessions',
-                                    registrations:  'users/registrations' }  
+                                    registrations:  'users/registrations' }
 
   # Users
   # namespace :user do
