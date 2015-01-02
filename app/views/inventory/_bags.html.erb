@@ -14,8 +14,8 @@
       <td><%= bag %></td>
       <td><%# bag.strain %></td>
       <td><%# bag.category %></td>
-      <td><%= bag.initial_weight %></td>
-      <td><%= bag.current_weight %></td>
+      <td><%= number_with_precision bag.initial_weight, precision: 2 %></td>
+      <td><%= number_with_precision bag.current_weight, precision: 2 %></td>
     </tr>
   <% end %>
 </table>

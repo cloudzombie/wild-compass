@@ -6,11 +6,11 @@
 
   <tr>
     <td>Total Weight Per Strain (g)</td>
-    <td><%= Plant.total_weight_per_strain %></td>
+    <td><%= number_with_precision Plant.total_weight_per_strain, precision: 2 %></td>
   </tr>
 
   <tr>
     <td>Total Weight (g)</td>
-    <td><%= Plant.total_weight %></td>
+    <td><%= number_with_precision Plant.total_weight, precision: 2 %></td>
   </tr>
 </table>

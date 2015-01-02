@@ -2,25 +2,27 @@
   <tr>
     <th>Lots</th>
     <th></th>
+    <th></th>
+    <th></th>
   </tr>
 
   <tr>
     <td>Total Weight Per Trim (g)</td>
-    <td><%= Lot.total_weight_per_trim %></td>
+    <td><%= number_with_precision Lot.total_weight_per_trim, precision: 2 %></td>
   </tr>
 
   <tr>
     <td>Total Weight Per Bud (g)</td>
-    <td><%= Lot.total_weight_per_bud %></td>
+    <td><%= number_with_precision Lot.total_weight_per_bud, precision: 2 %></td>
   </tr>
 
   <tr>
     <td>Total Weight Per Strain (g)</td>
-    <td><%= Lot.total_weight_per_strain %></td>
+    <td><%= number_with_precision Lot.total_weight_per_strain, precision: 2 %></td>
   </tr>
 
   <tr>
     <td>Total Weight (g)</td>
-    <td><%=  Lot.total_weight %></td>
+    <td><%= number_with_precision Lot.total_weight, precision: 2 %></td>
   </tr>
 </table>
