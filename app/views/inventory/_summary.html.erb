@@ -1,4 +1,18 @@
 <%= render 'inventory/summary/plants' %><br>
+
 <%= render 'inventory/summary/jars' %><br>
+
 <%= render 'inventory/summary/lots' %><br>
+
 <%= render 'inventory/summary/bags' %><br>
+
+<table class="table table-striped">
+  <tr>
+    <th class="col-md-10">Total Weight</th>
+    <th class="col-md-2">
+      <%= number_with_precision(
+        (Plant.total_weight + Bag.total_weight + Jar.total_weight + Lot.total_weight), precision: 2
+      ) %>
+    </th>
+  </tr>
+</table>
