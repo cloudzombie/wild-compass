@@ -9,6 +9,8 @@ class Bag < ActiveRecord::Base
   ### weight: int     ###
   #######################
 
+  include Accountable
+
   attr_accessor :weight
 
 

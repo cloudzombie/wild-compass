@@ -11,6 +11,8 @@ class Jar < ActiveRecord::Base
   ### current_weight: integer ###
   ###############################
 
+  include Accountable
+
   attr_accessor :weight
 
   

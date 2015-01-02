@@ -2,8 +2,11 @@
   <%= link_to 'Print PDF', inventory_download_path, class: 'btn btn-primary pull-right' %>
   
   <ul class="nav nav-tabs" roles="tablist">
-    
     <li role="presentation" class="active">
+      <%= link_to 'Summary', '#summary', role: 'tab', data: { toggle: 'tab' } %>
+    </li>
+
+    <li role="presentation">
       <%= link_to 'Plants', '#plants', role: 'tab', data: { toggle: 'tab' } %>
     </li>
 
@@ -21,8 +24,11 @@
   </ul>
 
   <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="summary">
+      <%= render 'inventory/summary' %>
+    </div>
 
-    <div role="tabpanel" class="tab-pane active" id="plants">
+    <div role="tabpanel" class="tab-pane" id="plants">
       <%= render 'inventory/plants' %>
     </div>
 

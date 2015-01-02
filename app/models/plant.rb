@@ -9,6 +9,8 @@ class Plant < ActiveRecord::Base
   ### rfid:     Rfid     ###
   ### lot:      Lot      ###
   ##########################
+
+  include Accountable
   
   before_create :create_history
   before_save :create_history, unless: :history_exists?

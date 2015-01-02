@@ -9,6 +9,8 @@ class Lot < ActiveRecord::Base
   ### weight:  integer ###
   ########################
 
+  include Accountable
+
   attr_accessor :weight
 
 
