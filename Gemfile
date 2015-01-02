@@ -62,4 +62,4 @@ gem 'rails_12factor', group: :production
 
 gem 'nokogiri'
 
-gem 'railroady', group: [ :development, :test ]
+gem 'railroady', group: [ :development, :test ], git: 'git@github.com:preston/railroady.git'
