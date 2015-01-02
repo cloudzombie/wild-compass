@@ -123,7 +123,7 @@
 
         <div class="method-description">
           
-          <p>Create a new bag from a PUT HTTP request with given parameters:</p>
+          <p>Create a new bag from a POST HTTP request with given parameters:</p>
 <dl class="rdoc-list note-list"><dt><code>bag_params</code>
 <dd></dd></dl>
 <ul><li>
@@ -181,13 +181,13 @@
 
         <div class="method-description">
           
-          
+          <p>Destroy bag.</p>
           
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/bags_controller.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/controllers/bags_controller.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">bag</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -218,13 +218,13 @@
 
         <div class="method-description">
           
-          
+          <p>Update bag column.</p>
           
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/bags_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/bags_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">bag</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">bag_params</span>)

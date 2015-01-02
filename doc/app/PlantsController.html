@@ -123,14 +123,14 @@
 
         <div class="method-description">
           
-          
+          <p>Create new plant.</p>
           
           
 
           
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/plants_controller.rb, line 14</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span> <span class="ruby-comment">#Create new plant.</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span> 
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">plant</span> = <span class="ruby-constant">Plant</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">plant_params</span>)
   <span class="ruby-identifier">plant</span>.<span class="ruby-identifier">current_weight</span> = <span class="ruby-identifier">plant</span>.<span class="ruby-identifier">initial_weight</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -166,14 +166,14 @@
 
         <div class="method-description">
           
-          
+          <p>Destroy plant.</p>
           
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/plants_controller.rb, line 40</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span> <span class="ruby-comment">#Destroy plant.</span>
+            <pre><span class="ruby-comment"># File app/controllers/plants_controller.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">plant</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">plants_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Plant was successfully destroyed.&#39;</span> }
@@ -203,14 +203,14 @@
 
         <div class="method-description">
           
-          
+          <p>Update plant column.</p>
           
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/plants_controller.rb, line 28</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span> <span class="ruby-comment">#Update plant column.</span>
+            <pre><span class="ruby-comment"># File app/controllers/plants_controller.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span> 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">plant</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">plant_params</span>)
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">plant</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Plant was successfully updated.&#39;</span> }

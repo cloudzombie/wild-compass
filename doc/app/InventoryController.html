@@ -121,13 +121,13 @@
 
         <div class="method-description">
           
-          
+          <p>Create downloadable pdf if inventory.</p>
           
           
 
           
           <div class="method-source-code" id="download-source">
-            <pre><span class="ruby-comment"># File app/controllers/inventory_controller.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/controllers/inventory_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">download</span>
       <span class="ruby-identifier">html</span> = <span class="ruby-identifier">render_to_string</span> <span class="ruby-string">&#39;inventory/home&#39;</span>, <span class="ruby-identifier">layout</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;report.html&#39;</span>
       <span class="ruby-identifier">pdf</span> = <span class="ruby-constant">WickedPdf</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">pdf_from_string</span>(<span class="ruby-identifier">html</span>)

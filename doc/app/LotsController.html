@@ -123,17 +123,17 @@
 
         <div class="method-description">
           
-          
+          <p>Create new lot.</p>
           
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/lots_controller.rb, line 8</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span> <span class="ruby-comment">#Create new lot.</span>
+            <pre><span class="ruby-comment"># File app/controllers/lots_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span> 
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lot</span> = <span class="ruby-constant">Lot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">lot_params</span>)
 
-  <span class="ruby-identifier">set_weight</span> <span class="ruby-comment">#Set lot weight.</span>
+  <span class="ruby-identifier">set_weight</span> <span class="ruby-comment">#  Set lot weight</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">lot</span>.<span class="ruby-identifier">save</span>
@@ -168,14 +168,14 @@
 
         <div class="method-description">
           
-          
+          <p>Destroy lot.</p>
           
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/lots_controller.rb, line 36</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span> <span class="ruby-comment">#Destroy lot.</span>
+            <pre><span class="ruby-comment"># File app/controllers/lots_controller.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span> 
   <span class="ruby-identifier">lot</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">lots_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Lot was successfully destroyed.&#39;</span> }
@@ -205,14 +205,14 @@
 
         <div class="method-description">
           
-          
+          <p>Update lot column.</p>
           
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/lots_controller.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span> <span class="ruby-comment">#Update lot column.</span>
+            <pre><span class="ruby-comment"># File app/controllers/lots_controller.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span> 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">lot</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">lot_params</span>)
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">lot</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Lot was successfully updated.&#39;</span> }

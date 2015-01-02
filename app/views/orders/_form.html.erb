@@ -7,7 +7,36 @@
   </div>
 
   <div class="form-group">
-    <%= f.submit, class: 'btn btn-primary' %>
+    <%= f.label :ordered_at %><br>
+    <%= f.text_field :ordered_at, class: 'form-control', value: DateTime.now %>
+    <%= display_error_for order, :ordered_at %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :shipped_at %><br>
+    <%= f.text_field :shipped_at, class: 'form-control', value: DateTime.now %>
+    <%= display_error_for order, :shipped_at %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :order_lines %>
+    <% f.fields_for :order_lines do |order_lines_fields| %>
+
+      <%= f.label :product_id %>
+      <%= order_lines_fields.text_field :product_id, class: 'form-control' %>
+
+      <%= f.label :product_type %>
+      <%= order_lines_fields.text_field :product_type, class: 'form-control' %>
+
+      <%= f.label :quantity %>
+      <%= order_lines_fields.text_field :quantity, class: 'form-control', value: 1 %>
+
+    <% end %>
+    <%= display_error_for order, :order_lines %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit :submit, class: 'btn btn-primary' %>
   </div>
 
 <% end %>

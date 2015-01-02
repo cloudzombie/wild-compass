@@ -119,14 +119,14 @@
 
         <div class="method-description">
           
-          <p>Total weight</p>
+          <p>Computes order&#39;s total weight</p>
           
           
 
           
           <div class="method-source-code" id="total_weight-source">
-            <pre><span class="ruby-comment"># File app/models/order.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">total_weight</span> <span class="ruby-comment">#Set order total weight.</span>
+            <pre><span class="ruby-comment"># File app/models/order.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">total_weight</span>
   <span class="ruby-identifier">w</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">order_lines</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">w</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">quantity</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">line</span>.<span class="ruby-identifier">product</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">product</span>.<span class="ruby-identifier">current_weight</span>.<span class="ruby-identifier">to_i</span>)

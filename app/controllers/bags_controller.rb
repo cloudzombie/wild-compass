@@ -6,7 +6,7 @@ class BagsController < ApplicationController
   expose(:jar) { Jar.new }
 
   ##
-  # Create a new bag from a PUT HTTP request with given parameters:
+  # Create a new bag from a POST HTTP request with given parameters:
   # +bag_params+::
   # * current_weight: decimal
   # * current_weight: decimal

@@ -123,14 +123,45 @@
 
         <div class="method-description">
           
-          
+          <p>Creates a new order from a POST HTTP request.</p>
+
+<p>POST /orders/create</p>
+<dl class="rdoc-list note-list"><dt><code>Examples</code>
+<dd></dd></dl>
+<ul><li>
+<p>POST localhost:3000/orders/create?customer=“John
+Doe”&amp;ordered_at=“2015-01-02T17:01:12-05:00”&amp;shipped_at=“2015-01-02T17:01:12-05:00”&amp;order_lines_attributes=</p>
+</li><li>
+<p>POST ics.thc.vc/orders/create?customer=“Foo
+Bar”&amp;ordered_at=“2015-01-02T17:01:12-05:00”&amp;shipped_at=“2015-01-02T17:01:12-05:00”&amp;order_lines_attributes=</p>
+</li></ul>
+<dl class="rdoc-list note-list"><dt><code>order_params</code>
+<dd></dd></dl>
+<ul><li>
+<p>customer: string</p>
+</li><li>
+<p>ordered_at: datetime</p>
+</li><li>
+<p>shipped_at: datetime</p>
+</li><li>
+<p>order_lines_attributes: OrderLine[]</p>
+</li></ul>
+<dl class="rdoc-list note-list"><dt><code>OrderLine</code>
+<dd></dd></dl>
+<ul><li>
+<p>product_id: integer</p>
+</li><li>
+<p>product_type: string</p>
+</li><li>
+<p>quantity: integer</p>
+</li></ul>
           
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span> <span class="ruby-comment">#Create new order.</span>
+            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">order</span> = <span class="ruby-constant">Order</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">order_params</span>)
   <span class="ruby-identifier">order</span>.<span class="ruby-identifier">save</span>
   <span class="ruby-identifier">respond_with</span>(<span class="ruby-identifier">order</span>)
@@ -158,14 +189,23 @@
 
         <div class="method-description">
           
-          
+          <p>Destroys an order with a DELETE HTTP request id: integer</p>
+
+<p>DELETE /orders/:id</p>
+<dl class="rdoc-list note-list"><dt><code>Examples</code>
+<dd></dd></dl>
+<ul><li>
+<p>DELETE localhost:3000/orders/1</p>
+</li><li>
+<p>DELETE ics.thc.vc/orders/42</p>
+</li></ul>
           
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 18</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span> <span class="ruby-comment">#Destroy order.</span>
+            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span> 
   <span class="ruby-identifier">order</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_with</span>(<span class="ruby-identifier">order</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -192,14 +232,45 @@
 
         <div class="method-description">
           
-          
+          <p>Updates an existing order with a PATCH or PUT HTTP request</p>
+
+<p>PATCH /orders/:id</p>
+<dl class="rdoc-list note-list"><dt><code>Examples</code>
+<dd></dd></dl>
+<ul><li>
+<p>PUT localhost:3000/orders/1?customer=“John
+Doe”&amp;ordered_at=“2015-01-02T17:01:12-05:00”&amp;shipped_at=“2015-01-02T17:01:12-05:00”&amp;order_lines_attributes=</p>
+</li><li>
+<p>PATCH ics.thc.vc/orders/1?customer=“Foo
+Bar”&amp;ordered_at=“2015-01-02T17:01:12-05:00”&amp;shipped_at=“2015-01-02T17:01:12-05:00”&amp;order_lines_attributes=</p>
+</li></ul>
+<dl class="rdoc-list note-list"><dt><code>order_params</code>
+<dd></dd></dl>
+<ul><li>
+<p>customer: string</p>
+</li><li>
+<p>ordered_at: datetime</p>
+</li><li>
+<p>shipped_at: datetime</p>
+</li><li>
+<p>order_lines_attributes: OrderLine[]</p>
+</li></ul>
+<dl class="rdoc-list note-list"><dt><code>OrderLine</code>
+<dd></dd></dl>
+<ul><li>
+<p>product_id: integer</p>
+</li><li>
+<p>product_type: string</p>
+</li><li>
+<p>quantity: integer</p>
+</li></ul>
           
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span> <span class="ruby-comment">#Update order column.</span>
+            <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span> 
   <span class="ruby-identifier">order</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">order_params</span>)
   <span class="ruby-identifier">respond_with</span>(<span class="ruby-identifier">order</span>)
 <span class="ruby-keyword">end</span></pre>
