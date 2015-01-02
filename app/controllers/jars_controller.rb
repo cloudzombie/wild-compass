@@ -21,6 +21,7 @@ class JarsController < ApplicationController
       end
     end
   end
+  
   # Update jar column.
   def update 
     respond_to do |format|
@@ -53,10 +54,12 @@ class JarsController < ApplicationController
       params[:id]
     end
 
+    # Set column to sort in order.
     def sort_column
       %w(id current_weight initial_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
     end
 
+    # Set sort direction to ascending or descending.
     def sort_direction
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
