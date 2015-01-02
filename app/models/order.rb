@@ -16,7 +16,7 @@ class Order < ActiveRecord::Base
 
   ### Total weight
 
-  def total_weight
+  def total_weight #Set order total weight.
     w = 0
     order_lines.each do |line|
       w += line.quantity.to_i * (line.product.nil? ? 0 : line.product.current_weight.to_i)

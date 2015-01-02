@@ -11,7 +11,7 @@ class PlantsController < ApplicationController
   expose(:plants) { Plant.all }
   
 
-  def create
+  def create #Create new plant.
     self.plant = Plant.new(plant_params)
     plant.current_weight = plant.initial_weight = 0
     respond_to do |format|
@@ -25,7 +25,7 @@ class PlantsController < ApplicationController
     end
   end
 
-  def update
+  def update #Update plant column.
     respond_to do |format|
       if plant.update(plant_params)
         format.html { redirect_to plant, notice: 'Plant was successfully updated.' }
@@ -37,7 +37,7 @@ class PlantsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy #Destroy plant.
     plant.destroy
     respond_to do |format|
       format.html { redirect_to plants_url, notice: 'Plant was successfully destroyed.' }

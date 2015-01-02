@@ -49,11 +49,11 @@ class Lot < ActiveRecord::Base
 
   ### Weight
 
-  def increase_current_weight(quantity)
+  def increase_current_weight(quantity) #Increase lot weight.
     update_attributes current_weight: current_weight + quantity
   end
 
-  def decrease_current_weight(quantity)
+  def decrease_current_weight(quantity) #Decrease lot weight.
     update_attributes current_weight: current_weight - quantity
   end
 

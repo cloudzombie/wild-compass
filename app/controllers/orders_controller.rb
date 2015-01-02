@@ -4,18 +4,18 @@ class OrdersController < ApplicationController
   expose(:order, params: :order_params) { id_param.nil? ? Order.new : Order.find(id_param) }
   expose(:orders) { Order.order(sort_column + ' ' + sort_direction) }
 
-  def create
+  def create #Create new order.
     self.order = Order.new(order_params)
     order.save
     respond_with(order)
   end
 
-  def update
+  def update #Update order column.
     order.update(order_params)
     respond_with(order)
   end
 
-  def destroy
+  def destroy #Destroy order.
     order.destroy
     respond_with(order)
   end

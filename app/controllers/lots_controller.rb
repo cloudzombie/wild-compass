@@ -5,10 +5,10 @@ class LotsController < ApplicationController
   expose(:lots) { Lot.order(sort_column + ' ' + sort_direction) }
   expose(:bag) { Bag.new }
 
-  def create
+  def create #Create new lot.
     self.lot = Lot.new(lot_params)
 
-    set_weight
+    set_weight #Set lot weight.
 
     respond_to do |format|
       if lot.save
@@ -21,7 +21,7 @@ class LotsController < ApplicationController
     end
   end
 
-  def update
+  def update #Update lot column.
     respond_to do |format|
       if lot.update(lot_params)
         format.html { redirect_to lot, notice: 'Lot was successfully updated.' }
@@ -33,7 +33,7 @@ class LotsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy #Destroy lot.
     lot.destroy
     respond_to do |format|
       format.html { redirect_to lots_url, notice: 'Lot was successfully destroyed.' }
@@ -59,7 +59,7 @@ class LotsController < ApplicationController
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    def set_weight
+    def set_weight #Set lot weight.
       lot.weight = lot.weight.to_d
       lot.current_weight = lot.initial_weight = lot.weight
     end

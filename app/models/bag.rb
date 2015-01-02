@@ -43,12 +43,12 @@ class Bag < ActiveRecord::Base
 
   ### Weight
 
-  def increase_current_weight(quantity)
-    update_attributes current_weight: current_weight + quantity
+  def increase_current_weight(quantity) #Increase bag weight.
+    update_attributes current_weight: current_weight + quantity #Add quantity to current_weight
   end
 
-  def decrease_current_weight(quantity)
-    update_attributes current_weight: current_weight - quantity
+  def decrease_current_weight(quantity) #Decrease bag weight.
+    update_attributes current_weight: current_weight - quantity #Substract quantity to current_weight
   end
 
   validates :current_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
@@ -63,7 +63,7 @@ class Bag < ActiveRecord::Base
 
   private
 
-    def create_history
+    def create_history 
       self.history = History.create
     end
 

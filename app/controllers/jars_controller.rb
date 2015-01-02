@@ -4,15 +4,15 @@ class JarsController < ApplicationController
   expose(:jar, params: :jar_params) { id_param.nil? ? Jar.new : Jar.find(id_param) }
   expose(:jars) { Jar.order(sort_column + ' ' + sort_direction) }
 
-  def create
+  def create #Create new jar.
     self.jar = Jar.new(jar_params)
 
-    set_weight
+    set_weight #Set jar weight.
     set_name if jar.name.nil? || jar.name.empty?
     
     respond_to do |format|
       if jar.save
-        Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit( initial: true )
+        Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit( initial: true ) #Transaction from bag to jar.
         format.html { redirect_to jar, notice: 'jar was successfully created.' }
         format.json { render :show, status: :created, location: jar }
       else
@@ -22,9 +22,9 @@ class JarsController < ApplicationController
     end
   end
 
-  def update
+  def update #Update jar column.
     respond_to do |format|
-      if jar.update(jar_params)
+      if jar.update(jar_params) 
         format.html { redirect_to jar, notice: 'jar was successfully updated.' }
         format.json { render :show, status: :ok, location: jar }
       else
@@ -34,7 +34,7 @@ class JarsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy #Destroy jar.
     jar.destroy
     respond_to do |format|
       format.html { redirect_to jars_url, notice: 'jar was successfully destroyed.' }
@@ -60,12 +60,12 @@ class JarsController < ApplicationController
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    def set_weight
+    def set_weight #Set jar weight.
       jar.weight = jar.weight.to_d
       jar.current_weight = jar.initial_weight = jar.weight
     end
 
-    def set_name
+    def set_name #Set jar name.
       jar.name = "J-#{jar.bag}-#{Time.now.strftime('%d%m%y')}"
     end
 end

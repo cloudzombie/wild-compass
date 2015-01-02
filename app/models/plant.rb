@@ -29,11 +29,11 @@ class Plant < ActiveRecord::Base
 
   belongs_to :lot
 
-  def increase_current_weight(quantity)
+  def increase_current_weight(quantity) #Increase plant weight.
     update_attributes current_weight: current_weight + quantity
   end
 
-  def decrease_current_weight(quantity)
+  def decrease_current_weight(quantity) #Increase lot weight.
     update_attributes current_weight: current_weight - quantity
   end
 

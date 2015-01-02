@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20141223044623) do
     t.integer  "lot_id"
     t.string   "name"
     t.integer  "origin"
-    t.decimal  "current_weight", precision: 10, scale: 4
-    t.decimal  "initial_weight", precision: 10, scale: 4
+    t.decimal  "current_weight", precision: 16, scale: 4
+    t.decimal  "initial_weight", precision: 16, scale: 4
     t.integer  "history_id"
   end
 
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20141223044623) do
     t.integer  "bag_id"
     t.string   "name"
     t.integer  "origin"
-    t.decimal  "current_weight", precision: 10, scale: 4
-    t.decimal  "initial_weight", precision: 10, scale: 4
+    t.decimal  "current_weight", precision: 16, scale: 4
+    t.decimal  "initial_weight", precision: 16, scale: 4
     t.integer  "history_id"
   end
 
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20141223044623) do
     t.string   "category"
     t.string   "strain"
     t.integer  "origin"
-    t.decimal  "current_weight", precision: 10, scale: 4
-    t.decimal  "initial_weight", precision: 10, scale: 4
+    t.decimal  "current_weight", precision: 16, scale: 4
+    t.decimal  "initial_weight", precision: 16, scale: 4
     t.integer  "plant_id"
     t.integer  "history_id"
     t.integer  "strain_id"
