@@ -31,6 +31,7 @@ class BagsController < ApplicationController
     end
   end 
 
+  # Update bag column.
   def update
     respond_to do |format|
       if bag.update(bag_params)
@@ -43,6 +44,7 @@ class BagsController < ApplicationController
     end
   end
 
+  # Destroy bag.
   def destroy
     bag.destroy
     respond_to do |format|
@@ -61,18 +63,22 @@ class BagsController < ApplicationController
       params[:id]
     end
 
+    # Set column to sort in order.
     def sort_column
       %w(id name initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
     end
 
+    # Set sort direction to ascending or descending.
     def sort_direction
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
+    # Set bag name.
     def set_name
       bag.name = "B-#{bag.lot.strain.acronym}#{Time.now.strftime('%d%m%y')}"
     end
 
+    # Set bag weight.
     def set_weight
       bag.weight = bag.weight.to_d
       bag.current_weight = bag.initial_weight = bag.weight

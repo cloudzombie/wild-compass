@@ -4,12 +4,12 @@ class JarsController < ApplicationController
   expose(:jar, params: :jar_params) { id_param.nil? ? Jar.new : Jar.find(id_param) }
   expose(:jars) { Jar.order(sort_column + ' ' + sort_direction) }
 
-  def create #Create new jar.
-    self.jar = Jar.new(jar_params)
+  # Create new jar.
+  def create 
 
-    set_weight #Set jar weight.
+    self.jar = Jar.new(jar_params)
+    set_weight 
     set_name if jar.name.nil? || jar.name.empty?
-    
     respond_to do |format|
       if jar.save
         Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit( initial: true ) #Transaction from bag to jar.
@@ -21,8 +21,9 @@ class JarsController < ApplicationController
       end
     end
   end
-
-  def update #Update jar column.
+  
+  # Update jar column.
+  def update 
     respond_to do |format|
       if jar.update(jar_params) 
         format.html { redirect_to jar, notice: 'jar was successfully updated.' }
@@ -34,7 +35,8 @@ class JarsController < ApplicationController
     end
   end
 
-  def destroy #Destroy jar.
+  # Destroy jar.
+  def destroy 
     jar.destroy
     respond_to do |format|
       format.html { redirect_to jars_url, notice: 'jar was successfully destroyed.' }
@@ -42,8 +44,8 @@ class JarsController < ApplicationController
     end
   end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
     def jar_params
       params.require(:jar).permit(:weight, :current_weight, :bag_id, :name, :initial_weight)
     end
@@ -52,20 +54,24 @@ class JarsController < ApplicationController
       params[:id]
     end
 
+    # Set column to sort in order.
     def sort_column
       %w(id current_weight initial_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
     end
 
+    # Set sort direction to ascending or descending.
     def sort_direction
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    def set_weight #Set jar weight.
+    # Set jar weight.
+    def set_weight 
       jar.weight = jar.weight.to_d
       jar.current_weight = jar.initial_weight = jar.weight
     end
-
-    def set_name #Set jar name.
-      jar.name = "J-#{jar.bag}-#{Time.now.strftime('%d%m%y')}"
+    # Set jar name. 
+    def set_name 
+      jar.name = "J-#{jar.bag
+      }-#{Time.now.strftime('%d%m%y')}"
     end
 end
