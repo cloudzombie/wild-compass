@@ -1,20 +1,23 @@
-<table class="table table-striped">
-  <tr>
-    <th></th>
-    <th>Name :</th>
-    <th>Type :</th>
-    <th>Initial Weight :</th>
-    <th>Current Weight :</th>
-  </tr>
+<div role="tabpanel">
+  <ul class="nav nav-tabs" roles="tablist">
+    
+    <li role="presentation" class="active">
+      <%= link_to 'Lots', '#lots', role: 'tab', data: { toggle: 'tab' } %>
+    </li>
+    
+    <li role="presentation">
+      <%= link_to 'Bags', '#bags', role: 'tab', data: { toggle: 'tab' } %>
+    </li>
+  </ul>
 
-  <% inventory_lines.each do |line| %>
-    <tr>
-      <td></td>
-      <td><%= line %></td>
-      <td><%= line.class %></td>
-      <td><%= line.initial_weight unless line.kind_of? Plant || line.initial_weight.nil?  %> g</td>
-      <td><%= line.current_weight unless line.kind_of? Plant || line.current_weight.nil?  %> g</td>
-      <td> </td>
-    </tr>
-  <% end %>
-</table>
+  <div class="tab-content">
+
+    <div role="tabpanel" class="tab-pane active">
+      <%= render 'inventory/lots' %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane">
+      <%= render 'inventory/bags' %>
+    </div>
+  </div>
+</div>
