@@ -62,7 +62,18 @@
   
 </div>
 
-    
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Accountable.html">Accountable</a>
+  
+  
+  </ul>
+</div>
+
     
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
@@ -116,10 +127,7 @@
 
         <div class="method-description">
         
-        <p><a href="Bag.html">Bag</a>             ###</p>
-
-<p>lot:    <a href="Lot.html">Lot</a>     ### jars:   Jar[]   ### plants:
-Plant[] ### weight: int     ###</p>
+        
         
         </div>
       </div>
@@ -147,15 +155,15 @@ Plant[] ### weight: int     ###</p>
 
         <div class="method-description">
           
-          
+          <p>Decrease bag weight.</p>
           
           
 
           
           <div class="method-source-code" id="decrease_current_weight-source">
-            <pre><span class="ruby-comment"># File app/models/bag.rb, line 48</span>
+            <pre><span class="ruby-comment"># File app/models/bag.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">decrease_current_weight</span>(<span class="ruby-identifier">quantity</span>)
-  <span class="ruby-identifier">update_attributes</span> <span class="ruby-identifier">current_weight</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_weight</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">quantity</span>
+  <span class="ruby-identifier">update_attributes</span> <span class="ruby-identifier">current_weight</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_weight</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">quantity</span> <span class="ruby-comment">#Substract quantity to current_weight</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -180,15 +188,15 @@ Plant[] ### weight: int     ###</p>
 
         <div class="method-description">
           
-          <p>Weight</p>
+          <p>Increase bag weight.</p>
           
           
 
           
           <div class="method-source-code" id="increase_current_weight-source">
-            <pre><span class="ruby-comment"># File app/models/bag.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/models/bag.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">increase_current_weight</span>(<span class="ruby-identifier">quantity</span>)
-  <span class="ruby-identifier">update_attributes</span> <span class="ruby-identifier">current_weight</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_weight</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">quantity</span>
+  <span class="ruby-identifier">update_attributes</span> <span class="ruby-identifier">current_weight</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_weight</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">quantity</span> <span class="ruby-comment">#Add quantity to current_weight</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -219,7 +227,7 @@ Plant[] ### weight: int     ###</p>
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/bag.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/models/bag.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-node">&quot;#{ name.upcase unless name.nil? }&quot;</span>
 <span class="ruby-keyword">end</span></pre>

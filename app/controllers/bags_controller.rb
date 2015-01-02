@@ -5,6 +5,14 @@ class BagsController < ApplicationController
   expose(:bags) { Bag.order(sort_column + ' ' + sort_direction) }
   expose(:jar) { Jar.new }
 
+  ##
+  # Create a new bag from a PUT HTTP request with given parameters:
+  # +bag_params+::
+  # * current_weight: decimal
+  # * current_weight: decimal
+  # * lot_id: integer
+  # * name: string (optional)
+  #
   def create
     self.bag = Bag.new(bag_params)
 

@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class Order - Rails Application Documentation</title>
+<title>module Accountable - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -18,7 +18,7 @@
 
 
 
-<body id="top" role="document" class="class">
+<body id="top" role="document" class="module">
 <nav role="navigation">
   <div id="project-navigation">
     <div id="home-section" role="region" title="Quick navigation" class="nav-section">
@@ -54,23 +54,27 @@
 
   <div id="class-metadata">
     
-    <div id="parent-class-section" class="nav-section">
-  <h3>Parent</h3>
+    
+    
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
 
+  <ul class="link-list">
+    
   
-  <p class="link">ActiveRecord::Base
+    <li><a class="extend" href="Accountable/ClassMethods.html">Accountable::ClassMethods</a>
   
+  
+  </ul>
 </div>
 
-    
-    
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-total_weight">#total_weight</a>
+    <li ><a href="#method-c-included">::included</a>
     
   </ul>
 </div>
@@ -78,9 +82,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Order">
-  <h1 id="class-Order" class="class">
-    class Order
+<main role="main" aria-labelledby="module-Accountable">
+  <h1 id="module-Accountable" class="module">
+    module Accountable
   </h1>
 
   <section class="description">
@@ -100,17 +104,17 @@
     
 
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
        <header>
-         <h3>Public Instance Methods</h3>
+         <h3>Public Class Methods</h3>
        </header>
 
     
-      <div id="method-i-total_weight" class="method-detail ">
+      <div id="method-c-included" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">total_weight</span><span
-            class="method-args">()</span>
+          <span class="method-name">included</span><span
+            class="method-args">(base)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -119,19 +123,15 @@
 
         <div class="method-description">
           
-          <p>Total weight</p>
+          
           
           
 
           
-          <div class="method-source-code" id="total_weight-source">
-            <pre><span class="ruby-comment"># File app/models/order.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">total_weight</span> <span class="ruby-comment">#Set order total weight.</span>
-  <span class="ruby-identifier">w</span> = <span class="ruby-value">0</span>
-  <span class="ruby-identifier">order_lines</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">w</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">quantity</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> (<span class="ruby-identifier">line</span>.<span class="ruby-identifier">product</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">product</span>.<span class="ruby-identifier">current_weight</span>.<span class="ruby-identifier">to_i</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">w</span>
+          <div class="method-source-code" id="included-source">
+            <pre><span class="ruby-comment"># File lib/accountable.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)
+  <span class="ruby-identifier">base</span>.<span class="ruby-identifier">extend</span>(<span class="ruby-constant">ClassMethods</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

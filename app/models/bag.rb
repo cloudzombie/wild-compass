@@ -43,11 +43,13 @@ class Bag < ActiveRecord::Base
 
   ### Weight
 
-  def increase_current_weight(quantity) #Increase bag weight.
+  #Increase bag weight.
+  def increase_current_weight(quantity)
     update_attributes current_weight: current_weight + quantity #Add quantity to current_weight
   end
 
-  def decrease_current_weight(quantity) #Decrease bag weight.
+  #Decrease bag weight.
+  def decrease_current_weight(quantity)
     update_attributes current_weight: current_weight - quantity #Substract quantity to current_weight
   end
 

@@ -130,15 +130,15 @@
           
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/jars_controller.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span> <span class="ruby-comment">#Create new jar.</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">jar</span> = <span class="ruby-constant">Jar</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">jar_params</span>)
 
-  <span class="ruby-identifier">set_weight</span>
+  <span class="ruby-identifier">set_weight</span> <span class="ruby-comment">#Set jar weight.</span>
   <span class="ruby-identifier">set_name</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">jar</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">jar</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">empty?</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">jar</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-constant">Transaction</span>.<span class="ruby-identifier">from</span>( <span class="ruby-identifier">jar</span>.<span class="ruby-identifier">bag</span> ).<span class="ruby-identifier">to</span>( <span class="ruby-identifier">jar</span> ).<span class="ruby-identifier">take</span>( <span class="ruby-identifier">jar</span>.<span class="ruby-identifier">initial_weight</span> ).<span class="ruby-identifier">commit</span>( <span class="ruby-identifier">initial</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span> )
+      <span class="ruby-constant">Transaction</span>.<span class="ruby-identifier">from</span>( <span class="ruby-identifier">jar</span>.<span class="ruby-identifier">bag</span> ).<span class="ruby-identifier">to</span>( <span class="ruby-identifier">jar</span> ).<span class="ruby-identifier">take</span>( <span class="ruby-identifier">jar</span>.<span class="ruby-identifier">initial_weight</span> ).<span class="ruby-identifier">commit</span>( <span class="ruby-identifier">initial</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span> ) <span class="ruby-comment">#Transaction from bag to jar.</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">jar</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;jar was successfully created.&#39;</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-identifier">jar</span> }
     <span class="ruby-keyword">else</span>
@@ -177,7 +177,7 @@
           
           <div class="method-source-code" id="destroy-source">
             <pre><span class="ruby-comment"># File app/controllers/jars_controller.rb, line 37</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span> <span class="ruby-comment">#Destroy jar.</span>
   <span class="ruby-identifier">jar</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">jars_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;jar was successfully destroyed.&#39;</span> }
@@ -214,9 +214,9 @@
           
           <div class="method-source-code" id="update-source">
             <pre><span class="ruby-comment"># File app/controllers/jars_controller.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span> <span class="ruby-comment">#Update jar column.</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">jar</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">jar_params</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">jar</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">jar_params</span>) 
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">jar</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;jar was successfully updated.&#39;</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-identifier">jar</span> }
     <span class="ruby-keyword">else</span>

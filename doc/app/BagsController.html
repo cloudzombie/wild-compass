@@ -123,13 +123,24 @@
 
         <div class="method-description">
           
-          
+          <p>Create a new bag from a PUT HTTP request with given parameters:</p>
+<dl class="rdoc-list note-list"><dt><code>bag_params</code>
+<dd></dd></dl>
+<ul><li>
+<p>current_weight: decimal</p>
+</li><li>
+<p>current_weight: decimal</p>
+</li><li>
+<p>lot_id: integer</p>
+</li><li>
+<p>name: string (optional)</p>
+</li></ul>
           
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/bags_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/bags_controller.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">bag</span> = <span class="ruby-constant">Bag</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">bag_params</span>)
 
@@ -176,7 +187,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/bags_controller.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/controllers/bags_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">bag</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -213,7 +224,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/bags_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/bags_controller.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">bag</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">bag_params</span>)

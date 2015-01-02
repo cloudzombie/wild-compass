@@ -70,6 +70,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-download">#download</a>
+    
     <li ><a href="#method-i-home">#home</a>
     
   </ul>
@@ -106,6 +108,45 @@
        </header>
 
     
+      <div id="method-i-download" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">download</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="download-source">
+            <pre><span class="ruby-comment"># File app/controllers/inventory_controller.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">download</span>
+      <span class="ruby-identifier">html</span> = <span class="ruby-identifier">render_to_string</span> <span class="ruby-string">&#39;inventory/home&#39;</span>, <span class="ruby-identifier">layout</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;report.html&#39;</span>
+      <span class="ruby-identifier">pdf</span> = <span class="ruby-constant">WickedPdf</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">pdf_from_string</span>(<span class="ruby-identifier">html</span>)
+
+      <span class="ruby-identifier">send_data</span>( <span class="ruby-identifier">pdf</span>,
+             <span class="ruby-identifier">filename</span><span class="ruby-operator">:</span>    <span class="ruby-string">&#39;report.pdf&#39;</span>,
+             <span class="ruby-identifier">disposition</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;attachment&#39;</span>
+      )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-home" class="method-detail ">
         
         <div class="method-heading">
@@ -125,8 +166,19 @@
 
           
           <div class="method-source-code" id="home-source">
-            <pre><span class="ruby-comment"># File app/controllers/inventory_controller.rb, line 3</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">home</span>; <span class="ruby-keyword">end</span></pre>
+            <pre><span class="ruby-comment"># File app/controllers/inventory_controller.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">home</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">pdf</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">render</span>( <span class="ruby-identifier">pdf</span><span class="ruby-operator">:</span>         <span class="ruby-string">&#39;report.pdf&#39;</span>,
+              <span class="ruby-identifier">disposition</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;inline&#39;</span>,
+              <span class="ruby-identifier">template</span><span class="ruby-operator">:</span>    <span class="ruby-string">&#39;inventory/report.pdf.erb&#39;</span>,
+              <span class="ruby-identifier">layout</span><span class="ruby-operator">:</span>      <span class="ruby-string">&#39;report.html&#39;</span>
+      )
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
           </div>
           
         </div>

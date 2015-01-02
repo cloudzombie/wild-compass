@@ -130,7 +130,7 @@
           
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span> <span class="ruby-comment">#Create new order.</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">order</span> = <span class="ruby-constant">Order</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">order_params</span>)
   <span class="ruby-identifier">order</span>.<span class="ruby-identifier">save</span>
   <span class="ruby-identifier">respond_with</span>(<span class="ruby-identifier">order</span>)
@@ -165,7 +165,7 @@
           
           <div class="method-source-code" id="destroy-source">
             <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 18</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span> <span class="ruby-comment">#Destroy order.</span>
   <span class="ruby-identifier">order</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_with</span>(<span class="ruby-identifier">order</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -199,7 +199,7 @@
           
           <div class="method-source-code" id="update-source">
             <pre><span class="ruby-comment"># File app/controllers/orders_controller.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span> <span class="ruby-comment">#Update order column.</span>
   <span class="ruby-identifier">order</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">order_params</span>)
   <span class="ruby-identifier">respond_with</span>(<span class="ruby-identifier">order</span>)
 <span class="ruby-keyword">end</span></pre>

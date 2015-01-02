@@ -62,7 +62,18 @@
   
 </div>
 
-    
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Accountable.html">Accountable</a>
+  
+  
+  </ul>
+</div>
+
     
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
@@ -120,13 +131,7 @@
 
         <div class="method-description">
         
-        <p><a href="Jar.html">Jar</a>                     ###</p>
-
-<p>history: <a href="History.html">History</a>        ### bag:     <a
-href="Bag.html">Bag</a>            ### plants:  <a
-href="Plant.html">Plant</a>          ### lot:     <a
-href="Lot.html">Lot</a>            ### initial_weight: integer ###
-current_weight: integer ###</p>
+        
         
         </div>
       </div>
@@ -160,9 +165,9 @@ current_weight: integer ###</p>
 
           
           <div class="method-source-code" id="decrease_current_weight-source">
-            <pre><span class="ruby-comment"># File app/models/jar.rb, line 63</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">decrease_current_weight</span>(<span class="ruby-identifier">quantity</span>)
-  <span class="ruby-identifier">update_attributes</span> <span class="ruby-identifier">current_weight</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_weight</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">quantity</span>
+            <pre><span class="ruby-comment"># File app/models/jar.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">decrease_current_weight</span>(<span class="ruby-identifier">quantity</span>) <span class="ruby-comment">#Decrease jar weight.</span>
+  <span class="ruby-identifier">update_attributes</span> <span class="ruby-identifier">current_weight</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_weight</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">quantity</span> <span class="ruby-comment">#Substract quantity to current_weight</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -193,9 +198,9 @@ current_weight: integer ###</p>
 
           
           <div class="method-source-code" id="increase_current_weight-source">
-            <pre><span class="ruby-comment"># File app/models/jar.rb, line 59</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">increase_current_weight</span>(<span class="ruby-identifier">quantity</span>)
-  <span class="ruby-identifier">update_attributes</span> <span class="ruby-identifier">current_weight</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_weight</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">quantity</span>
+            <pre><span class="ruby-comment"># File app/models/jar.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">increase_current_weight</span>(<span class="ruby-identifier">quantity</span>) <span class="ruby-comment">#Increase jar weight.</span>
+  <span class="ruby-identifier">update_attributes</span> <span class="ruby-identifier">current_weight</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_weight</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">quantity</span> <span class="ruby-comment">#Add quantity to current_weight</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -226,7 +231,7 @@ current_weight: integer ###</p>
 
           
           <div class="method-source-code" id="lot-source">
-            <pre><span class="ruby-comment"># File app/models/jar.rb, line 48</span>
+            <pre><span class="ruby-comment"># File app/models/jar.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">lot</span>
   <span class="ruby-identifier">bag</span>.<span class="ruby-identifier">lot</span>
 <span class="ruby-keyword">end</span></pre>
@@ -259,7 +264,7 @@ current_weight: integer ###</p>
 
           
           <div class="method-source-code" id="lot-3D-source">
-            <pre><span class="ruby-comment"># File app/models/jar.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/models/jar.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">lot=</span>(<span class="ruby-identifier">lot</span>)
   <span class="ruby-identifier">bag</span>.<span class="ruby-identifier">lot</span> = <span class="ruby-identifier">lot</span>
 <span class="ruby-keyword">end</span></pre>
@@ -292,7 +297,7 @@ current_weight: integer ###</p>
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/jar.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/models/jar.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-node">&quot;#{ name.upcase unless name.nil? }&quot;</span>
 <span class="ruby-keyword">end</span></pre>
