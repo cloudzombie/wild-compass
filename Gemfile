@@ -67,7 +67,7 @@ gem 'rails_12factor', group: :production
 gem 'nokogiri'
 
 # Generates UML
-gem 'railroady', group: [ :development, :test ], git: 'git@github.com:preston/railroady.git'
+gem 'railroady', group: [ :development, :test ]
 
 # PDF Generator
 gem 'wicked_pdf'
