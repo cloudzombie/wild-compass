@@ -61,3 +61,5 @@ gem 'decent_exposure'
 gem 'rails_12factor', group: :production
 
 gem 'nokogiri'
+
+gem 'railroady', group: [ :development, :test ]
