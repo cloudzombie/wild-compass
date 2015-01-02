@@ -2,7 +2,9 @@
 	"folders":
 	[
 		{
-			"path": "/C/Users/Maxime/Documents/wild-compass"
+			"path": "/C/Users/Maxime/Documents/wild-compass",
+      "folder_exclude_patterns": [".*"],
+      "file_exclude_patterns": [".*"]
 		}
 	]
 }
