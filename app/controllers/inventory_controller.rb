@@ -1,6 +1,9 @@
 class InventoryController < ApplicationController
-  expose(:bags) { Bag.all }
-  expose(:lots) { Lot.all }
+  
+  expose(:plants) {   Plant.all }
+  expose(:jars)   {   Jar.all   }
+  expose(:bags)   {   Bag.all   }
+  expose(:lots)   {   Lot.all   }
 
   def home
     respond_to do |format|

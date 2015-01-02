@@ -4,6 +4,14 @@
   <ul class="nav nav-tabs" roles="tablist">
     
     <li role="presentation" class="active">
+      <%= link_to 'Plants', '#plants', role: 'tab', data: { toggle: 'tab' } %>
+    </li>
+
+    <li role="presentation">
+      <%= link_to 'Jars', '#jars', role: 'tab', data: { toggle: 'tab' } %>
+    </li>
+
+    <li role="presentation">
       <%= link_to 'Lots', '#lots', role: 'tab', data: { toggle: 'tab' } %>
     </li>
     
@@ -14,7 +22,15 @@
 
   <div class="tab-content">
 
-    <div role="tabpanel" class="tab-pane active" id="lots">
+    <div role="tabpanel" class="tab-pane active" id="plants">
+      <%= render 'inventory/plants' %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="jars">
+      <%= render 'inventory/jars' %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="lots">
       <%= render 'inventory/lots' %>
     </div>
 

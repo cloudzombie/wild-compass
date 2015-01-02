@@ -7,13 +7,13 @@
     <th>Current Weight (g)</th>
   </tr>
 
-  <% lots.each do |lot| %>
+  <% jars.each do |jar| %>
     <tr>
       <td></td>
-      <td><%= lot %></td>
-      <td><%= lot.class %></td>
-      <td><%= lot.initial_weight %></td>
-      <td><%= lot.current_weight %></td>
+      <td><%= jar %></td>
+      <td><%= jar.class %></td>
+      <td><%= jar.initial_weight %></td>
+      <td><%= jar.current_weight %></td>
     </tr>
   <% end %>
 </table>
