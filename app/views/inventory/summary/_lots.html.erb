@@ -1,26 +1,35 @@
 <table class="table table-striped">
   <tr>
     <th class="col-md-10">Lots</th>
-    <th class="col-md-2"></th>
+    <th class="col-md-2">Weight (g)</th>
   </tr>
 
   <tr>
-    <td>Total Weight Per Trim (g)</td>
+    <td><em>Total Weight Per Category</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Trim</td>
     <td><%= number_with_precision Lot.total_weight_per_trim, precision: 2 %></td>
   </tr>
-
   <tr>
-    <td>Total Weight Per Bud (g)</td>
+    <td>Buds</td>
     <td><%= number_with_precision Lot.total_weight_per_bud, precision: 2 %></td>
   </tr>
 
   <tr>
-    <td>Total Weight Per Strain (g)</td>
-    <td><%= number_with_precision Lot.total_weight_per_strain, precision: 2 %></td>
+    <td><em>Total Weight Per Strain</em></td>
+    <td></td>
   </tr>
-
+  <% Strain.pluck(:name).each do |strain| %>
   <tr>
-    <td>Total Weight (g)</td>
+    <td><%= strain %></td>
+    <td><%= number_with_precision Lot.total_weight_per_strain(strain), precision: 2 %></td>
+  </tr>
+  <% end %>
+  
+  <tr>
+    <td><strong>Total</strong></td>
     <td><%= number_with_precision Lot.total_weight, precision: 2 %></td>
   </tr>
 </table>

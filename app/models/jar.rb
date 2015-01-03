@@ -35,13 +35,17 @@ class Jar < ActiveRecord::Base
 
   ### Lot
 
-  def lot
-    bag.lot
-  end
+  # def lot
+  #   bag.lot
+  # end
 
-  def lot=(lot)
-    bag.lot = lot
-  end
+  # def lot=(lot)
+  #   bag.lot = lot
+  # end
+
+  has_one :lot, through: :bag
+
+  has_one :strain, through: :bag
 
 
 

@@ -1,16 +1,22 @@
 <table class="table table-striped">
   <tr>
     <th class="col-md-10">Jars</th>
-    <th class="col-md-2"></th>
+    <th class="col-md-2">Weight (g)</th>
   </tr>
 
   <tr>
-    <td>Total Weight Per Strain (g)</td>
-    <td><%= number_with_precision Jar.total_weight_per_strain, precision: 2 %></td>
+    <td><em>Total Weight Per Strain</em></td>
+    <td></td>
   </tr>
+  <% Strain.pluck(:name).each do |strain| %>
+  <tr>
+    <td><%= strain %></td>
+    <td><%# number_with_precision Jar.total_weight_per_strain(strain), precision: 2 %></td>
+  </tr>
+  <% end %>
 
   <tr>
-    <td>Total Weight (g)</td>
+    <td><strong>Total</strong></td>
     <td><%= number_with_precision Jar.total_weight, precision: 2 %></td>
   </tr>
 </table>

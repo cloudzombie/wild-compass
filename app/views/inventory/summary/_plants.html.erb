@@ -6,7 +6,9 @@
 
   <tr>
     <td>Total Weight Per Strain (g)</td>
-    <td><%= number_with_precision Plant.total_weight_per_strain, precision: 2 %></td>
+    <% Strain.pluck(:name).each do |strain| %>
+    <td><%= number_with_precision Plant.total_weight_per_strain(strain), precision: 2 %></td>
+    <% end %>
   </tr>
 
   <tr>

@@ -28,6 +28,8 @@ class Bag < ActiveRecord::Base
   ### Plants
 
   has_many :plants, through: :lot
+
+  has_many :strains, through: :plants
   
 
 
