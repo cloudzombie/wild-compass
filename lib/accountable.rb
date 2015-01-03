@@ -2,12 +2,6 @@ require 'active_support/concern'
 
 module Accountable
   extend ActiveSupport::Concern
-    
-  included do
-    scope :trims, -> { where(category: 'Trim') }
-    scope :buds, -> { where(category: 'Bud') }
-    scope :strains, -> (strain = nil) { where(strain: strain) }
-  end
 
   module ClassMethods
     def total_weight_per_trim
@@ -20,14 +14,14 @@ module Accountable
       total_weight_per_trim
     end
 
-    def total_weight_per_bud
-      total_weight_per_bud = 0.0
+    def total_weight_per_buds
+      total_weight_per_buds = 0.0
 
       buds.each do |accounted|
-        total_weight_per_bud += accounted.current_weight
+        total_weight_per_buds += accounted.current_weight
       end
 
-      total_weight_per_bud
+      total_weight_per_buds
     end
 
     def total_weight_per_strain(strain)

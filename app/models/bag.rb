@@ -3,6 +3,10 @@ class Bag < ActiveRecord::Base
   include Weightable
   include Accountable
 
+  scope :trims,   -> { joins(:lot).merge(Lot.where(category: 'Trim')) }  
+  scope :buds,    -> { joins(:lot).merge(Lot.where(category: 'Buds')) }
+  scope :strains, -> (strain = nil) { joins(:lot).merge(Lot.where(strain: strain)) }
+
 
 
   ### History
@@ -30,6 +34,8 @@ class Bag < ActiveRecord::Base
   has_many :plants, through: :lot
 
   has_many :strains, through: :plants
+
+  has_one :category, through: :lot
   
 
 

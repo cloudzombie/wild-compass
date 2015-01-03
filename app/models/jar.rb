@@ -3,7 +3,11 @@ class Jar < ActiveRecord::Base
   include Weightable
   include Accountable
 
-  
+  scope :trims,   -> { joins(:lot).merge(Lot.where(category: 'Trim')) }  
+  scope :buds,    -> { joins(:lot).merge(Lot.where(category: 'Buds')) }
+  scope :strains, -> (strain = nil) { joins(:lot).merge(Lot.where(strain: strain)) }
+
+
 
   ### History
 
@@ -35,17 +39,11 @@ class Jar < ActiveRecord::Base
 
   ### Lot
 
-  # def lot
-  #   bag.lot
-  # end
-
-  # def lot=(lot)
-  #   bag.lot = lot
-  # end
-
   has_one :lot, through: :bag
 
   has_one :strain, through: :bag
+
+  has_one :category, through: :bag
 
 
 

@@ -5,13 +5,26 @@
   </tr>
 
   <tr>
+    <td><em>Total Weight Per Category</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Trim</td>
+    <td><%= number_with_precision Jar.total_weight_per_trim, precision: 2 %></td>
+  </tr>
+  <tr>
+    <td>Buds</td>
+    <td><%= number_with_precision Jar.total_weight_per_buds, precision: 2 %></td>
+  </tr>
+
+  <tr>
     <td><em>Total Weight Per Strain</em></td>
     <td></td>
   </tr>
   <% strains.each do |strain| %>
   <tr>
     <td><%= strain %></td>
-    <td><%# number_with_precision Jar.total_weight_per_strain(strain), precision: 2 %></td>
+    <td><%= number_with_precision Jar.total_weight_per_strain(strain), precision: 2 %></td>
   </tr>
   <% end %>
 
