@@ -1,3 +1,5 @@
+require 'active_support/concern'
+
 module Accountable
   extend ActiveSupport::Concern
     
@@ -7,7 +9,7 @@ module Accountable
     scope :strains, -> (strain = nil) { where(strain: strain) }
   end
 
-  class_methods do
+  module ClassMethods
     def total_weight_per_trim
       total_weight_per_trim = 0.0
 
