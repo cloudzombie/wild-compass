@@ -1,9 +1,16 @@
 class InventoryController < ApplicationController
+
+  helper_method :total_weight
   
-  expose(:plants) {   Plant.all }
-  expose(:jars)   {   Jar.all   }
-  expose(:bags)   {   Bag.all   }
-  expose(:lots)   {   Lot.all   }
+  expose(:plants) { Plant.all }
+
+  expose(:jars) { Jar.all }
+
+  expose(:bags) { Bag.all }
+
+  expose(:lots) { Lot.all }
+
+  expose(:strains) { Strain.all }
 
   def home
     respond_to do |format|
@@ -28,4 +35,12 @@ class InventoryController < ApplicationController
                disposition: 'attachment'
   	)
   end
+
+
+
+  private
+
+    def total_weight
+      Plant.total_weight + Bag.total_weight + Jar.total_weight + Lot.total_weight
+    end
 end

@@ -42,9 +42,11 @@ module Accountable
 
     def total_weight
       total_weight = 0.0
+      
       all.each do |accounted|
         total_weight += accounted.current_weight
       end
+
       total_weight
     end
   end
