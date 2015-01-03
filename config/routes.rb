@@ -36,9 +36,7 @@ Rails.application.routes.draw do
   resources :plants
 
   resources :jars do
-    member do
-      get 'datamatrix'
-    end
+    member { get 'datamatrix' }
   end
   
   resources :bags

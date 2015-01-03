@@ -1,21 +1,13 @@
 module Accountable
-  def self.included(base)
-    base.extend(ClassMethods)
+  extend ActiveSupport::Concern
+    
+  included do
+    scope :trims, -> { where(category: 'Trim') }
+    scope :buds, -> { where(category: 'Bud') }
+    scope :strains, -> (strain = nil) { where(strain: strain) }
   end
-  
-  module ClassMethods
-    def trims
-      where(category: 'Trim')
-    end
 
-    def buds
-      where(category: 'Bud')
-    end
-
-    def strains
-      Strain.pluck(:name).uniq
-    end
-
+  class_methods do
     def total_weight_per_trim
       total_weight_per_trim = 0.0
 
@@ -36,8 +28,14 @@ module Accountable
       total_weight_per_bud
     end
 
-    def total_weight_per_strain
-      0.0
+    def total_weight_per_strain(strain)
+      total_weight_per_strain = 0.0
+
+      strains(strain).each do |accounted|
+        total_weight_per_strain += accounted.current_weight
+      end
+
+      total_weight_per_strain
     end
 
     def total_weight

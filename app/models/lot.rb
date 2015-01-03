@@ -1,17 +1,7 @@
 class Lot < ActiveRecord::Base
 
-  ########################
-  ### Lot              ###
-  ########################
-  ### history: History ###
-  ### plants:  Plant   ###
-  ### bags:    Bag     ###
-  ### weight:  integer ###
-  ########################
-
+  include Weightable
   include Accountable
-
-  attr_accessor :weight
 
 
 
@@ -45,21 +35,6 @@ class Lot < ActiveRecord::Base
 
   has_many :jars, through: :bag
 
-
-
-  ### Weight
-
-  def increase_current_weight(quantity) #Increase lot weight.
-    update_attributes current_weight: current_weight + quantity
-  end
-
-  def decrease_current_weight(quantity) #Decrease lot weight.
-    update_attributes current_weight: current_weight - quantity
-  end
-
-  validates :current_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :initial_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :weight, presence: false, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
 
 
 

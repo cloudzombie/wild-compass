@@ -1,48 +1,55 @@
 class Plant < ActiveRecord::Base
 
-  ##########################
-  ### Plant              ###
-  ##########################
-  ### cultivar: Cultivar ###
-  ### format:   Format   ###
-  ### status:   Status   ###
-  ### rfid:     Rfid     ###
-  ### lot:      Lot      ###
-  ##########################
-
+  include Weightable
   include Accountable
+
   
-  before_create :create_history
-  before_save :create_history, unless: :history_exists?
+  
 
   ### History
 
+  before_create :create_history
+  before_save :create_history, unless: :history_exists?
   belongs_to :history
+
+
+
+  ### Strain
 
   belongs_to :strain
 
+
+
+  ### Format
+
   belongs_to :format
+
+
+
+  ### Status
 
   belongs_to :status
 
+
+
+  ### RFID
+
   belongs_to :rfid
+
+
+  ### Lot
 
   belongs_to :lot
 
-  def increase_current_weight(quantity) #Increase plant weight.
-    update_attributes current_weight: current_weight + quantity
-  end
 
-  def decrease_current_weight(quantity) #Increase lot weight.
-    update_attributes current_weight: current_weight - quantity
-  end
 
-  validates :current_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :initial_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  ### Utils
   
   def to_s
     "#{ name.titleize unless name.nil? }"
   end
+
+
 
   private
 

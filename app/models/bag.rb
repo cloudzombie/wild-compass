@@ -1,17 +1,7 @@
 class Bag < ActiveRecord::Base
 
-  #######################
-  ### Bag             ###
-  #######################
-  ### lot:    Lot     ###
-  ### jars:   Jar[]   ###
-  ### plants: Plant[] ###
-  ### weight: int     ###
-  #######################
-
+  include Weightable
   include Accountable
-
-  attr_accessor :weight
 
 
 
@@ -38,24 +28,6 @@ class Bag < ActiveRecord::Base
   ### Plants
 
   has_many :plants, through: :lot
-
-
-
-  ### Weight
-
-  #Increase bag weight.
-  def increase_current_weight(quantity)
-    update_attributes current_weight: current_weight + quantity #Add quantity to current_weight
-  end
-
-  #Decrease bag weight.
-  def decrease_current_weight(quantity)
-    update_attributes current_weight: current_weight - quantity #Substract quantity to current_weight
-  end
-
-  validates :current_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :initial_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :weight, presence: false, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
   
 
 

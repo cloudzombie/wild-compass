@@ -8,6 +8,20 @@
 
 <table class="table table-striped">
   <tr>
+    <th class="col-md-10">Total Weight Per Strain</th>
+    <th class="col-md-2"></th>
+  </tr>
+  
+  <% Strain.all.uniq.each do |strain| %>
+    <tr>
+      <td><%= strain.name %> (g)</td>
+      <td><%= number_with_precision strain.total_weight, precision: 2 %></td>
+    </tr>
+  <% end %>
+</table>
+
+<table class="table table-striped">
+  <tr>
     <th class="col-md-10">Total Weight</th>
     <th class="col-md-2">
       <%= number_with_precision(

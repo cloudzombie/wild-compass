@@ -1,19 +1,7 @@
 class Jar < ActiveRecord::Base
 
-  ###############################
-  ### Jar                     ###
-  ###############################
-  ### history: History        ###
-  ### bag:     Bag            ###
-  ### plants:  Plant          ###
-  ### lot:     Lot            ###
-  ### initial_weight: integer ###
-  ### current_weight: integer ###
-  ###############################
-
+  include Weightable
   include Accountable
-
-  attr_accessor :weight
 
   
 
@@ -54,22 +42,6 @@ class Jar < ActiveRecord::Base
   def lot=(lot)
     bag.lot = lot
   end
-
-
-
-  ### Weight
-
-  def increase_current_weight(quantity) #Increase jar weight.
-    update_attributes current_weight: current_weight + quantity #Add quantity to current_weight
-  end
-
-  def decrease_current_weight(quantity) #Decrease jar weight.
-    update_attributes current_weight: current_weight - quantity #Substract quantity to current_weight
-  end
-
-  validates :current_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :initial_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :weight, presence: false, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
 
 
 
