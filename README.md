@@ -2,14 +2,13 @@
 ## Inventory Control System - RESTful API Documentation
 
 ### Original authors and developers : 
-* Maxime Gauthier — maxime.gauthier88@gmail.com
-* Jérémie St-Pierre Robitaille — jeremiesrobitaille@gmail.com
+* Maxime Gauthier (maxime.gauthier88@gmail.com)
+* Jérémie St-Pierre Robitaille (jeremiesrobitaille@gmail.com)
 
 ### Getting Started
 The following document gives information about processing orders and adding customers to THC Inventory Control System (abbreviated ICS or THC-ICS).
-  
-### Orders
 
+### Orders
 #### The Order Model
 Orders are associated to a customer. A given customer can have multiple orders.
 An order is composed of many order lines. An order line describes a physical product that should be shipped in the order.
@@ -29,24 +28,23 @@ product_type: string
 product_id: integer
 quantity: integer
 
-#### Creating new order
-Creating new order through RESTful API requires using an HTTP POST request.
+#### Creating A New Order
+Creating new order through RESTful API requires using an HTTP **POST** method.
 
 ##### Parameters:
 * customer_id : integer
-* customer : string (if its a new customer and doesn’t have an id)
 * ordered_at : datetime (optional, set automatically at time processed if unspecified)
 * shipped_at : datetime (optional)
 
 ##### Examples:
-POST http://ics.thc.vc/orders/create?customer_id=1
-Creates a new order for registered customer with ID 1.
+**POST** http://ics.thc.vc/orders?customer_id=1
+Creates a new order for registered customer with ID = 1.
 
-POST http://ics.thc.vc/orders/create?customer=”John Doe"
-Creates a new order for unregistered customer with no ID yet.
+**POST** http://ics.thc.vc/orders?customer_id=42
+Creates a new order for registered customer with ID = 42.
 
-#### Updating an order
-Updating an order is done through the RESTful API and requires using the HTTP PUT or PATCH request.
+#### Updating An Order
+Updating an order is done through the RESTful API and requires using the HTTP **PUT** or **PATCH** method.
 
 ##### Parameters:
 * id : integer (this order’s ID)
@@ -55,77 +53,132 @@ Updating an order is done through the RESTful API and requires using the HTTP PU
 * shipped_at : datetime (optional, input only if the date changed)
 
 ##### Examples:
-PUT http://ics.thc.vc/orders/1?customer_id=1&ordered_at=2015-01-02T18:12:0=4-05:00
+**PUT** http://ics.thc.vc/orders/1?customer_id=1&ordered_at=2015-01-02T18:12:0=4-05:00
 This would update order ID 1, change it’s customer’s ID to 1 and update the ordered date.
 
-PATCH http://ics.thc.vc/orders/42?customer_id=3
+**PATCH** http://ics.thc.vc/orders/42?customer_id=3
 This would update order ID 42, and change it’s customer’s ID to 3.
 
-#### Deleting an order
-Deleting order through RESTful API requires using the DELETE request.
+#### Deleting An Order
+Deleting orders is done through the RESTful API requires using the **DELETE** HTTP method.
 
-##### Example:
-http://ics.thc.vc/orders/create?customer_id=1
-
-### Order Lines
-OrderLine has one jar
-OrderLine belongs to order
-
-#### Creating a new OrderLine
-Creating new order through RESTful API requires using the POST request.
-
-##### Parameters:
-* order_id: integer
-* brand_id: integer
-* quantity: integer
-
-##### Example:
-http://ics.thc.vc/order_lines/create?order_id=1&brand_id=1&quantity=7.0
-
-#### Updating OrderLine
-Updating order through RESTful API requires using the GET request.
-
-##### Parameters:
-* order_id: integer
-* brand_id: integer
-* quantity: integer
-
-##### Example:
-http://ics.thc.vc/order_lines/update?order_id=2&brand_id=3&quantity=7.0
-
-#### Destroying an OrderLine
-Destroying order through RESTful API requires using the DELETE request.
+It is unnecessary to then delete all the order lines, because they will be automatically deleted by the dependence relationship between orders and their many order lines.
 
 ##### Examples:
-http://ics.thc.vc/order_lines/1?destroy
+**DELETE** http://ics.thc.vc/orders/1
+This would delete order with ID = 1
 
-#### Customers
-Customer has many orders
+**DELETE** http://ics.thc.vc/orders/42
+This would delete order with ID = 42
 
-##### Create new customer
-Creating new customer through RESTful API requires using the POST request.
+### Order Lines
+An order line represent a physical product. It is associated with a product type and ID, and a quantity.
 
-##### Parameters:
+#### Creating A New Order Line
+Creating an order line is done through the RESTful API and requires using the **POST** method.
+
+##### Parameters :
+* order_id: integer
+* product_id: integer
+* product_type: integer
+* quantity: integer (optional, assumed quantity is 1 if left empty)
+
+##### Examples :
+**POST** http://ics.thc.vc/order_lines?order_id=1&product_id=42&product_type=Jar&quantity=2
+This method would create an OrderLine for Order with ID = 1, and place twice product type Jar with ID = 42 in said order.
+
+**POST** http://ics.thc.vc/order_lines?order_id=42&product_id=1337&product_type=Foo
+This method would create an OrderLine for Order with ID = 42, and place product type Foo with ID = 1337 in said order.
+
+#### Updating An Order Line
+Updating an order line is done through the RESTful API and requires using the **PUT** or **PATCH** HTTP method.
+
+##### Parameters :
+* id: integer (this order line’s ID)
+* order_id: integer (optional, change only if modified)
+* product_id: integer (optional, change only if modified)
+* product_type: integer (optional, change only if modified)
+* quantity: integer (optional, change only if modified)
+
+##### Examples :
+**PUT** http://ics.thc.vc/order_lines/1?order_id=42&product_id=3&quantity=3
+This would change OrderLine with ID = 1, set order ownership to order with ID = 42, change the product and the quantity.
+
+**PATCH** http://ics.thc.vc/order_lines/5?product_id=4
+This would query for OrderLine with ID = 5 and change the product only.
+
+#### Destroying An Order Line
+Destroying an order line is done through the RESTful API and requires using the **DELETE** HTTP method.
+
+Examples :
+**DELETE** http://ics.thc.vc/order_lines/1
+This would destroy order line with ID = 1
+
+**DELETE** http://ics.thc.vc/order_lines/42
+This would destroy order line with ID = 42
+
+### Customers
+A customer can have multiple orders.
+
+#### Creating A New Customer
+Creating new customer through the RESTful API requires using the **POST** method.
+
+##### Parameters :
 * first_name : string
 * last_name : string
-* shipping_adress : string
-* billing_adress : string
+* shipping_adress : text
+* billing_adress : text
 * phone : string
 * email : string
 
-##### Example:
-http://ics.thc.vc/order_lines/create?first_name=john&last_name=doe
+##### Examples :
+**POST** http://ics.thc.vc/customers?first_name=john&last_name=doe
+This would create a user with first name “John” and last name “Doe”. All fields are necessary this is just an example.
 
-#### Updating a customer
-Updating customer through RESTful API requires using the GET request.
+#### Updating A Customer
+Updating customer through RESTful API requires using the **PUT** or **PATCH** HTTP method.
 
-##### Parameters:
-first_name: string
-last_name: string
-shipping_adress: string
-billing_adress: string
-phone: string
-email: string
+##### Parameters :
+* id : integer
+* first_name : string
+* last_name : string
+* shipping_address : text
+* billing_address : text
+* phone : string
+* email : string
 
-##### Example:
-http://ics.thc.vc/order_lines/create?order_id=1&brand_id=1&quantity=7.0
+##### Examples :
+**PUT** http://ics.thc.vc/customers/1?phone=18885555555
+This would change customer with ID = 1 phone number to 1-888-555-5555
+
+**PATCH** http://ics.thc.vc/customers/42?email=john.doe@example.com
+This would update’s customer with ID = 42 email address to john.doe@example.com
+
+#### Deleting A Customer
+Deleting a customer is done through the RESTful API and requires using the **DELETE** HTTP method.
+
+##### Parameters :
+* id : integer (this customer’s ID)
+
+##### Examples :
+**DELETE** http://ics.thc.vc/customers/1
+This would delete customer with ID = 1.
+
+**DELETE** http://ics.thc.vc/customers/42
+This would delete customer with ID = 42.
+
+### Data Matrixes
+In the scope of our application, a data matrix is a PNG image file encoding an encrypted identifier.
+
+#### Querying A Jar’s Data Matrix
+Querying a jar’s data matrix is done through the RESTful API and requires using the HTTP **GET** method.
+
+##### Parameters :
+* id : integer (the jar’s id)
+
+##### Examples :
+**GET** http://ics.thc.vc/jars/1/datamatrix
+This would send the datamatrix PNG file for jar with ID = 1
+
+**GET** http://ics.thc.vc/jars/42/datamatrix
+This would send the datamatrix PNG file for jar with ID = 42

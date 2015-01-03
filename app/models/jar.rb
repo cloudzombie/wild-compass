@@ -76,7 +76,7 @@ class Jar < ActiveRecord::Base
   ### Datamatrix
 
   def datamatrix
-    Datamatrix.new(self)
+    Datamatrix.new(id)
   end
 
 
