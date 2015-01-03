@@ -44,6 +44,10 @@ class JarsController < ApplicationController
     end
   end
 
+  def datamatrix
+    send_data jar.datamatrix.data, type: jar.datamatrix.content_type, disposition: 'attachment'
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   private
     def jar_params

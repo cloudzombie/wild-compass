@@ -34,7 +34,9 @@ Rails.application.routes.draw do
   # Resources
   resources :orders
   resources :plants
-  resources :jars
+  resources :jars do
+    get 'datamatrix'
+  end
   resources :bags
   resources :lots
   

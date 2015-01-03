@@ -56,6 +56,7 @@ class Jar < ActiveRecord::Base
   end
 
 
+
   ### Weight
 
   def increase_current_weight(quantity) #Increase jar weight.
@@ -69,6 +70,14 @@ class Jar < ActiveRecord::Base
   validates :current_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :initial_weight, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :weight, presence: false, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
+
+
+
+  ### Datamatrix
+
+  def datamatrix
+    Datamatrix.new(self)
+  end
 
 
 
