@@ -1,3 +1,68 @@
 // Place all the styles related to the inventory controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$summary-font-size: 16px;
+$summary-indent: 3em;
+$summary-line-height: 1.4em;
+
+.summary-title {
+  font-size: $summary-font-size + 4px;
+  line-height: $summary-line-height;
+  font-weight: bold;
+}
+
+.summary-title.right {
+}
+
+.summary-total {
+  font-size: $summary-font-size + 4px;
+  line-height: $summary-line-height;
+  font-weight: bold;
+}
+
+.summary-total.right {
+}
+
+.summary-subtitle {
+  font-size: $summary-font-size;
+  line-height: $summary-line-height;
+  font-weight: bold;
+  font-style: italic;
+  padding-left: $summary-indent;
+}
+
+.summary-subtitle.right {
+  padding-left: 0;
+}
+
+.summary-subtotal {
+  font-size: $summary-font-size;
+  line-height: $summary-line-height;
+  font-weight: bold;
+  font-style: italic;
+  padding-left: $summary-indent;
+}
+
+.summary-subtotal.right {
+  padding-left: 0;
+}
+
+.summary-entry {
+  font-size: $summary-font-size;
+  line-height: $summary-line-height;
+  font-weight: normal;
+  padding-left: 2 * $summary-indent;
+}
+
+.summary-entry.right {
+  padding-left: 0;
+}
+
+.single-underline {
+  border-bottom: 1px solid #444;
+}
+
+.double-underlines {
+  border-bottom: 3px double #444;
+}

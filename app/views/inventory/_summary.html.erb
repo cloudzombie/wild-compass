@@ -1,12 +1,61 @@
-<%= render 'inventory/summary/lots' %><br>
-
-<%= render 'inventory/summary/bags' %><br>
-
-<%= render 'inventory/summary/jars' %><br>
-
-<table class="table table-striped">
+<table class="table table-hover summary">
   <tr>
-    <th class="col-md-10">Grand Total</th>
-    <th class="col-md-2"><%= number_with_precision(total_weight, precision: 2) %> g</th>
+    <th class="col-md-10 single-underline"><strong class="summary-title"><%= weightable.to_s.pluralize.titleize %></strong></th>
+    <th class="col-md-2 single-underline text-right"><span class="summary-title right">Weight (g)</span></th>
+  </tr>
+
+  <tr>
+    <td><strong class="summary-subtitle">Weight Per Category</strong></td>
+    <td class="text-right"><span class="summary-subtitle right"></span></td>
+  </tr>
+  <tr>
+    <td><span class="summary-entry">Trim</span></td>
+    <td class="text-right"><span class="summary-entry right">
+      <%= number_with_precision weightable.total_weight_per_trim, precision: 2 %>
+    </span></td>
+  </tr>
+  <tr>
+    <td><span class="summary-entry">Buds</span></td>
+    <td class="single-underline text-right"><span class="summary-entry right">
+      <%= number_with_precision weightable.total_weight_per_buds, precision: 2 %>
+    </span></td>
+  </tr>
+  <tr>
+    <td><strong class="summary-subtotal">Total Weight For Categories</strong></td>
+    <td class="single-underline text-right"><span class="summary-subtotal right">
+      <%= number_with_precision (weightable.total_weight_per_buds + weightable.total_weight_per_trim), precision: 2 %>
+    </span></td>
+  </tr>
+
+  <tr>
+    <td><strong class="summary-subtitle">Weight Per Strain</strong></td>
+    <td class="text-right"><span class="summary-subtitle right"></td>
+  </tr>
+  <% strains_subtotal = 0.0 %>
+  <% strains.each do |strain| %>
+  <tr>
+    <% strains_subtotal += weightable.total_weight_per_strain(strain) %>
+    <td><span class="summary-entry"><%= strain %></span></td>
+    <% if strains.last == strain %>
+    <td class="single-underline text-right"><span class="summary-entry right">
+    <% else %>
+    <td class="text-right"><span class="summary-entry right">
+    <% end %>
+      <%= number_with_precision weightable.total_weight_per_strain(strain), precision: 2 %>
+    </span></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td><strong class="summary-subtotal">Total Weight For Strains</strong></td>
+    <td class="single-underline text-right"><span class="summary-subtotal right">
+      <%= number_with_precision strains_subtotal, precision: 2 %>
+    </span></td>
+  </tr>
+  
+  <tr>
+    <td><strong class="summary-total">Total</strong></td>
+    <td class="double-underlines text-right"><span class="summary-total right">
+      <%= number_with_precision weightable.total_weight, precision: 2 %>
+    </span></td>
   </tr>
 </table>
