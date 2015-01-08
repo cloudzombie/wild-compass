@@ -9,7 +9,7 @@ class Strain < ActiveRecord::Base
   has_many :jars, through: :bags
 
   def to_s
-    "#{ name.upcase unless name.nil? }"
+    "#{ acronym.upcase unless name.nil? }"
   end
 
   def total_weight

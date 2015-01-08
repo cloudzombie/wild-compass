@@ -20,7 +20,6 @@
     <table class="table table-hover">
       <tr>
         <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
-        <th><%= sortable :id, 'ID' %></th>
         <th><%= sortable :name %></th>
         <th>Strain</th>
         <th>Category</th>
@@ -35,7 +34,6 @@
       <% bags.each do |bag| %>
       <tr>
         <td></td>
-        <td><%= bag.id %></td>
         <td><%= bag %></td>
         <td><%= bag.lot.strain unless bag.lot.nil? %></td>
         <td><%= bag.lot.category unless bag.lot.nil? %></td>
@@ -60,6 +58,8 @@
           
           <% if can? :send_to_lab, bag %>
           <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: "btn-sm btn-flat btn-info" %>
+          <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: "btn-sm btn-flat btn-warning" %>
+
           <% end %>
         </td>
       </tr>

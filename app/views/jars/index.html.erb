@@ -47,6 +47,8 @@
         <td>
           <a class="btn-sm btn-flat btn-info">New Order</a>
           <%= link_to 'Show', jar, class: "btn-sm btn-flat btn-success" %>
+          <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_jar_path(jar), class: "btn-sm btn-flat btn-warning" %>
+
         </td>
       </tr>
       <% end %>
