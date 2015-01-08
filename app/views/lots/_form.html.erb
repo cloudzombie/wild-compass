@@ -18,15 +18,9 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :initial_weight %>
-    <%= f.text_field :initial_weight , class: 'form-control', value: number_with_precision(lot.current_weight, precision: 2) %>
+    <%= f.label :weight %>
+    <%= f.text_field :weight , class: 'form-control', value: number_with_precision(lot.current_weight, precision: 2) %>
     <%= display_error_for lot, :weight %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :current_weight %>
-    <%= f.text_field :current_weight, class: 'form-control', value: number_with_precision(bag.initial_weight, precision: 2) %>
-    <%= display_error_for bag, :weight %>
   </div>
 
   <div class="actions">
