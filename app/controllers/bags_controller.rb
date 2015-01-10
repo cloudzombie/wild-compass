@@ -75,7 +75,7 @@ class BagsController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id strain category name initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'created_at'
+      %w(id strain category name initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
     end
 
     # Set sort direction to ascending or descending.
