@@ -25,7 +25,7 @@ strains = Strain.create([
   { name: :"Big Blue Bubble Buds", acronym: :"Bb"  },
   { name: :"Yo Diamond", acronym: :"Yo"	 	},
   { name: :"Good Meds", acronym: :"Gm"	 	},
-  { name: :"Snow Leopard", acronym: :"LG"     },
+  { name: :"Snow Leopard", acronym: :"SL"     },
   { name: :"Mk", acronym: :"Mk"  },
   { name: :"Casey x Ww" , acronym: :"CxWw"   },
   { name: :"Space Queen", acronym: :"Sq"   },

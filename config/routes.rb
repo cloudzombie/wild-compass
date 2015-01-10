@@ -41,5 +41,6 @@ Rails.application.routes.draw do
   
   resources :bags
   resources :lots
+  resources :strains
   
 end
