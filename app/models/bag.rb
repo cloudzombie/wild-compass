@@ -2,19 +2,12 @@ class Bag < ActiveRecord::Base
 
   include Weightable
   include Accountable
+  include Storyable
 
   scope :trims,   -> { joins(:lot).merge(Lot.where(category: 'Trim')) }  
   scope :buds,    -> { joins(:lot).merge(Lot.where(category: 'Buds')) }
   scope :strains, -> (strain = nil) { joins(:lot).merge(Lot.where(strain: strain)) }
   scope :categories, -> (category = nil) { joins(:lot).merge(Lot.where(category: category)) }
-
-
-
-  ### History
-
-  belongs_to :history
-  before_create :create_history
-  before_save :create_history, unless: :history_exists?
 
 
 
@@ -43,15 +36,5 @@ class Bag < ActiveRecord::Base
   def to_s
     "#{ name.upcase unless name.nil? }"
   end
-
-  private
-
-    def create_history 
-      self.history = History.create
-    end
-
-    def history_exists?
-      !history.nil?
-    end
 
 end
