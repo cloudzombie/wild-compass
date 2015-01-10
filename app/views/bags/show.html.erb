@@ -46,6 +46,7 @@
                 <span class="sr-only"><%= percent_of_weight(bag) %>%</span>
               </div>
             </div>
+            <span><%= percent_of_weight(bag) %>%</span>
           </div>
         </div>
       </div> 
@@ -89,7 +90,8 @@
                 <span class="sr-only"><%= percent_of_weight(bag.lot) %>%</span>
               </div>
             </div>
-          </div>
+          <span><%= percent_of_weight(bag) %>%</span>
+        </div>
       </div> 
     </div>
   </div>
@@ -105,57 +107,29 @@
           <h3 class="box-title">History</h3>
          </div>
         <div class="box-body">
-        <ul class="timeline">
-    <!-- timeline time label -->
-    <li class="time-label">
-        <span class="">
-            <span class="time"><%= bag.created_at.to_s :short %></span>
-        </span>
-    </li>
-    <!-- /.timeline-label -->
-
-    <!-- timeline item -->
-        <li>
-            <!-- timeline icon -->
-            <i class="fa fa-tag bg-yellow"></i>
-            <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> <%= bag.created_at.to_s :short %></span>
-                <h3 class="timeline-header">New Bag</h3>
-                <div class="timeline-body">
-            
-                <br/>
-                  <%= link_to "#{fa_icon('tags')} #{bag.lot}".html_safe, lot_path, class: "btn btn-info btn-xs" %> send <%= bag.initial_weight %> g to <%= link_to "#{fa_icon('tag')} #{bag}".html_safe, bag_path, class: "btn btn-warning btn-xs" %>
-                  </div>
-                <div class="timeline-footer">
-                Done by User
-                </div>
-            </div>
-        </li>
-        <!-- END timeline item -->
-
-      <% bag.history.history_lines.each do |lines| %>
-
-      <!-- timeline item -->
-        <li>
-            <!-- timeline icon -->
-            <i class="fa fa-flask bg-warning"></i>
-            <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> <%= lines.created_at.to_s :short %></span>
-                <h3 class="timeline-header">New Jar</h3>
-                <div class="timeline-body">
-            
-                <br/>
-                  <%= link_to "#{fa_icon('tag')} #{lines.target}".html_safe, bag_path, class: "btn btn-info btn-xs" %> send <%= lines.quantity %> g to <%= link_to "#{fa_icon('flask')} #{lines.source}".html_safe, jar_path, class: "btn btn-danger btn-xs" %>
-                  </div>
-                <div class="timeline-footer">
-                Done by User
-                </div>
-            </div>
-        </li>
-        <!-- END timeline item -->
-      
-          <%  end %>
-          </ul>
+          <table class="table table-hover">
+            <tr>
+              <td>Source : </td>
+              <td>Target : </td>
+              <td>Quantity : </td>
+              <td>Timestamp : </td>
+            </tr>
+            <tr>
+              <td><%= bag.lot %></td>
+              <td><%= bag %></td>
+              <td><%= bag.initial_weight %></td>
+              <td><%= bag.created_at.to_s :short %></td>
+            </tr>
+            <% bag.history.history_lines.each do |line| %>
+            <% next if line.target == bag.lot %>
+              <tr>
+                <td><%= bag %></td>
+                <td><%= line.target %></td>
+                <td><%= line.quantity %></td>
+                <td><%= line.created_at.to_s :short %></td>
+              </tr>
+            <% end %>
+          </table>
         </div> 
       </div>
     </div>

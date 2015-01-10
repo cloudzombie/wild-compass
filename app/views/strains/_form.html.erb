@@ -1,4 +1,17 @@
-<%= form_for(@strain) do |f| %>
+<%= form_for(strain) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <%= display_error_for strain, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :acronym %>
+    <%= f.text_field :acronym, class: 'form-control' %>
+    <%= display_error_for strain, :acronym %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
