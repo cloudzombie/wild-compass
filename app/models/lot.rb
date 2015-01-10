@@ -3,9 +3,10 @@ class Lot < ActiveRecord::Base
   include Weightable
   include Accountable
 
+  scope :strains, -> (strain = nil) { where(strain: strain) }
+  scope :categories, -> (category = nil) { where(category: category) }
   scope :trims,   -> { where(category: 'Trim') }
   scope :buds,    -> { where(category: 'Buds') }
-  scope :strains, -> (strain = nil) { where(strain: strain) }
 
 
 
