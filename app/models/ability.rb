@@ -12,11 +12,12 @@ class Ability
       can :manage, Order
       can :send_to_lab, Bag
     else
-      can :read, Plant
-      can :read, Lot
-      can :read, Jar
-      can :read, Bag
-      can :read, Order
+      can :manage, Plant
+      can :manage, Lot
+      can :manage, Jar
+      can :manage, Bag
+      can :manage, Order
+      can :send_to_lab, Bag
     end
   end
 end
