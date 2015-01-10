@@ -6,6 +6,7 @@ class Bag < ActiveRecord::Base
   scope :trims,   -> { joins(:lot).merge(Lot.where(category: 'Trim')) }  
   scope :buds,    -> { joins(:lot).merge(Lot.where(category: 'Buds')) }
   scope :strains, -> (strain = nil) { joins(:lot).merge(Lot.where(strain: strain)) }
+  scope :categories, -> (category = nil) { joins(:lot).merge(Lot.where(category: category)) }
 
 
 

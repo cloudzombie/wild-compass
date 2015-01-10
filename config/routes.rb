@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get 'inventory/download', to: 'inventory#download'
 
   # Users and sessions
-
   resources :users
 
   devise_scope :user do

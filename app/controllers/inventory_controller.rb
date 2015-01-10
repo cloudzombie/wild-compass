@@ -3,14 +3,12 @@ class InventoryController < ApplicationController
   helper_method :total_weight
   
   expose(:plants) { Plant.all }
-
   expose(:jars) { Jar.all }
-
   expose(:bags) { Bag.all }
-
   expose(:lots) { Lot.all }
 
   expose(:strains) { Strain.all }
+  expose(:categories) { ['Trim', 'Buds'] }
 
   def home
     respond_to do |format|
