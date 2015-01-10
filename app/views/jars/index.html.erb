@@ -21,12 +21,12 @@
       <tr>
         <th><input id="accept" name="accept" type="checkbox" style="height:100%; width:100%" /></th>
         <th><%= sortable :id, 'ID' %></th>
-        <th>Strain</th>
-        <th>Category</th>
-        <th><%= sortable :current_weight %></th>
-        <th>Origin</th>
+        <th><%= sortable :strain %></th>
+        <th><%= sortable :category %></th>
+        <th><%= sortable :current_weight, 'Weight' %></th>
         <th><%= sortable :created_at %></th>
         <th><%= sortable :updated_at %></th>
+        <th><%= sortable :bag_id, 'Origin' %></th>
         <th>Actions</th>
       </tr>
 
@@ -39,11 +39,11 @@
         <td>
           <%= number_with_precision((jar.current_weight.nil? ? 0 : jar.current_weight), precision: 2)%> g
         </td>
+        <td><%= jar.created_at.to_s :short %></td>
+        <td><%= jar.updated_at.to_s :short %></td>
         <td>
           <%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %>
         </td>
-        <td><%= jar.created_at.to_s :short %></td>
-        <td><%= jar.updated_at.to_s :short %></td>
         <td>
           <a class="btn-sm btn-flat btn-info">New Order</a>
           <%= link_to 'Show', jar, class: "btn-sm btn-flat btn-success" %>

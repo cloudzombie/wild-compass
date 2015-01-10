@@ -21,14 +21,14 @@
       <tr>
         <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
         <th><%= sortable :name %></th>
-        <th>Strain</th>
-        <th>Category</th>
+        <th><%= sortable :strain %></th>
+        <th><%= sortable :category %></th>
         <th><%= sortable :initial_weight %></th>
         <th><%= sortable :current_weight %></th>
         <th><%= sortable :created_at %></th>
         <th><%= sortable :updated_at %></th>
         <th><%= sortable :lot_id, 'Origin' %></th>
-        <th>Actions :</th>
+        <th>Actions</th>
       </tr>
             
       <% bags.each do |bag| %>

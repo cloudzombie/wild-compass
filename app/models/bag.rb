@@ -34,7 +34,7 @@ class Bag < ActiveRecord::Base
 
   has_many :plants, through: :lot
 
-  has_many :strains, through: :plants
+  has_one :strain, through: :lot
 
   has_one :category, through: :lot
   

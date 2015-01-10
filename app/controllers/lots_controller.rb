@@ -2,7 +2,15 @@ class LotsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   expose(:lot, params: :lot_params) { id_param.nil? ? Lot.new : Lot.find(id_param) }
-  expose(:lots) { Lot.order(sort_column + ' ' + sort_direction) }
+
+  expose(:lots) do
+    if Lot.column_names.include? sort_column
+      Lot.order(sort_column + ' ' + sort_direction)
+    else
+      Lot.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym))
+    end
+  end
+
   expose(:bag) { Bag.new }
   
   # Create new lot.
@@ -56,7 +64,7 @@ class LotsController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id name initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
+      %w(id name category strain initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
     end
 
     # Set sort direction to ascending or descending.
