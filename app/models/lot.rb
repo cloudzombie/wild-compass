@@ -2,18 +2,12 @@ class Lot < ActiveRecord::Base
 
   include Weightable
   include Accountable
+  include Storyable
 
+  scope :strains, -> (strain = nil) { where(strain: strain) }
+  scope :categories, -> (category = nil) { where(category: category) }
   scope :trims,   -> { where(category: 'Trim') }
   scope :buds,    -> { where(category: 'Buds') }
-  scope :strains, -> (strain = nil) { where(strain: strain) }
-
-
-
-  ### History
-
-  belongs_to :history
-  before_create :create_history
-  before_save :create_history, unless: :history_exists?
 
 
 
@@ -45,15 +39,5 @@ class Lot < ActiveRecord::Base
   def to_s
     "#{ name.upcase unless name.nil? }"
   end
-
-  private
-
-    def create_history
-      self.history = History.create
-    end
-
-    def history_exists?
-      !history.nil?
-    end
 
 end

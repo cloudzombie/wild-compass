@@ -2,15 +2,7 @@ class Plant < ActiveRecord::Base
 
   include Weightable
   include Accountable
-
-  
-  
-
-  ### History
-
-  before_create :create_history
-  before_save :create_history, unless: :history_exists?
-  belongs_to :history
+  include Storyable
 
 
 
@@ -48,17 +40,5 @@ class Plant < ActiveRecord::Base
   def to_s
     "#{ name.titleize unless name.nil? }"
   end
-
-
-
-  private
-
-    def create_history
-      self.history = History.create
-    end
-
-    def history_exists?
-      !history.nil?
-    end
 
 end

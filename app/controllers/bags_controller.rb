@@ -2,7 +2,17 @@ class BagsController < ApplicationController
   helper_method :sort_column, :sort_direction
   
   expose(:bag, params: :bag_params) { id_param.nil? ? Bag.new : Bag.find(id_param) }
-  expose(:bags) { Bag.order(sort_column + ' ' + sort_direction) }
+  
+  expose(:bags) do
+    if Bag.column_names.include? sort_column
+      Bag.order(sort_column + ' ' + sort_direction)
+    elsif sort_column == 'strain'
+      Bag.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym))
+    elsif sort_column == 'category'
+      Bag.joins(:lot).merge(Lot.order(category: sort_direction.to_sym))
+    end
+  end
+
   expose(:jar) { Jar.new }
 
   ##
@@ -65,7 +75,7 @@ class BagsController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id name initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
+      %w(id strain category name initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
     end
 
     # Set sort direction to ascending or descending.
