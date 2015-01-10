@@ -28,10 +28,11 @@ class BagsController < ApplicationController
 
     set_weight
     set_name if bag.name.nil? || bag.name.empty?
+    Transaction.from( bag.lot).to( bag ).take( bag.weight ).commit
 
     respond_to do |format|
       if bag.save
-        Transaction.from( bag.lot).to( bag ).take( bag.weight ).commit( initial: true )
+        
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
         format.json { render :show, status: :created, location: bag }
       else

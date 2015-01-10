@@ -15,13 +15,14 @@ class JarsController < ApplicationController
 
   # Create new jar.
   def create 
-
     self.jar = Jar.new(jar_params)
+    
     set_weight 
     set_name if jar.name.nil? || jar.name.empty?
+    Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit
+
     respond_to do |format|
       if jar.save
-        Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit( initial: true ) #Transaction from bag to jar.
         format.html { redirect_to jar, notice: 'jar was successfully created.' }
         format.json { render :show, status: :created, location: jar }
       else
