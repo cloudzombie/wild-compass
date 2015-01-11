@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 <h4><%= bag.name %></h4>
 <div class="row">
-  <div class="col-lg-2">
+  <!--<div class="col-lg-2">
     <div class="box-header">
       <h3 class="box-title">Links</h3>
     </div>
     <a class="btn btn-block btn-danger" data-toggle="modal" data-target=".newJar"><i class="fa fa-flask"></i> New Jar</a>
     <%= link_to '<i class="fa fa-tags"></i> '.html_safe + bag.lot, bag.lot, class: "btn btn-block btn-info" %>
-  </div>
-  <div class="col-lg-5">
+  </div> -->
+  <div class="col-lg-6">
     <div class="box box-solid box-warning">
       <div class="box-header">
       <i class="fa fa-tag"></i>
@@ -52,7 +52,7 @@
       </div> 
     </div>
   </div>
-  <div class="col-lg-5">
+  <div class="col-lg-6">
     <div class="box box-solid box-info">
       <div class="box-header">
         <i class="fa fa-tags"></i>
@@ -98,9 +98,7 @@
 </div>
 </div>
   <div class="row">
-    <div class="col-lg-2">
-    </div>
-    <div class="col-lg-7">
+    <div class="col-lg-6">
       <div class="box box-solid box-danger">
         <div class="box-header">
           <i class="fa fa-flask"></i>
@@ -108,35 +106,70 @@
          </div>
         <div class="box-body">
           <table class="table table-hover">
+          <div role="tabpanel">
+
+            </div>
             <tr>
               <td>Source : </td>
               <td>Target : </td>
               <td>Quantity : </td>
               <td>Timestamp : </td>
+              <td>User : </td>
             </tr>
-            <tr>
-              <td><%= bag.lot %></td>
-              <td><%= bag %></td>
-              <td><%= bag.initial_weight %></td>
-              <td><%= bag.created_at.to_s :short %></td>
-            </tr>
-            <% bag.history.history_lines.each do |line| %>
-            <% next if line.target == bag.lot %>
+            <div class="nav nav-pills" role="pilllist">
               <tr>
+                <td><a href="#id<%= bag.lot.id %>" aria-controls="id<%= bag.lot.id %>" role="tab" data-toggle="tab"><%= bag.lot %></a></td>
                 <td><%= bag %></td>
-                <td><%= line.target %></td>
-                <td><%= line.quantity %></td>
-                <td><%= line.created_at.to_s :short %></td>
+                <td><%= bag.initial_weight %></td>
+                <td><%= bag.created_at.to_s :short %></td>
+                <td><!--<%# bag.history.history_lines.first.user %>--></td>
               </tr>
-            <% end %>
+              <% bag.history.history_lines.each do |line| %>
+              <% next if line.target == bag.lot %>
+                <tr>
+                  <td><%= bag %></td>
+                  <td><a href="#<%= line.id %>" aria-controls="<%= line.id %>" role="tab" data-toggle="tab"><%= line.target %></a></td>
+                  <td><%= line.quantity %></td>
+                  <td><%= line.created_at.to_s :short %></td>
+                  <td><!--<%#  line.user %>--></td>
+                </tr>
+              <% end %>
+            </div>
           </table>
         </div> 
       </div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-6">
+      <div class="box box-solid box-danger">
+        <div class="box-header">
+          <i class="fa fa-flask"></i>
+          <h3 class="box-title">History</h3>
+        </div>
+        <div class="box-body">
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade" id="id<%= bag.lot.id %>">
+            </div>
+            <% bag.history.history_lines.each do |line| %>
+              <div role="tabpanel" class="tab-pane fade" id="<%= line.id %>">
+                <table class="table table-hover">
+                  <div role="tabpanel">
+                    <tr>
+                      <% line.target.history.history_lines.each do |subline| %>
+                      <td><%= subline.source %></td>
+                      <td><%= subline.target %></td>
+                      <td><%= subline.quantity %> g</td>
+                      <td><%= subline.created_at.to_s :short %></td>
+                      <% end %>
+                    </tr>
+                  </div>
+                </table>
+              </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-
     
 <!--<%= link_to 'Edit', edit_bag_path(bag) %> | -->
 <%= link_to 'Back', bags_path %>
