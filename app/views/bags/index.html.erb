@@ -14,6 +14,7 @@
       </div>
     </div>
   </div>
+  
   <div class="box-body table-responsive no-padding">
     <table class="table table-hover">
       <tr>
@@ -44,7 +45,9 @@
         <td><%= bag.updated_at.to_s :short %></td>
         
         <td>
+          <% if can? :show, Lot %>
           <%= link_to "#{fa_icon('tag')} #{bag.lot}".html_safe, bag.lot, class: "btn-sm btn-flat btn-info" %>
+          <% end %>
         </td>
 
         <td>
@@ -72,25 +75,9 @@
 </div><!-- /.box -->
 
 <div class="tableFooter">
- <!-- <div class="btn-group">
-    <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
-      <span class="caret"></span>
-      <span class="sr-only">Toggle Dropdown</span>
-    </button>
-    <button type="button" class="btn btn-info btn-flat">Action</button>
-    <ul class="dropdown-menu" role="menu">
-      <li><a href="#">Curing</a></li>
-      <li><a href="#">Drying</a></li>
-      <li><a href="#">Change RFID</a></li>
-      <li><a href="#">Vers Lots</a></li>
-      <li class="divider"></li>
-      <li><a href="#">Récolter</a></li>
-      <li><a href="#">Détruire</a></li>
-    </ul>
-  </div>-->
-    <a href="#" class="btn btn-flat btn-warning" data-toggle="modal" data-target=".new-bag"><i class="fa fa-tag"></i> New Bag</a>
+  <%= link_to "#{fa_icon 'tag'} New Bag".html_safe, '#', class: 'btn btn-flat btn-warning',
+      data: { toggle: 'modal', target: '.new-bag'} %>
 </div>
 
 <%= render 'jars/modal/new', bag: bag %>
-
 <%= render 'bags/modal/new' %>
