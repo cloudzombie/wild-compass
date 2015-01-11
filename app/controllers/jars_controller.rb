@@ -16,10 +16,10 @@ class JarsController < ApplicationController
   # Create new jar.
   def create 
     self.jar = Jar.new(jar_params)
-    
+
     set_weight 
     set_name if jar.name.nil? || jar.name.empty?
-    Transaction.from( jar.bag ).to( jar ).take( jar.initial_weight ).commit
+    Transaction.from( jar.bag ).to( jar ).take( jar.weight ).by( current_user ).commit
 
     respond_to do |format|
       if jar.save
@@ -81,7 +81,7 @@ class JarsController < ApplicationController
     # Set jar weight.
     def set_weight 
       jar.weight = jar.weight.to_d
-      jar.current_weight = jar.initial_weight = jar.weight
+      # jar.current_weight = jar.initial_weight = jar.weight
     end
     # Set jar name. 
     def set_name 

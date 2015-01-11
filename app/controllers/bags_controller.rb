@@ -28,10 +28,10 @@ class BagsController < ApplicationController
 
     set_weight
     set_name if bag.name.nil? || bag.name.empty?
-    Transaction.from( bag.lot).to( bag ).take( bag.weight ).commit
+    Transaction.from( bag.lot ).to( bag ).take( bag.weight ).by( current_user ).commit
 
     respond_to do |format|
-      if bag.save
+      if bag.save && bag.lot.save
         
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
         format.json { render :show, status: :created, location: bag }
@@ -92,6 +92,6 @@ class BagsController < ApplicationController
     # Set bag weight.
     def set_weight
       bag.weight = bag.weight.to_d
-      bag.current_weight = bag.initial_weight = bag.weight
+      # bag.current_weight = bag.initial_weight = bag.weight
     end
 end

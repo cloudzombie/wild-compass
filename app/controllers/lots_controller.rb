@@ -16,8 +16,9 @@ class LotsController < ApplicationController
   # Create new lot.
   def create 
     self.lot = Lot.new(lot_params)
-    
+
     set_weight #  Set lot weight
+    Transaction.from( nil ).to( lot ).take( lot.weight ).by( current_user ).commit
 
     respond_to do |format|
       if lot.save
@@ -72,9 +73,8 @@ class LotsController < ApplicationController
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    # Set lot weight.
+    # Set lot weight
     def set_weight 
       lot.weight = lot.weight.to_d
-      lot.current_weight = lot.initial_weight = lot.weight
     end
 end
