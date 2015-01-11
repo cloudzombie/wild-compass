@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :containers
+
   resources :brands
 
   # Root redirect

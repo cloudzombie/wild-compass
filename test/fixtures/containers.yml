@@ -2,14 +2,12 @@
 
 one:
   name: MyString
-  initial_weight: 9.99
-  current_weight: 9.99
   lot_id: 1
-  category: MyString
+  current_weight: 9.99
+  initial_weight: 9.99
 
 two:
   name: MyString
-  initial_weight: 9.99
-  current_weight: 9.99
   lot_id: 1
-  category: MyString
+  current_weight: 9.99
+  initial_weight: 9.99

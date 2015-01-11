@@ -32,8 +32,8 @@
       <tr>
         <td></td>
         <td><%= bag %></td>
-        <td><%= bag.container.lot.strain unless bag.container.lot.nil? %></td>
-        <td><%= bag.container.lot.category unless bag.container.lot.nil? %></td>
+        <td><%= bag.container.lot.strain unless bag.container.nil? %></td>
+        <td><%= bag.container.lot.category unless bag.container.nil? %></td>
         <td>
           <%= number_with_precision((bag.initial_weight.nil? ? 0 : bag.initial_weight), precision: 2)%> g
         </td>
@@ -44,7 +44,7 @@
         <td><%= bag.updated_at.to_s :short %></td>
         
         <td>
-          <%= link_to "#{fa_icon('tag')} #{bag.lot}".html_safe, lot_path(bag.lot), class: "btn-sm btn-flat btn-info" %>
+          <%= link_to "#{fa_icon('tag')} #{bag.container}".html_safe, container_path(bag.container), class: "btn-sm btn-flat btn-info" unless bag.container.nil? %>
         </td>
 
         <td>
