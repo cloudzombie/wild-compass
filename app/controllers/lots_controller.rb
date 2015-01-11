@@ -35,9 +35,6 @@ class LotsController < ApplicationController
 
   # Update lot column.
   def update
-
-    Transaction.from( nil ).to( lot ).take( lot.weight ).by( current_user ).commit
-
     respond_to do |format|
       if lot.update(lot_params)
         format.html { redirect_to lot, notice: 'Lot was successfully updated.' }

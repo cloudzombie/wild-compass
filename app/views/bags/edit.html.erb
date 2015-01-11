@@ -1,6 +1,43 @@
 <h1>Editing bag</h1>
 
-<%= render 'form' %>
+<%= form_for(bag) do |f| %>
+  <div class="form-group">
+    <%= f.label :lot_id %>
+    <%= f.collection_select :lot_id, Lot.all, :id, :name, {}, selected: params[:lot], class: 'form-control' %>
+    <%= display_error_for bag, :lot_id %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <%= display_error_for bag, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :initial_weight %>
+    <%= f.text_field :initial_weight, class: 'form-control', value: number_with_precision(bag.initial_weight, precision: 2) %>
+    <%= display_error_for bag, :initial_weight %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :current_weight %>
+    <%= f.text_field :current_weight, class: 'form-control', value: number_with_precision(bag.current_weight, precision: 2) %>
+    <%= display_error_for bag, :current_weight %>
+  </div>
+
+  <div class="errors">
+    <%= display_error_for bag, :quantity %>
+    <%= display_error_for bag.lot, :quantity unless bag.lot.nil? %>
+    <%= display_error_for bag.lot, :category unless bag.lot.nil? %>
+    <%= display_error_for bag.lot, :weight unless bag.lot.nil? %>
+    <%= display_error_for bag.lot, :name unless bag.lot.nil? %>
+    <%= display_error_for bag.lot, :strain unless bag.lot.nil? %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', bag %> |
 <%= link_to 'Back', bags_path %>

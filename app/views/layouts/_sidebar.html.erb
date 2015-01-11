@@ -54,7 +54,7 @@
         <%= link_to "#{fa_icon('flask')} <span>Jars</span>".html_safe, jars_path %>
       </li>
 
-      <% if can? :read, User %>
+      <% if can? :manage, User %>
       <li class="treeview">
         <%= link_to "#{fa_icon('cog')} <span>Admin</span> #{fa_icon('chevron-down',
             class: 'pull-right')}".html_safe, users_path %>

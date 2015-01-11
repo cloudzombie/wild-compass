@@ -29,6 +29,7 @@ class BagsController < ApplicationController
   #
   def create
     self.bag = Bag.new(bag_params)
+    authorize! :create, bag
 
     Transaction.from( bag.lot ).to( bag ).take( bag.weight ).by( current_user ).commit
 
@@ -46,6 +47,8 @@ class BagsController < ApplicationController
 
   # Update bag column.
   def update
+    authorize! :update, bag
+
     respond_to do |format|
       if bag.update(bag_params)
         format.html { redirect_to bag, notice: 'Bag was successfully updated.' }
@@ -59,6 +62,8 @@ class BagsController < ApplicationController
 
   # Destroy bag.
   def destroy
+    authorize! :destroy, bag
+
     bag.destroy
     respond_to do |format|
       format.html { redirect_to bags_url, notice: 'Bag was successfully destroyed.' }
