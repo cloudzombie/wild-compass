@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 <h4><%= lot.name %></h4>
 <div class="row">
-  <div class="col-lg-2">
+  <!--<div class="col-lg-2">
     <div class="box-header">
       <h3 class="box-title">Links</h3>
     </div>
     
     <%= link_to "#{fa_icon('flask')} New Bag".html_safe, '#', class: 'btn btn-block btn-warning', data: { toggle: 'modal', target: '.new-bag' } %>
     <%= link_to "#{fa_icon('leaf')} Origin Plant".html_safe, '#', class: 'btn btn-block btn-success' %>
-  </div>
-  <div class="col-lg-5">
+  </div> -->
+  <div class="col-lg-6">
     <div class="box box-solid box-info">
       <div class="box-header">
       <i class="fa fa-tag"></i>
@@ -52,7 +52,7 @@
       </div> 
     </div>
   </div>
-  <div class="col-lg-5">
+  <div class="col-lg-6">
     <div class="box box-solid box-success">
       <div class="box-header">
         <i class="fa fa-tag"></i>
@@ -78,95 +78,86 @@
   </div>
 </div>
 </div>
-  <div class="row">
-    <div class="col-lg-2">
-    </div>
-    <div class="col-lg-7">
-      <div class="box box-solid box-warning">
+    <div class="row">
+    <div class="col-lg-6">
+      <div class="box box-solid box-danger">
         <div class="box-header">
           <i class="fa fa-flask"></i>
           <h3 class="box-title">History</h3>
          </div>
         <div class="box-body">
-        <ul class="timeline">
-    <!-- timeline time label -->
-    <li class="time-label">
-        <span class="">
-            <span class="time"><%= lot.created_at.to_s :short %></span>
-        </span>
-    </li>
-    <!-- /.timeline-label -->
-
-    
-
-
-          <% lot.history.history_lines.each do |lines| %>
-
-          <% case lines.target.class %>
-          <% when Lot %>
-    			<!-- timeline item -->
-    		   	<li>
-		        <!-- timeline icon -->
-		        <i class="fa fa-tags bg-green"></i>
-		        <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> <%= lines.created_at.to_s :short %></span>
-            <h3 class="timeline-header">New Bag</h3>
-   				  <div class="timeline-body">
-   			
-   				  <br/>
-           		<a class="btn btn-info btn-xs"><i class="fa fa-tags"></i><%= lot %></a> send <%= lines.quantity %> g to <%= link_to "bag #{lines.target.id}", bag_path, class: "btn btn-warning btn-xs" %>
-                  </div>
-                  <div class="timeline-footer">
-                  Done by User
-                  </div>
-		            </div>
-		          </li> 
-            <% when Bag %>
-            <!-- timeline item -->
-            <li>
-            <!-- timeline icon -->
-            <i class="fa fa-tags bg-yellow"></i>
-            <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> <%= lines.created_at.to_s :short %></span>
-            <h3 class="timeline-header">New Bag</h3>
-            <div class="timeline-body">
-        
-            <br/>
-              <a class="btn btn-info btn-xs"><i class="fa fa-tags"></i><%= lot %></a> send <%= lines.quantity %> g to <%= link_to "bag #{lines.target.id}", bag_path, class: "btn btn-warning btn-xs" %>
-                  </div>
-                  <div class="timeline-footer">
-                  Done by User
-                  </div>
-                </div>
-              </li> 
-            <% when Jar %> 
-            <!-- timeline item -->
-            <li>
-            <!-- timeline icon -->
-            <i class="fa fa-tags bg-yellow"></i>
-            <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> <%= lines.created_at.to_s :short %></span>
-            <h3 class="timeline-header">New Bag</h3>
-            <div class="timeline-body">
-        
-            <br/>
-              <a class="btn btn-info btn-xs"><i class="fa fa-tags"></i><%= lot %></a> send <%= lines.quantity %> g to <%= link_to "bag #{lines.target.id}", bag_path, class: "btn btn-warning btn-xs" %>
-                  </div>
-                  <div class="timeline-footer">
-                  Done by User
-                  </div>
-                </div>
-              </li>     
-            <% end %>
-            <% end %>
-          </ul>
+          <table class="table table-hover">
+            <tr>
+              <th>Source : </th>
+              <th>Target : </th>
+              <th>Quantity : </th>
+              <th>Timestamp : </th>
+              <th>User : </th>
+            </tr>
+            <div class="nav nav-pills" role="pilllist">
+              <tr>
+                <td><a href="#id<%= lot.id %>" aria-controls="id<%= lot.id %>" role="tab" data-toggle="tab"><%= bag.lot %></a></td>
+                <td><%= lot %></td>
+                <td><%= lot.initial_weight %></td>
+                <td><%= lot.created_at.to_s :short %></td>
+                <td><!--<%# bag.history.history_lines.first.user %>--></td>
+              </tr>
+              <% lot.history.history_lines.each do |line| %>
+              <% next if line.target == bag.lot %>
+                <tr>
+                  <td><%= bag %></td>
+                  <td><a href="#<%= line.id %>" aria-controls="<%= line.id %>" role="tab" data-toggle="tab"><%= line.target %></a></td>
+                  <td><%= line.quantity %></td>
+                  <td><%= line.created_at.to_s :short %></td>
+                  <td><!--<%#  line.user %>--></td>
+                </tr>
+              <% end %>
+            </div>
+          </table>
         </div> 
       </div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-6">
+      <div class="box box-solid box-danger">
+        <div class="box-header">
+          <i class="fa fa-flask"></i>
+          <h3 class="box-title">History</h3>
+        </div>
+        <div class="box-body">
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade" id="id<%= lot.id %>">
+            </div>
+            <table class="table table-hover">
+              <tr>
+                <th>Source : </th>
+                <th>Target : </th>
+                <th>Quantity : </th>
+                <th>Timestamp : </th>
+                <th>User : </th>
+              </tr>
+            </table>
+            <% lot.history.history_lines.each do |line| %>
+              <div role="tabpanel" class="tab-pane fade" id="<%= line.id %>">
+                <table class="table table-hover">
+                  <div role="tabpanel">
+                    <% line.target.history.history_lines.each do |subline| %>
+                      <tr>
+                        <td><%= subline.source %></td>
+                        <td><%= subline.target %></td>
+                        <td><%= subline.quantity %> g</td>
+                        <td><%= subline.created_at.to_s :short %></td>
+                        <td></td>
+                      </tr>
+                    <% end %>
+                  </div>
+                </table>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
     
 <!--<%= link_to 'Edit', edit_lot_path(lot) %> | -->
 <%= link_to 'Back', lots_path %>
