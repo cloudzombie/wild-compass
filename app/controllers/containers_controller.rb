@@ -22,7 +22,6 @@ class ContainersController < ApplicationController
 
   def create
     @container = Container.new(container_params)
-    Transaction.from( @container.lot ).to( @container ).take( @container.initial_weight ).by( current_user ).commit
     @container.save
     respond_with(@container)
   end

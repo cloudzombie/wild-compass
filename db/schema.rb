@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111091919) do
+ActiveRecord::Schema.define(version: 20150111215827) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "origin"
-    t.decimal  "current_weight", precision: 10, scale: 4
-    t.decimal  "initial_weight", precision: 10, scale: 4
+    t.decimal  "current_weight", precision: 16, scale: 4
+    t.decimal  "initial_weight", precision: 16, scale: 4
     t.integer  "history_id"
     t.integer  "container_id"
   end
@@ -38,8 +38,6 @@ ActiveRecord::Schema.define(version: 20150111091919) do
     t.decimal  "initial_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category"
-
     t.integer  "history_id"
   end
 
@@ -81,8 +79,8 @@ ActiveRecord::Schema.define(version: 20150111091919) do
     t.integer  "bag_id"
     t.string   "name"
     t.integer  "origin"
-    t.decimal  "current_weight", precision: 10, scale: 4
-    t.decimal  "initial_weight", precision: 10, scale: 4
+    t.decimal  "current_weight", precision: 16, scale: 4
+    t.decimal  "initial_weight", precision: 16, scale: 4
     t.integer  "history_id"
   end
 
@@ -92,8 +90,8 @@ ActiveRecord::Schema.define(version: 20150111091919) do
     t.string   "name"
     t.string   "category"
     t.integer  "origin"
-    t.decimal  "current_weight", precision: 10, scale: 4
-    t.decimal  "initial_weight", precision: 10, scale: 4
+    t.decimal  "current_weight", precision: 16, scale: 4
+    t.decimal  "initial_weight", precision: 16, scale: 4
     t.integer  "plant_id"
     t.integer  "history_id"
     t.integer  "strain_id"
