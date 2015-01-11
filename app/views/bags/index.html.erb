@@ -14,6 +14,7 @@
       </div>
     </div>
   </div>
+  
   <div class="box-body table-responsive no-padding">
     <table class="table table-hover">
       <tr>
@@ -32,8 +33,8 @@
       <tr>
         <td></td>
         <td><%= bag %></td>
-        <td><%= bag.container.lot.strain unless bag.container.nil? %></td>
-        <td><%= bag.container.lot.category unless bag.container.nil? %></td>
+        <td><%= bag.strain unless bag.container.nil? %></td>
+        <td><%= bag.category unless bag.container.nil? %></td>
         <td>
           <%= number_with_precision((bag.initial_weight.nil? ? 0 : bag.initial_weight), precision: 2)%> g
         </td>
@@ -44,19 +45,28 @@
         <td><%= bag.updated_at.to_s :short %></td>
         
         <td>
-          <%= link_to "#{fa_icon('tag')} #{bag.container}".html_safe, container_path(bag.container), class: "btn-sm btn-flat btn-info" unless bag.container.nil? %>
+
+          <% if can? :show, Lot %>
+          <%= link_to "#{fa_icon('tag')} #{bag.lot}".html_safe, bag.lot, class: "btn-sm btn-flat btn-info" %>
+          <% end %>
         </td>
 
         <td>
+          <% if can? :create, Jar %>
           <%= link_to "#{fa_icon 'flask'} New Jar".html_safe, '#', class: 'btn-sm btn-flat btn-danger',
               data: { toggle: 'modal', target: '.new-jar' } %>
-          
+          <% end %>
+
+          <% if can? :show, bag %>
           <%= link_to "#{fa_icon 'tag'} Show".html_safe, bag, class: "btn-sm btn-flat btn-warning" %>
-          
+          <% end %>
+
           <% if can? :send_to_lab, bag %>
           <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: "btn-sm btn-flat btn-info" %>
-          <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: "btn-sm btn-flat btn-warning" %>
+          <% end %>
 
+          <% if can? :edit, bag %>
+          <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: "btn-sm btn-flat btn-warning" %>
           <% end %>
         </td>
       </tr>
@@ -66,25 +76,9 @@
 </div><!-- /.box -->
 
 <div class="tableFooter">
- <!-- <div class="btn-group">
-    <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
-      <span class="caret"></span>
-      <span class="sr-only">Toggle Dropdown</span>
-    </button>
-    <button type="button" class="btn btn-info btn-flat">Action</button>
-    <ul class="dropdown-menu" role="menu">
-      <li><a href="#">Curing</a></li>
-      <li><a href="#">Drying</a></li>
-      <li><a href="#">Change RFID</a></li>
-      <li><a href="#">Vers Lots</a></li>
-      <li class="divider"></li>
-      <li><a href="#">Récolter</a></li>
-      <li><a href="#">Détruire</a></li>
-    </ul>
-  </div>-->
-    <a href="#" class="btn btn-flat btn-warning" data-toggle="modal" data-target=".new-bag"><i class="fa fa-tag"></i> New Bag</a>
+  <%= link_to "#{fa_icon 'tag'} New Bag".html_safe, '#', class: 'btn btn-flat btn-warning',
+      data: { toggle: 'modal', target: '.new-bag'} %>
 </div>
 
 <%= render 'jars/modal/new', bag: bag %>
-
 <%= render 'bags/modal/new' %>

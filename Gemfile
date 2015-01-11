@@ -48,6 +48,7 @@ gem 'tzinfo-data', platforms: [ :mingw, :mswin, :x64_mingw ]
 
 # Authentication
 gem 'devise'
+gem 'devise-token_authenticatable'
 
 # Authorization
 gem 'cancan'

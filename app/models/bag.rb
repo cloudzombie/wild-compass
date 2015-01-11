@@ -4,30 +4,26 @@ class Bag < ActiveRecord::Base
   include Accountable
   include Storyable
 
-  scope :trims,   -> { joins(:container).merge(Container.where(category: 'Trim')) }  
-  scope :buds,    -> { joins(:container).merge(Container.where(category: 'Buds')) }
-  scope :strains, -> (strain = nil) { joins(:container).merge(Container.where(strain: strain)) }
-  scope :categories, -> (category = nil) { joins(:container).merge(Container.where(category: category)) }
+  scope :trims,   -> { joins(:lot).merge(Lot.where(category: 'Trim')) }  
+  scope :buds,    -> { joins(:lot).merge(Lot.where(category: 'Buds')) }
+  scope :strains, -> (strain = nil) { joins(:lot).merge(Lot.where(strain: strain)) }
+  scope :categories, -> (category = nil) { joins(:lot).merge(Lot.where(category: category)) }
 
-  ### Container
+  
 
   belongs_to :container
 
-  ### Jars
-
   has_many :jars
 
-  ### Plants
+  has_many :plants, through: :container
 
-  has_many :plants, through: :lot
+  has_one :strain, through: :container
 
-  has_one :strain, through: :lot
-
-  has_one :category, through: :lot
-  
-  ### Lot
+  has_one :category, through: :container
 
   has_one :lot, through: :container
+
+
   
   def to_s
     "#{ name.upcase unless name.nil? }"
