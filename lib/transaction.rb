@@ -5,24 +5,31 @@ class Transaction
 
   def to(target)
     @target = target
+    
     self
   end
 
   def take(quantity)
-    @quantity = quantity
+    @source.quantity = quantity.to_d unless @source.nil?
+    @target.quantity = quantity.to_d unless @target.nil?
+    
+    @quantity = quantity.to_d
+    
+    self
+  end
+
+  def by(user)
+    @user = user
+
     self
   end
 
   def commit
-    raise "source is nil" if @source.nil?
-    raise "target is nil" if @target.nil?
-    raise "quantity is nil or zero" if @quantity.nil? || @quantity.to_d == 0.0
-
-    @source.decrease_current_weight(@quantity)
-    @target.increase_current_weight(@quantity)
+    @source.decrease_current_weight unless @source.nil?
+    @target.increase_current_weight unless @target.nil?
   
-    @source.history.add_line(@source, @target, @quantity, :decrease_current_weight, current_user)
-    @target.history.add_line(@target, @source, @quantity, :increase_current_weight, current_user)
+    @source.history.add_line(@source, @target, @quantity, :decrease_current_weight, @user) unless @source.nil?
+    @target.history.add_line(@target, @source, @quantity, :increase_current_weight, @user) unless @target.nil?
 
     true
   end

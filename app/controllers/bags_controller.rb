@@ -15,6 +15,10 @@ class BagsController < ApplicationController
 
   expose(:jar) { Jar.new }
 
+  before_action :set_weight, only: [ :create, :update ]
+  before_action :set_name, only: [ :create, :update ]
+  before_action :set_quantity, only: [ :create, :update ]
+
   ##
   # Create a new bag from a POST HTTP request with given parameters:
   # +bag_params+::
@@ -25,13 +29,12 @@ class BagsController < ApplicationController
   #
   def create
     self.bag = Bag.new(bag_params)
+    authorize! :create, bag
 
-    set_weight
-    set_name if bag.name.nil? || bag.name.empty?
-    Transaction.from( bag.lot).to( bag ).take( bag.weight ).commit
+    Transaction.from( bag.lot ).to( bag ).take( bag.weight ).by( current_user ).commit
 
     respond_to do |format|
-      if bag.save
+      if bag.save && bag.lot.save
         
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
         format.json { render :show, status: :created, location: bag }
@@ -44,6 +47,8 @@ class BagsController < ApplicationController
 
   # Update bag column.
   def update
+    authorize! :update, bag
+
     respond_to do |format|
       if bag.update(bag_params)
         format.html { redirect_to bag, notice: 'Bag was successfully updated.' }
@@ -57,6 +62,8 @@ class BagsController < ApplicationController
 
   # Destroy bag.
   def destroy
+    authorize! :destroy, bag
+
     bag.destroy
     respond_to do |format|
       format.html { redirect_to bags_url, notice: 'Bag was successfully destroyed.' }
@@ -86,12 +93,28 @@ class BagsController < ApplicationController
 
     # Set bag name.
     def set_name
-      bag.name = "B-#{bag.lot.strain.acronym}#{Time.now.strftime('%d%m%y')}"
+      if bag.name.nil? || bag.name.empty?
+        bag.name = "B-#{acronym}#{Time.now.strftime('%d%m%y')}"
+      end
     end
 
-    # Set bag weight.
     def set_weight
-      bag.weight = bag.weight.to_d
-      bag.current_weight = bag.initial_weight = bag.weight
+      if bag.weight.nil?
+        bag.weight = 0.0
+      else
+        bag.weight = bag.weight.to_d
+      end
+    end
+
+    def set_quantity
+      if bag.quantity.nil?
+        bag.quantity = 0.0
+      else
+        bag.quantity = bag.quantity.to_d
+      end
+    end
+
+    def acronym
+      Lot.find(bag_params[:lot_id]).strain.acronym
     end
 end

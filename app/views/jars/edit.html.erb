@@ -1,6 +1,28 @@
 <h1>Editing jar</h1>
 
-<%= render 'form' %>
+<%= form_for(jar) do |f| %>
+  <div class="form-group">
+    <%= f.label :bag %>
+    <%= f.collection_select :bag_id, Bag.all, :id, :to_s, {}, selected: params[:bag], class: 'form-control' %>
+    <%= display_error_for jar, :bag %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :initial_weight %>
+    <%= f.text_field :initial_weight, class: 'form-control', value: number_with_precision(jar.initial_weight, precision: 2) %>
+    <%= display_error_for jar, :initial_weight %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :current_weight %>
+    <%= f.text_field :current_weight, class: 'form-control', value: number_with_precision(jar.current_weight, precision: 2) %>
+    <%= display_error_for jar, :current_weight %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', jar %> |
 <%= link_to 'Back', jars_path %>

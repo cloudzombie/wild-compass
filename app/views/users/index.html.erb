@@ -12,9 +12,21 @@
     <% users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if can? :show, user %>
+          <%= link_to 'Show', user %>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :edit, user %>
+          <%= link_to 'Edit', edit_user_path(user) %>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :destroy, user %>
+          <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -5,7 +5,12 @@ module Weightable
   # Increases current weight
   #
   def increase_current_weight
-    self.current_weight += quantity
+    if initial_weight.nil? && current_weight.nil?
+      self.current_weight = quantity
+      self.initial_weight = quantity
+    else
+      self.current_weight += quantity
+    end
     self.quantity = 0.0
   end
 
@@ -36,7 +41,7 @@ module Weightable
                allow_blank: true,
                numericality: { greater_than_or_equal_to: 0.0 }
     
-    validates :quantiy,
+    validates :quantity,
                presence: false,
                allow_blank: true,
                numericality: { greater_than_or_equal_to: 0.0 }

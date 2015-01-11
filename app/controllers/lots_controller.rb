@@ -12,12 +12,15 @@ class LotsController < ApplicationController
   end
 
   expose(:bag) { Bag.new }
+
+  before_action :set_weight, only: [ :create, :update ]
+  before_action :set_quantity, only: [ :create, :update ]
   
   # Create new lot.
   def create 
     self.lot = Lot.new(lot_params)
-    
-    set_weight #  Set lot weight
+
+    Transaction.from( nil ).to( lot ).take( lot.weight ).by( current_user ).commit
 
     respond_to do |format|
       if lot.save
@@ -31,7 +34,7 @@ class LotsController < ApplicationController
   end
 
   # Update lot column.
-  def update 
+  def update
     respond_to do |format|
       if lot.update(lot_params)
         format.html { redirect_to lot, notice: 'Lot was successfully updated.' }
@@ -72,9 +75,19 @@ class LotsController < ApplicationController
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    # Set lot weight.
-    def set_weight 
-      lot.weight = lot.weight.to_d
-      lot.current_weight = lot.initial_weight = lot.weight
+    def set_weight
+      if lot.weight.nil?
+        lot.weight = 0.0
+      else
+        lot.weight = lot.weight.to_d
+      end
+    end
+
+    def set_quantity
+      if lot.quantity.nil?
+        lot.quantity = 0.0
+      else
+        lot.quantity = lot.quantity.to_d
+      end
     end
 end
