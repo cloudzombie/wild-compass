@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150110204246) do
+ActiveRecord::Schema.define(version: 20150111063912) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -22,6 +22,23 @@ ActiveRecord::Schema.define(version: 20150110204246) do
     t.decimal  "current_weight", precision: 16, scale: 4
     t.decimal  "initial_weight", precision: 16, scale: 4
     t.integer  "history_id"
+  end
+
+  create_table "brands", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "containers", force: true do |t|
+    t.string   "name"
+    t.decimal  "initial_weight"
+    t.decimal  "current_weight"
+    t.integer  "lot_id"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "cultivars", force: true do |t|
@@ -137,6 +154,8 @@ ActiveRecord::Schema.define(version: 20150110204246) do
     t.string   "info"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "brand_id"
+    t.string   "description"
   end
 
   create_table "user_group_roles", force: true do |t|

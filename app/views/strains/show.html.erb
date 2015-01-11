@@ -1,4 +1,14 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_strain_path(@strain) %> |
+<h4><%= strain %></h4>
+<table>
+  <tr>
+  	<th>Acronym : </th>
+  	<td><%= strain %></td>
+  </tr>
+  <tr>
+  	<th>Brand : </th>
+  	<td><%= strain.brand %></td>
+  </tr>
+  </table>
+<%= link_to 'Edit', edit_strain_path(strain) %> |
 <%= link_to 'Back', strains_path %>

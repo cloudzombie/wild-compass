@@ -6,7 +6,7 @@ class InventoryController < ApplicationController
   expose(:jars) { Jar.all }
   expose(:bags) { Bag.all }
   expose(:lots) { Lot.all }
-
+  expose(:containers) { Container.all }
   expose(:strains) { Strain.all }
   expose(:categories) { ['Trim', 'Buds'] }
 

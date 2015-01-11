@@ -8,6 +8,8 @@ class Strain < ActiveRecord::Base
 
   has_many :jars, through: :bags
 
+  belongs_to :brand
+
   def to_s
     "#{ acronym.upcase unless acronym.nil? }"
   end

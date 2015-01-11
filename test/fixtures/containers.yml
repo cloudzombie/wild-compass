@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  initial_weight: 9.99
+  current_weight: 9.99
+  lot_id: 1
+  category: MyString
+
+two:
+  name: MyString
+  initial_weight: 9.99
+  current_weight: 9.99
+  lot_id: 1
+  category: MyString

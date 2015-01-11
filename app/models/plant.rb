@@ -33,7 +33,9 @@ class Plant < ActiveRecord::Base
 
   belongs_to :lot
 
+  ### Container
 
+  belongs_to :container
 
   ### Utils
   

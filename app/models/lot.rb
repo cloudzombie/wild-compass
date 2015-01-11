@@ -21,13 +21,13 @@ class Lot < ActiveRecord::Base
 
   has_many :plants
 
+  ### Containers
 
+  has_many :containers
 
   ### Bags
   
   has_many :bags
-
-
 
   ### Jar
 

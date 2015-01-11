@@ -1,7 +1,7 @@
 class StrainsController < ApplicationController
 
-  expose(:strain, params: :strain_params) { id_param.nil? ? strain.new : strain.find(id_param) }
-  expose(:strains) { strain.order(sort_column + ' ' + sort_direction) }
+  expose(:strain, params: :strain_params) { id_param.nil? ? Strain.new : Strain.find(id_param) }
+  expose(:strains) { Strain.all }
   expose(:lot) { Lot.new }
 
   def create

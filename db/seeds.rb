@@ -14,6 +14,13 @@ statuses = Status.create([
   { name: :destroyed }
 ])
 
+brands = Brand.create([
+  { name: :"Good Morning"},
+  { name: :"Midday"},
+  { name: :"After Dinner"},
+  { name: :"Bedtime"}
+])
+
 formats = Format.create([
   { name: :"65g"     },
   { name: :"45g"	 },

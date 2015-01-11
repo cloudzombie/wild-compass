@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h4><%= lot.name %></h4>
+<h4><%= lot %></h4>
 <div class="row">
   <!--<div class="col-lg-2">
     <div class="box-header">
@@ -18,7 +18,7 @@
       <div class="box-body">
         <div class="row">
           <div class="col-lg-10">
-            <dl class="dl-horizontal description">
+            <dl class="dl-horizontal">
               <dt>ID :</dt>
               <dd><%= lot.id %></dd>
               <dt>Name :</dt>
@@ -47,6 +47,7 @@
                 <span class="sr-only"><%= percent_of_weight(lot) %>%</span>
               </div>
             </div>
+            <%= percent_of_weight(lot) %>%
           </div>
         </div>
       </div> 

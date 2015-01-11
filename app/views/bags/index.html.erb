@@ -8,14 +8,12 @@
                class="form-control input-sm pull-right"
                style="width: 150px;"
                placeholder="Search"/>
-
         <div class="input-group-btn">
           <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
         </div>
       </div>
     </div>
-  </div><!-- /.box-header -->
-
+  </div>
   <div class="box-body table-responsive no-padding">
     <table class="table table-hover">
       <tr>
@@ -30,13 +28,12 @@
         <th><%= sortable :lot_id, 'Origin' %></th>
         <th>Actions</th>
       </tr>
-            
       <% bags.each do |bag| %>
       <tr>
         <td></td>
         <td><%= bag %></td>
-        <td><%= bag.lot.strain unless bag.lot.nil? %></td>
-        <td><%= bag.lot.category unless bag.lot.nil? %></td>
+        <td><%= bag.container.lot.strain unless bag.container.lot.nil? %></td>
+        <td><%= bag.container.lot.category unless bag.container.lot.nil? %></td>
         <td>
           <%= number_with_precision((bag.initial_weight.nil? ? 0 : bag.initial_weight), precision: 2)%> g
         </td>
@@ -52,7 +49,7 @@
 
         <td>
           <%= link_to "#{fa_icon 'flask'} New Jar".html_safe, '#', class: 'btn-sm btn-flat btn-danger',
-              data: { toggle: 'modal', targer: '.new-jar' } %>
+              data: { toggle: 'modal', target: '.new-jar' } %>
           
           <%= link_to "#{fa_icon 'tag'} Show".html_safe, bag, class: "btn-sm btn-flat btn-warning" %>
           
