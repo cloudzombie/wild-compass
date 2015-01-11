@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150110065247) do
+ActiveRecord::Schema.define(version: 20150110204246) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -47,9 +47,11 @@ ActiveRecord::Schema.define(version: 20150110065247) do
     t.string   "source_type"
     t.integer  "target_id"
     t.string   "target_type"
-    t.integer  "quantity"
+    t.decimal  "quantity",    precision: 16, scale: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "event"
+    t.integer  "user_id"
   end
 
   add_index "history_lines", ["history_id"], name: "index_history_lines_on_history_id"

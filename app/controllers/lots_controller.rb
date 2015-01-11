@@ -16,7 +16,7 @@ class LotsController < ApplicationController
   # Create new lot.
   def create 
     self.lot = Lot.new(lot_params)
-
+    
     set_weight #  Set lot weight
 
     respond_to do |format|
