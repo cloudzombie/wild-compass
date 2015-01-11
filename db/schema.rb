@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20150111091919) do
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "lot_id"
     t.string   "name"
     t.integer  "origin"
     t.decimal  "current_weight", precision: 10, scale: 4
@@ -40,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150111091919) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category"
+
     t.integer  "history_id"
   end
 

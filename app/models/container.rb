@@ -1,11 +1,5 @@
 class Container < ActiveRecord::Base
 
-<<<<<<< HEAD
-	has_many :bags
-
-	belongs_to :lot
-
-=======
   include Weightable
   include Accountable
   include Storyable
@@ -19,16 +13,22 @@ class Container < ActiveRecord::Base
 
 	belongs_to :lot
 
-	has_many :bags
+  has_one :strain, through: :lot
 
-	has_many :plants
+  has_one :category, through: :lot
+
+	has_many :plants, through: :lot
+
+  has_many :bags
+
+  has_many :jars, through: :bags	
 
 	has_one :strain, through: :lot
+
 
 
 
   def to_s
     "#{ name.upcase unless name.nil? }"
   end
->>>>>>> c28d00f06842f7fdbad899deee6d794a17fdc542
 end

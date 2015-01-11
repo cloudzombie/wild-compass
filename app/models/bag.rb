@@ -23,7 +23,6 @@ class Bag < ActiveRecord::Base
 
   has_one :lot, through: :container
 
-
   
   def to_s
     "#{ name.upcase unless name.nil? }"
