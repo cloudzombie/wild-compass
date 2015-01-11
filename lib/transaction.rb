@@ -10,10 +10,10 @@ class Transaction
   end
 
   def take(quantity)
-    @source.quantity = quantity unless @source.nil?
-    @target.quantity = quantity unless @target.nil?
+    @source.quantity = quantity.to_d unless @source.nil?
+    @target.quantity = quantity.to_d unless @target.nil?
     
-    @quantity = quantity
+    @quantity = quantity.to_d
     
     self
   end

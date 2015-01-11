@@ -41,5 +41,15 @@ module Accountable
 
       total_weight
     end
+
+    def total_initial_weight
+      total_initial_weight = 0.0
+      
+      all.each do |accounted|
+        total_initial_weight += accounted.initial_weight
+      end
+
+      total_initial_weight
+    end
   end
 end

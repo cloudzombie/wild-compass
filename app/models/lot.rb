@@ -35,7 +35,6 @@ class Lot < ActiveRecord::Base
 
 
 
-
   def to_s
     "#{ name.upcase unless name.nil? }"
   end
