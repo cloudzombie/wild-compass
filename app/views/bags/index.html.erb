@@ -32,8 +32,8 @@
       <tr>
         <td></td>
         <td><%= bag %></td>
-        <td><%= bag.container.lot.strain unless bag.container.lot.nil? %></td>
-        <td><%= bag.container.lot.category unless bag.container.lot.nil? %></td>
+        <td><%= bag.strain unless bag.strain.nil? %></td>
+        <td><%= bag.category unless bag.category.nil? %></td>
         <td>
           <%= number_with_precision((bag.initial_weight.nil? ? 0 : bag.initial_weight), precision: 2)%> g
         </td>
