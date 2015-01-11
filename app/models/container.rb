@@ -13,11 +13,15 @@ class Container < ActiveRecord::Base
 
 	belongs_to :lot
 
-	has_many :bags
+  has_one :strain, through: :lot
 
-	has_many :plants
+  has_one :category, through: :lot
 
-	has_one :strain, through: :lot
+	has_many :plants, through: :lot
+
+  has_many :bags
+
+  has_many :jars, through: :bags	
 
 
 

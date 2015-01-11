@@ -1,8 +1,8 @@
 <%= form_for(bag) do |f| %>
   <div class="form-group">
-    <%= f.label :lot_id %>
-    <%= f.collection_select :lot_id, Lot.all, :id, :name, {}, selected: params[:lot], class: 'form-control' %>
-    <%= display_error_for bag, :lot_id %>
+    <%= f.label :container_id %>
+    <%= f.collection_select :container_id, Container.all, :id, :name, {}, selected: params[:container], class: 'form-control' %>
+    <%= display_error_for bag, :container_id %>
   </div>
 
   <div class="form-group">
@@ -15,16 +15,6 @@
     <%= f.label :weight %>
     <%= f.text_field :weight, class: 'form-control', value: number_with_precision(bag.initial_weight, precision: 2) %>
     <%= display_error_for bag, :weight %>
-  </div>
-
-  <div class="errors">
-    <%= display_error_for bag, :quantity %>
-    
-    <%= display_error_for bag.lot, :quantity unless bag.lot.nil? %>
-    <%= display_error_for bag.lot, :category unless bag.lot.nil? %>
-    <%= display_error_for bag.lot, :weight unless bag.lot.nil? %>
-    <%= display_error_for bag.lot, :name unless bag.lot.nil? %>
-    <%= display_error_for bag.lot, :strain unless bag.lot.nil? %>
   </div>
 
   <div class="actions">

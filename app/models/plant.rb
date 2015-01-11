@@ -6,36 +6,29 @@ class Plant < ActiveRecord::Base
 
 
 
-  ### Strain
+  scope :strains, -> (strain = nil) { where(strain: strain) }
+
+
 
   belongs_to :strain
 
-
-
-  ### Format
-
   belongs_to :format
 
-
-
-  ### Status
-
   belongs_to :status
-
-
-
-  ### RFID
 
   belongs_to :rfid
 
 
-  ### Lot
 
   belongs_to :lot
+  
+  has_many :containers, through: :lot
 
-  ### Container
+  has_many :bags, through: :lot
 
-  belongs_to :container
+  has_many :jars, through: :lot
+
+
 
   ### Utils
   

@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111204755) do
+ActiveRecord::Schema.define(version: 20150111215827) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "lot_id"
     t.string   "name"
     t.integer  "origin"
     t.decimal  "current_weight", precision: 10, scale: 4
@@ -37,7 +36,6 @@ ActiveRecord::Schema.define(version: 20150111204755) do
     t.decimal  "initial_weight"
     t.decimal  "current_weight"
     t.integer  "lot_id"
-    t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "history_id"

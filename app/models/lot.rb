@@ -11,27 +11,17 @@ class Lot < ActiveRecord::Base
 
 
 
-  ### Strain
-
   belongs_to :strain
 
 
-
-  ### Plants
-
+  
   has_many :plants
 
-  ### Containers
-
   has_many :containers
-
-  ### Bags
   
-  has_many :bags
+  has_many :bags, through: :containers
 
-  ### Jar
-
-  has_many :jars, through: :bag
+  has_many :jars, through: :containers
 
 
 

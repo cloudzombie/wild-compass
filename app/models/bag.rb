@@ -13,13 +13,13 @@ class Bag < ActiveRecord::Base
 
   belongs_to :container
 
-  has_many :jars
-
-  has_many :plants, through: :container
-
   has_one :strain, through: :container
 
   has_one :category, through: :container
+
+  has_many :jars
+
+  has_many :plants, through: :container
 
   has_one :lot, through: :container
 
