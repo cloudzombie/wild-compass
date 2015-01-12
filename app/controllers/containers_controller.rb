@@ -1,4 +1,5 @@
 class ContainersController < ApplicationController
+
   before_action :set_container, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -21,10 +22,20 @@ class ContainersController < ApplicationController
   end
 
   def create
-    @container = Container.new(container_params)
-    @container.save
-    respond_with(@container)
-  end
+    @container = Container.new(@container_params)
+    authorize! :create, @container
+
+    respond_to do |format|
+      if @container.save && @container.lot.save
+        
+        format.html { redirect_to @container, notice: 'Container was successfully created.' }
+        format.json { render :show, status: :created, location: @container }
+      else
+        format.html { render :new }
+        format.json { render json: @container.errors, status: :unprocessable_entity }
+      end
+    end
+  end 
 
   def update
     @container.update(container_params)

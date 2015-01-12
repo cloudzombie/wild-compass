@@ -72,7 +72,7 @@ class BagsController < ApplicationController
   end
 
   def set_container(container)
-    container_id = container.find_by(name: container)
+    container_id = container.where(name: container)
     self.container_id = container_id
   end
 

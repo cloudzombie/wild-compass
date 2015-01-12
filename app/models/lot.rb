@@ -12,8 +12,6 @@ class Lot < ActiveRecord::Base
 
 
   belongs_to :strain
-
-
   
   has_many :plants
 
