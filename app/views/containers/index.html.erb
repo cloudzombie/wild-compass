@@ -48,7 +48,7 @@
             <td><%= container.updated_at.to_s :short %></td>
             <td>
 
-             <a href="#" class="btn-sm btn-flat btn-success" data-toggle="modal" data-target="#<%= container.id %>"><i class="fa fa-tags"></i> Containers</a>
+             
               <%= link_to "#{fa_icon('tag')} New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-warning', data: { toggle: 'modal', target: '.new-bag' } %>
               <%= link_to "#{fa_icon('tags')} Show".html_safe, container, class: "btn-sm btn-flat btn-info" %>
               <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_container_path(container), class: "btn-sm btn-flat btn-warning" %>

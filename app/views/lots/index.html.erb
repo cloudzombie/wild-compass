@@ -66,7 +66,7 @@
     </div>
 
     <% lots.each do |lot| %>
-    <div class="modal fade new-bag" id="<%= lot.id %>" tabindex="-1" role="dialog" aria-labelledby="Containers" aria-hidden="true">
+    <div class="modal fade" id="<%= lot.id %>" tabindex="-1" role="dialog" aria-labelledby="Containers" aria-hidden="true">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <h3>Containers for <%= link_to "#{fa_icon('tags')} #{lot}".html_safe, lot, class: "btn btn-flat btn-info" %></h3>

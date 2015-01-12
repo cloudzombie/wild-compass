@@ -13,7 +13,7 @@
       <td></td>
       <td><%= bag %></td>
       <td><%= bag.strain unless bag.container.nil? %></td>
-      <td><%= bag.category unless bag.container.nil? %></td>
+      <td><%= bag.container.lot.category unless bag.container.nil? %></td>
       <td><%= number_with_precision bag.initial_weight, precision: 2 %></td>
       <td><%= number_with_precision bag.current_weight, precision: 2 %></td>
     </tr>

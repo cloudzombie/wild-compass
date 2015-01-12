@@ -22,7 +22,7 @@
                 <th><%= sortable :created_at %></th>
                 <th><%= sortable :updated_at %></th>
                 <th><%= sortable :format %></th>
-                <th><%= sortable :rfid, 'RFID' %></th>
+                <th>Lots :<%#= sortable :rfid, 'RFID' %></th>
                 <th>Actions</th>
             </tr>
             <% plants.each do |plant| %>
@@ -35,7 +35,8 @@
                 <td><%= plant.created_at.to_s :short %></td>
                 <td><%= plant.updated_at.to_s :short %></td>
                 <td><%= plant.format %></td>
-                <td><!-- <%= :RFID %> --></td>
+                <td><%= link_to "#{fa_icon('tags')} #{plant.lot}".html_safe, plant.lot, class: "btn-sm btn-flat btn-info" %>
+<!-- <%= :RFID %> --></td>
                 <td>
                     <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
                     <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>

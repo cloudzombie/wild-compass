@@ -23,6 +23,12 @@
     <%= f.collection_select(:status_id, Status.all, :id, :to_s, {}, { class: 'form-control' }) %>
     <%= display_error_for plant, :status %>
   </div>
+
+  <div class="form-group">
+    <%= f.label :lot %>
+    <%= f.collection_select(:lot_id, Lot.all, :id, :to_s, {}, { class: 'form-control' }) %>
+    <%= display_error_for plant, :lot %>
+  </div>
   
   <div class="actions">
     <%= f.submit :submit, class: 'btn btn-default' %>
