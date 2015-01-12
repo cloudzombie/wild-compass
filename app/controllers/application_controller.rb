@@ -11,4 +11,5 @@ class ApplicationController < ActionController::Base
     def access_denied
       redirect_to root_path, flash: { alert: "You are not authorized" }
     end
+	
 end
