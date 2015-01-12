@@ -119,30 +119,50 @@ namespace :csv do
     puts "Importing inventory data..."
 
     CSV.foreach(args.filename, { headers: false }) do |col|
-      plant = Plant.new(
-        strain: Strain.find_by(acronym: col[0].split('-').join.upcase),
-        id: col[2],
-        format: Format.find_by(name: col[3].split(' ').join.upcase),
-        name: "Plant-#{col[1]}",
-        current_weight: 0.0,
-        initial_weight: 0.0
-      )
+      # plant = Plant.new(
+      #   strain: Strain.find_by(acronym: col[0].split('-').join.upcase),
+      #   id: col[2],
+      #   format: Format.find_by(name: col[3].split(' ').join.upcase),
+      #   name: "Plant-#{col[1]}",
+      #   current_weight: 0.0,
+      #   initial_weight: 0.0
+      # )
+      # plant.save
 
-      plant.save
+      col[19].split(' ').each do |id|
+        if id.to_i > 0
+          if Container.exists? id
+            trim_container = Container.find id
+            trim_container.current_weight += 0.0
+            trim_container.initial_weight += ( col[20].nil? ? 0.0 : col[20].to_d )
+          else
+            trim_container = Container.new(
+              id: id, name: "Container-#{id.to_i}-T",
+              current_weight: 0.0,
+              initial_weight: ( col[20].nil? ? 0.0 : col[20].to_d )
+            )
+          end
+          trim_container.save
+        end
+      end
 
-      # if plant.save
-      #   container = Container.new(
-      #     name
-      #     current_weight
-      #     initial_weight
-      #   )
+      col[21].split(' ').each do |id|
+        if id.to_i > 0
+          if Container.exists? id
+            buds_container = Container.find id
+            buds_container.current_weight += 0.0
+            buds_container.initial_weight += ( col[22].nil? ? 0.0 : col[22].to_d )
+          else
+            buds_container = Container.new(
+              id: id, name: "Container-#{id.to_i}",
+              current_weight: 0.0,
+              initial_weight: ( col[22].nil? ? 0.0 : col[22].to_d )
+            )
+          end
+          buds_container.save
+        end
+      end
 
-      #   plant.container = container
-
-      #   if container.save && plant.save
-
-      #   end
-      # end
     end
   end
 end

@@ -33,8 +33,8 @@
             <td><%= check_box_tag :accept %></td>
             <td><%= container.lot %></td>
             <td><%= container %></td>
-            <td><%= container.strain %></td>
-            <td><%= container.category %></td>
+            <td><%= container.strain unless container.lot.nil? %></td>
+            <td><%= container.category unless container.lot.nil? %></td>
             <td>
               <%= number_with_precision(
                 (container.initial_weight.nil? ? 0 : container.initial_weight), precision: 2) %> g
