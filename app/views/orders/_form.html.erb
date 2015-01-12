@@ -19,18 +19,17 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :order_lines %>
-    <% f.fields_for :order_lines do |order_lines_fields| %>
+    <%= f.fields_for :order_lines do |order_lines_fields| %>
+    <div class="well">
+      <%= order_lines_fields.label :brand_id %>
+      <%= order_lines_fields.collection_select :brand_id, Brand.all, :id, :name, {} , class: 'form-control' %>
 
-      <%= f.label :product_id %>
-      <%= order_lines_fields.text_field :product_id, class: 'form-control' %>
+      <%= order_lines_fields.label :quantity %>
+      <%= order_lines_fields.text_field :quantity, class: 'form-control' %>
 
-      <%= f.label :product_type %>
-      <%= order_lines_fields.text_field :product_type, class: 'form-control' %>
-
-      <%= f.label :quantity %>
-      <%= order_lines_fields.text_field :quantity, class: 'form-control', value: 1 %>
-
+      <%= order_lines_fields.label :jar_id %>
+      <%= order_lines_fields.collection_select :jar_id, Jar.all, :id, :name, {} , class: 'form-control' %>
+    </div>
     <% end %>
     <%= display_error_for order, :order_lines %>
   </div>

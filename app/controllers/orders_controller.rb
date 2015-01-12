@@ -11,6 +11,10 @@ class OrdersController < ApplicationController
 
   respond_to :html, :json, :xml
 
+  def new
+    order.order_lines.build
+  end
+
   ##
   # Creates a new order from a POST HTTP request.
   # 
@@ -75,13 +79,13 @@ class OrdersController < ApplicationController
   end
 
   private
+
     def id_param
       params[:id]
     end
 
     def order_params
-      params.require(:order).permit(:customer, :shipped_at, :ordered_at,
-        order_lines_attributes: [ :product_type, :product_id, :quantity ])
+      params.require(:order).permit(:customer, :shipped_at, :ordered_at, order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ])
     end
 
     # Set column to sort in order
@@ -93,4 +97,5 @@ class OrdersController < ApplicationController
     def sort_direction
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
+
 end

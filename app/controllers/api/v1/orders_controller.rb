@@ -24,7 +24,7 @@ class API::V1::OrdersController < API::V1::APIController
   private
     
     def order_params
-      params.require(:order).permit(:customer, :shipped_at, :ordered_at, order_lines_attributes: [ :product_type, :product_id, :quantity ])
+      params.require(:order).permit(:customer, :shipped_at, :ordered_at, order_lines_attributes: [ :id, :brand_id, :product_type, :product_id, :quantity ])
     end
 
     def id_param
