@@ -9,7 +9,13 @@ class PlantsController < ApplicationController
     end
   end
 
-  expose(:plants) { Plant.all }
+  expose(:plants) do
+    if Plant.column_names.include? sort_column
+      Plant.order(sort_column + ' ' + sort_direction)
+    else
+      Plant.all?
+    end
+  end
   
   # Create new plant.
   def create 
