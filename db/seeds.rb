@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 statuses = Status.create([
+  { name: :harvest   },
   { name: :drying    },
   { name: :curing    },
-  { name: :harvest   },
   { name: :growing   },
   { name: :destroyed }
 ])

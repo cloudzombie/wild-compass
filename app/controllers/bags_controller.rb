@@ -66,13 +66,13 @@ class BagsController < ApplicationController
     end
   end
 
-  
+
 
   private
 
     def set_container(container)
-      container_id = container.find_by(name: container)
-      self.container_id = container_id
+      bag.container = Container.find_by(name: container)
+      bag.save
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

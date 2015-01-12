@@ -23,7 +23,6 @@
                 <th><%= :updated_at %></th>
                 <th>Format</th>
                 <th>RFID</th>
-                <th>Origin</th>
                 <th>Actions</th>
             </tr>
             <% plants.each do |plant| %>
@@ -32,19 +31,11 @@
                 <td><%= plant.id %></td>
                 <td><%= plant.name %></td>
                 <td><%= plant.strain %></td>
-                <td>
-                <%= form_for(plant) do |f| %>
-                  <div class="form-group">
-                    <%= f.collection_select(:status_id, Status.all, :id, :to_s, {}, { class: 'form-control' }) %>
-                    <%= display_error_for plant, :status %>
-                  </div>
-                <% end %>
-                </td>
+                <td><%= plant.status %></td>
                 <td><%= plant.created_at.to_s :short %></td>
                 <td><%= plant.updated_at.to_s :short %></td>
                 <td><%= plant.format %></td>
                 <td><!-- <%= :RFID %> --></td>
-                <td><!-- <%= :origin %> --></td>
                 <td>
                     <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
                     <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
