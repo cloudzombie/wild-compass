@@ -7,6 +7,7 @@ class Strain < ActiveRecord::Base
   has_many :bags, through: :lots
 
   has_many :jars, through: :bags
+  
 
   belongs_to :brand
 
