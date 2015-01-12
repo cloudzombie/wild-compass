@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   
-  resources :containers
-
-  resources :brands
-
   # Root redirect
   root to: 'root#redirect'
 
@@ -15,6 +11,9 @@ Rails.application.routes.draw do
   get 'inventory/download', to: 'inventory#download'
 
   # Users and sessions
+  devise_for :users, controllers: { sessions:       'users/sessions',
+                                    registrations:  'users/registrations' }
+  
   resources :users
 
   devise_scope :user do
@@ -22,28 +21,37 @@ Rails.application.routes.draw do
     delete 'sign_out', to: 'users/sessions#destroy'
   end
 
-  devise_for :users, controllers: { sessions:       'users/sessions',
-                                    registrations:  'users/registrations' }
-
-  # Users
-  # namespace :user do
-  #   resources :groups
-  #   # resources :roles
-  #   # namespace :group do
-  #   # resources :roles  
-  #   # end
-  # end
-
   # Resources
   resources :orders
   resources :plants
-
   resources :jars do
     member { get 'datamatrix' }
   end
-  
   resources :bags
   resources :lots
   resources :strains
-  
+  resources :brands
+  resources :containers
+
+  # API
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      # Auth
+      mount_devise_token_auth_for 'User', at: '/auth'
+      resources :users
+
+      # Resources
+      resources :orders
+      resources :plants
+      resources :jars do
+        member { get 'datamatrix' }
+      end
+      resources :bags
+      resources :lots
+      resources :strains
+      resources :brands
+      resources :containers
+    end
+  end
+
 end

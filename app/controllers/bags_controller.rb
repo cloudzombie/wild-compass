@@ -79,7 +79,7 @@ class BagsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
-      params.require(:bag).permit(:weight, :initial_weight, :lot_id, :name, :created_a, :current_weight)
+      params.require(:bag).permit(:weight, :initial_weight, :container_id, :name, :current_weight)
     end
 
     def id_param
@@ -88,7 +88,7 @@ class BagsController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id strain category name initial_weight current_weight created_at updated_at lot_id).include?(params[:sort]) ? params[:sort] : 'created_at'
+      %w(id strain category name initial_weight current_weight created_at updated_at container_id).include?(params[:sort]) ? params[:sort] : 'created_at'
     end
 
     # Set sort direction to ascending or descending.
@@ -120,6 +120,6 @@ class BagsController < ApplicationController
     end
 
     def acronym
-      Lot.find(bag_params[:lot_id]).strain.acronym
+      Bag.find(id_param).strain.acronym
     end
 end

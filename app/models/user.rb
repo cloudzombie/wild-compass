@@ -1,8 +1,20 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :token_authenticatable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+
+  # Temporary fix for token auth
+  before_save -> do
+    # self.uid = SecureRandom.uuid
+    skip_confirmation!
+  end
+  
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :trackable,
+         :validatable,
+         :omniauthable
+
+  include DeviseTokenAuth::Concerns::User
   
   belongs_to :role, class_name: 'User::Role', foreign_key: 'user_role_id'
   before_create :create_role, unless: :has_role?

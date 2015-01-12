@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111215827) do
+ActiveRecord::Schema.define(version: 20150111221106) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -197,9 +197,17 @@ ActiveRecord::Schema.define(version: 20150111215827) do
     t.string   "last_sign_in_ip"
     t.integer  "user_group_id"
     t.integer  "user_role_id"
+    t.string   "provider",               default: "", null: false
+    t.string   "uid",                    default: "", null: false
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.text     "tokens"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
 
 end
