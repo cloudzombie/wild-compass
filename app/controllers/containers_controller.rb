@@ -25,6 +25,8 @@ class ContainersController < ApplicationController
   def create
     @container = Container.new(@container_params)
     authorize! :create, @container
+    
+    Transaction.from( @container.lot ).to( @container ).take( @container.weight ).by( current_user ).commit
 
     respond_to do |format|
       if @container.save && @container.lot.save
@@ -54,6 +56,6 @@ class ContainersController < ApplicationController
     end
 
     def container_params
-      params.require(:container).permit(:name, :lot_id, :current_weight, :initial_weight)
+      params.require(:container).permit(:name, :lot_id, :current_weight, :initial_weight, :weight)
     end
 end
