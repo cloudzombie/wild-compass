@@ -15,14 +15,14 @@
         <table class="table table-hover">
             <tr>
                 <th><%= check_box_tag :accept %></th>
-                <th>ID</th>
-                <th><%= :name %></th>
-                <th>Strain :</th>
-                <th>Status :</th>
-                <th><%= :created_at %></th>
-                <th><%= :updated_at %></th>
-                <th>Format</th>
-                <th>RFID</th>
+                <th><%= sortable :id, 'ID' %></th>
+                <th><%= sortable :name %></th>
+                <th><%= sortable :strain %></th>
+                <th><%= sortable :status %></th>
+                <th><%= sortable :created_at %></th>
+                <th><%= sortable :updated_at %></th>
+                <th><%= sortable :format %></th>
+                <th><%= sortable :rfid, 'RFID' %></th>
                 <th>Actions</th>
             </tr>
             <% plants.each do |plant| %>

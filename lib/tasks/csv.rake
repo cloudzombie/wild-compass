@@ -111,4 +111,38 @@ namespace :csv do
       puts "Created bag:\n\tid:\t\t\t#{bag.id}\n\tinitial_weight:\t\t#{bag.initial_weight}\n\tweight:\t\t\t#{bag.weight}\n\torigin:\t\t\t#{bag.origin}\n\n"
     end
   end
+
+  desc "Import inventory data from csv file"
+  task :import_inventory, [ :filename ] => :environment do |t, args|
+    raise "No input CSV file specified" if args.filename.nil?
+
+    puts "Importing inventory data..."
+
+    CSV.foreach(args.filename, { headers: false }) do |col|
+      plant = Plant.new(
+        strain: Strain.find_by(acronym: col[0].split('-').join.upcase),
+        id: col[2],
+        format: Format.find_by(name: col[3].split(' ').join.upcase),
+        name: "Plant-#{col[1]}",
+        current_weight: 0.0,
+        initial_weight: 0.0
+      )
+
+      plant.save
+
+      # if plant.save
+      #   container = Container.new(
+      #     name
+      #     current_weight
+      #     initial_weight
+      #   )
+
+      #   plant.container = container
+
+      #   if container.save && plant.save
+
+      #   end
+      # end
+    end
+  end
 end
