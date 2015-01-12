@@ -16,9 +16,10 @@ ActiveRecord::Schema.define(version: 20150112053445) do
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lot_id"
     t.string   "name"
-    t.integer  "origin"
     t.decimal  "current_weight", precision: 16, scale: 4
+    t.integer  "origin"
     t.decimal  "initial_weight", precision: 16, scale: 4
     t.integer  "history_id"
     t.integer  "container_id"
@@ -78,8 +79,8 @@ ActiveRecord::Schema.define(version: 20150112053445) do
     t.datetime "updated_at"
     t.integer  "bag_id"
     t.string   "name"
-    t.integer  "origin"
     t.decimal  "current_weight", precision: 16, scale: 4
+    t.integer  "origin"
     t.decimal  "initial_weight", precision: 16, scale: 4
     t.integer  "history_id"
   end
@@ -88,9 +89,9 @@ ActiveRecord::Schema.define(version: 20150112053445) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.decimal  "current_weight", precision: 16, scale: 4
     t.string   "category"
     t.integer  "origin"
-    t.decimal  "current_weight", precision: 16, scale: 4
     t.decimal  "initial_weight", precision: 16, scale: 4
     t.integer  "plant_id"
     t.integer  "history_id"
