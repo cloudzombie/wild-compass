@@ -76,13 +76,13 @@
                 <th>Weight :</th>
                 <th>Category :</th>
               </tr>
-                <%# containers.where('lot_id = ?', lot.id).for_each do |container| %>
+                <% Container.where('lot_id = ?', lot.id).each do |container| %>
                 <tr>
-                  <td><%#= container %></td>
-                  <td><%#= container.current_weight %></td>
-                  <td><%#= container.category %></td>
+                  <td><%= container %></td>
+                  <td><%= container.current_weight %></td>
+                  <td><%= container.category %></td>
                 </tr>
-                <%# end %>
+                <% end %>
             </table>
         </div>
       </div>
