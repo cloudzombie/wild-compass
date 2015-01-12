@@ -15,7 +15,7 @@
       </div>
     </div>
         
-    <!-- search form -->
+    <!-- search form 
     <form action="#" method="get" class="sidebar-form">
       <div class="input-group">
         <input type="text" name="q" class="form-control" placeholder="Search..."/>
@@ -31,10 +31,10 @@
     </form>
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
-    <ul class="sidebar-menu">
+    <ul class="sidebar-menu"><!--
       <li class="<%= params[:controller] == 'dashboard' ? 'active' : nil %>">
         <%= link_to "#{fa_icon('dashboard')} <span>Dashboard</span>".html_safe, dashboard_path %> 
-      </li>
+      </li> -->
       <li class="<%= params[:controller] == 'inventory' ? 'active' : nil %>">
         <%= link_to "#{fa_icon('list')} <span>Inventory</span>".html_safe, inventory_path %>
       </li>
@@ -65,6 +65,9 @@
         <ul class="treeview-menu">
           <li class="<%= params[:controller] == 'users' ? 'active' : nil %>">
             <%= link_to "#{fa_icon('user')} <span>Users</span>".html_safe, users_path %>
+          </li>
+          <li class="<%= params[:controller] == 'users' ? 'active' : nil %>">
+            <%= link_to "#{fa_icon('door')} <span>Strains</span>".html_safe, strains_path %>
           </li>
           <!-- <li class="<%= params[:controller] == 'user/groups' ? 'active' : nil %>">
             <%# link_to "#{fa_icon('group')} <span>Groups</span>".html_safe, user_groups_path %>
