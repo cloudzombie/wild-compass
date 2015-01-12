@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+  before_action :filter_password
   
   expose(:user, params: :user_params) { id_param.nil? ? User.new : User.find(id_param) }
   expose(:users) { User.all }
@@ -48,6 +50,13 @@ class UsersController < ApplicationController
   end
 
   private
+    def filter_password
+      if params[:user][:password].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :user_role_id, :user_group_id)
