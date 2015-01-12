@@ -6,6 +6,7 @@ class ContainersController < ApplicationController
 
   def index
     @containers = Container.all
+    @container = Container.new
     respond_with(@containers)
   end
 
