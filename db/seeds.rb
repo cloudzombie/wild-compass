@@ -22,9 +22,9 @@ brands = Brand.create([
 ])
 
 formats = Format.create([
-  { name: :"65g"     },
-  { name: :"45g"	 },
-  { name: :"15g"	 },
+  { name: :"60g"     },
+  { name: :"45g"	   },
+  { name: :"15g"	   },
   { name: :"6L"      }
 ])
 
@@ -38,8 +38,7 @@ strains = Strain.create([
   { name: :"Space Queen", acronym: :"Sq"   },
   { name: :"Critical Cheese", acronym: :"Cc"     },
   { name: :"Norther Lights 5", acronym: :"NlxBb" ,info: :"Nl x Bb" },
-  { name: :"(Pmayi)", acronym: :"Pm1"   },
-  { name: :"(Pmayi)", acronym: :"Pm2"   },
+  { name: :"(Pmayi)", acronym: :"PM"   },
   { name: :"(Krona x Norther California", acronym: :"Ks"     },
   { name: :"(Cambodian x Mes Gold x Lumbo Gold x Thai x Maui)", acronym: :"Pg"  },
   { name: :"Socal Master Kush", acronym: :"Sc"   },

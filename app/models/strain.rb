@@ -11,6 +11,8 @@ class Strain < ActiveRecord::Base
 
   belongs_to :brand
 
+  before_save :upcase_acronym
+
   def to_s
     "#{ acronym.upcase unless acronym.nil? }"
   end
@@ -18,4 +20,10 @@ class Strain < ActiveRecord::Base
   def total_weight
     plants.total_weight + lots.total_weight + bags.total_weight + jars.total_weight
   end
+
+  private
+
+    def upcase_acronym
+      self.acronym = acronym.to_s.upcase
+    end
 end
