@@ -33,7 +33,7 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="<%= params[:controller] == 'dashboard' ? 'active' : nil %>">
-     <!--   <%= link_to "#{fa_icon('dashboard')} <span>Dashboard</span>".html_safe, dashboard_path %> -->
+        <%= link_to "#{fa_icon('dashboard')} <span>Dashboard</span>".html_safe, dashboard_path %> 
       </li>
       <li class="<%= params[:controller] == 'inventory' ? 'active' : nil %>">
         <%= link_to "#{fa_icon('list')} <span>Inventory</span>".html_safe, inventory_path %>
@@ -46,6 +46,9 @@
       </li>
       <li class="<%= params[:controller] == 'lots' ? 'active' : nil %>">
         <%= link_to "#{fa_icon('tags')} <span>Lots</span>".html_safe, lots_path %>
+      </li>
+      <li class="<%= params[:controller] == 'containers' ? 'active' : nil %>">
+        <%= link_to "#{fa_icon('dashboard')} <span>Containers</span>".html_safe, containers_path %> 
       </li>
       <li class="<%= params[:controller] == 'bags' ? 'active' : nil %>">
         <%= link_to "#{fa_icon('tag')} <span>Bags</span>".html_safe, bags_path %>

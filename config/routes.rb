@@ -21,17 +21,6 @@ Rails.application.routes.draw do
     delete 'sign_out', to: 'users/sessions#destroy'
   end
 
-  
-
-  # Users
-  # namespace :user do
-  #   resources :groups
-  #   # resources :roles
-  #   # namespace :group do
-  #   # resources :roles  
-  #   # end
-  # end
-
   # Resources
   resources :orders
   resources :plants
@@ -42,6 +31,7 @@ Rails.application.routes.draw do
   resources :lots
   resources :strains
   resources :brands
+  resources :containers
 
   # API
   namespace :api, defaults: { format: :json } do
@@ -60,6 +50,7 @@ Rails.application.routes.draw do
       resources :lots
       resources :strains
       resources :brands
+      resources :containers
     end
   end
 

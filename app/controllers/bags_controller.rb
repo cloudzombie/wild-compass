@@ -31,7 +31,7 @@ class BagsController < ApplicationController
     self.bag = Bag.new(bag_params)
     authorize! :create, bag
 
-    Transaction.from( bag.lot ).to( bag ).take( bag.weight ).by( current_user ).commit
+    Transaction.from( bag.container ).to( bag ).take( bag.weight ).by( current_user ).commit
 
     respond_to do |format|
       if bag.save && bag.lot.save
@@ -69,6 +69,11 @@ class BagsController < ApplicationController
       format.html { redirect_to bags_url, notice: 'Bag was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def set_container(container)
+    container_id = container.find_by(name: container)
+    self.container_id = container_id
   end
 
   private

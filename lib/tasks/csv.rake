@@ -75,4 +75,40 @@ namespace :csv do
       puts "Created order:\n\tcustomer:\t\t\t#{order.customer}\n\tshipped:\t\t\t#{order.shipped}\n\ttimestamp:\t\t\t#{order.timestamp}\n\n"
     end
   end
+
+  desc "Import bags data from csv file"
+  task :import_plants, [ :filename ] => :environment do |t, args|
+    raise "No input CSV file specified" if args.filename.nil?
+
+    puts "Importing bags data..."
+
+    CSV.foreach(args.filename, { headers: :first_row }) do |col|
+      
+      plant = Plant.create!(
+        initial_weight: col[2],
+        weight:         col[3],
+        lot_id:         col[4]  
+      )
+
+      puts "Created bag:\n\tid:\t\t\t#{bag.id}\n\tinitial_weight:\t\t#{bag.initial_weight}\n\tweight:\t\t\t#{bag.weight}\n\torigin:\t\t\t#{bag.origin}\n\n"
+    end
+  end
+
+  desc "Import bags data from csv file"
+  task :import_containers, [ :filename ] => :environment do |t, args|
+    raise "No input CSV file specified" if args.filename.nil?
+
+    puts "Importing bags data..."
+
+    CSV.foreach(args.filename, { headers: :first_row }) do |col|
+      
+      container = Container.create!(
+        initial_weight: col[2],
+        current_weight: col[3],
+        lot_id:         col[4]  
+      )
+
+      puts "Created bag:\n\tid:\t\t\t#{bag.id}\n\tinitial_weight:\t\t#{bag.initial_weight}\n\tweight:\t\t\t#{bag.weight}\n\torigin:\t\t\t#{bag.origin}\n\n"
+    end
+  end
 end

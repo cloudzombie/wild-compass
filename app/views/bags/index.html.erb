@@ -45,6 +45,7 @@
         <td><%= bag.updated_at.to_s :short %></td>
         
         <td>
+
           <% if can? :show, Lot %>
           <%= link_to "#{fa_icon('tag')} #{bag.lot}".html_safe, bag.lot, class: "btn-sm btn-flat btn-info" %>
           <% end %>

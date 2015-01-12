@@ -23,6 +23,9 @@ class Container < ActiveRecord::Base
 
   has_many :jars, through: :bags	
 
+	has_one :strain, through: :lot
+
+
 
 
   def to_s

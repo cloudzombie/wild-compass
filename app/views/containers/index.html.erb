@@ -1,0 +1,34 @@
+<h1>Listing containers</h1>
+<div class="row">
+<div class="col-lg-6">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Lot</th>
+      <th>Current weight</th>
+      <th>Initial weight</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @containers.each do |container| %>
+      <tr>
+        <td><%= container.name %></td>
+        <td><%= container.lot_id %></td>
+        <td><%= container.current_weight %></td>
+        <td><%= container.initial_weight %></td>
+        <td><%= link_to 'Show', container %></td>
+        <td><%= link_to 'Edit', edit_container_path(container) %></td>
+        <td><%= link_to 'Destroy', container, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+<br>
+<div class="row">
+<%= link_to 'New Container', new_container_path %>
+</div>

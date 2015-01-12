@@ -1,11 +1,11 @@
 class CreateContainers < ActiveRecord::Migration
   def change
+  	drop_table :containers
     create_table :containers do |t|
       t.string :name
-      t.decimal :initial_weight
-      t.decimal :current_weight
       t.integer :lot_id
-      t.string :category
+      t.decimal :current_weight
+      t.decimal :initial_weight
 
       t.timestamps
     end
