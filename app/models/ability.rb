@@ -5,6 +5,7 @@ class Ability
       can :manage, :all
       can :send_to_lab, Bag
     elsif user.manager?
+      can :manage, Brand
       can :manage, Plant
       can :manage, Lot
       can :manage, Jar
@@ -13,6 +14,7 @@ class Ability
       can :manage, User
       can :send_to_lab, Bag
     else
+      can :read, Brand
       can :read, Plant
       can :read, Lot
       can :read, Jar

@@ -1,13 +1,15 @@
 class OrderLine < ActiveRecord::Base
   belongs_to :order
 
-  belongs_to :product, polymorphic: true
+  belongs_to :brand
+
+  belongs_to :jar
 
   def name
-    "#{ product unless product.nil? }"
+    "#{ brand unless brand.nil? }"
   end
 
   def to_s
-    "#{ product.class unless product.nil? } : #{ name unless name.nil? } x#{ quantity }"
+    "#{ name unless name.nil? } (#{ jar unless jar.nil?}) --- #{ quantity }"
   end
 end

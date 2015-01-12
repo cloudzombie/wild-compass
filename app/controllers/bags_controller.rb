@@ -37,10 +37,8 @@ class BagsController < ApplicationController
       if bag.save && bag.lot.save
         
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
-        format.json { render :show, status: :created, location: bag }
       else
         format.html { render :new }
-        format.json { render json: bag.errors, status: :unprocessable_entity }
       end
     end
   end 
@@ -52,10 +50,8 @@ class BagsController < ApplicationController
     respond_to do |format|
       if bag.update(bag_params)
         format.html { redirect_to bag, notice: 'Bag was successfully updated.' }
-        format.json { render :show, status: :ok, location: bag }
       else
         format.html { render :edit }
-        format.json { render json: bag.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -67,16 +63,18 @@ class BagsController < ApplicationController
     bag.destroy
     respond_to do |format|
       format.html { redirect_to bags_url, notice: 'Bag was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
-  def set_container(container)
-    container_id = container.where(name: container)
-    self.container_id = container_id
-  end
+
 
   private
+
+    def set_container(container)
+      bag.container = Container.find_by(name: container)
+      bag.save
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
       params.require(:bag).permit(:weight, :initial_weight, :container_id, :name, :current_weight)

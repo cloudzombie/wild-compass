@@ -6,9 +6,9 @@ class Order < ActiveRecord::Base
 
   has_many :order_lines
   
-  accepts_nested_attributes_for :order_lines
-
-  validates :order_lines, presence: true
+  accepts_nested_attributes_for :order_lines,
+                                 allow_destroy: true,
+                                 reject_if: :all_blank
 
 
 
@@ -23,9 +23,9 @@ class Order < ActiveRecord::Base
   ## 
   # Computes order's total weight
   def total_weight
-    w = 0
+    w = 0.0
     order_lines.each do |line|
-      w += line.quantity.to_i * (line.product.nil? ? 0 : line.product.current_weight.to_i)
+      w += line.quantity * (line.jar.nil? ? 0.0 : line.jar.current_weight )
     end
     w
   end
