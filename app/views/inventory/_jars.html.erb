@@ -12,8 +12,8 @@
     <tr>
       <td></td>
       <td><%= jar %></td>
-      <td><%= jar.strain %></td>
-      <td><%= jar.category %></td>
+      <td><%= jar.strain unless bag.nil? %></td>
+      <td><%= jar.category unless bag.nil? %></td>
       <td><%= number_with_precision jar.initial_weight, precision: 2 %></td>
       <td><%= number_with_precision jar.current_weight, precision: 2 %></td>
     </tr>
