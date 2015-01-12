@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
   #
   def create
     self.order = Order.new(order_params)
+    Jar.new()
     order.save
     respond_with(order)
   end
