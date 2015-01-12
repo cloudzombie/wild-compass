@@ -32,6 +32,7 @@ class JarsController < ApplicationController
         format.json { render json: jar.errors, status: :unprocessable_entity }
       end
     end
+	
   end
   
   # Update jar column.
