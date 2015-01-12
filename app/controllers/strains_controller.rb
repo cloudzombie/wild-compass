@@ -41,7 +41,7 @@ class StrainsController < ApplicationController
  private
 
     def strain_params
-      params.require(:strain).permit(:name, :info, :acronym)
+      params.require(:strain).permit(:name, :info, :acronym, :brand_id)
     end
 
     def id_param

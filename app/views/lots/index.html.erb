@@ -69,20 +69,20 @@
     <div class="modal fade new-bag" id="<%= lot.id %>" tabindex="-1" role="dialog" aria-labelledby="Containers" aria-hidden="true">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
-          <h3>Containers for <%= lot.name %></h3>
+          <h3>Containers for <%= link_to "#{fa_icon('tags')} #{lot}".html_safe, lot, class: "btn btn-flat btn-info" %></h3>
             <table class="table table-hover">
               <tr>
                 <th>Name :</th>
                 <th>Weight :</th>
                 <th>Category :</th>
               </tr>
-                <%# containers.where('lot_id = ?', lot.id).for_each do |container| %>
+                <% Container.where('lot_id = ?', lot.id).each do |container| %>
                 <tr>
-                  <td><%#= container %></td>
-                  <td><%#= container.current_weight %></td>
-                  <td><%#= container.category %></td>
+                  <td><%= container %></td>
+                  <td><%= container.current_weight %></td>
+                  <td><%= container.category %></td>
                 </tr>
-                <%# end %>
+                <% end %>
             </table>
         </div>
       </div>
