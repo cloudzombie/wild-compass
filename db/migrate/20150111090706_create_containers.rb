@@ -1,6 +1,5 @@
 class CreateContainers < ActiveRecord::Migration
   def change
-  	drop_table :containers
     create_table :containers do |t|
       t.string :name
       t.integer :lot_id
