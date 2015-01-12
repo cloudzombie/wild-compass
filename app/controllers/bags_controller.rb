@@ -118,6 +118,6 @@ class BagsController < ApplicationController
     end
 
     def acronym
-      Bag.find(id_param).strain.acronym
+      #Bag.find(id_param).strain.acronym
     end
 end
