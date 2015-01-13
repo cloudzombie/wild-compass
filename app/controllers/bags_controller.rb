@@ -5,11 +5,11 @@ class BagsController < ApplicationController
   
   expose(:bags) do
     if Bag.column_names.include? sort_column
-      Bag.order(sort_column + ' ' + sort_direction)
+      Bag.order(sort_column + ' ' + sort_direction).page(params[:page])
     elsif sort_column == 'strain'
-      Bag.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym))
+      Bag.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
     elsif sort_column == 'category'
-      Bag.joins(:lot).merge(Lot.order(category: sort_direction.to_sym))
+      Bag.joins(:lot).merge(Lot.order(category: sort_direction.to_sym)).page(params[:page])
     end
   end
 

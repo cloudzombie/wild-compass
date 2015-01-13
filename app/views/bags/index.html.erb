@@ -8,6 +8,7 @@
                class="form-control input-sm pull-right"
                style="width: 150px;"
                placeholder="Search"/>
+               
         <div class="input-group-btn">
           <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
         </div>
@@ -32,22 +33,17 @@
       <% bags.each do |bag| %>
       <tr>
         <td></td>
-        <td><%= bag %></td>
-        <td><%# bag.strain unless bag.container.nil? %></td>
-        <td><%# bag.category unless bag.container.nil? %></td>
-        <td>
-          <%= number_with_precision((bag.initial_weight.nil? ? 0 : bag.initial_weight), precision: 2)%> g
-        </td>
-        <td>
-          <%= number_with_precision((bag.current_weight.nil? ? 0 : bag.current_weight), precision: 2)%> g
-        </td>
-        <td><%= bag.created_at.to_s :short %></td>
-        <td><%= bag.updated_at.to_s :short %></td>
+        <td><%= bag.try(:to_s) if bag.present? %></td>
+        <td><%= bag.try(:strain) if bag.present? %></td>
+        <td><%= bag.try(:category) if bag.present? %></td>
+        <td><%= weight_for bag.try(:initial_weight) if bag.present? %></td>
+        <td><%= weight_for bag.try(:current_weight) if bag.present? %></td>
+        <td><%= date_for bag.try(:created_at) if bag.present? %></td>
+        <td><%= date_for bag.try(:updated_at) if bag.present? %></td>
         
         <td>
-
           <% if can? :show, Lot %>
-          <%= link_to "#{fa_icon('tag')} #{bag.lot}".html_safe, bag.lot, class: "btn-sm btn-flat btn-info" %>
+          <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" %>
           <% end %>
         </td>
 
@@ -57,15 +53,15 @@
               data: { toggle: 'modal', target: '.new-jar' } %>
           <% end %>
 
-          <% if can? :show, bag %>
+          <% if can? :show, Bag %>
           <%= link_to "#{fa_icon 'tag'} Show".html_safe, bag, class: "btn-sm btn-flat btn-warning" %>
           <% end %>
 
-          <% if can? :send_to_lab, bag %>
+          <% if can? :send_to_lab, Bag %>
           <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: "btn-sm btn-flat btn-info" %>
           <% end %>
 
-          <% if can? :edit, bag %>
+          <% if can? :edit, Bag %>
           <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: "btn-sm btn-flat btn-warning" %>
           <% end %>
         </td>
