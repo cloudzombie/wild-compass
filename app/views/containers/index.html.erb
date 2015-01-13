@@ -21,38 +21,31 @@
         <table class="table table-hover">
           <tr>
             <th></th>
-            <th>Lot :</th>
-            <th>Name :</th>
-            <th>Strain :</th>
-            <th>Category :</th>
-            <th>Initial Weight :</th>
-            <th>Current Weight :</th>
+            <th><%= sortable :lot_id %></th>
+            <th><%= sortable :name %></th>
+            <th><%= sortable :strain %></th>
+            <th><%= sortable :category %></th>
+            <th><%= sortable :initial_weight %></th>
+            <th><%= sortable :current_weight %></th>
             <th>Actions :</th>
           </tr>
 
-          <% @containers.each do |container| %>
+          <% containers.each do |container| %>
           <tr>
-            <td><%= check_box_tag :accept %></td>
-            <td><%= container.lot %></td>
-            <td><%= container %></td>
-            <td><%# container.strain %></td>
-            <td><%# container.category %></td>
+            <td><%# check_box_tag :accept %></td>
+            <td><%= container.try(:lot) if container.present? %></td>
+            <td><%= container.try(:to_s) if container.present? %></td>
+            <td><%= container.try(:strain) if container.present? %></td>
+            <td><%= container.try(:category) if container.present? %></td>
+            <td><%= weight_for container.try(:initial_weight) if container.present? %></td>
+            <td><%= weight_for container.try(:current_weight) if container.present? %></td>
+            <td><%= date_for container.try(:created_at) %></td>
+            <td><%= date_for container.try(:updated_at) %></td>
             <td>
-              <%= number_with_precision(
-                (container.initial_weight.nil? ? 0 : container.initial_weight), precision: 2) %> g
-            </td>
-            <td>
-              <%= number_with_precision((container.current_weight.nil? ? 0 : container.current_weight), precision: 2) %> g
-            </td>
-            <td><%= container.created_at.to_s :short %></td>
-            <td><%= container.updated_at.to_s :short %></td>
-            <td>
-
              <a href="#" class="btn-sm btn-flat btn-success" data-toggle="modal" data-target="#<%= container.id %>"><i class="fa fa-tags"></i> Containers</a>
               <%= link_to "#{fa_icon('tag')} New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-warning', data: { toggle: 'modal', target: '.new-bag' } %>
               <%= link_to "#{fa_icon('tags')} Show".html_safe, container, class: "btn-sm btn-flat btn-info" %>
               <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_container_path(container), class: "btn-sm btn-flat btn-warning" %>
-
             </td>
           </tr>
           <% end %>

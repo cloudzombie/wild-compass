@@ -35,7 +35,6 @@ class BagsController < ApplicationController
 
     respond_to do |format|
       if bag.save && bag.lot.save
-        
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
       else
         format.html { render :new }

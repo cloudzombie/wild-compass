@@ -4,25 +4,25 @@
   <div class="col-lg-6">
 	<p>
 	  <strong>Name:</strong>
-	  <%= @container.name %>
+	  <%= container.name %>
 	</p>
 
 	<p>
 	  <strong>Lot:</strong>
-	  <%= @container.lot_id %>
+	  <%= container.lot_id %>
 	</p>
 
 	<p>
 	  <strong>Current weight:</strong>
-	  <%= @container.current_weight %>
+	  <%= container.current_weight %>
 	</p>
 
 	<p>
 	  <strong>Initial weight:</strong>
-	  <%= @container.initial_weight %>
+	  <%= container.initial_weight %>
 	</p>
   </div>
 </div>
 
-<%= link_to 'Edit', edit_container_path(@container) %> |
+<%= link_to 'Edit', edit_container_path(container) %> |
 <%= link_to 'Back', containers_path %>
