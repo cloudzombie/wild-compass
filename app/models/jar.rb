@@ -55,4 +55,23 @@ class Jar < ActiveRecord::Base
     "#{ name.upcase unless name.nil? }"
   end
 
+  private
+
+    alias_method :real_strain, :strain
+    alias_method :real_category, :category
+
+  public
+
+    def strain
+      self.real_strain
+    rescue
+      ''
+    end
+
+    def category
+      self.real_category
+    rescue
+      ''
+    end
+
 end
