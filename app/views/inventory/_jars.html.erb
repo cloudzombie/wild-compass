@@ -1,6 +1,5 @@
 <table class="table table-striped">
   <tr>
-    <th></th>
     <th>Name</th>
     <th>Strain</th>
     <th>Category</th>
@@ -10,12 +9,11 @@
 
   <% jars.each do |jar| %>
     <tr>
-      <td></td>
-      <td><%= jar %></td>
-      <td><%= jar.strain unless jar.bag.nil? %></td>
-      <td><%= jar.category unless jar.bag.nil? %></td>
-      <td><%= number_with_precision jar.initial_weight, precision: 2 %></td>
-      <td><%= number_with_precision jar.current_weight, precision: 2 %></td>
+      <td><%= jar.try(:to_s) if jar.present? %></td>
+      <td><%= jar.try(:strain) if jar.present? %></td>
+      <td><%= jar.try(:category) if jar.present? %></td>
+      <td><%= weight_for jar.try(:initial_weight) if jar.present? %></td>
+      <td><%= weight_for jar.try(:current_weight) if jar.present? %></td>
     </tr>
   <% end %>
 </table>

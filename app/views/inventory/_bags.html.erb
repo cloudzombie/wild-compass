@@ -1,6 +1,5 @@
 <table class="table table-striped">
   <tr>
-    <th></th>
     <th>Name</th>
     <th>Strain</th>
     <th>Category</th>
@@ -10,12 +9,11 @@
 
   <% bags.each do |bag| %>
     <tr>
-      <td></td>
-      <td><%= bag %></td>
-      <td><%# bag.strain unless bag.container.nil? %></td>
-      <td><%# bag.category unless bag.container.nil? %></td>
-      <td><%= number_with_precision bag.initial_weight, precision: 2 %></td>
-      <td><%= number_with_precision bag.current_weight, precision: 2 %></td>
+      <td><%= bag.try(:to_s) if bag.present? %></td>
+      <td><%= bag.try(:strain) if bag.present? %></td>
+      <td><%= bag.try(:category) if bag.present? %></td>
+      <td><%= weight_for bag.try(:initial_weight) if bag.present? %></td>
+      <td><%= weight_for bag.try(:current_weight) if bag.present? %></td>
     </tr>
   <% end %>
 </table>

@@ -16,11 +16,11 @@
     </th>
     <% strains.each do |strain| %>
     <td>
-      <%= number_with_precision weightable.categories(category).strains(strain).total_weight, precision: 2 %>
+      <%= weight_for weightable.categories(category).strains(strain).total_weight %>
     </td>
     <% end %>
     <td>
-      <%= number_with_precision weightable.categories(category).total_weight, precision: 2 %>
+      <%= weight_for weightable.categories(category).total_weight %>
     </td>
   </tr>
   <% end %>
@@ -31,11 +31,11 @@
     </th>
     <% strains.each do |strain| %>
     <td>
-      <%= number_with_precision weightable.strains(strain).total_weight, precision: 2 %>
+      <%= weight_for weightable.strains(strain).total_weight %>
     </td>
     <% end %>
     <td>
-      <%= number_with_precision weightable.total_weight, precision: 2 %>
+      <%= weight_for weightable.total_weight %>
     </td>
   </tr>
 </table>
