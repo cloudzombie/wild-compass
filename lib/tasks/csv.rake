@@ -83,9 +83,9 @@ namespace :csv do
       )
 
       begin
-        puts lot.save!
+        puts lot.save
       rescue
-        puts lot.errors.inspect
+
       end
 
     end
