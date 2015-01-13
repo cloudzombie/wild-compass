@@ -20,11 +20,7 @@
       <table class="table table-hover">
         <tr>
           <th>
-            <div class="checkbox">
-              <%= f.label :plants do %>
-                <%= f.check_box :plants %>
-              <% end %>
-            </div>
+            <%# checkbox %>
           </th>
           <th><%= sortable :id, 'ID' %></th>
           <th><%= sortable :name %></th>
@@ -40,11 +36,7 @@
         <% plants.each do |plant| %>
         <tr>
           <td>
-            <div class="checkbox">
-              <%= f.label :plant do %>
-                <%= f.check_box :plant %>
-              <% end %>
-            </div>
+            <%# checkbox %>
           </td>
           <td><%= plant.try(:id) if plant.present? %></td>
           <td><%= plant.try(:name) if plant.present? %></td>
@@ -73,6 +65,8 @@
 <div class="tableFooter">
   <%= link_to "#{fa_icon 'leaf'} New Plant".html_safe, '#', class: 'btn btn-flat btn-success',
       data: { toggle: 'modal', target: '.new-plant' } %>
+
+  <%= paginate plants %>
 </div>
 
 <%= render 'plants/modal/new' %>

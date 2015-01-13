@@ -11,9 +11,9 @@ class PlantsController < ApplicationController
 
   expose(:plants) do
     if Plant.column_names.include? sort_column
-      Plant.order(sort_column + ' ' + sort_direction)
+      Plant.order(sort_column + ' ' + sort_direction).page params[:page]
     else
-      Plant.all?
+      Plant.all.page params[:page]
     end
   end
   
