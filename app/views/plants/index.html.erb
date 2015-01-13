@@ -1,60 +1,78 @@
-  <div class="box box-solid box-success">
-    <div class="box-header">
-        <h3 class="box-title">Listing plants</h3>
-        <div class="box-tools">
-            <div class="input-group">
-                <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
-                <div class="input-group-btn">
-                    <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                </div>
-
-            </div>
+<div class="box box-solid box-success">
+  <div class="box-header">
+    <h3 class="box-title">Listing plants</h3>
+    <div class="box-tools">
+      <div class="input-group">
+        <input type="text"
+               name="table_search"
+               class="form-control input-sm pull-right"
+               style="width: 150px;"
+               placeholder="Search"/>
+        <div class="input-group-btn">
+          <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
         </div>
-    </div><!-- /.box-header -->
-    <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
-            <tr>
-                <th><%= check_box_tag :accept %></th>
-                <th><%= sortable :id, 'ID' %></th>
-                <th><%= sortable :name %></th>
-                <th><%= sortable :strain %></th>
-                <th><%= sortable :status %></th>
-                <th><%= sortable :created_at %></th>
-                <th><%= sortable :updated_at %></th>
-                <th><%= sortable :format %></th>
-                <th><%= sortable :rfid, 'RFID' %></th>
-                <th>Actions</th>
-            </tr>
-            <% plants.each do |plant| %>
-              <tr>
-                <td><%= check_box_tag :accept %></td>
-                <td><%= plant.id %></td>
-                <td><%= plant.name %></td>
-                <td><%= plant.strain %></td>
-                <td><%= plant.status %></td>
-                <td><%= plant.created_at.to_s :short %></td>
-                <td><%= plant.updated_at.to_s :short %></td>
-                <td><%= plant.format %></td>
-                <td><!-- <%= :RFID %> --></td>
-                <td>
-                    <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
-                    <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
-                </td>
-              </tr>
-            <% end %>            
-        </table>
-    </div><!-- /.box-body -->    
-  </div>
-    <div class="tableFooter">
-        
-        <a href="#" class="btn btn-flat btn-success" data-toggle="modal" data-target=".new-plant"><i class="fa fa-leaf"></i> New Plant</a>
+      </div>
     </div>
+  </div><!-- /.box-header -->
 
-<div class="modal fade new-plant" tabindex="-1" role="dialog" aria-labelledby="New Plant" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <h3>Create a new plant</h3>
-      <%= render 'plants/form' %>
-    </div>
-  </div>
+  <div class="box-body table-responsive no-padding">
+    <%= form_for :plants do |f| %>
+      <table class="table table-hover">
+        <tr>
+          <th>
+            <div class="checkbox">
+              <%= f.label :plants do %>
+                <%= f.check_box :plants %>
+              <% end %>
+            </div>
+          </th>
+          <th><%= sortable :id, 'ID' %></th>
+          <th><%= sortable :name %></th>
+          <th><%= sortable :strain %></th>
+          <th><%= sortable :status %></th>
+          <th><%= sortable :created_at %></th>
+          <th><%= sortable :updated_at %></th>
+          <th><%= sortable :format %></th>
+          <th><%= sortable :rfid, 'RFID' %></th>
+          <th>Actions</th>
+        </tr>
+      
+        <% plants.each do |plant| %>
+        <tr>
+          <td>
+            <div class="checkbox">
+              <%= f.label :plant do %>
+                <%= f.check_box :plant %>
+              <% end %>
+            </div>
+          </td>
+          <td><%= plant.try(:id) if plant.present? %></td>
+          <td><%= plant.try(:name) if plant.present? %></td>
+          <td><%= plant.try(:strain) if plant.present? %></td>
+          <td><%= plant.try(:status) if plant.present? %></td>
+          <td><%= date_for plant.try(:created_at) if plant.present? %></td>
+          <td><%= date_for plant.try(:updated_at) if plant.present? %></td>
+          <td><%= plant.try(:format) if plant.present? %></td>
+          <td><%= plant.try(:rfid) if plant.present? %></td>
+          <td>
+            <% if can? :show, plant %>
+            <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
+            <% end %>
+
+            <% if can? :edit, plant %>
+            <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div> 
 </div>
+
+<div class="tableFooter">
+  <%= link_to "#{fa_icon 'leaf'} New Plant".html_safe, '#', class: 'btn btn-flat btn-success',
+      data: { toggle: 'modal', target: '.new-plant' } %>
+</div>
+
+<%= render 'plants/modal/new' %>
