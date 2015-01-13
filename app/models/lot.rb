@@ -4,7 +4,7 @@ class Lot < ActiveRecord::Base
   include Accountable
   include Storyable
 
-  scope :strains, -> (strain = nil) { where(strain: strain) }
+  scope :strains, -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
   scope :categories, -> (category = nil) { where(category: category) }
   scope :trims,   -> { where(category: 'Trim') }
   scope :buds,    -> { where(category: 'Buds') }
@@ -29,5 +29,15 @@ class Lot < ActiveRecord::Base
   def to_s
     "#{ name.upcase unless name.nil? }"
   end
+
+  private
+
+    alias_method :real_strains, :strains
+
+  public
+
+    def strains
+      self.real_strains.join(' ')
+    end
 
 end

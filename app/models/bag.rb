@@ -6,7 +6,7 @@ class Bag < ActiveRecord::Base
 
   scope :trims,   -> { joins(:lot).merge(Lot.where(category: 'Trim')) }  
   scope :buds,    -> { joins(:lot).merge(Lot.where(category: 'Buds')) }
-  scope :strains, -> (strain = nil) { joins(:lot).merge(Lot.where(strain: strain)) }
+  scope :strains, -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
   scope :categories, -> (category = nil) { joins(:lot).merge(Lot.where(category: category)) }
 
   
@@ -17,7 +17,7 @@ class Bag < ActiveRecord::Base
 
   has_many :plants, through: :container
 
-  has_one :strain, through: :container
+  has_many :strains, through: :container
 
   has_one :category, through: :container
 
@@ -31,13 +31,13 @@ class Bag < ActiveRecord::Base
 
   private
 
-    alias_method :real_strain, :strain
+    alias_method :real_strains, :strains
     alias_method :real_category, :category
 
   public
 
-    def strain
-      self.real_strain
+    def strains
+      self.real_strains
     rescue
       ''
     end

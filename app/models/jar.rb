@@ -4,7 +4,7 @@ class Jar < ActiveRecord::Base
   include Accountable
   include Storyable
 
-  scope :strains, -> (strain = nil) { joins(:lot).merge(Lot.where(strain: strain)) }
+  scope :strains, -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
   scope :categories, -> (category = nil) { joins(:lot).merge(Lot.where(category: category)) }
   scope :trims,   -> { joins(:lot).merge(Lot.where(category: 'Trim')) }  
   scope :buds,    -> { joins(:lot).merge(Lot.where(category: 'Buds')) }
@@ -35,7 +35,7 @@ class Jar < ActiveRecord::Base
 
   has_one :lot, through: :bag
 
-  has_one :strain, through: :bag
+  has_one :strains, through: :bag
 
   has_one :category, through: :bag
 
@@ -57,13 +57,13 @@ class Jar < ActiveRecord::Base
 
   private
 
-    alias_method :real_strain, :strain
+    alias_method :real_strains, :strains
     alias_method :real_category, :category
 
   public
 
-    def strain
-      self.real_strain
+    def strains
+      self.real_strains
     rescue
       ''
     end

@@ -82,13 +82,14 @@
                 <th>Weight :</th>
                 <th>Category :</th>
               </tr>
-                <% Container.where('lot_id = ?', lot.id).each do |container| %>
-                <tr>
-                  <td><%= container %></td>
-                  <td><%= container.current_weight %></td>
-                  <td><%# container.category unless container.lot.nil? %></td>
-                </tr>
-                <% end %>
+
+              <% Container.where('lot_id = ?', lot.id).each do |container| %>
+              <tr>
+                <td><%= container.try(:to_s) if container.present? %></td>
+                <td><%= weight_for container.try(:current_weight) if container.present? %></td>
+                <td><%= container.try(:category) if container.present? %></td>
+              </tr>
+              <% end %>
             </table>
         </div>
       </div>

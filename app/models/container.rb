@@ -6,14 +6,14 @@ class Container < ActiveRecord::Base
 
   scope :trims,   -> { joins(:lot).merge(Lot.where(category: 'Trim')) }  
   scope :buds,    -> { joins(:lot).merge(Lot.where(category: 'Buds')) }
-  scope :strains, -> (strain = nil) { joins(:lot).merge(Lot.where(strain: strain)) }
+  scope :strains, -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
   scope :categories, -> (category = nil) { joins(:lot).merge(Lot.where(category: category)) }
 
 
 
 	belongs_to :lot
 
-  has_one :strain, through: :lot
+  has_many :strains, through: :lot
 
   has_one :category, through: :lot
 
