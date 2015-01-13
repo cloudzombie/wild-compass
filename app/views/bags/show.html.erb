@@ -1,52 +1,8 @@
 <h4><%= bag %></h4>
+
 <div class="row">
-  <div class="col-lg-6">
-    <div class="box box-solid box-warning">
-      <div class="box-header">
-      <i class="fa fa-tag"></i>
-      <h3 class="box-title">Description</h3>
-      </div> 
-      <div class="box-body">
-        <div class="row">
-          <div class="col-lg-10">
-            <dl class="dl-horizontal description">
-              <dt>ID :</dt>
-              <dd><%= bag.id %></dd>
-              <dt>Name :</dt>
-              <dd><%= "#{bag}"%></dd>
-              <dt>Strain :</dt>
-              <dd><%= bag.strain unless bag.lot.nil? %></dd>
-              <dt>Type :</dt>
-              <dd><%= bag.category unless bag.lot.nil? %></dd>
-              <dt>Initial Weight: </dt>
-              <dd>
-                <%= number_with_precision((bag.initial_weight.nil? ? 0 : bag.initial_weight), precision: 2) %> g
-              </dd>
-              <dt>Current Weight :</dt>
-              <dd>
-                <%= number_with_precision((bag.current_weight.nil? ? 0 : bag.current_weight), precision: 2) %> g
-              </dd>
-              <dt>Created At:</dt>
-              <dd><%= bag.created_at.to_s :short %></dd>
-              <dt>Updated At :</dt>
-              <dd><%= bag.updated_at.to_s :short %></dd> 
-            </dl>
-          </div>
-          <div class="col-lg-2">
-            <div class="progress vertical">
-              <div class="progress-bar progress-bar-yellow" role="progressbar" aria-valuenow="<%= percent_of_weight(bag) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(bag) %>%">
-                <span class="sr-only"><%= percent_of_weight(bag) %>%</span>
-              </div>
-            </div>
-            <span><%= percent_of_weight(bag) %>%</span>
-          </div>
-        </div>
-      </div> 
-    </div>
-  </div>
-
+  <%= render 'bags/show/description', described: bag %>
   <%= render 'bags/show/origin', origin: bag.lot %>
-
 </div>
 
 <%= render 'bags/show/history' %>

@@ -1,0 +1,49 @@
+<div class="col-lg-6">
+    <div class="box box-solid box-warning">
+      <div class="box-header">
+        <%= fa_icon 'tag' %><h3 class="box-title">Description</h3>
+      </div>
+
+      <div class="box-body">
+        <div class="row">
+          <div class="col-lg-10">
+            <dl class="dl-horizontal description">
+
+              <dt>ID :</dt>
+              <dd><%= described.try(:id) if described.present? %></dd>
+              
+              <dt>Name :</dt>
+              <dd><%= "#{described}" %></dd>
+              
+              <dt>Strain :</dt>
+              <dd><%= described.try(:strain) if described.present? %></dd>
+              
+              <dt>Type :</dt>
+              <dd><%= described.try(:category) if described.present? %></dd>
+              
+              <dt>Initial Weight: </dt>
+              <dd><%= weight_for described.try(:initial_weight) if described.present? %></dd>
+              
+              <dt>Current Weight :</dt>
+              <dd><%= weight_for described.try(:current_weight) if described.present? %></dd>
+              
+              <dt>Created At:</dt>
+              <dd><%= described.try(:created_at).to_s :short if described.present? %></dd>
+              
+              <dt>Updated At :</dt>
+              <dd><%= described.try(:updated_at).to_s :short if described.present? %></dd> 
+              
+            </dl>
+          </div>
+          <div class="col-lg-2">
+            <div class="progress vertical">
+              <div class="progress-bar progress-bar-yellow" role="progressbar" aria-valuenow="<%= percent_of_weight(described) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(described) %>%">
+                <span class="sr-only"><%= percent_of_weight(described) %>%</span>
+              </div>
+            </div>
+            <span><%= percent_of_weight(described) %>%</span>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>

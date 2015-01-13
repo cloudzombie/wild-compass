@@ -42,4 +42,8 @@ module ApplicationHelper
         flash_type.to_s
     end
   end
+
+  def weight_for(weight)
+    "#{number_with_precision((weight.try(:nil?) ? 0.0 : weight.try(:to_d)), precision: 2)} g"
+  end
 end
