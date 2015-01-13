@@ -74,6 +74,8 @@
 <div class="tableFooter">
   <%= link_to "#{fa_icon 'tag'} New Bag".html_safe, '#', class: 'btn btn-flat btn-warning',
       data: { toggle: 'modal', target: '.new-bag'} %>
+
+  <%= paginate bags %>
 </div>
 
 <%= render 'jars/modal/new', bag: bag %>
