@@ -1,13 +1,5 @@
-<p id="notice"><%= notice %></p>
-<h4><%= bag.name %></h4>
+<h4><%= bag %></h4>
 <div class="row">
-  <!--<div class="col-lg-2">
-    <div class="box-header">
-      <h3 class="box-title">Links</h3>
-    </div>
-    <a class="btn btn-block btn-danger" data-toggle="modal" data-target=".new-jar"><i class="fa fa-flask"></i> New Jar</a>
-    <%= link_to '<i class="fa fa-tags"></i> '.html_safe + bag.lot, bag.lot, class: "btn btn-block btn-info" %>
-  </div> -->
   <div class="col-lg-6">
     <div class="box box-solid box-warning">
       <div class="box-header">
@@ -23,9 +15,9 @@
               <dt>Name :</dt>
               <dd><%= "#{bag}"%></dd>
               <dt>Strain :</dt>
-              <dd><%= bag.lot.strain %></dd>
+              <dd><%= bag.strain unless bag.lot.nil? %></dd>
               <dt>Type :</dt>
-              <dd><%= bag.lot.category %></dd>
+              <dd><%= bag.category unless bag.lot.nil? %></dd>
               <dt>Initial Weight: </dt>
               <dd>
                 <%= number_with_precision((bag.initial_weight.nil? ? 0 : bag.initial_weight), precision: 2) %> g
@@ -63,40 +55,60 @@
           <div class="col-lg-10">
             <dl class="dl-horizontal description">
               <dt>ID :</dt>
-              <dd><%= bag.lot.id %></dd>
+              <dd><%= bag.lot.id unless bag.lot.nil? %></dd>
               <dt>Name :</dt>
               <dd><%= "#{bag.lot}" %></dd>
               <dt>Strain :</dt>
-              <dd><%= bag.lot.strain %></dd>
+              <dd><%= bag.lot.strain unless bag.lot.nil? %></dd>
               <dt>Type :</dt>
-              <dd><%= bag.lot.category %></dd>
+              <dd><%= bag.lot.category unless bag.lot.nil? %></dd>
               <dt>Initial Weight :</dt>
               <dd>
+                <% unless bag.lot.nil? %>
                 <%= number_with_precision((bag.lot.initial_weight.nil? ? 0 : bag.lot.initial_weight), precision: 2) %> g
+                <% end %>
               </dd>
               <dt>Current Weight :</dt>
               <dd>
+                <% unless bag.lot.nil? %>
                 <%= number_with_precision((bag.lot.current_weight.nil? ? 0 : bag.lot.current_weight), precision: 2) %> g
+                <% end %>
               </dd>
               <dt>Created At :</dt>
-              <dd><%= bag.lot.created_at.to_s :short %></dd>
+              <dd>
+                <% unless bag.lot.nil? %>
+                <%= bag.lot.created_at.to_s :short %>
+                <% end %>
+              </dd>
               <dt>Updated At :</dt>
-              <dd><%= bag.lot.updated_at.to_s :short %></dd>
+              <dd>
+                <% unless bag.lot.nil? %>
+                <%= bag.lot.updated_at.to_s :short %>
+                <% end %>
+              </dd>
             </dl>
           </div>
+          <% unless bag.lot.nil? %>
           <div class="col-lg-2">
             <div class="progress vertical">
-              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%= percent_of_weight(bag.lot) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(bag.lot) %>%">
+              <div class="progress-bar progress-bar-info"
+                   role="progressbar"
+                   aria-valuenow="<%= percent_of_weight(bag.lot) %>"
+                   aria-valuemin="0"
+                   aria-valuemax="100"
+                   style="height: <%= percent_of_weight(bag.lot) %>%">
                 <span class="sr-only"><%= percent_of_weight(bag.lot) %>%</span>
               </div>
             </div>
-          <span><%= percent_of_weight(bag) %>%</span>
-        </div>
-      </div> 
+            <span><%= percent_of_weight(bag) %>%</span>
+          </div>
+          <% end %>
+        </div> 
+      </div>
     </div>
   </div>
 </div>
-</div>
+
   <div class="row">
     <div class="col-lg-6">
       <div class="box box-solid box-danger">
@@ -118,7 +130,14 @@
             </tr>
             <div class="nav nav-pills" role="pilllist">
               <tr>
-                <td><a href="#id<%= bag.lot.id %>" aria-controls="id<%= bag.lot.id %>" role="tab" data-toggle="tab"><%= bag.lot %></a></td>
+                <td>
+                  <% unless bag.lot.nil? %>
+                  <a href="#id<%= bag.lot.id %>"
+                     aria-controls="id<%= bag.lot.id %>"
+                     role="tab"
+                     data-toggle="tab"><%= bag.lot %></a>
+                  <% end %>
+                </td>
                 <td><%= bag %></td>
                 <td><%= bag.initial_weight %></td>
                 <td><%= bag.created_at.to_s :short %></td>
@@ -147,8 +166,9 @@
         </div>
         <div class="box-body">
           <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade" id="id<%= bag.lot.id %>">
-            </div>
+            <% unless bag.lot.nil? %>
+            <div role="tabpanel" class="tab-pane fade" id="id<%= bag.lot.id %>"></div>
+            <% end %>
             <% bag.history.history_lines.each do |line| %>
               <div role="tabpanel" class="tab-pane fade" id="<%= line.id %>">
                 <table class="table table-hover">
