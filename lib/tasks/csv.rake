@@ -43,18 +43,51 @@ namespace :csv do
 
     puts "Importing lots data..."
 
-    CSV.foreach(args.filename, { headers: :first_row }) do |col|
+    CSV.foreach(args.filename, { headers: false }) do |col|
+
+      containers = []
+      col[1].split(' ').each do |id|
+        begin
+          containers << Container.find(id)
+        rescue
+          puts "CONTAINER NOT FOUND FOR #{id}"
+        end
+      end
+
+      strains = []
+      col[3].split(' ').each do |acronym|
+        begin
+          strains << Strain.find_by(acronym: acronym)
+        rescue
+          puts "STRAIN NOT FOUND FOR #{acronym}"
+        end
+      end
+
+      plants = []
+      strains.each do |strain|
+        strain.plants.each do |plant|
+          plants << plant
+        end
+      end
       
-      lot = Lot.create!(
+      weight = col[4].nil? ? 0.0 : col[4].to_d
+
+      lot = Lot.new(
         name:           col[0],
-        strain:         col[1],
+        containers:     containers,
         category:       col[2],
-        initial_weight: col[3],
-        weight:         col[4],
-        origin:         col[5]
+        strains:        strains,
+        plants:         plants,
+        initial_weight: weight,
+        current_weight: weight
       )
 
-      puts "Created lot:\n\tid:\t\t\t#{lot.id}\n\tname:\t\t\t#{lot.name}\n\tstrain:\t\t\t#{lot.strain}\n\tcategory:\t\t#{lot.category}\n\tinitial_weight:\t\t#{lot.initial_weight}\n\tweight:\t\t\t#{lot.weight}\n\torigin:\t\t\t#{lot.origin}\n\n"
+      begin
+        puts lot.save!
+      rescue
+        puts lot.errors.inspect
+      end
+
     end
   end
 
@@ -119,15 +152,15 @@ namespace :csv do
     puts "Importing inventory data..."
 
     CSV.foreach(args.filename, { headers: false }) do |col|
-      # plant = Plant.new(
-      #   strain: Strain.find_by(acronym: col[0].split('-').join.upcase),
-      #   id: col[2],
-      #   format: Format.find_by(name: col[3].split(' ').join.upcase),
-      #   name: "Plant-#{col[1]}",
-      #   current_weight: 0.0,
-      #   initial_weight: 0.0
-      # )
-      # plant.save
+      plant = Plant.new(
+        strain: Strain.find_by(acronym: col[0].split('-').join.upcase),
+        id: col[2],
+        format: Format.find_by(name: col[3].split(' ').join.upcase),
+        name: "Plant-#{col[1]}",
+        current_weight: 0.0,
+        initial_weight: 0.0
+      )
+      plant.save
 
       col[19].split(' ').each do |id|
         if id.to_i > 0
