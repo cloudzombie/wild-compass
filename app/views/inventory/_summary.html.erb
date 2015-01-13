@@ -16,11 +16,11 @@
     </th>
     <% strains.each do |strain| %>
     <td>
-      <%= weight_for weightable.categories(category).strains(strain).total_weight %>
+      <%= weight_for weightable.categories(category).strains(strain).total_weight, '' %>
     </td>
     <% end %>
     <td>
-      <%= weight_for weightable.categories(category).total_weight %>
+      <%= weight_for weightable.categories(category).total_weight, '' %>
     </td>
   </tr>
   <% end %>
@@ -31,11 +31,11 @@
     </th>
     <% strains.each do |strain| %>
     <td>
-      <%= weight_for weightable.strains(strain).total_weight %>
+      <%= weight_for weightable.strains(strain).total_weight, '' %>
     </td>
     <% end %>
     <td>
-      <%= weight_for weightable.total_weight %>
+      <%= weight_for weightable.total_weight, '' %>
     </td>
   </tr>
 </table>

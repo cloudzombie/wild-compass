@@ -48,11 +48,11 @@ module ApplicationHelper
     end
   end
 
-  def weight_for(weight)
+  def weight_for(weight, g = ' g')
     if weight.nil?
-      "0.0 g"
+      "0.00#{g}"
     else
-      "#{number_with_precision weight.to_d, precision: 2 } g"
+      "#{number_with_precision weight.to_d, precision: 2 }#{g}"
     end
   rescue
     ''

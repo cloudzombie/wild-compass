@@ -12,8 +12,8 @@
       <td><%= jar.try(:to_s) if jar.present? %></td>
       <td><%= jar.try(:strain) if jar.present? %></td>
       <td><%= jar.try(:category) if jar.present? %></td>
-      <td><%= weight_for jar.try(:initial_weight) if jar.present? %></td>
-      <td><%= weight_for jar.try(:current_weight) if jar.present? %></td>
+      <td><%= weight_for jar.try(:initial_weight), '' if jar.present? %></td>
+      <td><%= weight_for jar.try(:current_weight), '' if jar.present? %></td>
     </tr>
   <% end %>
 </table>

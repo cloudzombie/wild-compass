@@ -12,8 +12,8 @@
       <td><%= container.try(:to_s) if container.present? %></td>
       <td><%= container.try(:strain) if container.present? %></td>
       <td><%= container.try(:category) if container.present? %></td>
-      <td><%= weight_for container.try(:initial_weight) if container.present? %></td>
-      <td><%= weight_for container.try(:current_weight) if container.present? %></td>
+      <td><%= weight_for container.try(:initial_weight), '' if container.present? %></td>
+      <td><%= weight_for container.try(:current_weight), '' if container.present? %></td>
     </tr>
   <% end %>
 </table>
