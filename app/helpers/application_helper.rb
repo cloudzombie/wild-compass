@@ -44,6 +44,18 @@ module ApplicationHelper
   end
 
   def weight_for(weight)
-    "#{number_with_precision((weight.try(:nil?) ? 0.0 : weight.try(:to_d)), precision: 2)} g"
+    if weight.nil?
+      "0.0 g"
+    else
+      "#{number_with_precision weight.to_d, precision: 2 } g"
+    end
+  rescue
+    ''
+  end
+
+  def date_for(datetime)
+    datetime.to_s(:short)
+  rescue
+    ''
   end
 end

@@ -13,7 +13,7 @@
               <dd><%= described.try(:id) if described.present? %></dd>
               
               <dt>Name :</dt>
-              <dd><%= "#{described}" %></dd>
+              <dd><%= described.try(:to_s) %></dd>
               
               <dt>Strain :</dt>
               <dd><%= described.try(:strain) if described.present? %></dd>
@@ -21,28 +21,23 @@
               <dt>Type :</dt>
               <dd><%= described.try(:category) if described.present? %></dd>
               
-              <dt>Initial Weight: </dt>
+              <dt>Initial Weight :</dt>
               <dd><%= weight_for described.try(:initial_weight) if described.present? %></dd>
               
               <dt>Current Weight :</dt>
               <dd><%= weight_for described.try(:current_weight) if described.present? %></dd>
               
-              <dt>Created At:</dt>
-              <dd><%= described.try(:created_at).to_s :short if described.present? %></dd>
+              <dt>Created At :</dt>
+              <dd><%= date_for described.try(:created_at) if described.present? %></dd>
               
               <dt>Updated At :</dt>
-              <dd><%= described.try(:updated_at).to_s :short if described.present? %></dd> 
+              <dd><%= date_for described.try(:updated_at) if described.present? %></dd> 
               
             </dl>
           </div>
-          <div class="col-lg-2">
-            <div class="progress vertical">
-              <div class="progress-bar progress-bar-yellow" role="progressbar" aria-valuenow="<%= percent_of_weight(described) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(described) %>%">
-                <span class="sr-only"><%= percent_of_weight(described) %>%</span>
-              </div>
-            </div>
-            <span><%= percent_of_weight(described) %>%</span>
-          </div>
+
+          <%= render 'shared/progress_bar', weightable: described, color: 'yellow' %>
+
         </div>
       </div> 
     </div>
