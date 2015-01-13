@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-lg-6">
+    <div class="box box-solid box-danger">
+
+      <div class="box-header">
+        <%= fa_icon 'flask' %><h3 class="box-title">History</h3>
+      </div>
+
+      <div class="box-body">
+        <table class="table table-hover">
+        <div role="tabpanel"></div>
+          <tr>
+            <td>Source : </td>
+            <td>Target : </td>
+            <td>Quantity : </td>
+            <td>Timestamp : </td>
+            <td>User : </td>
+          </tr>
+          <div class="nav nav-pills" role="pilllist">
+            <tr>
+              <td>
+                <% if bag.lot.present? %>
+                <a href="#id<%= bag.lot.id %>"
+                   aria-controls="id<%= bag.lot.id %>"
+                   role="tab"
+                   data-toggle="tab"><%= bag.lot %></a>
+                <% end %>
+              </td>
+              <td><%= bag %></td>
+              <td><%= bag.initial_weight %></td>
+              <td><%= bag.created_at.to_s :short %></td>
+              <td><!--<%# bag.history.history_lines.first.user %>--></td>
+            </tr>
+            <% bag.history.history_lines.each do |line| %>
+            <% next if line.target == bag.lot %>
+              <tr>
+                <td><%= bag %></td>
+                <td><a href="#<%= line.id %>" aria-controls="<%= line.id %>" role="tab" data-toggle="tab"><%= line.target %></a></td>
+                <td><%= line.quantity %></td>
+                <td><%= line.created_at.to_s :short %></td>
+                <td><!--<%#  line.user %>--></td>
+              </tr>
+            <% end %>
+          </div>
+        </table>
+      </div> 
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="box box-solid box-danger">
+      <div class="box-header">
+        <i class="fa fa-flask"></i>
+        <h3 class="box-title">History</h3>
+      </div>
+      <div class="box-body">
+        <div class="tab-content">
+          <% unless bag.lot.nil? %>
+          <div role="tabpanel" class="tab-pane fade" id="id<%= bag.lot.id %>"></div>
+          <% end %>
+          <% bag.history.history_lines.each do |line| %>
+            <div role="tabpanel" class="tab-pane fade" id="<%= line.id %>">
+              <table class="table table-hover">
+                <div role="tabpanel">
+                  <tr>
+                    <% line.target.history.history_lines.each do |subline| %>
+                    <td><%= subline.source %></td>
+                    <td><%= subline.target %></td>
+                    <td><%= subline.quantity %> g</td>
+                    <td><%= subline.created_at.to_s :short %></td>
+                    <% end %>
+                  </tr>
+                </div>
+              </table>
+            </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

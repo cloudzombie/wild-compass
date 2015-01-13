@@ -1,0 +1,64 @@
+<div class="col-lg-6">
+  <div class="box box-solid box-info">
+    <div class="box-header">
+      <%= fa_icon 'tags' %><h3 class="box-title">Origin</h3>
+    </div>
+
+    <div class="box-body">
+      <div class="row">
+        <div class="col-lg-10">
+
+          <dl class="dl-horizontal description">
+            <dt>ID :</dt>
+            <dd><%= origin.id if origin.present? %></dd>
+            <dt>Name :</dt>
+            <dd><%= "#{origin}" %></dd>
+            <dt>Strain :</dt>
+            <dd><%= origin.strain if origin.present? %></dd>
+            <dt>Type :</dt>
+            <dd><%= origin.category if origin.present? %></dd>
+            <dt>Initial Weight :</dt>
+            <dd>
+              <% if origin.present? %>
+              <%= number_with_precision((origin.initial_weight.nil? ? 0 : origin.initial_weight), precision: 2) %> g
+              <% end %>
+            </dd>
+            <dt>Current Weight :</dt>
+            <dd>
+              <% if origin.present? %>
+              <%= number_with_precision((origin.current_weight.nil? ? 0 : origin.current_weight), precision: 2) %> g
+              <% end %>
+            </dd>
+            <dt>Created At :</dt>
+            <dd>
+              <% if origin.present? %>
+              <%= origin.created_at.to_s :short %>
+              <% end %>
+            </dd>
+            <dt>Updated At :</dt>
+            <dd>
+              <% if origin.present? %>
+              <%= origin.updated_at.to_s :short %>
+              <% end %>
+            </dd>
+          </dl>
+        </div>
+        <% if origin.present? %>
+        <div class="col-lg-2">
+          <div class="progress vertical">
+            <div class="progress-bar progress-bar-info"
+                 role="progressbar"
+                 aria-valuenow="<%= percent_of_weight(origin) %>"
+                 aria-valuemin="0"
+                 aria-valuemax="100"
+                 style="height: <%= percent_of_weight(origin) %>%">
+              <span class="sr-only"><%= percent_of_weight(origin) %>%</span>
+            </div>
+          </div>
+          <span><%= percent_of_weight(origin) %>%</span>
+        </div>
+        <% end %>
+      </div> 
+    </div>
+  </div>
+</div>
