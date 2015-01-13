@@ -12,8 +12,13 @@ module ApplicationHelper
     end
   end
 
-  def percent_of_weight(object)
-    object.current_weight.to_f / object.initial_weight.to_f * 100
+  def percent_of_weight(weightable)
+    number_with_precision(
+      weightable.try(:current_weight).to_d / weightable.try(:initial_weight).to_d * 100,
+      precision: 2
+    )
+  rescue
+    '0.00'
   end
 
 

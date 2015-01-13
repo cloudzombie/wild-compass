@@ -1,44 +1,44 @@
 <div class="col-lg-6">
-    <div class="box box-solid box-warning">
-      <div class="box-header">
-        <%= fa_icon 'tag' %><h3 class="box-title">Description</h3>
-      </div>
-
-      <div class="box-body">
-        <div class="row">
-          <div class="col-lg-10">
-            <dl class="dl-horizontal description">
-
-              <dt>ID :</dt>
-              <dd><%= described.try(:id) if described.present? %></dd>
-              
-              <dt>Name :</dt>
-              <dd><%= described.try(:to_s) %></dd>
-              
-              <dt>Strain :</dt>
-              <dd><%= described.try(:strain) if described.present? %></dd>
-              
-              <dt>Type :</dt>
-              <dd><%= described.try(:category) if described.present? %></dd>
-              
-              <dt>Initial Weight :</dt>
-              <dd><%= weight_for described.try(:initial_weight) if described.present? %></dd>
-              
-              <dt>Current Weight :</dt>
-              <dd><%= weight_for described.try(:current_weight) if described.present? %></dd>
-              
-              <dt>Created At :</dt>
-              <dd><%= date_for described.try(:created_at) if described.present? %></dd>
-              
-              <dt>Updated At :</dt>
-              <dd><%= date_for described.try(:updated_at) if described.present? %></dd> 
-              
-            </dl>
-          </div>
-
-          <%= render 'shared/progress_bar', weightable: described, color: 'yellow' %>
-
-        </div>
-      </div> 
+  <div class="box box-solid box-warning">
+    <div class="box-header">
+      <%= fa_icon 'tag' %><h3 class="box-title">Description</h3>
     </div>
+
+    <div class="box-body">
+      <div class="row">
+        <div class="col-lg-10">
+          <dl class="dl-horizontal description">
+
+            <dt>ID :</dt>
+            <dd><%= described.try(:id) if described.present? %></dd>
+            
+            <dt>Name :</dt>
+            <dd><%= described.try(:to_s) %></dd>
+            
+            <dt>Strain :</dt>
+            <dd><%= described.try(:strain) if described.present? %></dd>
+            
+            <dt>Type :</dt>
+            <dd><%= described.try(:category) if described.present? %></dd>
+            
+            <dt>Initial Weight :</dt>
+            <dd><%= weight_for described.try(:initial_weight) if described.present? %></dd>
+            
+            <dt>Current Weight :</dt>
+            <dd><%= weight_for described.try(:current_weight) if described.present? %></dd>
+            
+            <dt>Created At :</dt>
+            <dd><%= date_for described.try(:created_at) if described.present? %></dd>
+            
+            <dt>Updated At :</dt>
+            <dd><%= date_for described.try(:updated_at) if described.present? %></dd> 
+            
+          </dl>
+        </div>
+
+        <%= render 'shared/progress_bar', weightable: described, color: 'yellow' %>
+
+      </div>
+    </div> 
   </div>
+</div>
