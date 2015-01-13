@@ -11,9 +11,12 @@ class Lot < ActiveRecord::Base
 
 
 
-  belongs_to :strain
-  
   has_many :plants
+
+  has_many :strains, through: :plants
+  
+  
+
 
   has_many :containers
   
