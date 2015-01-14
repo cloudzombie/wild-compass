@@ -51,6 +51,8 @@ module ApplicationHelper
   def weight_for(weight, g = ' g')
     if weight.nil?
       "0.00#{g}"
+    elsif weight = 'ERROR'
+      'ERROR'
     else
       "#{number_with_precision weight.to_d, precision: 2 }#{g}"
     end

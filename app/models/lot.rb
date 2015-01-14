@@ -15,10 +15,11 @@ class Lot < ActiveRecord::Base
 
   has_many :strains, through: :plants
   
-  
 
 
-  has_many :containers
+  has_and_belongs_to_many :containers
+
+
   
   has_many :bags, through: :containers
 

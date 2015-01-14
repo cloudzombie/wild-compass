@@ -21,11 +21,7 @@ class Bag < ActiveRecord::Base
 
   
 
-  ### We need to use delegate, category is not a model...
-
   delegate :category, to: :container, prefix: false, allow_nil: true
-
-  # has_one :category, through: :container
 
 
 

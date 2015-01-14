@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113131126) do
+ActiveRecord::Schema.define(version: 20150114144241) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 20150113131126) do
     t.datetime "updated_at"
     t.integer  "history_id"
   end
+
+  create_table "containers_lots", force: true do |t|
+    t.integer "lot_id"
+    t.integer "container_id"
+  end
+
+  add_index "containers_lots", ["container_id"], name: "index_containers_lots_on_container_id"
+  add_index "containers_lots", ["lot_id"], name: "index_containers_lots_on_lot_id"
 
   create_table "cultivars", force: true do |t|
     t.datetime "created_at"
