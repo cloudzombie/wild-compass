@@ -23,7 +23,7 @@
               <dd><%= strains_for lot.try(:strains) if lot.present? %></dd>
               
               <dt>Type :</dt>
-              <dd><%= lot.try(:category) if lot.present? %></dd>
+              <dd><%= category_for lot.try(:category) if lot.present? %></dd>
               
               <dt>Initial Weight : </dt>
               <dd><%= weight_for lot.try(:initial_weight) if lot.present? %></dd>

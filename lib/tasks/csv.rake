@@ -76,7 +76,6 @@ namespace :csv do
         name:           col[0],
         containers:     containers,
         category:       col[2],
-        strains:        strains,
         plants:         plants,
         initial_weight: weight,
         current_weight: weight
@@ -152,6 +151,10 @@ namespace :csv do
     puts "Importing inventory data..."
 
     CSV.foreach(args.filename, { headers: false }) do |col|
+
+      plant, buds_container, trim_container = nil
+      next unless col[2].to_i > 0  || col[19].to_i > 0 || col[21].to_i > 0 || !col[2].nil? || !col[19].nil? || !col[21].nil?
+
       plant = Plant.new(
         strain: Strain.find_by(acronym: col[0].split('-').join.upcase),
         id: col[2],
@@ -194,6 +197,12 @@ namespace :csv do
           end
           buds_container.save
         end
+      end
+
+      begin
+        puts "Plant id: #{plant.id} -->> Buds Container: #{buds_container.id} --- Trim Container: #{trim_container.id}"
+      rescue
+        puts "Destroyed"
       end
 
     end

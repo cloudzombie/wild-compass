@@ -36,7 +36,7 @@
             <td><%= check_box_tag :accept %></td>
             <td><%= lot.try(:to_s) if lot.present? %></td>
             <td><%= strains_for lot.try(:strains) if lot.present? %></td>
-            <td><%= lot.try(:category) if lot.present? %></td>
+            <td><%= category_for lot.try(:category) if lot.present? %></td>
             <td><%= weight_for lot.try(:initial_weight) if lot.present? %></td>
             <td><%= weight_for lot.try(:current_weight) if lot.present? %></td>
             <td><%= date_for lot.try(:created_at) if lot.present? %></td>

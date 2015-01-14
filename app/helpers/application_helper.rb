@@ -65,7 +65,22 @@ module ApplicationHelper
   end
 
   def strains_for(strains)
-    strains.join(' ')
+    output = ''
+    strains.uniq.each do |strain|
+      output << "<small class=\"label label-default\">#{strain}</small> "
+    end
+    output.html_safe
+  rescue
+    ''
+  end
+
+  def category_for(category)
+    case category.downcase.to_sym
+    when :trim
+      "<small class=\"label label-primary\">#{category}</small>".html_safe
+    when :buds
+      "<small class=\"label label-info\">#{category}</small>".html_safe
+    end
   rescue
     ''
   end
