@@ -23,7 +23,7 @@
             <th></th>
             <th><%= sortable :lot_id %></th>
             <th><%= sortable :name %></th>
-            <th><%= sortable :strain %></th>
+            <th><%= sortable :strains %></th>
             <th><%= sortable :category %></th>
             <th><%= sortable :initial_weight %></th>
             <th><%= sortable :current_weight %></th>
@@ -37,7 +37,7 @@
             <td><%# check_box_tag :accept %></td>
             <td><%= container.try(:lot) if container.present? %></td>
             <td><%= container.try(:to_s) if container.present? %></td>
-            <td><%= container.try(:strain) if container.present? %></td>
+            <td><%= strains_for container.try(:strains) if container.present? %></td>
             <td><%= container.try(:category) if container.present? %></td>
             <td><%= weight_for container.try(:initial_weight) if container.present? %></td>
             <td><%= weight_for container.try(:current_weight) if container.present? %></td>

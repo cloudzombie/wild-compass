@@ -63,4 +63,10 @@ module ApplicationHelper
   rescue
     ''
   end
+
+  def strains_for(strains)
+    strains.join(' ')
+  rescue
+    ''
+  end
 end

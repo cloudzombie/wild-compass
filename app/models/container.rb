@@ -15,15 +15,21 @@ class Container < ActiveRecord::Base
 
   has_many :strains, through: :lot
 
-  has_one :category, through: :lot
 
-	has_many :plants, through: :lot
+
+  ### We need to use delegate, category is not a model...
+
+  delegate :category, to: :lot, prefix: false, allow_nil: true
+
+  # has_one :category, through: :lot
+
+	
+
+  has_many :plants, through: :lot
 
   has_many :bags
 
   has_many :jars, through: :bags	
-
-	has_one :strain, through: :lot
 
 
 
@@ -33,13 +39,13 @@ class Container < ActiveRecord::Base
 
   private
 
-    alias_method :real_strain, :strain
+    alias_method :real_strains, :strains
     alias_method :real_category, :category
 
   public
 
-    def strain
-      self.real_strain
+    def strains
+      self.real_strains
     rescue
       ''
     end

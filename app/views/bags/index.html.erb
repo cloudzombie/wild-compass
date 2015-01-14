@@ -21,7 +21,7 @@
       <tr>
         <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
         <th><%= sortable :name, "ID" %></th>
-        <th><%= sortable :strain %></th>
+        <th><%= sortable :strains %></th>
         <th><%= sortable :category %></th>
         <th><%= sortable :initial_weight %></th>
         <th><%= sortable :current_weight %></th>
@@ -34,7 +34,7 @@
       <tr>
         <td></td>
         <td><%= bag.try(:to_s) if bag.present? %></td>
-        <td><%= bag.try(:strain) if bag.present? %></td>
+        <td><%= strains_for bag.try(:strains) if bag.present? %></td>
         <td><%= bag.try(:category) if bag.present? %></td>
         <td><%= weight_for bag.try(:initial_weight) if bag.present? %></td>
         <td><%= weight_for bag.try(:current_weight) if bag.present? %></td>

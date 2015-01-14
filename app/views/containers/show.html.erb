@@ -1,26 +1,10 @@
-<p id="notice"><%= notice %></p>
+<%= container.try(:to_s) if container.present? %>
 
 <div class="row">
   <div class="col-lg-6">
-	<p>
-	  <strong>Name:</strong>
-	  <%= container.name %>
-	</p>
-
-	<p>
-	  <strong>Lot:</strong>
-	  <%= container.lot_id %>
-	</p>
-
-	<p>
-	  <strong>Current weight:</strong>
-	  <%= container.current_weight %>
-	</p>
-
-	<p>
-	  <strong>Initial weight:</strong>
-	  <%= container.initial_weight %>
-	</p>
+  	<% container.attributes.each do |name, value| %>
+		<p><strong><%= name.titleize %> :</strong> <%= container.try(name.to_sym) %></p>
+		<% end %>
   </div>
 </div>
 

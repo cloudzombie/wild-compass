@@ -19,7 +19,15 @@ class Bag < ActiveRecord::Base
 
   has_many :strains, through: :container
 
-  has_one :category, through: :container
+  
+
+  ### We need to use delegate, category is not a model...
+
+  delegate :category, to: :container, prefix: false, allow_nil: true
+
+  # has_one :category, through: :container
+
+
 
   has_one :lot, through: :container
 

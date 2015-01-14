@@ -37,7 +37,7 @@ class Lot < ActiveRecord::Base
   public
 
     def strains
-      self.real_strains.join(' ')
+      self.real_strains
     end
 
 end
