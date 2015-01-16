@@ -37,6 +37,12 @@ class Lot < ActiveRecord::Base
 
   public
 
+    def strain
+      lots.map(&:strains).uniq.first
+    rescue
+      ''
+    end
+
     def strains
       self.real_strains
     rescue

@@ -22,7 +22,7 @@
           <tr>
             <th><%= check_box_tag :accept %></th>
             <th><%= sortable :name, "ID" %></th>
-            <th><%= sortable :strains %></th>
+            <th><%= sortable :strain %></th>
             <th><%= sortable :category %></th>
             <th><%= sortable :initial_weight %></th>
             <th><%= sortable :current_weight %></th>
@@ -35,7 +35,7 @@
           <tr>
             <td><%= check_box_tag :accept %></td>
             <td><%= lot.try(:to_s) if lot.present? %></td>
-            <td><%= strains_for lot.try(:strains) if lot.present? %></td>
+            <td><%= strain_for lot.try(:strain) if lot.present? %></td>
             <td><%= category_for lot.try(:category) if lot.present? %></td>
             <td><%= weight_for lot.try(:initial_weight) if lot.present? %></td>
             <td><%= weight_for lot.try(:current_weight) if lot.present? %></td>
