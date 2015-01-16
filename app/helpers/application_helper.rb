@@ -66,16 +66,6 @@ module ApplicationHelper
     ''
   end
 
-  def strains_for(strains)
-    output = ''
-    strains.uniq.each do |strain|
-      output << strain_for(strain)
-    end
-    output.html_safe
-  rescue
-    ''
-  end
-
   def strain_for(strain)
     "<small class=\"label label-default\">#{strain}</small> ".html_safe
   rescue

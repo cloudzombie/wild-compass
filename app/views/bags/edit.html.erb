@@ -27,11 +27,11 @@
 
   <div class="errors">
     <%= display_error_for bag, :quantity %>
-    <%= display_error_for bag.lot, :quantity unless bag.lot.nil? %>
-    <%= display_error_for bag.lot, :category unless bag.lot.nil? %>
-    <%= display_error_for bag.lot, :weight unless bag.lot.nil? %>
-    <%= display_error_for bag.lot, :name unless bag.lot.nil? %>
-    <%= display_error_for bag.lot, :strain unless bag.lot.nil? %>
+    <%= display_error_for bag.try(:lot), :quantity if bag.present? %>
+    <%= display_error_for bag.try(:lot), :category if bag.present? %>
+    <%= display_error_for bag.try(:lot), :weight   if bag.present? %>
+    <%= display_error_for bag.try(:lot), :name     if bag.present? %>
+    <%= display_error_for bag.try(:lot), :strain   if bag.present? %>
   </div>
 
   <div class="actions">
