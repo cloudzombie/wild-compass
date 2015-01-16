@@ -46,6 +46,12 @@ class Bag < ActiveRecord::Base
       ''
     end
 
+    def strain
+      lots.map(&:strains).uniq.first
+    rescue
+      ''
+    end
+
 
     def strains
       self.real_strains
