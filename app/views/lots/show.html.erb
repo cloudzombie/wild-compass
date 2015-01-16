@@ -19,8 +19,8 @@
               <dt>Name :</dt>
               <dd><%= lot.try(:to_s) if lot.present? %></dd>
               
-              <dt>Strains :</dt>
-              <dd><%= strains_for lot.try(:strains) if lot.present? %></dd>
+              <dt>Strain :</dt>
+              <dd><%= strain_for lot.try(:strain) if lot.present? %></dd>
               
               <dt>Type :</dt>
               <dd><%= category_for lot.try(:category) if lot.present? %></dd>
