@@ -40,6 +40,13 @@ class Bag < ActiveRecord::Base
 
   public
 
+    def lot
+      lots.first
+    rescue
+      ''
+    end
+
+
     def strains
       self.real_strains
     rescue

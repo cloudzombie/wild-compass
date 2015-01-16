@@ -2,7 +2,7 @@
 
 <div class="row">
   <%= render 'shared/box_description', title: 'Description', described: bag, color: 'warning' %>
-  <%= render 'shared/box_description', title: 'Origin', described: bag.lot, color: 'info' %>
+  <%= render 'shared/box_description', title: 'Origin', described: bag.try(:lot), color: 'info' %>
 </div>
 
 <%= render 'bags/show/history' %>

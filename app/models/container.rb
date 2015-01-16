@@ -4,6 +4,8 @@ class Container < ActiveRecord::Base
   include Accountable
   include Storyable
 
+
+
   scope :trims,   -> { joins(:lots).merge(Lot.where(category: 'Trim')) }  
   scope :buds,    -> { joins(:lots).merge(Lot.where(category: 'Buds')) }
   scope :strains, -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
@@ -16,8 +18,6 @@ class Container < ActiveRecord::Base
   has_many :strains, through: :lots
 
   has_many :plants, through: :lots
-
-
 
   has_many :bags
 
@@ -41,16 +41,18 @@ class Container < ActiveRecord::Base
 
 
 
-  private
+  alias_method :real_strains, :strains
 
-    alias_method :real_strains, :strains
+  def strain
+    lots.map(&:strains).uniq.first
+  rescue
+    ''
+  end
 
-  public
-
-    def strains
-      self.real_strains
-    rescue
-      ''
-    end
+  def strains
+    self.real_strains
+  rescue
+    ''
+  end
 
 end

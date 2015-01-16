@@ -39,6 +39,8 @@ class Lot < ActiveRecord::Base
 
     def strains
       self.real_strains
+    rescue
+      ''
     end
 
 end
