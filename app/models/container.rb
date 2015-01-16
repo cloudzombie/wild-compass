@@ -39,7 +39,11 @@ class Container < ActiveRecord::Base
     ''
   end
 
-
+  def lot
+    lots.first
+  rescue
+    ''
+  end
 
   alias_method :real_strains, :strains
 
