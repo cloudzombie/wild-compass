@@ -8,6 +8,7 @@
                class="form-control input-sm pull-right"
                style="width: 150px;"
                placeholder="Search"/>
+
         <div class="input-group-btn">
           <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
         </div>
@@ -19,9 +20,7 @@
     <%= form_for :plants do |f| %>
       <table class="table table-hover">
         <tr>
-          <th>
-            <%# checkbox %>
-          </th>
+          <th><%# checkbox %></th>
           <th><%= sortable :id, 'ID' %></th>
           <th><%= sortable :name %></th>
           <th><%= sortable :strain %></th>
@@ -35,16 +34,14 @@
       
         <% plants.each do |plant| %>
         <tr>
-          <td>
-            <%# checkbox %>
-          </td>
+          <td><%# checkbox %></td>
           <td><%= plant.try(:id) if plant.present? %></td>
           <td><%= plant.try(:name) if plant.present? %></td>
-          <td><%= plant.try(:strain) if plant.present? %></td>
+          <td><%= strain_for plant.try(:strain) if plant.present? %></td>
           <td><%= plant.try(:status) if plant.present? %></td>
           <td><%= date_for plant.try(:created_at) if plant.present? %></td>
           <td><%= date_for plant.try(:updated_at) if plant.present? %></td>
-          <td><%= plant.try(:format) if plant.present? %></td>
+          <td><%= format_for plant.try(:format) if plant.present? %></td>
           <td><%= plant.try(:rfid) if plant.present? %></td>
           <td>
             <% if can? :show, plant %>

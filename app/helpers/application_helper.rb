@@ -51,7 +51,7 @@ module ApplicationHelper
   def weight_for(weight, g = ' g')
     if weight.nil?
       "0.00#{g}"
-    elsif weight = 'ERROR'
+    elsif weight == 'ERROR'
       'ERROR'
     else
       "#{number_with_precision weight.to_d, precision: 2 }#{g}"
@@ -69,9 +69,28 @@ module ApplicationHelper
   def strains_for(strains)
     output = ''
     strains.uniq.each do |strain|
-      output << "<small class=\"label label-default\">#{strain}</small> "
+      output << strain_for(strain)
     end
     output.html_safe
+  rescue
+    ''
+  end
+
+  def strain_for(strain)
+    "<small class=\"label label-default\">#{strain}</small> ".html_safe
+  rescue
+    ''
+  end
+
+  def format_for(format)
+    case format.to_s.upcase
+    when '60 G', '60G'
+      "<small class=\"badge alert-info\">#{format}</small>".html_safe
+    when '45 G', '45G'
+      "<small class=\"badge alert-warning\">#{format}</small>".html_safe
+    when '15 G', '15G'
+      "<small class=\"badge\">#{format}</small>".html_safe
+    end
   rescue
     ''
   end
