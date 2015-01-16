@@ -10,7 +10,7 @@
   <% bags.each do |bag| %>
     <tr>
       <td><%= bag.try(:to_s) if bag.present? %></td>
-      <td><%= strains_for bag.try(:strains) if bag.present? %></td>
+      <td><%= strain_for bag.try(:strain) if bag.present? %></td>
       <td><%= bag.try(:category) if bag.present? %></td>
       <td><%= weight_for bag.try(:initial_weight), '' if bag.present? %></td>
       <td><%= weight_for bag.try(:current_weight), '' if bag.present? %></td>
