@@ -43,7 +43,9 @@
         
         <td>
           <% if can? :show, Lot %>
-          <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" %>
+          <% bag.try(:lots).each do |lot| %>
+          <%= link_to "#{fa_icon('tag')} #{lot}".html_safe, lot, class: "btn-sm btn-flat btn-info" %>
+          <% end %>
           <% end %>
         </td>
 

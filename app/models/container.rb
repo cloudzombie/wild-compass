@@ -34,7 +34,7 @@ class Container < ActiveRecord::Base
 
 
   def category
-    lots.map(&:category).uniq
+    lots.map(&:category).uniq.first
   rescue
     ''
   end

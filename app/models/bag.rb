@@ -25,9 +25,9 @@ class Bag < ActiveRecord::Base
 
 
 
-  has_one :lot, through: :container
+  has_many :lots, through: :container
 
-  delegate :origin, to: :lot, prefix: false, allow_nil: true
+  
   
   def to_s
     "#{ name.upcase unless name.nil? }"
