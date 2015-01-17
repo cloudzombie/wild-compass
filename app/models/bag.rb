@@ -4,10 +4,10 @@ class Bag < ActiveRecord::Base
   include Accountable
   include Storyable
 
-  scope :trims,   -> { joins(:lot).merge(Lot.where(category: 'Trim')) }  
-  scope :buds,    -> { joins(:lot).merge(Lot.where(category: 'Buds')) }
+  scope :trims,   -> { joins(:lots).merge(Lot.where(category: 'Trim')) }  
+  scope :buds,    -> { joins(:lots).merge(Lot.where(category: 'Buds')) }
   scope :strains, -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
-  scope :categories, -> (category = nil) { joins(:lot).merge(Lot.where(category: category)) }
+  scope :categories, -> (category = nil) { joins(:lots).merge(Lot.where(category: category)) }
 
   
 
