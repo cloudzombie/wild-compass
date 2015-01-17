@@ -32,8 +32,8 @@
       <% orders.each do |order| %>
       <tr>
         <td></td>
-        <td><%= order.id %></td>
-        <td><%= order.customer %></td>
+        <td><%= order.try(:id) %></td>
+        <td><%= order.try(:customer) %></td>
         <td>
           <ul style="list-style-type: none; padding-left: 0;">
           <% order.order_lines.each do |line| %>
@@ -41,9 +41,9 @@
           <% end %>
           </ul>
         </td>
-        <td><%= order.total_weight %></td>
-        <td><%= order.ordered_at %></td>
-        <td><%= order.shipped_at %></td>
+        <td><%= order.try(:total_weight) %></td>
+        <td><%= order.try(:ordered_at) %></td>
+        <td><%= order.try(:shipped_at) %></td>
         <td>
           <a class="btn-sm btn-flat btn-warning">New Bags</a>
 
