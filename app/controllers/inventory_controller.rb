@@ -26,7 +26,7 @@ class InventoryController < ApplicationController
 
   # Create downloadable pdf if inventory.
   def download
-  	html = render_to_string 'inventory/home', layout: 'report.html'
+  	html = render_to_string 'inventory/report.pdf', layout: 'report.html'
   	pdf = WickedPdf.new.pdf_from_string(html)
   	send_data( pdf, filename: 'report.pdf', disposition: 'attachment' )
   end
