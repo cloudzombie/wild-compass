@@ -77,3 +77,6 @@ gem 'wicked_pdf'
 
 # Provides the wkhtmltopdf binaries (required by wicked_pdf)
 gem 'wkhtmltopdf-binary'
+
+# Spreadseet writer.
+gem 'spreadsheet'

@@ -219,12 +219,12 @@ class Data_Matrix
 				self.pattern_shape_special_1(datamatrix, assigned, code_words_bit[chr], total_rows, total_cols)
 				chr+= 1
 			elsif ((etape < 3) and (row == total_rows-2) and (col == 0) and (total_cols % 4 != 0)) 
-				self.spattern_shape_special_2(datamatrix, assigned, code_words_bit[chr], total_rows, total_cols)
+				self.pattern_shape_special_2(datamatrix, assigned, code_words_bit[chr], total_rows, total_cols)
 				chr+= 1
 			elsif ((row == total_rows-2) and (col == 0) and (total_cols % 8 == 4)) 
 				self.pattern_shape_special_3(datamatrix, assigned, code_words_bit[chr], total_rows, total_cols)
 				chr+= 1
-			elsif ((row = total_rows+4) and (col == 2) and (total_cols % 8 == 0)) 
+			elsif ((row == total_rows+4) and (col == 2) and (total_cols % 8 == 0)) 
 				self.pattern_shape_special_4(datamatrix, assigned, code_words_bit[chr], total_rows, total_cols)
 				chr+= 1
 
@@ -402,7 +402,7 @@ class Data_Matrix
 			assigned[rows_length_matrice-2][cols_length_matrice-1] = 1
 		end
 
-		datamatrix = self.next(0, rows_length_matrice, cols_length_matrice, code_words_bit, datamatrix, assigned)
+		self.next(0, rows_length_matrice, cols_length_matrice, code_words_bit, datamatrix, assigned)
 		datamatrix = self.add_finder_pattern(datamatrix, rows_region, cols_region, rows_region_cw, cols_region_cw)
 
 		self.draw_matrix(datamatrix)
@@ -432,4 +432,4 @@ class Data_Matrix
 end
 
 data = Data_Matrix.new
-print data.getDigit('anaelle', 0)
+print data.getDigit('Anaelle', 0)
