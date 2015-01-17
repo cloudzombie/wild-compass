@@ -33,7 +33,7 @@ class Plant < ActiveRecord::Base
   ### Utils
   
   def to_s
-    "#{ name.upcase unless name.nil? }"
+    "Plant - #{ id unless id.nil? }"
   end
 
 end

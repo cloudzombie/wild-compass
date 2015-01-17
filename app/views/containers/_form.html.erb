@@ -1,12 +1,17 @@
 <%= form_for(container) do |f| %>
 
- <div class="form-group">
+  <div class="form-group">
     <%= f.label :lot_id %>
     <%= f.collection_select :lot_id, Lot.all, :id, :name, {}, selected: params[:lot], class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :name %><br>
+    <%= f.label :plant_id %>
+    <%= f.collection_select :plant_id, Plant.all, :id, :name, {}, selected: params[:lot], class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
 
@@ -18,4 +23,5 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
