@@ -11,7 +11,7 @@ class Lot < ActiveRecord::Base
 
 
 
-  has_many :plants
+  
 
   has_many :strains, through: :plants
   
@@ -19,11 +19,11 @@ class Lot < ActiveRecord::Base
 
   has_and_belongs_to_many :containers
 
-
+  has_many :plants, through: :containers
   
-  has_many :bags, through: :containers
+  has_many :bags
 
-  has_many :jars, through: :containers
+  has_many :jars, through: :bags
 
 
 
@@ -36,6 +36,30 @@ class Lot < ActiveRecord::Base
     alias_method :real_strains, :strains
 
   public
+
+    def container
+      containers.first
+    rescue
+      ''
+    end
+
+    def plant
+      plants.first
+    rescue
+      ''
+    end
+
+    def bag
+      bags.first
+    rescue
+      ''
+    end
+
+    def jar
+      jars.first
+    rescue
+      ''
+    end
 
     def strain
       strains.uniq.first

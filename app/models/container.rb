@@ -13,15 +13,19 @@ class Container < ActiveRecord::Base
 
 
 
+  has_and_belongs_to_many :plants
+
+  accepts_nested_attributes_for :plants
+
 	has_and_belongs_to_many :lots
 
+  has_many :bags, through: :lots
+
+  has_many :jars, through: :lots	
+
+
+
   has_many :strains, through: :lots
-
-  has_many :plants, through: :lots
-
-  has_many :bags
-
-  has_many :jars, through: :bags	
 
 
 
@@ -41,6 +45,24 @@ class Container < ActiveRecord::Base
 
   def lot
     lots.first
+  rescue
+    ''
+  end
+
+  def plant
+    plants.first
+  rescue
+    ''
+  end
+
+  def bag
+    bags.first
+  rescue
+    ''
+  end
+
+  def jar
+    jars.first
   rescue
     ''
   end

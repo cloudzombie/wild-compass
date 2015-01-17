@@ -19,14 +19,14 @@ class Plant < ActiveRecord::Base
   belongs_to :rfid
 
 
-
-  belongs_to :lot
   
-  has_many :containers, through: :lot
+  has_and_belongs_to_many :containers
 
-  has_many :bags, through: :lot
+  has_many :lots, through: :containers
 
-  has_many :jars, through: :lot
+  has_many :bags, through: :containers
+
+  has_many :jars, through: :containers
 
 
 
@@ -34,6 +34,30 @@ class Plant < ActiveRecord::Base
   
   def to_s
     "#{ name.upcase unless name.nil? }"
+  end
+
+  def container
+    containers.first
+  rescue
+    ''
+  end
+
+  def bag
+    bags.first
+  rescue
+      ''
+  end
+
+  def lot
+    lots.first
+  rescue
+    ''
+  end
+
+  def jar
+    jars.first
+  rescue
+    ''
   end
 
 end

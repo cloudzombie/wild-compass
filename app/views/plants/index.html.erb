@@ -12,49 +12,6 @@
         <div class="input-group-btn">
           <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
         </div>
-<<<<<<< HEAD
-    </div><!-- /.box-header -->
-    <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
-            <tr>
-                <th><%= check_box_tag :accept %></th>
-                <th><%= sortable :id, 'ID' %></th>
-                <th><%= sortable :name %></th>
-                <th><%= sortable :strain %></th>
-                <th><%= sortable :status %></th>
-                <th><%= sortable :created_at %></th>
-                <th><%= sortable :updated_at %></th>
-                <th><%= sortable :format %></th>
-                <th>Lots :<%#= sortable :rfid, 'RFID' %></th>
-                <th>Actions</th>
-            </tr>
-            <% plants.each do |plant| %>
-              <tr>
-                <td><%= check_box_tag :accept %></td>
-                <td><%= plant.id %></td>
-                <td><%= plant.name %></td>
-                <td><%= plant.strain %></td>
-                <td><%= plant.status %></td>
-                <td><%= plant.created_at.to_s :short %></td>
-                <td><%= plant.updated_at.to_s :short %></td>
-                <td><%= plant.format %></td>
-                <td><%= link_to "#{fa_icon('tags')} #{plant.lot}".html_safe, plant.lot, class: "btn-sm btn-flat btn-info" %>
-<!-- <%= :RFID %> --></td>
-                <td>
-                    <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
-                    <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
-                </td>
-              </tr>
-            <% end %>            
-        </table>
-    </div><!-- /.box-body -->    
-  </div>
-    <div class="tableFooter">
-        
-        <a href="#" class="btn btn-flat btn-success" data-toggle="modal" data-target=".new-plant"><i class="fa fa-leaf"></i> New Plant</a>
-=======
-      </div>
->>>>>>> 4697e614ba91c12dcfc197e13f1399f993bab9f5
     </div>
   </div><!-- /.box-header -->
 
