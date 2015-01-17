@@ -8,5 +8,9 @@
   </div>
 </div>
 
+<% container.try(:plants).each do |plant| %>
+<%= plant.try(:to_s) %><br>
+<% end %>
+
 <%= link_to 'Edit', edit_container_path(container) %> |
 <%= link_to 'Back', containers_path %>

@@ -6,14 +6,18 @@ class ContainersController < ApplicationController
 
   before_action :set_weight, only: [ :create, :update ]
 
+  def new
+    container.plants.build
+  end
+
   def create
     self.container = Container.new(container_params)
     authorize! :create, container
     
-    Transaction.from( container.lot ).to( container ).take( container.weight ).by( current_user ).commit
+    Transaction.from( container.plant ).to( container ).take( container.weight ).by( current_user ).commit
 
     respond_to do |format|
-      if container.save && container.lot.save
+      if container.save
         format.html { redirect_to container, notice: 'Container was successfully created.' }
       else
         format.html { render :new }
@@ -49,7 +53,7 @@ class ContainersController < ApplicationController
     end
 
     def container_params
-      params.require(:container).permit(:name, :lot_id, :current_weight, :initial_weight, :weight)
+      params.require(:container).permit(:name, :current_weight, :initial_weight, :weight, { plant_attributes: [ :id ] })
     end
 
     def set_weight

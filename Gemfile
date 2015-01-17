@@ -76,7 +76,7 @@ gem 'railroady', group: [ :development, :test ]
 gem 'wicked_pdf'
 
 # Provides the wkhtmltopdf binaries (required by wicked_pdf)
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-heroku'
 
 # Spreadseet writer.
 gem 'spreadsheet'

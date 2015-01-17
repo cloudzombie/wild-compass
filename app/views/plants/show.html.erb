@@ -4,5 +4,9 @@
 <p><strong><%= attribute[0] %> :</strong> <%= attribute[1] %></p>
 <% end %>
 
+<% plant.try(:containers).each do |container| %>
+<%= container.try(:to_s) %>
+<% end %>
+
 <%= link_to 'Edit', edit_plant_path(plant) %> |
 <%= link_to 'Back', plants_path %>

@@ -11,21 +11,21 @@ class Bag < ActiveRecord::Base
 
   
 
-  belongs_to :container
+  belongs_to :lot
 
   has_many :jars
 
-  has_many :plants, through: :container
+  has_many :plants, through: :lot
 
-  has_many :strains, through: :container
+  has_many :containers, through: :lot
+
+  has_many :strains, through: :plants
 
   
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 
 
-
-  has_many :lots, through: :container
 
   
   
@@ -40,14 +40,26 @@ class Bag < ActiveRecord::Base
 
   public
 
-    def lot
-      lots.first
+    def strain
+      strains.first
     rescue
       ''
     end
 
-    def strain
-      lots.map(&:strains).uniq.first
+    def jar
+      jars.first
+    rescue
+      ''
+    end
+
+    def plant
+      plants.first
+    rescue
+      ''
+    end
+
+    def container
+      containers.first
     rescue
       ''
     end

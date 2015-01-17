@@ -44,21 +44,7 @@
             <td><%= date_for container.try(:created_at) %></td>
             <td><%= date_for container.try(:updated_at) %></td>
             <td>
-<<<<<<< HEAD
-              <%= number_with_precision(
-                (container.initial_weight.nil? ? 0 : container.initial_weight), precision: 2) %> g
-            </td>
-            <td>
-              <%= number_with_precision((container.current_weight.nil? ? 0 : container.current_weight), precision: 2) %> g
-            </td>
-            <td><%= container.created_at.to_s :short %></td>
-            <td><%= container.updated_at.to_s :short %></td>
-            <td>
-
-             
-=======
              <a href="#" class="btn-sm btn-flat btn-success" data-toggle="modal" data-target="#<%= container.id %>"><i class="fa fa-tags"></i> Containers</a>
->>>>>>> 4697e614ba91c12dcfc197e13f1399f993bab9f5
               <%= link_to "#{fa_icon('tag')} New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-warning', data: { toggle: 'modal', target: '.new-bag' } %>
               <%= link_to "#{fa_icon('tags')} Show".html_safe, container, class: "btn-sm btn-flat btn-info" %>
               <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_container_path(container), class: "btn-sm btn-flat btn-warning" %>
