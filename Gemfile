@@ -76,7 +76,8 @@ gem 'railroady', group: [ :development, :test ]
 gem 'wicked_pdf'
 
 # Provides the wkhtmltopdf binaries (required by wicked_pdf)
-gem 'wkhtmltopdf-binary'
+# gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-heroku'
 
 # Pagination
 gem 'kaminari'

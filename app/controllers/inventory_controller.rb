@@ -27,11 +27,7 @@ class InventoryController < ApplicationController
   def download
   	html = render_to_string 'inventory/home', layout: 'report.html'
   	pdf = WickedPdf.new.pdf_from_string(html)
-
-  	send_data( pdf,
-               filename:    'report.pdf',
-               disposition: 'attachment'
-  	)
+  	send_data( pdf, filename: 'report.pdf', disposition: 'attachment' )
   end
 
 
