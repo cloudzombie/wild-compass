@@ -34,25 +34,28 @@
           <% lots.each do |lot| %>
           <tr>
             <td><%= check_box_tag :accept %></td>
-            <td><%= lot %></td>
-            <td><%= lot.strain %></td>
-            <td><%= lot.category %></td>
+            <td><%= lot.try(:to_s) if lot.present? %></td>
+            <td><%= strain_for lot.try(:strain) if lot.present? %></td>
+            <td><%= category_for lot.try(:category) if lot.present? %></td>
+            <td><%= weight_for lot.try(:initial_weight) if lot.present? %></td>
+            <td><%= weight_for lot.try(:current_weight) if lot.present? %></td>
+            <td><%= date_for lot.try(:created_at) if lot.present? %></td>
+            <td><%= date_for lot.try(:updated_at) if lot.present? %></td>
             <td>
-              <%= number_with_precision(
-                (lot.initial_weight.nil? ? 0 : lot.initial_weight), precision: 2) %> g
-            </td>
-            <td>
-              <%= number_with_precision((lot.current_weight.nil? ? 0 : lot.current_weight), precision: 2) %> g
-            </td>
-            <td><%= lot.created_at.to_s :short %></td>
-            <td><%= lot.updated_at.to_s :short %></td>
-            <td>
+              <a href="#" class="btn-sm btn-flat btn-success" data-toggle="modal" data-target="#<%= lot.id %>"><i class="fa fa-tags"></i> Containers</a>
 
-             <a href="#" class="btn-sm btn-flat btn-success" data-toggle="modal" data-target="#<%= lot.id %>"><i class="fa fa-tags"></i> Containers</a>
-              <%= link_to "#{fa_icon('tag')} New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-warning', data: { toggle: 'modal', target: '.new-bag' } %>
+              <% if can? :create, Lot %>
+              <%= link_to "#{fa_icon 'tag'} New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-warning',
+                  data: { toggle: 'modal', target: '.new-bag' } %>
+              <% end %>
+
+              <% if can? :read, Lot %>
               <%= link_to "#{fa_icon('tags')} Show".html_safe, lot, class: "btn-sm btn-flat btn-info" %>
-              <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_lot_path(lot), class: "btn-sm btn-flat btn-warning" %>
+              <% end %>
 
+              <% if can? :update, Lot %>
+              <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_lot_path(lot), class: "btn-sm btn-flat btn-warning" %>
+              <% end %>
             </td>
           </tr>
           <% end %>
@@ -62,7 +65,10 @@
 
 
     <div class="tableFooter">
-        <a href="#" class="btn btn-flat btn-info" data-toggle="modal" data-target=".new-lot"><i class="fa fa-tags"></i> New lot</a>
+      <%= link_to "#{fa_icon 'tags'} New Lot".html_safe, '#', data: { toggle: 'modal', target: '.new-lot' },
+          class: 'btn btn-flat btn-info' %>
+
+      <%= paginate lots %>
     </div>
 
     <% lots.each do |lot| %>
@@ -76,13 +82,14 @@
                 <th>Weight :</th>
                 <th>Category :</th>
               </tr>
-                <% Container.where('lot_id = ?', lot.id).each do |container| %>
-                <tr>
-                  <td><%= container %></td>
-                  <td><%= container.current_weight %></td>
-                  <td><%# container.category unless container.lot.nil? %></td>
-                </tr>
-                <% end %>
+
+              <% Container.where('lot_id = ?', lot.id).each do |container| %>
+              <tr>
+                <td><%= container.try(:to_s) if container.present? %></td>
+                <td><%= weight_for container.try(:current_weight) if container.present? %></td>
+                <td><%= container.try(:category) if container.present? %></td>
+              </tr>
+              <% end %>
             </table>
         </div>
       </div>

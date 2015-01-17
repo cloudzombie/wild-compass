@@ -4,10 +4,10 @@ class Jar < ActiveRecord::Base
   include Accountable
   include Storyable
 
-  scope :strains, -> (strain = nil) { joins(:lot).merge(Lot.where(strain: strain)) }
-  scope :categories, -> (category = nil) { joins(:lot).merge(Lot.where(category: category)) }
-  scope :trims,   -> { joins(:lot).merge(Lot.where(category: 'Trim')) }  
-  scope :buds,    -> { joins(:lot).merge(Lot.where(category: 'Buds')) }
+  scope :strains, -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
+  scope :categories, -> (category = nil) { joins(:lots).merge(Lot.where(category: category)) }
+  scope :trims,   -> { joins(:lots).merge(Lot.where(category: 'Trim')) }  
+  scope :buds,    -> { joins(:lots).merge(Lot.where(category: 'Buds')) }
 
 
 
@@ -33,11 +33,11 @@ class Jar < ActiveRecord::Base
 
   ### Lot
 
-  has_one :lot, through: :bag
+  has_many :lots, through: :bag
 
-  has_one :strain, through: :bag
+  has_many :strains, through: :bag
 
-  has_one :category, through: :bag
+  delegate :category, to: :bag, prefix: false, allow_nil: true
 
 
 
@@ -54,5 +54,36 @@ class Jar < ActiveRecord::Base
   def to_s
     "#{ name.upcase unless name.nil? }"
   end
+
+  private
+
+    alias_method :real_strains, :strains
+    alias_method :real_category, :category
+
+  public
+
+    def lot
+      lots.first
+    rescue
+      ''
+    end
+
+    def strain
+      lots.map(&:strains).uniq.first
+    rescue
+      ''
+    end
+
+    def strains
+      self.real_strains
+    rescue
+      ''
+    end
+
+    def category
+      self.real_category
+    rescue
+      ''
+    end
 
 end

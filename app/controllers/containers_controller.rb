@@ -1,41 +1,20 @@
 class ContainersController < ApplicationController
+  helper_method :sort_column, :sort_direction
 
-  before_action :set_container, only: [:show, :edit, :update, :destroy]
+  expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
+  expose(:containers)
 
-  respond_to :html
-
-  def index
-    @containers = Container.all
-    @container = Container.new
-    respond_with(@containers)
-  end
-
-  def show
-    respond_with(@container)
-  end
-
-  def new
-    @container = Container.new
-    respond_with(@container)
-  end
-
-  def edit
-  end
+  before_action :set_weight, only: [ :create, :update ]
 
   def create
-    @container = Container.new(container_params)
-    if @container.weight.nil?
-      @container.weight = 0.0
-    else
-      @container.weight = @container.weight.to_d
-    end
-    authorize! :create, @container
+    self.container = Container.new(container_params)
+    authorize! :create, container
     
-    Transaction.from( @container.lot ).to( @container ).take( @container.weight ).by( current_user ).commit
+    Transaction.from( container.lot ).to( container ).take( container.weight ).by( current_user ).commit
 
     respond_to do |format|
-      if @container.save && @container.lot.save
-        format.html { redirect_to @container, notice: 'Container was successfully created.' }
+      if container.save && container.lot.save
+        format.html { redirect_to container, notice: 'Container was successfully created.' }
       else
         format.html { render :new }
       end
@@ -43,22 +22,51 @@ class ContainersController < ApplicationController
   end 
 
   def update
-    @container.update(container_params)
-    respond_with(@container)
+    authorize! :update, container
+    
+    respond_to do |format|
+      if container.update(container_params)
+        format.html { redirect_to container, notice: 'Container was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
   end
 
   def destroy
-    @container.destroy
-    respond_with(@container)
+    authorize! :destroy, container
+
+    container.destroy
+    respond_to do |format|
+      format.html { redirect_to containers_url, notice: 'Container was successfully destroyed.' }
+    end
   end
 
   private
 
-    def set_container
-      @container = Container.find(params[:id])
+    def id_param
+      params[:id]
     end
 
     def container_params
       params.require(:container).permit(:name, :lot_id, :current_weight, :initial_weight, :weight)
+    end
+
+    def set_weight
+      if container.weight.nil?
+        container.weight = 0.0
+      else
+        container.weight = container.weight.to_d
+      end
+    end
+
+    # Set column to sort in order.
+    def sort_column
+      %w(id strain category name initial_weight current_weight created_at updated_at container_id).include?(params[:sort]) ? params[:sort] : 'created_at'
+    end
+
+    # Set sort direction to ascending or descending.
+    def sort_direction
+      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 end

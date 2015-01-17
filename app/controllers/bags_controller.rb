@@ -5,11 +5,11 @@ class BagsController < ApplicationController
   
   expose(:bags) do
     if Bag.column_names.include? sort_column
-      Bag.order(sort_column + ' ' + sort_direction)
+      Bag.order(sort_column + ' ' + sort_direction).page(params[:page])
     elsif sort_column == 'strain'
-      Bag.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym))
+      Bag.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
     elsif sort_column == 'category'
-      Bag.joins(:lot).merge(Lot.order(category: sort_direction.to_sym))
+      Bag.joins(:lot).merge(Lot.order(category: sort_direction.to_sym)).page(params[:page])
     end
   end
 
@@ -34,8 +34,7 @@ class BagsController < ApplicationController
     Transaction.from( bag.container ).to( bag ).take( bag.weight ).by( current_user ).commit
 
     respond_to do |format|
-      if bag.save && bag.lot.save
-        
+      if bag.save && bag.container.save
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
       else
         format.html { render :new }
@@ -77,7 +76,7 @@ class BagsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
-      params.require(:bag).permit(:weight, :initial_weight, :container_id, :name, :current_weight)
+      params.require(:bag).permit(:quantity, :weight, :initial_weight, :container_id, :name, :current_weight)
     end
 
     def id_param

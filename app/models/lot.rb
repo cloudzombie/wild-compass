@@ -4,18 +4,22 @@ class Lot < ActiveRecord::Base
   include Accountable
   include Storyable
 
-  scope :strains, -> (strain = nil) { where(strain: strain) }
+  scope :strains, -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
   scope :categories, -> (category = nil) { where(category: category) }
   scope :trims,   -> { where(category: 'Trim') }
   scope :buds,    -> { where(category: 'Buds') }
 
 
 
-  belongs_to :strain
-  
   has_many :plants
 
-  has_many :containers
+  has_many :strains, through: :plants
+  
+
+
+  has_and_belongs_to_many :containers
+
+
   
   has_many :bags, through: :containers
 
@@ -26,5 +30,23 @@ class Lot < ActiveRecord::Base
   def to_s
     "#{ name.upcase unless name.nil? }"
   end
+
+  private
+
+    alias_method :real_strains, :strains
+
+  public
+
+    def strain
+      strains.uniq.first
+    rescue
+      ''
+    end
+
+    def strains
+      self.real_strains
+    rescue
+      ''
+    end
 
 end

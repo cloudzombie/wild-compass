@@ -1,0 +1,13 @@
+<div class="col-lg-2">
+  <div class="progress vertical">
+    <div class="progress-bar progress-bar-<%= color %>"
+         role="progressbar"
+         aria-valuenow="<%= percent_of_weight(weightable) %>"
+         aria-valuemin="0"
+         aria-valuemax="100"
+         style="height: <%= percent_of_weight(weightable) %>%">
+      <span class="sr-only"><%= percent_of_weight(weightable) %>%</span>
+    </div>
+  </div>
+  <span><%= percent_of_weight(weightable) %>%</span>
+</div>

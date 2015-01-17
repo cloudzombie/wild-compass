@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   expose(:order, params: :order_params) { id_param.nil? ? Order.new : Order.find(id_param) }
   # Match given sort parameters against database columns
   expose(:orders) { Order.order(sort_column + ' ' + sort_direction) }
+  expose(:jar) { Jar.new }
 
   respond_to :html, :json, :xml
 

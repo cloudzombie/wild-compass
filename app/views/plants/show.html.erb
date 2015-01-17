@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
-<%= plant.id %>
+<%= plant.try(:to_s) if plant.present? %>
+
+<% plant.attributes.each do |attribute| %>
+<p><strong><%= attribute[0] %> :</strong> <%= attribute[1] %></p>
+<% end %>
+
 <%= link_to 'Edit', edit_plant_path(plant) %> |
 <%= link_to 'Back', plants_path %>

@@ -1,18 +1,18 @@
-<%= form_for(@container) do |f| %>
+<%= form_for(container) do |f| %>
 
  <div class="form-group">
     <%= f.label :lot_id %>
     <%= f.collection_select :lot_id, Lot.all, :id, :name, {}, selected: params[:lot], class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= f.label :weight %>
-    <%= f.text_field :weight, class: 'form-control', value: number_with_precision(@container.initial_weight, precision: 2) %>
+    <%= f.text_field :weight, class: 'form-control', value: weight_for(container.try(:initial_weight), '') %>
   </div>
 
   <div class="actions">

@@ -32,8 +32,8 @@
       <% orders.each do |order| %>
       <tr>
         <td></td>
-        <td><%= order.id %></td>
-        <td><%= order.customer %></td>
+        <td><%= order.try(:id) %></td>
+        <td><%= order.try(:customer) %></td>
         <td>
           <ul style="list-style-type: none; padding-left: 0;">
           <% order.order_lines.each do |line| %>
@@ -41,16 +41,29 @@
           <% end %>
           </ul>
         </td>
-        <td><%= order.total_weight %></td>
-        <td><%= order.ordered_at %></td>
-        <td><%= order.shipped_at %></td>
+        <td><%= order.try(:total_weight) %></td>
+        <td><%= order.try(:ordered_at) %></td>
+        <td><%= order.try(:shipped_at) %></td>
         <td>
           <a class="btn-sm btn-flat btn-warning">New Bags</a>
-          <%= link_to 'New Jar', jar, class: "btn-sm btn-flat btn-danger" %>
+
+          <% if can? :create, Jar %>
+          <%= link_to 'New Jar', jar,   class: "btn-sm btn-flat btn-danger" %>
+          <% end %>
+
+          <% if can? :read, Order %>
           <%= link_to 'Show',    order, class: "btn-sm btn-flat btn-success" %>
+          <% end %>
+
+          <% if can? :update, Order %>
           <%= link_to 'Edit',    order, class: "btn-sm btn-flat btn-primary" %>
-          <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' },
-                       class: "btn-sm btn-flat btn-danger" %>
+          <% end %>
+
+          <% if can? :destroy, Order %>
+          <%= link_to 'Destroy', order, method: :delete,
+              data: { confirm: 'Are you sure?' },
+              class: "btn-sm btn-flat btn-danger" %>
+          <% end %>
         </td>
       </tr>
       <% end %>

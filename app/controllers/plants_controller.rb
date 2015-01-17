@@ -11,9 +11,17 @@ class PlantsController < ApplicationController
 
   expose(:plants) do
     if Plant.column_names.include? sort_column
-      Plant.order(sort_column + ' ' + sort_direction)
+      Plant.order(sort_column + ' ' + sort_direction).page(params[:page])
+    elsif sort_column == 'strain'
+      Plant.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
+    elsif sort_column == 'status'
+      Plant.joins(:status).merge(Status.order(name: sort_direction.to_sym)).page(params[:page])
+    elsif sort_column == 'format'
+      Plant.joins(:format).merge(Format.order(name: sort_direction.to_sym)).page(params[:page])
+    elsif sort_column == 'rfid'
+      Plant.joins(:rfid).merge(Rfid.order(name: sort_direction.to_sym)).page(params[:page])
     else
-      Plant.all?
+      Plant.all.page(params[:page])
     end
   end
   
@@ -55,7 +63,7 @@ class PlantsController < ApplicationController
     end
 
     def sort_column
-      %w(id name initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'id'
+      %w(id name strain format status rfid initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'id'
     end
 
     # Set sort direction to ascending or descending.

@@ -12,8 +12,13 @@ module ApplicationHelper
     end
   end
 
-  def percent_of_weight(object)
-    object.current_weight.to_f / object.initial_weight.to_f * 100
+  def percent_of_weight(weightable)
+    number_with_precision(
+      weightable.try(:current_weight).to_d / weightable.try(:initial_weight).to_d * 100,
+      precision: 2
+    )
+  rescue
+    '0.00'
   end
 
 
@@ -41,5 +46,53 @@ module ApplicationHelper
       else
         flash_type.to_s
     end
+  end
+
+  def weight_for(weight, g = ' g')
+    if weight.nil?
+      "0.00#{g}"
+    elsif weight == 'ERROR'
+      'ERROR'
+    else
+      "#{number_with_precision weight.to_d, precision: 2 }#{g}"
+    end
+  rescue
+    ''
+  end
+
+  def date_for(datetime)
+    datetime.to_s(:short)
+  rescue
+    ''
+  end
+
+  def strain_for(strain)
+    "<small class=\"label label-default\">#{strain}</small> ".html_safe
+  rescue
+    ''
+  end
+
+  def format_for(format)
+    case format.to_s.upcase
+    when '60 G', '60G'
+      "<small class=\"badge alert-info\">#{format}</small>".html_safe
+    when '45 G', '45G'
+      "<small class=\"badge alert-warning\">#{format}</small>".html_safe
+    when '15 G', '15G'
+      "<small class=\"badge\">#{format}</small>".html_safe
+    end
+  rescue
+    ''
+  end
+
+  def category_for(category)
+    case category.downcase.to_sym
+    when :trim
+      "<small class=\"label label-primary\">#{category}</small>".html_safe
+    when :buds
+      "<small class=\"label label-info\">#{category}</small>".html_safe
+    end
+  rescue
+    ''
   end
 end
