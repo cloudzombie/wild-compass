@@ -1,0 +1,41 @@
+<h3><%= weightable.to_s.pluralize.titleize %></h3>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Categories \ Strains</th>
+    <% strains.each do |strain| %>
+    <th><%= strain %></th>
+    <% end %>
+    <th>Total</th>
+  </tr>
+
+  <% categories.each do |category| %>
+  <tr>
+    <th>
+      <%= category %>
+    </th>
+    <% strains.each do |strain| %>
+    <td>
+      <%= weight_for weightable.categories(category).strains(strain).total_weight, '' %>
+    </td>
+    <% end %>
+    <td>
+      <%= weight_for weightable.categories(category).total_weight, '' %>
+    </td>
+  </tr>
+  <% end %>
+
+  <tr>
+    <th>
+      Total
+    </th>
+    <% strains.each do |strain| %>
+    <td>
+      <%= weight_for weightable.strains(strain).total_weight, '' %>
+    </td>
+    <% end %>
+    <td>
+      <%= weight_for weightable.total_weight, '' %>
+    </td>
+  </tr>
+</table>

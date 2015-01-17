@@ -1,0 +1,26 @@
+<%= render 'inventory/pdf/summary', weightable: Lot %><br>
+
+<%= render 'inventory/pdf/summary', weightable: Container %><br>
+
+<%= render 'inventory/pdf/summary', weightable: Bag %><br>
+
+<%= render 'inventory/pdf/summary', weightable: Jar %><br>
+
+<table class="table table-hover summary">
+  <tr>
+    <th class="col-md-10"><strong class="summary-total">Grand Total</strong></th>
+    <th class="col-md-2 double-underlines text-right"><span class="summary-total right">
+      <%= weight_for total_weight, '' %>
+    </span></th>
+  </tr>
+</table>
+  
+<%= render 'inventory/pdf/plants' %>
+
+<%= render 'inventory/pdf/jars' %>
+
+<%= render 'inventory/pdf/lots' %>
+
+<%= render 'inventory/pdf/containers' %>
+
+<%= render 'inventory/pdf/bags' %>

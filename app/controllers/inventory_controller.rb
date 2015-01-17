@@ -14,10 +14,11 @@ class InventoryController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render( pdf:         'report.pdf',
-                disposition: 'inline',
-                template:    'inventory/report.pdf.erb',
-                layout:      'report.html'
+        render( pdf:          'report.pdf',
+                show_as_html: params[:debug].present?,
+                disposition:  'inline',
+                template:     'inventory/pdf/report.pdf.erb',
+                layout:       'report.html'
         )
       end
     end
