@@ -46,11 +46,24 @@
         <td><%= order.shipped_at %></td>
         <td>
           <a class="btn-sm btn-flat btn-warning">New Bags</a>
+
+          <% if can? :create, Jar %>
           <%= link_to 'New Jar', jar,   class: "btn-sm btn-flat btn-danger" %>
+          <% end %>
+
+          <% if can? :read, Order %>
           <%= link_to 'Show',    order, class: "btn-sm btn-flat btn-success" %>
+          <% end %>
+
+          <% if can? :update, Order %>
           <%= link_to 'Edit',    order, class: "btn-sm btn-flat btn-primary" %>
-          <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' },
-                       class: "btn-sm btn-flat btn-danger" %>
+          <% end %>
+
+          <% if can? :destroy, Order %>
+          <%= link_to 'Destroy', order, method: :delete,
+              data: { confirm: 'Are you sure?' },
+              class: "btn-sm btn-flat btn-danger" %>
+          <% end %>
         </td>
       </tr>
       <% end %>
