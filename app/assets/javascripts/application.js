@@ -16,5 +16,5 @@
 //= require turbolinks
 //= require bootstrap.min
 //= require admin-lte
-//= require icheck
+//= require icheck.min
 //= require_tree .

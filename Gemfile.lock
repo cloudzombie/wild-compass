@@ -1,6 +1,5 @@
 GEM
   remote: https://rubygems.org/
-  remote: https://rails-assets.org/
   specs:
     actionmailer (4.1.6)
       actionpack (= 4.1.6)
@@ -60,10 +59,6 @@ GEM
     hashie (3.3.2)
     hike (1.2.3)
     i18n (0.7.0)
-    icheck-rails (1.0.2.1)
-      jquery-rails
-      rails (>= 3.1.0)
-      sass-rails
     jbuilder (2.2.6)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -175,7 +170,6 @@ DEPENDENCIES
   devise
   devise_token_auth
   font-awesome-rails
-  icheck-rails
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
