@@ -87,7 +87,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:customer, :shipped_at, :ordered_at, order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ])
+      params.require(:order).permit(:customer, :shipped_at, :ordered_at, { order_line_attributes: [ :id, :brand_id, :jar_id, :quantity ] })
     end
 
     # Set column to sort in order

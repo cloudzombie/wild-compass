@@ -2,7 +2,8 @@ class ContainersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
-  expose(:containers)
+  expose(:containers) { Container.all }
+  expose(:plants) { Plant.all }
 
   before_action :set_weight, only: [ :create, :update ]
 
