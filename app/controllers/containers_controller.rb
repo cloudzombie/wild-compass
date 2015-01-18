@@ -6,10 +6,6 @@ class ContainersController < ApplicationController
 
   before_action :set_weight, only: [ :create, :update ]
 
-  def new
-    container.plants.build
-  end
-
   def create
     self.container = Container.new(container_params)
     authorize! :create, container
@@ -52,7 +48,7 @@ class ContainersController < ApplicationController
     end
 
     def container_params
-      params.require(:container).permit(:name, :current_weight, :initial_weight, :weight, { :plant_ids => [] })
+      params.require(:container).permit(:name, :current_weight, :initial_weight, :weight, { plant_ids: [] })
     end
 
     def set_weight
