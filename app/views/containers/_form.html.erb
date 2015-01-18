@@ -1,15 +1,11 @@
 <%= form_for(container) do |f| %>
 
   <div class="form-group">
-    <%= f.fields_for :plants do |plants_field| %>
-      <%= plants_field.label :id %>
-      <%= plants_field.collection_select :id, Plant.all, :id, :to_s, {}, selected: params[:plant], class: 'form-control' %>
+    <% for plant in Plant.all %>
+        <%= check_box_tag "container[plant_ids][]", plant.id, container.plants.include?(plant) %>
+        <%= plant %>
     <% end %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :plant_id %>
-    <%= f.collection_select :plant_id, Plant.all, :id, :name, {}, selected: params[:lot], class: 'form-control' %>
+   
   </div>
 
   <div class="form-group">

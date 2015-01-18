@@ -18,9 +18,9 @@ class Plant < ActiveRecord::Base
 
   belongs_to :rfid
 
-
-  
   has_and_belongs_to_many :containers
+
+  accepts_nested_attributes_for :containers
 
   has_many :lots, through: :containers
 

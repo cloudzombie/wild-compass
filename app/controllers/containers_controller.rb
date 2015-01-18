@@ -13,7 +13,7 @@ class ContainersController < ApplicationController
   def create
     self.container = Container.new(container_params)
     authorize! :create, container
-    
+
     Transaction.from( container.plant ).to( container ).take( container.weight ).by( current_user ).commit
 
     respond_to do |format|
@@ -27,7 +27,6 @@ class ContainersController < ApplicationController
 
   def update
     authorize! :update, container
-    
     respond_to do |format|
       if container.update(container_params)
         format.html { redirect_to container, notice: 'Container was successfully updated.' }
@@ -53,7 +52,7 @@ class ContainersController < ApplicationController
     end
 
     def container_params
-      params.require(:container).permit(:name, :current_weight, :initial_weight, :weight, { plant_attributes: [ :id ] })
+      params.require(:container).permit(:name, :current_weight, :initial_weight, :weight, { :plant_ids => [] })
     end
 
     def set_weight
