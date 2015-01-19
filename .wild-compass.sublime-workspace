@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"app",
+				"application"
+			],
+			[
 				"plan",
 				"plants_field"
 			],
@@ -228,10 +232,10 @@
 	"buffers":
 	[
 		{
-			"file": "app/assets/javascripts/application.js",
+			"file": "vendor/assets/stylesheets/icheck/minimal/_all.css",
 			"settings":
 			{
-				"buffer_size": 764,
+				"buffer_size": 14634,
 				"line_ending": "Windows"
 			}
 		},
@@ -239,23 +243,15 @@
 			"file": "app/assets/stylesheets/application.css",
 			"settings":
 			{
-				"buffer_size": 917,
+				"buffer_size": 932,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "config/application.rb",
+			"file": "vendor/assets/javascripts/icheck.js",
 			"settings":
 			{
-				"buffer_size": 1297,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Gemfile",
-			"settings":
-			{
-				"buffer_size": 1725,
+				"buffer_size": 14135,
 				"line_ending": "Windows"
 			}
 		}
@@ -296,12 +292,38 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/minimal.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/aero.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/blue.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/green.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/grey.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/orange.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/pink.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/purple.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/red.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/yellow.css",
+		"/C/Users/Maxime/Documents/wild-compass/config/application.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/initializers/assets.rb",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/_all.css",
+		"/C/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/application.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/all.css",
+		"/C/Users/Maxime/Documents/wild-compass/config/environments/production.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/application.js",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/javascripts/icheck.js",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/aero.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/blue.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/green.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/grey.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/line.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/orange.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/pink.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/purple.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/red.css",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/yellow.css",
+		"/C/Users/Maxime/Documents/wild-compass/Gemfile",
 		"/C/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/_form.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/Gemfile",
-		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/application.js",
 		"/C/Users/Maxime/Documents/wild-compass/tmp/pids/server.pid",
-		"/C/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/application.css",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/orders_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/orders_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/bags.css.scss",
@@ -397,33 +419,7 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/users_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/jars_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/jars_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150111090706_create_containers.rb",
-		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150111221106_devise_token_auth_create_users.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/api_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/user.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/users/show.json.jbuilder",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/plants_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/lots_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/bags_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/application_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/users/shared/_links.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/layouts/application.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/config/initializers/inflections.rb",
-		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20141124230359_add_devise_to_users.rb",
-		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150111215827_remove_lot_id_form_bags.rb",
-		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150111215641_remove_category_from_container.rb",
-		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150111202613_add_container_id_to_bags.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/layouts/_content_header.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_flash_messages.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/users/_form.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/users/index.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/lib/transaction.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/jars/edit.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/weightable.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/history.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/history_line.rb",
-		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150110204246_convert_history_lines_quantity_to_decimal.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/jars/index.html.erb"
+		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150111090706_create_containers.rb"
 	],
 	"find":
 	{
@@ -441,6 +437,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"iCheck",
+			"url(",
+			"asset-url",
+			"url(",
+			"img",
+			"url",
+			"image-url(",
+			"image",
+			"image-url",
+			"url",
 			"tz",
 			"build",
 			"form",
@@ -558,17 +564,7 @@
 			"Container",
 			"container",
 			"Container",
-			"container",
-			"Container",
-			"strain_id",
-			"notice",
-			"manage",
-			"current",
-			"weight",
-			"current_",
-			"weight",
-			"current",
-			"weight"
+			"container"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -586,28 +582,30 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/assets/javascripts/application.js",
+					"file": "vendor/assets/stylesheets/icheck/minimal/_all.css",
 					"settings":
 					{
-						"buffer_size": 764,
+						"buffer_size": 14634,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								745,
-								745
+								266,
+								275
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -620,48 +618,20 @@
 					"file": "app/assets/stylesheets/application.css",
 					"settings":
 					{
-						"buffer_size": 917,
+						"buffer_size": 932,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								788,
-								788
+								800,
+								800
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 465.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "config/application.rb",
-					"settings":
-					{
-						"buffer_size": 1297,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1178,
-								1178
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -670,27 +640,29 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "Gemfile",
+					"buffer": 2,
+					"file": "vendor/assets/javascripts/icheck.js",
 					"settings":
 					{
-						"buffer_size": 1725,
+						"buffer_size": 14135,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1085,
-								1075
+								289,
+								289
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 294.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
