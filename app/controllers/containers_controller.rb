@@ -3,7 +3,7 @@ class ContainersController < ApplicationController
 
   expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
   expose(:containers) { Container.all }
-  expose(:plants) { Plant.all }
+  expose(:plants) { Plant.order id: :asc }
 
   before_action :set_weight, only: [ :create, :update ]
 
@@ -24,6 +24,9 @@ class ContainersController < ApplicationController
 
   def update
     authorize! :update, container
+    
+    params[:container][:plant_ids] ||= []
+
     respond_to do |format|
       if container.update(container_params)
         format.html { redirect_to container, notice: 'Container was successfully updated.' }
