@@ -2,8 +2,18 @@ class ContainersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
-  expose(:containers) { Container.all }
-  expose(:plants) { Plant.order id: :asc }
+  
+  expose(:containers) do
+    if Container.column_names.include? sort_column
+      Container.order( sort_column + ' ' + sort_direction )
+    elsif sort_column == 'strain'
+      Container.joins(:strains).merge(Strain.order(acronym: sort_direction.to_sym))
+    elsif sort_column == 'lot_id'
+      Container.joins(:lots).merge(Lot.order(id: sort_direction.to_sym))
+    end
+  end
+
+  expose(:plants) { Plant.order(id: :asc) }
 
   before_action :set_weight, only: [ :create, :update ]
 
@@ -65,7 +75,7 @@ class ContainersController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id strain category name initial_weight current_weight created_at updated_at container_id).include?(params[:sort]) ? params[:sort] : 'created_at'
+      %w(id lot_id strain category name initial_weight current_weight created_at updated_at container_id).include?(params[:sort]) ? params[:sort] : 'created_at'
     end
 
     # Set sort direction to ascending or descending.

@@ -21,10 +21,11 @@
         <table class="table table-hover">
           <tr>
             <th></th>
-            <th><%= sortable :lot_id %></th>
+            <th><%= sortable :id, 'ID' %></th>
             <th><%= sortable :name %></th>
             <th><%= sortable :strain %></th>
             <th><%= sortable :category %></th>
+            <th><%= sortable :lot_id %></th>
             <th><%= sortable :initial_weight %></th>
             <th><%= sortable :current_weight %></th>
             <th><%= sortable :created_at %></th>
@@ -35,16 +36,17 @@
           <% containers.each do |container| %>
           <tr>
             <td><%# check_box_tag :accept %></td>
-            <td><%= container.try(:lot) if container.present? %></td>
+            <td><%= container.try(:id) if container.present? %></td>
             <td><%= container.try(:to_s) if container.present? %></td>
             <td><%= strain_for container.try(:strain) if container.present? %></td>
             <td><%= category_for container.try(:category) if container.present? %></td>
+            <td><%= container.try(:lot) if container.present? %></td>
             <td><%= weight_for container.try(:initial_weight) if container.present? %></td>
             <td><%= weight_for container.try(:current_weight) if container.present? %></td>
             <td><%= date_for container.try(:created_at) %></td>
             <td><%= date_for container.try(:updated_at) %></td>
             <td>
-             <a href="#" class="btn-sm btn-flat btn-success" data-toggle="modal" data-target="#<%= container.id %>"><i class="fa fa-tags"></i> Containers</a>
+             <!-- <a href="#" class="btn-sm btn-flat btn-success" data-toggle="modal" data-target="#<%= container.id %>"><i class="fa fa-tags"></i> Containers</a> -->
               <%= link_to "#{fa_icon('tag')} New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-warning', data: { toggle: 'modal', target: '.new-bag' } %>
               <%= link_to "#{fa_icon('tags')} Show".html_safe, container, class: "btn-sm btn-flat btn-info" %>
               <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_container_path(container), class: "btn-sm btn-flat btn-warning" %>
