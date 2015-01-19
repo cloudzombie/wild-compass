@@ -21,6 +21,12 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :category, 'Type' %>
+    <%= f.select :category, ['Buds', 'Trim', 'Unprocessed'], {}, class: 'form-control' %>
+    <%= display_error_for container, :category %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :weight %>
     <%= f.text_field :weight, class: 'form-control', value: weight_for(container.try(:initial_weight), '') %>
   </div>

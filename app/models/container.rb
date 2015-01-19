@@ -7,7 +7,7 @@ class Container < ActiveRecord::Base
 
 
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
-  scope :by_categories, -> (category = nil) { joins(:lots).merge(Lot.where(category: category)) }
+  scope :by_categories, -> (category = nil) { where(category: category) }
   scope :by_trims,      -> { by_categories 'Trim' }  
   scope :by_buds,       -> { by_categories 'Buds' }
   
@@ -24,8 +24,6 @@ class Container < ActiveRecord::Base
 
   has_many :jars, through: :lots
 
-
-
   has_many :strains, through: :plants
 
 
@@ -37,12 +35,6 @@ class Container < ActiveRecord::Base
   end
 
 
-
-  def category
-    lots.map(&:category).uniq.first
-  rescue
-    ''
-  end
 
   def lot
     lots.first
