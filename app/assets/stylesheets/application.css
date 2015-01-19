@@ -16,7 +16,8 @@
  *= require font-awesome
  *= require ionicons
  *= require admin-lte
- *= require icheck/all
+ *= require iCheck/all
+ *= require datatables/dataTables.bootstrap
  */
 
  #logo {
@@ -27,6 +28,3 @@
 }
 
 
-icheckbox_minimal {
-	opacity: 100%;
-}
