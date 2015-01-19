@@ -4,12 +4,12 @@ class Lot < ActiveRecord::Base
   include Accountable
   include Storyable
 
-  scope :strains, -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
-  scope :categories, -> (category = nil) { where(category: category) }
-  scope :trims,   -> { where(category: 'Trim') }
-  scope :buds,    -> { where(category: 'Buds') }
 
 
+  scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
+  scope :by_categories, -> (category = nil) { where(category: category) }
+  scope :by_trims,      -> { by_categories 'Trim' }
+  scope :by_buds,       -> { by_categories 'Buds' }
 
   
 
