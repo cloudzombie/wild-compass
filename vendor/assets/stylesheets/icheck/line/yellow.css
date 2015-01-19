@@ -26,7 +26,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: image-url(line.png) no-repeat;
         border: none;
     }
     .icheckbox_line-yellow.hover,
@@ -64,7 +64,7 @@
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_line-yellow .icheck_line-icon,
     .iradio_line-yellow .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: image-url(line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
