@@ -72,17 +72,96 @@
 .double-underlines {
   border-bottom: 3px double #444;
 }
-/* line 1, C:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* iCheck plugin Minimal skin, black
+----------------------------------- */
+/* line 5, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+.icheckbox_minimal,
+.iradio_minimal {
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  background: url(/images/minimal.png) no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+/* line 18, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+.icheckbox_minimal {
+  background-position: 0 0;
+}
+
+/* line 21, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+.icheckbox_minimal.hover {
+  background-position: -20px 0;
+}
+
+/* line 24, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+.icheckbox_minimal.checked {
+  background-position: -40px 0;
+}
+
+/* line 27, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+.icheckbox_minimal.disabled {
+  background-position: -60px 0;
+  cursor: default;
+}
+
+/* line 31, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+.icheckbox_minimal.checked.disabled {
+  background-position: -80px 0;
+}
+
+/* line 35, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+.iradio_minimal {
+  background-position: -100px 0;
+}
+
+/* line 38, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+.iradio_minimal.hover {
+  background-position: -120px 0;
+}
+
+/* line 41, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+.iradio_minimal.checked {
+  background-position: -140px 0;
+}
+
+/* line 44, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+.iradio_minimal.disabled {
+  background-position: -160px 0;
+  cursor: default;
+}
+
+/* line 48, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+.iradio_minimal.checked.disabled {
+  background-position: -180px 0;
+}
+
+/* HiDPI support */
+@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+  /* line 55, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss */
+  .icheckbox_minimal,
+  .iradio_minimal {
+    background-image: url(/images/minimal@2x.png);
+    -webkit-background-size: 200px 20px;
+    background-size: 200px 20px;
+  }
+}
+/* line 3, C:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .btn {
   cursor: pointer !important;
 }
 
-/* line 5, C:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 7, C:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .btn-sm {
   cursor: pointer !important;
 }
 
-/* line 9, C:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 11, C:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .modal-content {
   padding: 5% !important;
 }
@@ -113,7 +192,6 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
-
 
 
 
@@ -17733,787 +17811,6 @@ fieldset[disabled] .btn-vk.active {
 .btn-vk .badge {
   color: #587ea3;
   background-color: #ffffff;
-}
-/* iCheck plugin Minimal skin
------------------------------------ */
-/* line 5, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal,
-.iradio_minimal {
-  display: inline-block;
-  *display: inline;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  width: 18px;
-  height: 18px;
-  background: url(/minimal.png) no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-/* line 18, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal {
-  background-position: 0 0;
-}
-
-/* line 21, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal.hover {
-  background-position: -20px 0;
-}
-
-/* line 24, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal.checked {
-  background-position: -40px 0;
-}
-
-/* line 27, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal.disabled {
-  background-position: -60px 0;
-  cursor: default;
-}
-
-/* line 31, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal.checked.disabled {
-  background-position: -80px 0;
-}
-
-/* line 35, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal {
-  background-position: -100px 0;
-}
-
-/* line 38, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal.hover {
-  background-position: -120px 0;
-}
-
-/* line 41, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal.checked {
-  background-position: -140px 0;
-}
-
-/* line 44, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal.disabled {
-  background-position: -160px 0;
-  cursor: default;
-}
-
-/* line 48, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal.checked.disabled {
-  background-position: -180px 0;
-}
-
-/* HiDPI support */
-@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  /* line 55, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-  .icheckbox_minimal,
-  .iradio_minimal {
-    background-image: url(/minimal@2x.png);
-    -webkit-background-size: 200px 20px;
-    background-size: 200px 20px;
-  }
-}
-/* red */
-/* line 64, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-red,
-.iradio_minimal-red {
-  display: inline-block;
-  *display: inline;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  width: 18px;
-  height: 18px;
-  background: url(/red.png) no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-/* line 77, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-red {
-  background-position: 0 0;
-}
-
-/* line 80, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-red.hover {
-  background-position: -20px 0;
-}
-
-/* line 83, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-red.checked {
-  background-position: -40px 0;
-}
-
-/* line 86, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-red.disabled {
-  background-position: -60px 0;
-  cursor: default;
-}
-
-/* line 90, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-red.checked.disabled {
-  background-position: -80px 0;
-}
-
-/* line 94, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-red {
-  background-position: -100px 0;
-}
-
-/* line 97, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-red.hover {
-  background-position: -120px 0;
-}
-
-/* line 100, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-red.checked {
-  background-position: -140px 0;
-}
-
-/* line 103, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-red.disabled {
-  background-position: -160px 0;
-  cursor: default;
-}
-
-/* line 107, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-red.checked.disabled {
-  background-position: -180px 0;
-}
-
-/* HiDPI support */
-@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  /* line 114, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-  .icheckbox_minimal-red,
-  .iradio_minimal-red {
-    background-image: url(/red@2x.png);
-    -webkit-background-size: 200px 20px;
-    background-size: 200px 20px;
-  }
-}
-/* green */
-/* line 123, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-green,
-.iradio_minimal-green {
-  display: inline-block;
-  *display: inline;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  width: 18px;
-  height: 18px;
-  background: url(/green.png) no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-/* line 136, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-green {
-  background-position: 0 0;
-}
-
-/* line 139, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-green.hover {
-  background-position: -20px 0;
-}
-
-/* line 142, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-green.checked {
-  background-position: -40px 0;
-}
-
-/* line 145, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-green.disabled {
-  background-position: -60px 0;
-  cursor: default;
-}
-
-/* line 149, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-green.checked.disabled {
-  background-position: -80px 0;
-}
-
-/* line 153, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-green {
-  background-position: -100px 0;
-}
-
-/* line 156, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-green.hover {
-  background-position: -120px 0;
-}
-
-/* line 159, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-green.checked {
-  background-position: -140px 0;
-}
-
-/* line 162, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-green.disabled {
-  background-position: -160px 0;
-  cursor: default;
-}
-
-/* line 166, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-green.checked.disabled {
-  background-position: -180px 0;
-}
-
-/* HiDPI support */
-@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  /* line 173, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-  .icheckbox_minimal-green,
-  .iradio_minimal-green {
-    background-image: url(/green@2x.png);
-    -webkit-background-size: 200px 20px;
-    background-size: 200px 20px;
-  }
-}
-/* blue */
-/* line 182, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-blue,
-.iradio_minimal-blue {
-  display: inline-block;
-  *display: inline;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  width: 18px;
-  height: 18px;
-  background: url(/blue.png) no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-/* line 195, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-blue {
-  background-position: 0 0;
-}
-
-/* line 198, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-blue.hover {
-  background-position: -20px 0;
-}
-
-/* line 201, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-blue.checked {
-  background-position: -40px 0;
-}
-
-/* line 204, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-blue.disabled {
-  background-position: -60px 0;
-  cursor: default;
-}
-
-/* line 208, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-blue.checked.disabled {
-  background-position: -80px 0;
-}
-
-/* line 212, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-blue {
-  background-position: -100px 0;
-}
-
-/* line 215, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-blue.hover {
-  background-position: -120px 0;
-}
-
-/* line 218, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-blue.checked {
-  background-position: -140px 0;
-}
-
-/* line 221, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-blue.disabled {
-  background-position: -160px 0;
-  cursor: default;
-}
-
-/* line 225, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-blue.checked.disabled {
-  background-position: -180px 0;
-}
-
-/* HiDPI support */
-@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  /* line 232, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-  .icheckbox_minimal-blue,
-  .iradio_minimal-blue {
-    background-image: url(/blue@2x.png);
-    -webkit-background-size: 200px 20px;
-    background-size: 200px 20px;
-  }
-}
-/* aero */
-/* line 241, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-aero,
-.iradio_minimal-aero {
-  display: inline-block;
-  *display: inline;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  width: 18px;
-  height: 18px;
-  background: url(/aero.png) no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-/* line 254, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-aero {
-  background-position: 0 0;
-}
-
-/* line 257, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-aero.hover {
-  background-position: -20px 0;
-}
-
-/* line 260, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-aero.checked {
-  background-position: -40px 0;
-}
-
-/* line 263, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-aero.disabled {
-  background-position: -60px 0;
-  cursor: default;
-}
-
-/* line 267, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-aero.checked.disabled {
-  background-position: -80px 0;
-}
-
-/* line 271, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-aero {
-  background-position: -100px 0;
-}
-
-/* line 274, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-aero.hover {
-  background-position: -120px 0;
-}
-
-/* line 277, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-aero.checked {
-  background-position: -140px 0;
-}
-
-/* line 280, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-aero.disabled {
-  background-position: -160px 0;
-  cursor: default;
-}
-
-/* line 284, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-aero.checked.disabled {
-  background-position: -180px 0;
-}
-
-/* HiDPI support */
-@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  /* line 291, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-  .icheckbox_minimal-aero,
-  .iradio_minimal-aero {
-    background-image: url(/aero@2x.png);
-    -webkit-background-size: 200px 20px;
-    background-size: 200px 20px;
-  }
-}
-/* grey */
-/* line 300, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-grey,
-.iradio_minimal-grey {
-  display: inline-block;
-  *display: inline;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  width: 18px;
-  height: 18px;
-  background: url(/grey.png) no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-/* line 313, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-grey {
-  background-position: 0 0;
-}
-
-/* line 316, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-grey.hover {
-  background-position: -20px 0;
-}
-
-/* line 319, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-grey.checked {
-  background-position: -40px 0;
-}
-
-/* line 322, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-grey.disabled {
-  background-position: -60px 0;
-  cursor: default;
-}
-
-/* line 326, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-grey.checked.disabled {
-  background-position: -80px 0;
-}
-
-/* line 330, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-grey {
-  background-position: -100px 0;
-}
-
-/* line 333, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-grey.hover {
-  background-position: -120px 0;
-}
-
-/* line 336, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-grey.checked {
-  background-position: -140px 0;
-}
-
-/* line 339, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-grey.disabled {
-  background-position: -160px 0;
-  cursor: default;
-}
-
-/* line 343, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-grey.checked.disabled {
-  background-position: -180px 0;
-}
-
-/* HiDPI support */
-@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  /* line 350, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-  .icheckbox_minimal-grey,
-  .iradio_minimal-grey {
-    background-image: url(/grey@2x.png);
-    -webkit-background-size: 200px 20px;
-    background-size: 200px 20px;
-  }
-}
-/* orange */
-/* line 359, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-orange,
-.iradio_minimal-orange {
-  display: inline-block;
-  *display: inline;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  width: 18px;
-  height: 18px;
-  background: url(/orange.png) no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-/* line 372, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-orange {
-  background-position: 0 0;
-}
-
-/* line 375, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-orange.hover {
-  background-position: -20px 0;
-}
-
-/* line 378, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-orange.checked {
-  background-position: -40px 0;
-}
-
-/* line 381, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-orange.disabled {
-  background-position: -60px 0;
-  cursor: default;
-}
-
-/* line 385, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-orange.checked.disabled {
-  background-position: -80px 0;
-}
-
-/* line 389, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-orange {
-  background-position: -100px 0;
-}
-
-/* line 392, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-orange.hover {
-  background-position: -120px 0;
-}
-
-/* line 395, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-orange.checked {
-  background-position: -140px 0;
-}
-
-/* line 398, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-orange.disabled {
-  background-position: -160px 0;
-  cursor: default;
-}
-
-/* line 402, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-orange.checked.disabled {
-  background-position: -180px 0;
-}
-
-/* HiDPI support */
-@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  /* line 409, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-  .icheckbox_minimal-orange,
-  .iradio_minimal-orange {
-    background-image: url(/orange@2x.png);
-    -webkit-background-size: 200px 20px;
-    background-size: 200px 20px;
-  }
-}
-/* yellow */
-/* line 418, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-yellow,
-.iradio_minimal-yellow {
-  display: inline-block;
-  *display: inline;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  width: 18px;
-  height: 18px;
-  background: url(/yellow.png) no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-/* line 431, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-yellow {
-  background-position: 0 0;
-}
-
-/* line 434, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-yellow.hover {
-  background-position: -20px 0;
-}
-
-/* line 437, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-yellow.checked {
-  background-position: -40px 0;
-}
-
-/* line 440, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-yellow.disabled {
-  background-position: -60px 0;
-  cursor: default;
-}
-
-/* line 444, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-yellow.checked.disabled {
-  background-position: -80px 0;
-}
-
-/* line 448, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-yellow {
-  background-position: -100px 0;
-}
-
-/* line 451, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-yellow.hover {
-  background-position: -120px 0;
-}
-
-/* line 454, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-yellow.checked {
-  background-position: -140px 0;
-}
-
-/* line 457, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-yellow.disabled {
-  background-position: -160px 0;
-  cursor: default;
-}
-
-/* line 461, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-yellow.checked.disabled {
-  background-position: -180px 0;
-}
-
-/* HiDPI support */
-@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  /* line 468, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-  .icheckbox_minimal-yellow,
-  .iradio_minimal-yellow {
-    background-image: url(/yellow@2x.png);
-    -webkit-background-size: 200px 20px;
-    background-size: 200px 20px;
-  }
-}
-/* pink */
-/* line 477, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-pink,
-.iradio_minimal-pink {
-  display: inline-block;
-  *display: inline;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  width: 18px;
-  height: 18px;
-  background: url(/pink.png) no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-/* line 490, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-pink {
-  background-position: 0 0;
-}
-
-/* line 493, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-pink.hover {
-  background-position: -20px 0;
-}
-
-/* line 496, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-pink.checked {
-  background-position: -40px 0;
-}
-
-/* line 499, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-pink.disabled {
-  background-position: -60px 0;
-  cursor: default;
-}
-
-/* line 503, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-pink.checked.disabled {
-  background-position: -80px 0;
-}
-
-/* line 507, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-pink {
-  background-position: -100px 0;
-}
-
-/* line 510, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-pink.hover {
-  background-position: -120px 0;
-}
-
-/* line 513, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-pink.checked {
-  background-position: -140px 0;
-}
-
-/* line 516, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-pink.disabled {
-  background-position: -160px 0;
-  cursor: default;
-}
-
-/* line 520, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-pink.checked.disabled {
-  background-position: -180px 0;
-}
-
-/* HiDPI support */
-@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  /* line 527, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-  .icheckbox_minimal-pink,
-  .iradio_minimal-pink {
-    background-image: url(/pink@2x.png);
-    -webkit-background-size: 200px 20px;
-    background-size: 200px 20px;
-  }
-}
-/* purple */
-/* line 536, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-purple,
-.iradio_minimal-purple {
-  display: inline-block;
-  *display: inline;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  width: 18px;
-  height: 18px;
-  background: url(/purple.png) no-repeat;
-  border: none;
-  cursor: pointer;
-}
-
-/* line 549, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-purple {
-  background-position: 0 0;
-}
-
-/* line 552, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-purple.hover {
-  background-position: -20px 0;
-}
-
-/* line 555, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-purple.checked {
-  background-position: -40px 0;
-}
-
-/* line 558, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-purple.disabled {
-  background-position: -60px 0;
-  cursor: default;
-}
-
-/* line 562, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.icheckbox_minimal-purple.checked.disabled {
-  background-position: -80px 0;
-}
-
-/* line 566, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-purple {
-  background-position: -100px 0;
-}
-
-/* line 569, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-purple.hover {
-  background-position: -120px 0;
-}
-
-/* line 572, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-purple.checked {
-  background-position: -140px 0;
-}
-
-/* line 575, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-purple.disabled {
-  background-position: -160px 0;
-  cursor: default;
-}
-
-/* line 579, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-.iradio_minimal-purple.checked.disabled {
-  background-position: -180px 0;
-}
-
-/* HiDPI support */
-@media (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  /* line 586, C:/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss */
-  .icheckbox_minimal-purple,
-  .iradio_minimal-purple {
-    background-image: url(/purple@2x.png);
-    -webkit-background-size: 200px 20px;
-    background-size: 200px 20px;
-  }
 }
 div.dataTables_length label {
 	font-weight: normal;

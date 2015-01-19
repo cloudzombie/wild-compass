@@ -1,7 +1,7 @@
-/* iCheck plugin Minimal skin, red
+/* iCheck plugin Minimal skin, black
 ----------------------------------- */
-.icheckbox_minimal-red,
-.iradio_minimal-red {
+.icheckbox_minimal,
+.iradio_minimal {
     display: inline-block;
     *display: inline;
     vertical-align: middle;
@@ -9,50 +9,50 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: asset-url("red.png") no-repeat;
+    background: image-url("minimal.png") no-repeat;
     border: none;
     cursor: pointer;
 }
 
-.icheckbox_minimal-red {
+.icheckbox_minimal {
     background-position: 0 0;
 }
-    .icheckbox_minimal-red.hover {
+    .icheckbox_minimal.hover {
         background-position: -20px 0;
     }
-    .icheckbox_minimal-red.checked {
+    .icheckbox_minimal.checked {
         background-position: -40px 0;
     }
-    .icheckbox_minimal-red.disabled {
+    .icheckbox_minimal.disabled {
         background-position: -60px 0;
         cursor: default;
     }
-    .icheckbox_minimal-red.checked.disabled {
+    .icheckbox_minimal.checked.disabled {
         background-position: -80px 0;
     }
 
-.iradio_minimal-red {
+.iradio_minimal {
     background-position: -100px 0;
 }
-    .iradio_minimal-red.hover {
+    .iradio_minimal.hover {
         background-position: -120px 0;
     }
-    .iradio_minimal-red.checked {
+    .iradio_minimal.checked {
         background-position: -140px 0;
     }
-    .iradio_minimal-red.disabled {
+    .iradio_minimal.disabled {
         background-position: -160px 0;
         cursor: default;
     }
-    .iradio_minimal-red.checked.disabled {
+    .iradio_minimal.checked.disabled {
         background-position: -180px 0;
     }
 
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-    .icheckbox_minimal-red,
-    .iradio_minimal-red {
-        background-image: asset-url("red@2x.png");
+    .icheckbox_minimal,
+    .iradio_minimal {
+        background-image: image-url("minimal@2x.png");
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
