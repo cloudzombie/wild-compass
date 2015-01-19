@@ -16,7 +16,7 @@
  *= require font-awesome
  *= require ionicons
  *= require admin-lte
- *= require iCheck/all
+ *= require iCheck/minimal/_all
  *= require datatables/dataTables.bootstrap
  */
 
