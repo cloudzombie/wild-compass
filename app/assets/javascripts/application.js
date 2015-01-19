@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery-ui/core
 //= require turbolinks
-//= require bootstrap.min
-//= require admin-lte
-//= require icheck
+//= require bootstrap
+//= require adminlte/app
 //= require_tree .
