@@ -59,11 +59,11 @@ class PlantsController < ApplicationController
 
   private
     def plant_params
-      params.require(:plant).permit(:name, :strain_id, :format_id, :status_id, :rfid_id, :initial_weight, :current_weight, { container_ids: [:id]})
+      params.require(:plant).permit(:name, :origin, :strain_id, :format_id, :status_id, :rfid_id, :initial_weight, :current_weight, { container_ids: [:id]})
     end
 
     def sort_column
-      %w(id name strain format status rfid initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'id'
+      %w(id name strain origin format status rfid initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'id'
     end
 
     # Set sort direction to ascending or descending.
