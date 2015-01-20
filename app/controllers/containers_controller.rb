@@ -5,11 +5,11 @@ class ContainersController < ApplicationController
   
   expose(:containers) do
     if Container.column_names.include? sort_column
-      Container.order( sort_column + ' ' + sort_direction )
+      Container.order( sort_column + ' ' + sort_direction ).page(params[:page])
     elsif sort_column == 'strain'
-      Container.joins(:strains).merge(Strain.order(acronym: sort_direction.to_sym))
+      Container.joins(:strains).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
     elsif sort_column == 'lot_id'
-      Container.joins(:lots).merge(Lot.order(id: sort_direction.to_sym))
+      Container.joins(:lots).merge(Lot.order(id: sort_direction.to_sym)).page(params[:page])
     end
   end
 
