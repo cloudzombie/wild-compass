@@ -81,3 +81,6 @@ gem 'spreadsheet'
 
 # Pagination
 gem 'kaminari'
+
+# Datamatrix
+gem 'datamatrix', git: 'https://bitbucket.org/thcdev/datamatrix.git'
