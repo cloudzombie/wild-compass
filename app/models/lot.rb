@@ -14,10 +14,10 @@ class Lot < ActiveRecord::Base
   
 
   has_many :strains, through: :plants
-  
-
 
   has_and_belongs_to_many :containers
+
+  accepts_nested_attributes_for :containers
 
   has_many :plants, through: :containers
   
