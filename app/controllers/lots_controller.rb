@@ -11,7 +11,7 @@ class LotsController < ApplicationController
     end
   end
 
-  expose(:containers) { Container.all }
+  expose(:containers) { Container.order(id: :asc) }
 
   expose(:bag) { Bag.new }
 
