@@ -23,6 +23,7 @@
           <th><%# checkbox %></th>
           <th><%= sortable :id, 'ID' %></th>
           <th><%= sortable :strain %></th>
+          <th><%= sortable :origin %></th>
           <th><%= sortable :status %></th>
           <th><%= sortable :created_at %></th>
           <th><%= sortable :updated_at %></th>
@@ -36,6 +37,7 @@
           <td><%# checkbox %></td>
           <td><%= "Plant - #{plant.try(:id)}" if plant.present? %></td>
           <td><%= strain_for plant.try(:strain) if plant.present? %></td>
+          <td><%= plant.try(:origin) if plant.present? %></td>
           <td><%= plant.try(:status) if plant.present? %></td>
           <td><%= date_for plant.try(:created_at) if plant.present? %></td>
           <td><%= date_for plant.try(:updated_at) if plant.present? %></td>

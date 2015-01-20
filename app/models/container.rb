@@ -6,10 +6,11 @@ class Container < ActiveRecord::Base
 
 
 
-  scope :trims,   -> { joins(:lots).merge(Lot.where(category: 'Trim')) }  
-  scope :buds,    -> { joins(:lots).merge(Lot.where(category: 'Buds')) }
-  scope :strains, -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
-  scope :categories, -> (category = nil) { joins(:lots).merge(Lot.where(category: category)) }
+  scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
+  scope :by_categories, -> (category = nil) { where(category: category) }
+  scope :by_trims,      -> { by_categories 'Trim' }  
+  scope :by_buds,       -> { by_categories 'Buds' }
+  
 
 
 
@@ -21,27 +22,19 @@ class Container < ActiveRecord::Base
 
   has_many :bags, through: :lots
 
-  has_many :jars, through: :lots	
+  has_many :jars, through: :lots
 
-
-
-  has_many :strains, through: :lots
+  has_many :strains, through: :plants
 
 
 
   def to_s
-    name.upcase
+    "#{ name.try(:upcase) }"
   rescue
     ''
   end
 
 
-
-  def category
-    lots.map(&:category).uniq.first
-  rescue
-    ''
-  end
 
   def lot
     lots.first
@@ -67,16 +60,8 @@ class Container < ActiveRecord::Base
     ''
   end
 
-  alias_method :real_strains, :strains
-
   def strain
-    lots.map(&:strains).uniq.first
-  rescue
-    ''
-  end
-
-  def strains
-    self.real_strains
+    strains.first
   rescue
     ''
   end

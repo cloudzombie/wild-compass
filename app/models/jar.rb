@@ -4,10 +4,12 @@ class Jar < ActiveRecord::Base
   include Accountable
   include Storyable
 
-  scope :strains, -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
-  scope :categories, -> (category = nil) { joins(:lots).merge(Lot.where(category: category)) }
-  scope :trims,   -> { joins(:lots).merge(Lot.where(category: 'Trim')) }  
-  scope :buds,    -> { joins(:lots).merge(Lot.where(category: 'Buds')) }
+
+
+  scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
+  scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)) }
+  scope :by_trims,      -> { by_categories 'Trim' }  
+  scope :by_buds,       -> { by_categories 'Buds' }
 
 
 
@@ -35,16 +37,18 @@ class Jar < ActiveRecord::Base
 
   has_many :lots, through: :bag
 
-  has_many :strains, through: :bag
+  has_many :strains, through: :plants
 
-  delegate :category, to: :bag, prefix: false, allow_nil: true
+  delegate :category, to: :container, prefix: false, allow_nil: true
 
 
 
   ### Datamatrix
 
   def datamatrix
-    Datamatrix.new(id)
+    Datamatrix.new self.try(:id)
+  rescue
+    Rails.logger.log "COULD CREATE DATAMATRIX FOR JAR WITH ID : #{ self.try(:id) }"
   end
 
 
@@ -55,35 +59,22 @@ class Jar < ActiveRecord::Base
     "#{ name.upcase unless name.nil? }"
   end
 
-  private
+  def lot
+    lots.first
+  rescue
+    ''
+  end
 
-    alias_method :real_strains, :strains
-    alias_method :real_category, :category
+  def strain
+    strains.first
+  rescue
+    ''
+  end
 
-  public
-
-    def lot
-      lots.first
-    rescue
-      ''
-    end
-
-    def strain
-      lots.map(&:strains).uniq.first
-    rescue
-      ''
-    end
-
-    def strains
-      self.real_strains
-    rescue
-      ''
-    end
-
-    def category
-      self.real_category
-    rescue
-      ''
-    end
+  def plant
+    plants.first
+  rescue
+    ''
+  end
 
 end

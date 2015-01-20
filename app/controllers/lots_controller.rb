@@ -11,6 +11,8 @@ class LotsController < ApplicationController
     end
   end
 
+  expose(:containers) { Container.order(id: :asc) }
+
   expose(:bag) { Bag.new }
 
   before_action :set_weight, only: [ :create, :update ]
@@ -35,6 +37,8 @@ class LotsController < ApplicationController
 
   # Update lot column.
   def update
+    params[:lot][:container_ids] ||= []
+
     respond_to do |format|
       if lot.update(lot_params)
         format.html { redirect_to lot, notice: 'Lot was successfully updated.' }
@@ -58,7 +62,7 @@ class LotsController < ApplicationController
   private
 
     def lot_params
-      params.require(:lot).permit(:name, :weight, :initial_weight, :strain_id, :category, :current_weight)
+      params.require(:lot).permit(:name, :weight, :initial_weight, :strain_id, :current_weight, { container_ids: [] })
     end
 
     def id_param

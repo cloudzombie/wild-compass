@@ -1,14 +1,8 @@
 <%= form_for(lot) do |f| %>
-    <div class="form-group">
+  <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
     <%= display_error_for lot, :name %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label 'Type' %>
-    <%= f.select :category, ['Buds', 'Trim'], {}, class: 'form-control' %>
-    <%= display_error_for lot, :category %>
   </div>
 
   <div class="form-group">

@@ -1,16 +1,24 @@
 <h1>Editing lot</h1>
 
 <%= form_for(lot) do |f| %>
-    <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
-    <%= display_error_for lot, :name %>
+  <div class="form-group">
+    <%= f.label :containers %>
+    <% containers.each_slice(6) do |slice| %>
+    <div class="row">
+      <% slice.each do |container| %>
+      <div class="col-lg-2">
+        <%= check_box_tag "lot[container_ids][]", container.id, lot.containers.include?(container) %>
+        <%= label_tag container %>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
   </div>
 
   <div class="form-group">
-    <%= f.label 'Type' %>
-    <%= f.select :category, ['Buds', 'Trim'], {}, class: 'form-control' %>
-    <%= display_error_for lot, :category %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <%= display_error_for lot, :name %>
   </div>
 
   <div class="form-group">

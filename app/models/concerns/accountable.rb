@@ -5,7 +5,7 @@ module Accountable
     def total_weight_per_trim
       total_weight_per_trim = 0.0
 
-      trims.each do |accounted|
+      by_trims.each do |accounted|
         total_weight_per_trim += accounted.try(:current_weight)
       end
 
@@ -17,7 +17,7 @@ module Accountable
     def total_weight_per_buds
       total_weight_per_buds = 0.0
 
-      buds.each do |accounted|
+      by_buds.each do |accounted|
         total_weight_per_buds += accounted.try(:current_weight)
       end
 
