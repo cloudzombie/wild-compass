@@ -95,13 +95,13 @@ class Data_Matrix
 	end	
 
 	def champ_galois_sum(a, b)
-		return a ^ b
+		return (a ^ b)
 	end
 
 	def select_index(data_code_words_count, rectangular)
-		if ((data_code_words_count < 1 or data_code_words_count > 1558) and !rectangular) then return -1
+		if ((data_code_words_count < 1 or data_code_words_count > 1558) and rectangular == 0) then return -1
 		end
-		if ((data_code_words_count < 1 or data_code_words_count > 49) and rectangular) then return -1
+		if ((data_code_words_count < 1 or data_code_words_count > 49) and rectangular == 1) then return -1
 		end
 
 		n = 0
@@ -139,12 +139,12 @@ class Data_Matrix
 	def add_pad_cw(tab, from, to)
 		if from >= to then return nil 
 		end
-
 		tab[from] = 129
-		for i in (from+1)..to
+		for i in (from+1)...to
 			r =  ((149 * (i+1)) % 253) + 1
 			tab[i] = (129 + r) % 254
 		end
+	
 	end
 
 	def calcul_sol_factor_table(solomon_cw_count)
@@ -161,15 +161,22 @@ class Data_Matrix
 
 	def add_reed_solomon_cw(n_solomon_cw, coeff_tab, n_data_cw, data_tab, blocks)
 		error_blocks = n_solomon_cw / blocks
-		correction_cw = Array.new(error_blocks, 0)
-		for k in 0...(blocks)
-			for i in (k...n_data_cw).step(blocks)
+		correction_cw = Array.new
+		for k in (0...blocks)
+			for i in (0..error_blocks) do 
+				correction_cw[i] = 0
+			end
+			(k...n_data_cw).step(blocks) do |i|
 				temp = self.champ_galois_sum(data_tab[i], correction_cw[error_blocks-1])
-				for j in (error_blocks-1).downto(0)
-					if !temp then correction_cw[j] = 0
-					else correction_cw[j] = self.champ_galois_mult(temp, coeff_tab[j])
+				(error_blocks-1).downto(0).each do |j|
+					if temp.nil? then
+						correction_cw[j] = 0
+					else
+						correction_cw[j] = self.champ_galois_mult(temp, coeff_tab[j])
 					end
-					if j > 0 then correction_cw[j] = self.champ_galois_sum(correction_cw[j-1], correction_cw[j])
+
+					if (j>0) then
+						correction_cw[j] = self.champ_galois_sum(correction_cw[j-1], correction_cw[j])
 					end
 				end
 			end
@@ -181,6 +188,8 @@ class Data_Matrix
 				j += blocks
 			end
 		end
+		puts data_tab
+
 		return data_tab
 	end
 
@@ -432,4 +441,4 @@ class Data_Matrix
 end
 
 data = Data_Matrix.new
-print data.getDigit('Anaelle', 0)
+print data.getDigit('a', false)
