@@ -181,6 +181,8 @@ class Data_Matrix
 				end
 			end
 
+			puts correction_cw
+			puts "---"
 			j = n_data_cw + k
 
 			for i in (error_blocks-1).downto(0)
