@@ -14,17 +14,17 @@ class Container < ActiveRecord::Base
 
 
 
-  has_and_belongs_to_many :plants
+  has_and_belongs_to_many :plants, -> { uniq }
 
   accepts_nested_attributes_for :plants
 
-	has_and_belongs_to_many :lots
+	has_and_belongs_to_many :lots, -> { uniq }
 
-  has_many :bags, through: :lots
+  has_many :bags, -> { uniq }, through: :lots
 
-  has_many :jars, through: :lots
+  has_many :jars, -> { uniq }, through: :lots
 
-  has_many :strains, through: :plants
+  has_many :strains, -> { uniq }, through: :plants
 
 
 

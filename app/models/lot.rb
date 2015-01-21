@@ -13,17 +13,17 @@ class Lot < ActiveRecord::Base
 
   
 
-  has_many :strains, through: :plants
+  has_many :strains, -> { uniq }, through: :plants
 
-  has_and_belongs_to_many :containers
+  has_and_belongs_to_many :containers, -> { uniq }
 
   accepts_nested_attributes_for :containers
 
-  has_many :plants, through: :containers
+  has_many :plants, -> { uniq }, through: :containers
   
-  has_many :bags
+  has_many :bags, -> { uniq }
 
-  has_many :jars, through: :bags
+  has_many :jars, -> { uniq }, through: :bags
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 

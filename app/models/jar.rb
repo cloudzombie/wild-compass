@@ -29,15 +29,15 @@ class Jar < ActiveRecord::Base
 
   ### Plants
 
-  has_many :plants, through: :bag
+  has_many :plants, -> { uniq }, through: :bag
   
   
 
   ### Lot
 
-  has_many :lots, through: :bag
+  has_many :lots, -> { uniq }, through: :bag
 
-  has_many :strains, through: :plants
+  has_many :strains, -> { uniq }, through: :plants
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 
