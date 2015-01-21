@@ -83,5 +83,5 @@ gem 'spreadsheet'
 gem 'kaminari'
 
 # Datamatrix
-gem 'datamatrix', git: 'https://bitbucket.org/thcdev/datamatrix.git'
+gem 'datamatrix', git: 'https://biximilien:esf823r@bitbucket.org/thcdev/datamatrix.git'
 

@@ -1,5 +1,5 @@
 GIT
-  remote: https://bitbucket.org/thcdev/datamatrix.git
+  remote: https://biximilien:esf823r@bitbucket.org/thcdev/datamatrix.git
   revision: d15582600fcc5d4d2c1927b6ff51d96609b25900
   specs:
     datamatrix (0.0.1)
