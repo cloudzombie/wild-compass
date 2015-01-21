@@ -19,7 +19,7 @@
   <div class="box-body table-responsive no-padding">
     <table class="table table-hover">
       <tr>
-        <th><input id="accept" name="accept" type="checkbox" style="height:100%; width:100%" /></th>
+        <th><%= check_box_tag :accept %></th>
         <th><%= sortable :id, 'ID' %></th>
         <th><%= sortable :strain %></th>
         <th><%= sortable :category %></th>
@@ -32,7 +32,7 @@
 
       <% jars.each do |jar| %>
       <tr>
-        <td></td>
+        <td><%= check_box_tag :accept %></td>
         <td><%= jar.id %></td>
         <td><%= jar.lot.strain unless jar.lot.nil? %></td>
         <td><%= jar.lot.category unless jar.lot.nil? %></td>
