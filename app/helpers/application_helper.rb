@@ -111,4 +111,8 @@ module ApplicationHelper
   rescue
     "<small class=\"badge alert-danger\">ERROR</small>".html_safe
   end
+
+  def ordered_by_id(collection)
+    collection.order(id: :asc)
+  end
 end
