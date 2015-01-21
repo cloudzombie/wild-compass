@@ -11,21 +11,19 @@ class Lot < ActiveRecord::Base
   scope :by_trims,      -> { by_categories 'Trim' }
   scope :by_buds,       -> { by_categories 'Buds' }
 
-  scope :unique_and_ordered_by_id, -> { order(id: :asc).uniq }
-
   
 
-  has_many :strains, -> { unique_and_ordered_by_id }, through: :plants
+  has_many :strains, -> { uniq }, through: :plants
 
-  has_and_belongs_to_many :containers, -> { unique_and_ordered_by_id }
+  has_and_belongs_to_many :containers, -> { uniq }
 
   accepts_nested_attributes_for :containers
 
-  has_many :plants, -> { unique_and_ordered_by_id }, through: :containers
+  has_many :plants, -> { uniq }, through: :containers
   
-  has_many :bags, -> { unique_and_ordered_by_id }
+  has_many :bags, -> { uniq }
 
-  has_many :jars, -> { unique_and_ordered_by_id }, through: :bags
+  has_many :jars, -> { uniq }, through: :bags
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 
