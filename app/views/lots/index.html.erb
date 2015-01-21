@@ -21,7 +21,8 @@
         <table class="table table-hover">
           <tr>
             <th><%= check_box_tag :accept %></th>
-            <th><%= sortable :name, "ID" %></th>
+            <th><%= sortable :id, 'ID' %></th>
+            <th><%= sortable :name %></th>
             <th><%= sortable :strain %></th>
             <th><%= sortable :category %></th>
             <th><%= sortable :initial_weight %></th>
@@ -34,6 +35,7 @@
           <% lots.each do |lot| %>
           <tr>
             <td><%= check_box_tag :accept %></td>
+            <td><%= lot.try(:id) if lot.present? %></td>
             <td><%= lot.try(:to_s) if lot.present? %></td>
             <td><%= strain_for lot.try(:strain) if lot.present? %></td>
             <td><%= category_for lot.try(:category) if lot.present? %></td>
