@@ -86,11 +86,11 @@
                 <th>Category :</th>
               </tr>
 
-              <% lot.try(:containers).each do |container| %>
+              <% ordered_by_id(lot.try(:containers)).each do |container| %>
               <tr>
-                <td><%= container.try(:to_s) if container.present? %></td>
+                <td><%= link_to container.try(:to_s), container if container.present? %></td>
                 <td><%= weight_for container.try(:current_weight) if container.present? %></td>
-                <td><%= container.try(:category) if container.present? %></td>
+                <td><%= category_for container.try(:category) if container.present? %></td>
               </tr>
               <% end %>
             </table>
