@@ -16,13 +16,13 @@ class Bag < ActiveRecord::Base
 
   belongs_to :lot
 
-  has_many :jars
+  has_many :jars, -> { uniq }
 
-  has_many :plants, through: :lot
+  has_many :plants, -> { uniq }, through: :lot
 
-  has_many :containers, through: :lot
+  has_many :containers, -> { uniq }, through: :lot
 
-  has_many :strains, through: :plants
+  has_many :strains, -> { uniq }, through: :plants
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 

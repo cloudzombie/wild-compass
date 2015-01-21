@@ -19,32 +19,42 @@
   <div class="box-body table-responsive no-padding">
     <table class="table table-hover">
       <tr>
-        <th><input id="accept" name="accept" type="checkbox" style="height:100%, width:100%" /></th>
-        <th><%= sortable :name, "ID" %></th>
+        <th><%= check_box_tag :accept %></th>
+        <th><%= sortable :id, 'ID' %></th>
+        <th><%= sortable :name %></th>
         <th><%= sortable :strain %></th>
         <th><%= sortable :category %></th>
         <th><%= sortable :initial_weight %></th>
         <th><%= sortable :current_weight %></th>
+        <th><%= sortable :tested %></th>
         <th><%= sortable :created_at %></th>
         <th><%= sortable :updated_at %></th>
-        <th><%= sortable :container, 'Origin' %></th>
+        <th><%= sortable :lot_id, 'Origin' %></th>
         <th>Actions</th>
       </tr>
 
       <% bags.each do |bag| %>
       <tr>
-        <td></td>
-        <td><%= bag.try(:to_s) if bag.present? %></td>
+        <td><%= check_box_tag :accept %></td>
+        <td><%= bag.try(:id) if bag.present? %></td>
+        <td>
+          <% if can? :show, bag %>
+          <%= link_to bag.try(:to_s), bag if bag.present? %>
+          <% else %>
+          <%= bag.try(:to_s) if bag.present? %>
+          <% end %>
+        </td>
         <td><%= strain_for bag.try(:strain) if bag.present? %></td>
-        <td><%= bag.try(:category) if bag.present? %></td>
+        <td><%= category_for bag.try(:category) if bag.present? %></td>
         <td><%= weight_for bag.try(:initial_weight) if bag.present? %></td>
         <td><%= weight_for bag.try(:current_weight) if bag.present? %></td>
+        <td><%= test_for bag.try(:tested) if bag.present? %></td>
         <td><%= date_for bag.try(:created_at) if bag.present? %></td>
         <td><%= date_for bag.try(:updated_at) if bag.present? %></td>
         
         <td>
-          <% if can? :show, Container %>
-          <%= link_to "#{fa_icon('tag')} #{bag.try(:container)}".html_safe, bag.try(:container), class: "btn-sm btn-flat btn-info" %>
+          <% if can? :show, Lot %>
+          <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" if bag.try(:lot).present? %>
           <% end %>
         </td>
 
@@ -52,10 +62,6 @@
           <% if can? :create, Jar %>
           <%= link_to "#{fa_icon 'flask'} New Jar".html_safe, '#', class: 'btn-sm btn-flat btn-danger',
               data: { toggle: 'modal', target: '.new-jar' } %>
-          <% end %>
-
-          <% if can? :show, Bag %>
-          <%= link_to "#{fa_icon 'tag'} Show".html_safe, bag, class: "btn-sm btn-flat btn-warning" %>
           <% end %>
 
           <% if can? :send_to_lab, Bag %>

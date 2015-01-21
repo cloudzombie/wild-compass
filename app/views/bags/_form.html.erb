@@ -1,8 +1,8 @@
 <%= form_for(bag) do |f| %>
   <div class="form-group">
-    <%= f.label :container_id %>
-    <%= f.collection_select :container_id, Container.all, :id, :name, {}, selected: params[:container], class: 'form-control' %>
-    <%= display_error_for bag, :container_id %>
+    <%= f.label :lot_id %>
+    <%= f.collection_select :lot_id, Lot.all, :id, :name, {}, selected: params[:lot_id], class: 'form-control' %>
+    <%= display_error_for bag, :lot_id %>
   </div>
 
   <div class="form-group">

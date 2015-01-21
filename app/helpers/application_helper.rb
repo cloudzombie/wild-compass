@@ -88,15 +88,27 @@ module ApplicationHelper
   def category_for(category)
     case category.downcase.to_sym
     when :trim
-      "<small class=\"label label-primary\">#{category.upcase}</small>".html_safe
+      "<small class=\"label label-primary\">TRIM</small>".html_safe
     when :buds
-      "<small class=\"label label-info\">#{category.upcase}</small>".html_safe
+      "<small class=\"label label-info\">BUDS</small>".html_safe
     when :unprocessed
-      "<small class=\"label label-warning\">#{category.upcase}</small>".html_safe
+      "<small class=\"label label-warning\">UNPROCESSED</small>".html_safe
     else
-      "<small class=\"label label-danger\">ERROR</small>".html_safe
+      ''
     end
   rescue
-    ''
+    "<small class=\"label label-danger\">ERROR</small>".html_safe
+  end
+
+  def test_for(tested)
+    if tested == true
+      "<small class=\"badge alert-info\">TESTED</small>".html_safe
+    elsif tested == false
+      "<small class=\"badge alert-warning\">UNTESTED</small>".html_safe
+    else
+      ''
+    end
+  rescue
+    "<small class=\"badge alert-danger\">ERROR</small>".html_safe
   end
 end
