@@ -44,7 +44,8 @@
             <td><%= date_for lot.try(:created_at) if lot.present? %></td>
             <td><%= date_for lot.try(:updated_at) if lot.present? %></td>
             <td>
-              <a href="#" class="btn-sm btn-flat btn-success" data-toggle="modal" data-target="#<%= lot.id %>"><i class="fa fa-tags"></i> Containers</a>
+              <%= link_to "#{fa_icon 'tags'} Containers".html_safe, '#',
+                  class: 'btn-sm btn-flat btn-success', data: { toggle: 'modal', target: "##{lot.id}" } %>
 
               <% if can? :create, Lot %>
               <%= link_to "#{fa_icon 'tag'} New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-warning',
@@ -85,7 +86,7 @@
                 <th>Category :</th>
               </tr>
 
-              <% Container.where('lot_id = ?', lot.id).each do |container| %>
+              <% lot.try(:containers).each do |container| %>
               <tr>
                 <td><%= container.try(:to_s) if container.present? %></td>
                 <td><%= weight_for container.try(:current_weight) if container.present? %></td>
