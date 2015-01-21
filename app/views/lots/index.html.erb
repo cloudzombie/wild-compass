@@ -36,7 +36,13 @@
           <tr>
             <td><%= check_box_tag :accept %></td>
             <td><%= lot.try(:id) if lot.present? %></td>
-            <td><%= lot.try(:to_s) if lot.present? %></td>
+            <td>
+              <% if can? :show, lot %>
+              <%= link_to lot.try(:to_s), lot if lot.present? %>
+              <% else %>
+              <%= lot.try(:to_s) if lot.present? %>
+              <% end %>
+            </td>
             <td><%= strain_for lot.try(:strain) if lot.present? %></td>
             <td><%= category_for lot.try(:category) if lot.present? %></td>
             <td><%= weight_for lot.try(:initial_weight) if lot.present? %></td>
@@ -50,10 +56,6 @@
               <% if can? :create, Lot %>
               <%= link_to "#{fa_icon 'tag'} New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-warning',
                   data: { toggle: 'modal', target: '.new-bag' } %>
-              <% end %>
-
-              <% if can? :read, Lot %>
-              <%= link_to "#{fa_icon('tags')} Show".html_safe, lot, class: "btn-sm btn-flat btn-info" %>
               <% end %>
 
               <% if can? :update, Lot %>
