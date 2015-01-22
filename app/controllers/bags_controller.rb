@@ -65,6 +65,10 @@ class BagsController < ApplicationController
     end
   end
 
+  def datamatrix
+    send_data bag.datamatrix, type: 'image/png', disposition: 'attachment'
+  end
+
 
 
   private

@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'digest'
+
 class Jar < ActiveRecord::Base
 
   include Weightable
@@ -48,12 +51,8 @@ class Jar < ActiveRecord::Base
   ### Datamatrix
 
   def datamatrix
-    Datamatrix.new self.try(:id)
-  rescue
-    Rails.logger.log "COULD NOT CREATE DATAMATRIX FOR JAR WITH ID : #{ self.try(:id) }"
+    order_line.order.datamatrix
   end
-
-
 
   ### Utils
 
