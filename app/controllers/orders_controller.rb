@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   # If no id is specified, a new order is instanciated (not created)
   expose(:order, params: :order_params) { id_param.nil? ? Order.new : Order.find(id_param) }
   # Match given sort parameters against database columns
-  expose(:orders) { Order.order(sort_column + ' ' + sort_direction) }
+  expose(:orders) { Order.search(params[:search]).order(sort_column + ' ' + sort_direction) }
   expose(:jar) { Jar.new }
 
   respond_to :html, :json, :xml

@@ -56,6 +56,14 @@ class Jar < ActiveRecord::Base
 
   ### Utils
 
+  def self.search(search)
+    if search
+      self.where("name like ?", "%#{search}%")
+    else
+      self.all
+    end
+  end
+
   def to_s
     "#{ name.upcase unless name.nil? }"
   end

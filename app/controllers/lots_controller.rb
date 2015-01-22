@@ -5,9 +5,9 @@ class LotsController < ApplicationController
 
   expose(:lots) do
     if Lot.column_names.include? sort_column
-      Lot.order(sort_column + ' ' + sort_direction).page(params[:page])
+      Lot.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
     else
-      Lot.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
+      Lot.search(params[:search]).joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
     end
   end
 

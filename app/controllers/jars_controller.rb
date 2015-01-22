@@ -5,11 +5,11 @@ class JarsController < ApplicationController
 
   expose(:jars) do
     if Jar.column_names.include? sort_column
-      Jar.order(sort_column + ' ' + sort_direction)
+      Jar.search(params[:search]).order(sort_column + ' ' + sort_direction)
     elsif sort_column == 'strain'
-      Jar.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym))
+      Jar.search(params[:search]).joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym))
     elsif sort_column == 'category'
-      Jar.joins(:lot).merge(Lot.order(category: sort_direction.to_sym))
+      Jar.search(params[:search]).joins(:lot).merge(Lot.order(category: sort_direction.to_sym))
     end
   end
 

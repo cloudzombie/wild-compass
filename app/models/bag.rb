@@ -4,6 +4,14 @@ class Bag < ActiveRecord::Base
   include Accountable
   include Storyable
 
+  def self.search(search)
+    if search
+      where("name like ?", "%#{search}%")
+    else
+      all
+    end
+  end
+
 
 
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
@@ -27,9 +35,6 @@ class Bag < ActiveRecord::Base
   delegate :category, to: :container, prefix: false, allow_nil: true
 
 
-
-
-  
   
   def to_s
     "#{ name.upcase unless name.nil? }"
