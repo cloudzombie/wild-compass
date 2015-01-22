@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"to",
+				"to_sym"
+			],
+			[
+				"sor",
+				"sort_direction"
+			],
+			[
+				"by_",
+				"by_categories"
+			],
+			[
 				"app",
 				"application"
 			],
@@ -50,10 +62,6 @@
 			[
 				"pla",
 				"plant_map"
-			],
-			[
-				"to",
-				"to_i"
 			],
 			[
 				"en",
@@ -232,26 +240,58 @@
 	"buffers":
 	[
 		{
-			"file": "vendor/assets/stylesheets/icheck/minimal/_all.css",
+			"file": "app/models/jar.rb",
 			"settings":
 			{
-				"buffer_size": 14634,
+				"buffer_size": 1299,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/assets/stylesheets/application.css",
+			"file": "app/views/jars/index.html.erb",
 			"settings":
 			{
-				"buffer_size": 932,
+				"buffer_size": 2176,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "vendor/assets/javascripts/icheck.js",
+			"file": "app/models/lot.rb",
 			"settings":
 			{
-				"buffer_size": 14135,
+				"buffer_size": 1105,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/lots/show.html.erb",
+			"settings":
+			{
+				"buffer_size": 5564,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/helpers/application_helper.rb",
+			"settings":
+			{
+				"buffer_size": 3015,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/controllers/lots_controller.rb",
+			"settings":
+			{
+				"buffer_size": 2629,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/lots/index.html.erb",
+			"settings":
+			{
+				"buffer_size": 4689,
 				"line_ending": "Windows"
 			}
 		}
@@ -292,6 +332,48 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Maxime/Documents/wild-compass/app/models/bag.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/container.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/lot.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/strain.rb",
+		"/C/Users/Maxime/Documents/wild-compass/Gemfile",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/orders_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/brand.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/plant.rb",
+		"/C/Users/Maxime/Documents/wild-compass/db/schema.rb",
+		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20141219101703_add_strain_id_to_lot.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/orders_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/application.js",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/bags_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/application.css",
+		"/C/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/application.css.scss",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/index.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/_form.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/helpers/application_helper.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/edit.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/Gemfile.lock",
+		"/C/Users/Maxime/Documents/wild-compass/lib/report.rb",
+		"/C/Users/Maxime/Documents/wild-compass/lib/datamatrixer.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/lots_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/_form.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/edit.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/plants_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/plants/index.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/plants/_form.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/containers_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/index.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/_form.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/jar.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/jars_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/_summary.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/accountable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/_all.css.scss",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/javascripts/icheck.js",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/all.css.scss",
+		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/iCheck/minimal/minimal.css.scss",
+		"/C/Users/Maxime/Documents/wild-compass/config/initializers/assets.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/application.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/minimal.css",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/aero.css",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/blue.css",
@@ -302,14 +384,9 @@
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/purple.css",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/red.css",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/minimal/yellow.css",
-		"/C/Users/Maxime/Documents/wild-compass/config/application.rb",
-		"/C/Users/Maxime/Documents/wild-compass/config/initializers/assets.rb",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/_all.css",
-		"/C/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/application.css",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/all.css",
 		"/C/Users/Maxime/Documents/wild-compass/config/environments/production.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/application.js",
-		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/javascripts/icheck.js",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/aero.css",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/blue.css",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/green.css",
@@ -320,28 +397,13 @@
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/purple.css",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/red.css",
 		"/C/Users/Maxime/Documents/wild-compass/vendor/assets/stylesheets/icheck/line/yellow.css",
-		"/C/Users/Maxime/Documents/wild-compass/Gemfile",
-		"/C/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/_form.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/tmp/pids/server.pid",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/orders_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/orders_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/bags.css.scss",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/layouts/_sidebar.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/containers_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/layouts/_navbar.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/index.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/plants_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/plant.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/container.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/show.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/plants/show.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/plants/_form.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/plants/index.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/index.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/bag.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/jar.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/lot.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150117213150_create_containers_plants.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/_bags.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/orders/index.html.erb",
@@ -355,34 +417,23 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/_jars.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/_lots.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/_plants.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/_form.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/edit.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/index.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/new.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/show.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/order.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/helpers/application_helper.rb",
 		"/C/Users/Maxime/Documents/wild-compass/lib/tasks/fix.rake",
 		"/C/Users/Maxime/Documents/wild-compass/db/data/production/lots_31-12-2014.csv",
 		"/C/Users/Maxime/Documents/wild-compass/db/data/production/inventory_31-12-2014.csv",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/accountable.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150114144241_create_implicit_table_for_containers_lots.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/cultivar.rb",
 		"/C/Users/Maxime/Documents/wild-compass/lib/tasks/csv.rake",
-		"/C/Users/Maxime/Documents/wild-compass/db/schema.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/bags_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/storyable.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150113131126_convert_plants_weights.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/_form.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/edit.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_progress_bar.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/_summary.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/edit.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/index.json.jbuilder",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/new.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/show.json.jbuilder",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/home.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/lots_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/kaminari/_page.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/kaminari/_first_page.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/kaminari/_gap.html.erb",
@@ -399,10 +450,8 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/history/_history.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/db/seeds.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/format.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/strain.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/development.sqlite3",
 		"/C/Users/Maxime/Documents/wild-compass/db/data/inventory_31-12-2014.csv",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/brand.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/order_line.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/orders/_form.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/brands_controller.rb",
@@ -410,16 +459,7 @@
 		"/C/Users/Maxime/Documents/wild-compass/config/routes.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150112052731_remove_product_type_and_id_from_order_lines.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150112053445_convert_order_lines_quantity_to_decimal.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/ability.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/brands/_form.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/brands/index.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/brands/index.json.jbuilder",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/brands/show.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/brands/show.json.jbuilder",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/users_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/jars_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/jars_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150111090706_create_containers.rb"
+		"/C/Users/Maxime/Documents/wild-compass/app/models/ability.rb"
 	],
 	"find":
 	{
@@ -437,6 +477,42 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"unique_and_ordered_by_id",
+			"uniq",
+			"container",
+			"acron",
+			"container",
+			"lot",
+			"set_co",
+			"container",
+			"Month",
+			"plant",
+			"category",
+			"catego",
+			"categor",
+			"strain",
+			"strains",
+			"categori",
+			"trim",
+			"bud",
+			"buds",
+			"trim",
+			"trims",
+			"ope ",
+			"trims",
+			"strain",
+			"strains",
+			"strain",
+			"jquery",
+			"asset-url",
+			"css",
+			"style",
+			"im",
+			"getProper",
+			"style",
+			"asset-",
+			"url",
+			"mini",
 			"iCheck",
 			"url(",
 			"asset-url",
@@ -528,43 +604,7 @@
 			"t.",
 			"f",
 			"product",
-			"set_container",
-			"Jar",
-			"jar",
-			"Jar",
-			"jar",
-			"Jar",
-			"brand_id",
-			"@",
-			"bag",
-			"brand",
-			"bag",
-			"Bag",
-			"bag",
-			"order",
-			"Order",
-			"order",
-			"Order",
-			"plant",
-			"Plant",
-			"plant",
-			"Plant",
-			"plant",
-			"Plant",
-			"plant",
-			"Plant",
-			"lot_id",
-			"jar",
-			"params[:id]",
-			"lot_id",
-			"category",
-			"container",
-			"Container",
-			"container",
-			"Container",
-			"container",
-			"Container",
-			"container"
+			"set_container"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -587,82 +627,812 @@
 			[
 				{
 					"buffer": 0,
-					"file": "vendor/assets/stylesheets/icheck/minimal/_all.css",
+					"file": "app/models/jar.rb",
 					"settings":
 					{
-						"buffer_size": 14634,
+						"buffer_size": 1299,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								266,
-								275
+								946,
+								946
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
+							"codeintel": true,
+							"codeintel_database_dir": "~/.codeintel",
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Node.js",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_exclude_scopes_from_complete_triggers":
+							[
+								"comment"
+							],
+							"codeintel_language_settings":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_exclude_dir":
+									[
+										"/build/",
+										"/min/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": false,
+									"codeintel_selected_catalogs":
+									[
+										"jQuery"
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 15,
+									"codeintel_scan_exclude_dir":
+									[
+										"/Applications/MAMP/bin/php/php5.5.3/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": true,
+									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
+								},
+								"Python3":
+								{
+									"codeintel_scan_extra_dir":
+									[
+										"/Applications/Sublime Text.app/Contents/MacOS",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
+									],
+									"codeintel_scan_files_in_project": true,
+									"codeintel_selected_catalogs":
+									[
+									],
+									"python3": "/usr/local/bin/python3.3"
+								}
+							},
+							"codeintel_live": true,
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							[
+							],
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+							],
+							"codeintel_snippets": false,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"codeintel_word_completions": "buffer",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 420.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/assets/stylesheets/application.css",
+					"file": "app/views/jars/index.html.erb",
 					"settings":
 					{
-						"buffer_size": 932,
+						"buffer_size": 2176,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								800,
-								800
+								1199,
+								1199
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"codeintel": true,
+							"codeintel_database_dir": "~/.codeintel",
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Node.js",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_exclude_scopes_from_complete_triggers":
+							[
+								"comment"
+							],
+							"codeintel_language_settings":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_exclude_dir":
+									[
+										"/build/",
+										"/min/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": false,
+									"codeintel_selected_catalogs":
+									[
+										"jQuery"
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 15,
+									"codeintel_scan_exclude_dir":
+									[
+										"/Applications/MAMP/bin/php/php5.5.3/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": true,
+									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
+								},
+								"Python3":
+								{
+									"codeintel_scan_extra_dir":
+									[
+										"/Applications/Sublime Text.app/Contents/MacOS",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
+									],
+									"codeintel_scan_files_in_project": true,
+									"codeintel_selected_catalogs":
+									[
+									],
+									"python3": "/usr/local/bin/python3.3"
+								}
+							},
+							"codeintel_live": true,
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							[
+							],
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+							],
+							"codeintel_snippets": false,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"codeintel_word_completions": "buffer",
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 315.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "vendor/assets/javascripts/icheck.js",
+					"file": "app/models/lot.rb",
 					"settings":
 					{
-						"buffer_size": 14135,
+						"buffer_size": 1105,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								289,
-								289
+								571,
+								571
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"codeintel": true,
+							"codeintel_database_dir": "~/.codeintel",
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Node.js",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_exclude_scopes_from_complete_triggers":
+							[
+								"comment"
+							],
+							"codeintel_language_settings":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_exclude_dir":
+									[
+										"/build/",
+										"/min/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": false,
+									"codeintel_selected_catalogs":
+									[
+										"jQuery"
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 15,
+									"codeintel_scan_exclude_dir":
+									[
+										"/Applications/MAMP/bin/php/php5.5.3/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": true,
+									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
+								},
+								"Python3":
+								{
+									"codeintel_scan_extra_dir":
+									[
+										"/Applications/Sublime Text.app/Contents/MacOS",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
+									],
+									"codeintel_scan_files_in_project": true,
+									"codeintel_selected_catalogs":
+									[
+									],
+									"python3": "/usr/local/bin/python3.3"
+								}
+							},
+							"codeintel_live": true,
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							[
+							],
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+							],
+							"codeintel_snippets": false,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"codeintel_word_completions": "buffer",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 120.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/views/lots/show.html.erb",
+					"settings":
+					{
+						"buffer_size": 5564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2150,
+								2150
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_database_dir": "~/.codeintel",
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Node.js",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_exclude_scopes_from_complete_triggers":
+							[
+								"comment"
+							],
+							"codeintel_language_settings":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_exclude_dir":
+									[
+										"/build/",
+										"/min/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": false,
+									"codeintel_selected_catalogs":
+									[
+										"jQuery"
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 15,
+									"codeintel_scan_exclude_dir":
+									[
+										"/Applications/MAMP/bin/php/php5.5.3/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": true,
+									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
+								},
+								"Python3":
+								{
+									"codeintel_scan_extra_dir":
+									[
+										"/Applications/Sublime Text.app/Contents/MacOS",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
+									],
+									"codeintel_scan_files_in_project": true,
+									"codeintel_selected_catalogs":
+									[
+									],
+									"python3": "/usr/local/bin/python3.3"
+								}
+							},
+							"codeintel_live": true,
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							[
+							],
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+							],
+							"codeintel_snippets": false,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"codeintel_word_completions": "buffer",
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 690.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/helpers/application_helper.rb",
+					"settings":
+					{
+						"buffer_size": 3015,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3004,
+								3004
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_database_dir": "~/.codeintel",
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Node.js",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_exclude_scopes_from_complete_triggers":
+							[
+								"comment"
+							],
+							"codeintel_language_settings":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_exclude_dir":
+									[
+										"/build/",
+										"/min/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": false,
+									"codeintel_selected_catalogs":
+									[
+										"jQuery"
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 15,
+									"codeintel_scan_exclude_dir":
+									[
+										"/Applications/MAMP/bin/php/php5.5.3/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": true,
+									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
+								},
+								"Python3":
+								{
+									"codeintel_scan_extra_dir":
+									[
+										"/Applications/Sublime Text.app/Contents/MacOS",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
+									],
+									"codeintel_scan_files_in_project": true,
+									"codeintel_selected_catalogs":
+									[
+									],
+									"python3": "/usr/local/bin/python3.3"
+								}
+							},
+							"codeintel_live": true,
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							[
+							],
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+							],
+							"codeintel_snippets": false,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"codeintel_word_completions": "buffer",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1410.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/controllers/lots_controller.rb",
+					"settings":
+					{
+						"buffer_size": 2629,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2171,
+								2171
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_database_dir": "~/.codeintel",
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Node.js",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_exclude_scopes_from_complete_triggers":
+							[
+								"comment"
+							],
+							"codeintel_language_settings":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_exclude_dir":
+									[
+										"/build/",
+										"/min/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": false,
+									"codeintel_selected_catalogs":
+									[
+										"jQuery"
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 15,
+									"codeintel_scan_exclude_dir":
+									[
+										"/Applications/MAMP/bin/php/php5.5.3/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": true,
+									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
+								},
+								"Python3":
+								{
+									"codeintel_scan_extra_dir":
+									[
+										"/Applications/Sublime Text.app/Contents/MacOS",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
+									],
+									"codeintel_scan_files_in_project": true,
+									"codeintel_selected_catalogs":
+									[
+									],
+									"python3": "/usr/local/bin/python3.3"
+								}
+							},
+							"codeintel_live": true,
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							[
+							],
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+							],
+							"codeintel_snippets": false,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"codeintel_word_completions": "buffer",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 8.0,
+						"translation.y": 870.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/views/lots/index.html.erb",
+					"settings":
+					{
+						"buffer_size": 4689,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1492,
+								1492
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_database_dir": "~/.codeintel",
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Node.js",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_exclude_scopes_from_complete_triggers":
+							[
+								"comment"
+							],
+							"codeintel_language_settings":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_exclude_dir":
+									[
+										"/build/",
+										"/min/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": false,
+									"codeintel_selected_catalogs":
+									[
+										"jQuery"
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 15,
+									"codeintel_scan_exclude_dir":
+									[
+										"/Applications/MAMP/bin/php/php5.5.3/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": true,
+									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
+								},
+								"Python3":
+								{
+									"codeintel_scan_extra_dir":
+									[
+										"/Applications/Sublime Text.app/Contents/MacOS",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
+									],
+									"codeintel_scan_files_in_project": true,
+									"codeintel_selected_catalogs":
+									[
+									],
+									"python3": "/usr/local/bin/python3.3"
+								}
+							},
+							"codeintel_live": true,
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							[
+							],
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+							],
+							"codeintel_snippets": false,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"codeintel_word_completions": "buffer",
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 309.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -726,6 +1496,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 274.0,
+	"side_bar_width": 238.0,
 	"status_bar_visible": true
 }
