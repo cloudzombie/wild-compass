@@ -2,20 +2,21 @@ class ContainersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
-  
+
   expose(:containers) do
     if Container.column_names.include? sort_column
-      Container.order( sort_column + ' ' + sort_direction ).page(params[:page])
+      Container.search(params[:search]).order( sort_column + ' ' + sort_direction ).page(params[:page])
     elsif sort_column == 'strain'
-      Container.joins(:strains).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
+      Container.search(params[:search]).joins(:strains).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
     elsif sort_column == 'lot_id'
-      Container.joins(:lots).merge(Lot.order(id: sort_direction.to_sym)).page(params[:page])
+      Container.search(params[:search]).joins(:lots).merge(Lot.order(id: sort_direction.to_sym)).page(params[:page])
     end
   end
 
   expose(:plants) { Plant.order(id: :asc) }
 
   before_action :set_weight, only: [ :create, :update ]
+
 
   def create
     self.container = Container.new(container_params)
@@ -52,6 +53,7 @@ class ContainersController < ApplicationController
       format.html { redirect_to containers_url, notice: 'Container was successfully destroyed.' }
     end
   end
+
 
   private
 

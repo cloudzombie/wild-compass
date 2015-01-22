@@ -13,19 +13,19 @@ class PlantsController < ApplicationController
     begin
       case sort_column.downcase.to_sym
       when :strain
-        Plant.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
+        Plant.search(params[:search]).joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
 
       when :status
-        Plant.joins(:status).merge(Status.order(name: sort_direction.to_sym)).page(params[:page])
+        Plant.search(params[:search]).joins(:status).merge(Status.order(name: sort_direction.to_sym)).page(params[:page])
 
       when :format
-        Plant.joins(:format).merge(Format.order(name: sort_direction.to_sym)).page(params[:page])
+        Plant.search(params[:search]).joins(:format).merge(Format.order(name: sort_direction.to_sym)).page(params[:page])
 
       when :rfid
-        Plant.joins(:rfid).merge(Rfid.order(name: sort_direction.to_sym)).page(params[:page])
+        Plant.search(params[:search]).joins(:rfid).merge(Rfid.order(name: sort_direction.to_sym)).page(params[:page])
 
       else
-        Plant.order(sort_column + ' ' + sort_direction).page(params[:page])
+        Plant.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
 
       end
 

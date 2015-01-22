@@ -1,16 +1,8 @@
-<%= container.try(:to_s) if container.present? %>
+<h4><%= container %></h4>
 
 <div class="row">
-  <div class="col-lg-6">
-  	<% container.attributes.each do |name, value| %>
-		<p><strong><%= name.titleize %> :</strong> <%= container.try(name.to_sym) %></p>
-		<% end %>
-  </div>
+  <%= render 'shared/box_description', title: 'Description', described: container, color: 'warning' %>
+  <%= render 'shared/box_description', title: 'Origin', described: container.try(:plant), color: 'info' %>
 </div>
 
-<% container.try(:plants).each do |plant| %>
-<%= plant.try(:to_s) %><br>
-<% end %>
-
-<%= link_to 'Edit', edit_container_path(container) %> |
-<%= link_to 'Back', containers_path %>
+<%#= render 'containers/show/history' %>

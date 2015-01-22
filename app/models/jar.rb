@@ -53,9 +53,15 @@ class Jar < ActiveRecord::Base
     Rails.logger.log "COULD NOT CREATE DATAMATRIX FOR JAR WITH ID : #{ self.try(:id) }"
   end
 
-
-
   ### Utils
+
+  def self.search(search)
+    if search
+      self.where("name like ?", "%#{search}%")
+    else
+      self.all
+    end
+  end
 
   def to_s
     "#{ name.upcase unless name.nil? }"

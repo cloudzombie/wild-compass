@@ -3,12 +3,9 @@
     <h3 class="box-title">Listing plants</h3>
     <div class="box-tools">
       <div class="input-group">
-        <input type="text"
-               name="table_search"
-               class="form-control input-sm pull-right"
-               style="width: 150px;"
-               placeholder="Search"/>
-
+        <%= form_tag(plants_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
+        <% end %>
         <div class="input-group-btn">
           <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
         </div>

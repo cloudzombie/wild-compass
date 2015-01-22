@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150122124930) do
     t.integer  "history_id"
     t.integer  "container_id"
     t.boolean  "tested"
+    t.integer "lot_id"
   end
 
   create_table "brands", force: true do |t|

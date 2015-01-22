@@ -27,8 +27,13 @@ class Bag < ActiveRecord::Base
   delegate :category, to: :container, prefix: false, allow_nil: true
 
 
-
-  
+  def self.search(search)
+    if search
+      self.where("name like ?", "%#{search}%")
+    else
+      self.all
+    end
+  end
   
   def to_s
     "#{ name.upcase unless name.nil? }"

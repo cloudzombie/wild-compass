@@ -33,7 +33,13 @@ class Lot < ActiveRecord::Base
     "#{ name.upcase unless name.nil? }"
   end
 
-
+  def self.search(search)
+    if search
+      self.where("name like ?", "%#{search}%")
+    else
+      self.all
+    end
+  end
 
   def container
     containers.first

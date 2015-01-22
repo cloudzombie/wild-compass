@@ -16,7 +16,13 @@ class Order < ActiveRecord::Base
 
   validates :customer, presence: true
 
-
+  def self.search(search)
+    if search
+      self.where("name like ?", "%#{search}%")
+    else
+      self.all
+    end
+  end
 
   ### Total weight
 
