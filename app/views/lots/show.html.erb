@@ -61,11 +61,11 @@
             <th>Actions : </th>
           </tr>
 
-          <% lot.plants.each do |plant| %>
+          <% ordered_by_id(lot.try(:plants)).each do |plant| %>
           <tr>
             <td><%= plant.try(:to_s) if plant.present? %></td>
             <td><%= plant.try(:id) if plant.present? %></td>
-            <td><%= date_for plant.try(:created_at) %></td>
+            <td><%= date_for plant.try(:created_at) if plant.present? %></td>
             <td><%= link_to "#{fa_icon('leaf')} #{plant}".html_safe, plant, class: "btn-sm btn-flat btn-success" %></td>
           </tr>
           <% end %>

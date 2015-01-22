@@ -52,7 +52,8 @@ gem 'devise_token_auth'
 gem 'cancan'
 
 # Adminlte assets
-gem 'adminlte'
+gem 'adminlte', platforms: [ :mingw, :x64_mingw ]
+gem 'adminlte-rails'
 gem 'jquery-ui-rails'
 
 # Use decent exposure instead @vars in controllers
@@ -81,3 +82,7 @@ gem 'spreadsheet'
 
 # Pagination
 gem 'kaminari'
+
+# Datamatrix
+gem 'datamatrix', git: 'https://biximilien:esf823r@bitbucket.org/thcdev/datamatrix.git'
+

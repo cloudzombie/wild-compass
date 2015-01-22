@@ -6,24 +6,24 @@ class Lot < ActiveRecord::Base
 
 
 
-  scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
-  scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)) }
+  scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
+  scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)).uniq }
   scope :by_trims,      -> { by_categories 'Trim' }
   scope :by_buds,       -> { by_categories 'Buds' }
 
   
 
-  has_many :strains, through: :plants
+  has_many :strains, -> { uniq }, through: :plants
 
-  has_and_belongs_to_many :containers
+  has_and_belongs_to_many :containers, -> { uniq }
 
   accepts_nested_attributes_for :containers
 
-  has_many :plants, through: :containers
+  has_many :plants, -> { uniq }, through: :containers
   
-  has_many :bags
+  has_many :bags, -> { uniq }
 
-  has_many :jars, through: :bags
+  has_many :jars, -> { uniq }, through: :bags
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 

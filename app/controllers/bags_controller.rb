@@ -7,9 +7,9 @@ class BagsController < ApplicationController
     if Bag.column_names.include? sort_column
       Bag.order(sort_column + ' ' + sort_direction).page(params[:page])
     elsif sort_column == 'strain'
-      Bag.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
+      Bag.joins(:strains).uniq.merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
     elsif sort_column == 'category'
-      Bag.joins(:lot).merge(Lot.order(category: sort_direction.to_sym)).page(params[:page])
+      Bag.joins(:containers).uniq.merge(Container.order(category: sort_direction.to_sym)).page(params[:page])
     end
   end
 
@@ -24,17 +24,17 @@ class BagsController < ApplicationController
   # +bag_params+::
   # * current_weight: decimal
   # * current_weight: decimal
-  # * lot_id: integer
+  # * container_id: integer
   # * name: string (optional)
   #
   def create
     self.bag = Bag.new(bag_params)
     authorize! :create, bag
 
-    Transaction.from( bag.container ).to( bag ).take( bag.weight ).by( current_user ).commit
+    Transaction.from( bag.lot ).to( bag ).take( bag.weight ).by( current_user ).commit
 
     respond_to do |format|
-      if bag.save && bag.container.save
+      if bag.save && bag.lot.save
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
       else
         format.html { render :new }
@@ -69,14 +69,9 @@ class BagsController < ApplicationController
 
   private
 
-    def set_container(container)
-      bag.container = Container.find_by(name: container)
-      bag.save
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
-      params.require(:bag).permit(:quantity, :weight, :initial_weight, :container_id, :name, :current_weight)
+      params.require(:bag).permit(:quantity, :weight, :initial_weight, :lot_id, :name, :current_weight)
     end
 
     def id_param
@@ -85,7 +80,7 @@ class BagsController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id strain category name initial_weight current_weight created_at updated_at container_id).include?(params[:sort]) ? params[:sort] : 'created_at'
+      %w(id strain category name initial_weight current_weight created_at updated_at lot_id tested).include?(params[:sort]) ? params[:sort] : 'created_at'
     end
 
     # Set sort direction to ascending or descending.

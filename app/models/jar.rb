@@ -6,8 +6,8 @@ class Jar < ActiveRecord::Base
 
 
 
-  scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
-  scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)) }
+  scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
+  scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)).uniq }
   scope :by_trims,      -> { by_categories 'Trim' }  
   scope :by_buds,       -> { by_categories 'Buds' }
 
@@ -29,15 +29,17 @@ class Jar < ActiveRecord::Base
 
   ### Plants
 
-  has_many :plants, through: :bag
+  has_many :plants, -> { uniq }, through: :bag
   
   
 
   ### Lot
 
-  has_many :lots, through: :bag
+  has_many :lots, -> { uniq }, through: :bag
 
-  has_many :strains, through: :plants
+  has_many :strains, -> { uniq }, through: :plants
+
+  has_many :containers, -> { uniq }, through: :bag 
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 
@@ -73,6 +75,12 @@ class Jar < ActiveRecord::Base
 
   def plant
     plants.first
+  rescue
+    ''
+  end
+
+  def contianer
+    containers.first
   rescue
     ''
   end

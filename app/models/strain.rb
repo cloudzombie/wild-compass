@@ -1,12 +1,12 @@
 class Strain < ActiveRecord::Base
 
-  has_many :plants
+  has_many :plants, -> { uniq }
 
-  has_many :lots, through: :plants
+  has_many :lots, -> { uniq }, through: :plants
 
-  has_many :bags, through: :lots
+  has_many :bags, -> { uniq }, through: :lots
 
-  has_many :jars, through: :bags
+  has_many :jars, -> { uniq }, through: :bags
   
 
   belongs_to :brand

@@ -6,8 +6,8 @@ class Bag < ActiveRecord::Base
 
 
 
-  scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
-  scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)) }
+  scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
+  scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)).uniq }
   scope :by_trims,      -> { by_categories 'Trim' }
   scope :by_buds,       -> { by_categories 'Buds' }
   
@@ -16,13 +16,13 @@ class Bag < ActiveRecord::Base
 
   belongs_to :lot
 
-  has_many :jars
+  has_many :jars, -> { uniq }
 
-  has_many :plants, through: :lot
+  has_many :plants, -> { uniq }, through: :lot
 
-  has_many :containers, through: :lot
+  has_many :containers, -> { uniq }, through: :lot
 
-  has_many :strains, through: :plants
+  has_many :strains, -> { uniq }, through: :plants
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 

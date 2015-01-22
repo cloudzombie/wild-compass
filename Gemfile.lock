@@ -1,3 +1,10 @@
+GIT
+  remote: https://biximilien:esf823r@bitbucket.org/thcdev/datamatrix.git
+  revision: d15582600fcc5d4d2c1927b6ff51d96609b25900
+  specs:
+    datamatrix (0.0.1)
+      chunky_png
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -29,14 +36,19 @@ GEM
       tzinfo (~> 1.1)
     adminlte (1.3.0.1)
       railties (~> 4.1)
+    adminlte-rails (1.3.3)
+      thor (~> 0.14)
     arel (5.0.1.20140414130214)
     autoprefixer-rails (5.0.0.1)
       execjs
     bcrypt (3.1.9)
-    bootstrap-sass (3.3.1.0)
-      sass (~> 3.2)
+    bcrypt (3.1.9-x64-mingw32)
+    bootstrap-sass (3.3.3)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     builder (3.2.2)
     cancan (1.6.10)
+    chunky_png (1.3.3)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -74,7 +86,7 @@ GEM
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
     json (1.8.2)
-    kaminari (0.16.1)
+    kaminari (0.16.2)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     mail (2.6.3)
@@ -85,11 +97,14 @@ GEM
     multi_json (1.10.1)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
+    nokogiri (1.6.5-x64-mingw32)
+      mini_portile (~> 0.6.0)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
     orm_adapter (0.5.0)
     pg (0.18.1)
+    pg (0.18.1-x64-mingw32)
     rack (1.5.2)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -141,6 +156,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.10)
+    sqlite3 (1.3.10-x64-mingw32)
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -148,6 +164,8 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2014.10)
+      tzinfo (>= 1.0.0)
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -159,13 +177,16 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   adminlte
+  adminlte-rails
   autoprefixer-rails
   bootstrap-sass (~> 3.3.1)
   cancan
   coffee-rails (~> 4.0.0)
+  datamatrix!
   decent_exposure
   devise
   devise_token_auth

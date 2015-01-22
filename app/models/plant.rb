@@ -18,15 +18,15 @@ class Plant < ActiveRecord::Base
 
   belongs_to :rfid
 
-  has_and_belongs_to_many :containers
+  has_and_belongs_to_many :containers, -> { uniq }
 
   accepts_nested_attributes_for :containers
 
-  has_many :lots, through: :containers
+  has_many :lots, -> { uniq }, through: :containers
 
-  has_many :bags, through: :containers
+  has_many :bags, -> { uniq }, through: :containers
 
-  has_many :jars, through: :containers
+  has_many :jars, -> { uniq }, through: :containers
 
 
 
