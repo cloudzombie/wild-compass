@@ -50,7 +50,7 @@ class Jar < ActiveRecord::Base
   def datamatrix
     Datamatrix.new self.try(:id)
   rescue
-    Rails.logger.log "COULD CREATE DATAMATRIX FOR JAR WITH ID : #{ self.try(:id) }"
+    Rails.logger.log "COULD NOT CREATE DATAMATRIX FOR JAR WITH ID : #{ self.try(:id) }"
   end
 
 
@@ -79,7 +79,7 @@ class Jar < ActiveRecord::Base
     ''
   end
 
-  def contianer
+  def container
     containers.first
   rescue
     ''

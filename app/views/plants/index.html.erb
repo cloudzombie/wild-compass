@@ -28,6 +28,7 @@
           <th><%= sortable :created_at %></th>
           <th><%= sortable :updated_at %></th>
           <th><%= sortable :format %></th>
+          <th><%= sortable :location %></th>
           <th><%= sortable :rfid, 'RFID' %></th>
           <th>Actions</th>
         </tr>
@@ -42,6 +43,7 @@
           <td><%= date_for plant.try(:created_at) if plant.present? %></td>
           <td><%= date_for plant.try(:updated_at) if plant.present? %></td>
           <td><%= format_for plant.try(:format) if plant.present? %></td>
+          <td><%= plant.try(:location) if plant.present? %></td>
           <td><%= plant.try(:rfid) if plant.present? %></td>
           <td>
             <% if can? :show, plant %>
