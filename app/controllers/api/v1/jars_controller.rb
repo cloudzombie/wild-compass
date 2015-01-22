@@ -22,7 +22,7 @@ class API::V1::JarsController < API::V1::APIController
   end
 
   def datamatrix
-    send_data Jar.find(id_param).datamatrix.data, type: jar.datamatrix.content_type, disposition: 'attachment'
+    send_data Jar.find(id_param).datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
   private

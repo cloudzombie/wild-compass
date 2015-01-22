@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   expose(:orders) { Order.search(params[:search]).order(sort_column + ' ' + sort_direction) }
   expose(:jar) { Jar.new }
 
-  respond_to :html, :json, :xml
+  respond_to :html
 
   def new
     order.order_lines.build
@@ -64,6 +64,12 @@ class OrdersController < ApplicationController
   def update 
     order.update(order_params)
     respond_with(order)
+  end
+
+  def fulfill
+    respond_to do |format|
+      format.html
+    end
   end
 
   ##

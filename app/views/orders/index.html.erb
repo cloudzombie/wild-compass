@@ -42,10 +42,13 @@
         <td><%= order.try(:ordered_at) %></td>
         <td><%= order.try(:shipped_at) %></td>
         <td>
-          <a class="btn-sm btn-flat btn-warning">New Bags</a>
+          <% if can? :fulfill, order %>
+          <%= link_to 'Fulfill', fulfill_order_path(order), class: "btn-sm btn-flat btn-primary fulfill",
+              data: { href: fulfill_order_path(order) } %>
+          <% end %>
 
           <% if can? :create, Jar %>
-          <%= link_to 'New Jar', jar,   class: "btn-sm btn-flat btn-danger" %>
+          <%# link_to 'New Jar', jar,   class: "btn-sm btn-flat btn-danger" %>
           <% end %>
 
           <% if can? :read, Order %>

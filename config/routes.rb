@@ -23,7 +23,10 @@ Rails.application.routes.draw do
 
   # Resources
   resources :orders do
-    member { get 'datamatrix' }
+    member do
+      get 'datamatrix'
+      get 'fulfill'
+    end
   end
 
   resources :plants

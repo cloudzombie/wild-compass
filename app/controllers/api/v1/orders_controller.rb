@@ -21,6 +21,10 @@ class API::V1::OrdersController < API::V1::APIController
     respond_with Order.destroy(id_param)
   end
 
+  def datamatrix
+    send_data Order.find(id_param).datamatrix, type: 'image/png', disposition: 'attachment'
+  end
+
   private
     
     def order_params
