@@ -10,18 +10,27 @@ class PlantsController < ApplicationController
   end
 
   expose(:plants) do
-    if Plant.column_names.include? sort_column
-      Plant.order(sort_column + ' ' + sort_direction).page(params[:page])
-    elsif sort_column == 'strain'
-      Plant.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
-    elsif sort_column == 'status'
-      Plant.joins(:status).merge(Status.order(name: sort_direction.to_sym)).page(params[:page])
-    elsif sort_column == 'format'
-      Plant.joins(:format).merge(Format.order(name: sort_direction.to_sym)).page(params[:page])
-    elsif sort_column == 'rfid'
-      Plant.joins(:rfid).merge(Rfid.order(name: sort_direction.to_sym)).page(params[:page])
-    else
-      Plant.all.page(params[:page])
+    begin
+      case sort_column.downcase.to_sym
+      when :strain
+        Plant.joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
+
+      when :status
+        Plant.joins(:status).merge(Status.order(name: sort_direction.to_sym)).page(params[:page])
+
+      when :format
+        Plant.joins(:format).merge(Format.order(name: sort_direction.to_sym)).page(params[:page])
+
+      when :rfid
+        Plant.joins(:rfid).merge(Rfid.order(name: sort_direction.to_sym)).page(params[:page])
+
+      else
+        Plant.order(sort_column + ' ' + sort_direction).page(params[:page])
+
+      end
+
+    rescue
+      Plant.order(id: :asc).page(params[:page])
     end
   end
   
