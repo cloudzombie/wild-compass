@@ -5,15 +5,27 @@ module Searchable
     def search(search)
       if search
         queries = []
-        column_names.each do |column|
-          queries << "#{column} LIKE ?"
-        end
-        search_param = "%#{search}%"
         search_params = []
-        queries.each do
-          search_params << search_param
+        
+        columns.each do |column|
+          case column.type
+          when :integer
+            queries << "#{column.name} = ?"
+            search_params << "#{search}".to_i
+          when :text, :string
+            queries << "#{column.name} LIKE ?"
+            search_params << "%#{search}%"
+          when :decimal
+            queries << "#{column.name} = ?"
+            search_params << "#{search}".to_d
+          else
+            queries << "#{column.name} = ?"
+            search_params << "%#{search}%"
+          end
         end
+        
         where queries.join(' OR '), *search_params
+
       else
         all
       end
