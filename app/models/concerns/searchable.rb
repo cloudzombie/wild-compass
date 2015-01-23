@@ -18,6 +18,14 @@ module Searchable
           when :decimal
             queries << "#{column.name} = ?"
             search_params << "#{search}".to_d
+          when :datetime
+            begin
+              datetime = DateTime.parse("#{search}")
+              queries << "#{column.name} <= ?"
+              search_params << datetime.to_s
+            rescue
+              next
+            end
           else
             queries << "#{column.name} = ?"
             search_params << "%#{search}%"
