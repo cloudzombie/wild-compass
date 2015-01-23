@@ -80,6 +80,10 @@ class OrdersController < ApplicationController
     respond_with(order)
   end
 
+  def datamatrix
+    send_data order.datamatrix, type: 'image/png', disposition: 'attachment'
+  end
+
   private
 
     def id_param

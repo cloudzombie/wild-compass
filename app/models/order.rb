@@ -2,6 +2,16 @@ class Order < ActiveRecord::Base
 
 
 
+  def self.search(search)
+    if search
+      where("name like ?", "%#{search}%")
+    else
+      all
+    end
+  end
+
+
+
   ### Order lines
 
   has_many :order_lines
@@ -16,13 +26,23 @@ class Order < ActiveRecord::Base
 
   validates :customer, presence: true
 
-  def self.search(search)
-    if search
-      self.where("name like ?", "%#{search}%")
-    else
-      self.all
-    end
+
+
+  def datamatrix
+    open("http://datamatrix.kaywa.com/img.php?s=12&d=#{ encode self.try(:id) }").read
   end
+
+
+
+  def encode(id)
+    text = "ORDER-#{id}"
+    hash = Digest::MD5.base64digest(text)
+    update datamatrix_text: text, datamatrix_hash: hash
+    hash
+  end
+
+
+  
 
   ### Total weight
 

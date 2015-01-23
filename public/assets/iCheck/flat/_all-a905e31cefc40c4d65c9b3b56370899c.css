@@ -51,7 +51,6 @@
     .icheckbox_flat,
     .iradio_flat {
         background-image: url(flat@2x.png);
-        -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
 }
@@ -107,7 +106,6 @@
     .icheckbox_flat-red,
     .iradio_flat-red {
         background-image: url(red@2x.png);
-        -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
 }
@@ -163,7 +161,6 @@
     .icheckbox_flat-green,
     .iradio_flat-green {
         background-image: url(green@2x.png);
-        -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
 }
@@ -219,7 +216,6 @@
     .icheckbox_flat-blue,
     .iradio_flat-blue {
         background-image: url(blue@2x.png);
-        -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
 }
@@ -275,7 +271,6 @@
     .icheckbox_flat-aero,
     .iradio_flat-aero {
         background-image: url(aero@2x.png);
-        -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
 }
@@ -331,7 +326,6 @@
     .icheckbox_flat-grey,
     .iradio_flat-grey {
         background-image: url(grey@2x.png);
-        -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
 }
@@ -387,7 +381,6 @@
     .icheckbox_flat-orange,
     .iradio_flat-orange {
         background-image: url(orange@2x.png);
-        -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
 }
@@ -443,7 +436,6 @@
     .icheckbox_flat-yellow,
     .iradio_flat-yellow {
         background-image: url(yellow@2x.png);
-        -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
 }
@@ -499,7 +491,6 @@
     .icheckbox_flat-pink,
     .iradio_flat-pink {
         background-image: url(pink@2x.png);
-        -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
 }
@@ -555,7 +546,6 @@
     .icheckbox_flat-purple,
     .iradio_flat-purple {
         background-image: url(purple@2x.png);
-        -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
 }

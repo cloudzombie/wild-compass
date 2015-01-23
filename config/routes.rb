@@ -22,14 +22,20 @@ Rails.application.routes.draw do
   end
 
   # Resources
-  resources :orders
+  resources :orders do
+    member { get 'datamatrix' }
+  end
+
   resources :plants
   
   resources :jars do
     member { get 'datamatrix' }
   end
   
-  resources :bags
+  resources :bags do
+    member { get 'datamatrix' }
+  end
+
   resources :lots
   resources :strains
   
@@ -47,16 +53,23 @@ Rails.application.routes.draw do
       resources :users
 
       # Resources
-      resources :orders
+      resources :orders do
+        member { get 'datamatrix' }
+      end
+
       resources :plants
       
       resources :jars do
         member { get 'datamatrix' }
       end
       
-      resources :bags
+      resources :bags do
+        member { get 'datamatrix' }
+      end
+
       resources :lots
       resources :strains
+      
       resources :brands do
         member { get 'available' }
       end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122124930) do
+ActiveRecord::Schema.define(version: 20150122203606) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150122124930) do
     t.integer  "history_id"
     t.integer  "container_id"
     t.boolean  "tested"
-    t.integer "lot_id"
+    t.integer  "lot_id"
   end
 
   create_table "brands", force: true do |t|
@@ -131,6 +131,8 @@ ActiveRecord::Schema.define(version: 20150122124930) do
     t.datetime "updated_at"
     t.datetime "ordered_at"
     t.datetime "shipped_at"
+    t.string   "datamatrix_text"
+    t.string   "datamatrix_hash"
   end
 
   create_table "plants", force: true do |t|
