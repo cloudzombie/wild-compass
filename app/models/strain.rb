@@ -8,7 +8,6 @@ class Strain < ActiveRecord::Base
 
   has_many :jars, -> { uniq }, through: :bags
   
-
   belongs_to :brand
 
   before_save :upcase_acronym

@@ -22,7 +22,7 @@
               <dt>Strain :</dt>
               <dd><%= strain_for lot.try(:strain) if lot.present? %></dd>
               
-              <dt>Type :</dt>
+              <dt>Category :</dt>
               <dd><%= category_for lot.try(:category) if lot.present? %></dd>
               
               <dt>Initial Weight : </dt>
@@ -92,13 +92,15 @@
             </tr>
             <div class="nav nav-pills" role="pilllist">
               <tr>
-                <td><a href="#id<%= lot.id %>" aria-controls="id<%= lot.id %>" role="tab" data-toggle="tab"><%= bag.lot %></a></td>
+                <td><a href="#id<%= lot.id %>" aria-controls="id<%= lot.id %>" role="tab" data-toggle="tab">Plants</a></td>
                 <td><%= lot %></td>
                 <td><%= lot.initial_weight %></td>
                 <td><%= lot.created_at.to_s :short %></td>
                 <td><!--<%# bag.history.history_lines.first.user %>--></td>
               </tr>
+
               <% lot.history.history_lines.each do |line| %>
+              <% next if line.target.nil? %>
                 <tr>
                   <td><%= line.source %></td>
                   <td><a href="#<%= line.id %>" aria-controls="<%= line.id %>" role="tab" data-toggle="tab"><%= line.target %></a></td>

@@ -14,7 +14,7 @@ class BagsController < ApplicationController
   end
 
   expose(:jar) { Jar.new }
-
+  
   before_action :set_weight, only: [ :create, :update ]
   before_action :set_name, only: [ :create, :update ]
   before_action :set_quantity, only: [ :create, :update ]

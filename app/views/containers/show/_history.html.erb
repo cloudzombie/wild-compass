@@ -2,7 +2,7 @@
   <div class="col-lg-6">
     <div class="box box-solid box-danger">
       <div class="box-header">
-        <%= fa_icon 'flask' %><h3 class="box-title">History of </h3>
+        <%= fa_icon 'flask' %><h3 class="box-title">History</h3>
       </div>
 
       <div class="box-body">
@@ -19,8 +19,8 @@
             <tr>
               <td>
                 <% if container.lot.present? %>
-                <a href="#id<%= bag.lot.id %>"
-                   aria-controls="id<%= bag.lot.id %>"
+                <a href="#id<%= container.lot.id %>"
+                   aria-controls="id<%= container.lot.id %>"
                    role="tab"
                    data-toggle="tab"><%= container.lot %></a>
                 <% end %>

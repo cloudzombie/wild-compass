@@ -21,7 +21,7 @@
               <dt>ID :</dt>
               <dd><%= jar.id %></dd>
               <dt>Name :</dt>
-              <dd>jar<%= " #{jar.id} #{jar.bag.lot.strain.acronym} " + jar.created_at.strftime('%m%y') %></dd>
+              <dd>jar<%= " #{jar.id} #{jar.bag.lot.strain} " + jar.created_at.strftime('%m%y') %></dd>
               <dt>Strain :</dt>
               <dd><%= jar.bag.lot.strain %></dd>
               <dt>Type :</dt>
@@ -64,7 +64,7 @@
               <dt>ID :</dt>
               <dd><%= jar.bag.lot.id %></dd>
               <dt>Name :</dt>
-              <dd>Lot <%= "#{jar.bag.lot.id} #{jar.bag.lot.strain.acronym} " + jar.bag.lot.created_at.strftime('%m%y') %></dd>
+              <dd>Lot <%= "#{jar.bag.lot.id} #{jar.bag.lot.strain} " + jar.bag.lot.created_at.strftime('%m%y') %></dd>
               <dt>Strain :</dt>
               <dd><%= jar.bag.lot.strain %></dd>
               <dt>Type :</dt>
@@ -123,7 +123,7 @@
                 <div class="timeline-body">
                 <br/>
                   <a class="btn btn-success btn-xs"><i class="fa fa-leaf"></i>
-                    <%= ' '+ jar.bag.id.to_s + ' ' + jar.bag.lot.strain.acronym %></a> send <%= jar.bag.lot.initial_weight %> g to <%= link_to "#{fa_icon('tag')} #{jar.bag.lot} #{jar.bag.lot.strain.acronym}".html_safe, jar_path, class: "btn btn-info btn-xs" %>
+                    <%= ' '+ jar.bag.id.to_s + ' ' + jar.bag.lot.strain.to_s %></a> send <%= jar.bag.lot.initial_weight %> g to <%= link_to "#{fa_icon('tag')} #{jar.bag.lot} #{jar.bag.lot.strain}".html_safe, jar_path, class: "btn btn-info btn-xs" %>
                   </div>
                 <div class="timeline-footer">
                 Done by User
@@ -159,7 +159,7 @@
                 <h3 class="timeline-header">New Jar : <%= jar %></h3>
                 <div class="timeline-body">
                 <br/>
-                 <%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar_path, class: "btn btn-warning btn-xs" %> send <%= jar.initial_weight %> g to <%= link_to "#{fa_icon('flask')} #{jar}".html_safe, jar_path, class: "btn btn-danger btn-xs" %>
+                 <%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar_path, class: "btn btn-warning btn-xs" %> send <%= jar.initial_weight %> g to <%= link_to "#{fa_icon('flask')} JAR#{jar.id}".html_safe, jar_path, class: "btn btn-danger btn-xs" %>
                   </div>
                 <div class="timeline-footer">
                 Done by User
@@ -167,6 +167,7 @@
             </div>
         </li>
         <!-- END timeline item -->
+
       
           </ul>
         </div> 
