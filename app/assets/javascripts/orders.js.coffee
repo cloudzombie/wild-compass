@@ -32,17 +32,73 @@ $(document).ready ->
 
   # Zero scale 1
   $("#zero-scale-1-btn").click (event) ->
-    event.preventDefault
+    event.preventDefault()
     resetScale1()
 
   # Zero scale 2
   $("#zero-scale-2-btn").click (event) ->
-    event.preventDefault
+    event.preventDefault()
     resetScale2()
 
+  step1()
 
+  $('#scan-jar').submit (event) ->
+    event.preventDefault()
+    $.ajax
+      url: '/jars/' + $('#jar').val()
+      type: 'GET'
+      error: ->
+        errorResetProcess()
+      success: ->
+        step2()
+
+  $('#scan-bag').submit (event) ->
+    event.preventDefault()
+    $.ajax
+      url: '/bags/' + $('#bag').val()
+      type: 'GET'
+      error: ->
+        errorResetProcess()
+      success: ->
+        step3()
+
+step1 = ->
+  $('#step-1').show()
+  $('#step-2').hide()
+  $('#step-3').hide()
+  $('#step-4').hide()
+  $('#step-5').hide()
+
+step2 = ->
+  $('#step-1').hide()
+  $('#step-2').show()
+  $('#step-3').hide()
+  $('#step-4').hide()
+  $('#step-5').hide()
+
+step3 = ->
+  $('#step-1').hide()
+  $('#step-2').hide()
+  $('#step-3').show()
+  $('#step-4').hide()
+  $('#step-5').hide()
+
+step4 = ->
+  $('#step-1').hide()
+  $('#step-2').hide()
+  $('#step-3').hide()
+  $('#step-4').show()
+  $('#step-5').hide()
+
+step4 = ->
+  $('#step-1').hide()
+  $('#step-2').hide()
+  $('#step-3').hide()
+  $('#step-4').hide()
+  $('#step-5').show()
 
 errorResetProcess = ->
+  state = 'step-1'
   resetScale1()
   resetScale2()
 
