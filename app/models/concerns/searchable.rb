@@ -4,7 +4,7 @@ module Searchable
   module ClassMethods
     def search(search)
       return all if search.nil? || search.empty?
-      query = where(id: search.split(',').map(&:strip).map(&:to_i))
+      query = where(id: search.split(',').map(&:strip)) #.map(&:to_i)
       
       if query.empty?
         query = where('name LIKE ?', "%#{search}%")
