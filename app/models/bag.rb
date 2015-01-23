@@ -6,7 +6,7 @@ class Bag < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where("name like ?", "%#{search}%")
+      where('created_at <= ?, name like ?', "%#{search}%")
     else
       all
     end

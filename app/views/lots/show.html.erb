@@ -99,9 +99,8 @@
                 <td><!--<%# bag.history.history_lines.first.user %>--></td>
               </tr>
               <% lot.history.history_lines.each do |line| %>
-              <% next if line.target == bag.lot %>
                 <tr>
-                  <td><%= bag %></td>
+                  <td><%= line.source %></td>
                   <td><a href="#<%= line.id %>" aria-controls="<%= line.id %>" role="tab" data-toggle="tab"><%= line.target %></a></td>
                   <td><%= line.quantity %></td>
                   <td><%= line.created_at.to_s :short %></td>

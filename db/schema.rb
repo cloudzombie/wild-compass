@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20150123015657) do
 
   create_table "bags", force: true do |t|
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150123015657) do
     t.integer  "container_id"
     t.boolean  "tested"
     t.integer  "lot_id"
+    t.string   "location"
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
   end
@@ -44,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150123015657) do
     t.datetime "updated_at"
     t.integer  "history_id"
     t.string   "category"
+    t.string   "location"
   end
 
   create_table "containers_lots", force: true do |t|

@@ -30,6 +30,11 @@
     <%= f.text_field :weight, class: 'form-control', value: weight_for(container.try(:initial_weight), '') %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :location %>
+    <%= f.text_field :location, class: 'form-control' %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
