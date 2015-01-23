@@ -1,14 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h4><%= jar.name %></h4>
 <div class="row">
-  <div class="col-lg-2">
-    <div class="box-header">
-      <h3 class="box-title">Links</h3>
-    </div>
-    <a class="btn btn-block btn-danger" data-toggle="modal" data-target=".newJar"><i class="fa fa-flask"></i> New Jar</a>
-    <%= link_to '<i class="fa fa-tags"></i> '.html_safe + jar.bag.lot, jar.bag.lot, class: "btn btn-block btn-info" %>
-  </div>
-  <div class="col-lg-5">
+  <div class="col-lg-6">
     <div class="box box-solid box-warning">
       <div class="box-header">
       <i class="fa fa-tag"></i>
@@ -21,7 +14,7 @@
               <dt>ID :</dt>
               <dd><%= jar.id %></dd>
               <dt>Name :</dt>
-              <dd>jar<%= " #{jar.id} #{jar.bag.lot.strain} " + jar.created_at.strftime('%m%y') %></dd>
+              <dd><%= jar %></dd>
               <dt>Strain :</dt>
               <dd><%= jar.bag.lot.strain %></dd>
               <dt>Type :</dt>
@@ -51,7 +44,7 @@
       </div> 
     </div>
   </div>
-  <div class="col-lg-5">
+  <div class="col-lg-6">
     <div class="box box-solid box-info">
       <div class="box-header">
         <i class="fa fa-tags"></i>
@@ -64,7 +57,7 @@
               <dt>ID :</dt>
               <dd><%= jar.bag.lot.id %></dd>
               <dt>Name :</dt>
-              <dd>Lot <%= "#{jar.bag.lot.id} #{jar.bag.lot.strain} " + jar.bag.lot.created_at.strftime('%m%y') %></dd>
+              <dd><%= jar.bag.lot %></dd>
               <dt>Strain :</dt>
               <dd><%= jar.bag.lot.strain %></dd>
               <dt>Type :</dt>
@@ -96,8 +89,6 @@
 </div>
 </div>
   <div class="row">
-    <div class="col-lg-2">
-    </div>
     <div class="col-lg-7">
       <div class="box box-solid box-danger">
         <div class="box-header">
@@ -122,8 +113,11 @@
                 <h3 class="timeline-header">New Lot : <%= jar.bag.lot %></h3>
                 <div class="timeline-body">
                 <br/>
+                <% jar.bag.lot.plants.each do |plant| %>
                   <a class="btn btn-success btn-xs"><i class="fa fa-leaf"></i>
-                    <%= ' '+ jar.bag.id.to_s + ' ' + jar.bag.lot.strain.to_s %></a> send <%= jar.bag.lot.initial_weight %> g to <%= link_to "#{fa_icon('tag')} #{jar.bag.lot} #{jar.bag.lot.strain}".html_safe, jar_path, class: "btn btn-info btn-xs" %>
+                    <%= plant.id %></a> 
+                  <% end %>
+                  send <%= jar.bag.lot.initial_weight %> g to <%= link_to "#{fa_icon('tag')} #{jar.bag.lot} #{jar.bag.lot.strain}".html_safe, jar_path, class: "btn btn-info btn-xs" %>
                   </div>
                 <div class="timeline-footer">
                 Done by User

@@ -51,7 +51,7 @@ class Order < ActiveRecord::Base
   def total_weight
     w = 0.0
     order_lines.each do |line|
-      w += line.quantity * (line.jar.nil? ? 0.0 : line.jar.current_weight )
+      w += line.quantity
     end
     w
   end
