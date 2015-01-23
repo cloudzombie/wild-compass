@@ -18,26 +18,32 @@
           <div class="nav nav-pills" role="pilllist">
             <tr>
               <td>
-                <% if container.lot.present? %>
-                <a href="#id<%= container.lot.id %>"
-                   aria-controls="id<%= container.lot.id %>"
+
+                <% if container.try(:lot).present? %>
+                <a href="#id<%= container.try(:lot).try(:id) %>"
+                   aria-controls="id<%= container.try(:lot).try(:id) %>"
                    role="tab"
-                   data-toggle="tab"><%= container.lot %></a>
+                   data-toggle="tab"><%= container.try(:lot) %></a>
                 <% end %>
               </td>
-              <td><%= container %></td>
-              <td><%= container.initial_weight %></td>
-              <td><%= container.created_at.to_s :short %></td>
-              <td><!--<%# container.history.history_lines.first.user %>--></td>
+              <td><%= container if container.present? %></td>
+              <td><%= container.try(:initial_weight) %></td>
+              <td><%= date_for container.try(:created_at) %></td>
+              <td><%= (container.try(:history).try(:history_lines) || []).try(:first).try(:user) %></td>
             </tr>
-            <% container.history.history_lines.each do |line| %>
-            <% next if line.target == container.lot %>
+            <% (container.try(:history).try(:history_lines) || []).each do |line| %>
+            <% next if line.try(:target) == container.try(:lot) %>
               <tr>
-                <td><%= container %></td>
-                <td><a href="#<%= line.id %>" aria-controls="<%= line.id %>" role="tab" data-toggle="tab"><%= line.target %></a></td>
-                <td><%= line.quantity %></td>
-                <td><%= line.created_at.to_s :short %></td>
-                <td><!--<%#  line.user %>--></td>
+                <td><%= container if container.present? %></td>
+                <td>
+                  <a href="#<%= line.try(:id) %>"
+                     aria-controls="<%= line.try(:id) %>"
+                     role="tab"
+                     data-toggle="tab"><%= line.try(:target) %></a>
+                </td>
+                <td><%= line.try(:quantity) %></td>
+                <td><%= date_for line.try(:created_at) %></td>
+                <td><%= line.try(:user) %></td>
               </tr>
             <% end %>
           </div>
@@ -54,20 +60,20 @@
       </div>
       <div class="box-body">
         <div class="tab-content">
-          <% unless container.lot.nil? %>
-          <div role="tabpanel" class="tab-pane fade" id="id<%= container.lot.id %>"></div>
+          <% if container.try(:lot).present? %>
+          <div role="tabpanel" class="tab-pane fade" id="id<%= container.try(:lot).try(:id) %>"></div>
           <% end %>
-          <% container.history.history_lines.each do |line| %>
-            <div role="tabpanel" class="tab-pane fade" id="<%= line.id %>">
+          <% (container.try(:history).try(:history_lines) || []).each do |line| %>
+            <div role="tabpanel" class="tab-pane fade" id="<%= line.try(:id) %>">
               <table class="table table-hover">
                 <div role="tabpanel">
-                  <% next if line.target.nil? %>
+                  <% next if line.try(:target).nil? %>
                   <tr>
-                    <% line.target.history.history_lines.each do |subline| %>
-                    <td><%= subline.source %></td>
-                    <td><%= subline.target %></td>
-                    <td><%= subline.quantity %> g</td>
-                    <td><%= subline.created_at.to_s :short %></td>
+                    <% (line.try(:target).try(:history).try(:history_lines) || []).each do |subline| %>
+                    <td><%= subline.try(:source) %></td>
+                    <td><%= subline.try(:target) %></td>
+                    <td><%= weight_for subline.try(:quantity) %></td>
+                    <td><%= date_for subline.try(:created_at) %></td>
                     <% end %>
                   </tr>
                 </div>
