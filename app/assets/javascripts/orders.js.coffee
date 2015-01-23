@@ -107,14 +107,10 @@ errorResetProcess = ->
   resetScale1()
   resetScale2()
 
-
-
 resetScale1 = ->
   $.ajax
       url: "http://127.0.0.1:8080/zero"
       success: (data) ->
-
-
 
 resetScale2 = ->
   $.ajax
