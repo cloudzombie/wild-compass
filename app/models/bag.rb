@@ -3,14 +3,8 @@ class Bag < ActiveRecord::Base
   include Weightable
   include Accountable
   include Storyable
-
-  def self.search(search)
-    if search
-      where('created_at <= ?, name like ?', "%#{search}%")
-    else
-      all
-    end
-  end
+  include Searchable
+  
 
   scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
   scope :by_categories,    -> (category = nil) { joins(:containers).merge(Container.where(category: category)).uniq }
@@ -29,7 +23,6 @@ class Bag < ActiveRecord::Base
   has_many :containers, -> { uniq }, through: :lot
 
   has_many :strains, -> { uniq }, through: :plants
-
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 

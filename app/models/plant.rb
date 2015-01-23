@@ -3,6 +3,7 @@ class Plant < ActiveRecord::Base
   include Weightable
   include Accountable
   include Storyable
+  include Searchable
 
 
 
@@ -34,14 +35,6 @@ class Plant < ActiveRecord::Base
 
 
   ### Utils
-  
-  def self.search(search)
-    if search
-      self.where("name like ?", "%#{search}%")
-    else
-      self.all
-    end
-  end
   
   def to_s
     "Plant - #{ id unless id.nil? }"

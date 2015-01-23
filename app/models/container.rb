@@ -3,6 +3,7 @@ class Container < ActiveRecord::Base
   include Weightable
   include Accountable
   include Storyable
+  include Searchable
 
 
 
@@ -30,13 +31,6 @@ class Container < ActiveRecord::Base
   has_many :brands, -> { uniq }, through: :strains
 
 
-  def self.search(search)
-    if search
-      self.where("name like ?", "%#{search}%")
-    else
-      self.all
-    end
-  end
 
   def to_s
     "#{ name.try(:upcase) }"

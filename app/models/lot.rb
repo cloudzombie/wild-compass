@@ -3,6 +3,7 @@ class Lot < ActiveRecord::Base
   include Weightable
   include Accountable
   include Storyable
+  include Searchable
 
 
 
@@ -33,14 +34,6 @@ class Lot < ActiveRecord::Base
 
   def to_s
     "#{ name.upcase unless name.nil? }"
-  end
-
-  def self.search(search)
-    if search
-      self.where("name like ?", "%#{search}%")
-    else
-      self.all
-    end
   end
 
   def container
