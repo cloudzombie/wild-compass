@@ -27,10 +27,8 @@ class LotsController < ApplicationController
     respond_to do |format|
       if lot.save
         format.html { redirect_to lot, notice: 'Lot was successfully created.' }
-        format.json { render :show, status: :created, location: lot }
       else
         format.html { render :new }
-        format.json { render json: lot.errors, status: :unprocessable_entity }
       end
     end
   end

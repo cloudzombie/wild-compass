@@ -1,0 +1,110 @@
+<script type="text/javascript">
+
+  // refresh every 10 milliseconds
+  var auto_refresh = setInterval( function () {
+    $('#scale-1-reading').load('http://localhost:8080/data').fadeIn("slow");
+  }, 10);
+  
+  // refresh every 10 milliseconds
+  var auto_refresh = setInterval( function () {
+    $('#scale-2-reading').load('http://localhost:8081/data').fadeIn("slow");
+  }, 10);
+
+  //send zero commands
+  function zero1Query() {
+    $.ajax({
+      url: 'http://127.0.0.1:8080/zero',
+      success: function(data) {
+      }
+    });
+  }
+
+  function zero2Query() {
+    $.ajax({
+      url: 'http://127.0.0.1:8081/zero',
+      success: function(data) {
+      }
+    });
+  }
+
+</script>
+
+<p class="alert alert-info"><strong>Please scan jar...</strong></p>
+<p class="alert alert-info"><strong>Please scan bag...</strong></p>
+<p class="alert alert-info"><strong>Please put bag on scale 1...</strong></p>
+<p class="alert alert-info"><strong>Please put jar on scale 2...</strong></p>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>Order Fulfillment</strong></h3>
+  </div>
+
+  <div class="panel-body">
+    
+    <form id="scan-jar">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <div class="input-group">
+              <%= label_tag 'jar-scan', class: 'input-group-addon' do %>
+                <strong class="col-md-2">Scan Jar</strong>
+              <% end %>
+              <input type="text "id="jar" class="form-control"></input>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form id="scan-bag">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <div class="input-group">
+              <%= label_tag 'bag-scan', class: 'input-group-addon' do %>
+                <strong class="col-md-2">Scan Bag</strong>
+              <% end %>
+              <input type="text "id="jar" class="form-control"></input>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form id="scale-display">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group">
+              <%= label_tag 'scale-1-reading', class: 'input-group-addon' do %>
+                <strong>Scale 1 Reading</strong>
+              <% end %>
+              
+              <span id="scale-1-reading" class="form-control"></span>
+              
+              <div class="input-group-btn">
+                <input type="button" value="Zero" onclick="javascript:zero1Query();" class="btn btn-primary">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group">
+              <%= label_tag 'scale-2-reading', class: 'input-group-addon' do %>
+                <strong>Scale 2 Reading</strong>
+              <% end %>
+              
+              <span id="scale-2-reading" class="form-control"></span>
+
+              <div class="input-group-btn">
+                <input type="button" value="Zero" onclick="javascript:zero2Query();" class="btn btn-primary">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
