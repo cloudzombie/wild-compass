@@ -29,6 +29,15 @@ module Searchable
             rescue
               next
             end
+          when :boolean
+            queries << "#{column.name} = ?"
+            if "#{search}".downcase == 'true'
+              search_params << true
+            elsif "#{search}".downcase == 'false'
+              search_params << false
+            else
+              search_params << nil
+            end
           else
             queries << "#{column.name} = ?"
             search_params << "%#{search}%"
