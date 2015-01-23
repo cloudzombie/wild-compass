@@ -6,11 +6,12 @@ class Container < ActiveRecord::Base
 
 
 
-  scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
+  scope :by_strains,    -> (strain = nil) {joins(:plants).merge(Plant.where(strain: strain)).uniq }
   scope :by_categories, -> (category = nil) { where(category: category).uniq }
   scope :by_trims,      -> { by_categories 'Trim' }  
   scope :by_buds,       -> { by_categories 'Buds' }
-  
+  scope :by_brands,        -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
+
 
 
 
@@ -25,6 +26,8 @@ class Container < ActiveRecord::Base
   has_many :jars, -> { uniq }, through: :lots
 
   has_many :strains, -> { uniq }, through: :plants
+
+  has_many :brands, -> { uniq }, through: :strains
 
 
   def self.search(search)

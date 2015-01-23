@@ -9,7 +9,7 @@ class InventoryController < ApplicationController
   expose(:containers) { Container.all }
   expose(:strains) { Strain.all }
   expose(:categories) { ['Trim', 'Buds'] }
-
+  expose(:brands) { Brand.all }
   def home
     respond_to do |format|
       format.html

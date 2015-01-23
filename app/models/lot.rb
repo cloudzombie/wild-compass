@@ -10,6 +10,7 @@ class Lot < ActiveRecord::Base
   scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)).uniq }
   scope :by_trims,      -> { by_categories 'Trim' }
   scope :by_buds,       -> { by_categories 'Buds' }
+  scope :by_brands,        -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
   
 
@@ -27,6 +28,7 @@ class Lot < ActiveRecord::Base
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 
+  has_many :brands, -> { uniq }, through: :strains
 
 
   def to_s
