@@ -15303,6 +15303,8 @@ $(window).load(function() {
 
 }).call(this);
 (function() {
+  var errorResetProcess, resetScale1, resetScale2;
+
   $(document).ready(function() {
     $.ajax({
       url: 'http://localhost:8080',
@@ -15317,7 +15319,7 @@ $(window).load(function() {
         return $(".fulfill").attr('href', this.data('href'));
       }
     });
-    return $.ajax({
+    $.ajax({
       url: 'http://localhost:8081',
       type: 'GET',
       error: function() {
@@ -15330,7 +15332,34 @@ $(window).load(function() {
         return $(".fulfill").attr('href', this.data('href'));
       }
     });
+    $("#zero-scale-1-btn").click(function(event) {
+      event.preventDefault;
+      return resetScale1();
+    });
+    return $("#zero-scale-2-btn").click(function(event) {
+      event.preventDefault;
+      return resetScale2();
+    });
   });
+
+  errorResetProcess = function() {
+    resetScale1();
+    return resetScale2();
+  };
+
+  resetScale1 = function() {
+    return $.ajax({
+      url: "http://127.0.0.1:8080/zero",
+      success: function(data) {}
+    });
+  };
+
+  resetScale2 = function() {
+    return $.ajax({
+      url: "http://127.0.0.1:8081/zero",
+      success: function(data) {}
+    });
+  };
 
 }).call(this);
 (function() {
