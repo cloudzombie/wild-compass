@@ -70,7 +70,7 @@ class Jar < ActiveRecord::Base
   ### Utils
 
   def to_s
-    "#{ name.upcase unless name.nil? }"
+    "JAR#{id}"
   end
 
   def lot
