@@ -20,6 +20,7 @@
             <th></th>
             <th><%= sortable :id, 'ID' %></th>
             <th><%= sortable :name %></th>
+            <th><%= :location %></th>
             <th><%= sortable :strain %></th>
             <th><%= sortable :category %></th>
             <th><%= sortable :lot_id %></th>
@@ -35,6 +36,7 @@
             <td><%# check_box_tag :accept %></td>
             <td><%= container.try(:id) if container.present? %></td>
             <td><%= container.try(:to_s) if container.present? %></td>
+            <th><%= container.try(:location) if container.present? %></th>
             <td><%= strain_for container.try(:strain) if container.present? %></td>
             <td><%= category_for container.try(:category) if container.present? %></td>
             <td><%= container.try(:lot) if container.present? %></td>
