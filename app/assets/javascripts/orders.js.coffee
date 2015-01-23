@@ -68,6 +68,7 @@ step1 = ->
   $('#step-3').hide()
   $('#step-4').hide()
   $('#step-5').hide()
+  $('#scale-display').hide()
 
 step2 = ->
   $('#step-1').hide()
@@ -75,6 +76,7 @@ step2 = ->
   $('#step-3').hide()
   $('#step-4').hide()
   $('#step-5').hide()
+  $('#scale-display').hide()
 
 step3 = ->
   $('#step-1').hide()
@@ -82,6 +84,7 @@ step3 = ->
   $('#step-3').show()
   $('#step-4').hide()
   $('#step-5').hide()
+  $('#scale-display').show()
 
 step4 = ->
   $('#step-1').hide()
@@ -89,6 +92,7 @@ step4 = ->
   $('#step-3').hide()
   $('#step-4').show()
   $('#step-5').hide()
+  $('#scale-display').show()
 
 step4 = ->
   $('#step-1').hide()
@@ -96,6 +100,7 @@ step4 = ->
   $('#step-3').hide()
   $('#step-4').hide()
   $('#step-5').show()
+  $('#scale-display').show()
 
 errorResetProcess = ->
   state = 'step-1'
