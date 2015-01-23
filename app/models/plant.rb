@@ -7,6 +7,7 @@ class Plant < ActiveRecord::Base
 
 
   scope :by_strains, -> (strain = nil) { where(strain: strain) }
+  scope :by_brands,   -> (brand = nil) { where(brand: brand) }
 
 
 
@@ -27,6 +28,8 @@ class Plant < ActiveRecord::Base
   has_many :bags, -> { uniq }, through: :containers
 
   has_many :jars, -> { uniq }, through: :containers
+
+  has_one :brand, through: :strain
 
 
 

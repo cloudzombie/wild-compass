@@ -39,3 +39,44 @@
     </td>
   </tr>
 </table>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Categories \ Brands</th>
+    <% brands.each do |brand| %>
+    <th><%= brand %></th>
+    <% end %>
+    <th>Total</th>
+  </tr>
+
+  <% categories.each do |category| %>
+  <tr>
+    <th>
+      <%= category %>
+    </th>
+    <% brands.each do |brand| %>
+    <td>
+      <%= weight_for weightable.by_categories(category).by_brands(brand).total_weight, '' %>
+    </td>
+    <% end %>
+    <td>
+      <%= weight_for weightable.by_categories(category).total_weight, '' %>
+    </td>
+  </tr>
+  <% end %>
+
+  <tr>
+    <th>
+      Total
+    </th>
+    <% brands.each do |brand| %>
+    <td>
+      <%= weight_for weightable.by_brands(brand).total_weight, '' %>
+    </td>
+    <% end %>
+    <td>
+      <%= weight_for weightable.total_weight, '' %>
+    </td>
+  </tr>
+</table>
+
