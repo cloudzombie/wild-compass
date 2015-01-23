@@ -8,9 +8,9 @@ module Searchable
         search_params = []
         
         columns.each do |column|
-          next if column.name :history_id
-          next if column.name :datamatrix_text
-          next if column.name :datamatrix_hash
+          next if column.name == :history_id
+          next if column.name == :datamatrix_text
+          next if column.name == :datamatrix_hash
           case column.type
           when :integer
             queries << "#{column.name} = ?"
