@@ -59,7 +59,7 @@ class Jar < ActiveRecord::Base
 
   def encode(id)
     text = "JAR-#{id}"
-    hash = Digest::MD5.base64digest(text)
+    hash = Digest::MD5.hexdigest(text)
     update datamatrix_text: text, datamatrix_hash: hash
     hash
   end

@@ -30,7 +30,7 @@
                   <strong class="col-md-2">Scan Jar</strong>
                 <% end %>
 
-                <input type="text "id="jar" class="form-control"></input>
+                <input type="text" id="jar" class="form-control"></input>
               </div>
             </div>
           </div>
@@ -38,65 +38,39 @@
       </form>
     </div>
 
-    <p class="alert alert-info"><strong>Please scan bag...</strong></p>
+    <div id="step-2">
+      <p class="alert alert-info"><strong>Please scan bag...</strong></p>
 
-    <form id="scan-bag">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="form-group">
-            <div class="input-group">
-              <%= label_tag 'bag-scan', class: 'input-group-addon' do %>
-                <strong class="col-md-2">Scan Bag</strong>
-              <% end %>
-              <input type="text "id="jar" class="form-control"></input>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-
-    <p class="alert alert-info"><strong>Please put bag on scale 1...</strong></p>
-    <p class="alert alert-info"><strong>Please put jar on scale 2...</strong></p>
-    <p class="alert alert-info"><strong>Please fill jar with X grams from bag...</strong></p>
-
-    <form id="scale-display">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <div class="input-group">
-              <%= label_tag 'scale-1-reading', class: 'input-group-addon' do %>
-                <strong>Scale 1 Reading</strong>
-              <% end %>
-              
-              <span id="scale-1-reading" class="form-control text-center"></span>
-              
-              <div class="input-group-btn">
-                <%= link_to '#', class: 'btn btn-primary', id: 'zero-scale-1-btn' do %>
-                  <strong>ZERO</strong>
+      <form id="scan-bag">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="form-group">
+              <div class="input-group">
+                <%= label_tag 'bag-scan', class: 'input-group-addon' do %>
+                  <strong class="col-md-2">Scan Bag</strong>
                 <% end %>
+                <input type="text "id="bag" class="form-control"></input>
               </div>
             </div>
           </div>
         </div>
+      </form>
+    </div>
 
-        <div class="col-md-6">
-          <div class="form-group">
-            <div class="input-group">
-              <%= label_tag 'scale-2-reading', class: 'input-group-addon' do %>
-                <strong>Scale 2 Reading</strong>
-              <% end %>
-              
-              <span id="scale-2-reading" class="form-control text-center"></span>
+    <div id="step-3">
+      <p class="alert alert-info"><strong>Please put bag on scale 1...</strong></p>
+    </div>
 
-              <div class="input-group-btn">
-                <%= link_to '#', class: 'btn btn-primary', id: 'zero-scale-2-btn' do %>
-                  <strong>ZERO</strong>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
+    <div id="step-4">
+      <p class="alert alert-info"><strong>Please put jar on scale 2...</strong></p>
+    </div>
+
+    <div id="step-5">
+      <p class="alert alert-info"><strong>Please fill jar with X grams from bag...</strong></p>
+    </div>
+
+    <div id="scale-display">
+      <%= render 'orders/fulfillment/scale_display' %>
+    </div>
   </div>
 </div>

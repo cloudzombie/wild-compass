@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20150123015657) do
     t.integer  "container_id"
     t.boolean  "tested"
     t.integer  "lot_id"
-    t.string   "location"
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
+    t.string   "location"
   end
 
   create_table "brands", force: true do |t|
