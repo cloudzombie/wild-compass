@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122203606) do
+ActiveRecord::Schema.define(version: 20150123012531) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150122203606) do
     t.integer  "history_id"
     t.integer  "container_id"
     t.boolean  "tested"
-    t.integer "lot_id"
+    t.integer  "lot_id"
   end
 
   create_table "brands", force: true do |t|
@@ -98,9 +98,11 @@ ActiveRecord::Schema.define(version: 20150122203606) do
     t.integer  "bag_id"
     t.string   "name"
     t.integer  "origin"
-    t.decimal  "current_weight", precision: 16, scale: 4
-    t.decimal  "initial_weight", precision: 16, scale: 4
+    t.decimal  "current_weight",  precision: 16, scale: 4
+    t.decimal  "initial_weight",  precision: 16, scale: 4
     t.integer  "history_id"
+    t.string   "datamatrix_text"
+    t.string   "datamatrix_hash"
   end
 
   create_table "lots", force: true do |t|
