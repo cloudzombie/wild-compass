@@ -4,6 +4,7 @@ class Bag < ActiveRecord::Base
   include Accountable
   include Storyable
   include Searchable
+  include Labelizable
   
 
   scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
@@ -33,6 +34,8 @@ class Bag < ActiveRecord::Base
   def datamatrix
     open("http://datamatrix.kaywa.com/img.php?s=12&d=#{ encode self.try(:id) }").read
   end
+
+
 
   def encode(id)
     text = "BAG-#{id}"

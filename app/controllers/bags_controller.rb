@@ -69,6 +69,21 @@ class BagsController < ApplicationController
     send_data bag.datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
+  def label
+    # send_data bag.label, type: 'image/png', disposition: 'attachment'
+
+    respond_to do |format|
+      format.pdf do
+        render( pdf:          'label.pdf',
+                show_as_html: params[:debug].present?,
+                disposition:  'inline',
+                template:     'inventory/pdf/report.pdf.erb',
+                layout:       'report.html'
+        )
+      end
+    end
+  end
+
 
 
   private

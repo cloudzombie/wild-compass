@@ -61,6 +61,10 @@ class JarsController < ApplicationController
     send_data jar.datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
+  def label
+    send_data jar.label, type: 'image/png', disposition: 'attachment'
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   private
     def jar_params
