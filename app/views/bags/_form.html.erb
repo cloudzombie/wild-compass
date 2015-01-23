@@ -17,6 +17,11 @@
     <%= display_error_for bag, :weight %>
   </div>
 
+   <div class="form-group">
+    <%= f.label :location %>
+    <%= f.text_field :location, class: 'form-control' %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
