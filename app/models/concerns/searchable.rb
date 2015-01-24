@@ -7,7 +7,7 @@ module Searchable
       query = where(id: search.split(',').map(&:strip)) #.map(&:to_i)
       
       if query.empty?
-        query = where('name LIKE ?', "%#{search}%")
+        query = where('lower(name) LIKE ?', "%#{search}%".downcase)
         
         if query.empty?
           none
