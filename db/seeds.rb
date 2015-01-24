@@ -61,7 +61,7 @@ user_groups = User::Group.create([{ role: User::Group::Role.users,       name: '
                                   { role: User::Group::Role.admins,      name: 'admins'      },
                                   { role: User::Group::Role.super_users, name: 'super_users' }])
 
-password = 'wildcompass'
+password = 'wild.compass'
 email = 'su_admin@wild.compass'
 users = User.create([{ name: 'Super User',
                        email: email,
