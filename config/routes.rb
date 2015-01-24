@@ -34,11 +34,17 @@ Rails.application.routes.draw do
   resources :plants
   
   resources :jars do
-    member { get 'datamatrix' }
+    member do
+      get 'datamatrix'
+      get 'label'
+    end
   end
   
   resources :bags do
-    member { get 'datamatrix' }
+    member do
+      get 'datamatrix'
+      get 'label'
+    end
   end
 
   resources :lots
@@ -65,11 +71,17 @@ Rails.application.routes.draw do
       resources :plants
       
       resources :jars do
-        member { get 'datamatrix' }
+        member do
+          get 'datamatrix'
+          get 'label'
+        end
       end
       
       resources :bags do
-        member { get 'datamatrix' }
+        member do
+          get 'datamatrix'
+          get 'label'
+        end
       end
 
       resources :lots

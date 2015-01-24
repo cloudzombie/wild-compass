@@ -25,6 +25,10 @@ class API::V1::BagsController < API::V1::APIController
     send_data Bag.find(id_param).datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
+  def datamatrix
+    send_data Bag.find(id_param).label, type: 'image/png', disposition: 'attachment'
+  end
+
   private
     
     def bag_params

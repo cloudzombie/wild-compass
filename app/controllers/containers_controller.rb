@@ -62,7 +62,7 @@ class ContainersController < ApplicationController
     end
 
     def container_params
-      params.require(:container).permit(:name, :category, :current_weight, :initial_weight, :weight, { plant_ids: [] })
+      params.require(:container).permit(:name, :location, :category, :current_weight, :initial_weight, :weight, { plant_ids: [] })
     end
 
     def set_weight
@@ -75,7 +75,7 @@ class ContainersController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id lot_id strain category name initial_weight current_weight created_at updated_at container_id).include?(params[:sort]) ? params[:sort] : 'created_at'
+      %w(id lot_id strain category location name initial_weight current_weight created_at updated_at container_id).include?(params[:sort]) ? params[:sort] : 'created_at'
     end
 
     # Set sort direction to ascending or descending.

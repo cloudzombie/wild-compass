@@ -10,6 +10,7 @@ class InventoryController < ApplicationController
   expose(:strains) { Strain.all }
   expose(:categories) { ['Trim', 'Buds'] }
   expose(:brands) { Brand.all }
+  
   def home
     respond_to do |format|
       format.html

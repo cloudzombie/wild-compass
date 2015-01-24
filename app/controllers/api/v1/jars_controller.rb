@@ -25,6 +25,10 @@ class API::V1::JarsController < API::V1::APIController
     send_data Jar.find(id_param).datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
+  def label
+    send_data Jar.find(id_param).label, type: 'image/png', disposition: 'attachment'
+  end 
+
   private
     
     def jar_params
