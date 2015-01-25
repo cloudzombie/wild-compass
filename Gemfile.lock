@@ -1,10 +1,3 @@
-GIT
-  remote: https://biximilien:esf823r@bitbucket.org/thcdev/datamatrix.git
-  revision: d15582600fcc5d4d2c1927b6ff51d96609b25900
-  specs:
-    datamatrix (0.0.1)
-      chunky_png
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -49,7 +42,6 @@ GEM
       sass (>= 3.2.19)
     builder (3.2.2)
     cancan (1.6.10)
-    chunky_png (1.3.3)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -187,7 +179,6 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.1)
   cancan
   coffee-rails (~> 4.0.0)
-  datamatrix!
   decent_exposure
   devise
   devise_token_auth
