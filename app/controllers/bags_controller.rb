@@ -86,13 +86,6 @@ class BagsController < ApplicationController
     send_data bag.label, type: 'image/png', disposition: 'attachment'
   end
 
-  # Create downloadable pdf if inventory.
-  def download
-    html = render_to_string 'bags/pdf/label.pdf', layout: 'label.html'
-    pdf = WickedPdf.new.pdf_from_string(html)
-    send_data( pdf, filename: 'label.pdf', disposition: 'attachment' )
-  end
-
 
 
   private

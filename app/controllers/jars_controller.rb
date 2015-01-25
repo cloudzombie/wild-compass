@@ -62,6 +62,19 @@ class JarsController < ApplicationController
   end
 
   def label
+    respond_to do |format|
+      format.pdf do
+        render( pdf:          'label.pdf',
+                show_as_html: params[:debug].present?,
+                disposition:  'inline',
+                template:     'jars/pdf/label.pdf.erb',
+                layout:       'label.html'
+        )
+      end
+    end
+  end
+
+  def label_stream
     send_data jar.label, type: 'image/png', disposition: 'attachment'
   end
 

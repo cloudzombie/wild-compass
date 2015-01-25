@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     member do
       get 'datamatrix'
       get 'label'
+      get 'label_stream'
     end
   end
   
