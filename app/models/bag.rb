@@ -13,7 +13,6 @@ class Bag < ActiveRecord::Base
   scope :by_buds,          -> { by_categories 'Buds' }
   scope :by_brands,        -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
-  
 
   belongs_to :lot
 
@@ -24,6 +23,8 @@ class Bag < ActiveRecord::Base
   has_many :containers, -> { uniq }, through: :lot
 
   has_many :strains, -> { uniq }, through: :plants
+
+  belongs_to :bin
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 

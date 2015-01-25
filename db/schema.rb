@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123015657) do
+ActiveRecord::Schema.define(version: 20150123173957) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20150123015657) do
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
     t.string   "location"
+    t.integer  "bin_id"
+  end
+
+  create_table "bins", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "brands", force: true do |t|

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :bins
+
   # Root redirect
   root to: 'root#redirect'
 
