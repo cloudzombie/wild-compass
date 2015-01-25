@@ -16,5 +16,5 @@
 //= require jquery-ui/core
 //= require turbolinks
 //= require bootstrap
-//= require admin-lte
+//= require adminlte/app
 //= require_tree .
