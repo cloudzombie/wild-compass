@@ -17,3 +17,4 @@ module Storyable
       !history.nil?
     end
 end
+

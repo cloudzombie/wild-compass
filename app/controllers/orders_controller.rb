@@ -90,6 +90,11 @@ class OrdersController < ApplicationController
     send_data order.datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
+  def add_line
+    order.order_lines << OrderLine.create(order_line_params)
+    respond_to { redirect_to order_path(order) }
+  end
+
   private
 
     def id_param
@@ -97,7 +102,12 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:customer, :shipped_at, :ordered_at, { order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ] })
+      params.require(:order_line).permit(:brand_id, :quantity, :jar_id)
+    end
+
+    def order_params
+      params.require(:order).permit(:customer, :shipped_at, :ordered_at,
+        { order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ] })
     end
 
     # Set column to sort in order
