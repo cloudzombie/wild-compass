@@ -70,18 +70,27 @@ class BagsController < ApplicationController
   end
 
   def label
-    # send_data bag.label, type: 'image/png', disposition: 'attachment'
-
     respond_to do |format|
       format.pdf do
         render( pdf:          'label.pdf',
                 show_as_html: params[:debug].present?,
                 disposition:  'inline',
-                template:     'inventory/pdf/report.pdf.erb',
-                layout:       'report.html'
+                template:     'bags/pdf/label.pdf.erb',
+                layout:       'label.html'
         )
       end
     end
+  end
+
+  def label_stream
+    send_data bag.label, type: 'image/png', disposition: 'attachment'
+  end
+
+  # Create downloadable pdf if inventory.
+  def download
+    html = render_to_string 'bags/pdf/label.pdf', layout: 'label.html'
+    pdf = WickedPdf.new.pdf_from_string(html)
+    send_data( pdf, filename: 'label.pdf', disposition: 'attachment' )
   end
 
 
