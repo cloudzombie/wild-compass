@@ -15258,7 +15258,75 @@ $(window).load(function() {
 })(window.jQuery)
 ;
 (function() {
+  var ReweightScale, errorResetReweightProcess, resetScale1, reweightStep1, reweightStep2;
 
+  ReweightScale = {
+    SCALE1_URL: 'http://localhost:8080',
+    SCALE1_METHOD: 'GET'
+  };
+
+  $(document).ready(function() {
+    $('.reweight').click(function(event) {
+      event.preventDefault;
+      return $(location).attr('href', this.data('href'));
+    });
+    $.ajax({
+      url: ReweightScale.SCALE1_URL,
+      type: ReweightScale.SCALE1_METHOD,
+      error: function() {
+        $(".reweight").addClass('disabled');
+        return $(".reweight").removeAttr('href');
+      },
+      success: function() {
+        $(".reweight").removeClass('disabled');
+        $(".reweight").addAttr('href');
+        return $(".reweight").attr('href', this.data('href'));
+      }
+    });
+    $("#zero-scale-1-btn").click(function(event) {
+      event.preventDefault();
+      return resetScale1();
+    });
+    reweightStep1();
+    return $('#scan-bag').submit(function(event) {
+      event.preventDefault();
+      return $.ajax({
+        url: '/bags/' + $('#bag').val(),
+        type: 'GET',
+        error: function() {
+          return errorResetReweightProcess();
+        },
+        success: function() {
+          return reweightStep2();
+        }
+      });
+    });
+  });
+
+  reweightStep1 = function() {
+    $('#reweight-step-1').show();
+    $('#reweight-step-2').hide();
+    return $('#reweight-scale-display').hide();
+  };
+
+  reweightStep2 = function() {
+    $('#reweight-step-1').hide();
+    $('#reweight-step-2').show();
+    return $('#reweight-scale-display').show();
+  };
+
+  errorResetReweightProcess = function() {
+    var state;
+    state = 'step-1';
+    return resetScale1();
+  };
+
+  resetScale1 = function() {
+    return $.ajax({
+      url: "http://127.0.0.1:8080/zero",
+      success: function(data) {}
+    });
+  };
 
 }).call(this);
 (function() {
@@ -15307,12 +15375,23 @@ $(window).load(function() {
 
 }).call(this);
 (function() {
-  var errorResetProcess, resetScale1, resetScale2, step1, step2, step3, step4;
+  var FulfillScale, errorResetProcess, resetScale1, resetScale2, step1, step2, step3, step4;
+
+  FulfillScale = {
+    SCALE1_URL: 'http://localhost:8080',
+    SCALE2_URL: 'http://localhost:8081',
+    SCALE1_METHOD: 'GET',
+    SCALE2_METHOD: 'GET'
+  };
 
   $(document).ready(function() {
+    $('.fulfill').click(function(event) {
+      event.preventDefault;
+      return $(location).attr('href', this.data('href'));
+    });
     $.ajax({
-      url: 'http://localhost:8080',
-      type: 'GET',
+      url: FulfillScale.SCALE1_URL,
+      type: FulfillScale.SCALE1_METHOD,
       error: function() {
         $(".fulfill").addClass('disabled');
         return $(".fulfill").removeAttr('href');
@@ -15324,8 +15403,8 @@ $(window).load(function() {
       }
     });
     $.ajax({
-      url: 'http://localhost:8081',
-      type: 'GET',
+      url: FulfillScale.SCALE2_URL,
+      type: FulfillScale.SCALE2_METHOD,
       error: function() {
         $(".fulfill").addClass('disabled');
         return $(".fulfill").removeAttr('href');
