@@ -1,49 +1,48 @@
 class BinsController < ApplicationController
-  before_action :set_bin, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
-
-  def index
-    @bins = Bin.all
-    @bin = Bin.new
-    respond_with(@bins)
-  end
-
-  def show
-    respond_with(@bin)
-  end
-
-  def new
-    @bin = Bin.new
-    respond_with(@bin)
-  end
-
-  def edit
-  end
+  expose(:bin, params: :bin_params) { id_param.nil? ? Bin.new : Bin.find(id_param) }
+  expose(:bins) { Bin.all }
 
   def create
-    @bin = Bin.new(bin_params)
-    @bin.save
-    respond_with(@bin)
+    self.bin = Bin.new(bin_params)
+    bin.save
+    respond_with(bin)
   end
 
   def update
-    @bin.update(bin_params)
-    respond_with(@bin)
+    bin.update(bin_params)
+    respond_with(bin)
   end
 
   def destroy
-    @bin.destroy
-    respond_with(@bin)
+    bin.destroy
+    respond_with(bin)
+  end
+
+  def label
+    respond_to do |format|
+      format.pdf do
+        render( pdf:          'label.pdf',
+                show_as_html: params[:debug].present?,
+                disposition:  'inline',
+                template:     'bins/pdf/label.pdf.erb',
+                layout:       'label.html'
+        )
+      end
+    end
+  end
+
+  def label_stream
+    send_data bin.label, type: 'image/png', disposition: 'attachment'
   end
 
   private
-    def set_bin
-      @bin = Bin.find(params[:id])
+
+    def id_param
+      params[:id]
     end
 
     def bin_params
       params.require(:bin).permit(:name, :location_id)
-
     end
 end
