@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     member do
       get 'datamatrix'
       get 'fulfill'
+      get 'add_line'
       post 'add_line'
     end
   end
@@ -71,6 +72,7 @@ Rails.application.routes.draw do
         member do
           get 'datamatrix'
           get 'add_line'
+          post 'add_line'
         end
       end
 

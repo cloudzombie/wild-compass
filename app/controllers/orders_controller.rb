@@ -91,8 +91,13 @@ class OrdersController < ApplicationController
   end
 
   def add_line
-    order.order_lines << OrderLine.create(order_line_params)
-    respond_to { redirect_to order_path(order) }
+    order_line = OrderLine.new(order_line_params)
+    if order_line.save
+      order.order_lines << order_line
+    else
+      flash[:error] = 'Could not create order line.'
+    end
+    redirect_to order
   end
 
   private
@@ -101,13 +106,13 @@ class OrdersController < ApplicationController
       params[:id]
     end
 
-    def order_params
+    def order_line_params
       params.require(:order_line).permit(:brand_id, :quantity, :jar_id)
     end
 
     def order_params
       params.require(:order).permit(:customer, :shipped_at, :ordered_at,
-        { order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ] })
+      { order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ] })
     end
 
     # Set column to sort in order

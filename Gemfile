@@ -83,4 +83,5 @@ gem 'spreadsheet'
 # Pagination
 gem 'kaminari'
 
+# Chunky
 gem 'chunky_png'
