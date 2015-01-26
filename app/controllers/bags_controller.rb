@@ -4,7 +4,9 @@ class BagsController < ApplicationController
   expose(:bag, params: :bag_params) { id_param.nil? ? Bag.new : find_bag }
   
   expose(:bags) do
-    if Bag.column_names.include? sort_column
+    if sort_column == 'name'
+      Bag.search(params[:search]).order('LENGTH(name), name ' + sort_direction).page(params[:page])
+    elsif Bag.column_names.include? sort_column
       Bag.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
     elsif sort_column == 'strain'
       Bag.search(params[:search]).joins(:strains).uniq.merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
