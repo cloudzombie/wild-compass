@@ -90,14 +90,29 @@ class OrdersController < ApplicationController
     send_data order.datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
+  def add_line
+    order_line = OrderLine.new(order_line_params)
+    if order_line.save
+      order.order_lines << order_line
+    else
+      flash[:error] = 'Could not create order line.'
+    end
+    redirect_to order
+  end
+
   private
 
     def id_param
       params[:id]
     end
 
+    def order_line_params
+      params.require(:order_line).permit(:brand_id, :quantity, :jar_id)
+    end
+
     def order_params
-      params.require(:order).permit(:customer, :shipped_at, :ordered_at, { order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ] })
+      params.require(:order).permit(:customer, :shipped_at, :ordered_at,
+      order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ])
     end
 
     # Set column to sort in order

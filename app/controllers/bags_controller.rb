@@ -15,9 +15,9 @@ class BagsController < ApplicationController
 
   expose(:jar) { Jar.new }
   
-  before_action :set_weight, only: [ :create, :update ]
-  before_action :set_name, only: [ :create, :update ]
-  before_action :set_quantity, only: [ :create, :update ]
+  before_action :set_weight, only: [ :create, :update, :reweight ]
+  before_action :set_name, only: [ :create, :update , :reweight]
+  before_action :set_quantity, only: [ :create, :update, :reweight ]
 
   ##
   # Create a new bag from a POST HTTP request with given parameters:
@@ -40,7 +40,27 @@ class BagsController < ApplicationController
         format.html { render :new }
       end
     end
-  end 
+  end
+
+  def reweight
+    authorize! :reweight, bag
+    
+    if request.post?
+    
+      if Transaction.reweight( bag ).weight( bag.weight ).by( current_user ).commit
+        redirect_to bag, notice: 'Bag was successfully reweighted.'
+      else
+        redirect_to bag, notice: 'Bag was not successfully reweighted.'
+      end
+
+    else
+
+      respond_to do |format|
+        format.html
+      end
+
+    end
+  end
 
   # Update bag column.
   def update
@@ -70,18 +90,20 @@ class BagsController < ApplicationController
   end
 
   def label
-    # send_data bag.label, type: 'image/png', disposition: 'attachment'
-
     respond_to do |format|
       format.pdf do
         render( pdf:          'label.pdf',
                 show_as_html: params[:debug].present?,
                 disposition:  'inline',
-                template:     'inventory/pdf/report.pdf.erb',
-                layout:       'report.html'
+                template:     'bags/pdf/label.pdf.erb',
+                layout:       'label.html'
         )
       end
     end
+  end
+
+  def label_stream
+    send_data bag.label, type: 'image/png', disposition: 'attachment'
   end
 
 

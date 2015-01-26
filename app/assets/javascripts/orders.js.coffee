@@ -2,12 +2,22 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+FulfillScale =
+  SCALE1_URL: 'http://localhost:8080'
+  SCALE2_URL: 'http://localhost:8081'
+  SCALE1_METHOD: 'GET'
+  SCALE2_METHOD: 'GET'
+
 $(document).ready ->
+
+  $('.fulfill').click (event) ->
+    event.preventDefault
+    $(location).attr('href', this.data('href'))
  
   # Toggle disabled on Fulfill Button if scale 1 responds
   $.ajax
-    url: 'http://localhost:8080'
-    type: 'GET'
+    url: FulfillScale.SCALE1_URL
+    type: FulfillScale.SCALE1_METHOD
     error: ->
       $(".fulfill").addClass 'disabled'
       $(".fulfill").removeAttr 'href'
@@ -19,8 +29,8 @@ $(document).ready ->
 
   # Toggle disabled on fulfill Button if scale 2 responds
   $.ajax
-    url: 'http://localhost:8081'
-    type: 'GET'
+    url: FulfillScale.SCALE2_URL
+    type: FulfillScale.SCALE2_METHOD
     error: ->
       $(".fulfill").addClass 'disabled'
       $(".fulfill").removeAttr 'href'

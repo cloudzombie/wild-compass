@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150126125722) do
     t.string   "datamatrix_hash"
     t.string   "location"
     t.integer  "bin_id"
+    t.boolean  "archived",                                 default: false, null: false
   end
 
   create_table "bins", force: true do |t|

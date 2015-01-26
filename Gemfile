@@ -83,6 +83,5 @@ gem 'spreadsheet'
 # Pagination
 gem 'kaminari'
 
-# Datamatrix
-gem 'datamatrix', git: 'https://biximilien:esf823r@bitbucket.org/thcdev/datamatrix.git'
-
+# Chunky
+gem 'chunky_png'

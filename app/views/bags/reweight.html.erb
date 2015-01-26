@@ -1,0 +1,45 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    var auto_refresh_scale1 = setInterval(function() {
+      $("#scale-1-reading").load("http://localhost:8080/data").fadeIn("slow");
+    }, 100);
+  </script>
+<% end %>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>Bag Reweight</strong></h3>
+  </div>
+
+  <div class="panel-body">
+    
+    <div id="reweight-bag-step-1">
+      <p class="alert alert-info"><strong>Please scan bag...</strong></p>
+
+      <form id="scan-bag">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="form-group">
+              <div class="input-group">
+                
+                <%= label_tag 'bag-scan', class: 'input-group-addon' do %>
+                  <strong class="col-md-2">Scan Bag</strong>
+                <% end %>
+
+                <input type="text" id="bag" class="form-control"></input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div id="reweight-bag-step-2">
+      <p class="alert alert-info"><strong>Please put bag on scale 1...</strong></p>
+    </div>
+
+    <div id="reweight-bag-scale-display">
+      <%= render 'bags/reweight/scale_display' %>
+    </div>
+  </div>
+</div>

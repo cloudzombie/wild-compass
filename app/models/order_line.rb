@@ -3,6 +3,8 @@ class OrderLine < ActiveRecord::Base
 
   belongs_to :brand
 
+  validates :brand, presence: true
+
   belongs_to :jar
 
   def name
