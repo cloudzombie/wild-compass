@@ -19,6 +19,8 @@ class BagsController < ApplicationController
   before_action :set_name, only: [ :create, :update , :reweight]
   before_action :set_quantity, only: [ :create, :update, :reweight ]
 
+  respond_to :html, :xml, :json
+
   ##
   # Create a new bag from a POST HTTP request with given parameters:
   # +bag_params+::

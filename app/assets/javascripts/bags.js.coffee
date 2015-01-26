@@ -6,6 +6,14 @@ ReweightScale =
   SCALE1_URL: 'http://localhost:8080'
   SCALE1_METHOD: 'GET'
 
+state = undefined
+bag =
+  id: undefined
+  current_weight: undefined
+  readings: undefined
+  count: undefined
+
+# Page ready hook
 $(document).ready ->
  
   # Override default button behaviour
@@ -26,37 +34,60 @@ $(document).ready ->
       $(".reweight").attr 'href', this.data('href')
 
   # Zero scale 1
-  $("#zero-scale-1-btn").click (event) ->
-    event.preventDefault
-    resetScale1
+  $("#reweight-zero-scale-1-btn").click (event) ->
+    event.preventDefault()
+    reweightResetScale1()
 
-  reweightStep1
+  reweightBagStep1()
 
-  $('#scan-bag').submit (event) ->
-    event.preventDefault
+  # Detect bag id
+  $('#reweight-bag-scan').submit (event) ->
+    event.preventDefault()
     $.ajax
-      url: '/bags/' + $('#bag').val
+      url: '/bags/' + $('#reweight-bag').val() + '.json'
       type: 'GET'
       error: ->
-        errorResetReweightProcess
-      success: ->
-        reweightStep2
+        reweightErrorResetProcess()
+      success: (data) ->
+        bag.id = data.id
+        bag.current_weight = data.current_weight
+        reweightBagStep2()
 
-reweightStep1 = ->
-  $('#reweight-bag-step-1').show
-  $('#reweight-bag-step-2').hide
-  $('#reweight-bag-scale-display').hide
+  # Detect weight change
+  $('#reweight-bag-scale-1-readings').change (event) ->
+    if bag.readings == parseInt($('#reweight-bag-scale-1-readings').text())
+      bag.count += 1
+      if bag.count >= 30
+        reweightBagStep3()
+    else
+      bag.readings = parseInt($('#reweight-bag-scale-1-readings').text())
 
-reweightStep2 = ->
-  $('#reweight-bag-step-1').hide
-  $('#reweight-bag-step-2').show
-  $('#reweight-bag-scale-display').show
+reweightBagStep1 = ->
+  state = 'step-1'
+  $('#reweight-bag-step-1').show()
+  $('#reweight-bag-step-2').hide()
+  $('#reweight-bag-step-3').hide()
+  $('#reweight-bag-scale-display').hide()
 
-errorResetReweightProcess = ->
-  reweightStep1
-  resetScale1
+reweightBagStep2 = ->
+  state = 'step-2'
+  $('#reweight-bag-step-1').hide()
+  $('#reweight-bag-step-2').show()
+  $('#reweight-bag-step-3').hide()
+  $('#reweight-bag-scale-display').show()
 
-resetScale1 = ->
+reweightBagStep3 = ->
+  state = 'step-3'
+  $('#reweight-bag-step-1').hide()
+  $('#reweight-bag-step-2').hide()
+  $('#reweight-bag-step-3').show()
+  $('#reweight-bag-scale-display').hide()  
+
+reweightErrorResetProcess = ->
+  reweightBagStep1
+  reweightResetScale1
+
+reweightResetScale1 = ->
   $.ajax
       url: ReweightScale.SCALE1_URL + '/zero'
       success: (data) ->
