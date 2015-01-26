@@ -5,6 +5,7 @@ class BinsController < ApplicationController
 
   def index
     @bins = Bin.all
+    @bin = Bin.new
     respond_with(@bins)
   end
 
