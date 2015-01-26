@@ -48,6 +48,8 @@ Rails.application.routes.draw do
       get 'datamatrix'
       get 'label'
       get 'label_stream'
+      get 'reweight'
+      post 'reweight'
     end
   end
 

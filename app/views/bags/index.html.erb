@@ -59,6 +59,10 @@
           <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: "btn-sm btn-flat btn-info" %>
           <% end %>
 
+          <% if can? :reweight, Bag %>
+          <%= link_to "#{fa_icon 'flask'} Reweight".html_safe, reweight_bag_path(bag), class: 'btn-sm btn-flat btn-danger' %>
+          <% end %>
+
           <% if can? :edit, Bag %>
           <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: "btn-sm btn-flat btn-warning" %>
           <% end %>
