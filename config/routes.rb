@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   
   resources :locations
 
-  resources :bins
+  resources :bins do 
+    member do
+      get 'datamatrix'
+      get 'label'
+      get 'label_stream'
+    end
+  end
 
   # Root redirect
   root to: 'root#redirect'

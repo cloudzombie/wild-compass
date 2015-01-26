@@ -24,14 +24,14 @@
         <th>Actions</th>
       </tr>
 
-      <% @bins.each do |bin| %>
+      <% bins.each do |bin| %>
       <tr>
         <td><%= check_box_tag :accept %></td>
         <td><%= bin.id %></td>
         <td><%= bin.name %></td>
         <td><%= bin.location %>
         <td>
-          <% Bag.all.where('bin_id = ?', bin.id).each do |bag| %>
+          <% bin.bags.each do |bag| %>
             <%= bag %>
           <% end %>
         </td>
