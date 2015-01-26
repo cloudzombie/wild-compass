@@ -2,20 +2,26 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+ReweightScale =
+  SCALE1_URL: 'http://localhost:8080'
+  SCALE1_METHOD: 'GET'
+
 $(document).ready ->
  
-  # Toggle disabled on Fulfill Button if scale 1 responds
+  # Toggle disabled on Reweight Button if scale 1 responds
+  $('.reweight').click (event) ->
+    event.preventDefault
+
   $.ajax
-    url: 'http://localhost:8080'
-    type: 'GET'
+    url: ReweightScale.SCALE1_URL
+    type: ReweightScale.SCALE1_METHOD
     error: ->
-      $(".fulfill").addClass 'disabled'
-      $(".fulfill").removeAttr 'href'
-    
+      $(".reweight").addClass 'disabled'
+      $(".reweight").removeAttr 'href'
     success: ->
-      $(".fulfill").removeClass 'disabled'
-      $(".fulfill").addAttr 'href'
-      $(".fulfill").attr 'href', this.data('href')
+      $(".reweight").removeClass 'disabled'
+      $(".reweight").addAttr 'href'
+      $(".reweight").attr 'href', this.data('href')
 
   # Zero scale 1
   $("#zero-scale-1-btn").click (event) ->

@@ -60,7 +60,8 @@
           <% end %>
 
           <% if can? :reweight, Bag %>
-          <%= link_to "#{fa_icon 'flask'} Reweight".html_safe, reweight_bag_path(bag), class: 'btn-sm btn-flat btn-danger' %>
+          <%= link_to "#{fa_icon 'flask'} Reweight".html_safe, '#', class: 'btn-sm btn-flat btn-danger reweight',
+              data: { href: reweight_bag_path(bag) } %>
           <% end %>
 
           <% if can? :edit, Bag %>
