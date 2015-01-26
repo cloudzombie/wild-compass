@@ -68,7 +68,7 @@ class PlantsController < ApplicationController
 
   private
     def plant_params
-      params.require(:plant).permit(:name, :origin, :location, :strain_id, :format_id, :status_id, :rfid_id, :initial_weight, :current_weight, { container_ids: [:id]})
+      params.require(:plant).permit(:name, :origin, :location_id, :strain_id, :format_id, :status_id, :rfid_id, :initial_weight, :current_weight, { container_ids: [:id]})
     end
 
     def sort_column

@@ -42,6 +42,7 @@ class BinsController < ApplicationController
     end
 
     def bin_params
-      params[:bin]
+      params.require(:bin).permit(:name, :location_id)
+
     end
 end

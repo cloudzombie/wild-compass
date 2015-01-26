@@ -2,6 +2,8 @@ class Bin < ActiveRecord::Base
 
   has_many :bags
 
+  belongs_to :location
+  
   def available?
     true
   end

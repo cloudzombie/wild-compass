@@ -30,7 +30,7 @@ class Container < ActiveRecord::Base
 
   has_many :brands, -> { uniq }, through: :strains
 
-
+  belongs_to :location
 
   def to_s
     "#{ name.try(:upcase) }"

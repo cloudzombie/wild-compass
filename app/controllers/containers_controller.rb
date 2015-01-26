@@ -62,7 +62,7 @@ class ContainersController < ApplicationController
     end
 
     def container_params
-      params.require(:container).permit(:name, :location, :category, :current_weight, :initial_weight, :weight, { plant_ids: [] })
+      params.require(:container).permit(:name, :location_id, :category, :current_weight, :initial_weight, :weight, { plant_ids: [] })
     end
 
     def set_weight

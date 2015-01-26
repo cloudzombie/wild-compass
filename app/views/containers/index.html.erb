@@ -36,7 +36,7 @@
             <td><%# check_box_tag :accept %></td>
             <td><%= container.try(:id) if container.present? %></td>
             <td><%= container.try(:to_s) if container.present? %></td>
-            <th><%= container.try(:location) if container.present? %></th>
+            <td><%= container.try(:location) if container.present? %></td>
             <td><%= strain_for container.try(:strain) if container.present? %></td>
             <td><%= category_for container.try(:category) if container.present? %></td>
             <td><%= container.try(:lot) if container.present? %></td>

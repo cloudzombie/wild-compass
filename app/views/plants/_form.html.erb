@@ -8,9 +8,7 @@
 
   <div class="form-group">
     <%= f.label :location %>
-    <%= f.text_field :location, class: 'form-control' %>
-    <%= display_error_for plant, :location %>
-
+    <%= f.collection_select(:location_id, Location.all, :id, :to_s, {}, { class: 'form-control' }) %>
   </div>
 
   <div class="form-group">
