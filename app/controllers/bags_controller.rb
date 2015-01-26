@@ -1,7 +1,7 @@
 class BagsController < ApplicationController
   helper_method :sort_column, :sort_direction
   
-  expose(:bag, params: :bag_params) { id_param.nil? ? Bag.new : Bag.find(id_param) }
+  expose(:bag, params: :bag_params) { id_param.nil? ? Bag.new : find_bag }
   
   expose(:bags) do
     if Bag.column_names.include? sort_column
@@ -93,7 +93,7 @@ class BagsController < ApplicationController
     respond_to do |format|
       format.pdf do
         render( pdf:          'label.pdf',
-                show_as_html: params[:debug].present?,
+                show_as_html:  params[:debug].present?,
                 disposition:  'inline',
                 template:     'bags/pdf/label.pdf.erb',
                 layout:       'label.html'
@@ -117,6 +117,10 @@ class BagsController < ApplicationController
 
     def id_param
       params[:id]
+    end
+
+    def find_bag
+      Bag.find(id_param) || Bag.find_by(datamatrix_hash: id_param)
     end
 
     # Set column to sort in order.
