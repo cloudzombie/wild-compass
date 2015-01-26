@@ -3,10 +3,6 @@
     var auto_refresh_scale1 = setInterval(function() {
       $("#scale-1-reading").load("http://localhost:8080/data").fadeIn("slow");
     }, 100);
-
-    // var auto_refresh_scale2 = setInterval(function() {
-    //   $("#scale-2-reading").load("http://localhost:8081/data").fadeIn("slow");
-    // }, 100);
   </script>
 <% end %>
 
@@ -42,8 +38,8 @@
       <p class="alert alert-info"><strong>Please put bag on scale 1...</strong></p>
     </div>
 
-    <div id="scale-display">
-      <%= render 'orders/fulfillment/scale_display' %>
+    <div id="reweight-scale-display">
+      <%= render 'bags/reweight/scale_display' %>
     </div>
   </div>
 </div>
