@@ -91,25 +91,19 @@ class BagsController < ApplicationController
     end
   end
 
+
+
   def datamatrix
     send_data bag.datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
+
+
   def label
     respond_to do |format|
-      format.pdf do
-        render( pdf:          'label.pdf',
-                show_as_html:  params[:debug].present?,
-                disposition:  'inline',
-                template:     'bags/pdf/label.pdf.erb',
-                layout:       'label.html'
-        )
-      end
+      format.html
+      format.js
     end
-  end
-
-  def label_stream
-    send_data bag.label, type: 'image/png', disposition: 'attachment'
   end
 
 

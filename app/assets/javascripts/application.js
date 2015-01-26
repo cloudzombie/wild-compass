@@ -17,4 +17,9 @@
 //= require turbolinks
 //= require bootstrap
 //= require adminlte/app
+//= require jspdf
+//= require jspdf.plugin.addimage
+//= require jspdf.plugin.png_support
+//= require png
+//= require zlib
 //= require_tree .
