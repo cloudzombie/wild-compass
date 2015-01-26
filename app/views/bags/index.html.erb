@@ -17,14 +17,11 @@
     <table class="table table-hover">
       <tr>
         <th><%= check_box_tag :accept %></th>
-        <th><%= sortable :id, 'ID' %></th>
-        <th><%= sortable :name %></th>
+        <th><%= sortable :name, 'ID' %></th>
         <th><%= sortable :strain %></th>
         <th><%= sortable :category %></th>
         <th><%= sortable :initial_weight %></th>
         <th><%= sortable :current_weight %></th>
-        <th><%= sortable :tested %></th>
-        <th><%= sortable :archived %></th>
         <th><%= sortable :created_at %></th>
         <th><%= sortable :updated_at %></th>
         <th><%= sortable :lot_id, 'Origin' %></th>
@@ -34,24 +31,23 @@
       <% bags.each do |bag| %>
       <tr>
         <td><%= check_box_tag :accept %></td>
-        <td><%= bag.try(:id) if bag.present? %></td>
         <td>
           <% if can? :show, bag %>
           <%= link_to bag.try(:to_s), bag if bag.present? %>
+          <%= test_for bag if bag.present? %>
+          <%= archive_for bag if bag.present? %>
           <% else %>
           <%= bag.try(:to_s) if bag.present? %>
+          <%= test_for bag if bag.present? %>
+          <%= archive_for bag if bag.present? %>
           <% end %>
         </td>
         <td><%= strain_for bag.try(:strain) if bag.present? %></td>
         <td><%= category_for bag.try(:category) if bag.present? %></td>
         <td><%= weight_for bag.try(:initial_weight) if bag.present? %></td>
         <td><%= weight_for bag.try(:current_weight) if bag.present? %></td>
-        <td><%= test_for bag.try(:tested) if bag.present? %></td>
-        <td></td>
-        <td></td>
         <td><%= date_for bag.try(:created_at) if bag.present? %></td>
         <td><%= date_for bag.try(:updated_at) if bag.present? %></td>
-        
         <td>
           <% if can? :show, Lot %>
           <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" if bag.try(:lot).present? %>
@@ -59,11 +55,6 @@
         </td>
 
         <td>
-          <%# if can? :create, Jar %>
-          <%#= link_to "#{fa_icon 'flask'} New Jar".html_safe, '#', class: 'btn-sm btn-flat btn-danger',
-              data: { toggle: 'modal', target: '.new-jar' } %>
-          <%# end %>
-
           <% if can? :send_to_lab, Bag %>
           <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: "btn-sm btn-flat btn-info" %>
           <% end %>
