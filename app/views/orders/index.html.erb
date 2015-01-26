@@ -48,10 +48,6 @@
               data: { href: fulfill_order_path(order) } %>
           <% end %>
 
-          <% if can? :create, Jar %>
-          <%# link_to 'New Jar', jar,   class: "btn-sm btn-flat btn-danger" %>
-          <% end %>
-
           <% if can? :read, Order %>
           <%= link_to 'Show',    order, class: "btn-sm btn-flat btn-success" %>
           <% end %>
