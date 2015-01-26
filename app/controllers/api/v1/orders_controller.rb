@@ -10,7 +10,7 @@ class API::V1::OrdersController < API::V1::APIController
   end
 
   def create
-    respond_with Order.create(order_params)
+    respond_with Order.create!(order_params)
   end
 
   def update

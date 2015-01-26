@@ -1,8 +1,6 @@
 class OrderLine < ActiveRecord::Base
   belongs_to :order
 
-  validates :order, presence: true
-
   belongs_to :brand
 
   validates :brand, presence: true

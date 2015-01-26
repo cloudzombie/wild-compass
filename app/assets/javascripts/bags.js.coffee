@@ -8,11 +8,12 @@ ReweightScale =
 
 $(document).ready ->
  
-  # Toggle disabled on Reweight Button if scale 1 responds
+  # Override default button behaviour
   $('.reweight').click (event) ->
     event.preventDefault
     $(location).attr('href', this.data('href'))
 
+  # Toggle disabled on Reweight Button if scale 1 responds
   $.ajax
     url: ReweightScale.SCALE1_URL
     type: ReweightScale.SCALE1_METHOD
@@ -26,36 +27,36 @@ $(document).ready ->
 
   # Zero scale 1
   $("#zero-scale-1-btn").click (event) ->
-    event.preventDefault()
-    resetScale1()
+    event.preventDefault
+    resetScale1
 
-  reweightStep1()
+  reweightStep1
 
   $('#scan-bag').submit (event) ->
-    event.preventDefault()
+    event.preventDefault
     $.ajax
-      url: '/bags/' + $('#bag').val()
+      url: '/bags/' + $('#bag').val
       type: 'GET'
       error: ->
-        errorResetReweightProcess()
+        errorResetReweightProcess
       success: ->
-        reweightStep2()
+        reweightStep2
 
 reweightStep1 = ->
-  $('#reweight-step-1').show()
-  $('#reweight-step-2').hide()
-  $('#reweight-scale-display').hide()
+  $('#reweight-bag-step-1').show
+  $('#reweight-bag-step-2').hide
+  $('#reweight-bag-scale-display').hide
 
 reweightStep2 = ->
-  $('#reweight-step-1').hide()
-  $('#reweight-step-2').show()
-  $('#reweight-scale-display').show()
+  $('#reweight-bag-step-1').hide
+  $('#reweight-bag-step-2').show
+  $('#reweight-bag-scale-display').show
 
 errorResetReweightProcess = ->
-  state = 'step-1'
-  resetScale1()
+  reweightStep1
+  resetScale1
 
 resetScale1 = ->
   $.ajax
-      url: "http://127.0.0.1:8080/zero"
+      url: ReweightScale.SCALE1_URL + '/zero'
       success: (data) ->
