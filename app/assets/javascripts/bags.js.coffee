@@ -26,7 +26,6 @@ $(document).ready ->
     success: ->
       $(".reweight").removeClass 'disabled'
       $(".reweight").addAttr 'href'
-      $(".reweight").attr 'href', this.data('href')
 
   # Zero scale 1
   $("#reweight-zero-scale-1-btn").click (event) ->
