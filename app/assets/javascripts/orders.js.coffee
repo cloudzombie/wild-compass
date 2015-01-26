@@ -10,10 +10,6 @@ FulfillScale =
 
 $(document).ready ->
 
-  $('.fulfill').click (event) ->
-    event.preventDefault
-    $(location).attr('href', this.data('href'))
-
   # Toggle disabled on Fulfill Button if scale 1 responds
   $.ajax
     url: FulfillScale.SCALE1_URL

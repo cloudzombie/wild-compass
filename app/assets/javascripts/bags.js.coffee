@@ -15,11 +15,6 @@ bag =
 
 # Page ready hook
 $(document).ready ->
- 
-  # Override default button behaviour
-  $('.reweight').click (event) ->
-    event.preventDefault
-    $(location).attr('href', this.data('href'))
 
   # Toggle disabled on Reweight Button if scale 1 responds
   $.ajax
