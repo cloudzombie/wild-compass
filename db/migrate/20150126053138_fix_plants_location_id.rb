@@ -1,5 +1,5 @@
 class FixPlantsLocationId < ActiveRecord::Migration
   def change
-    rename_column :plants, :location, :location_id
+    remove_column :plants, :location, :string
   end
 end

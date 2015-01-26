@@ -1,5 +1,5 @@
 class FixContainersBinsLocationIds < ActiveRecord::Migration
   def change
-  	rename_column :containers, :location, :location_id
+  	remove_column :containers, :location, :string
   end
 end
