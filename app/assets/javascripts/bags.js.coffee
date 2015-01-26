@@ -11,6 +11,7 @@ $(document).ready ->
   # Toggle disabled on Reweight Button if scale 1 responds
   $('.reweight').click (event) ->
     event.preventDefault
+    $(location).attr('href', this.data('href'))
 
   $.ajax
     url: ReweightScale.SCALE1_URL
