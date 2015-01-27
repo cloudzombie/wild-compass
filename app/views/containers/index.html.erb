@@ -35,7 +35,7 @@
           <tr>
             <td><%# check_box_tag :accept %></td>
             <td><%= container.try(:id) if container.present? %></td>
-            <td><%= container.try(:to_s) if container.present? %></td>
+            <td><%= link_to "#{container}".html_safe, container %></td>
             <td><%= container.try(:location) if container.present? %></td>
             <td><%= strain_for container.try(:strain) if container.present? %></td>
             <td><%= category_for container.try(:category) if container.present? %></td>
@@ -47,7 +47,6 @@
             <td>
              <!-- <a href="#" class="btn-sm btn-flat btn-success" data-toggle="modal" data-target="#<%= container.id %>"><i class="fa fa-tags"></i> Containers</a> -->
               <%= link_to "#{fa_icon('tag')} New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-warning', data: { toggle: 'modal', target: '.new-bag' } %>
-              <%= link_to "#{fa_icon('tags')} Show".html_safe, container, class: "btn-sm btn-flat btn-info" %>
               <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_container_path(container), class: "btn-sm btn-flat btn-warning" %>
             </td>
           </tr>

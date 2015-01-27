@@ -18,7 +18,6 @@ class BagsController < ApplicationController
   end
 
   expose(:jar) { Jar.new }
-  
   before_action :set_weight, only: [ :create, :update, :reweight ]
   before_action :set_name, only: [ :create, :update , :reweight]
   before_action :set_quantity, only: [ :create, :update, :reweight ]
@@ -37,10 +36,10 @@ class BagsController < ApplicationController
     self.bag = Bag.new(bag_params)
     authorize! :create, bag
 
-    Transaction.from( bag.lot ).to( bag ).take( bag.weight ).by( current_user ).commit
+    Transaction.from( bag.container ).to( bag ).take( bag.weight ).by( current_user ).commit
 
     respond_to do |format|
-      if bag.save && bag.lot.save
+      if bag.save && bag.container.save
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
       else
         format.html { render :new }
@@ -107,13 +106,15 @@ class BagsController < ApplicationController
     end
   end
 
+  def label_stream
+    send_data bag.label, type: 'image/png', disposition: 'attachment'
+  end
 
 
   private
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
-      params.require(:bag).permit(:quantity, :weight, :initial_weight, :lot_id, :name, :current_weight, :bin_id)
+      params.require(:bag).permit(:quantity, :weight, :initial_weight, :container_id, :name, :current_weight, :bin_id, :lot_id)
     end
 
     def id_param
@@ -160,4 +161,6 @@ class BagsController < ApplicationController
     def acronym
       #Bag.find(id_param).strain.acronym
     end
+
+
 end

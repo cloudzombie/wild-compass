@@ -18,9 +18,9 @@ class Bag < ActiveRecord::Base
 
   has_many :jars, -> { uniq }
 
-  has_many :plants, -> { uniq }, through: :lot
+  has_many :plants, through: :lot
 
-  has_many :containers, -> { uniq }, through: :lot
+  belongs_to :container
 
   has_many :strains, -> { uniq }, through: :plants
 
@@ -28,7 +28,7 @@ class Bag < ActiveRecord::Base
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 
-
+  has_one :location, through: :bin
 
   ### Datamatrix
 
@@ -44,11 +44,13 @@ class Bag < ActiveRecord::Base
     update datamatrix_text: text, datamatrix_hash: hash
     hash
   end
-
-
   
   def to_s
     "#{ name.upcase unless name.nil? }"
+  end
+
+  def location
+    bag.bin.location
   end
 
   def strain
@@ -69,8 +71,8 @@ class Bag < ActiveRecord::Base
     ''
   end
 
-  def container
-    containers.first
+  def category
+    container.category
   rescue
     ''
   end

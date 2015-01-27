@@ -13,8 +13,6 @@ class Bin < ActiveRecord::Base
     open("http://datamatrix.kaywa.com/img.php?s=12&d=#{ encode self.try(:id) }").read
   end
 
-
-
   def encode(id)
     text = "BIN-#{id}"
     hash = Digest::MD5.hexdigest(text)

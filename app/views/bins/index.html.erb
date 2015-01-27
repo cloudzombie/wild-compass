@@ -32,7 +32,7 @@
         <td><%= bin.location %>
         <td>
           <% bin.bags.each do |bag| %>
-            <%= bag %>
+            <%= link_to bag, bag, class: "btn-sm btn-flat btn-warning" %>
           <% end %>
         </td>
         <td>

@@ -1,7 +1,6 @@
-<h4><%= plant %></h4>
 
 <div class="row">
-  <%= render 'shared/box_description', title: 'Description', described: plant, color: 'warning' %>
-  <%= render 'shared/box_description', title: 'Origin', described: plant.try(:lot), color: 'info' %>
+  <%= render 'shared/box_description', title: plant, described: plant, color: 'warning', icon: 'leaf' %>
+  <%= render 'shared/box_description', title: plant.try(:lot), described: plant.try(:lot), color: 'info', icon: 'tags' %>
 </div>
  	

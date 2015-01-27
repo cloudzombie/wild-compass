@@ -1,7 +1,7 @@
 <div class="col-lg-6">
   <div class="box box-solid box-<%= color %>">
     <div class="box-header">
-      <%= fa_icon 'tag' %>
+      <%= fa_icon icon %>
       <h3 class="box-title"><%= title %></h3>
     </div>
 
@@ -19,6 +19,7 @@
             <dt>Strain :</dt>
             <dd><%= described.try(:strain) if described.present? %></dd>
             
+            <% if icon != 'leaf' then %>
             <dt>Category :</dt>
             <dd><%= described.try(:category) if described.present? %></dd>
             
@@ -27,7 +28,8 @@
             
             <dt>Current Weight :</dt>
             <dd><%= weight_for described.try(:current_weight) if described.present? %></dd>
-            
+            <% end %>
+
             <dt>Created At :</dt>
             <dd><%= date_for described.try(:created_at) if described.present? %></dd>
             
@@ -37,7 +39,7 @@
           </dl>
         </div>
 
-        <%= render 'shared/progress_bar', weightable: described, color: color %>
+        <%= render 'shared/progress_bar', weightable: described, color: color unless icon == 'leaf' %>
 
       </div>
     </div> 

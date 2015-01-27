@@ -20,11 +20,11 @@ class Container < ActiveRecord::Base
 
   accepts_nested_attributes_for :plants
 
-	has_and_belongs_to_many :lots, -> { uniq }
+	belongs_to :lot
 
-  has_many :bags, -> { uniq }, through: :lots
+  has_many :bags
 
-  has_many :jars, -> { uniq }, through: :lots
+  has_many :jars, through: :bags
 
   has_many :strains, -> { uniq }, through: :plants
 
@@ -34,14 +34,6 @@ class Container < ActiveRecord::Base
 
   def to_s
     "#{ name.try(:upcase) }"
-  rescue
-    ''
-  end
-
-
-
-  def lot
-    lots.first
   rescue
     ''
   end

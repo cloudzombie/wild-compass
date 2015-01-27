@@ -24,7 +24,7 @@
         <th><%= sortable :current_weight %></th>
         <th><%= sortable :created_at %></th>
         <th><%= sortable :updated_at %></th>
-        <th><%= sortable :lot_id, 'Origin' %></th>
+        <th><%= sortable :lot_id, 'Origins' %></th>
         <th>Actions</th>
       </tr>
 
@@ -51,6 +51,7 @@
         <td>
           <% if can? :show, Lot %>
           <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" if bag.try(:lot).present? %>
+          <%= link_to "#{fa_icon('square')} #{bag.try(:container)}".html_safe, bag.try(:container), class: "btn-sm btn-flat btn-info" if bag.try(:container).present? %>
           <% end %>
         </td>
 
