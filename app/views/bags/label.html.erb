@@ -1,0 +1,14 @@
+<%= javascript_tag do %>
+$.ajax({
+  url: "<%=j label_bag_path(format: :js) %>"
+}).done(function(data){
+  var file = new Blob([data], {type:'application/pdf'}),
+      url = URL.createObjectURL(file),
+      _iFrame = document.createElement('iframe');
+      _iFrame.setAttribute('src', url);
+      _iFrame.setAttribute('style', 'visibility:hidden;');
+      $('#stuff').append(_iFrame);
+});
+<% end %>
+
+<div id="stuff"></div>

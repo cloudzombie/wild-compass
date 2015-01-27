@@ -4,12 +4,16 @@ class BagsController < ApplicationController
   expose(:bag, params: :bag_params) { id_param.nil? ? Bag.new : find_bag }
   
   expose(:bags) do
-    if Bag.column_names.include? sort_column
+    if sort_column == 'name'
+      Bag.search(params[:search]).order('LENGTH(name), name ' + sort_direction).page(params[:page])
+    elsif Bag.column_names.include? sort_column
       Bag.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
     elsif sort_column == 'strain'
-      Bag.search(params[:search]).joins(:strains).uniq.merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
+      Bag.search(params[:search]).joins(:strains).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
     elsif sort_column == 'category'
-      Bag.search(params[:search]).joins(:containers).uniq.merge(Container.order(category: sort_direction.to_sym)).page(params[:page])
+      Bag.search(params[:search]).joins(:containers).merge(Container.order(category: sort_direction.to_sym)).page(params[:page])
+    else
+      Bag.search(params[:search]).page(params[:page])
     end
   end
 
@@ -17,6 +21,8 @@ class BagsController < ApplicationController
   before_action :set_weight, only: [ :create, :update, :reweight ]
   before_action :set_name, only: [ :create, :update , :reweight]
   before_action :set_quantity, only: [ :create, :update, :reweight ]
+
+  respond_to :html, :xml, :json
 
   ##
   # Create a new bag from a POST HTTP request with given parameters:
@@ -84,20 +90,18 @@ class BagsController < ApplicationController
     end
   end
 
+
+
   def datamatrix
     send_data bag.datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
+
+
   def label
     respond_to do |format|
-      format.pdf do
-        render( pdf:          'label.pdf',
-                show_as_html:  params[:debug].present?,
-                disposition:  'inline',
-                template:     'bags/pdf/label.pdf.erb',
-                layout:       'label.html'
-        )
-      end
+      format.html
+      format.js
     end
   end
 
@@ -105,7 +109,6 @@ class BagsController < ApplicationController
     send_data bag.label, type: 'image/png', disposition: 'attachment'
   end
 
-  
 
   private
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -123,7 +126,7 @@ class BagsController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id strain category name initial_weight current_weight created_at updated_at lot_id tested).include?(params[:sort]) ? params[:sort] : 'created_at'
+      %w(id strain category name initial_weight current_weight created_at updated_at lot_id tested).include?(params[:sort]) ? params[:sort] : 'name'
     end
 
     # Set sort direction to ascending or descending.
