@@ -33,7 +33,7 @@
         <% plants.each do |plant| %>
         <tr>
           <td><%# checkbox %></td>
-          <td><%= "Plant - #{plant.try(:id)}" if plant.present? %></td>
+          <td><%= link_to plant, plant %></td>
           <td><%= strain_for plant.try(:strain) if plant.present? %></td>
           <td><%= plant.try(:origin) if plant.present? %></td>
           <td><%= plant.try(:status) if plant.present? %></td>
@@ -43,10 +43,7 @@
           <td><%= plant.try(:location) if plant.present? %></td>
           <td><%= plant.try(:rfid) if plant.present? %></td>
           <td>
-            <% if can? :show, plant %>
-            <%= link_to 'Show', plant, class: "btn-sm btn-flat btn-success" %>
-            <% end %>
-
+           
             <% if can? :edit, plant %>
             <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
             <% end %>

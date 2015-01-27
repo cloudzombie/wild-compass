@@ -1,33 +1,6 @@
-<h4><%= container %></h4>
-
 <div class="row">
-  <%= render 'shared/box_description', title: 'Description', described: container, color: 'warning' %>
-<div class="col-lg-6">
-    <div class="box box-solid box-success">
-      <div class="box-header">
-        <i class="fa fa-leaf"></i>
-        <h3 class="box-title">Plants</h3>
-      </div>
-      <div class="box-body">
-        <table class="table table-hover">
-          <tr>
-            <th>Name : </th>
-            <th>ID : </th>
-            <th>Updated At : </th>
-            <th>Actions : </th>
-          </tr>
-
-          <% ordered_by_id(container.try(:plants)).each do |plant| %>
-          <tr>
-            <td><%= plant.try(:to_s) if plant.present? %></td>
-            <td><%= plant.try(:id) if plant.present? %></td>
-            <td><%= date_for plant.try(:created_at) if plant.present? %></td>
-            <td><%= link_to "#{fa_icon('leaf')} #{plant}".html_safe, plant, class: "btn-sm btn-flat btn-success" %></td>
-          </tr>
-          <% end %>
-        </table>
-      </div>
-    </div>
-  </div></div>
+  <%= render 'shared/box_description', title: container, described: container, color: 'warning', icon: 'square' %>
+  <%= render 'shared/box_description', title: container.lot, described: container.lot, color: 'info', icon: 'tags' %>
+</div>
 
 <%= render 'containers/show/history' %>

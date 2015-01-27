@@ -1,81 +1,50 @@
-<h4><%= lot %></h4>
-
 <div class="row">
   <div class="col-lg-6">
-    <div class="box box-solid box-info">
-      <div class="box-header">
-        <i class="fa fa-tag"></i>
-        <h3 class="box-title">Description</h3>
-      </div> 
-
-      <div class="box-body">
-        <div class="row">
-          <div class="col-lg-10">
-            <dl class="dl-horizontal">
-              
-              <dt>ID :</dt>
-              <dd><%= lot.try(:id) if lot.present? %></dd>
-              
-              <dt>Name :</dt>
-              <dd><%= lot.try(:to_s) if lot.present? %></dd>
-              
-              <dt>Strain :</dt>
-              <dd><%= strain_for lot.try(:strain) if lot.present? %></dd>
-              
-              <dt>Category :</dt>
-              <dd><%= category_for lot.try(:category) if lot.present? %></dd>
-              
-              <dt>Initial Weight : </dt>
-              <dd><%= weight_for lot.try(:initial_weight) if lot.present? %></dd>
-
-              <dt>Current Weight :</dt>
-              <dd><%= weight_for lot.try(:current_weight) if lot.present? %></dd>
-              
-              <dt>Created At :</dt>
-              <dd><%= date_for lot.try(:created_at) %></dd>
-              
-              <dt>Updated At :</dt>
-              <dd><%= date_for lot.try(:updated_at) %></dd> 
-
-            </dl>
-          </div>
-
-          <%= render 'shared/progress_bar', weightable: lot, color: 'info' %>
-        </div>
-      </div> 
-    </div>
-  </div>
-
-  <div class="col-lg-6">
-    <div class="box box-solid box-success">
-      <div class="box-header">
-        <i class="fa fa-leaf"></i>
-        <h3 class="box-title">Plants</h3>
-      </div>
-      <div class="box-body">
-        <table class="table table-hover">
-          <tr>
-            <th>Name : </th>
-            <th>ID : </th>
-            <th>Updated At : </th>
-            <th>Actions : </th>
-          </tr>
-
-          <% ordered_by_id(lot.try(:plants)).each do |plant| %>
-          <tr>
-            <td><%= plant.try(:to_s) if plant.present? %></td>
-            <td><%= plant.try(:id) if plant.present? %></td>
-            <td><%= date_for plant.try(:created_at) if plant.present? %></td>
-            <td><%= link_to "#{fa_icon('leaf')} #{plant}".html_safe, plant, class: "btn-sm btn-flat btn-success" %></td>
-          </tr>
-          <% end %>
-        </table>
-      </div>
-    </div>
-  </div>
-  </div>
     <div class="row">
-    <div class="col-lg-6">
+      <div class="box box-solid box-info">
+        <div class="box-header">
+          <i class="fa fa-tag"></i>
+          <h3 class="box-title"><%= lot %></h3>
+        </div> 
+
+        <div class="box-body">
+          <div class="row">
+            <div class="col-lg-10">
+              <dl class="dl-horizontal">
+                
+                <dt>ID :</dt>
+                <dd><%= lot.try(:id) if lot.present? %></dd>
+                
+                <dt>Name :</dt>
+                <dd><%= lot.try(:to_s) if lot.present? %></dd>
+                
+                <dt>Strain :</dt>
+                <dd><%= strain_for lot.try(:strain) if lot.present? %></dd>
+                
+                <dt>Category :</dt>
+                <dd><%= category_for lot.try(:category) if lot.present? %></dd>
+                
+                <dt>Initial Weight : </dt>
+                <dd><%= weight_for lot.try(:initial_weight) if lot.present? %></dd>
+
+                <dt>Current Weight :</dt>
+                <dd><%= weight_for lot.try(:current_weight) if lot.present? %></dd>
+                
+                <dt>Created At :</dt>
+                <dd><%= date_for lot.try(:created_at) %></dd>
+                
+                <dt>Updated At :</dt>
+                <dd><%= date_for lot.try(:updated_at) %></dd> 
+
+              </dl>
+            </div>
+
+            <%= render 'shared/progress_bar', weightable: lot, color: 'info' %>
+          </div>
+        </div> 
+      </div>
+    </div>
+    <div class="row">
       <div class="box box-solid box-danger">
         <div class="box-header">
           <i class="fa fa-flask"></i>
@@ -114,50 +83,58 @@
         </div> 
       </div>
     </div>
+    </div>
     <div class="col-lg-6">
-      <div class="box box-solid box-danger">
-        <div class="box-header">
-          <i class="fa fa-flask"></i>
-          <h3 class="box-title">History</h3>
-        </div>
-        <div class="box-body">
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade" id="id<%= lot.id %>">
-            </div>
-            <table class="table table-hover">
-              <tr>
-                <th>Source : </th>
-                <th>Target : </th>
-                <th>Quantity : </th>
-                <th>Timestamp : </th>
-                <th>User : </th>
-              </tr>
-            </table>
-            <% lot.history.history_lines.each do |line| %>
-              <div role="tabpanel" class="tab-pane fade" id="<%= line.id %>">
-                <table class="table table-hover">
-                  <div role="tabpanel">
-                    <% next if line.target.nil? %>
-                    <% line.target.history.history_lines.each do |subline| %>
-                      <tr>
-                        <td><%= subline.source %></td>
-                        <td><%= subline.target %></td>
-                        <td><%= subline.quantity %> g</td>
-                        <td><%= subline.created_at.to_s :short %></td>
-                        <td></td>
-                      </tr>
-                    <% end %>
-                  </div>
-                </table>
-              </div>
-            <% end %>
-          </div>
-        </div>
+    <div class="box box-solid box-success">
+      <div class="box-header">
+        <i class="fa fa-leaf"></i>
+        <h3 class="box-title">Timeline</h3>
+      </div>
+      <div class="box-body">
+        <table class="table table-hover">
+          <tr>
+            <th>Name : </th>
+            <th>Timestamp : </th>
+            <th>Event : </th>
+          </tr>
+
+          <% ordered_by_id(lot.try(:plants)).each do |plant| %>
+          <tr>
+            <td><%= link_to "#{plant}".html_safe, plant, class: "btn-sm btn-flat btn-success" %></td>
+            <td><%= date_for plant.try(:created_at) if plant.present? %></td>
+            <td><%= plant %> harvested to <%= plant.containers.map(&:name) %></td>
+          </tr>
+          <% end %>
+          
+          <% ordered_by_id(lot.try(:containers)).each do |container| %>
+          <tr>
+            <td><%= link_to "#{container}".html_safe, container, class: "btn-sm btn-flat btn-warning" %></td>
+            <td><%= date_for container.try(:created_at) if container.present? %></td>
+            <td>creation of <%= container %></td>
+          </tr>
+          <% end %>
+
+          <% ordered_by_id(lot.try(:bags)).each do |bag| %>
+          <tr>
+            <td><%= link_to "#{bag}".html_safe, bag, class: "btn-sm btn-flat btn-warning" %></td>
+            <td><%= date_for bag.try(:created_at) if bag.present? %></td>
+            <td>creation of <%= bag %></td>
+          </tr>
+          <% end %>
+
+          <% ordered_by_id(lot.try(:jars)).each do |jar| %>
+            <tr>
+              <td><%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %></td>
+              <td><%= date_for jar.try(:created_at) if jar.present? %></td>
+              <td><%= jar.current_weight %>g to <%= jar %></td>
+            </tr>
+          <% end %>
+        </table>
       </div>
     </div>
   </div>
+</div>
     
 <!--<%= link_to 'Edit', edit_lot_path(lot) %> | -->
 <%= link_to 'Back', lots_path %>
 
-<%= render 'bags/modal/new' %>

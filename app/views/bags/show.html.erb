@@ -1,8 +1,7 @@
-<h4><%= bag %></h4>
-
 <div class="row">
-  <%= render 'shared/box_description', title: 'Description', described: bag, color: 'warning' %>
-  <%= render 'shared/box_description', title: 'Origin', described: bag.try(:container), color: 'info' %>
+  <%= render 'shared/box_description', title: bag, described: bag, color: 'warning', icon: 'tag' %>
+  <%= render 'shared/box_description', title: bag.try(:lot), described: bag.try(:lot), color: 'info', icon: 'tags'%>
+
 </div>
 
 <%= render 'bags/show/history' %>

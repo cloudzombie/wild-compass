@@ -14,7 +14,6 @@ class ContainersController < ApplicationController
   end
 
   expose(:plants) { Plant.order(id: :asc) }
-  
   before_action :set_weight, only: [ :create, :update ]
 
 
@@ -62,7 +61,7 @@ class ContainersController < ApplicationController
     end
 
     def container_params
-      params.require(:container).permit(:name, :location_id, :category, :current_weight, :initial_weight, :weight, { plant_ids: [] })
+      params.require(:container).permit(:name, :lot_id, :location_id, :category, :current_weight, :initial_weight, :weight, { plant_ids: [] })
     end
 
     def set_weight

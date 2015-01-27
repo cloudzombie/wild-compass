@@ -46,44 +46,47 @@
       </div> 
     </div>
   </div>
-
+  
   <div class="col-lg-6">
-    <div class="box box-solid box-danger">
+    <div class="box box-solid box-success">
       <div class="box-header">
-        <i class="fa fa-flask"></i>
-        <h3 class="box-title">History</h3>
+        <i class="fa fa-leaf"></i>
+        <h3 class="box-title">Timeline</h3>
       </div>
       <div class="box-body">
         <table class="table table-hover">
           <tr>
-            <th>ID :</th>
-            <th>Name :</th>
-            <th>Timestamp :</th>
+            <th>Name : </th>
+            <th>Timestamp : </th>
+            <th>Event : </th>
           </tr>
-          <% bag.lot.plants.each do |plant| %>
+
+          <% ordered_by_id(bag.container.try(:plants)).each do |plant| %>
           <tr>
-            <td><%= plant.id %></td>
-            <td><%= plant %></td>
-            <td>Plants to Lot</td>
-            <td><%= plant.created_at.to_s :short %></td>
+            <td><%= link_to "#{plant}".html_safe, plant, class: "btn-sm btn-flat btn-success" %></td>
+            <td><%= date_for plant.try(:created_at) if plant.present? %></td>
+            <td><%= plant %> harvested to <%= bag.container %></td>
           </tr>
           <% end %>
+          
           <tr>
-            <td><%= bag.lot.id %></td>
-            <td><%= bag.lot %></td>
-            <td><%= bag.lot.created_at.to_s :short %></td>
+            <td><%= link_to "#{bag.lot}".html_safe, bag.lot, class: "btn-sm btn-flat btn-info" %></td>
+            <td><%= date_for bag.lot.try(:created_at) if bag.lot.present? %></td>
+            <td>creation of <%= bag.lot %></td>
           </tr>
+
           <tr>
-            <td><%= bag.container.id unless bag.container.nil? %></td>
-            <td><%= bag.container %></td>
-            <td><%= bag.container.created_at.to_s :short unless bag.container.nil? %></td>
+            <td><%= link_to "#{bag.container}".html_safe, bag.container, class: "btn-sm btn-flat btn-info" %></td>
+            <td><%= date_for bag.container.try(:created_at) if bag.container.present? %></td>
+            <td>creation of <%= bag.container %></td>
           </tr>
-          <% bag.jars.each do |jar| %>
-          <tr>
-            <td><%= jar.id %></td>
-            <td><%= jar %></td>
-            <td><%= jar.created_at.to_s :short %></td>
-          </tr>
+
+          <% ordered_by_id(bag.try(:jars)).each do |jar| %>
+            <tr>
+              <td><%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %></td>
+              <td><%= date_for jar.try(:created_at) if jar.present? %></td>
+              <td><%= jar.current_weight %>g to <%= jar %></td>
+            </tr>
           <% end %>
         </table>
       </div>
