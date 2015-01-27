@@ -51,6 +51,8 @@
         <td>
           <% if can? :show, Lot %>
           <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" if bag.try(:lot).present? %>
+          <%= bag.container %>
+          <%= link_to "#{fa_icon('square')} #{bag.try(:container)}".html_safe, bag.try(:container), class: "btn-sm btn-flat btn-info" if bag.try(:container).present? %>
           <% end %>
         </td>
 

@@ -45,7 +45,10 @@ class Bag < ActiveRecord::Base
     hash
   end
 
-
+  def get_origins
+    origins_array = Array.new
+    origins_array << [self, self.container, self.lot, self.lot.plants]
+  end
   
   def to_s
     "#{ name.upcase unless name.nil? }"

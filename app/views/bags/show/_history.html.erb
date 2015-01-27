@@ -54,28 +54,38 @@
         <h3 class="box-title">History</h3>
       </div>
       <div class="box-body">
-        <div class="tab-content">
-          <% unless bag.lot.nil? %>
-          <div role="tabpanel" class="tab-pane fade" id="id<%= bag.lot.id %>"></div>
+        <table class="table table-hover">
+          <tr>
+            <th>ID :</th>
+            <th>Name :</th>
+            <th>Timestamp :</th>
+          </tr>
+          <% bag.lot.plants.each do |plant| %>
+          <tr>
+            <td><%= plant.id %></td>
+            <td><%= plant %></td>
+            <td>Plants to Lot</td>
+            <td><%= plant.created_at.to_s :short %></td>
+          </tr>
           <% end %>
-          <% bag.history.history_lines.each do |line| %>
-            <div role="tabpanel" class="tab-pane fade" id="<%= line.id %>">
-              <table class="table table-hover">
-                <div role="tabpanel">
-                  <% next if line.target.nil? %>
-                  <tr>
-                    <% line.target.history.history_lines.each do |subline| %>
-                    <td><%= subline.source %></td>
-                    <td><%= subline.target %></td>
-                    <td><%= subline.quantity %> g</td>
-                    <td><%= subline.created_at.to_s :short %></td>
-                    <% end %>
-                  </tr>
-                </div>
-              </table>
-            </div>
-        </div>
-        <% end %>
+          <tr>
+            <td><%= bag.lot.id %></td>
+            <td><%= bag.lot %></td>
+            <td><%= bag.lot.created_at.to_s :short %></td>
+          </tr>
+          <tr>
+            <td><%= bag.container.id unless bag.container.nil? %></td>
+            <td><%= bag.container %></td>
+            <td><%= bag.container.created_at.to_s :short unless bag.container.nil? %></td>
+          </tr>
+          <% bag.jars.each do |jar| %>
+          <tr>
+            <td><%= jar.id %></td>
+            <td><%= jar %></td>
+            <td><%= jar.created_at.to_s :short %></td>
+          </tr>
+          <% end %>
+        </table>
       </div>
     </div>
   </div>

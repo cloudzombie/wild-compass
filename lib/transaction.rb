@@ -53,8 +53,9 @@ class Transaction
       @target.increase_current_weight unless @target.nil?
   
       @source.history.add_line(@source, @target, @quantity, :decrease_current_weight, @user) unless @source.nil?
-      @target.history.add_line(@target, @source, @quantity, :increase_current_weight, @user) unless @target.nil?
-
+      if !@targel.nil? then
+      @target.history.add_line(@target, @source, @quantity, :increase_current_weight, @user)
+      end
     when :reweight
       @source.reweight unless @source.nil?
       @source.history.add_line(@source, @source, @quantity, :reweight, @user) unless @source.nil?
