@@ -33,7 +33,7 @@ class Bag < ActiveRecord::Base
   ### Datamatrix
 
   def datamatrix
-    open("http://datamatrix.kaywa.com/img.php?s=12&d=#{ encode self.try(:id) }").read
+    'data:image/png;base64,' + UrlSafeBase64.encode64(open("http://datamatrix.kaywa.com/img.php?s=12&d=#{ encode self.try(:id) }"))
   end
 
 

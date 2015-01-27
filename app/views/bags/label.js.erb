@@ -1,13 +1,11 @@
 var doc = new jsPDF('l', 'in', [3, 1]);
 
-doc.setFontSize(18);
-doc.text(1.1, 0.55, "BAG : <%= bag.name %>");
+doc.setFontSize(24);
+doc.text(1, 0.6, 'Bag : <%= bag.name %>');
 
-var imgData = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARQAAAEUAQMAAADQvls6AAAABlBMVEX///8AAABVwtN+AAABD0lEQVRoge3XUQqEMAwE0IAH69V7sEB2t03iiLD7uYNMEan1+RUmrWYPHUfM75cModmTdQ+3EWtuNvxzyVCZ9+Lnca0Pr1ex1uFDGRLzrmlsEJA7/EqGylxXMnf4VobJ7DEPCN31Exku0xW0bJUDtjkzGS6z59kwMYb1KMNlao/beext7qysDJ/J4XAyudVUhsF0z9xtM1PZhTYZPlOd02qzS1xvZYjMGvPeMKFnyvCYaWef7NyNyPlwGS4T8B9tBnmEiQyPmVhcP6uZ8bz9IMj810QHcB9OIIYTzycyHGZCWaOSiK1ShspEyeh1OIqYyXCZDmCXODChLkNmqj1G9czc2vp/TYbJ/Bguw2QeOl7IIyJk2dOY0wAAAABJRU5ErkJggg==';
-doc.addImage(imgData, 'PNG', 0.1, 0.1, 0.8, 0.8);
+doc.addImage('<%= bag.datamatrix %>', 'PNG', 0.1, 0.1, 0.8, 0.8);
 
-doc.output('dataurl');
-
+doc.save('label.pdf');
 
 
-//<%=j label_bag_path(format: :js)%>
+

@@ -94,7 +94,8 @@ class BagsController < ApplicationController
 
 
   def datamatrix
-    send_data bag.datamatrix, type: 'image/png', disposition: 'attachment'
+    #send_data bag.datamatrix, type: 'image/png', disposition: 'attachment'
+    ActiveSupport::Base64.encode64(open(bag.datamatrix))
   end
 
 

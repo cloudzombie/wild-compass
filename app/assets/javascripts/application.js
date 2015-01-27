@@ -22,4 +22,5 @@
 //= require jspdf.plugin.png_support
 //= require png
 //= require zlib
+//= require filesaver
 //= require_tree .
