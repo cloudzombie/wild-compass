@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
 
   include Searchable
+  include Encodable
 
 
 
@@ -17,22 +18,6 @@ class Order < ActiveRecord::Base
   ### Customer
 
   validates :customer, presence: true
-
-
-
-  def datamatrix
-    open("http://datamatrix.kaywa.com/img.php?s=12&d=#{ encode self.try(:id) }").read
-  end
-
-
-
-  def encode(id)
-    text = "ORDER-#{id}"
-    hash = Digest::MD5.hexdigest(text)
-    update datamatrix_text: text, datamatrix_hash: hash
-    hash
-  end
-
 
   
 

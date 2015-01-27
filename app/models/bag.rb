@@ -5,6 +5,7 @@ class Bag < ActiveRecord::Base
   include Storyable
   include Searchable
   include Labelizable
+  include Encodable
   
 
   scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
@@ -29,21 +30,6 @@ class Bag < ActiveRecord::Base
   delegate :category, to: :container, prefix: false, allow_nil: true
 
   has_one :location, through: :bin
-
-  ### Datamatrix
-
-  def datamatrix
-    'data:image/png;base64,' + UrlSafeBase64.encode64(open("http://datamatrix.kaywa.com/img.php?s=12&d=#{ encode self.try(:id) }"))
-  end
-
-
-
-  def encode(id)
-    text = "BAG-#{id}"
-    hash = Digest::MD5.hexdigest(text)
-    update datamatrix_text: text, datamatrix_hash: hash
-    hash
-  end
   
   def to_s
     "#{ name.upcase unless name.nil? }"
