@@ -103,4 +103,8 @@ module ApplicationHelper
   def ordered_by_id(collection)
     collection.order(id: :asc)
   end
+
+  def to_data_url(image)
+    'data:image/png;base64,' << Base64.strict_encode64( image )
+  end
 end
