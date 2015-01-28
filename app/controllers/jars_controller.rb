@@ -1,10 +1,12 @@
 class JarsController < ApplicationController
 
+  include FindEncodable
+
   before_action :authorized?
 
   helper_method :sort_column, :sort_direction
   
-  expose(:jar, params: :jar_params) { id_param.nil? ? Jar.new : Jar.find(id_param) }
+  expose(:jar, params: :jar_params) { find(Jar) }
 
   expose(:jars) do
     if Jar.column_names.include? sort_column
