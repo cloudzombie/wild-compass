@@ -47,16 +47,25 @@ module Weightable
                numericality: { greater_than_or_equal_to: 0.0 }
 
     after_save :set_name
+
     after_initialize :set_weight
     after_initialize :set_current_weight
     after_initialize :set_initial_weight
     after_initialize :set_quantity
+
+    before_create :allocate_initial_weight
   end
 
   private
 
     def set_name
       update(name: "#{identifier}-#{unique_identifier}") unless has_name?
+    end
+
+    def allocate_initial_weight
+      if self.initial_weight == 0.0 && self.current_weight > 0.0
+        self.initial_weight = self.current_weight
+      end
     end
 
     def set_current_weight
