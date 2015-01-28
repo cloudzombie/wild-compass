@@ -1,5 +1,7 @@
 class BinsController < ApplicationController
 
+  respond_to :html, :xml, :json
+
   before_action :authorized?
 
   expose(:bin, params: :bin_params) { id_param.nil? ? Bin.new : Bin.find(id_param) }
