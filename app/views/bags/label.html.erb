@@ -1,14 +1,12 @@
-<%= javascript_tag do %>
-$.ajax({
-  url: "<%=j label_bag_path(format: :js) %>"
-}).done(function(data){
-  var file = new Blob([data], {type:'application/pdf'}),
-      url = URL.createObjectURL(file),
-      _iFrame = document.createElement('iframe');
-      _iFrame.setAttribute('src', url);
-      _iFrame.setAttribute('style', 'visibility:hidden;');
-      $('#stuff').append(_iFrame);
-});
-<% end %>
+<script>
+  $(document).ready(function() {
+    var doc = new jsPDF('l', 'in', [3, 1]);
+    doc.setFontSize(24);
+    doc.text(1, 0.6, 'Bag : <%= bag.name %>');
+    //doc.addImage('<%= bag.datamatrix %>', 'PNG', 0.1, 0.1, 0.8, 0.8);
+    var string = doc.output('datauristring');
+    $("#label-pdf").attr('src', string);
+  })
+</script>
 
-<div id="stuff"></div>
+<iframe id="label-pdf"></iframe>
