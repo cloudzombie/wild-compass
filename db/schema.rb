@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126125722) do
+ActiveRecord::Schema.define(version: 20150128161815) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20150126125722) do
     t.integer  "bin_id"
     t.boolean  "archived",                                 default: false, null: false
   end
+
+  add_index "bags", ["datamatrix_text", "datamatrix_hash"], name: "index_bags_on_datamatrix_text_and_datamatrix_hash", unique: true
 
   create_table "bins", force: true do |t|
     t.datetime "created_at"
@@ -118,6 +120,8 @@ ActiveRecord::Schema.define(version: 20150126125722) do
     t.string   "datamatrix_hash"
   end
 
+  add_index "jars", ["datamatrix_text", "datamatrix_hash"], name: "index_jars_on_datamatrix_text_and_datamatrix_hash", unique: true
+
   create_table "locations", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -159,6 +163,8 @@ ActiveRecord::Schema.define(version: 20150126125722) do
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
   end
+
+  add_index "orders", ["datamatrix_text", "datamatrix_hash"], name: "index_orders_on_datamatrix_text_and_datamatrix_hash", unique: true
 
   create_table "plants", force: true do |t|
     t.datetime "created_at"

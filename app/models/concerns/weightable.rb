@@ -58,7 +58,7 @@ module Weightable
     end
 
     def set_weight
-      self.weight = 0.0 unless has_weight?
+      self.current_weight = self.initial_weight = self.weight = 0.0 unless has_weight?
       self.weight = weight.to_d
     end
 
