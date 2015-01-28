@@ -51,48 +51,60 @@
       </div> 
     </div>
   </div>
-
-<div class="col-lg-6">
+   <div class="col-lg-6">
     <div class="box box-solid box-success">
       <div class="box-header">
         <i class="fa fa-leaf"></i>
-        <h3 class="box-title">Origins</h3>
+        <h3 class="box-title">Timeline</h3>
       </div>
       <div class="box-body">
         <table class="table table-hover">
           <tr>
-            <th>Name : </th>
-            <th>Timestamp : </th>
-            <th>Event : </th>
+            <th class="col-lg-2">Created At : </th>
+            <th class="col-lg-2" style="text-align:right">Object : </th>
+            <th class="col-lg-3" style="text-align:center">Event : </th>
+            <th>Object : </th>
+          </tr>
+          <tr>
+            <td><%= date_for container.lot.try(:created_at) if container.lot.present? %></td>
+            <td style="text-align:right"><%= link_to "#{container.lot}".html_safe, container.lot, class: "btn-sm btn-flat btn-info" %></td>
+            <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= container.lot.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
+            <td style="text-align:left">
+              <% container.lot.plants.each do |plant| %>
+                <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
+              <% end %>
+            </td>
           </tr>
 
-          <% ordered_by_id(container.try(:plants)).each do |plant| %>
           <tr>
-            <td><%= link_to "#{plant}".html_safe, plant, class: "btn-sm btn-flat btn-success" %></td>
-            <td><%= date_for plant.try(:created_at) if plant.present? %></td>
-            <td><%= plant %> harvested to <%= container %></td>
+            <td><%= date_for container.try(:created_at) %></td>
+            <td style="text-align:right"><%= link_to "#{container}".html_safe, container, class: "btn-sm btn-flat btn-primary" %></td>
+             <td style="text-align:center"><i class="fa fa-arrow-left" style="float:left"></i> <%= container.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"></i></td>
+                <td style="text-align:left">
+                  <% ordered_by_id(container.plants).each do |plant| %>
+                    <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
+                  <% end %>
+                </td>
+          </tr>
+          
+          <% ordered_by_id(container.try(:bags)).each do |bag| %>
+          <tr>
+            <td><%= date_for bag.try(:created_at) if bag.present? %></td>
+            <td style="text-align:right"><%= link_to "#{bag}".html_safe, bag, class: "btn-sm btn-flat btn-warning" %></td>
+            <td style="text-align:center"><i class="fa fa-arrow-left" style="float:left"></i> <%= bag.initial_weight %> g <i style="float:right" class="fa fa-arrow-left"></i></td> 
+            <td style="text-align:left"><%= link_to bag.container,bag.container, class: "btn-sm btn-flat btn-primary" %></td>
           </tr>
           <% end %>
-          
-          <tr>
-            <td><%= link_to "#{container.lot}".html_safe, container.lot, class: "btn-sm btn-flat btn-info" %></td>
-            <td><%= date_for container.lot.try(:created_at) if container.lot.present? %></td>
-            <td>creation of <%= container.lot %></td>
-          </tr>
 
-          <% ordered_by_id(container.try(:bags)).each do |bag| %>
+          <% ordered_by_id(container.try(:jars)).each do |jar| %>
             <tr>
-              <td><%= link_to "#{bag}".html_safe, bag, class: "btn-sm btn-flat btn-warning" %></td>
-              <td><%= date_for bag.try(:created_at) if bag.present? %></td>
-              <td><%= bag.initial_weight %>g from <%= container %></td>
+              <td><%= date_for jar.try(:created_at) if jar.present? %></td>
+              <td style="text-align:right">
+                <%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %></td>
+                <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.current_weight %> g <i style="float:right" class="fa fa-arrow-left"></i></td>
+                <td style="text-align:left"><%= link_to jar.bag, jar.bag, class: "btn-sm btn-flat btn-warning" %>
+              </td>
             </tr>
-            <% ordered_by_id(bag.try(:jars)).each do |jar| %>
-              <tr>
-                <td><%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %></td>
-                <td><%= date_for jar.try(:created_at) if jar.present? %></td>
-                <td><%= jar.current_weight %>g from <%= bag %></td>
-              </tr>
-            <% end %>
           <% end %>
         </table>
       </div>

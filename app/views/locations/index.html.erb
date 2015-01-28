@@ -23,18 +23,17 @@
           <% end %>
         </td>
         <td>
-          <% Container.all.where('location_id = ?',location.id).each do |container| %>
-            <%= link_to container.id, plant, class: "btn-sm btn-flat btn-info"%>
+          <% Bin.all.where('location_id = ?',location.id).each do |container| %>
+            <%= link_to container.id, container, class: "btn-sm btn-flat btn-info"%>
           <% end %>
         </td>
         <td>
-          <% Bin.all.where('location_id = ?',location.id).each do |bin| %>
+          <% Container.all.where('location_id = ?',location.id).each do |bin| %>
             <%= link_to bin.id, bin, class: "btn-sm btn-flat btn-warning"%>
           <% end %>
         </td>
         <td><%= link_to 'Show', location %></td>
         <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
