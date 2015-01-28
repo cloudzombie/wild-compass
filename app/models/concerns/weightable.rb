@@ -48,6 +48,8 @@ module Weightable
 
     after_save :set_name
     after_initialize :set_weight
+    after_initialize :set_current_weight
+    after_initialize :set_initial_weight
     after_initialize :set_quantity
   end
 
@@ -55,6 +57,16 @@ module Weightable
 
     def set_name
       update(name: "#{identifier}-#{unique_identifier}") unless has_name?
+    end
+
+    def set_current_weight
+      self.current_weight = 0.0 unless has_current_weight?
+      self.current_weight = current_weight.to_d
+    end
+
+    def set_initial_weight
+      self.initial_weight = 0.0 unless has_initial_weight?
+      self.initial_weight = initial_weight.to_d
     end
 
     def set_weight
@@ -73,6 +85,14 @@ module Weightable
 
     def has_weight?
       !weight.nil?
+    end
+
+    def has_current_weight?
+      !current_weight.nil?
+    end
+
+    def has_initial_weight?
+      !initial_weight.nil?
     end
 
     def has_quantity?
