@@ -1,16 +1,12 @@
 class UsersController < ApplicationController
+
+  before_action :authorized?
   
   expose(:user, params: :user_params) { id_param.nil? ? User.new : User.find(id_param) }
   expose(:users) { User.all }
 
-  def index; authorize! :index, users; end
-  def show; authorize! :show, user; end
-  def edit; authorize! :edit, user; end
-  def new; authorize! :new, user; end
-
   def create
     self.user = User.new(user_params)
-    authorize! :create, user
 
     respond_to do |format|
       if user.save
@@ -24,8 +20,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize! :update, user
-
     respond_to do |format|
       if user.update(user_params)
         format.html { redirect_to user, notice: 'User was successfully updated.' }
@@ -38,8 +32,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, user
-
     user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
@@ -56,6 +48,10 @@ class UsersController < ApplicationController
 
     def id_param
       params[:id]
+    end
+
+    def authorized?
+      authorize! action_name.to_sym, User
     end
 
 end

@@ -1,5 +1,7 @@
 class StrainsController < ApplicationController
 
+  before_action :authorized?
+
   expose(:strain, params: :strain_params) { id_param.nil? ? Strain.new : Strain.find(id_param) }
   expose(:strains) { Strain.all }
   expose(:lot) { Lot.new }
@@ -8,7 +10,7 @@ class StrainsController < ApplicationController
     self.strain = Strain.new(strain_params)
 
     respond_to do |format|
-      if self.train.save
+      if self.strain.save
         format.html { redirect_to strain, notice: 'Strain was successfully created.' }
         format.json { render :show, status: :created, location: strain }
       else
@@ -46,5 +48,9 @@ class StrainsController < ApplicationController
 
     def id_param
       params[:id]
+    end
+
+    def authorized?
+      authorize! action_name.to_sym, Strain
     end
 end

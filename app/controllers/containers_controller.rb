@@ -1,5 +1,8 @@
 class ContainersController < ApplicationController
+  
   helper_method :sort_column, :sort_direction
+
+  before_action :authorized?
 
   expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
 
@@ -14,12 +17,9 @@ class ContainersController < ApplicationController
   end
 
   expose(:plants) { Plant.order(id: :asc) }
-  before_action :set_weight, only: [ :create, :update ]
-
 
   def create
     self.container = Container.new(container_params)
-    authorize! :create, container
 
     Transaction.from( container.plant ).to( container ).take( container.weight ).by( current_user ).commit
 
@@ -33,7 +33,6 @@ class ContainersController < ApplicationController
   end 
 
   def update
-    authorize! :update, container
     params[:container][:plant_ids] ||= []
     respond_to do |format|
       if container.update(container_params)
@@ -45,8 +44,6 @@ class ContainersController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, container
-
     container.destroy
     respond_to do |format|
       format.html { redirect_to containers_url, notice: 'Container was successfully destroyed.' }
@@ -56,20 +53,16 @@ class ContainersController < ApplicationController
 
   private
 
+    def authorized?
+      authorize! action_name.to_sym, Container
+    end
+
     def id_param
       params[:id]
     end
 
     def container_params
       params.require(:container).permit(:name, :lot_id, :location_id, :category, :current_weight, :initial_weight, :weight, { plant_ids: [] })
-    end
-
-    def set_weight
-      if container.weight.nil?
-        container.weight = 0.0
-      else
-        container.weight = container.weight.to_d
-      end
     end
 
     # Set column to sort in order.

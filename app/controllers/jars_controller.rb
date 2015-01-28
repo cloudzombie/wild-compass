@@ -1,4 +1,7 @@
 class JarsController < ApplicationController
+
+  before_action :authorized?
+
   helper_method :sort_column, :sort_direction
   
   expose(:jar, params: :jar_params) { id_param.nil? ? Jar.new : Jar.find(id_param) }
@@ -12,10 +15,6 @@ class JarsController < ApplicationController
       Jar.search(params[:search]).joins(:lot).merge(Lot.order(category: sort_direction.to_sym))
     end
   end
-
-  before_action :set_weight, only: [ :create, :update ]
-  before_action :set_name, only: [ :create, :update ]
-  before_action :set_quantity, only: [ :create, :update ]
 
   # Create new jar.
   def create 
@@ -74,9 +73,7 @@ class JarsController < ApplicationController
     end
   end
 
-  def label_stream
-    send_data jar.label, type: 'image/png', disposition: 'attachment'
-  end
+
 
   # Never trust parameters from the scary internet, only allow the white list through.
   private
@@ -98,29 +95,7 @@ class JarsController < ApplicationController
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    def set_weight
-      if jar.weight.nil?
-        jar.weight = 0.0
-      else
-        jar.weight = jar.weight.to_d
-      end
-    end
-
-    def set_quantity
-      if jar.quantity.nil?
-        jar.quantity = 0.0
-      else
-        jar.quantity = jar.quantity.to_d
-      end
-    end
-
-    def set_name
-      if jar.name.nil? || jar.name.empty?
-        jar.name = "J-#{bag_name}-#{Time.now.strftime('%d%m%y')}"
-      end
-    end
-
-    def bag_name
-      Bag.find(jar_params[:bag_id])
+    def authorized?
+      authorize! action_name.to_sym, Jar
     end
 end

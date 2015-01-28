@@ -1,4 +1,7 @@
 class LotsController < ApplicationController
+
+  before_action :authorized?
+
   helper_method :sort_column, :sort_direction
 
   expose(:lot, params: :lot_params) { id_param.nil? ? Lot.new : Lot.find(id_param) }
@@ -14,9 +17,6 @@ class LotsController < ApplicationController
   expose(:containers) { Container.order(id: :asc) }
 
   expose(:bag) { Bag.new }
-
-  before_action :set_weight, only: [ :create, :update ]
-  before_action :set_quantity, only: [ :create, :update ]
   
   # Create new lot.
   def create 
@@ -77,19 +77,7 @@ class LotsController < ApplicationController
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    def set_weight
-      if lot.weight.nil?
-        lot.weight = 0.0
-      else
-        lot.weight = lot.weight.to_d
-      end
-    end
-
-    def set_quantity
-      if lot.quantity.nil?
-        lot.quantity = 0.0
-      else
-        lot.quantity = lot.quantity.to_d
-      end
+    def authorized?
+      authorize! action_name.to_sym, Lot
     end
 end

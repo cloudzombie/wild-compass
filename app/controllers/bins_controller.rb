@@ -1,5 +1,7 @@
 class BinsController < ApplicationController
 
+  before_action :authorized?
+
   expose(:bin, params: :bin_params) { id_param.nil? ? Bin.new : Bin.find(id_param) }
   expose(:bins) { Bin.all }
 
@@ -32,11 +34,13 @@ class BinsController < ApplicationController
     end
   end
 
-  def label_stream
-    send_data bin.label, type: 'image/png', disposition: 'attachment'
-  end
+
 
   private
+
+    def authorized?
+      authorize! action_name.to_sym, Bin
+    end
 
     def id_param
       params[:id]
