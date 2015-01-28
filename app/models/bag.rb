@@ -4,7 +4,6 @@ class Bag < ActiveRecord::Base
   include Accountable
   include Storyable
   include Searchable
-  include Labelizable
   include Encodable
   
 

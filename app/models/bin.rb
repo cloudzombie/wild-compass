@@ -1,6 +1,6 @@
 class Bin < ActiveRecord::Base
 
-  include Labelizable
+  include Encodable
 
   has_many :bags
 

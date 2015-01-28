@@ -107,4 +107,17 @@ module ApplicationHelper
   def to_data_url(image)
     'data:image/png;base64,' << Base64.strict_encode64( image )
   end
+
+  def label_path_for(item)
+    case item
+    when Bag
+      label_bag_path(item)
+    when Jar
+      label_jar_path(item)
+    when Bin
+      label_bin_path(item)
+    else
+      '#'
+    end
+  end
 end

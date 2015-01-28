@@ -1,0 +1,3 @@
+<% if can? :label, item %>
+<%= link_to "Print Label", label_path_for(item), class: 'btn-sm btn-flat btn-primary' %>
+<% end %>

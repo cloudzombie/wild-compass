@@ -56,9 +56,7 @@
         </td>
 
         <td>
-          <% if can? :label, Bag %>
-          <%= link_to "Print Label", label_bag_path(bag), class: 'btn-sm btn-flat btn-primary' %>
-          <% end %>
+          <%= render 'shared/print_label', item: bag %>
 
           <% if can? :send_to_lab, Bag %>
           <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: "btn-sm btn-flat btn-info" %>

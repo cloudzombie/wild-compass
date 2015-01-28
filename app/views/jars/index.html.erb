@@ -41,6 +41,7 @@
         </td>
         <td>
           <a class="btn-sm btn-flat btn-info">New Order</a>
+          <%= render 'shared/print_label', item: jar %>
           
           <% if can? :show, jar %>
           <%= link_to 'Show', jar, class: "btn-sm btn-flat btn-success" %>

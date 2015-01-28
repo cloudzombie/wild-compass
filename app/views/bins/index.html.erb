@@ -36,10 +36,8 @@
           <% end %>
         </td>
         <td>
-          <%# if can? :create, Jar %>
-          <%#= link_to "#{fa_icon 'flask'} New Jar".html_safe, '#', class: 'btn-sm btn-flat btn-danger',
-              data: { toggle: 'modal', target: '.new-jar' } %>
-          <%# end %>      
+          <%= render 'shared/print_label', item: bin %>
+
           <% if can? :edit, bin %>
           <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bin_path(bin), class: "btn-sm btn-flat btn-warning" %>
           <% end %>
