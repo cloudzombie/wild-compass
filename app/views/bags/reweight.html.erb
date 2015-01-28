@@ -1,10 +1,8 @@
-<% content_for :head do %>
-  <script type="text/javascript">
-    var autoRefresh = setInterval(function() {
-      $("#reweight-bag-scale-1-readings").load("http://localhost:8080/data").fadeIn("slow");
-    }, 100);
-  </script>
-<% end %>
+<script>
+  var autoRefresh = setInterval(function() {
+    $("#reweight-bag-scale-1-readings").load("http://localhost:8080/data").fadeIn("slow");
+  }, 100);
+</script>
 
 <div class="panel panel-primary">
   <div class="panel-heading">
@@ -39,8 +37,7 @@
     </div>
 
     <div id="reweight-bag-step-3">
-      <p class="alert alert-info"><strong>Please print label...</strong></p>
-      <%= link_to 'Print Label', label_bag_path(bag), class: 'btn btn-primary btn-lg' %>
+      
     </div>
 
     <div id="reweight-bag-scale-display">

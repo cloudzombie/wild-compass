@@ -4,9 +4,9 @@ module Searchable
   module ClassMethods
     def search(search)
       return all if search.nil? || search.empty?
-      query = find_by_id(search)
+      query = find_by_hash(search)
       if query.empty?
-        query = find_by_hash(search)
+        query = find_by_id(search)
         if query.empty?
           query = find_by_name(search)
           if query.empty?

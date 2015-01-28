@@ -60,7 +60,9 @@ Rails.application.routes.draw do
   resources :strains
   
   resources :brands do
-    member { get 'available' }
+    member do
+      get 'available'
+    end
   end
 
   resources :containers
@@ -99,7 +101,9 @@ Rails.application.routes.draw do
       resources :strains
       
       resources :brands do
-        member { get 'available' }
+        member do
+          get 'available'
+        end
       end
 
       resources :containers
