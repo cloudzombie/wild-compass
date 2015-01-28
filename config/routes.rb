@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  
-  resources :locations
-
-  resources :bins do 
-    member do
-      get 'datamatrix'
-      get 'label'
-    end
-  end
 
   # Root redirect
   root to: 'root#redirect'
@@ -35,8 +26,15 @@ Rails.application.routes.draw do
     member do
       get 'datamatrix'
       get 'fulfill'
-      get 'add_line'
-      post 'add_line'
+    end
+  end
+
+  resources :locations
+
+  resources :bins do 
+    member do
+      get 'datamatrix'
+      get 'label'
     end
   end
 
@@ -78,8 +76,6 @@ Rails.application.routes.draw do
       resources :orders do
         member do
           get 'datamatrix'
-          get 'add_line'
-          post 'add_line'
         end
       end
 

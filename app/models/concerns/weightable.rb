@@ -45,5 +45,50 @@ module Weightable
                presence: false,
                allow_blank: true,
                numericality: { greater_than_or_equal_to: 0.0 }
+
+    after_save :set_name
+    after_initialize :set_weight
+    after_initialize :set_quantity
   end
+
+  private
+
+    def set_name
+      update(name: "#{identifier}-#{unique_identifier}") unless has_name?
+    end
+
+    def set_weight
+      self.weight = 0.0 unless has_weight?
+      self.weight = weight.to_d
+    end
+
+    def set_quantity
+      self.quantity = 0.0 unless has_quantity?
+      self.quantity = quantity.to_d
+    end
+
+    def has_name?
+      !name.nil?
+    end
+
+    def has_weight?
+      !weight.nil?
+    end
+
+    def has_quantity?
+      !quantity.nil?
+    end
+
+     def identifier
+      self.class.name.upcase
+    end
+
+    def unique_identifier
+      case self.class
+      when Bag
+        self.name
+      else
+        self.id
+      end
+    end
 end

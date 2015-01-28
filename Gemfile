@@ -85,3 +85,5 @@ gem 'kaminari'
 
 # Chunky
 gem 'chunky_png'
+
+gem 'url_safe_base64'

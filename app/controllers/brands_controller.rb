@@ -1,10 +1,12 @@
 class BrandsController < ApplicationController
+
+  before_action :authorized?
+  
   expose(:brand, params: :brand_params) { id_param.nil? ? Brand.new : Brand.find(id_param) }
   expose(:brands) { Brand.all }
 
   def create
     self.brand = Brand.new(brand_params)
-    authorize! :create, brand
     
     respond_to do |format|
       if brand.save
@@ -16,8 +18,6 @@ class BrandsController < ApplicationController
   end
 
   def update
-    authorize! :update, brand
-
     respond_to do |format|
       if brand.update(brand_params)
         format.html { redirect_to brand, notice: 'Brand was successfully updated.' }
@@ -28,8 +28,6 @@ class BrandsController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, brand
-
     brand.destroy
     respond_to do |format|
       format.html { redirect_to brands_url, notice: 'Brand was successfully destroyed.' }
@@ -37,8 +35,6 @@ class BrandsController < ApplicationController
   end
 
   def available
-    authorize! :available, brand
-
     respond_to do |format|
       if brand.available?
         format.html { redirect_to brands_url, notice: "brand available" }
@@ -49,6 +45,10 @@ class BrandsController < ApplicationController
   end
 
   private
+
+    def authorized?
+      authorize! action_name.to_sym, Brand
+    end
 
     def brand_params
       params.require(:brand).permit(:name, :description)

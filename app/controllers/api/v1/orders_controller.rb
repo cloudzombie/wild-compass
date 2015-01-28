@@ -25,15 +25,7 @@ class API::V1::OrdersController < API::V1::APIController
     send_data Order.find(id_param).datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
-  def add_line
-    respond_with order.order_lines << OrderLine.create(order_line_params)
-  end
-
   private
-
-    def order_line_params
-      params.require(:order_line).permit(:brand_id, :quantity, :jar_id)
-    end
     
     def order_params
       params.require(:order).permit(:customer, :shipped_at, :ordered_at,

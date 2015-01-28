@@ -1,4 +1,7 @@
 class PlantsController < ApplicationController
+
+  before_action :authorized?
+
   helper_method :sort_column, :sort_direction
 
   expose(:plant, params: :plant_params) do
@@ -78,5 +81,9 @@ class PlantsController < ApplicationController
     # Set sort direction to ascending or descending.
     def sort_direction
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
+    end
+
+    def authorized?
+      authorize! action_name.to_sym, Plant
     end
 end

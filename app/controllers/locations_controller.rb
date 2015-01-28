@@ -1,11 +1,13 @@
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy]
-  
 
+  before_action :authorized?
+
+  before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   expose(:plant)
   expose(:bin)
   expose(:container)
+
   respond_to :html
 
   def index
@@ -42,6 +44,11 @@ class LocationsController < ApplicationController
   end
 
   private
+
+    def authorized?
+      authorize! action_name.to_sym, Location
+    end
+
     def set_location
       @location = Location.find(params[:id])
     end

@@ -1,7 +1,14 @@
 class BagsController < ApplicationController
+
+  include FindEncodable
+
+  respond_to :html, :xml, :json
+
   helper_method :sort_column, :sort_direction
+
+  before_action :authorized?
   
-  expose(:bag, params: :bag_params) { id_param.nil? ? Bag.new : find_bag }
+  expose(:bag, params: :bag_params) { find(Bag) }
   
   expose(:bags) do
     if sort_column == 'name'
@@ -17,12 +24,7 @@ class BagsController < ApplicationController
     end
   end
 
-  expose(:jar) { Jar.new }
-  before_action :set_weight, only: [ :create, :update, :reweight ]
-  before_action :set_name, only: [ :create, :update , :reweight]
-  before_action :set_quantity, only: [ :create, :update, :reweight ]
-
-  respond_to :html, :xml, :json
+  expose(:jar) { Jar.new }  
 
   ##
   # Create a new bag from a POST HTTP request with given parameters:
@@ -34,7 +36,6 @@ class BagsController < ApplicationController
   #
   def create
     self.bag = Bag.new(bag_params)
-    authorize! :create, bag
 
     Transaction.from( bag.container ).to( bag ).take( bag.weight ).by( current_user ).commit
 
@@ -48,10 +49,7 @@ class BagsController < ApplicationController
   end
 
   def reweight
-    authorize! :reweight, bag
-    
     if request.post?
-    
       if Transaction.reweight( bag ).weight( bag.weight ).by( current_user ).commit
         redirect_to bag, notice: 'Bag was successfully reweighted.'
       else
@@ -59,18 +57,14 @@ class BagsController < ApplicationController
       end
 
     else
-
       respond_to do |format|
         format.html
       end
-
     end
   end
 
   # Update bag column.
   def update
-    authorize! :update, bag
-
     respond_to do |format|
       if bag.update(bag_params)
         format.html { redirect_to bag, notice: 'Bag was successfully updated.' }
@@ -82,21 +76,15 @@ class BagsController < ApplicationController
 
   # Destroy bag.
   def destroy
-    authorize! :destroy, bag
-
     bag.destroy
     respond_to do |format|
       format.html { redirect_to bags_url, notice: 'Bag was successfully destroyed.' }
     end
   end
 
-
-
   def datamatrix
     send_data bag.datamatrix, type: 'image/png', disposition: 'attachment'
   end
-
-
 
   def label
     respond_to do |format|
@@ -105,23 +93,17 @@ class BagsController < ApplicationController
     end
   end
 
-  def label_stream
-    send_data bag.label, type: 'image/png', disposition: 'attachment'
-  end
 
 
   private
+
+    def authorized?
+      authorize! action_name.to_sym, Bag
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
       params.require(:bag).permit(:quantity, :weight, :initial_weight, :container_id, :name, :current_weight, :bin_id, :lot_id)
-    end
-
-    def id_param
-      params[:id]
-    end
-
-    def find_bag
-      Bag.find(id_param) || Bag.find_by(datamatrix_hash: id_param)
     end
 
     # Set column to sort in order.
@@ -133,33 +115,5 @@ class BagsController < ApplicationController
     def sort_direction
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
-
-    # Set bag name.
-    def set_name
-      if bag.name.nil? || bag.name.empty?
-        bag.name = "B-#{acronym}#{Time.now.strftime('%d%m%y')}"
-      end
-    end
-
-    def set_weight
-      if bag.weight.nil?
-        bag.weight = 0.0
-      else
-        bag.weight = bag.weight.to_d
-      end
-    end
-
-    def set_quantity
-      if bag.quantity.nil?
-        bag.quantity = 0.0
-      else
-        bag.quantity = bag.quantity.to_d
-      end
-    end
-
-    def acronym
-      #Bag.find(id_param).strain.acronym
-    end
-
 
 end
