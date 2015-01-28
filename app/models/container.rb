@@ -62,4 +62,8 @@ class Container < ActiveRecord::Base
     ''
   end
 
+  def lot
+    plants.first.lot
+  end
+
 end

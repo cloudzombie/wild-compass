@@ -89,24 +89,81 @@
 </div>
 </div>
   <div class="row">
+  <div class="col-lg-6">
+    <div class="box box-solid box-success">
+      <div class="box-header">
+        <i class="fa fa-leaf"></i>
+        <h3 class="box-title">Timeline</h3>
+      </div>
+      <div class="box-body">
+        <table class="table table-hover">
+          <tr>
+            <th class="col-lg-2">Created At : </th>
+            <th class="col-lg-2" style="text-align:right">Object : </th>
+            <th class="col-lg-3" style="text-align:center">Event : </th>
+            <th>Object : </th>
+          </tr>
+          
+          <tr>
+            <td><%= date_for jar.lot.try(:created_at) if jar.lot.present? %></td>
+            <td style="text-align:right"><%= link_to "#{jar.lot}".html_safe, jar.lot, class: "btn-sm btn-flat btn-info" %></td>
+            <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.lot.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
+            <td style="text-align:left">
+              <% jar.lot.plants.each do |plant| %>
+                <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
+              <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td><%= date_for jar.container.try(:created_at) if jar.container.present? %></td>
+            <td style="text-align:right"><%= link_to "#{jar.container}".html_safe, jar.container, class: "btn-sm btn-flat btn-primary" %></td>
+            <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.container.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
+            <td style="text-align:left">
+              <% jar.container.plants.each do |plant| %>
+                <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
+              <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td><%= date_for jar.bag.try(:created_at) if jar.bag.present? %></td>
+            <td style="text-align:right"><%= link_to "#{jar.bag}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %></td>
+            <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.bag.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
+            <td style="text-align:left">
+              <%= link_to jar.container, jar.container, class: "btn-sm btn-flat btn-primary" %>
+            </td>
+          </tr>
+
+            <tr>
+              <td><%= date_for jar.bag.try(:created_at) if jar.bag.present? %></td>
+              <td style="text-align:right">
+                <%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %></td>
+                <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.bag.current_weight %> g <i style="float:right" class="fa fa-arrow-left"></i></td>
+                <td style="text-align:left"><%= link_to jar.bag, jar.bag, class: "btn-sm btn-flat btn-warning" %>
+              </td>
+            </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!--
     <div class="col-lg-7">
       <div class="box box-solid box-danger">
         <div class="box-header">
           <i class="fa fa-flask"></i>
-          <h3 class="box-title">History</h3>
+          <h3 class="box-title">Timelines</h3>
          </div>
         <div class="box-body">
         <ul class="timeline">
-    <!-- timeline time label -->
     <li class="time-label">
         <span class="">
                   <span class="time"><%= jar.created_at.to_s :short %></span>
         </span>
     </li>
-    <!-- /.timeline-label -->
-      <!-- timeline item -->
+
         <li>
-            <!-- timeline icon -->
             <i class="fa fa-tags bg-aqua"></i>
             <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> <%= jar.bag.lot.created_at.to_s :short %></span>
@@ -124,11 +181,23 @@
                 </div>
             </div>
         </li>
-        <!-- END timeline item -->
 
-        <!-- timeline item -->
         <li>
-            <!-- timeline icon -->
+            <i class="fa fa-tags bg-yellow"></i>
+            <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> <%= jar.container.created_at.to_s :short %></span>
+                <h3 class="timeline-header">New Bag : <%= jar.container %></h3>
+                <div class="timeline-body">
+                <br/>
+                 <%= link_to "#{fa_icon('tags')} #{jar.lot}".html_safe, jar.lot, class: "btn btn-info btn-xs" %> send <%= jar.container.initial_weight %> g to <%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar.container, class: "btn btn-warning btn-xs" %>
+                  </div>
+                <div class="timeline-footer">
+                Done by User
+                </div>
+            </div>
+        </li>
+
+        <li>
             <i class="fa fa-tags bg-yellow"></i>
             <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> <%= jar.bag.created_at.to_s :short %></span>
@@ -142,11 +211,8 @@
                 </div>
             </div>
         </li>
-        <!-- END timeline item -->
 
-        <!-- timeline item -->
         <li>
-            <!-- timeline icon -->
             <i class="fa fa-flask bg-red"></i>
             <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> <%= jar.created_at.to_s :short %></span>
@@ -160,7 +226,6 @@
                 </div>
             </div>
         </li>
-        <!-- END timeline item -->
 
       
           </ul>
@@ -168,7 +233,7 @@
       </div>
     </div>
     <div class="col-lg-3">
-    </div>
+    </div> -->
   </div>
 
     

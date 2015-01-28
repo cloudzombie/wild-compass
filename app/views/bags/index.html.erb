@@ -57,7 +57,7 @@
 
         <td>
           <% if can? :label, Bag %>
-          <%= link_to "Print Label", label_bag_path(bag), class: 'btn btn-sm btn-flat btn-primary' %>
+          <%= link_to "Print Label", label_bag_path(bag), class: 'btn-sm btn-flat btn-primary' %>
           <% end %>
 
           <% if can? :send_to_lab, Bag %>
