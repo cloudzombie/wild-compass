@@ -26,9 +26,6 @@
 
       <%= order_lines_fields.label :quantity %>
       <%= order_lines_fields.text_field :quantity, class: 'form-control' %>
-
-      <%= order_lines_fields.label :jar_id %>
-      <%= order_lines_fields.collection_select :jar_id, Jar.all, :id, :name, {} , class: 'form-control' %>
     </div>
     <% end %>
     <%= display_error_for order, :order_lines %>

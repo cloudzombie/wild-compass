@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128194912) do
+ActiveRecord::Schema.define(version: 20150129120348) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 20150128194912) do
     t.integer  "history_id"
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
+    t.integer  "order_line_id"
   end
 
   add_index "jars", ["datamatrix_text", "datamatrix_hash"], name: "index_jars_on_datamatrix_text_and_datamatrix_hash", unique: true
@@ -155,7 +156,6 @@ ActiveRecord::Schema.define(version: 20150128194912) do
     t.datetime "updated_at"
     t.integer  "order_id"
     t.integer  "brand_id"
-    t.integer  "jar_id"
   end
 
   create_table "orders", force: true do |t|

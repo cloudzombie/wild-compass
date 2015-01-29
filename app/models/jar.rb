@@ -19,7 +19,7 @@ class Jar < ActiveRecord::Base
 
   belongs_to :bag
 
-  validates :bag, presence: true
+  validates :bag, presence: false, allow_blank: true
 
 
 
