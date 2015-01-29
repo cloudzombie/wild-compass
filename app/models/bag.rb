@@ -13,6 +13,9 @@ class Bag < ActiveRecord::Base
   scope :by_buds,          -> { by_categories 'Buds' }
   scope :by_brands,        -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
+  def self.first_available(brand, weight)
+    by_brands(brand).where(current_weight: weight..Float::INFINITY).first
+  end
 
   belongs_to :lot
 

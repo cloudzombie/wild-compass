@@ -41,7 +41,7 @@ class OrderLine < ActiveRecord::Base
     def create_jars
       return if self.quantity == 0.0 || self.quantity.nil?
       for i in 0...(self.quantity.to_f/10.0).ceil
-        self.jars << Jar.create
+        self.jars << Jar.create(bag: Bag.first_available(self.brand, self.quantity.to_f))
       end
     end
 

@@ -6,23 +6,28 @@ class API::V1::OrdersController < API::V1::APIController
   end
 
   def show
-    respond_with Order.find(id_param)
+    order = Order.find(id_param)
+    respond_with order do |format|
+      format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
+    end
   end
 
   def create
-    respond_with Order.create!(order_params)
+    order = Order.create!(order_params)
+    respond_with order do |format|
+      format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
+    end
   end
 
   def update
-    respond_with Order.update(order_params)
+    order = Order.update(order_params)
+    respond_with order do |format|
+      format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
+    end
   end
 
   def destroy
     respond_with Order.destroy(id_param)
-  end
-
-  def datamatrix
-    send_data Order.find(id_param).datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
   private

@@ -13,10 +13,17 @@ class OrdersController < ApplicationController
   expose(:orders) { Order.search(params[:search]).order(sort_column + ' ' + sort_direction) }
   expose(:jar) { Jar.new }
 
-  respond_to :html
+  respond_to :html, :xml, :json
 
   def new
     order.order_lines.build
+  end
+
+  def show
+    respond_with order do |format|
+      format.html
+      format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
+    end
   end
 
   ##
@@ -40,9 +47,11 @@ class OrdersController < ApplicationController
   #
   def create
     self.order = Order.new(order_params)
-    Jar.new()
     order.save
-    respond_with(order)
+    respond_with order do
+      format.html
+      format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
+    end
   end
 
   ##
@@ -66,7 +75,9 @@ class OrdersController < ApplicationController
   #
   def update 
     order.update(order_params)
-    respond_with(order)
+    respond_with order do
+      format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
+    end
   end
 
   def fulfill
@@ -87,10 +98,6 @@ class OrdersController < ApplicationController
   def destroy 
     order.destroy
     respond_with(order)
-  end
-
-  def datamatrix
-    send_data order.datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
   private
