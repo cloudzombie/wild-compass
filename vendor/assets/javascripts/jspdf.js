@@ -603,7 +603,7 @@ var jsPDF = (function(global) {
 			return to8bitStream(text, flags).replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
 		},
 		putInfo = function() {
-			out('/Producer (jsPDF ' + jsPDF.version + ')');
+			out('/Producer (THC-ICS)');
 			for(var key in documentProperties) {
 				if(documentProperties.hasOwnProperty(key) && documentProperties[key]) {
 					out('/'+key.substr(0,1).toUpperCase() + key.substr(1)
