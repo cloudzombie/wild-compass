@@ -15,15 +15,10 @@ module ApplicationHelper
   def percent_of_weight(weightable)
     number_with_precision(
       weightable.try(:current_weight).to_d / weightable.try(:initial_weight).to_d * 100,
-      precision: 2
+      precision: 0
     )
   rescue
-    '0.00'
-  end
-
-  def percent_for(decimal)
-    return '' if decimal.nil?
-    "#{number_with_precision( decimal, precision: 1 )} %"
+    '0'
   end
 
 

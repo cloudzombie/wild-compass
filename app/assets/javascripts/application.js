@@ -16,12 +16,30 @@
 //= require jquery-ui/core
 //= require turbolinks
 //= require bootstrap
-//= require adminlte/app
+//= require admin-lte
 //= require jspdf
 //= require jspdf.plugin.addimage
 //= require jspdf.plugin.png_support
 //= require png
 //= require zlib
 //= require filesaver
+<<<<<<< HEAD
+//= require_tree 
+
+//Ajax Tables
+$(function() {
+	$(document).on("click","#sort th a", function() {
+		$.getScript(this.href);
+		return false;
+	});
+	$("#search_form input").keyup(function() {
+		$.get($("#search_form").attr("action"), $("#search_form").serialize(), null, "script");
+		return false;
+	});
+});
+
+
+=======
 //= require_self
 //= require_tree .
+>>>>>>> e5a7a4e9f54d4fd95473f6acc62b130aefc70260
