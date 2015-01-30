@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    respond_with order do |format|
+    respond_with(order) do |format|
       format.html
       format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
     end
@@ -48,8 +48,8 @@ class OrdersController < ApplicationController
   def create
     self.order = Order.new(order_params)
     order.save
-    respond_with order do
-      format.html
+    respond_with(order) do |format|
+      format.html { redirect_to order, notice: 'Order successfully created.' }
       format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
     end
   end
@@ -75,7 +75,8 @@ class OrdersController < ApplicationController
   #
   def update 
     order.update(order_params)
-    respond_with order do
+    respond_with order do |format|
+      format.html { redirect_to order, notice: 'Order successfully updated.' }
       format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
     end
   end

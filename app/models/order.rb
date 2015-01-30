@@ -1,7 +1,6 @@
 class Order < ActiveRecord::Base
 
   include Searchable
-  include Encodable
 
 
 

@@ -45,3 +45,13 @@
     </div>
   </div>
 </div>
+
+<%= form_for :reweight do |f| %>
+  <%= f.label :weight %>
+  <%= f.textbox_field :weight %>
+
+  <%= f.label :message %>
+  <%= f.textbox_field :message %>
+
+  <%= f.submit %>
+<% end %>
