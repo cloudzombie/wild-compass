@@ -1,6 +1,6 @@
 <h1>Listing locations</h1>
 
-<table>
+<table class="table table-hover location">
   <thead>
     <tr>
       <th>Name</th>
@@ -13,23 +13,23 @@
   </thead>
 
   <tbody>
-    <% @locations.each do |location| %>
+    <% locations.each do |location| %>
       <tr>
         <td><%= location.name %></td>
         <td><%= location.description %></td>
         <td>
-          <% Plant.all.where('location_id = ?',location.id).each do |plant| %>
+          <% location.plants.each do |plant| %>
             <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success"%>
           <% end %>
         </td>
         <td>
-          <% Bin.all.where('location_id = ?',location.id).each do |container| %>
-            <%= link_to container.id, container, class: "btn-sm btn-flat btn-info"%>
+          <% location.bins.each do |bin| %>
+            <%= link_to bin.id, bin, class: "btn-sm btn-flat btn-info"%>
           <% end %>
         </td>
         <td>
-          <% Container.all.where('location_id = ?',location.id).each do |bin| %>
-            <%= link_to bin.id, bin, class: "btn-sm btn-flat btn-warning"%>
+          <% location.containers.each do |container| %>
+            <%= link_to container.id, container, class: "btn-sm btn-flat btn-warning"%>
           <% end %>
         </td>
         <td><%= link_to 'Show', location %></td>
@@ -38,7 +38,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Location', new_location_path %>

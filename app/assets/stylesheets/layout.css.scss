@@ -21,7 +21,11 @@
   vertical-align: middle;
 }
 
-#timeline > tbody > tr > td:nth-child(4) > a {
+#timeline > tbody > tr > td:nth-child(4) > a  {
+    line-height: 250%;
+}
+
+.location > tbody > tr > td:nth-child(3) > a  {
     line-height: 250%;
 }
 
