@@ -8,15 +8,15 @@ module SetWeightable
   end
 
   def set_message
-    bag.message = params.require(model_name)[:message]
+    self.send(model_name).message = params.require(model_name)[:message]
   end
 
   def set_quantity
-    bag.quantity = params.require(model_name)[:quantity]
+    self.send(model_name).quantity = params.require(model_name)[:quantity]
   end
 
   def set_weight
-    bag.weight = params.require(model_name)[:weight]
+    self.send(model_name).weight = params.require(model_name)[:weight]
   end
 
   private
