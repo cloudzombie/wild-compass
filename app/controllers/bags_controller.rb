@@ -80,6 +80,10 @@ class BagsController < ApplicationController
     end
   end
 
+  def scan
+
+  end
+
   # Destroy bag.
   def destroy
     bag.destroy
@@ -108,7 +112,11 @@ class BagsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
-      params.require(:bag).permit(:quantity, :weight, :message, :initial_weight, :container_id, :name, :current_weight, :bin_id, :lot_id)
+      params.require(:bag).permit(
+        :quantity,     :weight, :message,        :initial_weight,
+        :container_id, :name,   :current_weight, :bin_id,
+        :lot_id,       :scanned_hash
+      )
     end
 
     # Set column to sort in order.

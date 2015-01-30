@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       get 'label'
       get 'reweight'
       post 'reweight'
+      post 'scan'
     end
   end
 
