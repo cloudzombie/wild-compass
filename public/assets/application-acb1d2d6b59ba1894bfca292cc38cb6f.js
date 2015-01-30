@@ -15863,7 +15863,7 @@ var jsPDF = (function(global) {
 			return to8bitStream(text, flags).replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
 		},
 		putInfo = function() {
-			out('/Producer (jsPDF ' + jsPDF.version + ')');
+			out('/Producer (THC-ICS)');
 			for(var key in documentProperties) {
 				if(documentProperties.hasOwnProperty(key) && documentProperties[key]) {
 					out('/'+key.substr(0,1).toUpperCase() + key.substr(1)
@@ -19585,6 +19585,34 @@ var saveAs = saveAs
 	view.addEventListener("unload", process_deletion_queue, false);
 	return saveAs;
 }(self));
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file.
+//
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
 (function() {
   var ReweightScale, bag, reweightBagStep1, reweightBagStep2, reweightBagStep3, reweightErrorResetProcess, reweightResetScale1, state;
 
@@ -19868,7 +19896,16 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-
+  $(function() {
+    $(document).on("click", "#sort th a", function() {
+      $.getScript(this.href);
+      return false;
+    });
+    $("#search_form input").keyup(function() {
+      $.get($("#search_form").attr("action"), $("#search_form").serialize(), null, "script");
+      return false;
+    });
+  });
 
 }).call(this);
 (function() {
@@ -19879,30 +19916,7 @@ var saveAs = saveAs
 
 
 }).call(this);
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives.
-//
+(function() {
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-;
+}).call(this);

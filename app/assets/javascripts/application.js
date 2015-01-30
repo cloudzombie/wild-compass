@@ -23,6 +23,7 @@
 //= require png
 //= require zlib
 //= require filesaver
+<<<<<<< HEAD
 //= require_tree 
 
 //Ajax Tables
@@ -38,3 +39,7 @@ $(function() {
 });
 
 
+=======
+//= require_self
+//= require_tree .
+>>>>>>> e5a7a4e9f54d4fd95473f6acc62b130aefc70260

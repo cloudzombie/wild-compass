@@ -1,6 +1,7 @@
 class BagsController < ApplicationController
 
   include FindEncodable
+  include SetWeightable
 
   respond_to :html, :xml, :json
 
@@ -24,7 +25,7 @@ class BagsController < ApplicationController
     end
   end
 
-  expose(:jar) { Jar.new }  
+  expose(:jar) { Jar.new }
 
   ##
   # Create a new bag from a POST HTTP request with given parameters:
@@ -50,7 +51,12 @@ class BagsController < ApplicationController
 
   def reweight
     if request.post?
-      if Transaction.reweight( bag ).weight( bag.weight ).by( current_user ).commit
+
+      bag.weight   = bag_params[:weight].to_d
+      bag.message  = bag_params[:message]
+      bag.quantity = bag_params[:weight].to_d
+
+      if Transaction.reweight( bag ).weight( bag.weight ).by( current_user ).because( bag.message ).commit
         redirect_to bag, notice: 'Bag was successfully reweighted.'
       else
         redirect_to bag, notice: 'Bag was not successfully reweighted.'
@@ -72,6 +78,10 @@ class BagsController < ApplicationController
         format.html { render :edit }
       end
     end
+  end
+
+  def scan
+
   end
 
   # Destroy bag.
@@ -102,7 +112,11 @@ class BagsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
-      params.require(:bag).permit(:quantity, :weight, :initial_weight, :container_id, :name, :current_weight, :bin_id, :lot_id)
+      params.require(:bag).permit(
+        :quantity,     :weight, :message,        :initial_weight,
+        :container_id, :name,   :current_weight, :bin_id,
+        :lot_id,       :scanned_hash
+      )
     end
 
     # Set column to sort in order.

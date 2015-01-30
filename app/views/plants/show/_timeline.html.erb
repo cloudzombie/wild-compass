@@ -14,10 +14,14 @@
       <tr>
         <td><%= date_for plant.lot.try(:created_at) if plant.lot.present? %></td>
         <td style="text-align:right"><%= link_to "#{plant.lot}".html_safe, plant.lot, class: "btn-sm btn-flat btn-info" %></td>
-        <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= plant.lot.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
+        <td style="text-align:center">
+          <i style="float:left" class="fa fa-arrow-left"></i> <%= weight_for plant.try(:lot).try(:initial_weight) %><i class="fa fa-arrow-left" style="float:right"> </i>
+        </td>
         <td style="text-align:left">
-          <% plant.lot.plants.each do |plant| %>
+          <% if plant.try(:lot).try(:plants).present? %>
+          <% plant.try(:lot).try(:plants).each do |plant| %>
             <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
+          <% end %>
           <% end %>
         </td>
       </tr>

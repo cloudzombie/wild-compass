@@ -23,9 +23,8 @@ module Searchable
     end
 
     private
-
       def find_by_name(search)
-        where('lower(name) LIKE ?', "%#{search}%".downcase)
+        where('lower(name) LIKE ?', "%#{search}%".downcase) 
       end
 
       def find_by_id(search)
@@ -33,7 +32,11 @@ module Searchable
       end
 
       def find_by_hash(search)
-        query = where(datamatrix_hash: search)
+        if columns.include? (:datamatrix_hash)
+          query = where(datamatrix_hash: search)
+        else
+          none
+        end
       end
 
   end
