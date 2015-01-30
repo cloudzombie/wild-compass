@@ -1,0 +1,47 @@
+<table class="table table-hover">
+  <tr>
+    <th><%= check_box_tag :accept %></th>
+    <th><%= sortable :id, 'ID' %></th>
+    <th><%= sortable :name %></th>
+    <th><%= sortable :strain %></th>
+    <th><%= sortable :category %></th>
+    <th><%= sortable :initial_weight %></th>
+    <th><%= sortable :current_weight %></th>
+    <th><%= sortable :created_at %></th>
+    <th><%= sortable :updated_at %></th>
+    <th>Actions</th>
+  </tr>
+  
+  <% lots.each do |lot| %>
+  <tr>
+    <td><%= check_box_tag :accept %></td>
+    <td><%= lot.try(:id) if lot.present? %></td>
+    <td>
+      <% if can? :show, lot %>
+      <%= link_to lot.try(:to_s), lot if lot.present? %>
+      <% else %>
+      <%= lot.try(:to_s) if lot.present? %>
+      <% end %>
+    </td>
+    <td><%= strain_for lot.try(:strain) if lot.present? %></td>
+    <td><%= category_for lot.try(:category) if lot.present? %></td>
+    <td><%= weight_for lot.try(:initial_weight) if lot.present? %></td>
+    <td><%= weight_for lot.try(:current_weight) if lot.present? %></td>
+    <td><%= date_for lot.try(:created_at) if lot.present? %></td>
+    <td><%= date_for lot.try(:updated_at) if lot.present? %></td>
+    <td>
+      <%= link_to "#{fa_icon 'tags'} Containers".html_safe, '#',
+          class: 'btn-sm btn-flat btn-success', data: { toggle: 'modal', target: "##{lot.id}" } %>
+
+      <% if can? :create, Lot %>
+      <%= link_to "#{fa_icon 'tag'} New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-warning',
+          data: { toggle: 'modal', target: '.new-bag' } %>
+      <% end %>
+
+      <% if can? :update, Lot %>
+      <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_lot_path(lot), class: "btn-sm btn-flat btn-warning" %>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>

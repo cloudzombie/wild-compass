@@ -1,6 +1,20 @@
 <div class="row">
-  <%= render 'shared/box_description', title: container, described: container, color: 'primary', icon: 'square' %>
-  <%= render 'shared/box_description', title: container.lot, described: container.lot, color: 'info', icon: 'tags' %>
+  <div class="col-lg-6">
+  	<div class="row">
+  	  <div class="col-lg-6">
+ 	 	 <%= render 'shared/box_description', title: container, described: container, color: 'primary', icon: 'square' %>
+ 	  </div>
+ 	  <div class="col-lg-6">
+      <%= container.try(:lot) ? (render 'shared/box_description', title: container.try(:lot), described: container.try(:lot), color: 'info', icon: 'tags') : nil %>
+    </div>
+ 	</div>
+ 	<div class="row">
+ 	  <div class="col-lg-12">
+	    <%= render 'shared/box_history', described: container %>
+	  </div>
+	</div>
+  </div>
+  <div class="col-lg-6">
+    <%= render 'containers/show/timeline' %>
+  </div>
 </div>
-
-<%= render 'containers/show/history' %>

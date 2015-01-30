@@ -1,7 +1,20 @@
 <div class="row">
-  <%= render 'shared/box_description', title: bag, described: bag, color: 'warning', icon: 'tag' %>
-  <%= render 'shared/box_description', title: bag.try(:lot), described: bag.try(:lot), color: 'info', icon: 'tags'%>
-
+  <div class="col-lg-6">
+  	<div class="row">
+  	  <div class="col-lg-6">
+  		<%= render 'shared/box_description', title: bag, described: bag, color: 'warning', icon: 'tag' %>
+ 	  </div>
+ 	  <div class="col-lg-6">
+  		  <%= render 'shared/box_description', title: bag.try(:lot), described: bag.try(:lot), color: 'info', icon: 'tags'%>
+    </div>
+ 	</div>
+ 	<div class="row">
+ 	  <div class="col-lg-12">
+	    <%= render 'shared/box_history', described: bag %>
+	  </div>
+	</div>
+  </div>
+  <div class="col-lg-6">
+    <%= render 'bags/show/timeline' %>
+  </div>
 </div>
-
-<%= render 'bags/show/history' %>

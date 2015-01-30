@@ -1,4 +1,3 @@
-<div class="col-lg-6">
   <div class="box box-solid box-<%= color %>">
     <div class="box-header">
       <%= fa_icon icon %>
@@ -8,35 +7,48 @@
     <div class="box-body">
       <div class="row">
         <div class="col-lg-10">
-          <dl class="dl-horizontal description">
-
-            <dt>ID :</dt>
-            <dd><%= described.try(:id) if described.present? %></dd>
-            
-            <dt>Name :</dt>
-            <dd><%= described.try(:to_s) %></dd>
-            
-            <dt>Strain :</dt>
-            <dd><%= described.try(:strain) if described.present? %></dd>
+        <table class="table table-hover description">
+          <tr>
+            <th>ID :</th>
+            <td><%= described.try(:id) %></td>
+            </tr>
+            <tr>
+            <th>Name :</th>
+            <td><%= link_to described.try(:to_s), described %></td>
+          </tr>
+          <tr>
+            <th>Strain :</th>
+            <td><span class="label label-default"><%= described.try(:strain) if described.present? %></span></td>
+            </tr>
+          <tr>
             
             <% if icon != 'leaf' then %>
-            <dt>Category :</dt>
-            <dd><%= described.try(:category) if described.present? %></dd>
-            
-            <dt>Initial Weight :</dt>
-            <dd><%= weight_for described.try(:initial_weight) if described.present? %></dd>
-            
-            <dt>Current Weight :</dt>
-            <dd><%= weight_for described.try(:current_weight) if described.present? %></dd>
+            <th>Category :</th>
+            <td>
+                <span class="label <%= described.try(:category) == 'Trim' ? 'label-primary' : 'label-info'%>">
+                <%= described.try(:category).upcase if described.present? %>
+              </span>
+            </td>
+            </tr>
+          <tr>
+            <th>Initial Weight :</th>
+            <td><%= weight_for described.try(:initial_weight) if described.present? %></td>
+            </tr>
+          <tr>
+            <th>Current Weight :</th>
+            <td><%= weight_for described.try(:current_weight) if described.present? %></td>
             <% end %>
-
-            <dt>Created At :</dt>
-            <dd><%= date_for described.try(:created_at) if described.present? %></dd>
-            
-            <dt>Updated At :</dt>
-            <dd><%= date_for described.try(:updated_at) if described.present? %></dd> 
-            
-          </dl>
+</tr>
+          <tr>
+            <th>Created At :</th>
+            <td><%= date_for described.try(:created_at) if described.present? %></td>
+            </tr>
+          <tr>
+            <th>Updated At :</th>
+            <td><%= date_for described.try(:updated_at) if described.present? %></td> 
+            </tr>
+     
+          </table>
         </div>
 
         <%= render 'shared/progress_bar', weightable: described, color: color unless icon == 'leaf' %>
@@ -44,4 +56,3 @@
       </div>
     </div> 
   </div>
-</div>
