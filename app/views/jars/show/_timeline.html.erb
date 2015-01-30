@@ -46,7 +46,7 @@
         <td><%= date_for jar.bag.try(:created_at) if jar.bag.present? %></td>
         <td style="text-align:right">
           <%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %></td>
-          <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.bag.current_weight %> g <i style="float:right" class="fa fa-arrow-left"></i></td>
+          <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.current_weight %> g <i style="float:right" class="fa fa-arrow-left"></i></td>
           <td style="text-align:left"><%= link_to jar.bag, jar.bag, class: "btn-sm btn-flat btn-warning" %>
         </td>
       </tr>

@@ -14,11 +14,10 @@ module ApplicationHelper
 
   def percent_of_weight(weightable)
     number_with_precision(
-      weightable.try(:current_weight).to_d / weightable.try(:initial_weight).to_d * 100,
-      precision: 2
+      weightable.try(:current_weight).to_d / weightable.try(:initial_weight).to_d * 100
     )
-  rescue
-    '0.00'
+  rescue ZeroDivisionError
+    '0'
   end
 
 

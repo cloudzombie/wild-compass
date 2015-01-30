@@ -1,10 +1,8 @@
-<p id="notice"><%= notice %></p>
-<h4><%= jar.name %></h4>
 <div class="row">
   <div class="col-lg-6">
     <div class="row">
       <div class="col-lg-6">
-     <%= render 'shared/box_description', title: jar, described: jar, color: 'primary', icon: 'square' %>
+     <%= render 'shared/box_description', title: jar, described: jar, color: 'danger', icon: 'flask' %>
     </div>
     <div class="col-lg-6">
       <%= jar.try(:lot) ? (render 'shared/box_description', title: jar.try(:lot), described: jar.try(:lot), color: 'info', icon: 'tags') : nil %>
