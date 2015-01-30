@@ -1,156 +1,25 @@
 <div class="row">
   <div class="col-lg-6">
     <div class="row">
-      <div class="col-lg-12">
-        <div class="box box-solid box-info">
-          <div class="box-header">
-            <i class="fa fa-tag"></i>
-            <h3 class="box-title"><%= lot %></h3>
-          </div> 
-
-          <div class="box-body">
-            <div class="row">
-              <div class="col-lg-10">
-                <dl class="dl-horizontal">
-                  
-                  <dt>ID :</dt>
-                  <dd><%= lot.try(:id) if lot.present? %></dd>
-                  
-                  <dt>Name :</dt>
-                  <dd><%= lot.try(:to_s) if lot.present? %></dd>
-                  
-                  <dt>Strain :</dt>
-                  <dd><%= strain_for lot.try(:strain) if lot.present? %></dd>
-                  
-                  <dt>Category :</dt>
-                  <dd><%= category_for lot.try(:category) if lot.present? %></dd>
-                  
-                  <dt>Initial Weight : </dt>
-                  <dd><%= weight_for lot.try(:initial_weight) if lot.present? %></dd>
-
-                  <dt>Current Weight :</dt>
-                  <dd><%= weight_for lot.try(:current_weight) if lot.present? %></dd>
-                  
-                  <dt>Created At :</dt>
-                  <dd><%= date_for lot.try(:created_at) %></dd>
-                  
-                  <dt>Updated At :</dt>
-                  <dd><%= date_for lot.try(:updated_at) %></dd> 
-
-                </dl>
-              </div>
-
-              <%= render 'shared/progress_bar', weightable: lot, color: 'info' %>
-            </div>
-          </div> 
-        </div>
-      </div>
+      <div class="col-lg-6">
+     <%= render 'shared/box_description', title: lot, described: lot, color: 'info', icon: 'tags' %>
+    </div>
+    <div class="col-lg-6">
+    <% recent_container = Container.order("updated_at").last %>
+     <%= render 'shared/box_description', title: "Recently Updated - #{recent_container}", described: recent_container, color: 'primary', icon: 'square' %>
+    </div>
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <div class="box box-solid box-danger">
-          <div class="box-header">
-            <i class="fa fa-flask"></i>
-            <h3 class="box-title">History</h3>
-           </div>
-          <div class="box-body">
-            <table class="table table-hover">
-              <tr>
-                <th>Source : </th>
-                <th>Target : </th>
-                <th>Quantity : </th>
-                <th>Timestamp : </th>
-                <th>User : </th>
-              </tr>
-              <div class="nav nav-pills" role="pilllist">
-                <tr>
-                  <td><a href="#id<%= lot.id %>" aria-controls="id<%= lot.id %>" role="tab" data-toggle="tab">Plants</a></td>
-                  <td><%= lot %></td>
-                  <td><%= lot.initial_weight %></td>
-                  <td><%= lot.created_at.to_s :short %></td>
-                  <td><!--<%# bag.history.history_lines.first.user %>--></td>
-                </tr>
-
-                <% lot.history.history_lines.each do |line| %>
-                <% next if line.target.nil? %>
-                  <tr>
-                    <td><%= line.source %></td>
-                    <td><a href="#<%= line.id %>" aria-controls="<%= line.id %>" role="tab" data-toggle="tab"><%= line.target %></a></td>
-                    <td><%= line.quantity %></td>
-                    <td><%= line.created_at.to_s :short %></td>
-                    <td><!--<%#  line.user %>--></td>
-                  </tr>
-                <% end %>
-              </div>
-            </table>
-          </div> 
-        </div>
-      </div>
-    </div>
-    </div>
-    <div class="col-lg-6">
-    <div class="box box-solid box-success">
-      <div class="box-header">
-        <i class="fa fa-leaf"></i>
-        <h3 class="box-title">Timeline</h3>
-      </div>
-      <div class="box-body">
-        <table class="table table-hover">
-          <tr>
-            <th class="col-lg-2">Created At : </th>
-            <th class="col-lg-2" style="text-align:right">Object : </th>
-            <th class="col-lg-3" style="text-align:center">Event : </th>
-            <th>Object : </th>
-          </tr>
-          
-          <tr>
-            <td><%= date_for lot.try(:created_at) if lot.present? %></td>
-            <td style="text-align:right"><%= link_to "#{lot}".html_safe, lot, class: "btn-sm btn-flat btn-info" %></td>
-            <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= lot.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
-            <td style="text-align:left">
-              <% lot.plants.each do |plant| %>
-                <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
-              <% end %>
-            </td>
-          </tr>
-
-          <% ordered_by_id(lot.try(:containers)).each do |container| %>
-          <tr>
-            <td><%= date_for container.try(:created_at) if container.present? %></td>
-            <td style="text-align:right"><%= link_to "#{container}".html_safe, container, class: "btn-sm btn-flat btn-primary" %></td>
-            <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= container.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
-            <td style="text-align:left">
-              <% container.plants.each do |plant| %>
-                <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-
-          <% ordered_by_id(lot.try(:bags)).each do |bag| %>
-          <tr>
-            <td><%= date_for bag.try(:created_at) if bag.present? %></td>
-            <td style="text-align:right"><%= link_to "#{bag}".html_safe, bag, class: "btn-sm btn-flat btn-warning" %></td>
-            <td style="text-align:center"><i class="fa fa-arrow-left" style="float:left"></i> <%= bag.initial_weight %> g <i style="float:right" class="fa fa-arrow-left"></i></td> 
-            <td style="text-align:left"><%= link_to bag.container,bag.container, class: "btn-sm btn-flat btn-primary" %></td>
-          </tr>
-          <% end %>
-
-          <% ordered_by_id(lot.try(:jars)).each do |jar| %>
-            <tr>
-              <td><%= date_for jar.try(:created_at) if jar.present? %></td>
-              <td style="text-align:right">
-                <%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %></td>
-                <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.current_weight %> g <i style="float:right" class="fa fa-arrow-left"></i></td>
-                <td style="text-align:left"><%= link_to jar.bag, jar.bag, class: "btn-sm btn-flat btn-warning" %>
-              </td>
-            </tr>
-          <% end %>
-        </table>
+        <%= render 'shared/box_history', described: lot %>
       </div>
     </div>
   </div>
+  <div class="col-lg-6">
+    <%= render 'lots/show/timeline' %>
+  </div>
 </div>
+
     
 <!--<%= link_to 'Edit', edit_lot_path(lot) %> | -->
 <%= link_to 'Back', lots_path %>

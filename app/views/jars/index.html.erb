@@ -3,7 +3,7 @@
     <h3 class="box-title">Listing jars</h3>
     <div class="box-tools">
       <div class="input-group">
-        <%= form_tag(jars_path, :method => "get", id: "search-form") do %>
+        <%= form_tag(jars_path, :method => "get", id: "search-form", remote: true, autocomplete: 'off') do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
         <% end %>
         <div class="input-group-btn">
@@ -14,46 +14,8 @@
   </div><!-- /.box-header -->
 
   <div class="box-body table-responsive no-padding">
-    <table class="table table-hover">
-      <tr>
-        <th><%= check_box_tag :accept %></th>
-        <th><%= sortable :name, 'ID' %></th>
-        <th><%= sortable :strain %></th>
-        <th><%= sortable :category %></th>
-        <th><%= sortable :current_weight, 'Weight' %></th>
-        <th><%= sortable :created_at %></th>
-        <th><%= sortable :updated_at %></th>
-        <th><%= sortable :bag_id, 'Origin' %></th>
-        <th>Actions</th>
-      </tr>
-
-      <% jars.each do |jar| %>
-      <tr>
-        <td><%= check_box_tag :accept %></td>
-        <td><%= link_to jar, jar if jar.present? %></td>
-        <td><%= jar.try(:strain) if jar.present? %></td>
-        <td><%= jar.try(:category) if jar.present? %></td>
-        <td><%= weight_for jar.try(:current_weight) if jar.present? %></td>
-        <td><%= date_for jar.try(:created_at) if jar.present? %></td>
-        <td><%= date_for jar.try(:updated_at) if jar.present? %></td>
-        <td>
-          <%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %>
-        </td>
-        <td>
-          <a class="btn-sm btn-flat btn-info">New Order</a>
-          <%= render 'shared/print_label', item: jar %>
-          
-          <% if can? :show, jar %>
-          <%= link_to 'Show', jar, class: "btn-sm btn-flat btn-success" %>
-          <% end %>
-          
-          <% if can? :edit, jar %>
-          <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_jar_path(jar), class: "btn-sm btn-flat btn-warning" %>
-          <% end %>
-
-        </td>
-      </tr>
-      <% end %>
-    </table>
+    <div id='table'>
+      <%= render 'jars/ajax/table' %>
+    </div>
   </div><!-- /.box-body -->
 </div>

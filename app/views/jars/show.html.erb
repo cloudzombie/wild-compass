@@ -2,152 +2,24 @@
 <h4><%= jar.name %></h4>
 <div class="row">
   <div class="col-lg-6">
-    <div class="box box-solid box-warning">
-      <div class="box-header">
-      <i class="fa fa-tag"></i>
-      <h3 class="box-title">Description</h3>
-      </div> 
-      <div class="box-body">
-        <div class="row">
-          <div class="col-lg-10">
-            <dl class="dl-horizontal description">
-              <dt>ID :</dt>
-              <dd><%= jar.id %></dd>
-              <dt>Name :</dt>
-              <dd><%= jar %></dd>
-              <dt>Strain :</dt>
-              <dd><%= jar.bag.lot.strain %></dd>
-              <dt>Type :</dt>
-              <dd><%= jar.bag.lot.category %></dd>
-              <dt>Initial Weight: </dt>
-              <dd>
-                <%= number_with_precision((jar.initial_weight.nil? ? 0 : jar.initial_weight), precision: 2)%> g
-              </dd>
-              <dt>Current Weight :</dt>
-              <dd>
-                <%= number_with_precision((jar.current_weight.nil? ? 0 : jar.current_weight), precision: 2)%> g
-              </dd>
-              <dt>Created At:</dt>
-              <dd><%= jar.created_at.to_s :short %></dd>
-              <dt>Updated At :</dt>
-              <dd><%= jar.updated_at.to_s :short %></dd> 
-            </dl>
-          </div>
-          <div class="col-lg-2">
-            <div class="progress vertical">
-              <div class="progress-bar progress-bar-yellow" role="progressbar" aria-valuenow="<%= percent_of_weight(jar) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(jar) %>%">
-                <span class="sr-only"><%= percent_of_weight(jar) %>%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> 
+    <div class="row">
+      <div class="col-lg-6">
+     <%= render 'shared/box_description', title: jar, described: jar, color: 'primary', icon: 'square' %>
+    </div>
+    <div class="col-lg-6">
+      <%= jar.try(:lot) ? (render 'shared/box_description', title: jar.try(:lot), described: jar.try(:lot), color: 'info', icon: 'tags') : nil %>
     </div>
   </div>
-  <div class="col-lg-6">
-    <div class="box box-solid box-info">
-      <div class="box-header">
-        <i class="fa fa-tags"></i>
-        <h3 class="box-title">Origin</h3>
-      </div>
-      <div class="box-body">
-        <div class="row">
-          <div class="col-lg-10">
-            <dl class="dl-horizontal description">
-              <dt>ID :</dt>
-              <dd><%= jar.bag.lot.id %></dd>
-              <dt>Name :</dt>
-              <dd><%= jar.bag.lot %></dd>
-              <dt>Strain :</dt>
-              <dd><%= jar.bag.lot.strain %></dd>
-              <dt>Type :</dt>
-              <dd><%= jar.bag.lot.category %></dd>
-              <dt>Initial Weight :</dt>
-              <dd>
-                <%= number_with_precision((jar.bag.lot.initial_weight.nil? ? 0 : jar.bag.lot.initial_weight), precision: 2)%> g
-              </dd>
-              <dt>Current Weight :</dt>
-              <dd>
-                <%= number_with_precision((jar.bag.lot.current_weight.nil? ? 0 : jar.bag.lot.current_weight), precision: 2)%> g
-              </dd>
-              <dt>Created At :</dt>
-              <dd><%= jar.bag.lot.created_at.to_s :short %></dd>
-              <dt>Updated At :</dt>
-              <dd><%= jar.bag.lot.updated_at.to_s :short %></dd>
-            </dl>
-          </div>
-          <div class="col-lg-2">
-            <div class="progress vertical">
-              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%= percent_of_weight(jar.bag.lot) %>" aria-valuemin="0" aria-valuemax="100" style="height: <%= percent_of_weight(jar.bag.lot) %>%">
-                <span class="sr-only"><%= percent_of_weight(jar.bag.lot) %>%</span>
-              </div>
-            </div>
-          </div>
-      </div> 
-    </div>
-  </div>
-</div>
-</div>
   <div class="row">
-  <div class="col-lg-6">
-    <div class="box box-solid box-success">
-      <div class="box-header">
-        <i class="fa fa-leaf"></i>
-        <h3 class="box-title">Timeline</h3>
-      </div>
-      <div class="box-body">
-        <table class="table table-hover">
-          <tr>
-            <th class="col-lg-2">Created At : </th>
-            <th class="col-lg-2" style="text-align:right">Object : </th>
-            <th class="col-lg-3" style="text-align:center">Event : </th>
-            <th>Object : </th>
-          </tr>
-          
-          <tr>
-            <td><%= date_for jar.lot.try(:created_at) if jar.lot.present? %></td>
-            <td style="text-align:right"><%= link_to "#{jar.lot}".html_safe, jar.lot, class: "btn-sm btn-flat btn-info" %></td>
-            <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.lot.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
-            <td style="text-align:left">
-              <% jar.lot.plants.each do |plant| %>
-                <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
-              <% end %>
-            </td>
-          </tr>
-
-          <tr>
-            <td><%= date_for jar.container.try(:created_at) if jar.container.present? %></td>
-            <td style="text-align:right"><%= link_to "#{jar.container}".html_safe, jar.container, class: "btn-sm btn-flat btn-primary" %></td>
-            <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.container.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
-            <td style="text-align:left">
-              <% jar.container.plants.each do |plant| %>
-                <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
-              <% end %>
-            </td>
-          </tr>
-
-          <tr>
-            <td><%= date_for jar.bag.try(:created_at) if jar.bag.present? %></td>
-            <td style="text-align:right"><%= link_to "#{jar.bag}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %></td>
-            <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.bag.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
-            <td style="text-align:left">
-              <%= link_to jar.container, jar.container, class: "btn-sm btn-flat btn-primary" %>
-            </td>
-          </tr>
-
-            <tr>
-              <td><%= date_for jar.bag.try(:created_at) if jar.bag.present? %></td>
-              <td style="text-align:right">
-                <%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %></td>
-                <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.bag.current_weight %> g <i style="float:right" class="fa fa-arrow-left"></i></td>
-                <td style="text-align:left"><%= link_to jar.bag, jar.bag, class: "btn-sm btn-flat btn-warning" %>
-              </td>
-            </tr>
-        </table>
-      </div>
+    <div class="col-lg-12">
+      <%= render 'shared/box_history', described: jar %>
     </div>
   </div>
-
+  </div>
+  <div class="col-lg-6">
+    <%= render 'jars/show/timeline' %>
+  </div>
+</div>
   <!--
     <div class="col-lg-7">
       <div class="box box-solid box-danger">

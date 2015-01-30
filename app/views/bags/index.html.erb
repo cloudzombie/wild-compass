@@ -3,7 +3,7 @@
     <h3 class="box-title">Listing bags</h3>
     <div class="box-tools">
       <div class="input-group">
-        <%= form_tag(bags_path, :method => "get", id: "search-form") do %>
+        <%= form_tag(bags_path, :method => "get", id: "search-form", remote: true, autocomplete: 'off') do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
         <% end %>
         <div class="input-group-btn">
@@ -14,68 +14,9 @@
   </div>
 
   <div class="box-body table-responsive no-padding">
-    <table class="table table-hover">
-      <tr>
-        <th><%= check_box_tag :accept %></th>
-        <th><%= sortable :name, 'ID' %></th>
-        <th><%= sortable :strain %></th>
-        <th><%= sortable :category %></th>
-        <th><%= sortable :initial_weight %></th>
-        <th><%= sortable :current_weight %></th>
-        <th><%= sortable :created_at %></th>
-        <th><%= sortable :updated_at %></th>
-        <th><%= sortable :lot_id, 'Origins' %></th>
-        <th>Actions</th>
-      </tr>
-
-      <% bags.each do |bag| %>
-      <tr>
-        <td><%= check_box_tag :accept %></td>
-        <td>
-          <% if can? :show, bag %>
-          <%= link_to bag.try(:to_s), bag if bag.present? %>
-          <%= test_for bag if bag.present? %>
-          <%= archive_for bag if bag.present? %>
-          <% else %>
-          <%= bag.try(:to_s) if bag.present? %>
-          <%= test_for bag if bag.present? %>
-          <%= archive_for bag if bag.present? %>
-          <% end %>
-        </td>
-        <td><%= strain_for bag.try(:strain) if bag.present? %></td>
-        <td><%= category_for bag.try(:category) if bag.present? %></td>
-        <td><%= weight_for bag.try(:initial_weight) if bag.present? %></td>
-        <td><%= weight_for bag.try(:current_weight) if bag.present? %></td>
-        <td><%= date_for bag.try(:created_at) if bag.present? %></td>
-        <td><%= date_for bag.try(:updated_at) if bag.present? %></td>
-        <td>
-          <% if can? :show, Lot %>
-          <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" if bag.try(:lot).present? %>
-          <%= link_to "#{fa_icon('square')} #{bag.try(:container)}".html_safe, bag.try(:container), class: "btn-sm btn-flat btn-info" if bag.try(:container).present? %>
-          <% end %>
-        </td>
-
-        <td>
-          <%= render 'shared/print_label', item: bag %>
-
-          <% if can? :send_to_lab, Bag %>
-          <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: "btn-sm btn-flat btn-info" %>
-          <% end %>
-
-          <% if can? :reweight, Bag %>
-          <%= link_to "#{fa_icon 'flask'} Reweight".html_safe, reweight_bag_path(bag),
-              class: 'btn-sm btn-flat btn-danger reweight',
-              data: { href: reweight_bag_path(bag) } %>
-          <% end %>
-
-          <% if can? :edit, Bag %>
-          <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: "btn-sm btn-flat btn-warning" %>
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
-
-    </table>
+    <div id="table">
+      <%= render 'bags/ajax/table' %>
+    </div>
   </div><!-- /.box-body -->    
 </div><!-- /.box -->
 

@@ -1,0 +1,35 @@
+<table class="table table-hover">
+  <tr>
+    <th><%# checkbox %></th>
+    <th><%= sortable :id, 'ID' %></th>
+    <th><%= sortable :strain %></th>
+    <th><%= sortable :origin %></th>
+    <th><%= sortable :status %></th>
+    <th><%= sortable :created_at %></th>
+    <th><%= sortable :updated_at %></th>
+    <th><%= sortable :format %></th>
+    <th><%= sortable :location %></th>
+    <th><%= sortable :rfid, 'RFID' %></th>
+    <th>Actions</th>
+  </tr>
+  <% plants.each do |plant| %>
+    <tr>
+      <td><%# checkbox %></td>
+      <td><%= link_to plant, plant %></td>
+      <td><%= strain_for plant.try(:strain) if plant.present? %></td>
+      <td><%= plant.try(:origin) if plant.present? %></td>
+      <td><%= plant.try(:status) if plant.present? %></td>
+      <td><%= date_for plant.try(:created_at) if plant.present? %></td>
+      <td><%= date_for plant.try(:updated_at) if plant.present? %></td>
+      <td><%= format_for plant.try(:format) if plant.present? %></td>
+      <td><%= plant.try(:location) if plant.present? %></td>
+      <td><%= plant.try(:rfid) if plant.present? %></td>
+      <td>
+       
+        <% if can? :edit, plant %>
+        <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
