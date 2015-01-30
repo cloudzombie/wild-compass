@@ -16,3 +16,35 @@
 .modal-content {
 	padding: 5% !important;
 }
+
+#timeline > tbody > tr > td {
+  vertical-align: middle;
+}
+
+#timeline > tbody > tr > td:nth-child(4) > a {
+    line-height: 250%;
+}
+
+.description {
+  text-align:left;
+  font-size:1 em;
+}
+
+.progress.vertical {
+  height:220px;
+  width: 30px;
+  margin-top: 20px;
+  margin-left:-15px;
+}
+
+.box .box-body {
+  padding: 0;
+}
+
+#progress-bar-percentage {
+  margin-left:-15px
+}
+
+div.box-default > div.box-header {
+  background-color: #DDD;
+}

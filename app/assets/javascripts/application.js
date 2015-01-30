@@ -23,17 +23,5 @@
 //= require png
 //= require zlib
 //= require filesaver
-//= require_tree 
-
-$(function() {
-$(document).on("click","#sort th a", function() {
-$.getScript(this.href);
-return false;
-});
-$("#search_form input").keyup(function() {
-$.get($("#search_form").attr("action"), $("#search_form").serialize(), null, "script");
-return false;
-});
-});
-
-
+//= require_self
+//= require_tree .
