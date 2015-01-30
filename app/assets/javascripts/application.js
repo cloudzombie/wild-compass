@@ -16,12 +16,14 @@
 //= require jquery-ui/core
 //= require turbolinks
 //= require bootstrap
-//= require adminlte/app
+//= require admin-lte
 //= require jspdf
 //= require jspdf.plugin.addimage
 //= require jspdf.plugin.png_support
 //= require png
 //= require zlib
 //= require filesaver
-//= require_self
 //= require_tree .
+//= require_self
+
+

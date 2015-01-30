@@ -6,9 +6,9 @@ module Searchable
       return all if search.nil? || search.empty?
       query = find_by_hash(search)
       if query.empty?
-        query = find_by_id(search)
+        query = find_by_name(search)
         if query.empty?
-          query = find_by_name(search)
+          query = find_by_id(search)
           if query.empty?
             none
           else
@@ -23,9 +23,8 @@ module Searchable
     end
 
     private
-
       def find_by_name(search)
-        where('lower(name) LIKE ?', "%#{search}%".downcase)
+        where('lower(name) LIKE ?', "%#{search}%".downcase) 
       end
 
       def find_by_id(search)
