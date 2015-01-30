@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 20150130160303) do
     t.integer  "history_id"
     t.integer  "strain_id"
     t.decimal  "thc_composition", precision: 5,  scale: 2
-    t.decimal  "tbd_composition", precision: 5,  scale: 2
+    t.decimal  "cbd_composition", precision: 5,  scale: 2
   end
 
   create_table "order_lines", force: true do |t|
