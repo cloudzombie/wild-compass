@@ -46,12 +46,16 @@
   </div>
 </div>
 
-<%= form_for :reweight do |f| %>
-  <%= f.label :weight %>
-  <%= f.textbox_field :weight %>
+<%= form_for bag, url: reweight_bag_path(bag), method: :post do |f| %>
+  <div class="form-group">
+    <%= f.label :weight %>
+    <%= f.text_field :weight, class: 'form-control' %>
+  </div>
 
-  <%= f.label :message %>
-  <%= f.textbox_field :message %>
+  <div class="form-group">
+    <%= f.label :message %>
+    <%= f.text_area :message, class: 'form-control' %>
+  </div>
 
-  <%= f.submit %>
+  <%= f.submit 'Commit Reweight', class: 'btn btn-primary' %>
 <% end %>

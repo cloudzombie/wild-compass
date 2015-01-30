@@ -22,9 +22,14 @@ module Weightable
     self.quantity = 0.0
   end
 
+  def reweight
+    self.current_weight = self.weight
+  end
+
   included do
     attr_accessor :weight
     attr_accessor :quantity
+    attr_accessor :message
 
     validates :current_weight,
                presence: true,
@@ -46,12 +51,12 @@ module Weightable
                allow_blank: true,
                numericality: { greater_than_or_equal_to: 0.0 }
 
-    after_save :set_name
+    after_save :set_name, unless: :has_name?
 
-    after_initialize :set_weight
-    after_initialize :set_current_weight
-    after_initialize :set_initial_weight
-    after_initialize :set_quantity
+    after_initialize :initialize_weight, unless: :has_weight?
+    after_initialize :initialize_current_weight, unless: :has_current_weight?
+    after_initialize :initialize_initial_weight, unless: :has_initial_weight?
+    after_initialize :initialize_quantity, unless: :has_quantity?
 
     before_create :allocate_initial_weight
   end
@@ -59,7 +64,7 @@ module Weightable
   private
 
     def set_name
-      update(name: "#{identifier}-#{unique_identifier}") unless has_name?
+      update name: "#{identifier}-#{unique_identifier}"
     end
 
     def allocate_initial_weight
@@ -68,24 +73,20 @@ module Weightable
       end
     end
 
-    def set_current_weight
-      self.current_weight = 0.0 unless has_current_weight?
-      self.current_weight = current_weight.to_d
+    def initialize_current_weight
+      self.current_weight = 0.0
     end
 
-    def set_initial_weight
-      self.initial_weight = 0.0 unless has_initial_weight?
-      self.initial_weight = initial_weight.to_d
+    def initialize_initial_weight
+      self.initial_weight = 0.0
     end
 
-    def set_weight
-      self.weight = 0.0 unless has_weight?
-      self.weight = weight.to_d
+    def initialize_weight
+      self.weight = 0.0
     end
 
-    def set_quantity
-      self.quantity = 0.0 unless has_quantity?
-      self.quantity = quantity.to_d
+    def initialize_quantity
+      self.quantity = 0.0
     end
 
     def has_name?

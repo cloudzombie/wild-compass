@@ -1,4 +1,6 @@
 class ContainersController < ApplicationController
+
+  include SetWeightable
   
   helper_method :sort_column, :sort_direction
 

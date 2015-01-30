@@ -1,6 +1,7 @@
 class JarsController < ApplicationController
 
   include FindEncodable
+  include SetWeightable
 
   before_action :authorized?
 
