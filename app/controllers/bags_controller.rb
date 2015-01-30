@@ -81,7 +81,10 @@ class BagsController < ApplicationController
   end
 
   def scan
-
+    self.bag = Bag.find_by(datamatrix_hash: bag_params[:scanned_hash])
+    respond_with bag do |format|
+      format.json { render json: bag }
+    end
   end
 
   # Destroy bag.
