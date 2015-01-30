@@ -32587,6 +32587,73 @@ fieldset[disabled] .btn-vk.active {
   background-color: #ffffff;
 }
 
+/* line 1, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+#logo {
+  width: 60%;
+  height: 60%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+/* line 8, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.btn {
+  cursor: pointer !important;
+}
+
+/* line 12, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.btn-sm {
+  cursor: pointer !important;
+}
+
+/* line 16, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.modal-content {
+  padding: 5% !important;
+}
+
+/* line 20, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+#timeline > tbody > tr > td {
+  vertical-align: middle;
+}
+
+/* line 24, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+#timeline > tbody > tr > td:nth-child(4) > a {
+  line-height: 250%;
+}
+
+/* line 28, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.location > tbody > tr > td:nth-child(3) > a {
+  line-height: 250%;
+}
+
+/* line 32, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.description {
+  text-align: left;
+  font-size: 1 em;
+}
+
+/* line 37, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.progress.vertical {
+  height: 220px;
+  width: 30px;
+  margin-top: 20px;
+  margin-left: -15px;
+}
+
+/* line 44, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.box .box-body {
+  padding: 0;
+}
+
+/* line 48, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+#progress-bar-percentage {
+  margin-left: -15px;
+}
+
+/* line 52, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+div.box-default > div.box-header {
+  background-color: #DDD;
+}
+
 /* line 5, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/bags.css.scss */
 .origin-table > tr, th, td {
   padding: 5px;
@@ -32661,68 +32728,6 @@ fieldset[disabled] .btn-vk.active {
 /* line 66, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/inventory.css.scss */
 .double-underlines {
   border-bottom: 3px double #444;
-}
-
-/* line 1, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-#logo {
-  width: 60%;
-  height: 60%;
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
-
-/* line 8, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-.btn {
-  cursor: pointer !important;
-}
-
-/* line 12, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-.btn-sm {
-  cursor: pointer !important;
-}
-
-/* line 16, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-.modal-content {
-  padding: 5% !important;
-}
-
-/* line 20, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-#timeline > tbody > tr > td {
-  vertical-align: middle;
-}
-
-/* line 24, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-#timeline > tbody > tr > td:nth-child(4) > a {
-  line-height: 250%;
-}
-
-/* line 28, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-.description {
-  text-align: left;
-  font-size: 1 em;
-}
-
-/* line 33, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-.progress.vertical {
-  height: 220px;
-  width: 30px;
-  margin-top: 20px;
-  margin-left: -15px;
-}
-
-/* line 40, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-.box .box-body {
-  padding: 0;
-}
-
-/* line 44, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-#progress-bar-percentage {
-  margin-left: -15px;
-}
-
-/* line 48, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-div.box-default > div.box-header {
-  background-color: #DDD;
 }
 
 /* line 5, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/plants.css.scss */
