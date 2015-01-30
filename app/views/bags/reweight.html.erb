@@ -2,6 +2,15 @@
   var autoRefresh = setInterval(function() {
     $("#reweight-bag-scale-1-readings").load("http://localhost:8080/data").fadeIn("slow");
   }, 100);
+
+  $.ajax({
+  url: "test.html",
+  context: document.body,
+  method: 'POST'
+  }).done(function() {
+    $( this ).addClass( "done" );
+  });
+
 </script>
 
 <div class="panel panel-primary">
