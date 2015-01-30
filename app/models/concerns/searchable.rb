@@ -33,7 +33,11 @@ module Searchable
       end
 
       def find_by_hash(search)
-        query = where(datamatrix_hash: search)
+        if columns.include? (:datamatrix_hash)
+          query = where(datamatrix_hash: search)
+        else
+          none
+        end
       end
 
   end
