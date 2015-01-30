@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128161815) do
+ActiveRecord::Schema.define(version: 20150129203849) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -38,7 +38,11 @@ ActiveRecord::Schema.define(version: 20150128161815) do
     t.datetime "updated_at"
     t.integer  "location_id"
     t.string   "name"
+    t.string   "datamatrix_hash"
+    t.string   "datamatrix_text"
   end
+
+  add_index "bins", ["datamatrix_text", "datamatrix_hash"], name: "index_bins_on_datamatrix_text_and_datamatrix_hash", unique: true
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -118,6 +122,7 @@ ActiveRecord::Schema.define(version: 20150128161815) do
     t.integer  "history_id"
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
+    t.integer  "order_line_id"
   end
 
   add_index "jars", ["datamatrix_text", "datamatrix_hash"], name: "index_jars_on_datamatrix_text_and_datamatrix_hash", unique: true
@@ -151,7 +156,6 @@ ActiveRecord::Schema.define(version: 20150128161815) do
     t.datetime "updated_at"
     t.integer  "order_id"
     t.integer  "brand_id"
-    t.integer  "jar_id"
   end
 
   create_table "orders", force: true do |t|
@@ -160,11 +164,7 @@ ActiveRecord::Schema.define(version: 20150128161815) do
     t.datetime "updated_at"
     t.datetime "ordered_at"
     t.datetime "shipped_at"
-    t.string   "datamatrix_text"
-    t.string   "datamatrix_hash"
   end
-
-  add_index "orders", ["datamatrix_text", "datamatrix_hash"], name: "index_orders_on_datamatrix_text_and_datamatrix_hash", unique: true
 
   create_table "plants", force: true do |t|
     t.datetime "created_at"

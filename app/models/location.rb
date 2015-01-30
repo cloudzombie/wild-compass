@@ -11,6 +11,6 @@ class Location < ActiveRecord::Base
 
 
 	def to_s
-    	"#{ name.upcase unless name.nil? }"
+    	"#{ description.upcase unless name.nil? }"
 	end
 end

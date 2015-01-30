@@ -1,8 +1,13 @@
 class BinsController < ApplicationController
 
+  include FindEncodable
+
+  respond_to :html, :xml, :json
+
   before_action :authorized?
 
-  expose(:bin, params: :bin_params) { id_param.nil? ? Bin.new : Bin.find(id_param) }
+  expose(:bin, params: :bin_params) { find(Bin) }
+
   expose(:bins) { Bin.all }
 
   def create
@@ -23,14 +28,7 @@ class BinsController < ApplicationController
 
   def label
     respond_to do |format|
-      format.pdf do
-        render( pdf:          'label.pdf',
-                show_as_html: params[:debug].present?,
-                disposition:  'inline',
-                template:     'bins/pdf/label.pdf.erb',
-                layout:       'label.html'
-        )
-      end
+      format.html
     end
   end
 

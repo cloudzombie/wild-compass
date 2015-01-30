@@ -14,7 +14,7 @@
 
   <div class="form-group">
     <%= f.label :shipped_at %><br>
-    <%= f.text_field :shipped_at, class: 'form-control', value: DateTime.now %>
+    <%= f.text_field :shipped_at, class: 'form-control', value: nil %>
     <%= display_error_for order, :shipped_at %>
   </div>
 
@@ -26,9 +26,6 @@
 
       <%= order_lines_fields.label :quantity %>
       <%= order_lines_fields.text_field :quantity, class: 'form-control' %>
-
-      <%= order_lines_fields.label :jar_id %>
-      <%= order_lines_fields.collection_select :jar_id, Jar.all, :id, :name, {} , class: 'form-control' %>
     </div>
     <% end %>
     <%= display_error_for order, :order_lines %>

@@ -1,13 +1,9 @@
-require 'open-uri'
-require 'digest'
-
 class Jar < ActiveRecord::Base
 
   include Weightable
   include Accountable
   include Storyable
   include Searchable
-  include Labelizable
   include Encodable
 
 

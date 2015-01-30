@@ -7,7 +7,14 @@
 
 <ul>
   <% order.order_lines.each do |line| %>
-    <li><%= line %></li>
+    <li>
+      <%= line %>
+      <ul>
+        <% line.jars.each do |jar| %>
+          <li><%= jar %></li>
+        <% end %>
+      </ul>
+    </li>
   <% end %>
 </ul>
 

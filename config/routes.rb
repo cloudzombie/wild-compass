@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   # Resources
   resources :orders do
     member do
-      get 'datamatrix'
       get 'fulfill'
     end
   end
@@ -60,7 +59,9 @@ Rails.application.routes.draw do
   resources :strains
   
   resources :brands do
-    member { get 'available' }
+    member do
+      get 'available'
+    end
   end
 
   resources :containers
@@ -73,11 +74,7 @@ Rails.application.routes.draw do
       resources :users
 
       # Resources
-      resources :orders do
-        member do
-          get 'datamatrix'
-        end
-      end
+      resources :orders
 
       resources :plants
       
@@ -99,7 +96,9 @@ Rails.application.routes.draw do
       resources :strains
       
       resources :brands do
-        member { get 'available' }
+        member do
+          get 'available'
+        end
       end
 
       resources :containers

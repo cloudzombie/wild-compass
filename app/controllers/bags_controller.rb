@@ -89,7 +89,6 @@ class BagsController < ApplicationController
   def label
     respond_to do |format|
       format.html
-      format.js
     end
   end
 

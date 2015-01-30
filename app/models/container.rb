@@ -19,7 +19,7 @@ class Container < ActiveRecord::Base
 
   accepts_nested_attributes_for :plants
 
-	belongs_to :lot
+  has_and_belongs_to_many :lots, -> { uniq }
 
   has_many :bags
 
@@ -57,6 +57,12 @@ class Container < ActiveRecord::Base
 
   def strain
     strains.first
+  rescue
+    ''
+  end
+
+  def lot
+    lots.first
   rescue
     ''
   end
