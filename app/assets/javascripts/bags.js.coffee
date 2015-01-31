@@ -40,13 +40,15 @@ $(document).ready ->
     else
       bag.readings = parseInt($('#reweight-bag-scale-1-readings').text())
 
+scale1AutoRefresh = undefined
+
 reweightBagStep1 = ->
   state = 'step-1'
   $('#reweight-bag-step-1').show()
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').hide()
   $('#reweight-bag-scale-display').hide()
-  window.clearInterval(readScale1(), 100)
+  clearInterval(scale1AutoRefresh)
 
 reweightBagStep2 = ->
   state = 'step-2'
@@ -54,8 +56,7 @@ reweightBagStep2 = ->
   $('#reweight-bag-step-2').show()
   $('#reweight-bag-step-3').hide()
   $('#reweight-bag-scale-display').show()
-  window.setInterval(readScale1(), 100)
-
+  scale1AutoRefresh = setInterval(readScale1(), 100)
 
 reweightBagStep3 = ->
   state = 'step-3'
@@ -63,7 +64,7 @@ reweightBagStep3 = ->
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').show()
   $('#reweight-bag-scale-display').hide()
-  window.clearInterval(readScale1(), 100)
+  clearInterval(scale1AutoRefresh)
 
 reweightErrorResetProcess = ->
   reweightBagStep1()
