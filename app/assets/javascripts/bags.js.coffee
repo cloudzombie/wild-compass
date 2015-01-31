@@ -79,12 +79,11 @@ scanBag = ->
     $('#reweight-bag').data('href') + '.json',
     bag:
       scanned_hash: $('#reweight-bag').val()
-  ).done( (data) ->
+  ).done (data) ->
     if data.bag.match
       reweightBagStep2()
     else
       reweightErrorResetProcess()
-  )
 
 readScale1 = ->
   $.get('http://localhost:8080/data').done (data) ->
