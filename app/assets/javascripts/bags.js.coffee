@@ -28,37 +28,34 @@ $(document).ready ->
 
   # Detect weight change
   $('#reweight-bag-scale-1-readings').change (event) ->
-    readings = undefined
-    count = 0
-    if readings == parseInt($('#reweight-bag-scale-1-readings').text())
-      count += 1
-      if count >= 30
-        reweightBagStep3()
-    else
-      bag.readings = parseInt($('#reweight-bag-scale-1-readings').text())
+    text = $('#reweight-bag-scale-1-readings').text()
+    alert text
 
-scale1AutoRefresh = undefined
+scale1AutoRefresh = null
 
+# Step 1 of reweight process
 reweightBagStep1 = ->
   $('#reweight-bag-step-1').show()
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').hide()
   $('#reweight-bag-scale-display').hide()
-  window.clearInterval(scale1AutoRefresh)
+  clearInterval(scale1AutoRefresh)
 
+# Step 2 of reweight process
 reweightBagStep2 = ->
   $('#reweight-bag-step-1').hide()
   $('#reweight-bag-step-2').show()
   $('#reweight-bag-step-3').hide()
   $('#reweight-bag-scale-display').show()
-  scale1AutoRefresh = window.setInterval(readScale1(), 100)
+  scale1AutoRefresh = setInterval readScale1, 100
 
+# Step 3 of reweight process
 reweightBagStep3 = ->
   $('#reweight-bag-step-1').hide()
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').show()
-  $('#reweight-bag-scale-display').hide()
-  window.clearInterval(scale1AutoRefresh)
+  # $('#reweight-bag-scale-display').hide()
+  clearInterval(scale1AutoRefresh)
 
 # Reset Reweight Process
 reweightErrorResetProcess = ->
@@ -83,5 +80,6 @@ scanBag = ->
 
 # Read data from scale 1
 readScale1 = ->
-  $.get('http://localhost:8080/data').done (data) ->
-    $('#reweight-bag-scale-1-readings').val(data)
+  $.get 'http://localhost:8080/data'
+    .done (data) ->
+      $('#reweight-bag-scale-1-readings').val(data)
