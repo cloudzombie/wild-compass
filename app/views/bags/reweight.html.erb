@@ -1,11 +1,3 @@
-<script>
-  var autoRefresh = setInterval(function() {
-    $.get('http://localhost:8080/data', function(data) {
-      $('#reweight-bag-scale-1-readings').val(data);
-    });
-  }, 100);
-</script>
-
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title"><strong>Bag Reweight</strong></h3>
@@ -23,10 +15,11 @@
               <div class="form-group">
                 <div class="input-group">
                   <%= f.label :scanned_hash, class: 'input-group-addon' do %>
-                    <strong class="col-md-2">Scan Bag :</strong>
+                    <strong class="text-primary">Scan Bag :</strong>
                   <% end %>
 
-                  <%= f.text_field :scanned_hash, id: 'reweight-bag', class: 'form-control' %>
+                  <%= f.text_field :scanned_hash, id: 'reweight-bag',
+                      class: 'form-control', data: { href: scan_bag_path(bag) } %>
                 </div>
               </div>
             </div>
@@ -46,17 +39,19 @@
             <div class="form-group">
               <div class="input-group">
                 <%= f.label :weight, class: 'input-group-addon' do %>
-                  <strong>Weight (Scale 1) :</strong>
+                  <strong class="text-primary">Weight (Scale 1) :</strong>
                 <% end %>
 
                 <%= f.text_field :weight, id: 'reweight-bag-scale-1-readings',
                     class: 'form-control text-center', disabled: true %>
                 
+                <% if params[:debug] %>
                 <div class="input-group-btn">
                   <%= link_to '#', class: 'btn btn-primary', id: 'reweight-zero-scale-1-btn' do %>
                     <strong>ZERO</strong>
                   <% end %>
                 </div>
+                <% end %>
               </div>
             </div>
           </div>

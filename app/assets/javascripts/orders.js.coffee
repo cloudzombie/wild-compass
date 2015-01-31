@@ -5,34 +5,28 @@
 FulfillScale =
   SCALE1_URL: 'http://localhost:8080'
   SCALE2_URL: 'http://localhost:8081'
-  SCALE1_METHOD: 'GET'
-  SCALE2_METHOD: 'GET'
 
 $(document).ready ->
 
   # Toggle disabled on Fulfill Button if scale 1 responds
-  $.ajax
-    url: FulfillScale.SCALE1_URL
-    type: FulfillScale.SCALE1_METHOD
+  $.get
+    url: 'http://localhost:8080'
     error: ->
       $(".fulfill").addClass 'disabled'
       $(".fulfill").removeAttr 'href'
-    
     success: ->
       $(".fulfill").removeClass 'disabled'
-      $(".fulfill").addAttr 'href'
+      $(".fulfill").addAttr('href', $(".fulfill").data('href'))
 
   # Toggle disabled on fulfill Button if scale 2 responds
-  $.ajax
-    url: FulfillScale.SCALE2_URL
-    type: FulfillScale.SCALE2_METHOD
+  $.get
+    url: 'http://localhost:8081'
     error: ->
       $(".fulfill").addClass 'disabled'
       $(".fulfill").removeAttr 'href'
-    
     success: ->
       $(".fulfill").removeClass 'disabled'
-      $(".fulfill").addAttr 'href'
+      $(".fulfill").addAttr('href', $('fulfill').data('href'))
 
   # Zero scale 1
   $("#zero-scale-1-btn").click (event) ->

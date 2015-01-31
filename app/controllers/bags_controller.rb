@@ -85,10 +85,8 @@ class BagsController < ApplicationController
       format.html { redirect_to bags_path, notice: "#{self.bag == Bag.find_by(datamatrix_hash: bag_params[:scanned_hash])}" }
       format.json do
         render json: {
-          data: {
-            bag: {
-              match: self.bag == Bag.find_by(datamatrix_hash: bag_params[:scanned_hash])
-            }
+          bag: {
+            match: self.bag == Bag.find_by(datamatrix_hash: bag_params[:scanned_hash])
           }
         } 
       end
