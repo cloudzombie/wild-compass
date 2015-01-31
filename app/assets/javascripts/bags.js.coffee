@@ -48,7 +48,7 @@ reweightBagStep1 = ->
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').hide()
   $('#reweight-bag-scale-display').hide()
-  clearInterval(scale1AutoRefresh)
+  window.clearInterval(scale1AutoRefresh)
 
 reweightBagStep2 = ->
   state = 'step-2'
@@ -56,7 +56,7 @@ reweightBagStep2 = ->
   $('#reweight-bag-step-2').show()
   $('#reweight-bag-step-3').hide()
   $('#reweight-bag-scale-display').show()
-  scale1AutoRefresh = setInterval(readScale1(), 100)
+  scale1AutoRefresh = window.setInterval(readScale1(), 100)
 
 reweightBagStep3 = ->
   state = 'step-3'
@@ -64,7 +64,7 @@ reweightBagStep3 = ->
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').show()
   $('#reweight-bag-scale-display').hide()
-  clearInterval(scale1AutoRefresh)
+  window.clearInterval(scale1AutoRefresh)
 
 reweightErrorResetProcess = ->
   reweightBagStep1()
@@ -88,4 +88,4 @@ scanBag = ->
 
 readScale1 = ->
   $.get('http://localhost:8080/data').done (data) ->
-      $('#reweight-bag-scale-1-readings').val(data)
+    $('#reweight-bag-scale-1-readings').val(data)
