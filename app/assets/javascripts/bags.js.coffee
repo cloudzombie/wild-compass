@@ -28,13 +28,15 @@ $(document).ready ->
 
   # Detect weight change
   $('#reweight-bag-scale-1-readings').change (event) ->
-    text = $('#reweight-bag-scale-1-readings').text()
-    alert text
+    weight = parseFloat($('#reweight-bag-scale-1-readings').val().trim())
+    reweightBagStep3()
+    $('#reweight-bag-scale-1-readings').val(weight)
 
 scale1AutoRefresh = null
 
 # Step 1 of reweight process
 reweightBagStep1 = ->
+  reweightResetScale1()
   $('#reweight-bag-step-1').show()
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').hide()
@@ -60,7 +62,6 @@ reweightBagStep3 = ->
 # Reset Reweight Process
 reweightErrorResetProcess = ->
   reweightBagStep1()
-  reweightResetScale1()
 
 # Reset scale 1
 reweightResetScale1 = ->
