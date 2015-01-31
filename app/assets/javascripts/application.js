@@ -11,10 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
+//= require turbolinks
 //= require jquery_ujs
 //= require jquery-ui/core
-//= require turbolinks
+//= require jquery.turbolinks
 //= require bootstrap
 //= require adminlte/app
 //= require jspdf

@@ -2,15 +2,6 @@
   var autoRefresh = setInterval(function() {
     $("#reweight-bag-scale-1-readings").load("http://localhost:8080/data").fadeIn("slow");
   }, 100);
-
-  scanBag = function() {
-    $.ajax({
-      url: '<%= scan_bag_path(bag) %>',
-      type: 'POST'
-    }).done(function(data) {
-      console.log("RESPONSE : "data);
-    });
-  }
 </script>
 
 <div class="panel panel-primary">
@@ -26,7 +17,7 @@
         <!-- <p class="alert alert-danger"><strong>Wrong bag!</strong></p> -->
         <div id="reweight-bag-scan">
           <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-8 col-md-offset-2">
               <div class="form-group">
                 <div class="input-group">
                   <%= f.label :scanned_hash, class: 'input-group-addon' do %>
@@ -49,7 +40,7 @@
 
       <div id="reweight-bag-scale-display">
         <div class="row">
-          <div class="col-md-6 col-md-offset-6">
+          <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
               <div class="input-group">
                 <%= f.label :weight, class: 'input-group-addon' do %>
