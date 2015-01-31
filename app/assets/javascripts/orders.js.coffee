@@ -16,7 +16,7 @@ $(document).ready ->
       $(".fulfill").removeAttr 'href'
     success: ->
       $(".fulfill").removeClass 'disabled'
-      $(".fulfill").addAttr('href', $(".fulfill").data('href'))
+      $(".fulfill").attr('href', $(".fulfill").data('href'))
 
   # Toggle disabled on fulfill Button if scale 2 responds
   $.get
@@ -26,7 +26,7 @@ $(document).ready ->
       $(".fulfill").removeAttr 'href'
     success: ->
       $(".fulfill").removeClass 'disabled'
-      $(".fulfill").addAttr('href', $('fulfill').data('href'))
+      $(".fulfill").attr('href', $('fulfill').data('href'))
 
   # Zero scale 1
   $("#zero-scale-1-btn").click (event) ->

@@ -6,16 +6,13 @@
 $(document).ready ->
 
   # Toggle disabled on Reweight Button if scale 1 responds
-  $.get(
-    url: 'http://localhost:8080'
-    error: ->
+  $.get 'http://localhost:8080'
+    .done ->
       $('.reweight').addClass('disabled')
       $('.reweight').removeAttr('href')
-    success: ->
+    .fail ->
       $('.reweight').removeClass('disabled')
-      $('.reweight').addAttr('href', $('.reweight').data('href'))
-    ).done (data) ->
-      console.log("TOGGLE REWEIGHT BUTTON : ", data)
+      $('.reweight').attr('href', $('.reweight').data('href'))
 
   # Zero scale 1
   $("#reweight-zero-scale-1-btn").click (event) ->
@@ -43,7 +40,6 @@ $(document).ready ->
 scale1AutoRefresh = undefined
 
 reweightBagStep1 = ->
-  state = 'step-1'
   $('#reweight-bag-step-1').show()
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').hide()
@@ -51,7 +47,6 @@ reweightBagStep1 = ->
   window.clearInterval(scale1AutoRefresh)
 
 reweightBagStep2 = ->
-  state = 'step-2'
   $('#reweight-bag-step-1').hide()
   $('#reweight-bag-step-2').show()
   $('#reweight-bag-step-3').hide()
@@ -59,21 +54,22 @@ reweightBagStep2 = ->
   scale1AutoRefresh = window.setInterval(readScale1(), 100)
 
 reweightBagStep3 = ->
-  state = 'step-3'
   $('#reweight-bag-step-1').hide()
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').show()
   $('#reweight-bag-scale-display').hide()
   window.clearInterval(scale1AutoRefresh)
 
+# Reset Reweight Process
 reweightErrorResetProcess = ->
   reweightBagStep1()
   reweightResetScale1()
 
+# Reset scale 1
 reweightResetScale1 = ->
-  $.get 'localhost:8080/zero', (data) ->
-    console.log("RESET SCALE 1 : ", data)
+  $.get 'http://localhost:8080/zero'
 
+# Scan bag's datamatrix
 scanBag = ->
   $.post(
     $('#reweight-bag').data('href') + '.json',
@@ -85,6 +81,7 @@ scanBag = ->
     else
       reweightErrorResetProcess()
 
+# Read data from scale 1
 readScale1 = ->
   $.get('http://localhost:8080/data').done (data) ->
     $('#reweight-bag-scale-1-readings').val(data)
