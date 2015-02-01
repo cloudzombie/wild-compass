@@ -14,13 +14,6 @@ $(document).ready ->
       $('.reweight').prop('disabled', false)
       $('.reweight').attr('href', $('.reweight').data('href'))
 
-  # Zero scale 1
-  $("#reweight-zero-scale-1-btn").click (event) ->
-    event.preventDefault()
-    reweightResetScale1()
-
-  reweightBagStep1()
-
   # Detect bag id
   $('#reweight-bag-scan').submit (event) ->
     event.preventDefault()
@@ -32,11 +25,12 @@ $(document).ready ->
     reweightBagStep3()
     $('#reweight-bag-scale-1-readings').val(weight)
 
+  reweightBagStep1()
+
 scale1AutoRefresh = null
 
 # Step 1 of reweight process
 reweightBagStep1 = ->
-  reweightResetScale1()
   $('#reweight-bag-step-1').show()
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').hide()
@@ -62,6 +56,7 @@ reweightBagStep3 = ->
 # Reset Reweight Process
 reweightErrorResetProcess = ->
   reweightBagStep1()
+  reweightResetScale1()
 
 # Reset scale 1
 reweightResetScale1 = ->
