@@ -25,7 +25,7 @@
       <tr>
         <td><%= described if described.present? %></td>
         <td><%= line.try(:target) %></td>
-        <td><%= line.try(:quantity) %> g</td>
+        <td><%= weight_for line.try(:quantity) %></td>
         <td><%= date_for line.try(:created_at) %></td>
         <td><%= line.try(:user) %></td>
         <td><%= line.try(:message) %></td>
