@@ -12,7 +12,7 @@ $(document).ready ->
       $('.reweight').removeAttr('href')
     .done ->
       $('.reweight').prop('disabled', false)
-      $('.reweight').attr('href', $('.reweight').data('href'))
+      $('.reweight').attr('href', this.data('href'))
 
   # Detect bag id
   $('#reweight-bag-scan').submit (event) ->

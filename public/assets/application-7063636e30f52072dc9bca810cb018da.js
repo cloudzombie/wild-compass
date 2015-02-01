@@ -19586,36 +19586,32 @@ var saveAs = saveAs
 	return saveAs;
 }(self));
 (function() {
-  var readScale1, reweightBagStep1, reweightBagStep2, reweightBagStep3, reweightErrorResetProcess, reweightResetScale1, scale1AutoRefresh, scanBag;
+  var readScale1, reweightBagStep1, reweightBagStep2, reweightBagStep3, reweightErrorResetProcess, scale1AutoRefresh, scanBag;
 
   $(document).ready(function() {
-    $.get('http://localhost:8080').done(function() {
-      $('.reweight').addClass('disabled');
+    $.get('http://localhost:8080').fail(function() {
+      $('.reweight').prop('disabled', true);
       return $('.reweight').removeAttr('href');
-    }).fail(function() {
-      $('.reweight').removeClass('disabled');
-      return $('.reweight').attr('href', $('.reweight').data('href'));
+    }).done(function() {
+      $('.reweight').prop('disabled', false);
+      return $('.reweight').attr('href', this.data('href'));
     });
-    $("#reweight-zero-scale-1-btn").click(function(event) {
-      event.preventDefault();
-      return reweightResetScale1();
-    });
-    reweightBagStep1();
     $('#reweight-bag-scan').submit(function(event) {
       event.preventDefault();
       return scanBag();
     });
-    return $('#reweight-bag-scale-1-readings').change(function(event) {
-      var text;
-      text = $('#reweight-bag-scale-1-readings').val().trim();
-      return alert(text);
+    $('#reweight-bag-scale-1-readings').change(function(event) {
+      var weight;
+      weight = parseFloat($('#reweight-bag-scale-1-readings').val().trim());
+      reweightBagStep3();
+      return $('#reweight-bag-scale-1-readings').val(weight);
     });
+    return reweightBagStep1();
   });
 
   scale1AutoRefresh = null;
 
   reweightBagStep1 = function() {
-    reweightResetScale1();
     $('#reweight-bag-step-1').show();
     $('#reweight-bag-step-2').hide();
     $('#reweight-bag-step-3').hide();
@@ -19640,10 +19636,6 @@ var saveAs = saveAs
 
   reweightErrorResetProcess = function() {
     return reweightBagStep1();
-  };
-
-  reweightResetScale1 = function() {
-    return $.get('http://localhost:8080/zero');
   };
 
   scanBag = function() {
@@ -19701,35 +19693,22 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  var FulfillScale, errorResetProcess, resetScale1, resetScale2, step1, step2, step3, step4;
-
-  FulfillScale = {
-    SCALE1_URL: 'http://localhost:8080',
-    SCALE2_URL: 'http://localhost:8081'
-  };
+  var errorResetProcess, resetScale1, resetScale2, step1, step2, step3, step4;
 
   $(document).ready(function() {
-    $.get({
-      url: 'http://localhost:8080',
-      error: function() {
-        $(".fulfill").addClass('disabled');
-        return $(".fulfill").removeAttr('href');
-      },
-      success: function() {
-        $(".fulfill").removeClass('disabled');
-        return $(".fulfill").attr('href', $(".fulfill").data('href'));
-      }
+    $.get('http://localhost:8080').done(function() {
+      $(".fulfill").removeClass('disabled');
+      return $(".fulfill").attr('href', $(".fulfill").data('href'));
+    }).fail(function() {
+      $(".fulfill").addClass('disabled');
+      return $(".fulfill").removeAttr('href');
     });
-    $.get({
-      url: 'http://localhost:8081',
-      error: function() {
-        $(".fulfill").addClass('disabled');
-        return $(".fulfill").removeAttr('href');
-      },
-      success: function() {
-        $(".fulfill").removeClass('disabled');
-        return $(".fulfill").attr('href', $('fulfill').data('href'));
-      }
+    $.get('http://localhost:8081').done(function() {
+      $(".fulfill").removeClass('disabled');
+      return $(".fulfill").attr('href', $('fulfill').data('href'));
+    }).fail(function() {
+      $(".fulfill").addClass('disabled');
+      return $(".fulfill").removeAttr('href');
     });
     $("#zero-scale-1-btn").click(function(event) {
       event.preventDefault();
@@ -19742,28 +19721,18 @@ var saveAs = saveAs
     step1();
     $('#scan-jar').submit(function(event) {
       event.preventDefault();
-      return $.ajax({
-        url: '/jars/' + $('#jar').val(),
-        type: 'GET',
-        error: function() {
-          return errorResetProcess();
-        },
-        success: function() {
-          return step2();
-        }
+      return $.get('/jars/' + $('#jar').val()).done(function() {
+        return step2();
+      }).fail(function() {
+        return errorResetProcess();
       });
     });
     return $('#scan-bag').submit(function(event) {
       event.preventDefault();
-      return $.ajax({
-        url: '/bags/' + $('#bag').val(),
-        type: 'GET',
-        error: function() {
-          return errorResetProcess();
-        },
-        success: function() {
-          return step3();
-        }
+      return $.get('/bags/' + $('#bag').val()).done(function() {
+        return step3();
+      }).fail(function() {
+        return errorResetProcess();
       });
     });
   });
@@ -19814,24 +19783,16 @@ var saveAs = saveAs
   };
 
   errorResetProcess = function() {
-    var state;
-    state = 'step-1';
     resetScale1();
     return resetScale2();
   };
 
   resetScale1 = function() {
-    return $.ajax({
-      url: "http://127.0.0.1:8080/zero",
-      success: function(data) {}
-    });
+    return $.get('http://localhost:8080/zero');
   };
 
   resetScale2 = function() {
-    return $.ajax({
-      url: "http://127.0.0.1:8081/zero",
-      success: function(data) {}
-    });
+    return $.get('http://localhost:8081/zero');
   };
 
 }).call(this);
