@@ -23,7 +23,7 @@ module Weightable
   end
 
   def reweight
-    update(current_weight: weight)
+    update(current_weight: weight - tare_weight)
   end
 
   included do

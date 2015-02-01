@@ -56,11 +56,11 @@ reweightBagStep3 = ->
 # Reset Reweight Process
 reweightErrorResetProcess = ->
   reweightBagStep1()
-  reweightResetScale1()
+  # reweightResetScale1()
 
 # Reset scale 1
-reweightResetScale1 = ->
-  $.get 'http://localhost:8080/zero'
+# reweightResetScale1 = ->
+  # $.get 'http://localhost:8080/zero'
 
 # Scan bag's datamatrix
 scanBag = ->

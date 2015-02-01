@@ -8,13 +8,16 @@
     <% if params[:debug] %>
 
     <%= form_for bag, url: reweight_bag_path(bag), method: :post do |f| %>
+      <%= f.label :tare_weight %>
+      <%= f.text_field :tare_weight, class: 'form-control' %>
+
       <%= f.label :weight %>
-      <%= f.text_field :weight %>
+      <%= f.text_field :weight, class: 'form-control' %>
 
       <%= f.label :message %>
-      <%= f.text_field :message %>
+      <%= f.text_field :message, class: 'form-control' %>
                 
-      <%= f.submit %>
+      <%= f.submit 'Commit Reweight', class: 'btn btn-primary' %>
     <% end %>
 
     <% else %>
@@ -64,6 +67,9 @@
 
       <div id="reweight-bag-step-3">
         <div class="form-group">
+          <%= f.label :tare_weight %>
+          <%= f.text_field :tare_weight, class: 'form-control' %>
+
           <%= f.label :message, 'Note' %>
           <%= f.text_area :message, class: 'form-control' %>
         </div>

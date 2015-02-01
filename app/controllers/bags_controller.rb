@@ -52,9 +52,10 @@ class BagsController < ApplicationController
   def reweight
     if request.post?
 
-      bag.weight   = bag_params[:weight].to_d
-      bag.message  = bag_params[:message]
-      bag.quantity = bag_params[:weight].to_d
+      bag.weight      = bag_params[:weight].to_d
+      bag.message     = bag_params[:message]
+      bag.quantity    = bag_params[:weight].to_d
+      bag.tare_weight = bag_params[:tare_weight].to_d
 
       if Transaction.reweight( bag ).weight( bag.weight ).by( current_user ).because( bag.message ).commit
         redirect_to bag, notice: 'Bag was successfully reweighted.'
@@ -124,7 +125,7 @@ class BagsController < ApplicationController
       params.require(:bag).permit(
         :quantity,     :weight, :message,        :initial_weight,
         :container_id, :name,   :current_weight, :bin_id,
-        :lot_id,       :scanned_hash
+        :lot_id,       :scanned_hash,            :tare_weight
       )
     end
 
