@@ -5,6 +5,8 @@
 # Page ready hook
 $(document).ready ->
 
+  $('input:text').attr('autocomplete', 'off')
+
   # Toggle disabled on Reweight Button if scale 1 responds
   $.get 'http://localhost:8080'
     .fail ->
@@ -18,6 +20,14 @@ $(document).ready ->
   $('#reweight-bag-scan').submit (event) ->
     event.preventDefault()
     scanBag()
+
+  $('#reweight-bag-weight').submit (event) ->
+    message = $('#reweight-bag-message')
+    tareWeight = $('#reweight-bag-tare-weight')
+    if message && message.val() && tareWeight && tareWeight.val()
+      return
+    else
+      event.preventDefault()
 
   # Detect weight change
   $('#reweight-bag-scale-1-readings').change (event) ->
@@ -50,7 +60,7 @@ reweightBagStep3 = ->
   $('#reweight-bag-step-1').hide()
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').show()
-  # $('#reweight-bag-scale-display').hide()
+  $('#reweight-bag-tare-weight').focus()
   clearInterval(scale1AutoRefresh)
 
 # Reset Reweight Process

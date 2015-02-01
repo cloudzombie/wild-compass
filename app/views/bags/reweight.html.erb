@@ -35,7 +35,7 @@
                   <% end %>
 
                   <%= f.text_field :scanned_hash, id: 'reweight-bag',
-                      class: 'form-control', data: { href: scan_bag_path(bag) } %>
+                      class: 'form-control', data: { href: scan_bag_path(bag) }, autofocus: true %>
                 </div>
               </div>
             </div>
@@ -44,7 +44,7 @@
       </div>
     <% end %>
 
-    <%= form_for bag, url: reweight_bag_path(bag), method: :post do |f| %>
+    <%= form_for bag, url: reweight_bag_path(bag), method: :post, html: { id: 'reweight-bag-weight' } do |f| %>
       <div id="reweight-bag-step-2">
         <p class="alert alert-info"><strong>Please put bag on scale 1...</strong></p>
       </div>
@@ -67,11 +67,11 @@
 
       <div id="reweight-bag-step-3">
         <div class="form-group">
-          <%= f.label :tare_weight %>
-          <%= f.text_field :tare_weight, class: 'form-control' %>
+          <%= f.label :tare_weight, 'Empty Bag Weight' %>
+          <%= f.text_field :tare_weight, class: 'form-control', id: 'reweight-bag-tare-weight', value: '', placeholder: '0.0' %>
 
           <%= f.label :message, 'Note' %>
-          <%= f.text_area :message, class: 'form-control' %>
+          <%= f.text_area :message, class: 'form-control', id: 'reweight-bag-message', value: '', placeholder: 'DD/MM/YYYY - Reweight' %>
         </div>
 
         <%= f.submit 'Commit Reweight', class: 'btn btn-primary' %>

@@ -19589,6 +19589,7 @@ var saveAs = saveAs
   var readScale1, reweightBagStep1, reweightBagStep2, reweightBagStep3, reweightErrorResetProcess, scale1AutoRefresh, scanBag;
 
   $(document).ready(function() {
+    $('input:text').attr('autocomplete', 'off');
     $.get('http://localhost:8080').fail(function() {
       $('.reweight').prop('disabled', true);
       return $('.reweight').removeAttr('href');
@@ -19599,6 +19600,16 @@ var saveAs = saveAs
     $('#reweight-bag-scan').submit(function(event) {
       event.preventDefault();
       return scanBag();
+    });
+    $('#reweight-bag-weight').submit(function(event) {
+      var message, tareWeight;
+      message = $('#reweight-bag-message');
+      tareWeight = $('#reweight-bag-tare-weight');
+      if (message && message.val() && tareWeight && tareWeight.val()) {
+
+      } else {
+        return event.preventDefault();
+      }
     });
     $('#reweight-bag-scale-1-readings').change(function(event) {
       var weight;
@@ -19631,6 +19642,7 @@ var saveAs = saveAs
     $('#reweight-bag-step-1').hide();
     $('#reweight-bag-step-2').hide();
     $('#reweight-bag-step-3').show();
+    $('#reweight-bag-tare-weight').focus();
     return clearInterval(scale1AutoRefresh);
   };
 
