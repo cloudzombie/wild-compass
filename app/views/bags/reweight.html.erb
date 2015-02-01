@@ -4,6 +4,20 @@
   </div>
 
   <div class="panel-body">
+
+    <% if params[:debug] %>
+
+    <%= form_for bag, url: reweight_bag_path(bag), method: :post do |f| %>
+      <%= f.label :weight %>
+      <%= f.text_field :weight %>
+
+      <%= f.label :message %>
+      <%= f.text_field :message %>
+                
+      <%= f.submit %>
+    <% end %>
+
+    <% else %>
     
     <%= form_for bag, url: scan_bag_path(bag), method: :post, html: { id: 'reweight-bag-scan' } do |f| %>
       <div id="reweight-bag-step-1">
@@ -42,16 +56,7 @@
                   <strong class="text-primary">Weight (Scale 1) :</strong>
                 <% end %>
 
-                <%= f.text_field :weight, id: 'reweight-bag-scale-1-readings',
-                    class: 'form-control text-center', readonly: true %>
-                
-                <% if params[:debug] %>
-                <div class="input-group-btn">
-                  <%= link_to '#', class: 'btn btn-primary', id: 'reweight-zero-scale-1-btn' do %>
-                    <strong>ZERO</strong>
-                  <% end %>
-                </div>
-                <% end %>
+                <%= f.text_field :weight, id: 'reweight-bag-scale-1-readings', class: 'form-control text-center', readonly: true %>
               </div>
             </div>
           </div>
@@ -60,12 +65,13 @@
 
       <div id="reweight-bag-step-3">
         <div class="form-group">
-          <%= f.label :message %>
+          <%= f.label :message, 'Note' %>
           <%= f.text_area :message, class: 'form-control' %>
         </div>
 
         <%= f.submit 'Commit Reweight', class: 'btn btn-primary' %>
       </div>
+    <% end %>
     <% end %>
 
   </div>

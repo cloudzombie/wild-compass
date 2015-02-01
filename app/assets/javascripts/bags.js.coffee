@@ -7,11 +7,11 @@ $(document).ready ->
 
   # Toggle disabled on Reweight Button if scale 1 responds
   $.get 'http://localhost:8080'
-    .done ->
-      $('.reweight').addClass('disabled')
-      $('.reweight').removeAttr('href')
     .fail ->
-      $('.reweight').removeClass('disabled')
+      $('.reweight').prop('disabled', true)
+      $('.reweight').removeAttr('href')
+    .done ->
+      $('.reweight').prop('disabled', false)
       $('.reweight').attr('href', $('.reweight').data('href'))
 
   # Zero scale 1

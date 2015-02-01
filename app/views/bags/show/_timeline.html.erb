@@ -14,7 +14,7 @@
       <tr>
         <td><%= date_for bag.lot.try(:created_at) if bag.lot.present? %></td>
         <td style="text-align:right"><%= link_to "#{bag.lot}".html_safe, bag.lot, class: "btn-sm btn-flat btn-info" %></td>
-        <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= bag.lot.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
+        <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= bag.try(:lot).try(:initial_weight) %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
         <td style="text-align:left">
           <% ordered_by_id(bag.lot.plants).each do |plant| %>
             <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
@@ -25,10 +25,12 @@
       <tr>
         <td><%= date_for bag.container.try(:created_at) %></td>
         <td style="text-align:right"><%= link_to "#{bag.container}".html_safe, bag.container, class: "btn-sm btn-flat btn-primary" %></td>
-         <td style="text-align:center"><i class="fa fa-arrow-left" style="float:left"></i> <%= bag.container.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"></i></td>
+         <td style="text-align:center"><i class="fa fa-arrow-left" style="float:left"></i> <%= bag.try(:container).try(:initial_weight) %> g <i class="fa fa-arrow-left" style="float:right"></i></td>
             <td style="text-align:left">
+              <% unless bag.try(:container).try(:plants).nil? %>
               <% ordered_by_id(bag.container.plants).each do |plant| %>
                 <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
+              <% end %>
               <% end %>
             </td>
       </tr>
