@@ -2,37 +2,25 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-FulfillScale =
-  SCALE1_URL: 'http://localhost:8080'
-  SCALE2_URL: 'http://localhost:8081'
-  SCALE1_METHOD: 'GET'
-  SCALE2_METHOD: 'GET'
-
 $(document).ready ->
 
   # Toggle disabled on Fulfill Button if scale 1 responds
-  $.ajax
-    url: FulfillScale.SCALE1_URL
-    type: FulfillScale.SCALE1_METHOD
-    error: ->
+  $.get 'http://localhost:8080'
+    .done ->
+      $(".fulfill").removeClass 'disabled'
+      $(".fulfill").attr('href', $(".fulfill").data('href'))
+    .fail ->
       $(".fulfill").addClass 'disabled'
       $(".fulfill").removeAttr 'href'
-    
-    success: ->
-      $(".fulfill").removeClass 'disabled'
-      $(".fulfill").addAttr 'href'
 
   # Toggle disabled on fulfill Button if scale 2 responds
-  $.ajax
-    url: FulfillScale.SCALE2_URL
-    type: FulfillScale.SCALE2_METHOD
-    error: ->
-      $(".fulfill").addClass 'disabled'
-      $(".fulfill").removeAttr 'href'
-    
-    success: ->
+  $.get 'http://localhost:8081'
+    .done ->
       $(".fulfill").removeClass 'disabled'
-      $(".fulfill").addAttr 'href'
+      $(".fulfill").attr('href', $('fulfill').data('href'))
+    .fail ->
+      $(".fulfill").addClass 'disabled'
+      $(".fulfill").removeAttr 'href'    
 
   # Zero scale 1
   $("#zero-scale-1-btn").click (event) ->
@@ -48,23 +36,19 @@ $(document).ready ->
 
   $('#scan-jar').submit (event) ->
     event.preventDefault()
-    $.ajax
-      url: '/jars/' + $('#jar').val()
-      type: 'GET'
-      error: ->
-        errorResetProcess()
-      success: ->
+    $.get '/jars/' + $('#jar').val()
+      .done ->
         step2()
+      .fail ->
+        errorResetProcess()
 
   $('#scan-bag').submit (event) ->
     event.preventDefault()
-    $.ajax
-      url: '/bags/' + $('#bag').val()
-      type: 'GET'
-      error: ->
-        errorResetProcess()
-      success: ->
+    $.get '/bags/' + $('#bag').val()
+      .done ->
         step3()
+      .fail ->
+        errorResetProcess()
 
 step1 = ->
   $('#step-1').show()
@@ -107,16 +91,11 @@ step4 = ->
   $('#scale-display').show()
 
 errorResetProcess = ->
-  state = 'step-1'
   resetScale1()
   resetScale2()
 
 resetScale1 = ->
-  $.ajax
-      url: "http://127.0.0.1:8080/zero"
-      success: (data) ->
+  $.get 'http://localhost:8080/zero'
 
 resetScale2 = ->
-  $.ajax
-      url: "http://127.0.0.1:8081/zero"
-      success: (data) ->
+  $.get 'http://localhost:8081/zero'

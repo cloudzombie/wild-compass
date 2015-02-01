@@ -2,86 +2,81 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-ReweightScale =
-  SCALE1_URL: 'http://localhost:8080'
-  SCALE1_METHOD: 'GET'
-
-state = undefined
-bag =
-  id: undefined
-  current_weight: undefined
-  readings: undefined
-  count: undefined
-
 # Page ready hook
 $(document).ready ->
 
   # Toggle disabled on Reweight Button if scale 1 responds
-  $.ajax
-    url: ReweightScale.SCALE1_URL
-    type: ReweightScale.SCALE1_METHOD
-    error: ->
-      $(".reweight").addClass 'disabled'
-      $(".reweight").removeAttr 'href'
-    success: ->
-      $(".reweight").removeClass 'disabled'
-      $(".reweight").addAttr 'href'
-
-  # Zero scale 1
-  $("#reweight-zero-scale-1-btn").click (event) ->
-    event.preventDefault()
-    reweightResetScale1()
-
-  reweightBagStep1()
+  $.get 'http://localhost:8080'
+    .fail ->
+      $('.reweight').prop('disabled', true)
+      $('.reweight').removeAttr('href')
+    .done ->
+      $('.reweight').prop('disabled', false)
+      $('.reweight').attr('href', $('.reweight').data('href'))
 
   # Detect bag id
   $('#reweight-bag-scan').submit (event) ->
     event.preventDefault()
-    $.ajax
-      url: '/bags/' + $('#reweight-bag').val() + '.json'
-      type: 'GET'
-      error: ->
-        reweightErrorResetProcess()
-      success: (data) ->
-        bag.id = data.id
-        bag.current_weight = data.current_weight
-        reweightBagStep2()
+    scanBag()
 
   # Detect weight change
   $('#reweight-bag-scale-1-readings').change (event) ->
-    if bag.readings == parseInt($('#reweight-bag-scale-1-readings').text())
-      bag.count += 1
-      if bag.count >= 30
-        reweightBagStep3()
-    else
-      bag.readings = parseInt($('#reweight-bag-scale-1-readings').text())
+    weight = parseFloat($('#reweight-bag-scale-1-readings').val().trim())
+    reweightBagStep3()
+    $('#reweight-bag-scale-1-readings').val(weight)
 
+  reweightBagStep1()
+
+scale1AutoRefresh = null
+
+# Step 1 of reweight process
 reweightBagStep1 = ->
-  state = 'step-1'
   $('#reweight-bag-step-1').show()
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').hide()
   $('#reweight-bag-scale-display').hide()
+  clearInterval(scale1AutoRefresh)
 
+# Step 2 of reweight process
 reweightBagStep2 = ->
-  state = 'step-2'
   $('#reweight-bag-step-1').hide()
   $('#reweight-bag-step-2').show()
   $('#reweight-bag-step-3').hide()
   $('#reweight-bag-scale-display').show()
+  scale1AutoRefresh = setInterval readScale1, 100
 
+# Step 3 of reweight process
 reweightBagStep3 = ->
-  state = 'step-3'
   $('#reweight-bag-step-1').hide()
   $('#reweight-bag-step-2').hide()
   $('#reweight-bag-step-3').show()
-  $('#reweight-bag-scale-display').hide()  
+  # $('#reweight-bag-scale-display').hide()
+  clearInterval(scale1AutoRefresh)
 
+# Reset Reweight Process
 reweightErrorResetProcess = ->
-  reweightBagStep1
-  reweightResetScale1
+  reweightBagStep1()
+  reweightResetScale1()
 
+# Reset scale 1
 reweightResetScale1 = ->
-  $.ajax
-      url: ReweightScale.SCALE1_URL + '/zero'
-      success: (data) ->
+  $.get 'http://localhost:8080/zero'
+
+# Scan bag's datamatrix
+scanBag = ->
+  $.post(
+    $('#reweight-bag').data('href') + '.json',
+    bag:
+      scanned_hash: $('#reweight-bag').val()
+  ).done (data) ->
+    if data.bag.match
+      reweightBagStep2()
+    else
+      reweightErrorResetProcess()
+
+# Read data from scale 1
+readScale1 = ->
+  $.get 'http://localhost:8080/data'
+    .done (data) ->
+      $('#reweight-bag-scale-1-readings').val(data)
+      $('#reweight-bag-scale-1-readings').change()

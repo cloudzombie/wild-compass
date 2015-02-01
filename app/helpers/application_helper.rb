@@ -21,6 +21,9 @@ module ApplicationHelper
     '0'
   end
 
+  def percent_for(decimal)
+    number_with_precision(decimal, precision: 1)
+  end
 
   def display_error_for(model, attribute)
     return '' if model.errors[attribute].empty?

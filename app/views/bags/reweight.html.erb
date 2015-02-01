@@ -1,69 +1,61 @@
-<script>
-  var autoRefresh = setInterval(function() {
-    $("#reweight-bag-scale-1-readings").load("http://localhost:8080/data").fadeIn("slow");
-  }, 100);
-
-  $.ajax({
-  url: "test.html",
-  context: document.body,
-  method: 'POST'
-  }).done(function() {
-    $( this ).addClass( "done" );
-  });
-
-</script>
-
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title"><strong>Bag Reweight</strong></h3>
   </div>
 
   <div class="panel-body">
+
+    <% if params[:debug] %>
+
     <%= form_for bag, url: reweight_bag_path(bag), method: :post do |f| %>
+      <%= f.label :weight %>
+      <%= f.text_field :weight %>
 
+      <%= f.label :message %>
+      <%= f.text_field :message %>
+                
+      <%= f.submit %>
+    <% end %>
+
+    <% else %>
+    
+    <%= form_for bag, url: scan_bag_path(bag), method: :post, html: { id: 'reweight-bag-scan' } do |f| %>
       <div id="reweight-bag-step-1">
-        <p class="alert alert-info"><strong>Please scan bag...</strong></p>
-
+        <p class="alert alert-info"><strong>Please put bag on scale and scan bag...</strong></p>
         <div id="reweight-bag-scan">
           <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-8 col-md-offset-2">
               <div class="form-group">
                 <div class="input-group">
-                  <%= f.label :bag_scan, class: 'input-group-addon' do %>
-                    <strong class="col-md-2">Scan Bag</strong>
+                  <%= f.label :scanned_hash, class: 'input-group-addon' do %>
+                    <strong class="text-primary">Scan Bag :</strong>
                   <% end %>
-                  
-                  <%= f.text_field :bag_scan, id: 'reweight-bag', class: 'form-control' %>
+
+                  <%= f.text_field :scanned_hash, id: 'reweight-bag',
+                      class: 'form-control', data: { href: scan_bag_path(bag) } %>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    <% end %>
 
+    <%= form_for bag, url: reweight_bag_path(bag), method: :post do |f| %>
       <div id="reweight-bag-step-2">
         <p class="alert alert-info"><strong>Please put bag on scale 1...</strong></p>
       </div>
 
       <div id="reweight-bag-scale-display">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-8 col-md-offset-2">
             <div class="form-group">
               <div class="input-group">
-                <%= f.label :weight %>
-                <%= f.text_field :weight, class: 'form-control disabled' %>
-                
-                <%= label_tag 'reweight-bag-scale-1-readings', class: 'input-group-addon' do %>
-                  <strong>Scale 1 Readings</strong>
+                <%= f.label :weight, class: 'input-group-addon' do %>
+                  <strong class="text-primary">Weight (Scale 1) :</strong>
                 <% end %>
-                
-                <span id="reweight-bag-scale-1-readings" class="form-control text-center"></span>
-                
-                <div class="input-group-btn">
-                  <%= link_to '#', class: 'btn btn-primary', id: 'reweight-zero-scale-1-btn' do %>
-                    <strong>ZERO</strong>
-                  <% end %>
-                </div>
+
+                <%= f.text_field :weight, id: 'reweight-bag-scale-1-readings', class: 'form-control text-center', readonly: true %>
               </div>
             </div>
           </div>
@@ -72,12 +64,13 @@
 
       <div id="reweight-bag-step-3">
         <div class="form-group">
-          <%= f.label :message %>
+          <%= f.label :message, 'Note' %>
           <%= f.text_area :message, class: 'form-control' %>
         </div>
 
         <%= f.submit 'Commit Reweight', class: 'btn btn-primary' %>
       </div>
+    <% end %>
     <% end %>
 
   </div>

@@ -50,8 +50,11 @@ Rails.application.routes.draw do
     member do
       get 'datamatrix'
       get 'label'
+      
       get 'reweight'
       post 'reweight'
+
+      get 'scan'
       post 'scan'
     end
   end

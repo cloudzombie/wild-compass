@@ -21,7 +21,7 @@ class Bag < ActiveRecord::Base
   
 
   def self.first_available(brand, weight)
-    by_brands(brand).where(current_weight: weight..Float::INFINITY).first
+    by_brands(brand).where(current_weight: weight..Float::INFINITY, tested: false, archived: false).first
   end
 
 

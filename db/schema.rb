@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130160303) do
+ActiveRecord::Schema.define(version: 20150201005322) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150130160303) do
     t.decimal  "initial_weight",  precision: 16, scale: 4
     t.integer  "history_id"
     t.integer  "container_id"
-    t.boolean  "tested"
+    t.boolean  "tested",                                   default: false
     t.integer  "lot_id"
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20150130160303) do
     t.datetime "updated_at"
     t.integer  "history_id"
     t.string   "category"
-    t.integer  "location_id",    limit: 255
+    t.integer  "location_id"
   end
 
   create_table "containers_lots", force: true do |t|
@@ -180,9 +180,9 @@ ActiveRecord::Schema.define(version: 20150130160303) do
     t.string   "origin"
     t.string   "name"
     t.integer  "history_id"
-    t.decimal  "current_weight",             precision: 16, scale: 4
-    t.decimal  "initial_weight",             precision: 16, scale: 4
-    t.integer  "location_id",    limit: 255
+    t.decimal  "current_weight", precision: 16, scale: 4
+    t.decimal  "initial_weight", precision: 16, scale: 4
+    t.integer  "location_id"
   end
 
   add_index "plants", ["format_id"], name: "index_plants_on_format_id"
