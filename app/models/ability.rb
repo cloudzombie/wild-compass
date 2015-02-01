@@ -8,6 +8,12 @@ class Ability
       can :home, 'Inventory'
       can :home, 'Dashboard'
       can :download, 'Inventory'
+
+      can :fulfill, Order
+      can :reweight, Bag
+      can :scan, Bag
+      can :scan, Jar
+
     elsif user.manager?
       can :manage, Brand
       can :manage, Plant
@@ -21,6 +27,12 @@ class Ability
       can :home, 'Inventory'
       can :home, 'Dashboard'
       can :download, 'Inventory'
+
+      can :fulfill, Order
+      can :reweight, Bag
+      can :scan, Bag
+      can :scan, Jar
+      
     else
       can :read, Brand
       can :read, Plant
@@ -32,6 +44,11 @@ class Ability
       can :home, 'Inventory'
       can :home, 'Dashboard'
       can :download, 'Inventory'
+
+      can :fulfill, Order
+      can :reweight, Bag
+      can :scan, Bag
+      can :scan, Jar
     end
   end
 end

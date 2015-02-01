@@ -10,24 +10,27 @@
         <th>Quantity : </th>
         <th>Timestamp : </th>
         <th>User : </th>
+        <th>Note : </th>
       </tr>
+      <!-- <tr> -->
+        <!-- <td><%# described.try(:lot).nil? ? 'Plants' : described.try(:lot)  %></td> -->
+        <!-- <td><%# described if described.present? %></td> -->
+        <!-- <td><%# described.try(:initial_weight) %> g</td> -->
+        <!-- <td><%# date_for described.try(:created_at) %></td> -->
+        <!-- <td><%# (described.try(:history).try(:history_lines) || []).try(:first).try(:user) %></td> -->
+        <!-- <td><%#%></td> -->
+      <!-- </tr> -->
+      <% (described.try(:history).try(:history_lines) || []).sort_by(&:created_at).each do |line| %>
+      <%# next if line.try(:target).nil? || line.try(:source).nil? %>
       <tr>
-        <td><%= described.try(:lot).nil? ? 'Plants' : described.try(:lot)  %></td>
         <td><%= described if described.present? %></td>
-        <td><%= described.try(:initial_weight) %> g</td>
-        <td><%= date_for described.try(:created_at) %></td>
-        <td><%= (described.try(:history).try(:history_lines) || []).try(:first).try(:user) %></td>
+        <td><%= line.try(:target) %></td>
+        <td><%= line.try(:quantity) %> g</td>
+        <td><%= date_for line.try(:created_at) %></td>
+        <td><%= line.try(:user) %></td>
+        <td><%= line.try(:message) %></td>
       </tr>
-      <% (described.try(:history).try(:history_lines) || []).each do |line| %>
-      <% next if line.try(:target).nil? || line.try(:source).nil? %>
-        <tr>
-          <td><%= described if described.present? %></td>
-          <td><%= line.try(:target) %></td>
-          <td><%= line.try(:quantity) %> g</td>
-          <td><%= date_for line.try(:created_at) %></td>
-          <td><%= line.try(:user) %></td>
-        </tr>
-        <% end %>
+      <% end %>
       </div>
     </table>
   </div> 
