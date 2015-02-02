@@ -19727,14 +19727,21 @@ var saveAs = saveAs
       event.preventDefault();
       return resetScale2();
     });
+    $('#fulfill-order-scale-1-input').submit(function(event) {
+      return event.preventDefault();
+    });
+    $('#fulfill-order-scale-2-input').submit(function(event) {
+      return event.preventDefault();
+    });
     $('#fulfill-order-scan-jar-form').submit(function(event) {
       event.preventDefault();
       return fulfillScanJar();
     });
-    return $('#fulfill-order-scan-bag-form').submit(function(event) {
+    $('#fulfill-order-scan-bag-form').submit(function(event) {
       event.preventDefault();
       return fulfillScanBag();
     });
+    return fulfillOrderStep1();
   });
 
   fulfillOrderScale1AutoRefresh = null;
@@ -19745,7 +19752,7 @@ var saveAs = saveAs
     $('#step-1').show();
     $('#step-2').hide();
     $('#step-3').hide();
-    $('#scale-display').hide();
+    $('.scale-display').hide();
     clearInterval(fulfillOrderScale1AutoRefresh);
     return clearInterval(fulfillOrderScale2AutoRefresh);
   };
@@ -19754,18 +19761,20 @@ var saveAs = saveAs
     $('#step-1').hide();
     $('#step-2').show();
     $('#step-3').hide();
-    $('#scale-display').hide();
-    fulfillOrderScale1AutoRefresh = setInterval(fulfillOrderReadScale1, 100);
-    return fulfillOrderScale2AutoRefresh = setInterval(fulfillOrderReadScale2, 100);
+    $('.scale-display').hide();
+    clearInterval(fulfillOrderScale1AutoRefresh);
+    return clearInterval(fulfillOrderScale2AutoRefresh);
   };
 
   fulfillOrderStep3 = function() {
     $('#step-1').hide();
     $('#step-2').hide();
     $('#step-3').show();
-    $('#scale-display').show();
-    clearInterval(fulfillOrderScale1AutoRefresh);
-    return clearInterval(fulfillOrderScale2AutoRefresh);
+    $('.scale-display').show();
+    resetScale1();
+    resetScale2();
+    fulfillOrderScale1AutoRefresh = setInterval(fulfillOrderReadScale1, 100);
+    return fulfillOrderScale2AutoRefresh = setInterval(fulfillOrderReadScale2, 100);
   };
 
   errorResetProcess = function() {
@@ -19788,9 +19797,9 @@ var saveAs = saveAs
       }
     }).done(function(data) {
       if (data.bag.match) {
-        return alert('BAG MATCH');
+        return fulfillOrderStep3();
       } else {
-        return alert('BAG MISMATCH');
+        return errorResetProcess();
       }
     });
   };
@@ -19802,24 +19811,24 @@ var saveAs = saveAs
       }
     }).done(function(data) {
       if (data.jar.match) {
-        return alert('JAR MATCH');
+        return fulfillOrderStep2();
       } else {
-        return alert('JAR MISMATCH');
+        return errorResetProcess();
       }
     });
   };
 
   fulfillOrderReadScale1 = function() {
     return $.get('http://localhost:8080/data').done(function(data) {
-      $('#fulfill-order-scale-1-readings').val(data);
-      return $('#fulfill-order-scale-1-readings').change();
+      $('#fulfill-order-scale-1-input').val(data);
+      return $('#fulfill-order-scale-1-input').change();
     });
   };
 
   fulfillOrderReadScale2 = function() {
     return $.get('http://localhost:8081/data').done(function(data) {
-      $('#fulfill-order-scale-2-readings').val(data);
-      return $('#fulfill-order-scale-2-readings').change();
+      $('#fulfill-order-scale-2-input').val(data);
+      return $('#fulfill-order-scale-2-input').change();
     });
   };
 

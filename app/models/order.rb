@@ -4,6 +4,25 @@ class Order < ActiveRecord::Base
 
 
 
+  def first_unfulfilled
+    order_lines.each do |line|
+      line.jars.each do |jar|
+        return jar if jar.unfulfilled?
+      end
+    end
+    return
+  end
+
+  def unfulfilled?
+    !fulfilled?
+  end
+
+  def fulfilled?
+    first_unfulfilled == nil
+  end
+
+
+
   ### Order lines
 
   has_many :order_lines

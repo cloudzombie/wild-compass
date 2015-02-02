@@ -32,7 +32,11 @@ $(document).ready ->
     event.preventDefault()
     resetScale2()
 
-  # fulfillOrderStep1()
+  $('#fulfill-order-scale-1-input').submit (event) ->
+    event.preventDefault()
+
+  $('#fulfill-order-scale-2-input').submit (event) ->
+    event.preventDefault()
 
   $('#fulfill-order-scan-jar-form').submit (event) ->
     event.preventDefault()
@@ -42,6 +46,8 @@ $(document).ready ->
     event.preventDefault()
     fulfillScanBag()
 
+  fulfillOrderStep1()
+
 fulfillOrderScale1AutoRefresh = null
 fulfillOrderScale2AutoRefresh = null
 
@@ -49,7 +55,7 @@ fulfillOrderStep1 = ->
   $('#step-1').show()
   $('#step-2').hide()
   $('#step-3').hide()
-  $('#scale-display').hide()
+  $('.scale-display').hide()
   clearInterval(fulfillOrderScale1AutoRefresh)
   clearInterval(fulfillOrderScale2AutoRefresh)
 
@@ -57,17 +63,22 @@ fulfillOrderStep2 = ->
   $('#step-1').hide()
   $('#step-2').show()
   $('#step-3').hide()
-  $('#scale-display').hide()
-  fulfillOrderScale1AutoRefresh = setInterval fulfillOrderReadScale1, 100
-  fulfillOrderScale2AutoRefresh = setInterval fulfillOrderReadScale2, 100
+  $('.scale-display').hide()
+  clearInterval(fulfillOrderScale1AutoRefresh)
+  clearInterval(fulfillOrderScale2AutoRefresh)
 
 fulfillOrderStep3 = ->
+  # Display UI
   $('#step-1').hide()
   $('#step-2').hide()
   $('#step-3').show()
-  $('#scale-display').show()
-  clearInterval(fulfillOrderScale1AutoRefresh)
-  clearInterval(fulfillOrderScale2AutoRefresh)
+  $('.scale-display').show()
+  # Tare scales
+  resetScale1()
+  resetScale2()
+  # Start reading
+  fulfillOrderScale1AutoRefresh = setInterval(fulfillOrderReadScale1, 100)
+  fulfillOrderScale2AutoRefresh = setInterval(fulfillOrderReadScale2, 100)
 
 errorResetProcess = ->
   resetScale1()
@@ -87,9 +98,9 @@ fulfillScanBag = ->
       scanned_hash: $('#fulfill-order-scan-bag-input').val()
   ).done (data) ->
     if data.bag.match
-      alert('BAG MATCH')
+      fulfillOrderStep3()
     else
-      alert('BAG MISMATCH')
+      errorResetProcess()
 
 fulfillScanJar = ->
   $.post(
@@ -98,20 +109,20 @@ fulfillScanJar = ->
       scanned_hash: $('#fulfill-order-scan-jar-input').val()
     ).done (data) ->
       if data.jar.match
-        alert('JAR MATCH')
+        fulfillOrderStep2()
       else
-        alert('JAR MISMATCH')
+        errorResetProcess()
 
 # Read data from scale 1
 fulfillOrderReadScale1 = ->
   $.get 'http://localhost:8080/data'
     .done (data) ->
-      $('#fulfill-order-scale-1-readings').val(data)
-      $('#fulfill-order-scale-1-readings').change()
+      $('#fulfill-order-scale-1-input').val(data)
+      $('#fulfill-order-scale-1-input').change()
 
 # Read data from scale 2
 fulfillOrderReadScale2 = ->
   $.get 'http://localhost:8081/data'
     .done (data) ->
-      $('#fulfill-order-scale-2-readings').val(data)
-      $('#fulfill-order-scale-2-readings').change()
+      $('#fulfill-order-scale-2-input').val(data)
+      $('#fulfill-order-scale-2-input').change()

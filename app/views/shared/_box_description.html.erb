@@ -18,7 +18,7 @@
         </tr>
         <tr>
           <th>Strain :</th>
-            <td><%= category_for described.try(:string) if described.present? %></td>
+            <td><%= strain_for described.try(:strain) if described.present? %></td>
           </tr>
         <tr>
           

@@ -5,6 +5,15 @@
 
   <div class="panel-body">
 
+    <legend class="well text-primary text-center">
+      <strong>
+        Fulfill :
+        <span class="text-info"><%= @bag %></span>
+        <span><%= fa_icon 'arrow-right' %></span>
+        <span class="text-info"><%= @jar %></span>
+      </strong>
+    </legend>
+
     <div id="step-1">
       <p class="alert alert-info"><strong>Please place jar on scale 2 and scan...</strong></p>
 
@@ -57,9 +66,53 @@
       <p class="alert alert-info"><strong>Please fill jar with X grams from bag...</strong></p>
     </div>
 
-    <div id="scale-display">
-      <%= render 'orders/fulfillment/scale_display' %>
-    </div>
+    <form id="fulfill-order-scale-1-form" class="scale-display">
+      <div class="form-group">
+        <div class="input-group">
+          <%= label_tag 'fulfill-order-scale-1', class: 'input-group-addon' do %>
+            <strong>Weight (Scale 1) :</strong>
+          <% end %>
+          
+          <input type="text"
+                 id="fulfill-order-scale-1-input"
+                 class="form-control"
+                 readonly>
+          </input>
+          
+          <% if params[:debug] %>
+            <div class="input-group-btn">
+              <%= link_to '#', class: 'btn btn-primary', id: 'zero-scale-1-btn' do %>
+                <strong>ZERO</strong>
+              <% end %>
+            </div>
+          <% end%>
+        </div>
+      </div>
+    </form>
+
+    <form id="fulfill-order-scale-2-form" class="scale-display">
+      <div class="form-group">
+        <div class="input-group">
+          <%= label_tag 'fulfill-order-scale-2', class: 'input-group-addon' do %>
+            <strong>Weight (Scale 2) :</strong>
+          <% end %>
+            
+          <input type="text"
+                 id="fulfill-order-scale-2-input"
+                 class="form-control"
+                 readonly>
+          </input>
+
+          <% if params[:debug] %>
+            <div class="input-group-btn">
+              <%= link_to '#', class: 'btn btn-primary', id: 'zero-scale-2-btn' do %>
+                <strong>ZERO</strong>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </form>
 
   </div>
 </div>

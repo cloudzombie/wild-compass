@@ -82,12 +82,15 @@ class OrdersController < ApplicationController
   end
 
   def fulfill
+    @jar = order.first_unfulfilled
+    @bag = @jar.bag
+
     if request.post?
       redirect_to order, notice: params
 
+      Transaction.from( @bag ).to( @jar ).take( @jar.weight ).by( current_user ).commit
+
     else
-      @jar = order.order_lines.first.jars.first
-      @bag = order.order_lines.first.jars.first.bag
       respond_to do |format|
         format.html
       end
