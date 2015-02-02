@@ -32,7 +32,7 @@ $(document).ready ->
     event.preventDefault()
     resetScale2()
 
-  # fulfillOrderStep1()
+  fulfillOrderStep1()
 
   $('#fulfill-order-scan-jar-form').submit (event) ->
     event.preventDefault()
