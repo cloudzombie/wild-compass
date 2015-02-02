@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20150202005228) do
     t.datetime "updated_at"
     t.integer  "history_id"
     t.string   "category"
-    t.integer  "location_id"
+    t.integer  "location_id",    limit: 255
   end
 
   create_table "containers_lots", force: true do |t|
@@ -182,9 +182,9 @@ ActiveRecord::Schema.define(version: 20150202005228) do
     t.string   "origin"
     t.string   "name"
     t.integer  "history_id"
-    t.decimal  "current_weight", precision: 16, scale: 4
-    t.decimal  "initial_weight", precision: 16, scale: 4
-    t.integer  "location_id"
+    t.decimal  "current_weight",             precision: 16, scale: 4
+    t.decimal  "initial_weight",             precision: 16, scale: 4
+    t.integer  "location_id",    limit: 255
   end
 
   add_index "plants", ["format_id"], name: "index_plants_on_format_id"

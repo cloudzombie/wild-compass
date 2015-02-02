@@ -18,17 +18,13 @@
         </tr>
         <tr>
           <th>Strain :</th>
-          <td><span class="label label-default"><%= described.try(:strain) if described.present? %></span></td>
+            <td><%= category_for described.try(:string) if described.present? %></td>
           </tr>
         <tr>
           
           <% if icon != 'leaf' then %>
           <th>Category :</th>
-          <td>
-            <span class="label <%= described.try(:category) == 'Trim' ? 'label-primary' : 'label-info'%>">
-              <%= described.try(:category).upcase if described.present? %>
-            </span>
-          </td>
+            <td><%= category_for described.try(:category) if described.present? %></td>
           </tr>
         <tr>
           <th>Initial Weight :</th>

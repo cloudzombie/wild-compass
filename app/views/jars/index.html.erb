@@ -14,8 +14,21 @@
   </div><!-- /.box-header -->
 
   <div class="box-body table-responsive no-padding">
-    <div id='table'>
-      <%= render 'jars/ajax/table' %>
-    </div>
+    <table class="table table-hover">
+      <tr>
+        <th><%= check_box_tag :accept %></th>
+        <th><%= sortable :name, 'ID' %></th>
+        <th><%= sortable :strain %></th>
+        <th><%= sortable :category %></th>
+        <th><%= sortable :current_weight, 'Weight' %></th>
+        <th><%= sortable :created_at %></th>
+        <th><%= sortable :updated_at %></th>
+        <th><%= sortable :bag_id, 'Origin' %></th>
+        <th>Actions</th>
+      </tr>
+      <tbody id="table">
+        <%= render 'jars/ajax/table' %>
+      </tbody>
+    </table>
   </div><!-- /.box-body -->
 </div>

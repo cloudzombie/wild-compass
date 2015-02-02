@@ -7,7 +7,7 @@
 
   <div class="form-group">
     <%= f.label :container_id %>
-    <%= f.collection_select :container_id, Container.all, :id, :name, {}, selected: params[:container_id], class: 'form-control' %>
+    <%= f.collection_select :container_id, Container.all, :id, :name, {}, selected: params[:container_id], id: 'new-bag-container', class: 'form-control' %>
     <%= display_error_for bag, :container_id %>
   </div>
 

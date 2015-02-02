@@ -6,7 +6,7 @@
   <div class="box-body">
     <table id="timeline" class="table table-hover">
       <tr>
-        <th class="col-lg-2">Created At : </th>
+        <th class="col-lg-2">Timestamp : </th>
         <th class="col-lg-3" style="text-align:right">Object : </th>
         <th class="col-lg-3" style="text-align:center">Event : </th>
         <th>Object : </th>
@@ -17,7 +17,7 @@
         <td style="text-align:right"><%= link_to "#{jar.lot}".html_safe, jar.lot, class: "btn-sm btn-flat btn-info" %></td>
         <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.lot.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
         <td style="text-align:left">
-          <% jar.lot.plants.each do |plant| %>
+          <% ordered_by_id(jar.lot.plants).each do |plant| %>
             <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
           <% end %>
         </td>
@@ -28,7 +28,7 @@
         <td style="text-align:right"><%= link_to "#{jar.container}".html_safe, jar.container, class: "btn-sm btn-flat btn-primary" %></td>
         <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.container.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
         <td style="text-align:left">
-          <% jar.container.plants.each do |plant| %>
+          <% ordered_by_id(jar.container.plants).each do |plant| %>
             <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
           <% end %>
         </td>

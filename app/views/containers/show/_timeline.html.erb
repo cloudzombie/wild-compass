@@ -6,7 +6,7 @@
     <div class="box-body">
       <table id="timeline" class="table table-hover">
         <tr>
-          <th class="col-lg-2">Created At : </th>
+          <th class="col-lg-2" >Timestamp : </th>
           <th class="col-lg-2" style="text-align:right">Object : </th>
           <th class="col-lg-2" style="text-align:center">Event : </th>
           <th>Object : </th>
@@ -17,7 +17,7 @@
           <td style="text-align:right"><%= link_to "#{container.lot}".html_safe, container.lot, class: "btn-sm btn-flat btn-info" %></td>
           <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= container.lot.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
           <td style="text-align:left">
-            <% container.lot.plants.each do |plant| %>
+            <% ordered_by_id(container.lot.plants).each do |plant| %>
               <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
             <% end %>
           </td>

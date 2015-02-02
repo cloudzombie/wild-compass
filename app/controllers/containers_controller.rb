@@ -9,7 +9,9 @@ class ContainersController < ApplicationController
   expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
 
   expose(:containers) do
-    if Container.column_names.include? sort_column
+    if sort_column == 'name'
+      Container.search(params[:search]).sort_by('LENGTH(name), name ' + sort_direction).page(params[:page])
+    elsif Container.column_names.include? sort_column
       Container.search(params[:search]).order( sort_column + ' ' + sort_direction ).page(params[:page])
     elsif sort_column == 'strain'
       Container.search(params[:search]).joins(:strains).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
