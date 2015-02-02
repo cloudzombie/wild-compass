@@ -19727,6 +19727,7 @@ var saveAs = saveAs
       event.preventDefault();
       return resetScale2();
     });
+    fulfillOrderStep1();
     $('#fulfill-order-scan-jar-form').submit(function(event) {
       event.preventDefault();
       return fulfillScanJar();
