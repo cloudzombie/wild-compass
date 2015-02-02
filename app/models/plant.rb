@@ -36,8 +36,7 @@ class Plant < ActiveRecord::Base
 
 
 
-  ### Utils
-  
+
   def to_s
     "Plant - #{ id unless id.nil? }"
   end

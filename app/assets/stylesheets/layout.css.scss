@@ -22,11 +22,15 @@
 }
 
 #timeline > tbody > tr > td:nth-child(4) > a  {
-    line-height: 250%;
+  line-height: 240%;
 }
 
 .location > tbody > tr > td:nth-child(3) > a  {
-    line-height: 250%;
+  line-height: 240%;
+}
+
+#bin-table > tbody > tr > td:nth-child(5) > a {
+  line-height: 240%;
 }
 
 .description {

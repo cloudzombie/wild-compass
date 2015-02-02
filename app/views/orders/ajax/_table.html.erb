@@ -1,0 +1,45 @@
+<% orders.each do |order| %>
+  <tr>
+    <td><%= check_box_tag :accept %></td>
+    <td><%= order.try(:id) %></td>
+    <td><%= order.try(:customer) %></td>
+    <td>
+      <ul style="list-style-type: none; padding-left: 0;">
+      <% order.order_lines.each do |line| %>
+        <li>
+          <%= line %>
+          <ul>
+            <% line.jars.each do |jar| %>
+            <li><%= jar %></li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+      </ul>
+    </td>
+    <td><%= order.try(:total_weight) %></td>
+    <td><%= order.try(:ordered_at) %></td>
+    <td><%= order.try(:shipped_at) %></td>
+    <td>
+      <% if can? :fulfill, order %>
+      <%= link_to 'Fulfill', fulfill_order_path(order),
+          class: "btn-sm btn-flat btn-primary fulfill",
+          data: { href: fulfill_order_path(order) } %>
+      <% end %>
+
+      <% if can? :read, Order %>
+      <%= link_to 'Show',    order, class: "btn-sm btn-flat btn-success" %>
+      <% end %>
+
+      <% if can? :update, Order %>
+      <%= link_to 'Edit',    order, class: "btn-sm btn-flat btn-primary" %>
+      <% end %>
+
+      <%# if can? :destroy, Order %>
+      <%#= link_to 'Destroy', order, method: :delete,
+          data: { confirm: 'Are you sure?' },
+          class: "btn-sm btn-flat btn-danger" %>
+      <%# end %>
+    </td>
+  </tr>
+<% end %>

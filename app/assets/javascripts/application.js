@@ -25,5 +25,4 @@
 //= require filesaver
 //= require_tree .
 //= require_self
-
-
+//= require autocomplete-rails

@@ -1,0 +1,20 @@
+<% bins.each do |bin| %>
+  <tr>
+    <td><%= check_box_tag :accept %></td>
+    <td><%= bin.id %></td>
+    <td><%= bin.name %></td>
+    <td><%= bin.location %>
+    <td>
+      <% bin.bags.each do |bag| %>
+        <%= link_to bag, bag, class: "btn-sm btn-flat btn-warning" %>
+      <% end %>
+    </td>
+    <td>
+      <%= render 'shared/print_label', item: bin %>
+
+      <% if can? :edit, bin %>
+      <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bin_path(bin), class: "btn-sm btn-flat btn-warning" %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

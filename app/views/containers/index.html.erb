@@ -19,8 +19,8 @@
           <tr>
             <th></th>
             <th><%= sortable :id, 'ID' %></th>
-            <th><%= sortable :name %></th>
-            <th><%= sortable :location %></th>
+            <th>Name </th>
+            <th><%= Location %></th>
             <th><%= sortable :strain %></th>
             <th><%= sortable :category %></th>
             <th><%= sortable :lot_id %></th>
@@ -28,7 +28,7 @@
             <th><%= sortable :current_weight %></th>
             <th><%= sortable :created_at %></th>
             <th><%= sortable :updated_at %></th>
-            <th>Actions :</th>
+            <th>Actions </th>
           </tr>
           <tbody id="table">
             <%= render 'containers/ajax/table' %>
