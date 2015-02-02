@@ -1,18 +1,4 @@
-<table class="table table-hover">
-  <tr>
-    <th><%= check_box_tag :accept %></th>
-    <th><%= sortable :name, 'ID' %></th>
-    <th><%= sortable :strain %></th>
-    <th><%= sortable :category %></th>
-    <th><%= sortable :initial_weight %></th>
-    <th><%= sortable :current_weight %></th>
-    <th><%= sortable :created_at %></th>
-    <th><%= sortable :updated_at %></th>
-    <th><%= sortable :lot_id, 'Origins' %></th>
-    <th>Actions</th>
-  </tr>
-  
-  <% bags.each do |bag| %>
+<% bags.each do |bag| %>
   <tr>
     <td><%= check_box_tag :accept %></td>
     <td>
@@ -59,5 +45,4 @@
       <% end %>
     </td>
   </tr>
-  <% end %>
-</table>
+<% end %>

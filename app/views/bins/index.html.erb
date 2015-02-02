@@ -3,7 +3,7 @@
     <h3 class="box-title">Listing bins</h3>
     <div class="box-tools">
       <div class="input-group">
-        <%= form_tag(bins_path, :method => "get", id: "search-form") do %>
+        <%= form_tag(bins_path, :method => "get", id: "search-form", remote: true) do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
         <% end %>
         <div class="input-group-btn">
@@ -14,7 +14,7 @@
   </div>
 
   <div class="box-body table-responsive no-padding">
-    <table class="table table-hover">
+    <table class="table table-hover" id="bin-table">
       <tr>
         <th><%= check_box_tag :accept %></th>
         <th> ID </th>
@@ -23,28 +23,9 @@
         <th>Content : </th>
         <th class="col-lg-3">Actions</th>
       </tr>
-
-      <% bins.each do |bin| %>
-      <tr>
-        <td><%= check_box_tag :accept %></td>
-        <td><%= bin.id %></td>
-        <td><%= bin.name %></td>
-        <td><%= bin.location %>
-        <td>
-          <% bin.bags.each do |bag| %>
-            <%= link_to bag, bag, class: "btn-sm btn-flat btn-warning" %>
-          <% end %>
-        </td>
-        <td>
-          <%= render 'shared/print_label', item: bin %>
-
-          <% if can? :edit, bin %>
-          <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bin_path(bin), class: "btn-sm btn-flat btn-warning" %>
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
-
+      <tbody id="table">
+        <%= render 'bins/ajax/table' %>
+      </tbody>
     </table>
   </div><!-- /.box-body -->    
 </div><!-- /.box -->

@@ -87,3 +87,6 @@ gem 'kaminari'
 gem 'chunky_png'
 
 gem 'url_safe_base64'
+
+# Autocomplete
+gem 'rails4-autocomplete'
