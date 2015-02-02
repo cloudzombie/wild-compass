@@ -2,11 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-bag = null
-jar = null
-weight = null
+bagId = null
+jarId = null
+transactoinWeight = null
 
 $(document).ready ->
+
+  bagId = $('#fulfill-order-bag').data('id')
+  jarId = $('#fulfill-order-jar').data('id')
 
   # Toggle disabled on Fulfill Button if scale 1 responds
   $.get 'http://localhost:8080'
@@ -50,19 +53,11 @@ $(document).ready ->
     event.preventDefault()
     fulfillScanBag()
 
-  bag = $('#fulfill-order-bag').data('id')
-  jar = $('#fulfill-order-jar').data('id')
-
   $('#fulfill-order-scale-1-input').change (event) ->
-    alert('changed!')
-    # bagWeight = parseFloat($('#fulfill-order-scale-1-input').val().trim())
-    # jarWeight = parseFloat($('#fulfill-order-scale-2-input').val().trim())
-    # if bagWeight + jarWeight == 0 
-    #   alert('SUCCESS')
-    #   # fulfillOrderStep4()
-    # else
-    #   alert('ERROR')
-      # errorResetProcess()
+    weightChanged()
+
+  $('#fulfill-order-scale-2-input').change (event) ->
+    weightChanged()
 
   fulfillOrderStep1()
 
@@ -95,16 +90,25 @@ fulfillOrderStep3 = ->
   resetScale1()
   resetScale2()
   # Start reading
-  fulfillOrderScale1AutoRefresh = setInterval(fulfillOrderReadScale1, 100)
-  fulfillOrderScale2AutoRefresh = setInterval(fulfillOrderReadScale2, 100)
+  fulfillOrderScale1AutoRefresh = setInterval fulfillOrderReadScale1, 100
+  fulfillOrderScale2AutoRefresh = setInterval fulfillOrderReadScale2, 100
 
 fulfillOrderStep4 = ->
+  # Display UI
+  $('#step-1').hide()
+  $('#step-2').hide()
+  $('#step-3').hide()
+  $('.scale-display').show()
+  # Stop reading
+  clearInterval(fulfillOrderScale1AutoRefresh)
+  clearInterval(fulfillOrderScale2AutoRefresh)
+  # Fulfill
   $.post(
     $('#fulfill-order').data('href'),
     order:
-      bag: bag
-      jar: jar
-      weight: weight
+      bag: bagId
+      jar: jarId
+      weight: transactionWeight
   )
 
 errorResetProcess = ->
@@ -153,3 +157,14 @@ fulfillOrderReadScale2 = ->
     .done (data) ->
       $('#fulfill-order-scale-2-input').val(data)
       $('#fulfill-order-scale-2-input').change()
+
+weightChanged = ->
+  alert('changed!')
+# bagWeight = parseFloat($('#fulfill-order-scale-1-input').val().trim())
+    # jarWeight = parseFloat($('#fulfill-order-scale-2-input').val().trim())
+    # if bagWeight + jarWeight == 0 
+    #   alert('SUCCESS')
+    #   # fulfillOrderStep4()
+    # else
+    #   alert('ERROR')
+      # errorResetProcess()
