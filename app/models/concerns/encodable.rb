@@ -2,6 +2,8 @@ module Encodable
   extend ActiveSupport::Concern
 
   included do
+    attr_accessor :scanned_hash
+    
     validates :datamatrix_hash, uniqueness: true, presence: false, allow_blank: true
     validates :datamatrix_text, uniqueness: true, presence: false, allow_blank: true
 

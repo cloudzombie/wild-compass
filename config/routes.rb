@@ -24,7 +24,8 @@ Rails.application.routes.draw do
   # Resources
   resources :orders do
     member do
-      get 'fulfill'
+      get  'fulfill'
+      post 'fulfill'
     end
   end
 
@@ -41,20 +42,23 @@ Rails.application.routes.draw do
   
   resources :jars do
     member do
-      get 'datamatrix'
-      get 'label'
+      get  'datamatrix'
+      get  'label'
+
+      get  'scan'
+      post 'scan'
     end
   end
   
   resources :bags do
     member do
-      get 'datamatrix'
-      get 'label'
+      get  'datamatrix'
+      get  'label'
       
-      get 'reweight'
+      get  'reweight'
       post 'reweight'
 
-      get 'scan'
+      get  'scan'
       post 'scan'
     end
   end

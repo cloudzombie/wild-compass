@@ -15,6 +15,8 @@ class OrderLine < ActiveRecord::Base
   
   has_many :jars
 
+  accepts_nested_attributes_for :jars
+
   after_create :create_jars
 
 

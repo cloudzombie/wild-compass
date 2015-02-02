@@ -5,10 +5,6 @@ class Bag < ActiveRecord::Base
   include Storyable
   include Searchable
   include Encodable
-
-
-
-  attr_accessor :scanned_hash
   
 
 
