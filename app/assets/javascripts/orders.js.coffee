@@ -2,6 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+bag = null
+jar = null
+weight = null
+
 $(document).ready ->
 
   # Toggle disabled on Fulfill Button if scale 1 responds
@@ -46,6 +50,20 @@ $(document).ready ->
     event.preventDefault()
     fulfillScanBag()
 
+  bag = $('#fulfill-order-bag').data('id')
+  jar = $('#fulfill-order-jar').data('id')
+
+  $('#fulfill-order-scale-1-input').change (event) ->
+    alert('changed!')
+    # bagWeight = parseFloat($('#fulfill-order-scale-1-input').val().trim())
+    # jarWeight = parseFloat($('#fulfill-order-scale-2-input').val().trim())
+    # if bagWeight + jarWeight == 0 
+    #   alert('SUCCESS')
+    #   # fulfillOrderStep4()
+    # else
+    #   alert('ERROR')
+      # errorResetProcess()
+
   fulfillOrderStep1()
 
 fulfillOrderScale1AutoRefresh = null
@@ -79,6 +97,15 @@ fulfillOrderStep3 = ->
   # Start reading
   fulfillOrderScale1AutoRefresh = setInterval(fulfillOrderReadScale1, 100)
   fulfillOrderScale2AutoRefresh = setInterval(fulfillOrderReadScale2, 100)
+
+fulfillOrderStep4 = ->
+  $.post(
+    $('#fulfill-order').data('href'),
+    order:
+      bag: bag
+      jar: jar
+      weight: weight
+  )
 
 errorResetProcess = ->
   resetScale1()

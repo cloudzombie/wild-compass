@@ -1,4 +1,20 @@
 <div class="panel panel-primary">
+
+  <div id ="fulfill-order"
+       style="display: hidden;"
+       data-href="<%= fulfill_order_path(order) %>">
+  </div>
+
+  <div id="fulfill-order-bag"
+       style="display: hidden;"
+       data-id="<%= @bag.id %>">
+  </div>
+
+  <div id="fulfill-order-jar"
+       style="display: hidden;"
+       data-id="<%= @jar.id %>">
+  </div>
+
   <div class="panel-heading">
     <h3 class="panel-title"><strong>Order Fulfillment</strong></h3>
   </div>

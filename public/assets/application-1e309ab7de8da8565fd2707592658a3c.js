@@ -19704,7 +19704,13 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  var errorResetProcess, fulfillOrderReadScale1, fulfillOrderReadScale2, fulfillOrderScale1AutoRefresh, fulfillOrderScale2AutoRefresh, fulfillOrderStep1, fulfillOrderStep2, fulfillOrderStep3, fulfillScanBag, fulfillScanJar, resetScale1, resetScale2;
+  var bag, errorResetProcess, fulfillOrderReadScale1, fulfillOrderReadScale2, fulfillOrderScale1AutoRefresh, fulfillOrderScale2AutoRefresh, fulfillOrderStep1, fulfillOrderStep2, fulfillOrderStep3, fulfillOrderStep4, fulfillScanBag, fulfillScanJar, jar, resetScale1, resetScale2, weight;
+
+  bag = null;
+
+  jar = null;
+
+  weight = null;
 
   $(document).ready(function() {
     $.get('http://localhost:8080').done(function() {
@@ -19741,6 +19747,11 @@ var saveAs = saveAs
       event.preventDefault();
       return fulfillScanBag();
     });
+    bag = $('#fulfill-order-bag').data('id');
+    jar = $('#fulfill-order-jar').data('id');
+    $('#fulfill-order-scale-1-input').change(function(event) {
+      return alert('changed!');
+    });
     return fulfillOrderStep1();
   });
 
@@ -19775,6 +19786,16 @@ var saveAs = saveAs
     resetScale2();
     fulfillOrderScale1AutoRefresh = setInterval(fulfillOrderReadScale1, 100);
     return fulfillOrderScale2AutoRefresh = setInterval(fulfillOrderReadScale2, 100);
+  };
+
+  fulfillOrderStep4 = function() {
+    return $.post($('#fulfill-order').data('href'), {
+      order: {
+        bag: bag,
+        jar: jar,
+        weight: weight
+      }
+    });
   };
 
   errorResetProcess = function() {
