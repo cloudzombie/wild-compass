@@ -32617,21 +32617,26 @@ fieldset[disabled] .btn-vk.active {
 
 /* line 24, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 #timeline > tbody > tr > td:nth-child(4) > a {
-  line-height: 250%;
+  line-height: 240%;
 }
 
 /* line 28, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .location > tbody > tr > td:nth-child(3) > a {
-  line-height: 250%;
+  line-height: 240%;
 }
 
 /* line 32, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+#bin-table > tbody > tr > td:nth-child(5) > a {
+  line-height: 240%;
+}
+
+/* line 36, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .description {
   text-align: left;
   font-size: 1 em;
 }
 
-/* line 37, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 41, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .progress.vertical {
   height: 220px;
   width: 30px;
@@ -32639,17 +32644,17 @@ fieldset[disabled] .btn-vk.active {
   margin-left: -15px;
 }
 
-/* line 44, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 48, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .box .box-body {
   padding: 0;
 }
 
-/* line 48, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 52, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 #progress-bar-percentage {
   margin-left: -15px;
 }
 
-/* line 52, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 56, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 div.box-default > div.box-header {
   background-color: #DDD;
 }
