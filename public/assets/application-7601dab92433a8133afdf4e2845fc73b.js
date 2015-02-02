@@ -19727,7 +19727,6 @@ var saveAs = saveAs
       event.preventDefault();
       return resetScale2();
     });
-    fulfillOrderStep1();
     $('#fulfill-order-scan-jar-form').submit(function(event) {
       event.preventDefault();
       return fulfillScanJar();
@@ -19799,7 +19798,7 @@ var saveAs = saveAs
   fulfillScanJar = function() {
     return $.post($('#fulfill-order-scan-jar-input').data('href') + '.json', {
       jar: {
-        scanned_hash: $('fulfill-order-scan-jar-input').val()
+        scanned_hash: $('#fulfill-order-scan-jar-input').val()
       }
     }).done(function(data) {
       if (data.jar.match) {
