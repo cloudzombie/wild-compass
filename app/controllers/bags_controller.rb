@@ -17,7 +17,7 @@ class BagsController < ApplicationController
     elsif Bag.column_names.include? sort_column
       Bag.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
     elsif sort_column == 'strain'
-      Bag.search(params[:search]).uniq.joins(:strains).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
+      Bag.search(params[:search]).uniq.joins(:strains).merge(Strain.order(acronym: sort_direction.to_sym)).uniq.page(params[:page])
     elsif sort_column == 'category'
       Bag.search(params[:search]).joins(:containers).merge(Container.order(category: sort_direction.to_sym)).page(params[:page])
     else
