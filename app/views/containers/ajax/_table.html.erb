@@ -1,20 +1,4 @@
-<table class="table table-hover">
-  <tr>
-    <th></th>
-    <th><%= sortable :id, 'ID' %></th>
-    <th><%= sortable :name %></th>
-    <th><%= sortable :location %></th>
-    <th><%= sortable :strain %></th>
-    <th><%= sortable :category %></th>
-    <th><%= sortable :lot_id %></th>
-    <th><%= sortable :initial_weight %></th>
-    <th><%= sortable :current_weight %></th>
-    <th><%= sortable :created_at %></th>
-    <th><%= sortable :updated_at %></th>
-    <th>Actions :</th>
-  </tr>
-
-  <% containers.each do |container| %>
+<% containers.each do |container| %>
   <tr>
     <td><%# check_box_tag :accept %></td>
     <td><%= container.try(:id) if container.present? %></td>
@@ -33,5 +17,4 @@
       <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_container_path(container), class: "btn-sm btn-flat btn-warning" %>
     </td>
   </tr>
-  <% end %>
-</table>
+<% end %>

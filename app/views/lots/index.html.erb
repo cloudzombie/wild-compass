@@ -15,18 +15,35 @@
       </div><!-- /.box-header -->
 
       <div class="box-body table-responsive no-padding">
-        <div id="table">
+      <table class="table table-hover">
+          <tr>
+            <th><%= check_box_tag :accept %></th>
+            <th><%= sortable :id, 'ID' %></th>
+            <th><%= sortable :name %></th>
+            <th><%= sortable :strain %></th>
+            <th><%= sortable :category %></th>
+            <th><%= sortable :thc_composition, 'THC' %></th>
+            <th><%= sortable :cbd_composition, 'CBD' %></th>
+            <th><%= sortable :initial_weight %></th>
+            <th><%= sortable :current_weight %></th>
+            <th><%= sortable :created_at %></th>
+            <th><%= sortable :updated_at %></th>
+            <th>Actions</th>
+          </tr>
+          <tbody id="table">
           <%= render 'lots/ajax/table' %>
+          </tbody>
+          </table>
         </div>
       </div><!-- /.box-body -->
-    </div>
 
 
     <div class="tableFooter">
       <%= link_to "#{fa_icon 'tags'} New Lot".html_safe, '#', data: { toggle: 'modal', target: '.new-lot' },
           class: 'btn btn-flat btn-info' %>
-
-      <%= paginate lots %>
+      <div id="paginator">
+        <%= paginate lots, remote: true %>
+      </div>
     </div>
 
     <% lots.each do |lot| %>
@@ -39,6 +56,7 @@
                 <th>Name :</th>
                 <th>Weight :</th>
                 <th>Category :</th>
+                <th>Actions :</th>
               </tr>
 
               <% ordered_by_id(lot.try(:containers)).each do |container| %>
@@ -46,6 +64,12 @@
                 <td><%= link_to container.try(:to_s), container if container.present? %></td>
                 <td><%= weight_for container.try(:current_weight) if container.present? %></td>
                 <td><%= category_for container.try(:category) if container.present? %></td>
+                <td> 
+                  <% if can? :create, Lot %>
+                    <%= link_to "New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-danger',
+                      data: { toggle: 'modal', target: '.new-bag' } %>
+                  <% end %>
+                </td> 
               </tr>
               <% end %>
             </table>
@@ -58,7 +82,7 @@
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <h3>Create a new bag</h3>
-          <%= render 'bags/form', lot: lot %>
+          <%= render 'bags/form' %>
         </div>
       </div>
     </div>

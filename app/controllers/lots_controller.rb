@@ -15,7 +15,7 @@ class LotsController < ApplicationController
   end
 
   expose(:containers) { Container.order(id: :asc) }
-
+  expose(:recent) { Container.order(updated_at: :desc).first }
   expose(:bag) { Bag.new }
   
   # Create new lot.

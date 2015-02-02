@@ -15,9 +15,24 @@
 
   <div class="box-body table-responsive no-padding">
     <%= form_for :plants do |f| %>
-      <div id="table">
-        <%= render 'plants/ajax/table' %>
-      </div>
+      <table class="table table-hover">
+        <tr>
+          <th><%# checkbox %></th>
+          <th><%= sortable :id, 'ID' %></th>
+          <th><%= sortable :strain %></th>
+          <th><%= sortable :origin %></th>
+          <th><%= sortable :status %></th>
+          <th><%= sortable :created_at %></th>
+          <th><%= sortable :updated_at %></th>
+          <th><%= sortable :format %></th>
+          <th><%= sortable :location %></th>
+          <th><%= sortable :rfid, 'RFID' %></th>
+          <th>Actions</th>
+        </tr>
+        <tbody id="table">
+          <%= render 'plants/ajax/table' %>
+        </tbody>
+      </table>
     <% end %>
   </div> 
 </div>
@@ -25,8 +40,9 @@
 <div class="tableFooter">
   <%= link_to "#{fa_icon 'leaf'} New Plant".html_safe, '#', class: 'btn btn-flat btn-success',
       data: { toggle: 'modal', target: '.new-plant' } %>
-
-  <%= paginate plants %>
+  <div id="paginator">
+    <%= paginate plants, remote: true %>
+  </div>
 </div>
 
 <%= render 'plants/modal/new' %>
