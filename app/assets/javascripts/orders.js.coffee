@@ -7,20 +7,20 @@ $(document).ready ->
   # Toggle disabled on Fulfill Button if scale 1 responds
   $.get 'http://localhost:8080'
     .done ->
-      $(".fulfill").removeClass 'disabled'
-      $(".fulfill").attr('href', $(".fulfill").data('href'))
+      $(".fulfill").prop('disabled', false)
+      # $(".fulfill").attr('href', this.data('href'))
     .fail ->
-      $(".fulfill").addClass 'disabled'
-      $(".fulfill").removeAttr 'href'
+      $(".fulfill").prop('disabled', true)
+      $(".fulfill").removeAttr('href')
 
   # Toggle disabled on fulfill Button if scale 2 responds
   $.get 'http://localhost:8081'
     .done ->
-      $(".fulfill").removeClass 'disabled'
-      $(".fulfill").attr('href', $('fulfill').data('href'))
+      $(".fulfill").prop('disabled', false)
+      # $(".fulfill").attr('href', this.data('href'))
     .fail ->
-      $(".fulfill").addClass 'disabled'
-      $(".fulfill").removeAttr 'href'    
+      $(".fulfill").prop('disabled', true)
+      $(".fulfill").removeAttr('href')
 
   # Zero scale 1
   $("#zero-scale-1-btn").click (event) ->
@@ -32,63 +32,42 @@ $(document).ready ->
     event.preventDefault()
     resetScale2()
 
-  step1()
+  # fulfillOrderStep1()
 
-  $('#scan-jar').submit (event) ->
+  $('#fulfill-order-scan-jar-form').submit (event) ->
     event.preventDefault()
-    $.get '/jars/' + $('#jar').val()
-      .done ->
-        step2()
-      .fail ->
-        errorResetProcess()
+    fulfillScanJar()
 
-  $('#scan-bag').submit (event) ->
+  $('#fulfill-order-scan-bag-form').submit (event) ->
     event.preventDefault()
-    $.get '/bags/' + $('#bag').val()
-      .done ->
-        step3()
-      .fail ->
-        errorResetProcess()
+    fulfillScanBag()
 
-step1 = ->
+fulfillOrderScale1AutoRefresh = null
+fulfillOrderScale2AutoRefresh = null
+
+fulfillOrderStep1 = ->
   $('#step-1').show()
   $('#step-2').hide()
   $('#step-3').hide()
-  $('#step-4').hide()
-  $('#step-5').hide()
   $('#scale-display').hide()
+  clearInterval(fulfillOrderScale1AutoRefresh)
+  clearInterval(fulfillOrderScale2AutoRefresh)
 
-step2 = ->
+fulfillOrderStep2 = ->
   $('#step-1').hide()
   $('#step-2').show()
   $('#step-3').hide()
-  $('#step-4').hide()
-  $('#step-5').hide()
   $('#scale-display').hide()
+  fulfillOrderScale1AutoRefresh = setInterval fulfillOrderReadScale1, 100
+  fulfillOrderScale2AutoRefresh = setInterval fulfillOrderReadScale2, 100
 
-step3 = ->
+fulfillOrderStep3 = ->
   $('#step-1').hide()
   $('#step-2').hide()
   $('#step-3').show()
-  $('#step-4').hide()
-  $('#step-5').hide()
   $('#scale-display').show()
-
-step4 = ->
-  $('#step-1').hide()
-  $('#step-2').hide()
-  $('#step-3').hide()
-  $('#step-4').show()
-  $('#step-5').hide()
-  $('#scale-display').show()
-
-step4 = ->
-  $('#step-1').hide()
-  $('#step-2').hide()
-  $('#step-3').hide()
-  $('#step-4').hide()
-  $('#step-5').show()
-  $('#scale-display').show()
+  clearInterval(fulfillOrderScale1AutoRefresh)
+  clearInterval(fulfillOrderScale2AutoRefresh)
 
 errorResetProcess = ->
   resetScale1()
@@ -99,3 +78,40 @@ resetScale1 = ->
 
 resetScale2 = ->
   $.get 'http://localhost:8081/zero'
+
+# Scan bag's datamatrix
+fulfillScanBag = ->
+  $.post(
+    $('#fulfill-order-scan-bag-input').data('href') + '.json',
+    bag:
+      scanned_hash: $('#fulfill-order-scan-bag-input').val()
+  ).done (data) ->
+    if data.bag.match
+      alert('BAG MATCH')
+    else
+      alert('BAG MISMATCH')
+
+fulfillScanJar = ->
+  $.post(
+    $('#fulfill-order-scan-jar-input').data('href') + '.json',
+    jar:
+      scanned_hash: $('#fulfill-order-scan-jar-input').val()
+    ).done (data) ->
+      if data.jar.match
+        alert('JAR MATCH')
+      else
+        alert('JAR MISMATCH')
+
+# Read data from scale 1
+fulfillOrderReadScale1 = ->
+  $.get 'http://localhost:8080/data'
+    .done (data) ->
+      $('#fulfill-order-scale-1-readings').val(data)
+      $('#fulfill-order-scale-1-readings').change()
+
+# Read data from scale 2
+fulfillOrderReadScale2 = ->
+  $.get 'http://localhost:8081/data'
+    .done (data) ->
+      $('#fulfill-order-scale-2-readings').val(data)
+      $('#fulfill-order-scale-2-readings').change()

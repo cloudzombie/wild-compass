@@ -49,7 +49,9 @@ class Jar < ActiveRecord::Base
 
 
 
-  
+  def unfulfilled?
+    !fulfilled?
+  end
 
 
 

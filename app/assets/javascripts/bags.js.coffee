@@ -14,7 +14,7 @@ $(document).ready ->
       $('.reweight').removeAttr('href')
     .done ->
       $('.reweight').prop('disabled', false)
-      $('.reweight').attr('href', this.data('href'))
+      # $('.reweight').attr('href', this.data('href'))
 
   # Detect bag id
   $('#reweight-bag-scan').submit (event) ->
@@ -66,11 +66,6 @@ reweightBagStep3 = ->
 # Reset Reweight Process
 reweightErrorResetProcess = ->
   reweightBagStep1()
-  # reweightResetScale1()
-
-# Reset scale 1
-# reweightResetScale1 = ->
-  # $.get 'http://localhost:8080/zero'
 
 # Scan bag's datamatrix
 scanBag = ->

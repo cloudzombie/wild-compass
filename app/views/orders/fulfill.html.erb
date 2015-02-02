@@ -4,21 +4,24 @@
   </div>
 
   <div class="panel-body">
-    
-    <div id="step-1">
-      <p class="alert alert-info"><strong>Please scan jar...</strong></p>
 
-      <form id="scan-jar">
+    <div id="step-1">
+      <p class="alert alert-info"><strong>Please place jar on scale 2 and scan...</strong></p>
+
+      <form id="fulfill-order-scan-jar-form">
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
             <div class="form-group">
               <div class="input-group">
-                
                 <%= label_tag 'jar-scan', class: 'input-group-addon' do %>
-                  <strong class="col-md-2">Scan Jar</strong>
+                  <strong class="text-primary">Scan Jar</strong>
                 <% end %>
 
-                <input type="text" id="jar" class="form-control"></input>
+                <input type="text"
+                       id="fulfill-order-scan-jar-input"
+                       class="form-control"
+                       data-href="<%= scan_jar_path(@jar) %>">
+                </input>
               </div>
             </div>
           </div>
@@ -27,17 +30,22 @@
     </div>
 
     <div id="step-2">
-      <p class="alert alert-info"><strong>Please scan bag...</strong></p>
+      <p class="alert alert-info"><strong>Please place bag on scale 1 and scan...</strong></p>
 
-      <form id="scan-bag">
+      <form id="fulfill-order-scan-bag-form">
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
             <div class="form-group">
               <div class="input-group">
                 <%= label_tag 'bag-scan', class: 'input-group-addon' do %>
-                  <strong class="col-md-2">Scan Bag</strong>
+                  <strong class="text-primary">Scan Bag</strong>
                 <% end %>
-                <input type="text "id="bag" class="form-control"></input>
+
+                <input type="text"
+                       id="fulfill-order-scan-bag-input"
+                       class="form-control"
+                       data-href="<%= scan_bag_path(@bag) %>">
+                </input>
               </div>
             </div>
           </div>
@@ -46,19 +54,12 @@
     </div>
 
     <div id="step-3">
-      <p class="alert alert-info"><strong>Please put bag on scale 1...</strong></p>
-    </div>
-
-    <div id="step-4">
-      <p class="alert alert-info"><strong>Please put jar on scale 2...</strong></p>
-    </div>
-
-    <div id="step-5">
       <p class="alert alert-info"><strong>Please fill jar with X grams from bag...</strong></p>
     </div>
 
     <div id="scale-display">
       <%= render 'orders/fulfillment/scale_display' %>
     </div>
+
   </div>
 </div>

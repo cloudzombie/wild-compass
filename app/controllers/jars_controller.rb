@@ -69,12 +69,25 @@ class JarsController < ApplicationController
     end
   end
 
+  def scan
+    respond_to do |format|
+      format.html { redirect_to jars_path, notice: "#{self.jar == Jar.find_by(datamatrix_hash: jar_params[:scanned_hash])}" }
+      format.json do
+        render json: {
+          jar: {
+            match: self.jar == Jar.find_by(datamatrix_hash: jar_params[:scanned_hash])
+          }
+        } 
+      end
+    end
+  end
+
 
 
   # Never trust parameters from the scary internet, only allow the white list through.
   private
     def jar_params
-      params.require(:jar).permit(:weight, :current_weight, :bag_id, :name, :initial_weight)
+      params.require(:jar).permit(:weight, :current_weight, :bag_id, :name, :initial_weight, :scanned_hash)
     end
 
     def id_param

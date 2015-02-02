@@ -82,8 +82,15 @@ class OrdersController < ApplicationController
   end
 
   def fulfill
-    respond_to do |format|
-      format.html
+    if request.post?
+      redirect_to order, notice: params
+
+    else
+      @jar = order.order_lines.first.jars.first
+      @bag = order.order_lines.first.jars.first.bag
+      respond_to do |format|
+        format.html
+      end
     end
   end
 
