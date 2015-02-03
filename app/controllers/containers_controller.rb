@@ -14,7 +14,7 @@ class ContainersController < ApplicationController
     elsif Container.column_names.include? sort_column
       Container.search(params[:search]).order( sort_column + ' ' + sort_direction ).page(params[:page])
     elsif sort_column == 'strain'
-      Container.search(params[:search]).joins(:strains).merge(Strain.order(acronym: sort_direction.to_sym)).uniq.page(params[:page])
+      Container.search(params[:search]).joins(:strains).merge(Strain.order(name: sort_direction.to_sym)).uniq.page(params[:page])
     elsif sort_column == 'lot_id'
       Container.search(params[:search]).joins(:lots).merge(Lot.order(id: sort_direction.to_sym)).page(params[:page])
     end

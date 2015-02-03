@@ -10,7 +10,7 @@
           <%= line %>
           <ul>
             <% line.jars.each do |jar| %>
-            <li><%= jar %></li>
+            <li><%= link_to jar,jar %> <i class="fa fa-arrow-left"></i> <%= link_to jar.try(:bag),jar.try(:bag) %> <i class="fa fa-arrow-left"></i> <%= link_to jar.try(:bag).try(:bin),jar.try(:bag).try(:bin) %></li>
             <% end %>
           </ul>
         </li>
