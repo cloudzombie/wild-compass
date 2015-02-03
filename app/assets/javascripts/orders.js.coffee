@@ -4,12 +4,13 @@
 
 bagId = null
 jarId = null
-transactoinWeight = null
+transactionWeight = null
 
 $(document).ready ->
 
   bagId = $('#fulfill-order-bag').data('id')
   jarId = $('#fulfill-order-jar').data('id')
+  jarQuantity = $('#fulfill-order-jar').data('quantity')
 
   # Toggle disabled on Fulfill Button if scale 1 responds
   $.get 'http://localhost:8080'
@@ -149,22 +150,19 @@ fulfillOrderReadScale1 = ->
   $.get 'http://localhost:8080/data'
     .done (data) ->
       $('#fulfill-order-scale-1-input').val(data)
-      $('#fulfill-order-scale-1-input').change()
+      $('#fulfill-order-scale-1-input').change
 
 # Read data from scale 2
 fulfillOrderReadScale2 = ->
   $.get 'http://localhost:8081/data'
     .done (data) ->
       $('#fulfill-order-scale-2-input').val(data)
-      $('#fulfill-order-scale-2-input').change()
+      $('#fulfill-order-scale-2-input').change
 
 weightChanged = ->
-  alert('changed!')
-# bagWeight = parseFloat($('#fulfill-order-scale-1-input').val().trim())
-    # jarWeight = parseFloat($('#fulfill-order-scale-2-input').val().trim())
-    # if bagWeight + jarWeight == 0 
-    #   alert('SUCCESS')
-    #   # fulfillOrderStep4()
-    # else
-    #   alert('ERROR')
-      # errorResetProcess()
+  bagWeight = parseFloat($('#fulfill-order-scale-1-input').val().trim())
+  jarWeight = parseFloat($('#fulfill-order-scale-2-input').val().trim())
+  if bagWeight + jarWeight <= 0.101 && bagWeight + jarWeight >= -0.101 && jarQuantity - jarWeight <= 0.101 && jarQuantity - jarWeight >= -0.101
+    fulfillOrderStep4()
+  else
+    errorResetProcess()
