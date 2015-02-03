@@ -1,6 +1,7 @@
 class BagsController < ApplicationController
 
   include FindEncodable
+  include FindSortable
   include SetWeightable
 
   respond_to :html, :xml, :json
@@ -11,19 +12,7 @@ class BagsController < ApplicationController
   
   expose(:bag, params: :bag_params) { find(Bag) }
   
-  expose(:bags) do
-    if sort_column == 'name'
-      Bag.search(params[:search]).order('LENGTH(name), name ' + sort_direction).page(params[:page])
-    elsif Bag.column_names.include? sort_column
-      Bag.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
-    elsif sort_column == 'strain'
-      Bag.search(params[:search]).joins(:strains).merge(Strain.order(acronym: sort_direction.to_sym)).uniq.page(params[:page])
-    elsif sort_column == 'category'
-      Bag.search(params[:search]).joins(:container).merge(Container.order(category: sort_direction.to_sym)).uniq.page(params[:page])
-    else
-      Bag.search(params[:search]).page(params[:page])
-    end
-  end
+  expose(:bags) { sort(Bag) }
 
   expose(:jar) { Jar.new }
 
