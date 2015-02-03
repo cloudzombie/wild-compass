@@ -19704,17 +19704,26 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  var bagId, errorResetProcess, fulfillOrderReadScale1, fulfillOrderReadScale2, fulfillOrderScale1AutoRefresh, fulfillOrderScale2AutoRefresh, fulfillOrderStep1, fulfillOrderStep2, fulfillOrderStep3, fulfillOrderStep4, fulfillScanBag, fulfillScanJar, jarId, resetScale1, resetScale2, transactoinWeight, weightChanged;
+  var SCALE_RESOLUTION, bagId, bagWeight, commit, errorResetProcess, fulfillOrderReadScale1, fulfillOrderReadScale2, fulfillOrderScale1AutoRefresh, fulfillOrderScale2AutoRefresh, fulfillOrderStep1, fulfillOrderStep2, fulfillOrderStep3, fulfillOrderStep4, fulfillOrderStep5, fulfillScanBag, fulfillScanJar, jarHigherBoundBalances, jarId, jarLowerBoundBalances, jarQuantity, jarWeight, resetScale1, resetScale2, scalesHigherBoundBalances, scalesLowerBoundBalances, transactionWeight, weightChanged;
+
+  SCALE_RESOLUTION = 0.101;
 
   bagId = null;
 
+  bagWeight = null;
+
   jarId = null;
 
-  transactoinWeight = null;
+  jarWeight = null;
+
+  jarQuantity = null;
+
+  transactionWeight = null;
 
   $(document).ready(function() {
     bagId = $('#fulfill-order-bag').data('id');
     jarId = $('#fulfill-order-jar').data('id');
+    jarQuantity = parseFloat($('#fulfill-order-jar').data('quantity'));
     $.get('http://localhost:8080').done(function() {
       return $(".fulfill").prop('disabled', false);
     }).fail(function() {
@@ -19763,6 +19772,8 @@ var saveAs = saveAs
   fulfillOrderScale2AutoRefresh = null;
 
   fulfillOrderStep1 = function() {
+    resetScale1();
+    resetScale2();
     $('#step-1').show();
     $('#step-2').hide();
     $('#step-3').hide();
@@ -19798,18 +19809,21 @@ var saveAs = saveAs
     $('.scale-display').show();
     clearInterval(fulfillOrderScale1AutoRefresh);
     clearInterval(fulfillOrderScale2AutoRefresh);
-    return $.post($('#fulfill-order').data('href'), {
-      order: {
-        bag: bagId,
-        jar: jarId,
-        weight: transactionWeight
-      }
-    });
+    return setTimeout(fulfillOrderStep5, 500);
+  };
+
+  fulfillOrderStep5 = function() {
+    $('#step-1').hide();
+    $('#step-2').hide();
+    $('#step-3').hide();
+    $('.scale-display').show();
+    clearInterval(fulfillOrderScale1AutoRefresh);
+    clearInterval(fulfillOrderScale2AutoRefresh);
+    return commit();
   };
 
   errorResetProcess = function() {
-    resetScale1();
-    return resetScale2();
+    return fulfillOrderStep1();
   };
 
   resetScale1 = function() {
@@ -19863,7 +19877,43 @@ var saveAs = saveAs
   };
 
   weightChanged = function() {
-    return alert('changed!');
+    bagWeight = parseFloat($('#fulfill-order-scale-1-input').val().trim());
+    jarWeight = parseFloat($('#fulfill-order-scale-2-input').val().trim());
+    transactionWeight = jarWeight;
+    console.log("Scales lower bound : " + scalesLowerBoundBalances());
+    console.log("Scales higher bound : " + scalesHigherBoundBalances());
+    console.log("Jar lower bound : " + jarLowerBoundBalances());
+    console.log("Jar higher bound : " + jarHigherBoundBalances());
+    if (scalesLowerBoundBalances() && scalesHigherBoundBalances() && jarLowerBoundBalances() && jarHigherBoundBalances()) {
+      return fulfillOrderStep4();
+    }
+  };
+
+  scalesLowerBoundBalances = function() {
+    return bagWeight + jarWeight <= SCALE_RESOLUTION;
+  };
+
+  scalesHigherBoundBalances = function() {
+    return bagWeight + jarWeight >= -SCALE_RESOLUTION;
+  };
+
+  jarLowerBoundBalances = function() {
+    return jarQuantity - jarWeight <= SCALE_RESOLUTION;
+  };
+
+  jarHigherBoundBalances = function() {
+    return jarQuantity - jarWeight >= -SCALE_RESOLUTION;
+  };
+
+  commit = function() {
+    $.post($('#fulfill-order').data('href'), {
+      order: {
+        bag: bagId,
+        jar: jarId,
+        weight: transactionWeight
+      }
+    });
+    return $(location).attr('href', '/orders');
   };
 
 }).call(this);
@@ -19890,6 +19940,10 @@ var saveAs = saveAs
       return false;
     });
   });
+
+}).call(this);
+(function() {
+
 
 }).call(this);
 (function() {
