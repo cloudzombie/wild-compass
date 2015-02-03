@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     delete 'sign_out', to: 'users/sessions#destroy'
   end
 
+  get 'transaction/checkin'
+  get 'transaction/checkout'
+
   # Resources
   resources :orders do
     member do
