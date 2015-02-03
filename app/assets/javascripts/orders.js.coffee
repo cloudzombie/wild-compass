@@ -5,8 +5,12 @@
 SCALE_RESOLUTION = 0.101
 
 bagId = null
+bagWeight = null
+
 jarId = null
+jarWeight = null
 jarQuantity = null
+
 transactionWeight = null
 
 $(document).ready ->
@@ -69,18 +73,25 @@ fulfillOrderScale1AutoRefresh = null
 fulfillOrderScale2AutoRefresh = null
 
 fulfillOrderStep1 = ->
+  # Tare scales
+  resetScale1()
+  resetScale2()
+  # Display UI
   $('#step-1').show()
   $('#step-2').hide()
   $('#step-3').hide()
   $('.scale-display').hide()
+  # Stop reading
   clearInterval(fulfillOrderScale1AutoRefresh)
   clearInterval(fulfillOrderScale2AutoRefresh)
 
 fulfillOrderStep2 = ->
+  # Display UI
   $('#step-1').hide()
   $('#step-2').show()
   $('#step-3').hide()
   $('.scale-display').hide()
+  # Stop reading
   clearInterval(fulfillOrderScale1AutoRefresh)
   clearInterval(fulfillOrderScale2AutoRefresh)
 
@@ -107,25 +118,31 @@ fulfillOrderStep4 = ->
   clearInterval(fulfillOrderScale1AutoRefresh)
   clearInterval(fulfillOrderScale2AutoRefresh)
   # Fulfill
-  $.post(
-    $('#fulfill-order').data('href'),
-    order:
-      bag: bagId
-      jar: jarId
-      weight: transactionWeight
-  )
+  setTimeout fulfillOrderStep5, 500
+
+fulfillOrderStep5 = ->
+  # Display UI
+  $('#step-1').hide()
+  $('#step-2').hide()
+  $('#step-3').hide()
+  $('.scale-display').show()
+  # Stop reading
+  clearInterval(fulfillOrderScale1AutoRefresh)
+  clearInterval(fulfillOrderScale2AutoRefresh)
+  # Post transaction
+  commit()
+
 
 errorResetProcess = ->
-  resetScale1()
-  resetScale2()
+  fulfillOrderStep1()
 
 resetScale1 = ->
-  $.get 'http://localhost:8080/zero'
+  $.get('http://localhost:8080/zero')
 
 resetScale2 = ->
-  $.get 'http://localhost:8081/zero'
+  $.get('http://localhost:8081/zero')
 
-# Scan bag's datamatrix
+# Scan a bag's datamatrix
 fulfillScanBag = ->
   $.post(
     $('#fulfill-order-scan-bag-input').data('href') + '.json',
@@ -137,6 +154,7 @@ fulfillScanBag = ->
     else
       errorResetProcess()
 
+# Scan a jar's datamatrix
 fulfillScanJar = ->
   $.post(
     $('#fulfill-order-scan-jar-input').data('href') + '.json',
@@ -160,11 +178,36 @@ fulfillOrderReadScale2 = ->
     $('#fulfill-order-scale-2-input').val(data)
     $('#fulfill-order-scale-2-input').change()
 
+# Detect a weight change on scales
 weightChanged = ->
   bagWeight = parseFloat($('#fulfill-order-scale-1-input').val().trim())
   jarWeight = parseFloat($('#fulfill-order-scale-2-input').val().trim())
-  console.log("Jar + Bag Weight : " + (bagWeight + jarWeight) + "Jar Quantity - Jar Weight : " + (jarQuantity - jarWeight))
-  if bagWeight + jarWeight <= SCALE_RESOLUTION && bagWeight + jarWeight >= -SCALE_RESOLUTION && jarQuantity - jarWeight <= SCALE_RESOLUTION && jarQuantity - jarWeight >= -SCALE_RESOLUTION
+  transactionWeight = jarWeight
+  console.log("Scales lower bound : " + scalesLowerBoundBalances())
+  console.log("Scales higher bound : " + scalesHigherBoundBalances())
+  console.log("Jar lower bound : " + jarLowerBoundBalances())
+  console.log("Jar higher bound : " + jarHigherBoundBalances())
+  if scalesLowerBoundBalances() && scalesHigherBoundBalances() && jarLowerBoundBalances() && jarHigherBoundBalances()
     fulfillOrderStep4()
-  else
-    errorResetProcess()
+
+scalesLowerBoundBalances = ->
+  bagWeight + jarWeight <= SCALE_RESOLUTION
+
+scalesHigherBoundBalances = ->
+  bagWeight + jarWeight >= -SCALE_RESOLUTION
+
+jarLowerBoundBalances = ->
+  jarQuantity - jarWeight <= SCALE_RESOLUTION
+
+jarHigherBoundBalances = ->
+  jarQuantity - jarWeight >= -SCALE_RESOLUTION
+
+commit = ->
+  $.post(
+    $('#fulfill-order').data('href'),
+    order:
+      bag: bagId
+      jar: jarId
+      weight: transactionWeight
+  )
+  $(location).attr('href', '/orders');

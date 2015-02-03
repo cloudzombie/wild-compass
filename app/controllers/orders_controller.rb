@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   # If no id is specified, a new order is instanciated (not created)
   expose(:order, params: :order_params) { id_param.nil? ? Order.new : Order.find(id_param) }
   # Match given sort parameters against database columns
-  expose(:orders) { Order.search(params[:search]).order(sort_column + ' ' + sort_direction) }
+  expose(:orders) { Order.unfulfilled.search(params[:search]).order(sort_column + ' ' + sort_direction) }
   expose(:jar) { Jar.new }
 
   respond_to :html, :xml, :json
@@ -82,14 +82,18 @@ class OrdersController < ApplicationController
   end
 
   def fulfill
-    @jar = order.first_unfulfilled
-    @bag = @jar.bag
-
     if request.post?
-      redirect_to order, notice: params
-      Transaction.from( @bag ).to( @jar ).take( @jar.weight ).by( current_user ).commit
+      @jar = Jar.find(params.require(:order)[:jar])
+      @bag = Bag.find(params.require(:order)[:bag])
+      @jar.weight = (params.require(:order)[:weight]).to_d
+
+      if Transaction.from( @bag ).to( @jar ).take( @jar.weight ).by( current_user ).commit
+        @jar.update(fulfilled: true)
+      end
 
     else
+      @jar = order.first_unfulfilled
+      @bag = @jar.bag
       respond_to do |format|
         format.html
       end
@@ -117,7 +121,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:customer, :shipped_at, :ordered_at,
+      params.require(:order).permit(:customer, :shipped_at, :ordered_at, :jar, :bag, :weight,
       order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ])
     end
 
