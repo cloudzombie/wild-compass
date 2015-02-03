@@ -40,6 +40,14 @@
           data: { href: reweight_bag_path(bag) } %>
       <% end %>
 
+      <% if can? :recall, Bag %>
+      <%= link_to "Recall", recall_bag_path(bag), class: 'btn-sm btn-flat btn-danger' %>
+      <% end %>
+
+      <% if can? :quarantine, Bag %>
+      <%= link_to "Quarantine", quarantine_bag_path(bag), class: 'btn-sm btn-flat btn-danger' %>
+      <% end %>
+
       <% if can? :edit, Bag %>
       <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: "btn-sm btn-flat btn-warning" %>
       <% end %>

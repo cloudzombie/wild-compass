@@ -43,7 +43,25 @@ class Bag < ActiveRecord::Base
   has_one :location, through: :bin
 
 
+
+  def recall
+    update(recalled: true) unless recalled?
+    lot.recall unless lot.nil? || lot.recalled?
+    true
+  rescue
+    false
+  end
+
+  def quarantine
+    update(quarantined: true) unless quarantined?
+    lot.quarantine unless lot.nil? || lot.quarantined?
+    true
+  rescue
+    false
+  end
   
+
+
   def to_s
     "#{ name.upcase unless name.nil? }"
   end

@@ -21,6 +21,22 @@ class API::V1::LotsController < API::V1::APIController
     respond_with Lot.destroy(id_param)
   end
 
+  def recall
+    render json: {
+      data: {
+        recall: Lot.find(id_param).recall
+      }
+    }
+  end
+
+  def quarantine
+    render json: {
+      data: {
+        recall: Lot.find(id_param).quarantine
+      }
+    }
+  end
+
   private
     
     def lot_params

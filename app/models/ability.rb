@@ -11,8 +11,12 @@ class Ability
 
       can :fulfill, Order
       can :reweight, Bag
+      
       can :scan, Bag
       can :scan, Jar
+
+      can :recall, Bag
+      can :recall, Lot
 
     elsif user.manager?
       can :manage, Brand
@@ -32,8 +36,12 @@ class Ability
 
       can :fulfill, Order
       can :reweight, Bag
+
       can :scan, Bag
       can :scan, Jar
+
+      can :recall, Bag
+      can :recall, Lot
       
     else
       can :read, Brand
@@ -51,8 +59,12 @@ class Ability
 
       can :fulfill, Order
       can :reweight, Bag
+
       can :scan, Bag
       can :scan, Jar
+
+      can :recall, Bag
+      can :recall, Lot
     end
   end
 end

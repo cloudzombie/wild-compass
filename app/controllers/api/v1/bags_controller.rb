@@ -25,8 +25,24 @@ class API::V1::BagsController < API::V1::APIController
     send_data Bag.find(id_param).datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
-  def datamatrix
+  def label
     send_data Bag.find(id_param).label, type: 'image/png', disposition: 'attachment'
+  end
+
+  def recall
+    render json: {
+      data: {
+        recall: Bag.find(id_param).recall
+      }
+    }
+  end
+
+  def quarantine
+    render json: {
+      data: {
+        recall: Bag.find(id_param).quarantine
+      }
+    }
   end
 
   private

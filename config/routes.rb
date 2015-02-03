@@ -63,10 +63,19 @@ Rails.application.routes.draw do
 
       get  'scan'
       post 'scan'
+
+      get 'quarantine'
+      get 'recall'
     end
   end
 
-  resources :lots
+  resources :lots do
+    member do
+      get 'quarantine'
+      get 'recall'
+    end
+  end
+
   resources :strains
   
   resources :brands do
@@ -101,10 +110,19 @@ Rails.application.routes.draw do
         member do
           get 'datamatrix'
           get 'label'
+
+          get 'quarantine'
+          get 'recall'
         end
       end
 
-      resources :lots
+      resources :lots do
+        member do 
+          get 'quarantine'
+          get 'recall'
+        end
+      end
+
       resources :strains
       
       resources :brands do

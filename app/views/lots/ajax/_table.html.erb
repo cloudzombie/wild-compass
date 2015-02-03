@@ -24,6 +24,14 @@
       <% if can? :update, Lot %>
       <%= link_to "Edit".html_safe, edit_lot_path(lot), class: "btn-sm btn-flat btn-warning" %>
       <% end %>
+
+      <% if can? :recall, Lot %>
+      <%= link_to "Recall", recall_lot_path(lot), class: 'btn-sm btn-flat btn-danger' %>
+      <% end %>
+
+      <% if can? :quarantine, Lot %>
+      <%= link_to "Quarantine", quarantine_lot_path(lot), class: 'btn-sm btn-flat btn-danger' %>
+      <% end %>
     </td>
   </tr>
   <% end %>

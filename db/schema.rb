@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203000000) do
+ActiveRecord::Schema.define(version: 20150203223030) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20150203000000) do
     t.integer  "bin_id"
     t.boolean  "archived",                                 default: false, null: false
     t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
+    t.boolean  "recalled",                                 default: false, null: false
+    t.boolean  "quarantined",                              default: false, null: false
   end
 
   add_index "bags", ["datamatrix_text", "datamatrix_hash"], name: "index_bags_on_datamatrix_text_and_datamatrix_hash", unique: true
@@ -61,7 +63,7 @@ ActiveRecord::Schema.define(version: 20150203000000) do
     t.datetime "updated_at"
     t.integer  "history_id"
     t.string   "category"
-    t.integer  "location_id",    limit: 255
+    t.integer  "location_id"
   end
 
   create_table "containers_lots", force: true do |t|
@@ -154,6 +156,8 @@ ActiveRecord::Schema.define(version: 20150203000000) do
     t.integer  "strain_id"
     t.decimal  "thc_composition", precision: 5,  scale: 2
     t.decimal  "cbd_composition", precision: 5,  scale: 2
+    t.boolean  "recalled",                                 default: false, null: false
+    t.boolean  "quarantined",                              default: false, null: false
   end
 
   create_table "order_lines", force: true do |t|
@@ -183,9 +187,9 @@ ActiveRecord::Schema.define(version: 20150203000000) do
     t.string   "origin"
     t.string   "name"
     t.integer  "history_id"
-    t.decimal  "current_weight",             precision: 16, scale: 4
-    t.decimal  "initial_weight",             precision: 16, scale: 4
-    t.integer  "location_id",    limit: 255
+    t.decimal  "current_weight", precision: 16, scale: 4
+    t.decimal  "initial_weight", precision: 16, scale: 4
+    t.integer  "location_id"
   end
 
   add_index "plants", ["format_id"], name: "index_plants_on_format_id"

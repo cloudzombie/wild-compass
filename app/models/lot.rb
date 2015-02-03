@@ -32,6 +32,29 @@ class Lot < ActiveRecord::Base
   has_many :brands, -> { uniq }, through: :strains
 
 
+
+  def recall
+    update(recalled: true) unless recalled?
+    bags.each do |bag|
+      bag.recall unless bag.nil? || bag.recalled?
+    end
+    true
+  rescue
+    false
+  end
+
+  def quarantine
+    update(quarantined: true) unless quarantined?
+    bags.each do |bag|
+      bag.quarantine unless bag.nil? || bag.recalled?
+    end
+    true
+  rescue
+    false
+  end
+
+
+
   def to_s
     "#{ name.upcase unless name.nil? }"
   end
