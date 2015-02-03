@@ -22,6 +22,8 @@ class Ability
       can :manage, Bag
       can :manage, Order
       can :manage, User
+      can :manage, Bin
+      can :manage, Container
       
       can :send_to_lab, Bag
       can :home, 'Inventory'
@@ -40,6 +42,8 @@ class Ability
       can :read, Jar
       can :read, Bag
       can :read, Order
+      can :read, Bin
+      can :read, Container
 
       can :home, 'Inventory'
       can :home, 'Dashboard'
