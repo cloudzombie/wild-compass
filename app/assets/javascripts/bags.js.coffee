@@ -81,7 +81,6 @@ scanBag = ->
 
 # Read data from scale 1
 readScale1 = ->
-  $.get 'http://localhost:8080/data'
-    .done (data) ->
-      $('#reweight-bag-scale-1-readings').val(data)
-      $('#reweight-bag-scale-1-readings').change()
+  $.get('http://localhost:8080/data').done (data) ->
+    $('#reweight-bag-scale-1-readings').val(data)
+    $('#reweight-bag-scale-1-readings').change()

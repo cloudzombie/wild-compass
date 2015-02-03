@@ -87,7 +87,6 @@ class OrdersController < ApplicationController
 
     if request.post?
       redirect_to order, notice: params
-
       Transaction.from( @bag ).to( @jar ).take( @jar.weight ).by( current_user ).commit
 
     else

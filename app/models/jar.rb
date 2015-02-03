@@ -15,6 +15,10 @@ class Jar < ActiveRecord::Base
 
 
 
+  def amount_to_fill
+    order_line.quantity / order_line.jars.count
+  end
+
   ### Bag
 
   belongs_to :bag
