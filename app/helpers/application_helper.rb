@@ -123,4 +123,16 @@ module ApplicationHelper
       '#'
     end
   end
+
+  def quarantine_for(item)
+    if item
+      'Yes'
+    else
+      'No'
+    end
+  end
+
+  def recall_for(item)
+    quarantine_for(item)
+  end
 end

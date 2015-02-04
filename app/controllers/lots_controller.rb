@@ -59,12 +59,12 @@ class LotsController < ApplicationController
 
   def recall
     lot.recall
-    respond_to do
+    respond_to do |format|
       format.html { redirect_to lots_url, notice: 'Lot was successfully recalled.' }
       format.json { head :no_content }
     end
   rescue
-    respond_to do
+    respond_to do |format|
       format.html { redirect_to lots_url, notice: 'Lot was not recalled.' }
       format.json { head :no_content }
     end
