@@ -13,7 +13,7 @@ class OrderLine < ActiveRecord::Base
 
 
   
-  has_many :jars, -> { uniq }
+  has_many :jars
 
   accepts_nested_attributes_for :jars
 
