@@ -2,8 +2,19 @@ class Order < ActiveRecord::Base
 
   include Searchable
 
-  scope :fulfilled,   -> { joins(:order_lines).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: true  ).order(id: :asc))) }
-  scope :unfulfilled, -> { joins(:order_lines).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: false ).order(id: :asc))) }
+  scope :fulfilled,   -> {  select('orders.*')
+                           .joins(:order_lines)
+                           .merge( OrderLine.joins(:jars)
+                                            .merge( Jar.where(fulfilled: true)
+                                                       .order(id: :asc)
+                         )).uniq }
+
+  scope :unfulfilled, -> {  select('orders.*')
+                           .joins(:order_lines)
+                           .merge( OrderLine.joins(:jars)
+                                            .merge( Jar.where(fulfilled: false )
+                                                       .order(id: :asc)
+                         )).uniq }
 
   def first_unfulfilled
     order_lines.each do |line|
@@ -26,7 +37,7 @@ class Order < ActiveRecord::Base
 
   ### Order lines
 
-  has_many :order_lines
+  has_many :order_lines, -> { uniq }
   
   accepts_nested_attributes_for :order_lines,
                                  allow_destroy: true,
