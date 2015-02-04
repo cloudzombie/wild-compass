@@ -59,6 +59,7 @@
         <ol style="list-style-type: none; padding-left: 0;">
           <% brands.each do |brand| %>
             <% bags.each_slice(brands.count) do |slice| %>
+              <strong class="text-primary"><%= brand %></strong>
               <div class="row">
                 <% slice.each do |bag| %>
                   <% next if bag.brand != brand %>
@@ -77,6 +78,7 @@
         <ol style="list-style-type: none; padding-left: 0;">
           <% brands.each do |brand| %>
             <% jars.each_slice(brands.count) do |slice| %>
+              <strong class="text-primary"><%= brand %></strong>
               <div class="row">
                 <% slice.each do |jar| %>
                   <% next if jar.brand != brand %>
