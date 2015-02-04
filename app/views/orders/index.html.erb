@@ -53,24 +53,36 @@
       <div class="well">
         <legend><strong class="text-primary">Bins</strong></legend>
         <ol style="list-style-type: none; padding-left: 0;">
-          <% bins.each do |bin| %>
-            <li><%= "#{fa_icon 'square'} #{bin}".html_safe %></li>
+          <% bins.each_slice(6) do |slice| %>
+            <div class="row">
+            <% slice.each do |bin| %>
+              <li class="col-md-2" style="display: inline-block;"><%= "#{fa_icon 'square'} #{bin}".html_safe %></li>
+            <% end %>
+            </div>
           <% end %>
         </ol>
       </div>
       <div class="well">
         <legend><strong class="text-primary">Bags</strong></legend>
         <ol style="list-style-type: none; padding-left: 0;">
-          <% bags.each do |bag| %>
-            <li><%= "#{fa_icon 'tag'} #{bag}".html_safe %></li>
+          <% bags.each_slice(6) do |slice| %>
+            <div class="row">
+            <% slice.each do |bag| %>
+              <li class="col-md-2" style="display: inline-block;"><%= "#{fa_icon 'tag'} #{bag}".html_safe %></li>
+            <% end %>
+            </div>
           <% end %>
         </ol>
       </div>
       <div class="well">
         <legend><strong class="text-primary">Jars</strong></legend>
         <ol style="list-style-type: none; padding-left: 0;">
-          <% jars.each do |jar| %>
-            <li><%= "#{fa_icon 'flask'} #{jar}".html_safe %></li>
+          <% jars.each_slice(6) do |slice| %>
+            <div class="row">
+            <% slice.each do |jar| %>
+              <li class="col-md-2" style="display: inline-block;"><%= "#{fa_icon 'flask'} #{jar}".html_safe %></li>
+            <% end %>
+            </div>
           <% end %>
         </ol>
       </div>
