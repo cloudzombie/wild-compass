@@ -19704,7 +19704,7 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  var SCALE_RESOLUTION, bagId, bagWeight, commit, errorResetProcess, fulfillOrderReadScale1, fulfillOrderReadScale2, fulfillOrderScale1AutoRefresh, fulfillOrderScale2AutoRefresh, fulfillOrderStep1, fulfillOrderStep2, fulfillOrderStep3, fulfillOrderStep4, fulfillOrderStep5, fulfillScanBag, fulfillScanJar, jarHigherBoundBalances, jarId, jarLowerBoundBalances, jarQuantity, jarWeight, resetScale1, resetScale2, scalesHigherBoundBalances, scalesLowerBoundBalances, transactionWeight, weightChanged;
+  var SCALE_RESOLUTION, bagId, bagWeight, commit, errorResetProcess, fulfillOrderReadScale1, fulfillOrderReadScale2, fulfillOrderScale1AutoRefresh, fulfillOrderScale2AutoRefresh, fulfillOrderStep1, fulfillOrderStep2, fulfillOrderStep3, fulfillOrderStep4, fulfillScanBag, fulfillScanJar, hasNext, jarHigherBoundBalances, jarId, jarLowerBoundBalances, jarQuantity, jarWeight, nextUrl, resetScale1, resetScale2, scalesHigherBoundBalances, scalesLowerBoundBalances, transactionWeight, weightChanged;
 
   SCALE_RESOLUTION = 0.101;
 
@@ -19720,10 +19720,16 @@ var saveAs = saveAs
 
   transactionWeight = null;
 
+  hasNext = null;
+
+  nextUrl = null;
+
   $(document).ready(function() {
     bagId = $('#fulfill-order-bag').data('id');
     jarId = $('#fulfill-order-jar').data('id');
     jarQuantity = parseFloat($('#fulfill-order-jar').data('quantity'));
+    hasNext = Boolean($('#fulfill-order-next').data('next'));
+    nextUrl = $('#fulfill-order-next').data('next-url');
     $.get('http://localhost:8080').done(function() {
       return $(".fulfill").prop('disabled', false);
     }).fail(function() {
@@ -19764,6 +19770,10 @@ var saveAs = saveAs
     $('#fulfill-order-scale-2-input').change(function(event) {
       return weightChanged();
     });
+    $('#fulfill-order-commit').click(function(event) {
+      event.preventDefault();
+      return commit();
+    });
     return fulfillOrderStep1();
   });
 
@@ -19777,7 +19787,9 @@ var saveAs = saveAs
     $('#step-1').show();
     $('#step-2').hide();
     $('#step-3').hide();
+    $('#step-4').hide();
     $('.scale-display').hide();
+    $('#fulfill-order-scan-jar-input').focus();
     clearInterval(fulfillOrderScale1AutoRefresh);
     return clearInterval(fulfillOrderScale2AutoRefresh);
   };
@@ -19786,7 +19798,9 @@ var saveAs = saveAs
     $('#step-1').hide();
     $('#step-2').show();
     $('#step-3').hide();
+    $('#step-4').hide();
     $('.scale-display').hide();
+    $('#fulfill-order-scan-bag-input').focus();
     clearInterval(fulfillOrderScale1AutoRefresh);
     return clearInterval(fulfillOrderScale2AutoRefresh);
   };
@@ -19795,6 +19809,7 @@ var saveAs = saveAs
     $('#step-1').hide();
     $('#step-2').hide();
     $('#step-3').show();
+    $('#step-4').hide();
     $('.scale-display').show();
     resetScale1();
     resetScale2();
@@ -19806,20 +19821,10 @@ var saveAs = saveAs
     $('#step-1').hide();
     $('#step-2').hide();
     $('#step-3').hide();
+    $('#step-4').show();
     $('.scale-display').show();
     clearInterval(fulfillOrderScale1AutoRefresh);
-    clearInterval(fulfillOrderScale2AutoRefresh);
-    return setTimeout(fulfillOrderStep5, 500);
-  };
-
-  fulfillOrderStep5 = function() {
-    $('#step-1').hide();
-    $('#step-2').hide();
-    $('#step-3').hide();
-    $('.scale-display').show();
-    clearInterval(fulfillOrderScale1AutoRefresh);
-    clearInterval(fulfillOrderScale2AutoRefresh);
-    return commit();
+    return clearInterval(fulfillOrderScale2AutoRefresh);
   };
 
   errorResetProcess = function() {
@@ -19913,7 +19918,11 @@ var saveAs = saveAs
         weight: transactionWeight
       }
     });
-    return $(location).attr('href', '/orders');
+    if (hasNext) {
+      return setTimeout($(location).attr('href', nextUrl), 500);
+    } else {
+      return setTimeout($(location).attr('href', '/orders'), 500);
+    }
   };
 
 }).call(this);

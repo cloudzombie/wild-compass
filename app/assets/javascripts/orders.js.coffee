@@ -13,11 +13,17 @@ jarQuantity = null
 
 transactionWeight = null
 
+hasNext = null
+nextUrl = null
+
 $(document).ready ->
 
   bagId = $('#fulfill-order-bag').data('id')
   jarId = $('#fulfill-order-jar').data('id')
   jarQuantity = parseFloat($('#fulfill-order-jar').data('quantity'))
+
+  hasNext = Boolean($('#fulfill-order-next').data('next'))
+  nextUrl = $('#fulfill-order-next').data('next-url')
 
   # Toggle disabled on Fulfill Button if scale 1 responds
   $.get 'http://localhost:8080'
@@ -67,6 +73,10 @@ $(document).ready ->
   $('#fulfill-order-scale-2-input').change (event) ->
     weightChanged()
 
+  $('#fulfill-order-commit').click (event) ->
+    event.preventDefault()
+    commit()
+
   fulfillOrderStep1()
 
 fulfillOrderScale1AutoRefresh = null
@@ -80,7 +90,9 @@ fulfillOrderStep1 = ->
   $('#step-1').show()
   $('#step-2').hide()
   $('#step-3').hide()
+  $('#step-4').hide()
   $('.scale-display').hide()
+  $('#fulfill-order-scan-jar-input').focus()
   # Stop reading
   clearInterval(fulfillOrderScale1AutoRefresh)
   clearInterval(fulfillOrderScale2AutoRefresh)
@@ -90,7 +102,9 @@ fulfillOrderStep2 = ->
   $('#step-1').hide()
   $('#step-2').show()
   $('#step-3').hide()
+  $('#step-4').hide()
   $('.scale-display').hide()
+  $('#fulfill-order-scan-bag-input').focus()
   # Stop reading
   clearInterval(fulfillOrderScale1AutoRefresh)
   clearInterval(fulfillOrderScale2AutoRefresh)
@@ -100,6 +114,7 @@ fulfillOrderStep3 = ->
   $('#step-1').hide()
   $('#step-2').hide()
   $('#step-3').show()
+  $('#step-4').hide()
   $('.scale-display').show()
   # Tare scales
   resetScale1()
@@ -113,25 +128,11 @@ fulfillOrderStep4 = ->
   $('#step-1').hide()
   $('#step-2').hide()
   $('#step-3').hide()
+  $('#step-4').show()
   $('.scale-display').show()
   # Stop reading
   clearInterval(fulfillOrderScale1AutoRefresh)
   clearInterval(fulfillOrderScale2AutoRefresh)
-  # Fulfill
-  setTimeout fulfillOrderStep5, 500
-
-fulfillOrderStep5 = ->
-  # Display UI
-  $('#step-1').hide()
-  $('#step-2').hide()
-  $('#step-3').hide()
-  $('.scale-display').show()
-  # Stop reading
-  clearInterval(fulfillOrderScale1AutoRefresh)
-  clearInterval(fulfillOrderScale2AutoRefresh)
-  # Post transaction
-  commit()
-
 
 errorResetProcess = ->
   fulfillOrderStep1()
@@ -210,4 +211,7 @@ commit = ->
       jar: jarId
       weight: transactionWeight
   )
-  $(location).attr('href', '/orders');
+  if hasNext
+    setTimeout($(location).attr('href', nextUrl), 500)
+  else
+    setTimeout($(location).attr('href', '/orders'), 500)

@@ -116,12 +116,12 @@ class BagsController < ApplicationController
 
   def quarantine
     bag.quarantine
-    respond_to do
+    respond_to do |format|
       format.html { redirect_to bags_url, notice: 'Bag was successfully quarantined.' }
       format.json { head :no_content }
     end
   rescue
-    respond_to do
+    respond_to do |format|
       format.html { redirect_to bags_url, notice: 'Bag was not quarantined.' }
       format.json { head :no_content }
     end

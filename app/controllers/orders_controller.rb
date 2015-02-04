@@ -10,7 +10,12 @@ class OrdersController < ApplicationController
   # If no id is specified, a new order is instanciated (not created)
   expose(:order, params: :order_params) { id_param.nil? ? Order.new : Order.find(id_param) }
   # Match given sort parameters against database columns
-  expose(:orders) { Order.unfulfilled.search(params[:search]).order(sort_column + ' ' + sort_direction) }
+  expose(:orders) { Order.select('DISTINCT(orders.id), orders.*')
+                         .search(params[:search])
+                         .unfulfilled
+                         .order("orders.#{sort_column} #{sort_direction}")
+                  }
+
   expose(:jar) { Jar.new }
 
   respond_to :html, :xml, :json
@@ -89,6 +94,8 @@ class OrdersController < ApplicationController
 
       if Transaction.from( @bag ).to( @jar ).take( @jar.weight ).by( current_user ).commit
         @jar.update(fulfilled: true)
+        @bag.save
+        @jar.save
       end
 
     else

@@ -59,12 +59,12 @@ class LotsController < ApplicationController
 
   def recall
     lot.recall
-    respond_to do
+    respond_to do |format|
       format.html { redirect_to lots_url, notice: 'Lot was successfully recalled.' }
       format.json { head :no_content }
     end
   rescue
-    respond_to do
+    respond_to do |format|
       format.html { redirect_to lots_url, notice: 'Lot was not recalled.' }
       format.json { head :no_content }
     end
@@ -87,7 +87,7 @@ class LotsController < ApplicationController
 
     def lot_params
       params.require(:lot).permit(:name, :weight, :initial_weight, :strain_id, :current_weight,
-                                  :thc_composition, :tbd_composition, { container_ids: [] })
+                                  :thc_composition, :cbd_composition, { container_ids: [] })
     end
 
     def id_param
