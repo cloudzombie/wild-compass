@@ -2,13 +2,13 @@ class Order < ActiveRecord::Base
 
   include Searchable
 
-  scope :fulfilled,   -> {  select('DISTINCT orders.id')
+  scope :fulfilled,   -> {  select('DISTINCT(orders.id), orders.*')
                            .joins(:order_lines)
                            .merge( OrderLine.joins(:jars)
                                             .merge( Jar.where(fulfilled: true)
                          ))}
 
-  scope :unfulfilled, -> {  select('DISTINCT orders.id')
+  scope :unfulfilled, -> {  select('DISTINCT(orders.id), orders.*')
                            .joins(:order_lines)
                            .merge( OrderLine.joins(:jars)
                                             .merge( Jar.where(fulfilled: false)
