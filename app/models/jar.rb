@@ -95,6 +95,12 @@ class Jar < ActiveRecord::Base
     ''
   end
 
+  def brand
+    brands.first
+  rescue
+    ''
+  end
+
   def container
     containers.first
   rescue

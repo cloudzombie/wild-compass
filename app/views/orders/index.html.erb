@@ -19,8 +19,8 @@
         <th><%= check_box_tag :accept %></th>
         <th><%= sortable :id, 'ID' %></th>
         <th><%= sortable :customer %></th>
-        <th>Description</th>
-        <th>Total Weight</th>
+        <th><%= sortable :description %></th>
+        <th><%= sortable :total_weight %></th>
         <th><%= sortable :ordered_at %></th>
         <th><%= sortable :shipped_at %></th>
         <th>Actions</th>
@@ -33,17 +33,6 @@
 </div>
 
 <div class="tableFooter">
-  <% bins = []; bags = []; jars = [] %>
-  <% orders.each do |order| %>
-    <% order.order_lines.each do |line| %>
-      <% line.jars.each do |jar| %>
-        <% jars << jar %>
-        <% bags << jar.try(:bag) %>
-        <% bins << jar.try(:bag).try(:bin) %>
-      <% end %>
-    <% end %>
-  <% end %>
-  <% bins.uniq! ; bags.uniq! ; jars.uniq! %>
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 style="margin: 0; padding: 0;">Fulfillment List</h3>
@@ -55,34 +44,50 @@
         <ol style="list-style-type: none; padding-left: 0;">
           <% bins.each_slice(6) do |slice| %>
             <div class="row">
-            <% slice.each do |bin| %>
-              <li class="col-md-2" style="display: inline-block;"><%= "#{fa_icon 'square'} #{bin}".html_safe %></li>
-            <% end %>
+              <% slice.each do |bin| %>
+                <li class="col-md-2" style="display: inline-block;">
+                  <%= "#{fa_icon 'square'} #{bin}".html_safe %>
+                </li>
+              <% end %>
             </div>
           <% end %>
         </ol>
       </div>
+
       <div class="well">
         <legend><strong class="text-primary">Bags</strong></legend>
         <ol style="list-style-type: none; padding-left: 0;">
-          <% bags.each_slice(6) do |slice| %>
-            <div class="row">
-            <% slice.each do |bag| %>
-              <li class="col-md-2" style="display: inline-block;"><%= "#{fa_icon 'tag'} #{bag}".html_safe %></li>
+          <% brands.each do |brand| %>
+            <% bags.each_slice(brands.count) do |slice| %>
+              <strong class="text-primary"><%= brand %></strong>
+              <div class="row">
+                <% slice.each do |bag| %>
+                  <% next if bag.brand != brand %>
+                  <li class="col-md-<%= 12 / brands.count %>" style="display: inline-block;">
+                    <%= "#{fa_icon 'tag'} #{bag}".html_safe %>
+                  </li>
+                <% end %>
+              </div>
             <% end %>
-            </div>
           <% end %>
         </ol>
       </div>
+
       <div class="well">
         <legend><strong class="text-primary">Jars</strong></legend>
         <ol style="list-style-type: none; padding-left: 0;">
-          <% jars.each_slice(6) do |slice| %>
-            <div class="row">
-            <% slice.each do |jar| %>
-              <li class="col-md-2" style="display: inline-block;"><%= "#{fa_icon 'flask'} #{jar}".html_safe %></li>
+          <% brands.each do |brand| %>
+            <% jars.each_slice(brands.count) do |slice| %>
+              <strong class="text-primary"><%= brand %></strong>
+              <div class="row">
+                <% slice.each do |jar| %>
+                  <% next if jar.brand != brand %>
+                  <li class="col-md-<%= 12 / brands.count %>" style="display: inline-block;">
+                    <%= "#{fa_icon 'flask'} #{jar}".html_safe %>
+                  </li>
+                <% end %>
+              </div>
             <% end %>
-            </div>
           <% end %>
         </ol>
       </div>

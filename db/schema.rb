@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203223030) do
+ActiveRecord::Schema.define(version: 20150204220023) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -174,7 +174,10 @@ ActiveRecord::Schema.define(version: 20150203223030) do
     t.datetime "updated_at"
     t.datetime "ordered_at"
     t.datetime "shipped_at"
+    t.integer  "ces_order_id"
   end
+
+  add_index "orders", ["ces_order_id"], name: "index_orders_on_ces_order_id", unique: true
 
   create_table "plants", force: true do |t|
     t.datetime "created_at"

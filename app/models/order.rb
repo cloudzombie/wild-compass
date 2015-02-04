@@ -14,6 +14,8 @@ class Order < ActiveRecord::Base
                                             .merge( Jar.where(fulfilled: false)
                          ))}
 
+  validates :ces_order_id, uniqueness: true
+
   def first_unfulfilled
     order_lines.each do |line|
       line.jars.each do |jar|

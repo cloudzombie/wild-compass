@@ -36,6 +36,8 @@ class Bag < ActiveRecord::Base
 
   has_many :strains, through: :plants
 
+  has_many :brands, through: :strains
+
   
 
   delegate :category, to: :container, prefix: false, allow_nil: true
@@ -84,6 +86,12 @@ class Bag < ActiveRecord::Base
 
   def plant
     plants.first
+  rescue
+    ''
+  end
+
+  def brand
+    brands.first
   rescue
     ''
   end
