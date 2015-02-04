@@ -2,19 +2,17 @@ class Order < ActiveRecord::Base
 
   include Searchable
 
-  scope :fulfilled,   -> {  select('orders.*')
+  scope :fulfilled,   -> {  select('DISTINCT orders.id')
                            .joins(:order_lines)
                            .merge( OrderLine.joins(:jars)
                                             .merge( Jar.where(fulfilled: true)
-                                                       .order(id: :asc)
-                         )).uniq }
+                         ))}
 
-  scope :unfulfilled, -> {  select('orders.*')
+  scope :unfulfilled, -> {  select('DISTINCT orders.id')
                            .joins(:order_lines)
                            .merge( OrderLine.joins(:jars)
-                                            .merge( Jar.where(fulfilled: false )
-                                                       .order(id: :asc)
-                         )).uniq }
+                                            .merge( Jar.where(fulfilled: false)
+                         ))}
 
   def first_unfulfilled
     order_lines.each do |line|
