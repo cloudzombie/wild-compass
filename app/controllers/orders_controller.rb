@@ -158,7 +158,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:customer, :shipped_at, :ordered_at, :jar, :bag, :weight,
+      params.require(:order).permit(:customer, :shipped_at, :ordered_at, :jar, :bag, :weight, :ces_order_id,
       order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ])
     end
 
