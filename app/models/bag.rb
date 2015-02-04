@@ -8,11 +8,11 @@ class Bag < ActiveRecord::Base
   
 
 
-  scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
-  scope :by_categories,    -> (category = nil) { joins(:container).merge(Container.where(category: category)).uniq }
+  scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
+  scope :by_categories,    -> (category = nil) { joins(:container).merge(Container.where(category: category)) }
   scope :by_trims,         -> { by_categories 'Trim' }
   scope :by_buds,          -> { by_categories 'Buds' }
-  scope :by_brands,        -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
+  scope :by_brands,        -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)) }
 
   
 
@@ -30,11 +30,11 @@ class Bag < ActiveRecord::Base
 
 
 
-  has_many :jars, -> { uniq }
+  has_many :jars
 
   has_many :plants, through: :lot
 
-  has_many :strains, -> { uniq }, through: :plants
+  has_many :strains, through: :plants
 
   
 
