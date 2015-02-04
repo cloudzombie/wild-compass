@@ -6,9 +6,11 @@ class BinsController < ApplicationController
 
   before_action :authorized?
 
+  helper_method :sort_column, :sort_direction
+
   expose(:bin, params: :bin_params) { find(Bin) }
 
-  expose(:bins) { Bin.all }
+  expose(:bins) { Bin.order(sort_column + ' ' + sort_direction) }
 
   def create
     self.bin = Bin.new(bin_params)
@@ -35,6 +37,16 @@ class BinsController < ApplicationController
 
 
   private
+
+    # Set column to sort in order.
+    def sort_column
+      %w(id name).include?(params[:sort]) ? params[:sort] : 'name'
+    end
+
+    # Set sort direction to ascending or descending.
+    def sort_direction
+      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
+    end
 
     def authorized?
       authorize! action_name.to_sym, Bin
