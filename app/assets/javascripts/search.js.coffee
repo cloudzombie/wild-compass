@@ -3,7 +3,7 @@ $ ->
     $.getScript @href
     false
 
-  $("#search_form input").keyup ->
+  $("#search_form input").change ->
     $.get $("#search_form").attr("action"), $("#search_form").serialize(), null, "script"
     false
 

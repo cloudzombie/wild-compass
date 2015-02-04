@@ -51,4 +51,5 @@ class Order < ActiveRecord::Base
     end
     w
   end
+
 end
