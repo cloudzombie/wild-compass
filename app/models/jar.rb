@@ -13,7 +13,17 @@ class Jar < ActiveRecord::Base
   scope :by_buds,       -> { by_categories 'Buds' }
   scope :by_brands,     -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
+  scope :fulfilled,   -> { joins(:order_line).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: true  ).order(id: :asc))).uniq }
+  scope :unfulfilled, -> { joins(:order_line).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: false ).order(id: :asc))).uniq }
 
+  def next
+    jars = []
+    order_line.jars.order(id: :asc).each do |jar|
+      next if jar == self
+      jars << jar if jar.unfulfilled?
+    end
+    jars.first
+  end
 
   def amount_to_fill
     order_line.quantity / order_line.jars.count
@@ -30,6 +40,8 @@ class Jar < ActiveRecord::Base
   ### Order_line
 
   belongs_to :order_line
+
+  has_one :order, through: :order_line
 
 
 

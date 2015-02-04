@@ -12,6 +12,6 @@ class Bin < ActiveRecord::Base
   end
 
   def to_s
-    "BIN_#{id}"
+    "BIN-#{id}"
   end
 end

@@ -16,6 +16,12 @@
        data-quantity="<%= @jar.amount_to_fill %>">
   </div>
 
+  <div id="fulfill-order-next"
+       style="display: hidden;"
+       data-next="<%= @jar.next ? true : false %>"
+       data-next-url="<%= fulfill_order_path(@jar.order) unless @jar.order.nil? %>">
+  </div>
+
   <div class="panel-heading">
     <h3 class="panel-title"><strong>Order Fulfillment</strong></h3>
   </div>
@@ -83,53 +89,63 @@
       <p class="alert alert-info"><strong>Please fill jar with X grams from bag...</strong></p>
     </div>
 
-    <form id="fulfill-order-scale-1-form" class="scale-display">
-      <div class="form-group">
-        <div class="input-group">
-          <%= label_tag 'fulfill-order-scale-1', class: 'input-group-addon' do %>
-            <strong>Weight (Scale 1) :</strong>
-          <% end %>
-          
-          <input type="text"
-                 id="fulfill-order-scale-1-input"
-                 class="form-control"
-                 readonly>
-          </input>
-          
-          <% if params[:debug] %>
-            <div class="input-group-btn">
-              <%= link_to '#', class: 'btn btn-primary', id: 'zero-scale-1-btn' do %>
-                <strong>ZERO</strong>
+    <div class="row">
+      <div class="col-md-6">
+        <form id="fulfill-order-scale-1-form" class="scale-display">
+          <div class="form-group">
+            <div class="input-group">
+              <%= label_tag 'fulfill-order-scale-1', class: 'input-group-addon' do %>
+                <strong class="text-primary">Weight (Scale 1) :</strong>
+              <% end %>
+              
+              <input type="text"
+                     id="fulfill-order-scale-1-input"
+                     class="form-control"
+                     readonly>
+              </input>
+              
+              <% if params[:debug] %>
+                <div class="input-group-btn">
+                  <%= link_to '#', class: 'btn btn-primary', id: 'zero-scale-1-btn' do %>
+                    <strong>ZERO</strong>
+                  <% end %>
+                </div>
+              <% end%>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-6">
+        <form id="fulfill-order-scale-2-form" class="scale-display">
+          <div class="form-group">
+            <div class="input-group">
+              <%= label_tag 'fulfill-order-scale-2', class: 'input-group-addon' do %>
+                <strong class="text-primary">Weight (Scale 2) :</strong>
+              <% end %>
+                
+              <input type="text"
+                     id="fulfill-order-scale-2-input"
+                     class="form-control"
+                     readonly>
+              </input>
+
+              <% if params[:debug] %>
+                <div class="input-group-btn">
+                  <%= link_to '#', class: 'btn btn-primary', id: 'zero-scale-2-btn' do %>
+                    <strong>ZERO</strong>
+                  <% end %>
+                </div>
               <% end %>
             </div>
-          <% end%>
-        </div>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
 
-    <form id="fulfill-order-scale-2-form" class="scale-display">
-      <div class="form-group">
-        <div class="input-group">
-          <%= label_tag 'fulfill-order-scale-2', class: 'input-group-addon' do %>
-            <strong>Weight (Scale 2) :</strong>
-          <% end %>
-            
-          <input type="text"
-                 id="fulfill-order-scale-2-input"
-                 class="form-control"
-                 readonly>
-          </input>
-
-          <% if params[:debug] %>
-            <div class="input-group-btn">
-              <%= link_to '#', class: 'btn btn-primary', id: 'zero-scale-2-btn' do %>
-                <strong>ZERO</strong>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </form>
+    <div id="step-4">
+      <%= link_to 'Commit Fulfill', '#', id: 'fulfill-order-commit', class: 'btn btn-primary' %>
+    </div>
 
   </div>
 </div>

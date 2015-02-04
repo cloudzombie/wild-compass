@@ -2,8 +2,8 @@ class Order < ActiveRecord::Base
 
   include Searchable
 
-  scope :fulfilled,   -> { joins(:order_lines).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: true  ))).uniq }
-  scope :unfulfilled, -> { joins(:order_lines).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: false ))).uniq }
+  scope :fulfilled,   -> { joins(:order_lines).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: true  ).order(id: :asc))).uniq }
+  scope :unfulfilled, -> { joins(:order_lines).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: false ).order(id: :asc))).uniq }
 
   def first_unfulfilled
     order_lines.each do |line|

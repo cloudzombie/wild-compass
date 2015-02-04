@@ -10,7 +10,9 @@ class JarsController < ApplicationController
   expose(:jar, params: :jar_params) { find(Jar) }
 
   expose(:jars) do
-    if Jar.column_names.include? sort_column
+    if sort_column == 'name'
+      Jar.search(params[:search]).order('LENGTH(name), name ' + sort_direction)
+    elsif Jar.column_names.include? sort_column
       Jar.search(params[:search]).order(sort_column + ' ' + sort_direction)
     elsif sort_column == 'strain'
       Jar.search(params[:search]).joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym))
@@ -96,7 +98,7 @@ class JarsController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id strain category origin current_weight bag_id created_at updated_at).include?(params[:sort]) ? params[:sort] : 'updated_at'
+      %w(id strain category origin current_weight bag_id created_at updated_at).include?(params[:sort]) ? params[:sort] : 'name'
     end
 
     # Set sort direction to ascending or descending.

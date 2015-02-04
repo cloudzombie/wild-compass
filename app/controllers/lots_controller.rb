@@ -87,7 +87,7 @@ class LotsController < ApplicationController
 
     def lot_params
       params.require(:lot).permit(:name, :weight, :initial_weight, :strain_id, :current_weight,
-                                  :thc_composition, :tbd_composition, { container_ids: [] })
+                                  :thc_composition, :cbd_composition, { container_ids: [] })
     end
 
     def id_param
