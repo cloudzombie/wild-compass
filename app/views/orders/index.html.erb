@@ -33,7 +33,49 @@
 </div>
 
 <div class="tableFooter">
-  
+  <% bins = []; bags = []; jars = [] %>
+  <% orders.each do |order| %>
+    <% order.order_lines.each do |line| %>
+      <% line.jars.each do |jar| %>
+        <% jars << jar %>
+        <% bags << jar.try(:bag) %>
+        <% bins << jar.try(:bag).try(:bin) %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% bins.uniq! ; bags.uniq! ; jars.uniq! %>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 style="margin: 0; padding: 0;">Fulfillment List</h3>
+    </div>
+
+    <div class="panel-body">
+      <div class="well">
+        <legend><strong class="text-primary">Bins</strong></legend>
+        <ol style="list-style-type: none; padding-left: 0;">
+          <% bins.each do |bin| %>
+            <li><%= "#{fa_icon 'square'} #{bin}".html_safe %></li>
+          <% end %>
+        </ol>
+      </div>
+      <div class="well">
+        <legend><strong class="text-primary">Bags</strong></legend>
+        <ol style="list-style-type: none; padding-left: 0;">
+          <% bags.each do |bag| %>
+            <li><%= "#{fa_icon 'tag'} #{bag}".html_safe %></li>
+          <% end %>
+        </ol>
+      </div>
+      <div class="well">
+        <legend><strong class="text-primary">Jars</strong></legend>
+        <ol style="list-style-type: none; padding-left: 0;">
+          <% jars.each do |jar| %>
+            <li><%= "#{fa_icon 'flask'} #{jar}".html_safe %></li>
+          <% end %>
+        </ol>
+      </div>
+    </div>
+  </div>
    
 </div>
 
