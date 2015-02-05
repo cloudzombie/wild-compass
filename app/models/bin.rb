@@ -5,7 +5,7 @@ class Bin < ActiveRecord::Base
   scope :fulfilled,   -> { joins(:jars).merge( Jar.fulfilled   )}
   scope :unfulfilled, -> { joins(:jars).merge( Jar.unfulfilled )}
 
-  has_many :bags
+  has_many :bags, -> { uniq }
 
   has_many :jars, -> { uniq }, through: :bags
 
