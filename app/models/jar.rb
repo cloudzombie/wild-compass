@@ -14,8 +14,8 @@ class Jar < ActiveRecord::Base
   scope :by_buds,       -> { by_categories 'Buds' }
   scope :by_brands,     -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
-  scope :fulfilled,   -> { joins(:order_line).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: true  ).order(id: :asc))).uniq }
-  scope :unfulfilled, -> { joins(:order_line).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: false ).order(id: :asc))).uniq }
+  scope :fulfilled,   -> { where fulfilled: true  } 
+  scope :unfulfilled, -> { where fulfilled: false }
 
 
 
