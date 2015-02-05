@@ -12,7 +12,7 @@ class BagsController < ApplicationController
   
   expose(:bag, params: :bag_params) { find(Bag) }
   
-  expose(:bags) { sort(Bag) }
+  expose(:bags) { Bag.all }
 
   expose(:jar) { Jar.new }
 
