@@ -59,7 +59,12 @@ user_group_roles = User::Group::Role.create([{ admin: false, manager: false, nam
 user_groups = User::Group.create([{ role: User::Group::Role.users,       name: 'users'       },
                                   { role: User::Group::Role.managers,    name: 'managers'    },
                                   { role: User::Group::Role.admins,      name: 'admins'      },
-                                  { role: User::Group::Role.super_users, name: 'super_users' }])
+                                  { role: User::Group::Role.super_users, name: 'uper_users' }])
+
+bag_statuses = Bag::Status.create([{ name: 'Untested'    },
+                                   { name: 'Quarantined' },
+                                   { name: 'Cleared'     },
+                                   { name: 'Recalled'    }])
 
 password = 'wild.compass'
 email = 'su_admin@wild.compass'
