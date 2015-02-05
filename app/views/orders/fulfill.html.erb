@@ -2,18 +2,18 @@
 
   <div id ="fulfill-order"
        style="display: hidden;"
-       data-href="<%= fulfill_order_path(order) %>">
+       data-href="<%= fulfill_order_path(order) unless order.nil? %>">
   </div>
 
   <div id="fulfill-order-bag"
        style="display: hidden;"
-       data-id="<%= @bag.id %>">
+       data-id="<%= @bag.id unless @bag.nil? %>">
   </div>
 
   <div id="fulfill-order-jar"
        style="display: hidden;"
-       data-id="<%= @jar.id %>"
-       data-quantity="<%= @jar.amount_to_fill %>">
+       data-id="<%= @jar.id unless @jar.nil? %>"
+       data-quantity="<%= @jar.amount_to_fill unless @jar.nil? %>">
   </div>
 
   <div id="fulfill-order-next"
@@ -28,14 +28,41 @@
 
   <div class="panel-body">
 
-    <legend class="well text-primary text-center">
-      <strong>
-        Fulfill :
-        <span class="text-info"><%= @bag %></span>
-        <span><%= fa_icon 'arrow-right' %></span>
-        <span class="text-info"><%= @jar %></span>
-      </strong>
-    </legend>
+    <div class="well">
+      <legend class="text-primary text-center">
+        <strong>
+          Fulfill :
+          <span class="text-info"><%= @bag %></span>
+          <span><%= fa_icon 'arrow-right' %></span>
+          <span class="text-info"><%= @jar %></span>
+        </strong>
+      </legend>
+
+      <div class="row">
+        <dl>
+          <div class="col-md-3">
+            <dt style="display: inline;">ICS ORDER ID :</dt>
+            <dd style="display: inline;"><%= order.id %></dd>
+          </div>
+          
+          <div class="col-md-3">
+            <dt style="display: inline;">CES ORDER ID :</dt>
+            <dd style="display: inline;"><%= order.ces_order_id %></dd>
+          </div>
+          
+          <div class="col-md-3">
+            <dt style="display: inline;">QTY PER JAR :</dt>
+            <dd style="display: inline;"><%= @jar.amount_to_fill %></dd>
+          </div>
+          
+          <div class="col-md-3">
+            <dt style="display: inline;"># OF JARS :</dt>
+            <dd style="display: inline;"><%= order.jars.count %></dd>
+          </div>
+        </dl>
+      </div>
+
+    </div>
 
     <div id="step-1">
       <p class="alert alert-info"><strong>Please place jar on scale 2 and scan...</strong></p>
@@ -76,7 +103,7 @@
                 <input type="text"
                        id="fulfill-order-scan-bag-input"
                        class="form-control"
-                       data-href="<%= scan_bag_path(@bag) %>">
+                       data-href="<%= scan_bag_path(@bag) unless @bag.nil? %>">
                 </input>
               </div>
             </div>

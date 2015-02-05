@@ -3,7 +3,7 @@
     <h3 class="box-title">Listing orders</h3>
     <div class="box-tools">
       <div class="input-group">
-        <%= form_tag(orders_path, :method => "get", id: "search-form", remote: true) do %>
+        <%= form_tag(orders_path, method: 'get', id: 'search-form', remote: true) do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
         <% end %>
         <div class="input-group-btn">
@@ -14,13 +14,22 @@
   </div><!-- /.box-header -->
 
   <div class="box-body table-responsive no-padding">
+    <div class="container">
+      <div class="row">
+        <div class="input-group">
+          <%= link_to 'Fulfillment List', '#', class: 'btn btn-flat btn-primary btn-sm',
+              data: { toggle: 'modal', target: '#fulfillment-list'} %>
+        </div>
+      </div>
+    </div>
+
     <table class="table table-hover">
       <tr>
         <th><%= check_box_tag :accept %></th>
         <th><%= sortable :id, 'ID' %></th>
         <th><%= sortable :customer %></th>
-        <th>Description</th>
-        <th>Total Weight</th>
+        <th><%= sortable :description %></th>
+        <th><%= sortable :total_weight %></th>
         <th><%= sortable :ordered_at %></th>
         <th><%= sortable :shipped_at %></th>
         <th>Actions</th>
@@ -32,8 +41,6 @@
   </div><!-- /.box-body -->
 </div>
 
-<div class="tableFooter">
-  
-   
-</div>
+<div class="tableFooter"></div>
 
+<%= render 'fulfillment_list' %>
