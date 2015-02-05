@@ -19672,7 +19672,19 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
+  jQuery(function() {
+    return $('#bin_bag_ids').select2({});
+  });
 
+}).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
+  jQuery(function() {
+    return $('#container_plant_ids').select2({});
+  });
 
 }).call(this);
 (function() {
@@ -19692,15 +19704,9 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
+  jQuery(function() {
+    return $('#lot_container_ids').select2({});
+  });
 
 }).call(this);
 (function() {
