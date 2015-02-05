@@ -1,3 +1,21 @@
+<p>
+  <%= jars.each do |jar| %>
+    <%= jar %>
+  <% end %>
+</p>
+
+<p>
+  <%= bags.each do |bag| %>
+    <%= bag %>
+  <% end %>
+</p>
+
+<p>
+  <%= bins.each do |bin| %>
+    <%= bin %>
+  <% end %>
+</p>
+
 <!-- Modal -->
 <div class="modal fade"
      id="fulfillment-list"
@@ -39,7 +57,6 @@
               <% bags.by_brands(brand).each_slice(4) do |slice| %>
                 <div class="row">
                   <% slice.each do |bag| %>
-                    <% next if bag.brand != brand %>
                     <li class="col-md-3" style="display: inline-block;">
                       <%= "#{fa_icon 'tag'} #{bag}".html_safe %>
                     </li>
@@ -58,7 +75,6 @@
               <% jars.by_brands(brand).each_slice(4) do |slice| %>
                 <div class="row">
                   <% slice.each do |jar| %>
-                    <% next if jar.brand != brand %>
                     <li class="col-md-3" style="display: inline-block;">
                       <%= "#{fa_icon 'flask'} #{jar}".html_safe %>
                     </li>
