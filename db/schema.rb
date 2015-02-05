@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204220023) do
+ActiveRecord::Schema.define(version: 20150205182033) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20150204220023) do
   end
 
   add_index "bags", ["datamatrix_text", "datamatrix_hash"], name: "index_bags_on_datamatrix_text_and_datamatrix_hash", unique: true
+
+  create_table "bags_statuses", force: true do |t|
+    t.string   "name",       default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bags_statuses", ["name"], name: "index_bags_statuses_on_name", unique: true
 
   create_table "bins", force: true do |t|
     t.datetime "created_at"
@@ -63,7 +71,7 @@ ActiveRecord::Schema.define(version: 20150204220023) do
     t.datetime "updated_at"
     t.integer  "history_id"
     t.string   "category"
-    t.integer  "location_id",    limit: 255
+    t.integer  "location_id"
   end
 
   create_table "containers_lots", force: true do |t|
@@ -190,9 +198,9 @@ ActiveRecord::Schema.define(version: 20150204220023) do
     t.string   "origin"
     t.string   "name"
     t.integer  "history_id"
-    t.decimal  "current_weight",             precision: 16, scale: 4
-    t.decimal  "initial_weight",             precision: 16, scale: 4
-    t.integer  "location_id",    limit: 255
+    t.decimal  "current_weight", precision: 16, scale: 4
+    t.decimal  "initial_weight", precision: 16, scale: 4
+    t.integer  "location_id"
   end
 
   add_index "plants", ["format_id"], name: "index_plants_on_format_id"
