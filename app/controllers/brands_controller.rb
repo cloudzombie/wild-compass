@@ -57,4 +57,5 @@ class BrandsController < ApplicationController
     def id_param
       params[:id]
     end
+    
 end
