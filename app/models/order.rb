@@ -37,6 +37,8 @@ class Order < ActiveRecord::Base
 
   ### Order lines
 
+  has_many :jars, -> { uniq }, through: :order_lines
+
   has_many :order_lines
   
   accepts_nested_attributes_for :order_lines,
