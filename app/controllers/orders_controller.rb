@@ -18,33 +18,37 @@ class OrdersController < ApplicationController
 
   expose(:jar) { Jar.new }
 
-  expose(:jars) do
-    jars = []
-    orders.each do |order|
-      order.order_lines.each do |line|
-        line.jars.each do |jar|
-          jars << jar
-        end
-      end
-    end
-    jars.uniq
-  end
+  expose(:jars) { order.jars }
+  expose(:bags) { order.bags }
+  expose(:bins) { order.bins }
 
-  expose(:bags) do
-    bags = []
-    jars.each do |jar|
-      bags << jar.bag unless jar.bag.nil?
-    end
-    bags.uniq
-  end
+  # expose(:jars) do
+  #   jars = []
+  #   orders.each do |order|
+  #     order.order_lines.each do |line|
+  #       line.jars.each do |jar|
+  #         jars << jar
+  #       end
+  #     end
+  #   end
+  #   jars.uniq
+  # end
 
-  expose(:bins) do
-    bins = []
-    bags.each do |bag|
-      bins << bag.bin unless bag.bin.nil?
-    end
-    bins.uniq
-  end
+  # expose(:bags) do
+  #   bags = []
+  #   jars.each do |jar|
+  #     bags << jar.bag unless jar.bag.nil?
+  #   end
+  #   bags.uniq
+  # end
+
+  # expose(:bins) do
+  #   bins = []
+  #   bags.each do |bag|
+  #     bins << bag.bin unless bag.bin.nil?
+  #   end
+  #   bins.uniq
+  # end
 
   expose(:brands) { Brand.all }
 
