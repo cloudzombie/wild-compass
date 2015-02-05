@@ -70,6 +70,19 @@ class LotsController < ApplicationController
     end
   end
 
+  def unrecall
+    lot.unrecall
+    respond_to do |format|
+      format.html { redirect_to lots_url, notice: 'Lot was successfully unrecalled.' }
+      format.json { head :no_content }
+    end
+  rescue
+    respond_to do |format|
+      format.html { redirect_to lots_url, notice: 'Lot was not unrecalled.' }
+      format.json { head :no_content }
+    end
+  end
+
   def quarantine
     lot.quarantine
     respond_to do |format|
@@ -79,6 +92,19 @@ class LotsController < ApplicationController
   rescue
     respond_to do |format|
       format.html { redirect_to lots_url, notice: 'Lot was not quarantined.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def unquarantine
+    lot.unquarantine
+    respond_to do |format|
+      format.html { redirect_to lots_url, notice: 'Lot was successfully unquarantined.' }
+      format.json { head :no_content }
+    end
+  rescue
+    respond_to do |format|
+      format.html { redirect_to lots_url, notice: 'Lot was not unquarantined.' }
       format.json { head :no_content }
     end
   end

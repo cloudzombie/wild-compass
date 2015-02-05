@@ -54,9 +54,25 @@ class Bag < ActiveRecord::Base
     false
   end
 
+  def unrecall
+    update(recalled: false) if recalled?
+    lot.unrecall if lot.nil? || lot.recalled?
+    true
+  rescue
+    false
+  end
+
   def quarantine
     update(quarantined: true) unless quarantined?
     lot.quarantine unless lot.nil? || lot.quarantined?
+    true
+  rescue
+    false
+  end
+
+  def unquarantine
+    update(quarantined: false) if quarantined?
+    lot.unquarantine if lot.nil? || lot.quarantined?
     true
   rescue
     false

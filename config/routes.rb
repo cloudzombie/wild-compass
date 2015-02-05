@@ -66,6 +66,9 @@ Rails.application.routes.draw do
 
       get 'quarantine'
       get 'recall'
+      
+      get 'unquarantine'
+      get 'unrecall'
     end
   end
 
@@ -73,6 +76,9 @@ Rails.application.routes.draw do
     member do
       get 'quarantine'
       get 'recall'
+
+      get 'unquarantine'
+      get 'unrecall'
     end
   end
 
@@ -113,6 +119,9 @@ Rails.application.routes.draw do
 
           get 'quarantine'
           get 'recall'
+
+          get 'unquarantine'
+          get 'unrecall'
         end
       end
 
@@ -120,6 +129,9 @@ Rails.application.routes.draw do
         member do 
           get 'quarantine'
           get 'recall'
+
+          get 'unquarantine'
+          get 'unrecall'
         end
       end
 
