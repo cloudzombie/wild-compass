@@ -32,7 +32,7 @@ class API::V1::JarsController < API::V1::APIController
   private
     
     def jar_params
-      params.require(:jar).permit(:name, :bag_id, :current_weight, :initial_weight)
+      params.require(:jar).permit(:name, :ordered_amount, :bag_id, :current_weight, :initial_weight)
     end
 
     def id_param

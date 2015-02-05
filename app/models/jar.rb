@@ -7,6 +7,7 @@ class Jar < ActiveRecord::Base
   include Encodable
 
 
+
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
   scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)).uniq }
   scope :by_trims,      -> { by_categories 'Trim' }  
@@ -16,6 +17,8 @@ class Jar < ActiveRecord::Base
   scope :fulfilled,   -> { joins(:order_line).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: true  ).order(id: :asc))).uniq }
   scope :unfulfilled, -> { joins(:order_line).merge(OrderLine.joins(:jars).merge(Jar.where(fulfilled: false ).order(id: :asc))).uniq }
 
+
+
   def next
     jars = []
     order_line.jars.order(id: :asc).each do |jar|
@@ -24,6 +27,8 @@ class Jar < ActiveRecord::Base
     end
     jars.first
   end
+
+  after_create :set_ordered_amount, unless: :has_ordered_amount?
 
   def amount_to_fill
     order_line.quantity / order_line.jars.count
@@ -106,5 +111,15 @@ class Jar < ActiveRecord::Base
   rescue
     ''
   end
+
+  private
+
+    def set_ordered_amount
+      update(ordered_amount: amount_to_fill)
+    end
+
+    def has_ordered_amount?
+      ordered_amount > 0.0
+    end
 
 end

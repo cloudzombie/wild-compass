@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205202332) do
+ActiveRecord::Schema.define(version: 20150205203356) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 20150205202332) do
     t.integer  "order_line_id"
     t.boolean  "fulfilled",                                default: false, null: false
     t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
+    t.decimal  "ordered_amount",  precision: 16, scale: 4, default: 0.0,   null: false
   end
 
   add_index "jars", ["datamatrix_text", "datamatrix_hash"], name: "index_jars_on_datamatrix_text_and_datamatrix_hash", unique: true
