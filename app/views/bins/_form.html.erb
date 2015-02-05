@@ -10,6 +10,12 @@
     <%= f.collection_select(:location_id, Location.all, :id, :to_s, {}, { class: 'form-control' }) %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :bags %>
+    <%= f.collection_select(:bag_ids, Bag.all, :name, :to_s, {}, { multiple: 'multiple', class: 'form-control' }) %>
+  </div>
+  
+
   
   <div class="actions">
     <%= f.submit :submit, class: 'btn btn-default' %>

@@ -16,7 +16,7 @@
 //= require jquery-ui/core
 //= require jquery.turbolinks
 //= require bootstrap
-//= require adminlte/app
+//= require admin-lte
 //= require jspdf
 //= require jspdf.plugin.addimage
 //= require jspdf.plugin.png_support

@@ -57,6 +57,6 @@ class BinsController < ApplicationController
     end
 
     def bin_params
-      params.require(:bin).permit(:name, :location_id)
+      params.require(:bin).permit(:name, :location_id, { bag_ids: [] })
     end
 end

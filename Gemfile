@@ -88,8 +88,5 @@ gem 'chunky_png'
 
 gem 'url_safe_base64'
 
-# Autocomplete
-gem 'rails4-autocomplete'
-
 # Select2
 gem 'select2-rails'
