@@ -3,6 +3,8 @@ class BagsController < ApplicationController
   include FindEncodable
   include FindSortable
   include SetWeightable
+  include SetRecallable
+  include SetQuarantineable
 
   respond_to :html, :xml, :json
 
@@ -98,32 +100,6 @@ class BagsController < ApplicationController
   def label
     respond_to do |format|
       format.html
-    end
-  end
-
-  def recall
-    bag.recall
-    respond_to do |format|
-      format.html { redirect_to bags_url, notice: 'Bag was successfully recalled.' }
-      format.json { head :no_content }
-    end
-  rescue
-    respond_to do |format|
-      format.html { redirect_to bags_url, notice: 'Bag was not recalled.' }
-      format.json { head :no_content }
-    end
-  end
-
-  def quarantine
-    bag.quarantine
-    respond_to do |format|
-      format.html { redirect_to bags_url, notice: 'Bag was successfully quarantined.' }
-      format.json { head :no_content }
-    end
-  rescue
-    respond_to do |format|
-      format.html { redirect_to bags_url, notice: 'Bag was not quarantined.' }
-      format.json { head :no_content }
     end
   end
 

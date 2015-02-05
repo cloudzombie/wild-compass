@@ -22,7 +22,7 @@
             <% bins.each_slice(6) do |slice| %>
               <div class="row">
                 <% slice.each do |bin| %>
-                  <li class="col-md-2" style="display: inline-block;">
+                  <li class="col-md-3" style="display: inline-block;">
                     <%= "#{fa_icon 'square'} #{bin}".html_safe %>
                   </li>
                 <% end %>
@@ -36,7 +36,7 @@
           <ol style="list-style-type: none; padding-left: 0;">
             <% brands.each do |brand| %>
               <strong class="text-primary"><%= brand %></strong>
-              <% bags.each_slice(brands.count) do |slice| %>
+              <% bags.by_brands(brand).each_slice(4) do |slice| %>
                 <div class="row">
                   <% slice.each do |bag| %>
                     <% next if bag.brand != brand %>
@@ -55,7 +55,7 @@
           <ol style="list-style-type: none; padding-left: 0;">
             <% brands.each do |brand| %>
               <strong class="text-primary"><%= brand %></strong>
-              <% jars.each_slice(brands.count) do |slice| %>
+              <% jars.by_brands(brand).each_slice(4) do |slice| %>
                 <div class="row">
                   <% slice.each do |jar| %>
                     <% next if jar.brand != brand %>

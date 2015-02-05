@@ -4,6 +4,8 @@ class Lot < ActiveRecord::Base
   include Accountable
   include Storyable
   include Searchable
+  include Quarantineable
+  include Recallable
 
 
 
@@ -30,48 +32,6 @@ class Lot < ActiveRecord::Base
   delegate :category, to: :container, prefix: false, allow_nil: true
 
   has_many :brands, -> { uniq }, through: :strains
-
-
-
-  def recall
-    update(recalled: true) unless recalled?
-    bags.each do |bag|
-      bag.recall unless bag.recalled?
-    end
-    true
-  rescue
-    false
-  end
-
-  def unrecall
-    update(recalled: false) if recalled?
-    bags.each do |bag|
-      bag.unrecall if bag.recalled?
-    end
-    true
-  rescue
-    false
-  end
-
-  def quarantine
-    update(quarantined: true) unless quarantined?
-    bags.each do |bag|
-      bag.quarantine unless bag.recalled?
-    end
-    true
-  rescue
-    false
-  end
-
-  def unquarantine
-    update(quarantined: false) if quarantined?
-    bags.each do |bag|
-      bag.unquarantine if bag.recalled?
-    end
-    true
-  rescue
-    false
-  end
 
 
 
