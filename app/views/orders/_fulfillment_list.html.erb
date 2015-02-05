@@ -35,12 +35,12 @@
           <legend><strong class="text-primary">Bags</strong></legend>
           <ol style="list-style-type: none; padding-left: 0;">
             <% brands.each do |brand| %>
+              <strong class="text-primary"><%= brand %></strong>
               <% bags.each_slice(brands.count) do |slice| %>
-                <strong class="text-primary"><%= brand %></strong>
                 <div class="row">
                   <% slice.each do |bag| %>
                     <% next if bag.brand != brand %>
-                    <li class="col-md-<%= 12 / brands.count %>" style="display: inline-block;">
+                    <li class="col-md-3" style="display: inline-block;">
                       <%= "#{fa_icon 'tag'} #{bag}".html_safe %>
                     </li>
                   <% end %>
@@ -54,12 +54,12 @@
           <legend><strong class="text-primary">Jars</strong></legend>
           <ol style="list-style-type: none; padding-left: 0;">
             <% brands.each do |brand| %>
+              <strong class="text-primary"><%= brand %></strong>
               <% jars.each_slice(brands.count) do |slice| %>
-                <strong class="text-primary"><%= brand %></strong>
                 <div class="row">
                   <% slice.each do |jar| %>
                     <% next if jar.brand != brand %>
-                    <li class="col-md-<%= 12 / brands.count %>" style="display: inline-block;">
+                    <li class="col-md-3" style="display: inline-block;">
                       <%= "#{fa_icon 'flask'} #{jar}".html_safe %>
                     </li>
                   <% end %>
