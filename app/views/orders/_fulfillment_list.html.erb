@@ -22,7 +22,7 @@
             <% brands.each do |brand| %>
               <% next if bins.by_brands(brand).empty? %>
               <strong class="text-primary"><%= brand %></strong>
-              <% bins.each_slice(6) do |slice| %>
+              <% bins.by_brands(brand).each_slice(4) do |slice| %>
                 <div class="row">
                   <% slice.each do |bin| %>
                     <li class="col-md-3" style="display: inline-block;">
