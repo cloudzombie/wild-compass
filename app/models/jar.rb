@@ -28,8 +28,6 @@ class Jar < ActiveRecord::Base
     jars.first
   end
 
-  after_create :set_ordered_amount, unless: :has_ordered_amount?
-
   def amount_to_fill
     order_line.quantity / order_line.jars.count
   end
@@ -111,15 +109,5 @@ class Jar < ActiveRecord::Base
   rescue
     ''
   end
-
-  private
-
-    def set_ordered_amount
-      update(ordered_amount: amount_to_fill)
-    end
-
-    def has_ordered_amount?
-      ordered_amount > 0.0
-    end
 
 end

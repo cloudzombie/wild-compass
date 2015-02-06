@@ -19,6 +19,8 @@ class OrderLine < ActiveRecord::Base
 
   after_create :create_jars
 
+  after_create :set_ordered_amount
+
 
 
   validates :quantity, presence: true, allow_blank: false
@@ -44,6 +46,12 @@ class OrderLine < ActiveRecord::Base
       return if self.quantity == 0.0 || self.quantity.nil?
       for i in 0...(self.quantity.to_f/10.0).ceil
         self.jars << Jar.create(bag: Bag.first_available(self.brand, self.quantity.to_f))
+      end
+    end
+
+    def set_ordered_amount
+      jars.each do |jar|
+        jar.update(ordered_amount: jar.amount_to_fill)
       end
     end
 
