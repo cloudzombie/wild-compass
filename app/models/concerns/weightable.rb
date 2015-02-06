@@ -110,7 +110,7 @@ module Weightable
     end
 
      def identifier
-      self.class.name.upcase
+      model_name.upcase
     end
 
     def unique_identifier

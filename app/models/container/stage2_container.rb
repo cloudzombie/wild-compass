@@ -1,2 +1,3 @@
-class Container::Stage2Container < Container
+class Container::Stage2Container < Container::AbstractContainer
+
 end
