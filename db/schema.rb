@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205203356) do
+ActiveRecord::Schema.define(version: 20150206040354) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(version: 20150205203356) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "checkouts", force: true do |t|
+    t.integer  "target_id",   null: false
+    t.string   "target_type", null: false
+    t.integer  "user_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "checkouts", ["target_id", "target_type"], name: "index_checkouts_on_target_id_and_target_type", unique: true
+  add_index "checkouts", ["user_id"], name: "index_checkouts_on_user_id"
 
   create_table "containers", force: true do |t|
     t.string   "name"
