@@ -19,14 +19,18 @@
         <div class="well">
           <legend><strong class="text-primary">Bins</strong></legend>
           <ol style="list-style-type: none; padding-left: 0;">
-            <% bins.each_slice(6) do |slice| %>
-              <div class="row">
-                <% slice.each do |bin| %>
-                  <li class="col-md-3" style="display: inline-block;">
-                    <%= "#{fa_icon 'square'} #{bin}".html_safe %>
-                  </li>
-                <% end %>
-              </div>
+            <% brands.each do |brand| %>
+              <% next if bins.by_brands(brand).empty? %>
+              <strong class="text-primary"><%= brand %></strong>
+              <% bins.each_slice(6) do |slice| %>
+                <div class="row">
+                  <% slice.each do |bin| %>
+                    <li class="col-md-3" style="display: inline-block;">
+                      <%= "#{fa_icon 'square'} #{bin}".html_safe %>
+                    </li>
+                  <% end %>
+                </div>
+              <% end %>
             <% end %>
           </ol>
         </div>
@@ -35,6 +39,7 @@
           <legend><strong class="text-primary">Bags</strong></legend>
           <ol style="list-style-type: none; padding-left: 0;">
             <% brands.each do |brand| %>
+              <% next if bags.by_brands(brand).empty? %>
               <strong class="text-primary"><%= brand %></strong>
               <% bags.by_brands(brand).each_slice(4) do |slice| %>
                 <div class="row">
@@ -53,6 +58,7 @@
           <legend><strong class="text-primary">Jars</strong></legend>
           <ol style="list-style-type: none; padding-left: 0;">
             <% brands.each do |brand| %>
+              <% next if jars.by_brands(brand).empty? %>
               <strong class="text-primary"><%= brand %></strong>
               <% jars.by_brands(brand).each_slice(4) do |slice| %>
                 <div class="row">
