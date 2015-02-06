@@ -135,4 +135,14 @@ module ApplicationHelper
   def recall_for(item)
     quarantine_for(item)
   end
+
+  def variance_for(initial, current)
+    return percent_for 0.0 if initial - current == 0.0 && initial == 0.0
+    variance = (initial - current) / initial
+    if variance > 0.01 || variance < -0.05
+      "<span class=\"text-warning\">#{variance}</span>".html_safe
+    else
+      percent_for variance
+    end
+  end
 end
