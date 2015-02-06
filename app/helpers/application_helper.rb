@@ -139,7 +139,7 @@ module ApplicationHelper
   def variance_for(initial, current)
     return percent_for 0.00, 2 if initial - current == 0.0 && initial == 0.0
     variance = (initial - current) / initial
-    if variance > 0.01 || variance < -0.05
+    if variance > 0.01
       "<span class=\"text-warning\">#{percent_for variance, 2}</span>".html_safe
     else
       percent_for variance, 2
