@@ -140,7 +140,7 @@ module ApplicationHelper
     return percent_for 0.0 if initial - current == 0.0 && initial == 0.0
     variance = (initial - current) / initial
     if variance > 0.01 || variance < -0.05
-      "<span class=\"text-warning\">#{variance}</span>".html_safe
+      "<span class=\"text-warning\">#{percent_for variance}</span>".html_safe
     else
       percent_for variance
     end
