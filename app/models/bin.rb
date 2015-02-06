@@ -2,8 +2,8 @@ class Bin < ActiveRecord::Base
 
   include Encodable
 
-  scope :fulfilled,   -> { order(id: :asc).uniq.joins(:jars).merge( Jar.fulfilled   )}
-  scope :unfulfilled, -> { order(id: :asc).uniq.joins(:jars).merge( Jar.unfulfilled )}
+  scope :fulfilled,   -> { uniq.joins(:jars).merge( Jar.fulfilled   )}
+  scope :unfulfilled, -> { uniq.joins(:jars).merge( Jar.unfulfilled )}
 
   has_many :bags, -> { uniq }
 
