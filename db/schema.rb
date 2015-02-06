@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206201956) do
+ActiveRecord::Schema.define(version: 20150206203617) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -213,9 +213,11 @@ ActiveRecord::Schema.define(version: 20150206201956) do
     t.string   "origin"
     t.string   "name"
     t.integer  "history_id"
-    t.decimal  "current_weight", precision: 16, scale: 4
-    t.decimal  "initial_weight", precision: 16, scale: 4
+    t.decimal  "current_weight",      precision: 16, scale: 4
+    t.decimal  "initial_weight",      precision: 16, scale: 4
     t.integer  "location_id"
+    t.datetime "partial_harvest_at"
+    t.datetime "complete_harvest_at"
   end
 
   add_index "plants", ["format_id"], name: "index_plants_on_format_id"
