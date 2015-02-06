@@ -16,8 +16,8 @@ class Bag < ActiveRecord::Base
   scope :by_buds,          -> { by_categories 'Buds' }
   scope :by_brands,        -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)) }
 
-  scope :fulfilled,   -> { uniq.joins(:jars).merge( Jar.fulfilled   )}
-  scope :unfulfilled, -> { uniq.joins(:jars).merge( Jar.unfulfilled )}
+  scope :fulfilled,   -> { uniq.order(id: :asc).joins(:jars).merge( Jar.fulfilled   )}
+  scope :unfulfilled, -> { uniq.order(id: :asc).joins(:jars).merge( Jar.unfulfilled )}
 
   def self.first_available(brand, weight)
     by_brands(brand).by_buds.where(current_weight: weight..Float::INFINITY, tested: false, archived: false).first
