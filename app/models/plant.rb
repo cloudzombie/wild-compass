@@ -12,6 +12,8 @@ class Plant < ActiveRecord::Base
 
   belongs_to :plant 
 
+  has_one :seed
+
   belongs_to :location
   
   belongs_to :strain

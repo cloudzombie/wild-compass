@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
   resources :locations
 
+  resources :seeds
+
   resources :bins do 
     member do
       get 'datamatrix'
