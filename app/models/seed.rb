@@ -1,7 +1,9 @@
 class Seed < ActiveRecord::Base
 
-  belongs_to :plant
+  has_many :plants
 
-  validates :plant_id, presence: true, uniqueness: true
+  def to_s
+    "#{ name.titleize unless name.nil? }"
+  end
 
 end

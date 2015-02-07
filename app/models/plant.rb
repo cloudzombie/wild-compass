@@ -12,7 +12,7 @@ class Plant < ActiveRecord::Base
 
   belongs_to :plant 
 
-  has_one :seed
+  belongs_to :seed
 
   belongs_to :location
   

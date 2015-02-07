@@ -1,15 +1,16 @@
 <% plants.each do |plant| %>
   <tr>
-    <td><%# checkbox %></td>
+    <td><%= check_box_tag :accept %></td>
     <td><%= link_to plant, plant %></td>
-    <td><%= strain_for plant.try(:strain) if plant.present? %></td>
-    <td><%= plant.try(:plant) if plant.present? %></td>
-    <td><%= plant.try(:status) if plant.present? %></td>
-    <td><%= date_for plant.try(:created_at) if plant.present? %></td>
-    <td><%= date_for plant.try(:updated_at) if plant.present? %></td>
-    <td><%= format_for plant.try(:format) if plant.present? %></td>
-    <td><%= plant.try(:location_id) if plant.present? %></td>
-    <td><%= plant.try(:rfid) if plant.present? %></td>
+    <td><%= strain_for plant.try(:strain) %></td>
+    <td><%= plant.try(:plant) %></td>
+    <td><%= plant.try(:seed) %></td>
+    <td><%= plant.try(:status) %></td>
+    <td><%= date_for plant.try(:created_at) %></td>
+    <td><%= date_for plant.try(:updated_at) %></td>
+    <td><%= format_for plant.try(:format) %></td>
+    <td><%= plant.try(:location_id) %></td>
+    <td><%= plant.try(:rfid) %></td>
     <td>
       <% if can? :edit, plant %>
       <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>

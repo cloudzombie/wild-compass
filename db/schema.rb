@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207221123) do
+ActiveRecord::Schema.define(version: 20150207232752) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -220,10 +220,12 @@ ActiveRecord::Schema.define(version: 20150207221123) do
     t.datetime "complete_harvest_at"
     t.string   "type",                                         default: "Plant", null: false
     t.integer  "plant_id"
+    t.integer  "seed_id"
   end
 
   add_index "plants", ["format_id"], name: "index_plants_on_format_id"
   add_index "plants", ["rfid_id"], name: "index_plants_on_rfid_id"
+  add_index "plants", ["seed_id"], name: "index_plants_on_seed_id"
   add_index "plants", ["status_id"], name: "index_plants_on_status_id"
   add_index "plants", ["strain_id"], name: "index_plants_on_strain_id"
 
@@ -235,12 +237,11 @@ ActiveRecord::Schema.define(version: 20150207221123) do
 
   create_table "seeds", force: true do |t|
     t.string   "name"
-    t.integer  "plant_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "initial_weight", precision: 16, scale: 4
+    t.decimal  "current_weight", precision: 16, scale: 4
   end
-
-  add_index "seeds", ["plant_id"], name: "index_seeds_on_plant_id", unique: true
 
   create_table "statuses", force: true do |t|
     t.datetime "created_at"
