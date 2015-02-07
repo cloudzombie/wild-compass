@@ -1,5 +1,5 @@
 class ChangeOriginToPlantId < ActiveRecord::Migration
   def change
-    rename_column :plants, :origin, :plant_id
+    add_column :plants, :plant_id, :integer
   end
 end

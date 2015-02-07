@@ -210,15 +210,15 @@ ActiveRecord::Schema.define(version: 20150207152323) do
     t.integer  "format_id"
     t.integer  "status_id"
     t.integer  "rfid_id"
-    t.integer  "plant_id",            limit: 255
     t.string   "name"
     t.integer  "history_id"
-    t.decimal  "current_weight",                  precision: 16, scale: 4
-    t.decimal  "initial_weight",                  precision: 16, scale: 4
+    t.decimal  "current_weight",      precision: 16, scale: 4
+    t.decimal  "initial_weight",      precision: 16, scale: 4
     t.integer  "location_id"
     t.datetime "partial_harvest_at"
     t.datetime "complete_harvest_at"
-    t.string   "type",                                                     default: "Plant", null: false
+    t.string   "type",                                         default: "Plant", null: false
+    t.integer  "plant_id"
   end
 
   add_index "plants", ["format_id"], name: "index_plants_on_format_id"
