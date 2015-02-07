@@ -23,18 +23,22 @@
     border-right-color: #999;
     border-left-color: #999;
     border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
+    border-top: #333 solid 4px;
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
-    background-color: white;
+    background-color: #888;
     padding: 7px 12% 0;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
 
   h1 {
     font-size: 100%;
-    color: #730E15;
+    color: #d6d6d6;
     line-height: 1.5em;
+  }
+
+  p {
+    color: #d6d6d6;
   }
 
   div.dialog > p {
@@ -58,9 +62,10 @@
   <!-- This file lives in public/500.html -->
   <div class="dialog">
     <div>
-      <h1>We're sorry, but something went wrong.</h1>
+      <img src="logo.png"></img>
+      <h1>500 - We're sorry, but something went wrong.</h1>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <p>If you think you should not be seeing this, please create an <a href="//jira.thc.vc">issue</a>.</p>
   </div>
 </body>
 </html>
