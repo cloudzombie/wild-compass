@@ -13,27 +13,27 @@
   </thead>
 
   <tbody>
-    <% locations.each do |location| %>
+    <% locs.each do |loc| %>
       <tr>
-        <td><%= location.name %></td>
-        <td><%= location.description %></td>
+        <td><%= loc.name %></td>
+        <td><%= loc.description %></td>
         <td>
-          <% location.plants.each do |plant| %>
+          <% loc.plants.each do |plant| %>
             <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success"%>
           <% end %>
         </td>
         <td>
-          <% location.bins.each do |bin| %>
+          <% loc.bins.each do |bin| %>
             <%= link_to bin.id, bin, class: "btn-sm btn-flat btn-info"%>
           <% end %>
         </td>
         <td>
-          <% location.containers.each do |container| %>
+          <% loc.containers.each do |container| %>
             <%= link_to container.id, container, class: "btn-sm btn-flat btn-warning"%>
           <% end %>
         </td>
-        <td><%= link_to 'Show', location %></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
+        <td><%= link_to 'Show', loc %></td>
+        <td><%= link_to 'Edit', edit_location_path(loc) %></td>
       </tr>
     <% end %>
   </tbody>
