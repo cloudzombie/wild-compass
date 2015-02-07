@@ -5,6 +5,9 @@ class InventoryController < ApplicationController
   helper_method :total_weight
   
   expose(:plants) { Plant.all }
+  expose(:mothers) { Plant::MotherPlant.all }
+  expose(:clones) { Plant::ClonePlant.all }
+
   expose(:jars) { Jar.all }
   expose(:bags) { Bag.all }
   expose(:lots) { Lot.all }

@@ -13,6 +13,14 @@
     </li>
 
     <li role="presentation">
+      <%= link_to 'Mothers', '#mothers', role: 'tab', data: { toggle: 'tab' } %>
+    </li>
+
+    <li role="presentation">
+      <%= link_to 'Clones', '#clones', role: 'tab', data: { toggle: 'tab' } %>
+    </li>
+
+    <li role="presentation">
       <%= link_to 'Jars', '#jars', role: 'tab', data: { toggle: 'tab' } %>
     </li>
 
@@ -48,6 +56,14 @@
 
     <div role="tabpanel" class="tab-pane" id="plants">
       <%= render 'inventory/plants' %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="mothers">
+      <%= render 'inventory/mothers' %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="clones">
+      <%= render 'inventory/clones' %>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="jars">
