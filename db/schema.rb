@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207160524) do
+ActiveRecord::Schema.define(version: 20150207192126) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20150207160524) do
     t.string   "category"
     t.integer  "location_id"
     t.string   "type",           default: "Container", null: false
+    t.integer  "container_id"
   end
 
   create_table "containers_lots", force: true do |t|

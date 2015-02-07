@@ -14,6 +14,7 @@ class Container < ActiveRecord::Base
   scope :by_brands,     -> (brand = nil) { Container.joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
 
+  belongs_to :container
 
   has_and_belongs_to_many :plants, -> { uniq }
 
@@ -27,7 +28,7 @@ class Container < ActiveRecord::Base
 
   has_many :strains, -> { uniq }, through: :plants
 
-  has_many :brands, -> { uniq }, through: :strains
+  has_many :brands,  -> { uniq }, through: :strains
 
   belongs_to :location
 
