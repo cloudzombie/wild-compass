@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207232752) do
+ActiveRecord::Schema.define(version: 20150207234806) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -241,6 +241,7 @@ ActiveRecord::Schema.define(version: 20150207232752) do
     t.datetime "updated_at"
     t.decimal  "initial_weight", precision: 16, scale: 4
     t.decimal  "current_weight", precision: 16, scale: 4
+    t.integer  "stock"
   end
 
   create_table "statuses", force: true do |t|
