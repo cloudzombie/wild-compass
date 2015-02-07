@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
   private
 
     def access_denied
-      redirect_to root_path, flash: { alert: "You are not authorized" }
+      if user_signed_in?
+        redirect_to access_path
+      else
+        redirect_to root_path, flash: { alert: "You are not authorized" }
+      end
     end
 	
 end
