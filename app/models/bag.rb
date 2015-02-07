@@ -31,7 +31,7 @@ class Bag < ActiveRecord::Base
 
   belongs_to :bin
 
-
+  belongs_to :status, class_name: 'Bags::Status', foreign_key: 'bags_status_id'
 
   has_many :jars, -> { uniq }
 
