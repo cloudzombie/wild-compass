@@ -17,14 +17,18 @@
     <td><%= weight_for bag.try(:initial_weight) if bag.present? %></td>
     <td><%= weight_for bag.try(:current_weight) if bag.present? %></td>
     <td><%= bag.try(:status) if bag.present? %></td>
-    <td><%= date_for bag.try(:created_at) if bag.present? %></td>
-    <td><%= date_for bag.try(:updated_at) if bag.present? %></td>
     <td>
       <% if can? :show, Lot %>
-      <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" if bag.try(:lot).present? %>
-      <%= link_to "#{fa_icon('square')} #{bag.try(:container)}".html_safe, bag.try(:container), class: "btn-sm btn-flat btn-primary" if bag.try(:container).present? %>
+      <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" %>
       <% end %>
     </td>
+    <td>
+      <% if can? :show, Container %>
+      <%= link_to "#{fa_icon('square')} #{bag.try(:container)}".html_safe, bag.try(:container), class: "btn-sm btn-flat btn-primary" %>
+      <% end %>
+    </td>
+    <td><%= date_for bag.try(:created_at) if bag.present? %></td>
+    <td><%= date_for bag.try(:updated_at) if bag.present? %></td>
 
     <td>
       <% if can? :label, Bag %>
