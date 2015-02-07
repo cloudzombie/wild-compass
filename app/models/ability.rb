@@ -1,7 +1,9 @@
 class Ability
   include CanCan::Ability
   def initialize(user)
-    if user.admin?
+    if user.nil?
+      
+    elsif user.admin?
       can :manage, :all
 
       can :send_to_lab, Bag
