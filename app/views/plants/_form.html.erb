@@ -7,14 +7,14 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :location %>
+    <%= f.label :location_id %>
     <%= f.collection_select(:location_id, Location.all, :id, :to_s, {}, { class: 'form-control' }) %>
   </div>
 
   <div class="form-group">
-    <%= f.label :origin %>
-    <%= f.text_field :origin, class: 'form-control' %>
-    <%= display_error_for plant, :origin %>
+    <%= f.label :plant_id, 'Origin' %>
+    <%= f.collection_select(:plant_id, Plant.all, :id, :to_s, {}, { class: 'form-control' }) %>
+    <%= display_error_for plant, :plant_id %>
   </div>
 
   <div class="form-group">
