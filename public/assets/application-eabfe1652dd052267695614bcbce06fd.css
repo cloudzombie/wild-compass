@@ -33534,6 +33534,45 @@ div.box-default > div.box-header {
   background-color: #DDD;
 }
 
+/* line 64, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.context-menu {
+  position: absolute;
+  display: none;
+}
+
+/* line 69, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.context-menu > ul > li > a.red-link:hover {
+  background-color: #f56954;
+  color: #fff;
+}
+
+/* line 74, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.context-menu > ul > li > a.orange-link:hover {
+  background-color: #ff851b;
+  color: #fff;
+}
+
+/* line 79, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.context-menu > ul > li > a.light-blue-link:hover {
+  background-color: #3c8dbc;
+  color: #fff;
+}
+
+/* line 84, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.context-menu > ul > li > a.red-link {
+  color: #f56954;
+}
+
+/* line 88, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.context-menu > ul > li > a.orange-link {
+  color: #ff851b;
+}
+
+/* line 92, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.context-menu > ul > li > a.light-blue-link {
+  color: #3c8dbc;
+}
+
 /* line 5, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/bags.css.scss */
 .origin-table > tr, th, td {
   padding: 5px;
