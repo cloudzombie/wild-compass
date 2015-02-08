@@ -1,6 +1,5 @@
 class LocationsController < ApplicationController
-
-  before_action :authorized?
+  include Authorizable
 
   expose(:plant)
   expose(:bin)
@@ -29,11 +28,8 @@ class LocationsController < ApplicationController
 
   private
 
-    def authorized?
-      authorize! action_name.to_sym, Location
-    end
-
     def loc_params
       params.require(:location).permit(:name, :description, :plant_ids, :bin_ids, :container_ids)
     end
+    
 end

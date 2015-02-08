@@ -1,9 +1,7 @@
 class LotsController < ApplicationController
-
+  include Authorizable
   include SetRecallable
   include SetQuarantineable
-
-  before_action :authorized?
 
   helper_method :sort_column, :sort_direction
 
@@ -81,7 +79,4 @@ class LotsController < ApplicationController
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    def authorized?
-      authorize! action_name.to_sym, Lot
-    end
 end

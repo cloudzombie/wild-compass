@@ -1,4 +1,5 @@
 class SeedsController < ApplicationController
+  include Authorizable
 
   respond_to :html
 

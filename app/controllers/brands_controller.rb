@@ -1,6 +1,5 @@
 class BrandsController < ApplicationController
-
-  before_action :authorized?
+  include Authorizable
   
   expose(:brand, params: :brand_params) { id_param.nil? ? Brand.new : Brand.find(id_param) }
   expose(:brands) { Brand.all }
@@ -45,10 +44,6 @@ class BrandsController < ApplicationController
   end
 
   private
-
-    def authorized?
-      authorize! action_name.to_sym, Brand
-    end
 
     def brand_params
       params.require(:brand).permit(:name, :description)

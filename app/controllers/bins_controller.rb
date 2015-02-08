@@ -1,10 +1,8 @@
 class BinsController < ApplicationController
-
+  include Authorizable
   include FindEncodable
 
   respond_to :html, :xml, :json
-
-  before_action :authorized?
 
   helper_method :sort_column, :sort_direction
 
@@ -48,10 +46,6 @@ class BinsController < ApplicationController
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    def authorized?
-      authorize! action_name.to_sym, Bin
-    end
-
     def id_param
       params[:id]
     end
@@ -59,4 +53,5 @@ class BinsController < ApplicationController
     def bin_params
       params.require(:bin).permit(:name, :location_id, { bag_ids: [] })
     end
+    
 end

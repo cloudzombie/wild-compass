@@ -1,10 +1,8 @@
 class ContainersController < ApplicationController
-
+  include Authorizable
   include SetWeightable
   
   helper_method :sort_column, :sort_direction
-
-  before_action :authorized?
 
   expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
 
@@ -57,10 +55,6 @@ class ContainersController < ApplicationController
 
   private
 
-    def authorized?
-      authorize! action_name.to_sym, Container
-    end
-
     def id_param
       params[:id]
     end
@@ -78,4 +72,5 @@ class ContainersController < ApplicationController
     def sort_direction
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
+    
 end

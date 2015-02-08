@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
-
-  before_action :authorized?
+  include Authorizable
 
   # Expose sort_column and sort_direction private methods as helper methods
   # to make them available in views
@@ -146,10 +145,6 @@ class OrdersController < ApplicationController
     # Set sort direction to ascending or descending
     def sort_direction
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
-    end
-
-    def authorized?
-      authorize! action_name.to_sym, Order
     end
 
 end

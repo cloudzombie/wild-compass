@@ -1,5 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  
+
+  def new
+    super
+  end
+
   def create
     build_resource(registration_params)
 
@@ -15,7 +19,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       respond_with resource
     end
-  end  
+  end
+
+  def update
+    super
+  end
 
   private
     

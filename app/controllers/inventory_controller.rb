@@ -1,6 +1,5 @@
 class InventoryController < ApplicationController
-
-  before_action :authorized?
+  include Authorizable
 
   helper_method :total_weight
   
@@ -41,11 +40,8 @@ class InventoryController < ApplicationController
 
   private
 
-    def authorized?
-      authorize! action_name.to_sym, 'Inventory'
-    end
-
     def total_weight
       Plant.total_weight + Bag.total_weight + Jar.total_weight + Lot.total_weight
     end
+    
 end
