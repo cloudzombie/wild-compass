@@ -8,18 +8,22 @@ module SetWeightable
   end
 
   def set_message
-    self.send(model_name).message = params.require(model_name)[:message]
+    model.message = params.require(model_name)[:message]
   end
 
   def set_quantity
-    self.send(model_name).quantity = params.require(model_name)[:quantity]
+    model.quantity = params.require(model_name)[:quantity]
   end
 
   def set_weight
-    self.send(model_name).weight = params.require(model_name)[:weight]
+    model.weight = params.require(model_name)[:weight]
   end
 
   private
+
+    def model
+      self.send(model_name)
+    end
 
     def model_name
       controller_name.classify.downcase.to_sym

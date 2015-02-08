@@ -2,31 +2,29 @@ class LocationsController < ApplicationController
 
   before_action :authorized?
 
-  before_action :set_location, only: [:show, :edit, :update, :destroy]
-
   expose(:plant)
   expose(:bin)
   expose(:container)
   
-  expose(:locations)
-  expose(:location, params: :location_params)
+  expose(:locs) { Location.all }
+  expose(:loc, params: :loc_params) { params[:id].nil? ? Location.new : Location.find(params[:id]) }
 
   respond_to :html
 
   def create
-    self.location = Location.new(location_params)
-    location.save
-    respond_with(location)
+    self.loc = Location.new(loc_params)
+    loc.save
+    respond_with(loc)
   end
 
   def update
-    location.update(location_params)
-    respond_with(location)
+    loc.update(loc_params)
+    respond_with(loc)
   end
 
   def destroy
-    location.destroy
-    respond_with(location)
+    loc.destroy
+    respond_with(loc)
   end
 
   private
@@ -35,11 +33,7 @@ class LocationsController < ApplicationController
       authorize! action_name.to_sym, Location
     end
 
-    def set_location
-      location = Location.find(params[:id])
-    end
-
-    def location_params
+    def loc_params
       params.require(:location).permit(:name, :description, :plant_ids, :bin_ids, :container_ids)
     end
 end

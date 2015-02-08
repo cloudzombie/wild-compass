@@ -3,6 +3,8 @@
     <td><%= check_box_tag :accept %></td>
     <td><%= order.try(:id) %></td>
     <td><%= order.try(:customer) %></td>
+    <td><%= order.try(:created_by) %></td>
+    <td><%= order.try(:placed_by) %></td>
     <td>
       <ul style="list-style-type: none; padding-left: 0;">
       <% order.order_lines.each do |line| %>

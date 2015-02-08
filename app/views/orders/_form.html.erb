@@ -1,5 +1,9 @@
 <%= form_for(order) do |f| %>
 
+  <% if Rails.env.development? %>
+    <%= f.hidden_field :ces_order_id, value: SecureRandom.random_number(999) %>
+  <% end %>
+
   <div class="form-group">
     <%= f.label :customer %><br>
     <%= f.text_field :customer, class: 'form-control' %>

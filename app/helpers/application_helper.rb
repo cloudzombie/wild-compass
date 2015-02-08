@@ -21,8 +21,8 @@ module ApplicationHelper
     '0'
   end
 
-  def percent_for(decimal)
-    number_with_precision(decimal, precision: 1)
+  def percent_for(decimal, precision = 1)
+    number_with_precision(decimal, precision: precision)
   end
 
   def display_error_for(model, attribute)
@@ -134,5 +134,15 @@ module ApplicationHelper
 
   def recall_for(item)
     quarantine_for(item)
+  end
+
+  def variance_for(initial, current)
+    return percent_for 0.00, 2 if initial - current == 0.0 && initial == 0.0
+    variance = (initial - current) / initial
+    if variance > 0.01
+      "<span class=\"text-warning\">#{percent_for variance, 2}</span>".html_safe
+    else
+      percent_for variance, 2
+    end
   end
 end

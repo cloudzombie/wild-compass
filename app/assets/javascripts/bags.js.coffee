@@ -2,10 +2,29 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+class BagsController
+  init: ->
+    console.log 'bags#init'
+
+  index: ->
+    console.log 'bags#index'
+
+  show: ->
+    console.log 'bags#show'
+
+  new: ->
+    console.log 'bags#new'
+
+  edit: ->
+    console.log 'bags#edit'
+
+  reweight: ->
+    console.log 'bags#reweight'
+
+this.WildCompass.bags = new BagsController
+
 # Page ready hook
 $(document).ready ->
-
-  $('input:text').attr('autocomplete', 'off')
 
   # Toggle disabled on Reweight Button if scale 1 responds
   $.get 'http://localhost:8080'

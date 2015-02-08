@@ -3,6 +3,8 @@ class BagsController < ApplicationController
   include FindEncodable
   include FindSortable
   include SetWeightable
+  include SetRecallable
+  include SetQuarantineable
 
   respond_to :html, :xml, :json
 
@@ -101,32 +103,6 @@ class BagsController < ApplicationController
     end
   end
 
-  def recall
-    bag.recall
-    respond_to do |format|
-      format.html { redirect_to bags_url, notice: 'Bag was successfully recalled.' }
-      format.json { head :no_content }
-    end
-  rescue
-    respond_to do |format|
-      format.html { redirect_to bags_url, notice: 'Bag was not recalled.' }
-      format.json { head :no_content }
-    end
-  end
-
-  def quarantine
-    bag.quarantine
-    respond_to do |format|
-      format.html { redirect_to bags_url, notice: 'Bag was successfully quarantined.' }
-      format.json { head :no_content }
-    end
-  rescue
-    respond_to do |format|
-      format.html { redirect_to bags_url, notice: 'Bag was not quarantined.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
 
     def authorized?
@@ -144,7 +120,7 @@ class BagsController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id strain category name initial_weight current_weight created_at updated_at lot_id tested).include?(params[:sort]) ? params[:sort] : 'name'
+      %w(id strain status category name initial_weight current_weight created_at updated_at lot_id tested).include?(params[:sort]) ? params[:sort] : 'name'
     end
 
     # Set sort direction to ascending or descending.

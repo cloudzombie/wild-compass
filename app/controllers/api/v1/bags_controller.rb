@@ -37,10 +37,18 @@ class API::V1::BagsController < API::V1::APIController
     }
   end
 
-  def quarantine
+  def unrecall
     render json: {
       data: {
-        recall: Bag.find(id_param).quarantine
+        recall: Bag.find(id_param).unrecall
+      }
+    }
+  end
+
+  def unquarantine
+    render json: {
+      data: {
+        recall: Bag.find(id_param).unquarantine
       }
     }
   end

@@ -8,8 +8,11 @@
   <%= yield :head %>
 </head>
 <% if user_signed_in? %>
-  <body class="skin-black">        
-	  <%= render "layouts/navbar" %>
+  <body class="skin-black"
+        data-controller="<%= controller_name %>"
+        data-action="<%= action_name %>">        
+	  
+    <%= render "layouts/navbar" %>
 
     <div class="wrapper row-offcanvas row-offcanvas-left">
             

@@ -5,8 +5,11 @@ class InventoryController < ApplicationController
   helper_method :total_weight
   
   expose(:plants) { Plant.all }
+  expose(:mothers) { Plant::MotherPlant.all }
+  expose(:clones) { Plant::ClonePlant.all }
+
   expose(:jars) { Jar.all }
-  expose(:bags) { Bag.where(tested: false, archived: true) } 
+  expose(:bags) { Bag.where(tested: false, archived: true, sent_to_lab: false) } 
   expose(:lots) { Lot.all }
   expose(:containers) { Container.all }
   expose(:strains) { Strain.all }

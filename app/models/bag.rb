@@ -5,6 +5,8 @@ class Bag < ActiveRecord::Base
   include Storyable
   include Searchable
   include Encodable
+  include Recallable
+  include Quarantineable
   
 
 
@@ -14,7 +16,8 @@ class Bag < ActiveRecord::Base
   scope :by_buds,          -> { by_categories 'Buds' }
   scope :by_brands,        -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)) }
 
-  
+  scope :fulfilled,   -> { uniq.joins(:jars).merge( Jar.fulfilled   )}
+  scope :unfulfilled, -> { uniq.joins(:jars).merge( Jar.unfulfilled )}
 
   def self.first_available(brand, weight)
     by_brands(brand).by_buds.where(current_weight: weight..Float::INFINITY, tested: false, archived: false).first
@@ -28,39 +31,21 @@ class Bag < ActiveRecord::Base
 
   belongs_to :bin
 
+  belongs_to :status, class_name: 'Bags::Status', foreign_key: 'bags_status_id'
 
+  has_many :jars, -> { uniq }
 
-  has_many :jars
+  has_many :plants, -> { uniq }, through: :lot
 
-  has_many :plants, through: :lot
+  has_many :strains, -> { uniq }, through: :plants
 
-  has_many :strains, through: :plants
-
-  has_many :brands, through: :strains
+  has_many :brands, -> { uniq }, through: :strains
 
   
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 
   has_one :location, through: :bin
-
-
-
-  def recall
-    update(recalled: true) unless recalled?
-    lot.recall unless lot.nil? || lot.recalled?
-    true
-  rescue
-    false
-  end
-
-  def quarantine
-    update(quarantined: true) unless quarantined?
-    lot.quarantine unless lot.nil? || lot.quarantined?
-    true
-  rescue
-    false
-  end
   
 
 

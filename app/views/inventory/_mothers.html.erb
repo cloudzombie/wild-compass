@@ -1,0 +1,13 @@
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Strain</th>
+  </tr>
+
+  <% mothers.each do |mother| %>
+    <tr>
+      <td><%= mother.try(:to_s) if mother.present? %></td>
+      <td><%= strain_for mother.try(:strain) if mother.present? %></td>
+    </tr>
+  <% end %>
+</table>

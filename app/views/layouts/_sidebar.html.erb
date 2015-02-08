@@ -15,22 +15,6 @@
       </div>
     </div>
         
-    <!-- search form 
-    <form action="#" method="get" class="sidebar-form">
-      <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search..."/>
-        <span class="input-group-btn">
-          <button type='submit'
-                  name='search'
-                  id='search-btn'
-                  class="btn btn-flat">
-            <i class="fa fa-search"></i>
-          </button>
-        </span>
-      </div>
-    </form>
-    <!-- /.search form -->
-    <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu"><!--
       <li class="<%= params[:controller] == 'dashboard' ? 'active' : nil %>">
         <%= link_to "#{fa_icon('dashboard')} <span>Dashboard</span>".html_safe, dashboard_path %> 
@@ -42,6 +26,10 @@
 
       <li  class="<%= params[:controller] == 'orders' ? 'active' : nil %>">
         <%= link_to "#{fa_icon('shopping-cart')} <span>Orders</span>".html_safe, orders_path %>
+      </li>
+
+      <li class="<%= params[:controller] == 'seeds' ? 'active' : nil %>">
+        <%= link_to "#{fa_icon('circle')} <span>Seeds</span>".html_safe, seeds_path %>
       </li>
 
       <li class="<%= params[:controller] == 'plants' ? 'active' : nil %>">
@@ -85,7 +73,7 @@
           <li class="<%= params[:controller] == 'locations' ? 'active' : nil %>">
             <%= link_to "#{fa_icon('square')} <span>Locations</span>".html_safe, locations_path %>
           </li>
-          <!-- <li class="<%= params[:controller] == 'user/groups' ? 'active' : nil %>">
+          <!-- <li class="<%# params[:controller] == 'user/groups' ? 'active' : nil %>">
             <%# link_to "#{fa_icon('group')} <span>Groups</span>".html_safe, user_groups_path %>
           </li> -->
         </ul>

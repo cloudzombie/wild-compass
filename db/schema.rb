@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204220023) do
+ActiveRecord::Schema.define(version: 20150208020720) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -30,11 +30,19 @@ ActiveRecord::Schema.define(version: 20150204220023) do
     t.integer  "bin_id"
     t.boolean  "archived",                                 default: false, null: false
     t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
-    t.boolean  "recalled",                                 default: false, null: false
-    t.boolean  "quarantined",                              default: false, null: false
+    t.integer  "bags_status_id"
+    t.boolean  "sent_to_lab",                              default: false, null: false
   end
 
   add_index "bags", ["datamatrix_text", "datamatrix_hash"], name: "index_bags_on_datamatrix_text_and_datamatrix_hash", unique: true
+
+  create_table "bags_statuses", force: true do |t|
+    t.string   "name",       default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bags_statuses", ["name"], name: "index_bags_statuses_on_name", unique: true
 
   create_table "bins", force: true do |t|
     t.datetime "created_at"
@@ -54,6 +62,17 @@ ActiveRecord::Schema.define(version: 20150204220023) do
     t.datetime "updated_at"
   end
 
+  create_table "checkouts", force: true do |t|
+    t.integer  "target_id",   null: false
+    t.string   "target_type", null: false
+    t.integer  "user_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "checkouts", ["target_id", "target_type"], name: "index_checkouts_on_target_id_and_target_type", unique: true
+  add_index "checkouts", ["user_id"], name: "index_checkouts_on_user_id"
+
   create_table "containers", force: true do |t|
     t.string   "name"
     t.integer  "lot_id"
@@ -63,7 +82,11 @@ ActiveRecord::Schema.define(version: 20150204220023) do
     t.datetime "updated_at"
     t.integer  "history_id"
     t.string   "category"
-    t.integer  "location_id",    limit: 255
+    t.integer  "location_id"
+    t.string   "type",                     default: "Container", null: false
+    t.integer  "container_id"
+    t.datetime "airdrying_stage_ended_at"
+    t.datetime "processing_completed_at"
   end
 
   create_table "containers_lots", force: true do |t|
@@ -129,6 +152,7 @@ ActiveRecord::Schema.define(version: 20150204220023) do
     t.integer  "order_line_id"
     t.boolean  "fulfilled",                                default: false, null: false
     t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
+    t.decimal  "ordered_amount",  precision: 16, scale: 4, default: 0.0,   null: false
   end
 
   add_index "jars", ["datamatrix_text", "datamatrix_hash"], name: "index_jars_on_datamatrix_text_and_datamatrix_hash", unique: true
@@ -169,12 +193,14 @@ ActiveRecord::Schema.define(version: 20150204220023) do
   end
 
   create_table "orders", force: true do |t|
-    t.string   "customer"
+    t.string   "customer",     default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "ordered_at"
     t.datetime "shipped_at"
     t.integer  "ces_order_id"
+    t.string   "created_by",   default: "", null: false
+    t.string   "placed_by",    default: "", null: false
   end
 
   add_index "orders", ["ces_order_id"], name: "index_orders_on_ces_order_id", unique: true
@@ -187,16 +213,21 @@ ActiveRecord::Schema.define(version: 20150204220023) do
     t.integer  "format_id"
     t.integer  "status_id"
     t.integer  "rfid_id"
-    t.string   "origin"
     t.string   "name"
     t.integer  "history_id"
-    t.decimal  "current_weight",             precision: 16, scale: 4
-    t.decimal  "initial_weight",             precision: 16, scale: 4
-    t.integer  "location_id",    limit: 255
+    t.decimal  "current_weight",      precision: 16, scale: 4
+    t.decimal  "initial_weight",      precision: 16, scale: 4
+    t.integer  "location_id"
+    t.datetime "partial_harvest_at"
+    t.datetime "complete_harvest_at"
+    t.string   "type",                                         default: "Plant", null: false
+    t.integer  "plant_id"
+    t.integer  "seed_id"
   end
 
   add_index "plants", ["format_id"], name: "index_plants_on_format_id"
   add_index "plants", ["rfid_id"], name: "index_plants_on_rfid_id"
+  add_index "plants", ["seed_id"], name: "index_plants_on_seed_id"
   add_index "plants", ["status_id"], name: "index_plants_on_status_id"
   add_index "plants", ["strain_id"], name: "index_plants_on_strain_id"
 
@@ -204,6 +235,15 @@ ActiveRecord::Schema.define(version: 20150204220023) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+  end
+
+  create_table "seeds", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "initial_weight", precision: 16, scale: 4
+    t.decimal  "current_weight", precision: 16, scale: 4
+    t.integer  "stock"
   end
 
   create_table "statuses", force: true do |t|

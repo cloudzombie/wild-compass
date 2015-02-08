@@ -1,5 +1,8 @@
 class LotsController < ApplicationController
 
+  include SetRecallable
+  include SetQuarantineable
+
   before_action :authorized?
 
   helper_method :sort_column, :sort_direction
@@ -53,32 +56,6 @@ class LotsController < ApplicationController
     lot.destroy
     respond_to do |format|
       format.html { redirect_to lots_url, notice: 'Lot was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  def recall
-    lot.recall
-    respond_to do |format|
-      format.html { redirect_to lots_url, notice: 'Lot was successfully recalled.' }
-      format.json { head :no_content }
-    end
-  rescue
-    respond_to do |format|
-      format.html { redirect_to lots_url, notice: 'Lot was not recalled.' }
-      format.json { head :no_content }
-    end
-  end
-
-  def quarantine
-    lot.quarantine
-    respond_to do |format|
-      format.html { redirect_to lots_url, notice: 'Lot was successfully quarantined.' }
-      format.json { head :no_content }
-    end
-  rescue
-    respond_to do |format|
-      format.html { redirect_to lots_url, notice: 'Lot was not quarantined.' }
       format.json { head :no_content }
     end
   end

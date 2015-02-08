@@ -110,7 +110,29 @@ module Weightable
     end
 
      def identifier
-      self.class.name.upcase
+      case self
+      when Bag
+        'BAG'
+      when Plant,
+           Plant::ClonePlant,
+           Plant::MotherPlant
+        'PLANT'
+      when Container,
+           Container::Stage1Container::TrimContainer,
+           Container::Stage1Container::BudsOnStemContainer,
+           Container::Stage1Container::UnprocessedContainer,
+           Container::Stage2Container::BudsContainer,
+           Container::Stage2Container::TrimContainer
+        'CTN'
+      when Bin
+        'BIN'
+      when Lot
+        'LOT'
+      when Jar
+        'JAR'
+      else
+        raise "Identifier not yet implemented!"
+      end
     end
 
     def unique_identifier

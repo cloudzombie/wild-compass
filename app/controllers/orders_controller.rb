@@ -18,33 +18,9 @@ class OrdersController < ApplicationController
 
   expose(:jar) { Jar.new }
 
-  expose(:jars) do
-    jars = []
-    orders.each do |order|
-      order.order_lines.each do |line|
-        line.jars.each do |jar|
-          jars << jar
-        end
-      end
-    end
-    jars.uniq
-  end
-
-  expose(:bags) do
-    bags = []
-    jars.each do |jar|
-      bags << jar.bag unless jar.bag.nil?
-    end
-    bags.uniq
-  end
-
-  expose(:bins) do
-    bins = []
-    bags.each do |bag|
-      bins << bag.bin unless bag.bin.nil?
-    end
-    bins.uniq
-  end
+  expose(:jars) { action_name == 'index' ? Jar.unfulfilled : order.jars }
+  expose(:bags) { action_name == 'index' ? Bag.unfulfilled : order.bags }
+  expose(:bins) { action_name == 'index' ? Bin.unfulfilled : order.bins }
 
   expose(:brands) { Brand.all }
 
@@ -158,7 +134,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:customer, :shipped_at, :ordered_at, :jar, :bag, :weight, :ces_order_id,
+      params.require(:order).permit(:customer, :shipped_at, :ordered_at, :jar, :bag, :weight, :ces_order_id, :created_by, :placed_by,
       order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ])
     end
 

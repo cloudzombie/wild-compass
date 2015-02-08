@@ -38,6 +38,10 @@ class Order < ActiveRecord::Base
   ### Order lines
 
   has_many :jars, -> { uniq }, through: :order_lines
+  
+  has_many :bags, -> { uniq }, through: :jars
+
+  has_many :bins, -> { uniq }, through: :bags
 
   has_many :order_lines
   

@@ -10,7 +10,9 @@ class Plant < ActiveRecord::Base
   scope :by_strains, -> (strain = nil) { where(strain: strain) }
   scope :by_brands,   -> (brand = nil) { where(brand: brand) }
 
+  belongs_to :plant 
 
+  belongs_to :seed
 
   belongs_to :location
   

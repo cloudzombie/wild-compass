@@ -1,7 +1,9 @@
 class Ability
   include CanCan::Ability
   def initialize(user)
-    if user.admin?
+    if user.nil?
+      
+    elsif user.admin?
       can :manage, :all
 
       can :send_to_lab, Bag
@@ -15,8 +17,17 @@ class Ability
       can :scan, Bag
       can :scan, Jar
 
+      can :quarantine, Bag
+      can :quarantine, Lot
+
       can :recall, Bag
       can :recall, Lot
+
+      can :unquarantine, Bag
+      can :unquarantine, Lot
+
+      can :unrecall, Bag
+      can :unrecall, Lot
 
     elsif user.manager?
       can :manage, Brand
@@ -42,6 +53,9 @@ class Ability
 
       can :recall, Bag
       can :recall, Lot
+
+      can :quarantine, Bag
+      can :quarantine, Lot
       
     else
       can :read, Brand
@@ -62,9 +76,6 @@ class Ability
 
       can :scan, Bag
       can :scan, Jar
-
-      can :recall, Bag
-      can :recall, Lot
     end
   end
 end

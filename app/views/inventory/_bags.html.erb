@@ -5,6 +5,7 @@
     <th>Category</th>
     <th>Initial Weight (g)</th>
     <th>Current Weight (g)</th>
+    <th>Variance</th>
   </tr>
 
   <% bags.each do |bag| %>
@@ -14,6 +15,7 @@
       <td><%= bag.try(:category) if bag.present? %></td>
       <td><%= weight_for bag.try(:initial_weight), '' if bag.present? %></td>
       <td><%= weight_for bag.try(:current_weight), '' if bag.present? %></td>
+      <td><%= variance_for bag.try(:initial_weight), bag.try(:current_weight) %></td>
     </tr>
   <% end %>
 </table>
