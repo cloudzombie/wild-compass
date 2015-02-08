@@ -73,7 +73,7 @@
           <li class="<%= params[:controller] == 'locations' ? 'active' : nil %>">
             <%= link_to "#{fa_icon('square')} <span>Locations</span>".html_safe, locations_path %>
           </li>
-          <!-- <li class="<%= params[:controller] == 'user/groups' ? 'active' : nil %>">
+          <!-- <li class="<%# params[:controller] == 'user/groups' ? 'active' : nil %>">
             <%# link_to "#{fa_icon('group')} <span>Groups</span>".html_safe, user_groups_path %>
           </li> -->
         </ul>

@@ -15257,6 +15257,12 @@ $(window).load(function() {
     $(document).on('page:change', initAdminLTE)
 })(window.jQuery)
 ;
+(function() {
+  if (this.WildCompass == null) {
+    this.WildCompass = {};
+  }
+
+}).call(this);
 /** @preserve
  * jsPDF - PDF Document creation from JavaScript
  * Version ${versionID}
@@ -19586,10 +19592,46 @@ var saveAs = saveAs
 	return saveAs;
 }(self));
 (function() {
-  var readScale1, reweightBagStep1, reweightBagStep2, reweightBagStep3, reweightErrorResetProcess, scale1AutoRefresh, scanBag;
+
+
+}).call(this);
+(function() {
+  var BagsController, readScale1, reweightBagStep1, reweightBagStep2, reweightBagStep3, reweightErrorResetProcess, scale1AutoRefresh, scanBag;
+
+  BagsController = (function() {
+    function BagsController() {}
+
+    BagsController.prototype.init = function() {
+      return console.log('bags#init');
+    };
+
+    BagsController.prototype.index = function() {
+      return console.log('bags#index');
+    };
+
+    BagsController.prototype.show = function() {
+      return console.log('bags#show');
+    };
+
+    BagsController.prototype["new"] = function() {
+      return console.log('bags#new');
+    };
+
+    BagsController.prototype.edit = function() {
+      return console.log('bags#edit');
+    };
+
+    BagsController.prototype.reweight = function() {
+      return console.log('bags#reweight');
+    };
+
+    return BagsController;
+
+  })();
+
+  this.WildCompass.bags = new BagsController;
 
   $(document).ready(function() {
-    $('input:text').attr('autocomplete', 'off');
     $.get('http://localhost:8080').fail(function() {
       $('.reweight').prop('disabled', true);
       return $('.reweight').removeAttr('href');
@@ -19941,7 +19983,14 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
+  var Scale;
 
+  Scale = (function() {
+    function Scale() {}
+
+    return Scale;
+
+  })();
 
 }).call(this);
 (function() {
@@ -19955,6 +20004,10 @@ var saveAs = saveAs
       return false;
     });
   });
+
+}).call(this);
+(function() {
+
 
 }).call(this);
 (function() {
@@ -20001,7 +20054,31 @@ var saveAs = saveAs
 
 
 
-;
+
+
+(function($, undefined) {
+  $(function() {
+    var $body = $("body")
+    var controller = $body.data("controller").replace(/\//g, "_");
+    var action = $body.data("action");
+
+    var activeController = WildCompass[controller];
+
+    if (activeController !== undefined) {
+      if ($.isFunction(activeController.init)) {
+        activeController.init();
+      }
+
+      if ($.isFunction(activeController[action])) {
+        activeController[action]();
+      }
+    }
+  });
+})(jQuery);
+
+$(document).ready(function() {
+  $("input:text").attr("autocomplete", "off");
+});
 /*
 Copyright 2012 Igor Vaynberg
 
