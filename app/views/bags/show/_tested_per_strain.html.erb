@@ -1,0 +1,40 @@
+<div class="box box-solid">
+  <div class="box-header">
+    <%= fa_icon 'table' %><h3 class="box-title">Tested Bags / Strains</h3>
+  </div>
+  <div class="box-body">
+    <table class="table table-bordered table-striped">
+      <tr>
+        <td>T/S</td>
+        <% strains.each do |strain| %>
+        <td><%= strain %></td>
+        <% end %>
+      </tr>
+        <% bags.where(tested: true).each do |bag| %>
+        <tr>
+          <th>
+            <%= link_to bag,bag %>
+          </th>
+          <% strains.each do |strain| %>
+          <td>
+            <%= bag.current_weight.to_s + ' g' if bag.strain == strain %> 
+          </td>
+          <% end %>
+          </tr>
+        <% end %>
+        <tr>
+        <th>Total :</th>
+          <% strains.each do |strain| %>
+          <td>
+            <% w = 0 %>
+            <% strain.bags.where(tested: true).each do |bag| %>
+            <% w += bag.current_weight %>
+            <% end %>
+            <%= w.to_s + ' g' %>
+          </td>
+          <% end %>
+        </tr>
+      </div>
+    </table>
+  </div> 
+</div>

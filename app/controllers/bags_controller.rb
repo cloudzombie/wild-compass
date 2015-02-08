@@ -15,7 +15,7 @@ class BagsController < ApplicationController
   expose(:bags) { Bag.all }
 
   expose(:jar) { Jar.new }
-
+  expose(:strains) { Strain.all }
   ##
   # Create a new bag from a POST HTTP request with given parameters:
   # +bag_params+::
