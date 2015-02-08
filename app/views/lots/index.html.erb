@@ -15,10 +15,9 @@
       </div><!-- /.box-header -->
 
       <div class="box-body table-responsive no-padding">
-      <table class="table table-hover">
-          <tr>
-            <th><%= check_box_tag :accept %></th>
-            <th><%= sortable :id, 'ID' %></th>
+      <table class="table table-hover" id="myTable">
+          <tr> 
+            <th></th>
             <th><%= sortable :name %></th>
             <th><%= sortable :strain %></th>
             <th><%= sortable :category %></th>
@@ -30,7 +29,6 @@
             <th><%= sortable :quarantined %></th>
             <th><%= sortable :created_at %></th>
             <th><%= sortable :updated_at %></th>
-            <th>Actions</th>
           </tr>
           <tbody id="table">
           <%= render 'lots/ajax/table' %>

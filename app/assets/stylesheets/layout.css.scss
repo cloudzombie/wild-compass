@@ -60,3 +60,35 @@
 div.box-default > div.box-header {
   background-color: #DDD;
 }
+
+.context-menu {
+  position: absolute;
+  display:none;
+}
+
+.context-menu > ul > li > a.red-link:hover {
+  background-color: #f56954;
+  color: #fff;
+}
+
+.context-menu > ul > li > a.orange-link:hover {
+  background-color: #ff851b;
+  color: #fff;
+}
+
+.context-menu > ul > li > a.light-blue-link:hover {
+  background-color: #3c8dbc;
+  color: #fff;
+}
+
+.context-menu > ul > li > a.red-link {
+  color: #f56954 
+}
+
+.context-menu > ul > li > a.orange-link {
+  color: #ff851b 
+}
+
+.context-menu > ul > li > a.light-blue-link {
+  color: #3c8dbc
+}

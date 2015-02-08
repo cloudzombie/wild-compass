@@ -7,3 +7,20 @@ jQuery ->
     $('#lot_container_ids').select2({ 
     
     })
+
+  #$ ->
+	  
+	#  $('body').on 'click', 'table tr', (e) ->
+	 # $contextMenu = "context-menu-"+document.getElementById($(this).attr('lot-id'))
+	  #$contextMenu.css
+	 #     display: 'block'
+	 #     left: e.pageX - 220
+	 #     top: e.pageY - 100
+	 #   false
+	 #$contextMenu.on 'click', 'a', ->
+	 #   $contextMenu.hide()
+	 #   return
+	 # $contextMenu.on 'contextmenu', 'ul li a', ->
+	 #   $contextMenu.hide()
+	 #   false
+	 # return

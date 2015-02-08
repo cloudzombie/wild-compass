@@ -6,7 +6,7 @@ class InventoryController < ApplicationController
   
   expose(:plants) { Plant.all }
   expose(:jars) { Jar.all }
-  expose(:bags) { Bag.all }
+  expose(:bags) { Bag.where(tested: false, archived: true) } 
   expose(:lots) { Lot.all }
   expose(:containers) { Container.all }
   expose(:strains) { Strain.all }
