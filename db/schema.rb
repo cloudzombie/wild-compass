@@ -18,22 +18,20 @@ ActiveRecord::Schema.define(version: 20150208020720) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "origin"
-    t.decimal  "current_weight",           precision: 16, scale: 4
-    t.decimal  "initial_weight",           precision: 16, scale: 4
+    t.decimal  "current_weight",  precision: 16, scale: 4
+    t.decimal  "initial_weight",  precision: 16, scale: 4
     t.integer  "history_id"
     t.integer  "container_id"
-    t.boolean  "tested",                                            default: false
+    t.boolean  "tested",                                   default: false
     t.integer  "lot_id"
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
     t.string   "location"
     t.integer  "bin_id"
-    t.boolean  "archived",                                          default: false, null: false
-    t.decimal  "tare_weight",              precision: 16, scale: 4, default: 0.0,   null: false
+    t.boolean  "archived",                                 default: false, null: false
+    t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
     t.integer  "bags_status_id"
-    t.boolean  "sent_to_lab",                                       default: false, null: false
-    t.datetime "airdrying_stage_ended_at"
-    t.datetime "processing_completed_at"
+    t.boolean  "sent_to_lab",                              default: false, null: false
   end
 
   add_index "bags", ["datamatrix_text", "datamatrix_hash"], name: "index_bags_on_datamatrix_text_and_datamatrix_hash", unique: true
@@ -85,8 +83,10 @@ ActiveRecord::Schema.define(version: 20150208020720) do
     t.integer  "history_id"
     t.string   "category"
     t.integer  "location_id"
-    t.string   "type",           default: "Container", null: false
+    t.string   "type",                     default: "Container", null: false
     t.integer  "container_id"
+    t.datetime "airdrying_stage_ended_at"
+    t.datetime "processing_completed_at"
   end
 
   create_table "containers_lots", force: true do |t|
