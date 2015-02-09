@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get 'transaction/checkin'
   get 'transaction/checkout'
 
-  get 'access', to: 'access#check'
+  get  'access', to: 'access#check'
   post 'access', to: 'access#check'
 
   # Resources
@@ -37,7 +37,12 @@ Rails.application.routes.draw do
 
   resources :locations
 
-  resources :seeds
+  resources :seeds do
+    member do
+      get 'datamatrix'
+      get 'label'
+    end
+  end
 
   resources :bins do 
     member do
