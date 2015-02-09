@@ -30,6 +30,16 @@ class SeedsController < ApplicationController
     respond_with(seed)
   end
 
+  def datamatrix
+    send_data seed.datamatrix, type: 'image/png', disposition: 'attachment'
+  end
+
+  def label
+    respond_to do |format|
+      format.html
+    end
+  end
+
   private
 
     def seed_params
