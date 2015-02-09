@@ -1,0 +1,91 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>Seed Reweight</strong></h3>
+  </div>
+
+  <div class="panel-body">
+
+    <% if params[:debug] %>
+
+    <%= form_for seed, url: reweight_seed_path(seed), method: :post do |f| %>
+
+      <div class="form-group">
+        <%= f.label :weight %>
+        <%= f.text_field :weight, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :message %>
+        <%= f.text_field :message, class: 'form-control' %>
+      </div>
+            
+      <div class="input-group">
+        <%= f.submit 'Commit Reweight', class: 'btn btn-primary' %>
+      </div>
+
+    <% end %>
+
+    <% else %>
+    
+    <%= form_for seed, url: scan_seed_path(seed), method: :post, html: { id: 'reweight-seed-scan' } do |f| %>
+      <div id="reweight-seed-step-1">
+        <p class="alert alert-info"><strong>Please put seed on scale and scan seed...</strong></p>
+        <div id="reweight-seed-scan">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="form-group">
+                <div class="input-group">
+                  <%= f.label :scanned_hash, class: 'input-group-addon' do %>
+                    <strong class="text-primary">Scan Seed :</strong>
+                  <% end %>
+
+                  <%= f.text_field :scanned_hash, id: 'reweight-seed',
+                      class: 'form-control', data: { href: scan_seed_path(seed) }, autofocus: true %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <%= form_for seed, url: reweight_seed_path(seed), method: :post, html: { id: 'reweight-seed-weight' } do |f| %>
+      <div id="reweight-seed-step-2">
+        <p class="alert alert-info"><strong>Please put seed on scale 1...</strong></p>
+      </div>
+
+      <div id="reweight-seed-scale-display">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+              <div class="input-group">
+                <%= f.label :weight, class: 'input-group-addon' do %>
+                  <strong class="text-primary">Weight (Scale 1) :</strong>
+                <% end %>
+
+                <%= f.text_field :weight, id: 'reweight-seed-scale-1-readings', class: 'form-control text-center', readonly: true %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="reweight-seed-step-3">
+        <div class="form-group">
+
+          <%= f.label :message, 'Note' %>
+          <%= f.text_area  :message,
+              class:       'form-control',
+              id:          'reweight-seed-message',
+              value:       '',
+              placeholder: 'DD/MM/YYYY - Reweight' %>
+
+        </div>
+
+        <%= f.submit 'Commit Reweight', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+    <% end %>
+
+  </div>
+</div>

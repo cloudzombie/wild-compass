@@ -18,8 +18,14 @@
       <%= link_to "Print Label", label_seed_path(seed), class: 'btn-sm btn-flat btn-primary' %>
       <% end %>
 
+      <% if can? :reweight, Seed %>
+      <%= link_to "#{fa_icon 'flask'} Reweight".html_safe, reweight_seed_path(seed),
+          class: 'btn-sm btn-flat btn-danger reweight',
+          data: { href: reweight_seed_path(seed) } %>
+      <% end %>
+
       <% if can? :edit,  Seed %>
-      <%= link_to "Edit".html_safe, edit_seed_path(seed) %>
+      <%= link_to "Edit".html_safe, edit_seed_path(seed), class: 'btn btn-flat btn-sm' %>
       <% end %>
     </td>
   </tr>
