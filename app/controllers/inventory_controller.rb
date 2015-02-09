@@ -8,7 +8,7 @@ class InventoryController < ApplicationController
   expose(:clones) { Plant::ClonePlant.all }
 
   expose(:jars) { Jar.all }
-  expose(:bags) { Bag.where(tested: false, archived: true, sent_to_lab: false) } 
+  expose(:bags) { Bag.where(tested: false, sent_to_lab: false) } 
   expose(:lots) { Lot.all }
   expose(:containers) { Container.all }
   expose(:strains) { Strain.all }
