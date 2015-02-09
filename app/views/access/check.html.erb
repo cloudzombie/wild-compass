@@ -1,0 +1,64 @@
+<div class="box box-danger">
+  <div class="box-header">
+    <h3 class="text-danger text-center">
+      <strong>Access Denied</strong>
+    </h3>
+  </div>
+
+  <div class="box-body">
+    <div class="row">
+      <p class="text-danger text-center">
+        <strong>You do have access to this resource.</strong>
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="box box-danger">
+          <div class="box-header">
+            <h3 class="text-danger text-center">Supervisor Override</h3>
+          </div>
+          
+          <div class="box-body">
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <%= form_for :check do |f| %>
+                  <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                      <div class="form-group">
+                        <%= f.label :supervisor %>
+                        <%= f.collection_select(
+                            :supervisor,
+                            User.where(role: User::Role.manager), :id, :to_s, {},
+                            { class: 'form-control' }) %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                      <div class="form-group">
+                        <%= f.label :supervisor_password %>
+                        <%= f.password_field :supervisor_password, class: 'form-control' %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                      <div class="form-group">
+                        <%= f.submit 'Override', class: 'btn btn-danger btn-flat form-control' %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer"></div>
+</div>

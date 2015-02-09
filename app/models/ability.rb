@@ -39,6 +39,7 @@ class Ability
       can :manage, User
       can :manage, Bin
       can :manage, Container
+      can :manage, User
       
       can :send_to_lab, Bag
       can :home, 'Inventory'

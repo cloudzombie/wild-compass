@@ -8,7 +8,7 @@ module Authorizable
   private
 
     def authorized?
-      authorize! action_name.to_sym, controller_name.classify
+      authorize! action_name.to_sym, controller_name.classify.constantize
     end
 
 end
