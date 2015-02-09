@@ -62,7 +62,7 @@ class LotsController < ApplicationController
 
     def lot_params
       params.require(:lot).permit(:name, :weight, :initial_weight, :strain_id, :current_weight,
-                                  :thc_composition, :cbd_composition, { container_ids: [] })
+                                  :thc_composition, :cbd_composition, :cbn_composition, { container_ids: [] })
     end
 
     def id_param
@@ -71,7 +71,7 @@ class LotsController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id name category strain initial_weight current_weight created_at updated_at thc_composition tbd_composition).include?(params[:sort]) ? params[:sort] : 'id'
+      %w(id name category strain initial_weight current_weight created_at updated_at thc_composition cbd_composition cbn_composition).include?(params[:sort]) ? params[:sort] : 'id'
     end
 
     # Set sort direction to ascending or descending.
