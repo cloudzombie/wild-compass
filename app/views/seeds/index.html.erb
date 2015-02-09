@@ -1,27 +1,50 @@
-<h1>Listing seeds</h1>
+    <div class="box box-solid box-primary">
+      <div class="box-header">
+        <h3 class="box-title">Listing seeds</h3>
+        <div class="box-tools">
+          <div class="input-group">
+            <%= form_tag(seeds_path, :method => "get", id: "search-form", remote: true, autocomplete: 'off') do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
+            <% end %>
+            <div class="input-group-btn">
+              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.box-header -->
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Stock</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tr>
+            <th></th>
+            <th><%= sortable :name %></th>
+            <th><%= sortable :stock %></th>
+            <th><%= sortable :initial_weight %></th>
+            <th><%= sortable :current_weight %></th>
+            <th><%= sortable :created_at %></th>
+            <th><%= sortable :updated_at %></th>
+            <th>Actions </th>
+          </tr>
+          <tbody id="table">
+            <%= render 'seeds/ajax/table' %>
+          </tbody>
+        </table>
+      </div><!-- /.box-body -->
+    </div>
 
-  <tbody>
-    <% seeds.each do |seed| %>
-      <tr>
-        <td><%= seed %></td>
-        <td><%= seed.stock %></td>
-        <td><%= link_to 'Show', seed %></td>
-        <td><%= link_to 'Edit', edit_seed_path(seed) %></td>
-        <td><%= link_to 'Destroy', seed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+    <div class="tableFooter">
+        <a href="#" class="btn btn-flat btn-primary" data-toggle="modal" data-target=".new-seed"><i class="fa fa-tags"></i> New seed</a>
+        <div id="paginator">
+          <%#=  paginate seeds %>
+        </div>
+    </div>
 
-<%= link_to 'New Seed', new_seed_path %>
+    <div class="modal fade new-seed" tabindex="-1" role="dialog" aria-labelledby="New seed" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <h3>Create a new seed</h3>
+          <%= render 'seeds/form' %>
+        </div>
+      </div>
+    </div>

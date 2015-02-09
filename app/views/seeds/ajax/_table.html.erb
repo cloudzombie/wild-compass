@@ -1,0 +1,18 @@
+<% seeds.each do |seed| %>
+  <tr id="seed-<%= seed.id %>">
+    <td></td>
+    <td>
+      <% if can? :show, seed %>
+        <%= link_to seed.try(:to_s), seed if seed.present? %>
+      <% else %>
+        <%= seed.try(:to_s) if seed.present? %>
+      <% end %>
+    </td>
+    <td><%= seed.stock %></td>
+    <td><%= weight_for seed.try(:initial_weight) if seed.present? %></td>
+    <td><%= weight_for seed.try(:current_weight) if seed.present? %></td>
+    <td><%= date_for seed.try(:created_at) if seed.present? %></td>
+    <td><%= date_for seed.try(:updated_at) if seed.present? %></td>
+    <td><%= link_to "Edit".html_safe, edit_seed_path(seed) %></td>
+  </tr>
+<% end %>

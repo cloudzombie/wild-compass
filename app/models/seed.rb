@@ -1,5 +1,8 @@
 class Seed < ActiveRecord::Base
 
+  include Weightable
+  include Searchable
+
   has_many :plants
 
   def to_s

@@ -1,19 +1,19 @@
 <%= form_for(seed) do |f| %>
-  <% if seed.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(seed.errors.count, "error") %> prohibited this seed from being saved:</h2>
 
-      <ul>
-      <% seed.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :initial_weight %><br>
+    <%= f.text_field :initial_weight %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_weight %><br>
+    <%= f.text_field :current_weight %>
   </div>
 
   <div class="field">

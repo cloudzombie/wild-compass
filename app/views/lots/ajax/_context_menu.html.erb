@@ -1,0 +1,13 @@
+<ul id="context-menu" class="dropdown-menu" role="menu" style="display:none" >
+    <li><%= link_to "Containers".html_safe, '#', class: 'light-blue-link', data: { toggle: 'modal', target: "##{described.id}" } %></li>
+    <% if can? :update, described %>
+     <li><%= link_to "Edit".html_safe, edit_described_path(described), class: "orange-link" %></li>
+    <% end %>
+    <% if can? :recall, described %>
+      <li><%= link_to "Recall", recall_described_path(described), class: 'red-link' %></li>
+    <% end %>    
+    <% if can? :quarantine, described %>
+      <li><%= link_to "Quarantine", quarantine_described_path(described), class: 'red-link' %></li>
+    <% end %>
+</ul>
+

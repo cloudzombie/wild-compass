@@ -3,8 +3,16 @@ class SeedsController < ApplicationController
 
   respond_to :html
 
+  helper_method :sort_column, :sort_direction
+
   expose(:seed, params: :seed_params) { params[:id].nil? ? Seed.new : Seed.find(params[:id]) }
-  expose(:seeds) { Seed.all }
+  expose(:seeds) do
+    if sort_column == 'name'
+      Seed.search(params[:search]).sort_by('LENGTH(name), name ' + sort_direction).page(params[:page])
+    elsif Seed.column_names.include? sort_column
+      Seed.search(params[:search]).order( sort_column + ' ' + sort_direction ).page(params[:page])
+    end
+  end
 
   def create
     self.seed = Seed.new(seed_params)
@@ -25,7 +33,18 @@ class SeedsController < ApplicationController
   private
 
     def seed_params
-      params.require(:seed).permit(:name, :stock)
+      params.require(:seed).permit(:name, :stock, :initial_weight, :current_weight)
+    end
+
+
+    # Set column to sort in order.
+    def sort_column
+      %w(id name initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'created_at'
+    end
+
+    # Set sort direction to ascending or descending.
+    def sort_direction
+      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
 end
