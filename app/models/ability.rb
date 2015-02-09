@@ -7,9 +7,9 @@ class Ability
       can :manage, :all
 
       can :send_to_lab, Bag
-      can :home, 'Inventory'
-      can :home, 'Dashboard'
-      can :download, 'Inventory'
+      can :home, Inventory
+      can :home, Dashboard
+      can :download, Inventory
 
       can :fulfill, Order
       can :reweight, Bag
@@ -42,9 +42,9 @@ class Ability
       can :manage, User
       
       can :send_to_lab, Bag
-      can :home, 'Inventory'
-      can :home, 'Dashboard'
-      can :download, 'Inventory'
+      can :home, Inventory
+      can :home, Dashboard
+      can :download, Inventory
 
       can :fulfill, Order
       can :reweight, Bag
@@ -68,9 +68,9 @@ class Ability
       can :read, Bin
       can :read, Container
 
-      can :home, 'Inventory'
-      can :home, 'Dashboard'
-      can :download, 'Inventory'
+      can :home, Inventory
+      can :home, Dashboard
+      can :download, Inventory
 
       can :fulfill, Order
       can :reweight, Bag

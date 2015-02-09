@@ -8,29 +8,26 @@
   <div class="box-body">
     <div class="row">
       <p class="text-danger text-center">
-        <strong>You do have access to this resource.</strong>
+        <strong>You do not have access to this resource.</strong>
       </p>
     </div>
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <div class="box box-danger">
+        <div class="box box-warning">
           <div class="box-header">
-            <h3 class="text-danger text-center">Supervisor Override</h3>
+            <h3 class="text-warning text-center">Supervisor Override</h3>
           </div>
           
           <div class="box-body">
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
-                <%= form_for :check do |f| %>
+                <%= form_for :check, method: :post do |f| %>
                   <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                       <div class="form-group">
-                        <%= f.label :supervisor %>
-                        <%= f.collection_select(
-                            :supervisor,
-                            User.where(role: User::Role.manager), :id, :to_s, {},
-                            { class: 'form-control' }) %>
+                        <%= f.label :supervisor_email %>
+                        <%= f.text_field :supervisor_email, class: 'form-control' %>
                       </div>
                     </div>
                   </div>
@@ -47,7 +44,7 @@
                   <div class="row">
                     <div class="col-md-4 col-md-offset-4">
                       <div class="form-group">
-                        <%= f.submit 'Override', class: 'btn btn-danger btn-flat form-control' %>
+                        <%= f.submit 'Override', class: 'btn btn-warning btn-flat form-control' %>
                       </div>
                     </div>
                   </div>
@@ -56,9 +53,13 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>      
     </div>
+
+    <p class="text-danger text-center">
+      <strong>Can't get a supervisor? <%= link_to 'Go back.', '#', onclick: 'javascript:history.back();' %></strong>
+    </p>
   </div>
 
-  <div class="footer"></div>
+  <br>
 </div>
