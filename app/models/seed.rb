@@ -3,6 +3,7 @@ class Seed < ActiveRecord::Base
   include Weightable
   include Searchable
   include Encodable
+  include Storyable
 
   has_many :plants
 
