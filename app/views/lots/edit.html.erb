@@ -27,13 +27,22 @@
   
   <div class="form-group">
     <%= f.label :thc_composition %>
-    <%= f.text_field :thc_composition , class: 'form-control', value: number_with_precision(lot.thc_composition, precision: 2) %>
+    <%= f.text_field :thc_composition , class: 'form-control',
+        value: number_with_precision(lot.thc_composition, precision: 2) %>
     <%= display_error_for lot, :thc_composition %>
   </div>
 
   <div class="form-group">
     <%= f.label :cbd_composition %>
-    <%= f.text_field :cbd_composition , class: 'form-control', value: number_with_precision(lot.cbd_composition, precision: 2) %>
+    <%= f.text_field :cbd_composition , class: 'form-control',
+        value: number_with_precision(lot.cbd_composition, precision: 2) %>
+    <%= display_error_for lot, :cbd_composition %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :cbn_composition %>
+    <%= f.text_field :cbn_composition , class: 'form-control',
+        value: number_with_precision(lot.cbn_composition, precision: 2) %>
     <%= display_error_for lot, :cbd_composition %>
   </div>
 
