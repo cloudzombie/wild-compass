@@ -5,6 +5,7 @@ class BagsController < ApplicationController
   include SetWeightable
   include SetRecallable
   include SetQuarantineable
+  include Scannable
 
   respond_to :html, :xml, :json
 
@@ -71,19 +72,6 @@ class BagsController < ApplicationController
     end
   end
 
-  def scan
-    respond_to do |format|
-      format.html { redirect_to bags_path, notice: "#{self.bag == Bag.find_by(datamatrix_hash: bag_params[:scanned_hash])}" }
-      format.json do
-        render json: {
-          bag: {
-            match: self.bag == Bag.find_by(datamatrix_hash: bag_params[:scanned_hash])
-          }
-        } 
-      end
-    end
-  end
-
   # Destroy bag.
   def destroy
     bag.destroy
@@ -109,7 +97,7 @@ class BagsController < ApplicationController
       params.require(:bag).permit(
         :quantity,     :weight, :message,        :initial_weight,
         :container_id, :name,   :current_weight, :bin_id,
-        :lot_id,       :scanned_hash,            :tare_weight
+        :lot_id,       :tare_weight
       )
     end
 

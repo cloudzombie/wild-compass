@@ -1,5 +1,6 @@
 class SeedsController < ApplicationController
   include Authorizable
+  include Scannable
   include SetWeightable
 
   respond_to :html
