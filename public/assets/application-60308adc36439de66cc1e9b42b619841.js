@@ -20007,7 +20007,120 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
+  var SeedsController, readScale1, reweightErrorResetProcess, reweightSeedStep1, reweightSeedStep2, reweightSeedStep3, scale1AutoRefresh, scanSeed;
 
+  SeedsController = (function() {
+    function SeedsController() {}
+
+    SeedsController.prototype.init = function() {
+      return console.log('seeds#init');
+    };
+
+    SeedsController.prototype.index = function() {
+      console.log('seeds#index');
+      return $(document).ready(function() {
+        return $.get('http://localhost:8080').fail(function() {
+          $('.reweight').prop('disabled', true);
+          return $('.reweight').removeAttr('href');
+        }).done(function() {
+          return $('.reweight').prop('disabled', false);
+        });
+      });
+    };
+
+    SeedsController.prototype.show = function() {
+      return console.log('seeds#show');
+    };
+
+    SeedsController.prototype["new"] = function() {
+      return console.log('seeds#new');
+    };
+
+    SeedsController.prototype.edit = function() {
+      return console.log('seeds#edit');
+    };
+
+    SeedsController.prototype.reweight = function() {
+      console.log('seeds#reweight');
+      return $(document).ready(function() {
+        $('#reweight-seed-scan').submit(function(event) {
+          event.preventDefault();
+          return scanSeed();
+        });
+        $('#reweight-seed-weight').submit(function(event) {
+          var message;
+          message = $('#reweight-seed-message');
+          if (message && message.val()) {
+
+          } else {
+            return event.preventDefault();
+          }
+        });
+        $('#reweight-seed-scale-1-readings').change(function(event) {
+          var weight;
+          weight = parseFloat($('#reweight-seed-scale-1-readings').val().trim());
+          reweightSeedStep3();
+          return $('#reweight-seed-scale-1-readings').val(weight);
+        });
+        return reweightSeedStep1();
+      });
+    };
+
+    return SeedsController;
+
+  })();
+
+  this.WildCompass.seeds = new SeedsController;
+
+  scale1AutoRefresh = null;
+
+  reweightSeedStep1 = function() {
+    $('#reweight-seed-step-1').show();
+    $('#reweight-seed-step-2').hide();
+    $('#reweight-seed-step-3').hide();
+    $('#reweight-seed-scale-display').hide();
+    return clearInterval(scale1AutoRefresh);
+  };
+
+  reweightSeedStep2 = function() {
+    $('#reweight-seed-step-1').hide();
+    $('#reweight-seed-step-2').show();
+    $('#reweight-seed-step-3').hide();
+    $('#reweight-seed-scale-display').show();
+    return scale1AutoRefresh = setInterval(readScale1, 100);
+  };
+
+  reweightSeedStep3 = function() {
+    $('#reweight-seed-step-1').hide();
+    $('#reweight-seed-step-2').hide();
+    $('#reweight-seed-step-3').show();
+    return clearInterval(scale1AutoRefresh);
+  };
+
+  reweightErrorResetProcess = function() {
+    return reweightSeedStep1();
+  };
+
+  scanSeed = function() {
+    return $.post($('#reweight-seed').data('href') + '.json', {
+      seed: {
+        scanned_hash: $('#reweight-seed').val()
+      }
+    }).done(function(data) {
+      if (data.seed.match) {
+        return reweightSeedStep2();
+      } else {
+        return reweightErrorResetProcess();
+      }
+    });
+  };
+
+  readScale1 = function() {
+    return $.get('http://localhost:8080/data').done(function(data) {
+      $('#reweight-seed-scale-1-readings').val(data);
+      return $('#reweight-seed-scale-1-readings').change();
+    });
+  };
 
 }).call(this);
 (function() {
