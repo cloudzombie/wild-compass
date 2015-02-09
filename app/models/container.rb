@@ -14,7 +14,14 @@ class Container < ActiveRecord::Base
   scope :by_brands,     -> (brand = nil) { Container.joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
 
+  
+  ### Containers
+
   belongs_to :container
+
+  has_many :containers
+
+
 
   has_and_belongs_to_many :plants, -> { uniq }
 
