@@ -40,6 +40,7 @@ class Ability
       can :manage, Bin
       can :manage, Container
       can :manage, User
+      can :manage, Seed
       
       can :send_to_lab, Bag
       can :home, Inventory
@@ -67,6 +68,7 @@ class Ability
       can :read, Order
       can :read, Bin
       can :read, Container
+      can :read, Seed
 
       can :home, Inventory
       can :home, Dashboard
