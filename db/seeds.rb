@@ -15,35 +15,35 @@ statuses = Status.create([
 ])
 
 brands = Brand.create([
-  { name: :"Good Morning"},
-  { name: :"Midday"},
-  { name: :"After Dinner"},
-  { name: :"Bedtime"}
+  { name: "Good Morning" },
+  { name: "Midday"       },
+  { name: "After Dinner" },
+  { name: "Bedtime"      }
 ])
 
 formats = Format.create([
-  { name: :"60g"     },
-  { name: :"45g"	   },
-  { name: :"15g"	   },
-  { name: :"6L"      }
+  { name: "60 G"     },
+  { name: "45 G"	   },
+  { name: "15 G"	   },
+  { name: " 6 L"     }
 ])
 
 strains = Strain.create([
-  { name: :"Big Blue Bubble Buds", acronym: :"Bb"  },
-  { name: :"Yo Diamond", acronym: :"Yo"	 	},
-  { name: :"Good Meds", acronym: :"Gm"	 	},
-  { name: :"Snow Leopard", acronym: :"SL"     },
-  { name: :"Mk", acronym: :"Mk"  },
-  { name: :"Casey x Ww" , acronym: :"CxWw"   },
-  { name: :"Space Queen", acronym: :"Sq"   },
-  { name: :"Critical Cheese", acronym: :"Cc"     },
-  { name: :"Norther Lights 5", acronym: :"NlxBb" ,info: :"Nl x Bb" },
-  { name: :"(Pmayi)", acronym: :"PM"   },
-  { name: :"(Krona x Norther California", acronym: :"Ks"     },
-  { name: :"(Cambodian x Mes Gold x Lumbo Gold x Thai x Maui)", acronym: :"Pg"  },
-  { name: :"Socal Master Kush", acronym: :"Sc"   },
-  { name: :"Prayer Tower", acronym: :"Pt"   },
-  { name: :"Shark Shock", acronym: :"Ss"     },
+  { name: "Big Blue Bubble Buds", acronym: "BB"  },
+  { name: "Yo Diamond", acronym: "YO"	 	},
+  { name: "Good Meds", acronym: "GM"	 	},
+  { name: "Snow Leopard", acronym: "SL"     },
+  { name: "Mk", acronym: "MK"  },
+  { name: "Casey x Ww" , acronym: "CXWW"   },
+  { name: "Space Queen", acronym: "SQ"   },
+  { name: "Critical Cheese", acronym: "CC"     },
+  { name: "Norther Lights 5", acronym: "NLXBB" },
+  { name: "(Pmayi)", acronym: "PM"   },
+  { name: "(Krona x Norther California", acronym: "KS"     },
+  { name: "(Cambodian x Mes Gold x Lumbo Gold x Thai x Maui)", acronym: "PG"  },
+  { name: "Socal Master Kush", acronym: "SC"   },
+  { name: "Prayer Tower", acronym: "PT"   },
+  { name: "Shark Shock", acronym: "SS"     },
 ])
 
 user_roles = User::Role.create([{ admin: false, manager: false, name: 'user'       },
@@ -59,20 +59,18 @@ user_group_roles = User::Group::Role.create([{ admin: false, manager: false, nam
 user_groups = User::Group.create([{ role: User::Group::Role.users,       name: 'users'       },
                                   { role: User::Group::Role.managers,    name: 'managers'    },
                                   { role: User::Group::Role.admins,      name: 'admins'      },
-                                  { role: User::Group::Role.super_users, name: 'uper_users' }])
+                                  { role: User::Group::Role.super_users, name: 'super_users' }])
 
-bag_statuses = Bag::Status.create([{ name: 'Untested'    },
-                                   { name: 'Quarantined' },
-                                   { name: 'Cleared'     },
-                                   { name: 'Recalled'    }])
+bag_statuses = Bags::Status.create([{ name: 'Untested'    },
+                                    { name: 'Quarantined' },
+                                    { name: 'Cleared'     },
+                                    { name: 'Recalled'    }])
 
-password = 'wild.compass'
-email = 'su_admin@wild.compass'
 users = User.create([{ name: 'Super User',
-                       email: email,
+                       email: email = 'su_admin@wild.compass',
                        uid: email,
                        provider: :email,
-                       password: password,
+                       password: password = 'wildcompass',
                        password_confirmation: password,
                        role: User::Role.super_user,
                        group: User::Group.super_users }])

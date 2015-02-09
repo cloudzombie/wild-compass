@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get 'transaction/checkin'
   get 'transaction/checkout'
 
+  get 'access', to: 'access#check'
+
   # Resources
   resources :orders do
     member do

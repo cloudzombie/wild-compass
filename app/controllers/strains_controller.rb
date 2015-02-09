@@ -1,6 +1,5 @@
 class StrainsController < ApplicationController
-
-  before_action :authorized?
+  include Authorizable
 
   expose(:strain, params: :strain_params) { id_param.nil? ? Strain.new : Strain.find(id_param) }
   expose(:strains) { Strain.all }
@@ -50,7 +49,4 @@ class StrainsController < ApplicationController
       params[:id]
     end
 
-    def authorized?
-      authorize! action_name.to_sym, Strain
-    end
 end

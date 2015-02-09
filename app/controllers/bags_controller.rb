@@ -1,5 +1,5 @@
 class BagsController < ApplicationController
-
+  include Authorizable
   include FindEncodable
   include FindSortable
   include SetWeightable
@@ -9,8 +9,6 @@ class BagsController < ApplicationController
   respond_to :html, :xml, :json
 
   helper_method :sort_column, :sort_direction
-
-  before_action :authorized?
   
   expose(:bag, params: :bag_params) { find(Bag) }
   
@@ -18,6 +16,7 @@ class BagsController < ApplicationController
 
   expose(:jar) { Jar.new }
   expose(:strains) { Strain.all }
+  
   ##
   # Create a new bag from a POST HTTP request with given parameters:
   # +bag_params+::
@@ -104,10 +103,6 @@ class BagsController < ApplicationController
   end
 
   private
-
-    def authorized?
-      authorize! action_name.to_sym, Bag
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-
-  before_action :authorized?
+  include Authorizable
   
   expose(:user, params: :user_params) { id_param.nil? ? User.new : User.find(id_param) }
   expose(:users) { User.all }
@@ -48,10 +47,6 @@ class UsersController < ApplicationController
 
     def id_param
       params[:id]
-    end
-
-    def authorized?
-      authorize! action_name.to_sym, User
     end
 
 end

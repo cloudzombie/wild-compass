@@ -1,6 +1,5 @@
 class PlantsController < ApplicationController
-
-  before_action :authorized?
+  include Authorizable
 
   helper_method :sort_column, :sort_direction
 
@@ -83,7 +82,4 @@ class PlantsController < ApplicationController
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    def authorized?
-      authorize! action_name.to_sym, Plant
-    end
 end

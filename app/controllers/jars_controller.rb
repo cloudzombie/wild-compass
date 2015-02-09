@@ -1,9 +1,7 @@
 class JarsController < ApplicationController
-
+  include Authorizable
   include FindEncodable
   include SetWeightable
-
-  before_action :authorized?
 
   helper_method :sort_column, :sort_direction
   
@@ -106,7 +104,4 @@ class JarsController < ApplicationController
       %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    def authorized?
-      authorize! action_name.to_sym, Jar
-    end
 end
