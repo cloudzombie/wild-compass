@@ -3,11 +3,11 @@ module Scannable
 
   def scan
     respond_to do |format|
-      format.html { redirect_to models_url, notice: "#{match?}" }
+      format.html { redirect_to models_url, notice: "#{hash_match?}" }
       format.json do
         render json: {
-          bag: {
-            match: match?
+          model_name => {
+            match: hash_match?
           }
         } 
       end
@@ -43,7 +43,7 @@ module Scannable
       model_class.find_by(datamatrix_hash: model_params[:scanned_hash])
     end
 
-    def match?
+    def hash_match?
       model == find_by_datamatrix_hash
     end
 
