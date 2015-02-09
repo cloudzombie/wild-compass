@@ -21,6 +21,11 @@
     <%= f.text_field :stock %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :plant %>
+    <%= f.collection_select(:plant_ids, Plant.all, :id, :to_s, {}, {multiple: 'multiple', class: 'textboxlist form-control ' }) %>
+  </div> 
+
   <div class="actions">
     <%= f.submit %>
   </div>
