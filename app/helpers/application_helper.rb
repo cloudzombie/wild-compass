@@ -97,7 +97,7 @@ module ApplicationHelper
     when :unprocessed
       "<small class=\"label label-warning\">UNPROCESSED</small>".html_safe
     when :budsonstem
-      "<small class=\"label label-success\">BUDS</small>".html_safe
+      "<small class=\"label label-success\">BUDS ON STEM</small>".html_safe
     else
       ''
     end
