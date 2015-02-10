@@ -11,7 +11,7 @@ module PlantsHelper
 	end
 
 	def status_color_for(status)
-		case status.downcase.to_sym
+		case status.to_s.downcase.to_sym
 		when :destroyed
 			'danger'
 		else
