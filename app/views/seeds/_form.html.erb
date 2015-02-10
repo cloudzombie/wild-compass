@@ -1,24 +1,12 @@
 <%= form_for(seed) do |f| %>
-
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :initial_weight %><br>
-    <%= f.text_field :initial_weight %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_weight %><br>
-    <%= f.text_field :current_weight %>
-  </div>
-
-  <div class="field">
-    <%= f.label :stock %><br>
-    <%= f.text_field :stock %>
+  <div class="form-group">
+    <%= f.label :stock, 'Quantity' %>
+    <%= f.text_field :stock, class: 'form-control' %>
   </div>
 
   <div class="form-group">
@@ -26,7 +14,7 @@
     <%= f.collection_select(:plant_ids, Plant.all, :id, :to_s, {}, {multiple: 'multiple', class: 'textboxlist form-control ' }) %>
   </div> 
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="input-group">
+    <%= f.submit class: 'btn btn-primary btn-flat' %>
   </div>
 <% end %>

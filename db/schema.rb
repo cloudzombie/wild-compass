@@ -242,11 +242,16 @@ ActiveRecord::Schema.define(version: 20150209232709) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "initial_weight", precision: 16, scale: 4
-    t.decimal  "current_weight", precision: 16, scale: 4
+    t.decimal  "initial_weight",  precision: 16, scale: 4
+    t.decimal  "current_weight",  precision: 16, scale: 4
     t.integer  "stock"
     t.integer  "plant_ids"
+    t.string   "datamatrix_text"
+    t.string   "datamatrix_hash"
+    t.integer  "history_id"
   end
+
+  add_index "seeds", ["datamatrix_text", "datamatrix_hash"], name: "index_seeds_on_datamatrix_text_and_datamatrix_hash", unique: true
 
   create_table "statuses", force: true do |t|
     t.datetime "created_at"

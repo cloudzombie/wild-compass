@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#home'
 
   # Inventory
-  get 'inventory', to: 'inventory#home'
+  get 'inventory',          to: 'inventory#home'
   get 'inventory/download', to: 'inventory#download'
 
   # Users and sessions
@@ -17,27 +17,33 @@ Rails.application.routes.draw do
   resources :users
 
   devise_scope :user do
-    get 'sign_in', to: 'users/sessions#new'
+    get    'sign_in',  to: 'users/sessions#new'
     delete 'sign_out', to: 'users/sessions#destroy'
   end
 
   get 'transaction/checkin'
   get 'transaction/checkout'
 
-  get 'access', to: 'access#check'
-  post 'access', to: 'access#check'
+  match 'access', to: 'access#check', via: [ :get, :post ]
 
   # Resources
   resources :orders do
     member do
-      get  'fulfill'
-      post 'fulfill'
+      match 'fulfill', via: [ :get, :post ]
     end
   end
 
   resources :locations
 
-  resources :seeds
+  resources :seeds do
+    member do
+      get 'datamatrix'
+      get 'label'
+
+      match 'reweight', via: [ :get, :post ]
+      match 'scan',     via: [ :get, :post ]
+    end
+  end
 
   resources :bins do 
     member do
@@ -53,8 +59,7 @@ Rails.application.routes.draw do
       get  'datamatrix'
       get  'label'
 
-      get  'scan'
-      post 'scan'
+      match 'scan', via: [ :get, :post ]
     end
   end
   
@@ -63,11 +68,8 @@ Rails.application.routes.draw do
       get  'datamatrix'
       get  'label'
       
-      get  'reweight'
-      post 'reweight'
-
-      get  'scan'
-      post 'scan'
+      match 'reweight', via: [ :get, :post ]
+      match 'scan',     via: [ :get, :post ]
 
       get 'quarantine'
       get 'recall'

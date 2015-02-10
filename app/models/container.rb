@@ -14,29 +14,20 @@ class Container < ActiveRecord::Base
   scope :by_brands,     -> (brand = nil) { Container.joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
 
+  
+  ### Containers
+
   belongs_to :container
+
+  has_many :containers
+
+
+
+  ### Plants
 
   has_and_belongs_to_many :plants, -> { uniq }
 
   accepts_nested_attributes_for :plants
-
-  has_and_belongs_to_many :lots, -> { uniq }
-
-  has_many :bags
-
-  has_many :jars, through: :bags
-
-  has_many :strains, -> { uniq }, through: :plants
-
-  has_many :brands,  -> { uniq }, through: :strains
-
-  belongs_to :location
-
-  def to_s
-    "#{ name.try(:upcase).sub('CONTAINER','CTN') }"
-  rescue
-    ''
-  end
 
   def plant
     plants.first
@@ -44,11 +35,35 @@ class Container < ActiveRecord::Base
     ''
   end
 
+
+
+  ### Lots
+
+  has_and_belongs_to_many :lots, -> { uniq }
+
+  def lot
+    lots.first
+  rescue
+    ''
+  end
+
+
+
+  ### Bags
+
+  has_many :bags
+
   def bag
     bags.first
   rescue
     ''
   end
+
+
+
+  ### Jars
+
+  has_many :jars, through: :bags
 
   def jar
     jars.first
@@ -56,16 +71,38 @@ class Container < ActiveRecord::Base
     ''
   end
 
+
+
+  ### Strains
+
+  has_many :strains, -> { uniq }, through: :plants
+
   def strain
     strains.first
   rescue
     ''
   end
 
-  def lot
-    lots.first
+
+
+  ### Brands
+
+  has_many :brands,  -> { uniq }, through: :strains
+
+
+
+  ### Locations
+
+  belongs_to :location
+
+
+
+  ### Utils
+
+  def to_s
+    "#{ name.try(:upcase).sub('CONTAINER','CTN') }"
   rescue
     ''
-  end
+  end  
 
 end

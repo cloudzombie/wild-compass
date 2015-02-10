@@ -24,6 +24,7 @@ module Weightable
 
   def reweight
     update(current_weight: weight)
+    update(initial_weight: weight) unless initial_weight > 0.0
   end
 
   included do

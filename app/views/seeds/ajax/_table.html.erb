@@ -2,8 +2,8 @@
   <tr id="seed-<%= seed.id %>">
     <td></td>
     <td>
-      <% if can? :show, seed %>
-        <%= link_to seed.try(:to_s), seed if seed.present? %>
+      <% if can? :show, Seed %>
+        <%= link_to seed.try(:to_s), seed %>
       <% else %>
         <%= seed.try(:to_s) if seed.present? %>
       <% end %>
@@ -13,6 +13,20 @@
     <td><%= weight_for seed.try(:current_weight) if seed.present? %></td>
     <td><%= date_for seed.try(:created_at) if seed.present? %></td>
     <td><%= date_for seed.try(:updated_at) if seed.present? %></td>
-    <td><%= link_to "Edit".html_safe, edit_seed_path(seed) %></td>
+    <td>
+      <% if can? :label, Seed %>
+      <%= link_to "Print Label", label_seed_path(seed), class: 'btn-sm btn-flat btn-primary' %>
+      <% end %>
+
+      <% if can? :reweight, Seed %>
+      <%= link_to "#{fa_icon 'flask'} Reweight".html_safe, reweight_seed_path(seed),
+          class: 'btn-sm btn-flat btn-danger reweight',
+          data: { href: reweight_seed_path(seed) } %>
+      <% end %>
+
+      <% if can? :edit,  Seed %>
+      <%= link_to "Edit".html_safe, edit_seed_path(seed), class: 'btn btn-flat btn-sm' %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
