@@ -4,7 +4,7 @@
         <h3 class="box-title">Listing containers</h3>
         <div class="box-tools">
           <div class="input-group">
-            <%= form_tag(containers_path, :method => "get", id: "search-form", remote: true, autocomplete: 'off') do %>
+            <%= form_tag(containers_path, method: :get, id: "search-form", remote: true, autocomplete: 'off') do %>
               <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
             <% end %>
             <div class="input-group-btn">
@@ -41,7 +41,7 @@
     <div class="tableFooter">
         <a href="#" class="btn btn-flat btn-primary" data-toggle="modal" data-target=".new-container"><i class="fa fa-tags"></i> New container</a>
         <div id="paginator">
-          <%=  paginate containers %>
+          <%=  paginate containers unless containers.empty? %>
         </div>
     </div>
 
