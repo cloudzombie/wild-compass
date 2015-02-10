@@ -3,8 +3,10 @@
     <i class="fa fa-leaf"></i>
     <h3 class="box-title">Timeline</h3>
   </div>
+  
   <div class="box-body">
     <table id="timeline" class="table table-hover">
+
       <tr>
         <th class="col-md-2">Event</th>
         <th class="col-md-3">Target</th>
@@ -14,65 +16,11 @@
         <th class="col-md-3">Source</th>
       </tr>
 
-      <tr>
-        <td>
-          <%= date_for bag.lot.try(:created_at) if bag.lot.present? %>
-        </td>
-        <td>
-          <%= link_to "#{bag.lot}".html_safe, bag.lot, class: "btn-sm btn-flat btn-info" %>
-        </td>
-        <td><%= fa_icon 'arrow-left' %></td>
-        <td><%= weight_for bag.try(:lot).try(:initial_weight) %></td>
-        <td><%= fa_icon 'arrow-left' %></td>
-        <td>
-          <% ordered_by_id(bag.lot.plants).each do |plant| %>
-            <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
-          <% end %>
-        </td>
-      </tr>
+      <%= render 'shared/timeline/lot', lot: bag.lot unless bag.lot.nil? %>
+      <%= render 'shared/timeline/container', container: bag.container unless bag.container.nil? %>
+      <%= render 'shared/timeline/bag' %>
+      <%= render 'shared/timeline/jars', jars: bag.jars unless bag.jars.nil? %>
       
-      <tr>
-        <td>
-          <%= date_for bag.container.try(:created_at) %>
-        </td>
-        <td>
-          <%= link_to "#{bag.container}".html_safe, bag.container, class: "btn-sm btn-flat btn-primary" %>
-        </td>
-        <td>
-          <%= fa_icon 'arrow-left' %>
-        </td>
-        <td>
-          <%= weight_for bag.try(:container).try(:initial_weight) %>
-        </td>
-        <td><%= fa_icon 'arrow-left' %></td>  
-        <td>
-          <% unless bag.try(:container).try(:plants).nil? %>
-            <% ordered_by_id(bag.container.plants).each do |plant| %>
-              <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
-
-      <tr>
-        <td><%= date_for bag.try(:created_at) %></td>
-        <td><%= link_to "#{bag}".html_safe, bag, class: "btn-sm btn-flat btn-warning" %></td>
-        <td><%= fa_icon 'arrow-left' %></td>
-        <td><%= weight_for bag.initial_weight %></td>
-        <td><%= fa_icon 'arrow-left' %></td>
-        <td><%= link_to bag.container, bag.container, class: "btn-sm btn-flat btn-primary" %></td>
-      </tr>
-
-      <% ordered_by_id(bag.try(:jars)).each do |jar| %>
-      <tr>
-        <td><%= date_for jar.try(:created_at) if jar.present? %></td>
-        <td><%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %></td>
-        <td><%= fa_icon 'arrow-left' %></td>
-        <td><%= weight_for jar.current_weight %></td>
-        <td><%= fa_icon 'arrow-left' %></td>
-        <td><%= link_to jar.bag, jar.bag, class: "btn-sm btn-flat btn-warning" %></td>
-      </tr>
-      <% end %>
     </table>
   </div>
 </div>

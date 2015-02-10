@@ -3,53 +3,24 @@
     <i class="fa fa-leaf"></i>
     <h3 class="box-title">Timeline</h3>
   </div>
+  
   <div class="box-body">
     <table id="timeline" class="table table-hover">
+
       <tr>
-        <th class="col-lg-2">Timestamp : </th>
-        <th class="col-lg-3" style="text-align:right">Object : </th>
-        <th class="col-lg-3" style="text-align:center">Event : </th>
-        <th>Object : </th>
+        <th class="col-md-2">Event</th>
+        <th class="col-md-3">Target</th>
+        <th class="col-md-1"></th>
+        <th class="col-md-2">Weight</th>
+        <th class="col-md-1"></th>
+        <th class="col-md-3">Source</th>
       </tr>
       
-      <tr>
-        <td><%= date_for jar.lot.try(:created_at) if jar.lot.present? %></td>
-        <td style="text-align:right"><%= link_to "#{jar.lot}".html_safe, jar.lot, class: "btn-sm btn-flat btn-info" %></td>
-        <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.lot.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
-        <td style="text-align:left">
-          <% ordered_by_id(jar.lot.plants).each do |plant| %>
-            <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
-          <% end %>
-        </td>
-      </tr>
+      <%= render 'shared/timeline/lot' lot: jar.lot unless jar.lot.nil? %>
+      <%= render 'shared/timeline/container' container: jar.container unless jar.container.nil? %>
+      <%= render 'shared/timeline/bag' bag: jar.bag unless jar.bag.nil? %>
+      <%= render 'shared/timeline/jar' %>
 
-      <tr>
-        <td><%= date_for jar.container.try(:created_at) if jar.container.present? %></td>
-        <td style="text-align:right"><%= link_to "#{jar.container}".html_safe, jar.container, class: "btn-sm btn-flat btn-primary" %></td>
-        <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.container.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
-        <td style="text-align:left">
-          <% ordered_by_id(jar.container.plants).each do |plant| %>
-            <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
-          <% end %>
-        </td>
-      </tr>
-
-      <tr>
-        <td><%= date_for jar.bag.try(:created_at) if jar.bag.present? %></td>
-        <td style="text-align:right"><%= link_to "#{jar.bag}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %></td>
-        <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.bag.initial_weight %> g <i class="fa fa-arrow-left" style="float:right"> </i></td>
-        <td style="text-align:left">
-          <%= link_to jar.container, jar.container, class: "btn-sm btn-flat btn-primary" %>
-        </td>
-      </tr>
-      <tr>
-        <td><%= date_for jar.try(:created_at) if jar.present? %></td>
-        <td style="text-align:right">
-          <%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %></td>
-          <td style="text-align:center"><i style="float:left" class="fa fa-arrow-left"></i> <%= jar.current_weight %> g <i style="float:right" class="fa fa-arrow-left"></i></td>
-          <td style="text-align:left"><%= link_to jar.bag, jar.bag, class: "btn-sm btn-flat btn-warning" %>
-        </td>
-      </tr>
     </table>
   </div>
 </div>
