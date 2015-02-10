@@ -1,5 +1,5 @@
 <% plants.each do |plant| %>
-  <tr>
+  <tr class="<%= status_color_for plant.try(:status) %>">
     <td><%= check_box_tag :accept %></td>
     <td><%= link_to plant, plant %></td>
     <td><%= strain_for plant.try(:strain) %></td>

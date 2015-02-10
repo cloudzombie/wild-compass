@@ -9,4 +9,13 @@ module PlantsHelper
 				"btn-primary"
 		end
 	end
+
+	def status_color_for(status)
+		case status.downcase.to_sym
+		when :destroyed
+			'danger'
+		else
+			''
+		end
+	end
 end
