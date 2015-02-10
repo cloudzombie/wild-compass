@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#home'
 
   # Inventory
-  get 'inventory',          to: 'inventory#home'
-  get 'inventory/download', to: 'inventory#download'
+  get 'inventory',                 to: 'inventory#home'
+  get 'inventory/download',        to: 'inventory#download'
+  get 'inventory/seeds',           to: 'inventory/seeds#home'
+  get 'inventory/seeds/download',  to: 'inventory/seeds#home'
+  get 'inventory/plants',          to: 'inventory/plants#home'
+  get 'inventory/plants/download', to: 'inventory/plants#home'
 
   # Users and sessions
   devise_for :users, controllers: { sessions:       'users/sessions',
