@@ -22,15 +22,19 @@ class User < ActiveRecord::Base
   belongs_to :group, class_name: 'User::Group', foreign_key: 'user_group_id'
   before_create :create_group, unless: :has_group?
 
+  belongs_to :temporary_role, class_name: 'User::Role', foreign_key: 'temporary_role_id'
+
   def to_s
     "#{ name.titleize unless name.nil? }"
   end
 
   def admin?
+    # return temporary_role.admin? if temporary_role_expired?
     role.admin? || group.admin?
   end
 
   def manager?
+    return temporary_role.manager? if temporary_role_expired?
     role.manager? || group.manager?
   end
 
@@ -50,5 +54,9 @@ class User < ActiveRecord::Base
 
     def has_group?
       !group.nil?
+    end
+
+    def temporary_role_expired?
+      temporary_role_expires_at && Time.now < temporary_role_expires_at
     end
 end

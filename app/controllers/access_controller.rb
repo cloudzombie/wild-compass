@@ -1,9 +1,14 @@
 class AccessController < ApplicationController
+
+  helper_method :referer
+
   def check
     if request.post?
       if supervisor_authenticated?
-        current_user.role = supervisor.role
-        redirect_to root_path, notice: 'Override succesful.'
+        current_user.temporary_role = User::Role.manager
+        current_user.temporary_role_expires_at = Time.now + 1.hour
+        current_user.save
+        redirect_to params[:referer], notice: 'Override succesful.'
       else
         redirect_to root_path, notice: 'Override unsuccesful.'
       end
@@ -15,6 +20,10 @@ class AccessController < ApplicationController
   end
 
   private
+
+    def referer
+      params[:referer]
+    end
 
     def supervisor
       User.find_by(email: params[:supervisor_email])

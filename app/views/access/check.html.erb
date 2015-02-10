@@ -22,12 +22,15 @@
           <div class="box-body">
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
-                <%= form_for :check, method: :post do |f| %>
+                <%= form_tag :access, method: :post do %>
+
+                  <%= hidden_field_tag :referer, referer %>
+
                   <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                       <div class="form-group">
-                        <%= f.label :supervisor_email %>
-                        <%= f.text_field :supervisor_email, class: 'form-control' %>
+                        <%= label_tag :supervisor_email %>
+                        <%= text_field_tag :supervisor_email, nil, class: 'form-control' %>
                       </div>
                     </div>
                   </div>
@@ -35,8 +38,8 @@
                   <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                       <div class="form-group">
-                        <%= f.label :supervisor_password %>
-                        <%= f.password_field :supervisor_password, class: 'form-control' %>
+                        <%= label_tag :supervisor_password %>
+                        <%= password_field_tag :supervisor_password, nil, class: 'form-control' %>
                       </div>
                     </div>
                   </div>
@@ -44,7 +47,7 @@
                   <div class="row">
                     <div class="col-md-4 col-md-offset-4">
                       <div class="form-group">
-                        <%= f.submit 'Override', class: 'btn btn-warning btn-flat form-control' %>
+                        <%= submit_tag 'Override', class: 'btn btn-warning btn-flat form-control' %>
                       </div>
                     </div>
                   </div>
