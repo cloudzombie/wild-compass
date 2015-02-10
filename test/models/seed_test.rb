@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class SeedTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'should save a new instance' do
+    seed = Seed.new
+    assert seed.save, 'could not save a new instance'
+  end
 end

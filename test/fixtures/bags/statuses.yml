@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+untested:
+  name: Untested
 
-two:
-  name: MyString
+quarantined:
+  name: Quarantined
+
+recalled:
+  name: Recalled
+
+cleared:
+  name: Cleared

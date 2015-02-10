@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+seed-1:
+  name: SEED-1
 
-two:
-  name: MyString
+seed-2:
+  name: SEED-2
+
+seed-3:
+  name: SEED-3

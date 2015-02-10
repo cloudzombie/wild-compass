@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class BinTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'should save a new instance' do
+    bin = Bin.new
+    assert bin.save, 'could not save a new instance'
+  end
 end
