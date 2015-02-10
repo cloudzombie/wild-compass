@@ -33506,12 +33506,18 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 }
 
 /* line 40, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+#seed-table > tbody > tr > td > a {
+  line-height: 240%;
+  white-space: nowrap;
+}
+
+/* line 45, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .description {
   text-align: left;
   font-size: 1 em;
 }
 
-/* line 45, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 50, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .progress.vertical {
   height: 220px;
   width: 30px;
@@ -33519,56 +33525,56 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   margin-left: -15px;
 }
 
-/* line 52, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 57, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .box .box-body {
   padding: 0;
 }
 
-/* line 56, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 61, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 #progress-bar-percentage {
   margin-left: -15px;
 }
 
-/* line 60, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 65, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 div.box-default > div.box-header {
   background-color: #DDD;
 }
 
-/* line 64, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 69, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .context-menu {
   position: absolute;
   display: none;
 }
 
-/* line 69, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 74, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .context-menu > ul > li > a.red-link:hover {
   background-color: #f56954;
   color: #fff;
 }
 
-/* line 74, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 79, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .context-menu > ul > li > a.orange-link:hover {
   background-color: #ff851b;
   color: #fff;
 }
 
-/* line 79, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 84, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .context-menu > ul > li > a.light-blue-link:hover {
   background-color: #3c8dbc;
   color: #fff;
 }
 
-/* line 84, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 89, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .context-menu > ul > li > a.red-link {
   color: #f56954;
 }
 
-/* line 88, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 93, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .context-menu > ul > li > a.orange-link {
   color: #ff851b;
 }
 
-/* line 92, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+/* line 97, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .context-menu > ul > li > a.light-blue-link {
   color: #3c8dbc;
 }

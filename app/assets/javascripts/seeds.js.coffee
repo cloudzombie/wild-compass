@@ -2,6 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
+jQuery ->
+    $('#seed_plant_ids').select2({ 
+    })
+
+
 class SeedsController
   init: ->
     console.log 'seeds#init'

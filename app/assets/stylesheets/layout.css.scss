@@ -34,7 +34,12 @@
 }
 
 #loc-table > tbody > tr > td:nth-child(5) > a {
-  line-height: 240%
+  line-height: 240%;
+}
+
+#seed-table > tbody > tr > td > a {
+  line-height: 240%;
+  white-space: nowrap ;
 }
 
 .description {

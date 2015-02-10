@@ -1,9 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-6">
+  	<div class="row">
+  	  <div class="col-md-6">
+    		<%= render 'shared/box_description', title: seed, described: seed, color: 'warning', icon: 'circle' %>
+ 	    </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= seed.name %>
-</p>
+   	  <div class="col-md-6">
+  		  <%= render 'shared/box_description', title: recent, described: recent, color: 'info', icon: 'tags'%>
+      </div>
+   	</div>
 
-<%= link_to 'Edit', edit_seed_path(seed) %> |
-<%= link_to 'Back', seeds_path %>
+   	<div class="row">
+   	  <div class="col-md-12">
+  	    <%= render 'shared/box_history', described: seed %>
+  	  </div>
+  	</div>
+  </div>
+  
+  <div class="col-md-6">
+    <%= render 'seeds/show/timeline' %>
+  </div>
+</div>

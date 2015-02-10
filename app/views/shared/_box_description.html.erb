@@ -25,18 +25,20 @@
         <tr>
           
           <% if icon != 'leaf' then %>
+          <% if icon != 'circle' then %>
           <th>Category :</th>
             <td><%= category_for described.try(:category) if described.present? %></td>
           </tr>
-        <tr>
-          <th>Initial Weight :</th>
-          <td><%= weight_for described.try(:initial_weight) if described.present? %></td>
-          </tr>
-        <tr>
-          <th>Current Weight :</th>
-          <td><%= weight_for described.try(:current_weight) if described.present? %></td>
           <% end %>
-        </tr>
+          <tr>
+            <th>Initial Weight :</th>
+            <td><%= weight_for described.try(:initial_weight) if described.present? %></td>
+            </tr>
+          <tr>
+            <th>Current Weight :</th>
+            <td><%= weight_for described.try(:current_weight) if described.present? %></td>
+            <% end %>
+          </tr>
         <tr>
           <th>Created At :</th>
           <td><%= date_for described.try(:created_at) if described.present? %></td>

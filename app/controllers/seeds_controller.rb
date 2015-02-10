@@ -7,6 +7,7 @@ class SeedsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
+  expose(:recent) { seed.lots.order(updated_at: :desc).first }
   expose(:seed, params: :seed_params) { params[:id].nil? ? Seed.new : Seed.find(params[:id]) }
 
   expose(:seeds) do
@@ -71,7 +72,7 @@ class SeedsController < ApplicationController
   private
 
     def seed_params
-      params.require(:seed).permit(:name, :stock, :weight, :message, :initial_weight, :current_weight)
+      params.require(:seed).permit(:name, :stock, :weight, :message, :initial_weight, :current_weight, { plant_ids: [] })
     end
 
     # Set column to sort in order.
