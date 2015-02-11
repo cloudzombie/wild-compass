@@ -68,6 +68,11 @@ Rails.application.routes.draw do
   end
   
   resources :bags do
+    collection do
+      get 'tested',   to: 'bags/tested#home'
+      get 'archived', to: 'bags/archived#home'
+    end
+
     member do
       get  'datamatrix'
       get  'label'

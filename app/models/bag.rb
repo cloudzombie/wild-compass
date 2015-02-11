@@ -19,6 +19,9 @@ class Bag < ActiveRecord::Base
   scope :fulfilled,   -> { uniq.joins(:jars).merge( Jar.fulfilled   )}
   scope :unfulfilled, -> { uniq.joins(:jars).merge( Jar.unfulfilled )}
 
+  scope :tested,   -> { where tested: true }
+  scope :archived, -> { where archived: true }
+
   def self.first_available(brand, weight)
     by_brands(brand).by_buds.where(current_weight: weight..Float::INFINITY, tested: false, archived: false).first
   end

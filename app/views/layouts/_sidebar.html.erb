@@ -56,7 +56,13 @@
         <%= link_to "#{fa_icon('flask')} <span>Jars</span>".html_safe, jars_path %>
       </li>
 
-      
+      <li class="<%= params[:controller] == 'bags/tested' ? 'active' : nil %>">
+        <%= link_to "#{fa_icon('pencil')} <span>Tested</span>".html_safe, tested_bags_path %>
+      </li>
+
+      <li class="<%= params[:controller] == 'bags/archived' ? 'active' : nil %>">
+        <%= link_to "#{fa_icon('folder')} <span>Archived</span>".html_safe, archived_bags_path %>
+      </li>
 
       <% if can? :manage, User %>
       <li class="treeview">
@@ -67,12 +73,15 @@
           <li class="<%= params[:controller] == 'users' ? 'active' : nil %>">
             <%= link_to "#{fa_icon('user')} <span>Users</span>".html_safe, users_path %>
           </li>
+
           <li class="<%= params[:controller] == 'strains' ? 'active' : nil %>">
             <%= link_to "#{fa_icon('square')} <span>Strains</span>".html_safe, strains_path %>
           </li>
+
           <li class="<%= params[:controller] == 'locations' ? 'active' : nil %>">
             <%= link_to "#{fa_icon('square')} <span>Locations</span>".html_safe, locations_path %>
           </li>
+
           <!-- <li class="<%# params[:controller] == 'user/groups' ? 'active' : nil %>">
             <%# link_to "#{fa_icon('group')} <span>Groups</span>".html_safe, user_groups_path %>
           </li> -->
@@ -80,7 +89,5 @@
       </li>
       <% end %>
     </ul>
-    </section>
-    <!-- /.sidebar -->
-
+  </section>
 </aside>
