@@ -1,0 +1,19 @@
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Strain</th>
+    <th>Category</th>
+    <th>Initial Weight (g)</th>
+    <th>Current Weight (g)</th>
+  </tr>
+
+  <% containers.each do |container| %>
+    <tr>
+      <td><%= container.try(:to_s) %></td>
+      <td><%= strain_for container.try(:strain) %></td>
+      <td><%= container.try(:category) %></td>
+      <td><%= weight_for container.try(:initial_weight), '' %></td>
+      <td><%= weight_for container.try(:current_weight), '' %></td>
+    </tr>
+  <% end %>
+</table>

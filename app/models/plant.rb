@@ -4,6 +4,7 @@ class Plant < ActiveRecord::Base
   include Accountable
   include Storyable
   include Searchable
+  include Sortable
 
 
 

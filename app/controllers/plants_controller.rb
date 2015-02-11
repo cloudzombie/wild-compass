@@ -3,38 +3,8 @@ class PlantsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
-  expose(:plant, params: :plant_params) do
-    unless params[:id].nil?
-      Plant.find(params[:id])
-    else
-      Plant.new
-    end
-  end
-
-  expose(:plants) do
-    begin
-      case sort_column.downcase.to_sym
-      when :strain
-        Plant.search(params[:search]).joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
-
-      when :status
-        Plant.search(params[:search]).joins(:status).merge(Status.order(name: sort_direction.to_sym)).page(params[:page])
-
-      when :format
-        Plant.search(params[:search]).joins(:format).merge(Format.order(name: sort_direction.to_sym)).page(params[:page])
-
-      when :rfid
-        Plant.search(params[:search]).joins(:rfid).merge(Rfid.order(name: sort_direction.to_sym)).page(params[:page])
-
-      else
-        Plant.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
-
-      end
-
-    rescue
-      Plant.order(id: :asc).page(params[:page])
-    end
-  end
+  expose(:plant, params: :plant_params) { params[:id].nil? ? Plant.new : Plant.find(params[:id]) }
+  expose(:plants) { Plant.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]) }
   
   # Create new plant.
   def create 
@@ -69,6 +39,7 @@ class PlantsController < ApplicationController
   end
 
   private
+
     def plant_params
       params.require(:plant).permit(:name, :origin, :location_id, :strain_id, :format_id, :status_id, :rfid_id, :initial_weight, :current_weight, { container_ids: [:id]})
     end

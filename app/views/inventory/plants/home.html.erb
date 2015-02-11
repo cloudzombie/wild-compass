@@ -1,5 +1,5 @@
 <div role="tabpanel">
-  <%= link_to 'Print PDF', inventory_download_path, class: 'btn btn-primary pull-right' %>
+  <%= link_to 'Print PDF', inventory_plants_download_path, class: 'btn btn-primary pull-right' %>
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
   
@@ -9,8 +9,8 @@
     <div role="tabpanel" class="tab-pane active" id="plants">
       <table class="table table-striped">
         <tr>
-          <th>Name</th>
-          <th>Strain</th>
+          <th><%= sortable :id, 'ID' %></th>
+          <th><%= sortable :strain %></th>
         </tr>
 
         <% plants.each do |plant| %>
