@@ -19,7 +19,7 @@ class Container < ActiveRecord::Base
 
   belongs_to :container
 
-  has_many :containers
+  has_many :containers, -> { uniq }
 
 
 
