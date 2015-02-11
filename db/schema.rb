@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211153820) do
+ActiveRecord::Schema.define(version: 20150211235720) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -105,12 +105,6 @@ ActiveRecord::Schema.define(version: 20150211153820) do
 
   add_index "containers_plants", ["container_id"], name: "index_containers_plants_on_container_id"
   add_index "containers_plants", ["plant_id"], name: "index_containers_plants_on_plant_id"
-
-  create_table "cultivars", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-  end
 
   create_table "formats", force: true do |t|
     t.datetime "created_at"
