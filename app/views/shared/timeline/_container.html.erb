@@ -2,6 +2,7 @@
 
 <% if container.containers.present? %>
   <% container.containers.each do |cont| %>
+    <% next if cont == container %>
     <%= render partial: 'shared/timeline/container/ctn', locals: { ctn: cont } %>
   <% end %>
 <% end %>
