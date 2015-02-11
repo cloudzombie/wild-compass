@@ -29,9 +29,9 @@
 </tr>
 
 <% if ctn.processing_waste_produced > 0.0 %>
-<tr>
+<tr class="danger">
   <td><%= date_for ctn.processing_completed_at %></td>
-  <td>Waste</td>
+  <td><%= link_to 'Waste', '#', class: 'btn-sm btn-flat btn-danger' %></td>
   <td><%= fa_icon 'arrow-left' %></td>
   <td><%= weight_for ctn.processing_waste_produced %></td>
   <td><%= fa_icon 'arrow-left' %></td>
