@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210194433) do
+ActiveRecord::Schema.define(version: 20150211153820) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20150210194433) do
 
   create_table "containers", force: true do |t|
     t.string   "name"
-    t.integer  "lot_id"
     t.decimal  "current_weight"
     t.decimal  "initial_weight"
     t.datetime "created_at"
