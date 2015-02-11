@@ -1,5 +1,7 @@
 <%= render 'shared/timeline/container/ctn', ctn: container %>
 
-<% if container.containers.present? then container.containers.each do |ctn| %>
-  <%= render 'shared/timeline/container/ctn', ctn: ctn %>
+<% if container.containers.present? %>
+  <% container.containers.each do |ctn| %>
+    <%= render 'shared/timeline/container/ctn', ctn: ctn %>
+  <% end %>
 <% end %>
