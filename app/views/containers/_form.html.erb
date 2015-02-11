@@ -1,48 +1,56 @@
 <%= form_for(container) do |f| %>
-<!--
-  <div class="form-group">
-    <%= f.label :plants %>
-    <% plants.each_slice(6) do |slice| %>
-    <div class="row">
-      <% slice.each do |plant| %>
-      <div class="col-lg-2">
-        <%= check_box_tag "container[plant_ids][]", plant.id, container.plants.include?(plant) %>
-        <%= label_tag plant %>
-      </div>
-      <% end %>
-    </div>
-    <% end %>
-  </div>-->
   
   <div class="form-group">
-    <%= f.label :plant %>
-    <%= f.collection_select(:plant_ids, Plant.all, :id, :to_s, {}, {multiple: 'multiple', class: 'textboxlist form-control ' }) %>
+    <%= f.label :plant_ids %>
+    <%= f.collection_select(:plant_ids, Plant.all, :id, :to_s, {},
+        { multiple: 'multiple', class: 'textboxlist form-control ' }) %>
+    <%= display_error_for container, :plant_ids %>
   </div> 
-
   
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
+    <%= display_error_for container, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :type %>
+    <%= f.select :type, options_for_select([
+          'Container::Stage2Container::BudsContainer',
+          'Container::Stage2Container::TrimContainer',
+          'Container::Stage1Container::UnprocessedContainer',
+          'Container::Stage1Container::BudsOnStemContainer',
+          'Container::Stage1Container::TrimContainer'
+        ]), {}, class: 'form-control' %>
+    <%= display_error_for container, :type %>
   </div>
 
   <div class="form-group">
     <%= f.label :category, 'Type' %>
-    <%= f.select :category, ['Buds', 'Trim', 'Unprocessed'], {}, class: 'form-control' %>
+    <%= f.select :category, ['Buds', 'Trim', 'Unprocessed', 'BudsOnStem'], {}, class: 'form-control' %>
     <%= display_error_for container, :category %>
   </div>
 
   <div class="form-group">
-    <%= f.label :weight %>
-    <%= f.text_field :weight, class: 'form-control', value: weight_for(container.try(:initial_weight), '') %>
+    <%= f.label :initial_weight %>
+    <%= f.text_field :initial_weight, class: 'form-control', value: weight_for(container.initial_weight, '') %>
+    <%= display_error_for container, :initial_weight %>
   </div>
 
   <div class="form-group">
-    <%= f.label :location %>
-    <%= f.collection_select(:location_id, Location.all, :id, :to_s, {}, { class: 'form-control' }) %>
+    <%= f.label :current_weight %>
+    <%= f.text_field :current_weight, class: 'form-control', value: weight_for(container.current_weight, '') %>
+    <%= display_error_for container, :current_weight %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.label :location_id %>
+    <%= f.collection_select(:location_id, Location.all, :id, :to_s, {}, { class: 'form-control' }) %>
+    <%= display_error_for container, :location_id %>
+  </div>
+
+  <div class="input-group">
+    <%= f.submit nil, class: 'btn btn-flat btn-primary' %>
   </div>
 
 <% end %>
