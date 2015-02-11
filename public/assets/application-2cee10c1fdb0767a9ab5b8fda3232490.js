@@ -19602,7 +19602,15 @@ var saveAs = saveAs
     function BagsController() {}
 
     BagsController.prototype.init = function() {
-      return console.log('bags#init');
+      console.log('bags#init');
+      return $(document).ready(function() {
+        return $.get('http://localhost:8080').fail(function() {
+          $('.reweight').prop('disabled', true);
+          return $('.reweight').removeAttr('href');
+        }).done(function() {
+          return $('.reweight').prop('disabled', false);
+        });
+      });
     };
 
     BagsController.prototype.index = function() {
@@ -19622,7 +19630,30 @@ var saveAs = saveAs
     };
 
     BagsController.prototype.reweight = function() {
-      return console.log('bags#reweight');
+      console.log('bags#reweight');
+      return $(document).ready(function() {
+        $('#reweight-bag-scan').submit(function(event) {
+          event.preventDefault();
+          return scanBag();
+        });
+        $('#reweight-bag-weight').submit(function(event) {
+          var message, tareWeight;
+          message = $('#reweight-bag-message');
+          tareWeight = $('#reweight-bag-tare-weight');
+          if (message && message.val() && tareWeight && tareWeight.val()) {
+
+          } else {
+            return event.preventDefault();
+          }
+        });
+        $('#reweight-bag-scale-1-readings').change(function(event) {
+          var weight;
+          weight = parseFloat($('#reweight-bag-scale-1-readings').val().trim());
+          reweightBagStep3();
+          return $('#reweight-bag-scale-1-readings').val(weight);
+        });
+        return reweightBagStep1();
+      });
     };
 
     return BagsController;
@@ -19630,36 +19661,6 @@ var saveAs = saveAs
   })();
 
   this.WildCompass.bags = new BagsController;
-
-  $(document).ready(function() {
-    $.get('http://localhost:8080').fail(function() {
-      $('.reweight').prop('disabled', true);
-      return $('.reweight').removeAttr('href');
-    }).done(function() {
-      return $('.reweight').prop('disabled', false);
-    });
-    $('#reweight-bag-scan').submit(function(event) {
-      event.preventDefault();
-      return scanBag();
-    });
-    $('#reweight-bag-weight').submit(function(event) {
-      var message, tareWeight;
-      message = $('#reweight-bag-message');
-      tareWeight = $('#reweight-bag-tare-weight');
-      if (message && message.val() && tareWeight && tareWeight.val()) {
-
-      } else {
-        return event.preventDefault();
-      }
-    });
-    $('#reweight-bag-scale-1-readings').change(function(event) {
-      var weight;
-      weight = parseFloat($('#reweight-bag-scale-1-readings').val().trim());
-      reweightBagStep3();
-      return $('#reweight-bag-scale-1-readings').val(weight);
-    });
-    return reweightBagStep1();
-  });
 
   scale1AutoRefresh = null;
 
@@ -19711,6 +19712,14 @@ var saveAs = saveAs
       return $('#reweight-bag-scale-1-readings').change();
     });
   };
+
+}).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
+
 
 }).call(this);
 (function() {

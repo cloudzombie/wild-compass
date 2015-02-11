@@ -5,6 +5,15 @@
 class BagsController
   init: ->
     console.log 'bags#init'
+    $(document).ready ->
+      # Toggle disabled on Reweight Button if scale 1 responds
+      $.get 'http://localhost:8080'
+        .fail ->
+          $('.reweight').prop('disabled', true)
+          $('.reweight').removeAttr('href')
+        .done ->
+          $('.reweight').prop('disabled', false)
+          # $('.reweight').attr('href', this.data('href'))
 
   index: ->
     console.log 'bags#index'
@@ -20,41 +29,29 @@ class BagsController
 
   reweight: ->
     console.log 'bags#reweight'
+    $(document).ready ->
+      # Detect bag id
+      $('#reweight-bag-scan').submit (event) ->
+        event.preventDefault()
+        scanBag()
+
+      $('#reweight-bag-weight').submit (event) ->
+        message = $('#reweight-bag-message')
+        tareWeight = $('#reweight-bag-tare-weight')
+        if message && message.val() && tareWeight && tareWeight.val()
+          return
+        else
+          event.preventDefault()
+
+      # Detect weight change
+      $('#reweight-bag-scale-1-readings').change (event) ->
+        weight = parseFloat($('#reweight-bag-scale-1-readings').val().trim())
+        reweightBagStep3()
+        $('#reweight-bag-scale-1-readings').val(weight)
+
+      reweightBagStep1()
 
 this.WildCompass.bags = new BagsController
-
-# Page ready hook
-$(document).ready ->
-
-  # Toggle disabled on Reweight Button if scale 1 responds
-  $.get 'http://localhost:8080'
-    .fail ->
-      $('.reweight').prop('disabled', true)
-      $('.reweight').removeAttr('href')
-    .done ->
-      $('.reweight').prop('disabled', false)
-      # $('.reweight').attr('href', this.data('href'))
-
-  # Detect bag id
-  $('#reweight-bag-scan').submit (event) ->
-    event.preventDefault()
-    scanBag()
-
-  $('#reweight-bag-weight').submit (event) ->
-    message = $('#reweight-bag-message')
-    tareWeight = $('#reweight-bag-tare-weight')
-    if message && message.val() && tareWeight && tareWeight.val()
-      return
-    else
-      event.preventDefault()
-
-  # Detect weight change
-  $('#reweight-bag-scale-1-readings').change (event) ->
-    weight = parseFloat($('#reweight-bag-scale-1-readings').val().trim())
-    reweightBagStep3()
-    $('#reweight-bag-scale-1-readings').val(weight)
-
-  reweightBagStep1()
 
 scale1AutoRefresh = null
 
