@@ -6,7 +6,8 @@ class Lot < ActiveRecord::Base
   include Searchable
   include Quarantineable
   include Recallable
-
+  include Sortable
+  
 
 
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }

@@ -5,6 +5,7 @@ class Jar < ActiveRecord::Base
   include Storyable
   include Searchable
   include Encodable
+  include Sortable
 
 
 

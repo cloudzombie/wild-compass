@@ -7,6 +7,7 @@ class Bag < ActiveRecord::Base
   include Encodable
   include Recallable
   include Quarantineable
+  include Sortable
   
 
 

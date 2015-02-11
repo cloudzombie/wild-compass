@@ -1,6 +1,8 @@
 class Bin < ActiveRecord::Base
 
   include Encodable
+  include Sortable
+  include Searchable
 
   scope :by_brands,   -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)) }
 
