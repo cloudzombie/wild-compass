@@ -16,7 +16,7 @@
         <th class="col-md-3">Source</th>
       </tr>
       
-      <%= render 'shared/timeline/lot' %>
+      <%= render 'shared/timeline/lot', lot: lot %>
       <%= render 'shared/timeline/containers', containers: lot.containers unless lot.containers.nil? %>
       <%= render 'shared/timeline/bags', bags: lot.bags unless lot.bags.nil? %>
       <%= render 'shared/timeline/jars', jars: lot.jars unless lot.jars.nil? %>

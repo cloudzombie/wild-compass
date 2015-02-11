@@ -16,10 +16,10 @@
         <th class="col-md-3">Source</th>
       </tr>
       
-      <%= render 'shared/timeline/lot' lot: jar.lot unless jar.lot.nil? %>
-      <%= render 'shared/timeline/container' container: jar.container unless jar.container.nil? %>
-      <%= render 'shared/timeline/bag' bag: jar.bag unless jar.bag.nil? %>
-      <%= render 'shared/timeline/jar' %>
+      <%= render 'shared/timeline/lot', lot: jar.lot unless jar.lot.nil? %>
+      <%= render 'shared/timeline/container', container: jar.container unless jar.container.nil? %>
+      <%= render 'shared/timeline/bag', bag: jar.bag unless jar.bag.nil? %>
+      <%= render 'shared/timeline/jar', jar: jar %>
 
     </table>
   </div>

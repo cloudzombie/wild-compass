@@ -17,7 +17,7 @@
       </tr>
 
       <%= render 'shared/timeline/lot', lot: container.lot unless container.lot.nil? %>
-      <%= render 'shared/timeline/container' %>
+      <%= render 'shared/timeline/container', container: container %>
       <%= render 'shared/timeline/bags', bags: container.bags unless container.bags.nil? %>
       <%= render 'shared/timeline/jars', jars: container.jars unless container.jars.nil? %>
       
