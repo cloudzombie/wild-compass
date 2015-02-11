@@ -5,8 +5,6 @@
 class SeedsController
   init: ->
     console.log 'seeds#init'
-    jQuery ->
-      $('#seed_plant_ids').select2({ })
 
   index: ->
     console.log 'seeds#index'
@@ -101,3 +99,6 @@ readScale1 = ->
   $.get('http://localhost:8080/data').done (data) ->
     $('#reweight-seed-scale-1-readings').val(data)
     $('#reweight-seed-scale-1-readings').change()
+
+jQuery ->
+      $('#seed_plant_ids').select2({ })
