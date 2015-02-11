@@ -4,7 +4,10 @@ class PlantsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   expose(:plant, params: :plant_params) { params[:id].nil? ? Plant.new : Plant.find(params[:id]) }
-  expose(:plants) { Plant.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]) }
+
+  expose(:plants) { Plant.search(params[:search])
+                         .sort(sort_column, sort_direction)
+                         .page(params[:page]) }
   
   # Create new plant.
   def create 

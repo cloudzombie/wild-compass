@@ -8,15 +8,12 @@ class SeedsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   expose(:recent) { seed.lots.order(updated_at: :desc).first }
+  
   expose(:seed, params: :seed_params) { params[:id].nil? ? Seed.new : Seed.find(params[:id]) }
 
-  expose(:seeds) do
-    if sort_column == 'name'
-      Seed.search(params[:search]).sort_by('LENGTH(name), name ' + sort_direction).page(params[:page])
-    elsif Seed.column_names.include? sort_column
-      Seed.search(params[:search]).order( sort_column + ' ' + sort_direction ).page(params[:page])
-    end
-  end
+  expose(:seeds) { Seed.search(params[:search])
+                       .sort(sort_column, sort_direction)
+                       .page(params[:page]) }
 
   def create
     self.seed = Seed.new(seed_params)

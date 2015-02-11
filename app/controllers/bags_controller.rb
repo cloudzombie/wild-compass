@@ -1,7 +1,6 @@
 class BagsController < ApplicationController
   include Authorizable
   include FindEncodable
-  include FindSortable
   include SetWeightable
   include SetRecallable
   include SetQuarantineable
@@ -13,9 +12,12 @@ class BagsController < ApplicationController
   
   expose(:bag, params: :bag_params) { find(Bag) }
   
-  expose(:bags) { Bag.all }
+  expose(:bags) { Bag.search(params[:search])
+                     .sort(sort_column, sort_direction)
+                     .page(params[:page]) }
 
   expose(:jar) { Jar.new }
+
   expose(:strains) { Strain.all }
   
   ##

@@ -7,13 +7,9 @@ class LotsController < ApplicationController
 
   expose(:lot, params: :lot_params) { id_param.nil? ? Lot.new : Lot.find(id_param) }
 
-  expose(:lots) do
-    if Lot.column_names.include? sort_column
-      Lot.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
-    else
-      Lot.search(params[:search]).joins(:strain).merge(Strain.order(acronym: sort_direction.to_sym)).page(params[:page])
-    end
-  end
+  expose(:lots) { Lot.search(params[:search])
+                     .sort(sort_column, sort_direction)
+                     .page(params[:page]) }
 
   expose(:containers) { Container.order(id: :asc) }
   expose(:recent) { lot.containers.order(updated_at: :desc).first }

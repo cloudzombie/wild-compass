@@ -8,7 +8,9 @@ class BinsController < ApplicationController
 
   expose(:bin, params: :bin_params) { find(Bin) }
 
-  expose(:bins) { Bin.order(sort_column + ' ' + sort_direction) }
+  expose(:bins) { Bin.search(params[:search])
+                     .sort(sort_column, sort_direction)
+                     .page(params[:page]) }
 
   def create
     self.bin = Bin.new(bin_params)

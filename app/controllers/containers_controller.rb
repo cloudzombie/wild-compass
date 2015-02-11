@@ -9,18 +9,6 @@ class ContainersController < ApplicationController
   expose(:containers) { Container::Stage2Container.search(params[:search])
                                                   .sort(sort_column, sort_direction)
                                                   .page(params[:page]) }
-  #   if sort_column == 'name'
-  #     Container::Stage2Container.search(params[:search]).order('LENGTH(name), name ' + sort_direction).page(params[:page])
-  #   Container::Stage2Container.column_names.include? sort_column
-  #     Container::Stage2Container.search(params[:search]).order( sort_column + ' ' + sort_direction ).page(params[:page])
-  #   elsif sort_column == 'strain'
-  #     Container::Stage2Container.search(params[:search]).joins(:strains).merge(Strain.order(name: sort_direction.to_sym)).page(params[:page])
-  #   elsif sort_column == 'lot_id'
-  #     Container::Stage2Container.search(params[:search]).joins(:lots).merge(Lot.order(id: sort_direction.to_sym)).page(params[:page])
-  #   else
-  #     Container::Stage2Container.search(params[:search]).page(params[:page])
-  #   end
-  # end
 
   expose(:plants) { Plant.order(id: :asc) }
 
