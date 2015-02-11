@@ -1,0 +1,25 @@
+<tr>
+  <td>
+    <%= date_for from.created_at %>
+  </td>
+  
+  <td>
+    <%= link_to "#{from}", from, class: "btn-sm btn-flat btn-primary" %>
+  </td>
+  
+  <td>
+    <%= fa_icon 'arrow-left' %>
+  </td>
+  
+  <td>
+    <%= weight_for from.initial_weight %>
+  </td>
+  
+  <td>
+    <%= fa_icon 'arrow-left' %>
+  </td>
+
+  <td>
+    <%= link_to "#{to}", to, class: "btn-sm btn-flat btn-primary"  %>
+  </td>
+</tr>

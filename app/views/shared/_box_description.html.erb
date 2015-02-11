@@ -56,14 +56,14 @@
         <% if described.respond_to? :created_at %>
         <tr>
           <th>Created At :</th>
-          <td><%= date_for described.try(:created_at) if described.present? %></td>
+          <td><%= date_for described.created_at %></td>
         </tr>
         <% end %>
 
         <% if described.respond_to? :updated_at %>
         <tr>
           <th>Updated At :</th>
-          <td><%= date_for described.try(:updated_at) if described.present? %></td> 
+          <td><%= date_for described.updated_at %></td> 
         </tr>
         <% end %>
    

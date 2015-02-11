@@ -1,8 +1,35 @@
-<%= render partial: 'shared/timeline/container/ctn', locals: { ctn: container } %>
+<%= render partial: 'shared/timeline/container/stage2', locals: { ctn: container } %>
+
+<% if container.processing_waste_produced && container.processing_waste_produced > 0.0 %>
+<tr class="danger">
+  <td>
+    <%= date_for container.processing_completed_at %>
+  </td>
+  
+  <td>
+    <%= link_to 'Waste', '#', class: 'btn-sm btn-flat btn-danger' %>
+  </td>
+  
+  <td>
+    <span class="text-danger"><%= fa_icon 'arrow-left' %></span>
+  </td>
+  
+  <td>
+    <span class="text-danger"><%= weight_for container.processing_waste_produced %></span>
+  </td>
+  
+  <td>
+    <span class="text-danger"><%= fa_icon 'arrow-left' %></span>
+  </td>
+  
+  <td>
+    <%= link_to "#{container}".html_safe, container, class: "btn-sm btn-flat btn-primary" %>
+  </td>
+</tr>
+<% end %>
 
 <% if container.containers.present? %>
   <% container.containers.each do |cont| %>
-    <% next if cont == container %>
-    <%= render partial: 'shared/timeline/container/ctn', locals: { ctn: cont } %>
+    <%= render partial: 'shared/timeline/container/stage1', locals: { from: cont, to: container } %>
   <% end %>
 <% end %>
