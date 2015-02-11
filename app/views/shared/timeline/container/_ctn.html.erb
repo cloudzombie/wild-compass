@@ -30,11 +30,28 @@
 
 <% if ctn.processing_waste_produced > 0.0 %>
 <tr class="danger">
-  <td><%= date_for ctn.processing_completed_at %></td>
-  <td><%= link_to 'Waste', '#', class: 'btn-sm btn-flat btn-danger' %></td>
-  <td><%= fa_icon 'arrow-left' %></td>
-  <td><span class="text-danger"><%= weight_for ctn.processing_waste_produced %></span></td>
-  <td><%= fa_icon 'arrow-left' %></td>
-  <td><%= link_to "#{ctn}".html_safe, ctn, class: "btn-sm btn-flat btn-primary" %></td>
+  <td>
+    <%= date_for ctn.processing_completed_at %>
+  </td>
+  
+  <td>
+    <%= link_to 'Waste', '#', class: 'btn-sm btn-flat btn-danger' %>
+  </td>
+  
+  <td>
+    <span class="text-danger"><%= fa_icon 'arrow-left' %></span>
+  </td>
+  
+  <td>
+    <span class="text-danger"><%= weight_for ctn.processing_waste_produced %></span>
+  </td>
+  
+  <td>
+    <span class="text-danger"><%= fa_icon 'arrow-left' %></span>
+  </td>
+  
+  <td>
+    <%= link_to "#{ctn}".html_safe, ctn, class: "btn-sm btn-flat btn-primary" %>
+  </td>
 </tr>
 <% end %>
