@@ -33,7 +33,7 @@
   <td><%= date_for ctn.processing_completed_at %></td>
   <td><%= link_to 'Waste', '#', class: 'btn-sm btn-flat btn-danger' %></td>
   <td><%= fa_icon 'arrow-left' %></td>
-  <td><%= weight_for ctn.processing_waste_produced %></td>
+  <td><span class="text-danger"><%= weight_for ctn.processing_waste_produced %></span></td>
   <td><%= fa_icon 'arrow-left' %></td>
   <td><%= link_to "#{ctn}".html_safe, ctn, class: "btn-sm btn-flat btn-primary" %></td>
 </tr>
