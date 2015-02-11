@@ -5,6 +5,9 @@
 class BagsController
   init: ->
     console.log 'bags#init'
+
+  index: ->
+    console.log 'bags#index'
     $(document).ready ->
       # Toggle disabled on Reweight Button if scale 1 responds
       $.get 'http://localhost:8080'
@@ -14,9 +17,6 @@ class BagsController
         .done ->
           $('.reweight').prop('disabled', false)
           # $('.reweight').attr('href', this.data('href'))
-
-  index: ->
-    console.log 'bags#index'
 
   show: ->
     console.log 'bags#show'
