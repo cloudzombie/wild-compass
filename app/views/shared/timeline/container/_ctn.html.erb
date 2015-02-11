@@ -28,7 +28,7 @@
   </td>
 </tr>
 
-<% if ctn.processing_waste_produced > 0.0 %>
+<% if ctn.processing_waste_produced && ctn.processing_waste_produced > 0.0 %>
 <tr class="danger">
   <td>
     <%= date_for ctn.processing_completed_at %>

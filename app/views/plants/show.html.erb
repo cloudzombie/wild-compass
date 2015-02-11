@@ -1,21 +1,18 @@
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <div class="row">
-      <div class="col-lg-6">
-  		<%= render 'shared/box_description', title: plant, described: plant, color: 'success', icon: 'leaf' %>
+      <div class="col-md-12">
+    		<%= render 'shared/box_description', title: plant, described: plant, color: 'success', icon: 'leaf' %>
+      </div>
     </div>
-    <div class="col-lg-6">
-    <% recent_container = Container.order("updated_at").last %>
-  		<%= render 'shared/box_description', title: plant.try(:lot), described: plant.try(:lot), color: 'info', icon: 'tags' %>
-    </div>
-    </div>
+
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-md-12">
         <%= render 'shared/box_history', described: plant %>
       </div>
     </div>
   </div>
-  <div class="col-lg-6">
+  <div class="col-md-6">
     <%= render 'shared/timeline', described: plant %>
   </div>
 </div>
