@@ -90,3 +90,8 @@ gem 'url_safe_base64'
 
 # Select2
 gem 'select2-rails'
+
+# Unicorn Web Server
+gem 'unicorn'
+
+gem 'rack-timeout'
