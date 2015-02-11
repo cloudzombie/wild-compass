@@ -3,46 +3,17 @@
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
   
-  <ul class="nav nav-tabs" roles="tablist">
-    <li role="presentation" class="active">
-      <%= link_to 'Summary', '#summary', role: 'tab', data: { toggle: 'tab' } %>
-    </li>
-
-    <li role="presentation">
-      <%= link_to 'Plants', '#plants', role: 'tab', data: { toggle: 'tab' } %>
-    </li>
-
-    <li role="presentation">
-      <%= link_to 'Mothers', '#mothers', role: 'tab', data: { toggle: 'tab' } %>
-    </li>
-
-    <li role="presentation">
-      <%= link_to 'Clones', '#clones', role: 'tab', data: { toggle: 'tab' } %>
-    </li>
-
-    <li role="presentation">
-      <%= link_to 'Jars', '#jars', role: 'tab', data: { toggle: 'tab' } %>
-    </li>
-
-    <li role="presentation">
-      <%= link_to 'Lots', '#lots', role: 'tab', data: { toggle: 'tab' } %>
-    </li>
-
-    <li role="presentation">
-      <%= link_to 'Containers', '#containers', role: 'tab', data: { toggle: 'tab'} %>
-    </li>
-    
-    <li role="presentation">
-      <%= link_to 'Bags', '#bags', role: 'tab', data: { toggle: 'tab' } %>
-    </li>
-  </ul>
+  <%= render 'inventory/nav' %>
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="summary">
-      <%= render 'inventory/summary', weightable: Lot %><br>
-      <%= render 'inventory/summary', weightable: Container %><br>
-      <%= render 'inventory/summary', weightable: Bag %><br>
-      <%= render 'inventory/summary', weightable: Jar %><br>
+      <%= render 'inventory/summary', weightable: Lot %>
+
+      <%= render 'inventory/summary', weightable: Container %>
+      
+      <%= render 'inventory/summary', weightable: Bag %>
+      
+      <%= render 'inventory/summary', weightable: Jar %>
 
       <table class="table table-hover summary">
         <tr>
@@ -52,34 +23,7 @@
           </span></th>
         </tr>
       </table>
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="plants">
-      <%= render 'inventory/plants' %>
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="mothers">
-      <%= render 'inventory/mothers' %>
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="clones">
-      <%= render 'inventory/clones' %>
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="jars">
-      <%= render 'inventory/jars' %>
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="lots">
-      <%= render 'inventory/lots' %>
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="containers">
-      <%= render 'inventory/containers' %>
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="bags">
-      <%= render 'inventory/bags' %>
+      
     </div>
   </div>
 </div>

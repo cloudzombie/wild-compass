@@ -6,17 +6,17 @@
   <%= render 'inventory/nav' %>
 
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="plants">
+    <div role="tabpanel" class="tab-pane active" id="mothers">
       <table class="table table-striped">
         <tr>
           <th>Name</th>
           <th>Strain</th>
         </tr>
 
-        <% plants.each do |plant| %>
+        <% mothers.each do |mother| %>
           <tr>
-            <td><%= plant.try(:to_s) %></td>
-            <td><%= strain_for plant.try(:strain) %></td>
+            <td><%= mother.try(:to_s) if mother.present? %></td>
+            <td><%= strain_for mother.try(:strain) if mother.present? %></td>
           </tr>
         <% end %>
       </table>

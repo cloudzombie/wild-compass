@@ -1,0 +1,33 @@
+<ul class="nav nav-tabs" roles="tablist">
+  <li role="presentation" class="<%= params[:controller] == 'inventory' ? 'active' : '' %>">
+    <%= link_to 'Summary', inventory_path, role: 'tab' %>
+  </li>
+
+  <li role="presentation" class="<%= params[:controller] == 'inventory/plants' ? 'active' : '' %>">
+    <%= link_to 'Plants', inventory_plants_path, role: 'tab' %>
+  </li>
+
+  <li role="presentation" class="<%= params[:controller] == 'inventory/plants/mothers' ? 'active' : '' %>">
+    <%= link_to 'Mothers', inventory_plants_mothers_path, role: 'tab' %>
+  </li>
+
+  <li role="presentation" class="<%= params[:controller] == 'inventory/plants/clones' ? 'active' : '' %>">
+    <%= link_to 'Clones', inventory_plants_clones_path, role: 'tab' %>
+  </li>
+
+  <li role="presentation" class="<%= params[:controller] == 'inventory/jars' ? 'active' : '' %>">
+    <%= link_to 'Jars', inventory_jars_path, role: 'tab' %>
+  </li>
+
+  <li role="presentation" class="<%= params[:controller] == 'inventory/lots' ? 'active' : '' %>">
+    <%= link_to 'Lots', inventory_lots_path, role: 'tab' %>
+  </li>
+
+  <li role="presentation" class="<%= params[:controller] == 'inventory/containers' ? 'active' : '' %>">
+    <%= link_to 'Containers', inventory_containers_path, role: 'tab' %>
+  </li>
+  
+  <li role="presentation" class="<%= params[:controller] == 'inventory/bags' ? 'active' : '' %>">
+    <%= link_to 'Bags', inventory_bags_path, role: 'tab' %>
+  </li>
+</ul>

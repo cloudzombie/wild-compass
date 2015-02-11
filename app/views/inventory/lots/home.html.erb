@@ -6,17 +6,23 @@
   <%= render 'inventory/nav' %>
 
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="plants">
+    <div role="tabpanel" class="tab-pane active" id="lots">
       <table class="table table-striped">
         <tr>
           <th>Name</th>
           <th>Strain</th>
+          <th>Category</th>
+          <th>Initial Weight (g)</th>
+          <th>Current Weight (g)</th>
         </tr>
 
-        <% plants.each do |plant| %>
+        <% lots.each do |lot| %>
           <tr>
-            <td><%= plant.try(:to_s) %></td>
-            <td><%= strain_for plant.try(:strain) %></td>
+            <td><%= lot.try(:to_s) %></td>
+            <td><%= strain_for lot.try(:strain) %></td>
+            <td><%= lot.try(:category) %></td>
+            <td><%= weight_for lot.try(:initial_weight), '' %></td>
+            <td><%= weight_for lot.try(:current_weight), '' %></td>
           </tr>
         <% end %>
       </table>

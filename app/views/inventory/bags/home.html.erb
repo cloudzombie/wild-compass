@@ -1,0 +1,33 @@
+<div role="tabpanel">
+  <%= link_to 'Print PDF', inventory_download_path, class: 'btn btn-primary pull-right' %>
+
+  <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
+  
+  <%= render 'inventory/nav' %>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="bags">
+      <table class="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Strain</th>
+          <th>Category</th>
+          <th>Initial Weight (g)</th>
+          <th>Current Weight (g)</th>
+          <th>Variance</th>
+        </tr>
+
+        <% bags.each do |bag| %>
+          <tr>
+            <td><%= bag.try(:to_s) %></td>
+            <td><%= strain_for bag.try(:strain) %></td>
+            <td><%= bag.try(:category) %></td>
+            <td><%= weight_for bag.try(:initial_weight), '' %></td>
+            <td><%= weight_for bag.try(:current_weight), '' %></td>
+            <td><%= variance_for bag.try(:initial_weight), bag.try(:current_weight) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

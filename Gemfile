@@ -92,6 +92,6 @@ gem 'url_safe_base64'
 gem 'select2-rails'
 
 # Unicorn Web Server
-gem 'unicorn'
+# gem 'unicorn', group: :production
 
-gem 'rack-timeout'
+gem 'rack-timeout', group: :production
