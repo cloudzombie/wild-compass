@@ -1,3 +1,3 @@
-<% containers.each do |container| %>
-  <%= render 'shared/timeline/container', container: container %>
+<% containers.each do |cont| %>
+  <%= render partial: 'shared/timeline/container', locals: { container: cont } %>
 <% end %>

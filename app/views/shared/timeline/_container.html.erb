@@ -1,7 +1,7 @@
-<%= render 'shared/timeline/container/ctn', ctn: container %>
+<%= render partial: 'shared/timeline/container/ctn', locals: { ctn: container } %>
 
 <% if container.containers.present? %>
-  <% container.containers.each do |ctn| %>
-    <%= render 'shared/timeline/container/ctn', ctn: ctn %>
+  <% container.containers.each do |cont| %>
+    <%= render partial: 'shared/timeline/container/ctn', locals: { ctn: cont } %>
   <% end %>
 <% end %>

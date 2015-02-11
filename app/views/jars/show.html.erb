@@ -2,110 +2,21 @@
   <div class="col-lg-6">
     <div class="row">
       <div class="col-lg-6">
-     <%= render 'shared/box_description', title: jar, described: jar, color: 'danger', icon: 'flask' %>
-    </div>
-    <div class="col-lg-6">
-      <%= jar.try(:lot) ? (render 'shared/box_description', title: jar.try(:lot), described: jar.try(:lot), color: 'info', icon: 'tags') : nil %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-12">
-      <%= render 'shared/box_history', described: jar %>
-    </div>
-  </div>
-  </div>
-  <div class="col-lg-6">
-    <%= render 'jars/show/timeline' %>
-  </div>
-</div>
-  <!--
-    <div class="col-lg-7">
-      <div class="box box-solid box-danger">
-        <div class="box-header">
-          <i class="fa fa-flask"></i>
-          <h3 class="box-title">Timelines</h3>
-         </div>
-        <div class="box-body">
-        <ul class="timeline">
-    <li class="time-label">
-        <span class="">
-                  <span class="time"><%= jar.created_at.to_s :short %></span>
-        </span>
-    </li>
-
-        <li>
-            <i class="fa fa-tags bg-aqua"></i>
-            <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> <%= jar.bag.lot.created_at.to_s :short %></span>
-                <h3 class="timeline-header">New Lot : <%= jar.bag.lot %></h3>
-                <div class="timeline-body">
-                <br/>
-                <% jar.bag.lot.plants.each do |plant| %>
-                  <a class="btn btn-success btn-xs"><i class="fa fa-leaf"></i>
-                    <%= plant.id %></a> 
-                  <% end %>
-                  send <%= jar.bag.lot.initial_weight %> g to <%= link_to "#{fa_icon('tag')} #{jar.bag.lot} #{jar.bag.lot.strain}".html_safe, jar_path, class: "btn btn-info btn-xs" %>
-                  </div>
-                <div class="timeline-footer">
-                Done by User
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <i class="fa fa-tags bg-yellow"></i>
-            <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> <%= jar.container.created_at.to_s :short %></span>
-                <h3 class="timeline-header">New Bag : <%= jar.container %></h3>
-                <div class="timeline-body">
-                <br/>
-                 <%= link_to "#{fa_icon('tags')} #{jar.lot}".html_safe, jar.lot, class: "btn btn-info btn-xs" %> send <%= jar.container.initial_weight %> g to <%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar.container, class: "btn btn-warning btn-xs" %>
-                  </div>
-                <div class="timeline-footer">
-                Done by User
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <i class="fa fa-tags bg-yellow"></i>
-            <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> <%= jar.bag.created_at.to_s :short %></span>
-                <h3 class="timeline-header">New Bag : <%= jar.bag %></h3>
-                <div class="timeline-body">
-                <br/>
-                 <%= link_to "#{fa_icon('tags')} #{jar.bag.lot}".html_safe, jar_path, class: "btn btn-info btn-xs" %> send <%= jar.bag.initial_weight %> g to <%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar_path, class: "btn btn-warning btn-xs" %>
-                  </div>
-                <div class="timeline-footer">
-                Done by User
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <i class="fa fa-flask bg-red"></i>
-            <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> <%= jar.created_at.to_s :short %></span>
-                <h3 class="timeline-header">New Jar : <%= jar %></h3>
-                <div class="timeline-body">
-                <br/>
-                 <%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar_path, class: "btn btn-warning btn-xs" %> send <%= jar.initial_weight %> g to <%= link_to "#{fa_icon('flask')} JAR#{jar.id}".html_safe, jar_path, class: "btn btn-danger btn-xs" %>
-                  </div>
-                <div class="timeline-footer">
-                Done by User
-                </div>
-            </div>
-        </li>
-
-      
-          </ul>
-        </div> 
+        <%= render 'shared/box_description', title: jar, described: jar, color: 'danger', icon: 'flask' %>
+      </div>
+    
+      <div class="col-lg-6">
+        <%= jar.try(:lot) ? (render 'shared/box_description', title: jar.try(:lot), described: jar.try(:lot), color: 'info', icon: 'tags') : nil %>
       </div>
     </div>
-    <div class="col-lg-3">
-    </div> -->
+    <div class="row">
+      <div class="col-lg-12">
+        <%= render 'shared/box_history', described: jar %>
+      </div>
+    </div>
   </div>
 
-    
-<!--<%= link_to 'Edit', edit_jar_path(jar) %> | -->
-<%= link_to 'Back', jars_path %>
+  <div class="col-lg-6">
+    <%= render 'shared/timeline', described: jar %>
+  </div>
+</div>

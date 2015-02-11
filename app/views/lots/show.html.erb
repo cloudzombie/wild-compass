@@ -2,24 +2,22 @@
   <div class="col-lg-6">
     <div class="row">
       <div class="col-lg-6">
-     <%= render 'shared/box_description', title: lot, described: lot, color: 'info', icon: 'tags' %>
+        <%= render 'shared/box_description', title: lot, described: lot, color: 'info', icon: 'tags' %>
+      </div>
+      
+      <div class="col-lg-6">
+        <%= render 'shared/box_description', title: recent, described: recent, color: 'primary', icon: 'square' %>
+      </div>
     </div>
-    <div class="col-lg-6">
-     <%= render 'shared/box_description', title: recent, described: recent, color: 'primary', icon: 'square' %>
-    </div>
-    </div>
+    
     <div class="row">
       <div class="col-lg-12">
         <%= render 'shared/box_history', described: lot %>
       </div>
     </div>
   </div>
+
   <div class="col-lg-6">
-    <%= render 'lots/show/timeline' %>
+    <%= render 'shared/timeline', described: lot %>
   </div>
 </div>
-
-    
-<!--<%= link_to 'Edit', edit_lot_path(lot) %> | -->
-<%= link_to 'Back', lots_path %>
-

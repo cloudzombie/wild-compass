@@ -1,10 +1,10 @@
 <tr>
   <td>
-    <%= date_for container.created_at %>
+    <%= date_for ctn.created_at %>
   </td>
   
   <td>
-    <%= link_to "#{container}".html_safe, container, class: "btn-sm btn-flat btn-primary" %>
+    <%= link_to "#{ctn}".html_safe, ctn, class: "btn-sm btn-flat btn-primary" %>
   </td>
   
   <td>
@@ -12,7 +12,7 @@
   </td>
   
   <td>
-    <%= weight_for container.initial_weight %>
+    <%= weight_for ctn.initial_weight %>
   </td>
   
   <td>
@@ -20,7 +20,7 @@
   </td>
 
   <td>
-    <% container.plants.each_slice(4) do |slice| %>
+    <% ctn.plants.each_slice(4) do |slice| %>
       <% slice.each do |plant| %>
         <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
       <% end %>
