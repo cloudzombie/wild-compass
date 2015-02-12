@@ -67,7 +67,7 @@
         </tr>
         <% end %>
 
-        <% if described.respond_to? :water_loss && described.water_loss > 0.0 %>
+        <% if described.respond_to?(:water_loss) && described.water_loss > 0.0 %>
         <tr>
           <th>Water Loss :</th>
           <td><%= weight_for described.water_loss %></td> 
