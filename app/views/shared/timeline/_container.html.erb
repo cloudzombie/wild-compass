@@ -35,13 +35,13 @@
 <% end %>
 
 <% if container.water_loss %>
-<tr class="info text-info">
+<tr class="danger text-danger">
   <td>
     <%# date_for container.processing_completed_at %>
   </td>
   
   <td>
-    <%= link_to 'Water Loss', '#', class: 'btn-sm btn-flat btn-info' %>
+    <%= link_to 'Water Loss', '#', class: 'btn-sm btn-flat btn-danger' %>
   </td>
   
   <td>
