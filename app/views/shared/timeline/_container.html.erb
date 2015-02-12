@@ -28,11 +28,11 @@
 </tr>
 <% end %>
 
-<%= if container.containers.present? %>
-  <%= container.containers.each do |cont| %>
+<% if container.containers.present? %>
+  <% container.containers.each do |cont| %>
     <%= render partial: 'shared/timeline/container/stage1', locals: { from: cont, to: container } %>
-  <%= end %>
-<%= end %>
+  <% end %>
+<% end %>
 
 <% if container.water_loss && container.water_loss > 0.0 %>
 <tr class="danger text-danger">
