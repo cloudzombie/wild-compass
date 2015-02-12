@@ -1,5 +1,5 @@
 <div role="tabpanel">
-  <%= link_to 'Print PDF', inventory_download_path(params: params), class: 'btn btn-primary pull-right' %>
+  <%= link_to 'Print PDF', inventory_download_path, class: 'btn btn-primary pull-right' %>
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
   
@@ -7,6 +7,7 @@
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="summary">
+
       <%= render 'inventory/summary', weightable: Lot %>
 
       <%= render 'inventory/summary', weightable: Container %>
