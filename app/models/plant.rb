@@ -5,6 +5,7 @@ class Plant < ActiveRecord::Base
   include Storyable
   include Searchable
   include Sortable
+  include Nameable
 
 
 
@@ -38,11 +39,6 @@ class Plant < ActiveRecord::Base
   has_one :brand, through: :strain
 
 
-
-
-  def to_s
-    "#{name unless name.nil? }-#{ id unless id.nil? }"
-  end
 
   def container
     containers.first

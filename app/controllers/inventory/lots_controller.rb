@@ -1,3 +1,7 @@
 class Inventory::LotsController < InventoryController
-  expose(:lots) { Lot.all }
+
+  include SetSortable
+
+  expose(:lots) { Lot.sort(sort_column, sort_direction) }
+
 end

@@ -1,7 +1,6 @@
 class PlantsController < ApplicationController
   include Authorizable
-
-  helper_method :sort_column, :sort_direction
+  include SetSortable
 
   expose(:plant, params: :plant_params) { params[:id].nil? ? Plant.new : Plant.find(params[:id]) }
 
@@ -45,15 +44,6 @@ class PlantsController < ApplicationController
 
     def plant_params
       params.require(:plant).permit(:name, :origin, :location_id, :strain_id, :format_id, :status_id, :rfid_id, :initial_weight, :current_weight, { container_ids: [:id]})
-    end
-
-    def sort_column
-      %w(id name strain location origin format status rfid initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'id'
-    end
-
-    # Set sort direction to ascending or descending.
-    def sort_direction
-      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
 end

@@ -1,3 +1,7 @@
 class Inventory::Plants::MothersController < InventoryController
-  expose(:mothers) { Plant::MotherPlant.all }
+
+  include SetSortable
+
+  expose(:mothers) { Plant::MotherPlant.sort(sort_column, sort_direction) }
+  
 end

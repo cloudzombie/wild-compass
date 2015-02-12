@@ -1,3 +1,7 @@
 class Inventory::Plants::ClonesController < InventoryController
-  expose(:clones) { Plant::ClonePlant.all }
+
+  include SetSortable
+
+  expose(:clones) { Plant::ClonePlant.sort(sort_column, sort_direction) }
+  
 end
