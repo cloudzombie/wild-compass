@@ -5,7 +5,6 @@ class Plant < ActiveRecord::Base
   include Storyable
   include Searchable
   include Sortable
-  include Nameable
 
 
 
@@ -37,6 +36,12 @@ class Plant < ActiveRecord::Base
   has_many :jars, -> { uniq }, through: :containers
 
   has_one :brand, through: :strain
+
+  def to_s
+    "Plant-#{id}".upcase
+  end
+
+  alias_method :name, :to_s
 
 
 
