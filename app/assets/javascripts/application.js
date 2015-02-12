@@ -16,7 +16,7 @@
 //= require jquery-ui/core
 //= require jquery.turbolinks
 //= require bootstrap
-//= require adminlte/app
+//= require admin-lte
 //= require wild_compass
 //= require jspdf
 //= require jspdf.plugin.addimage
@@ -55,7 +55,7 @@ $(document).ready(function() {
 
 
 
-    
+(function ($, window) {
     
     
     $.fn.contextMenu = function (settings) {
@@ -64,7 +64,6 @@ $(document).ready(function() {
 
             // Open context menu
             $(this).on("contextmenu", function (e) {
-                contextMenuPile.
                 //open menu
                 $(settings.menuSelector)
                     .data("invokedOn", $(e.target))
@@ -126,16 +125,16 @@ $(document).ready(function() {
         }
 
     };
-(jQuery, window);
+})(jQuery, window);
 
 var contextMenuPile = [];
 
-$('#myTable tbody tr').each(function() {
+$('#lot-table tbody#table tr').each(function() {
     
     
             
             var currentRow = $(this);
-            var userId = currentRow.attr('user-id');
+            var userId = currentRow.attr('data-lot-id');
 
     
             if (-1 == contextMenuPile.indexOf(userId)) {
@@ -186,7 +185,7 @@ $('#myTable tbody tr').each(function() {
                 $(this).contextMenu({
                     menuSelector: "#contextMenu_" + userId,
                     menuSelected: function (invokedOn, selectedMenu) {
-                        var userId = invokedOn.parent().attr("user-id");
+                        var userId = invokedOn.parent().attr("data-lot-id");
                         
                         console.log(invokedOn.parent());
                     }
