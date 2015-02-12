@@ -1,10 +1,10 @@
 <tr>
   <td>
-    <%= date_for from.created_at %>
+    <%= date_for to.created_at %>
   </td>
   
   <td>
-    <%= link_to "#{from}", from, class: "btn-sm btn-flat btn-primary" %>
+    <%= link_to "#{to}", to, class: "btn-sm btn-flat btn-primary" %>
   </td>
   
   <td>
@@ -12,7 +12,7 @@
   </td>
   
   <td>
-    <%= weight_for from.initial_weight %>
+    <%= weight_for to.initial_weight %>
   </td>
   
   <td>
@@ -20,6 +20,6 @@
   </td>
 
   <td>
-    <%= link_to "#{to}", to, class: "btn-sm btn-flat btn-primary"  %>
+    <%= link_to "#{from}", from, class: "btn-sm btn-flat btn-primary"  %>
   </td>
 </tr>

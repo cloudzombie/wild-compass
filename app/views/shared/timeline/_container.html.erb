@@ -34,7 +34,7 @@
   <% end %>
 <% end %>
 
-<% if container.water_loss %>
+<% if container.water_loss && container.water_loss > 0.0 %>
 <tr class="danger text-danger">
   <td>
     <%# date_for container.processing_completed_at %>
