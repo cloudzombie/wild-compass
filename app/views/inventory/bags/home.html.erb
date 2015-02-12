@@ -9,12 +9,12 @@
     <div role="tabpanel" class="tab-pane active" id="bags">
       <table class="table table-striped">
         <tr>
-          <th>Name</th>
-          <th>Strain</th>
-          <th>Category</th>
-          <th>Initial Weight (g)</th>
-          <th>Current Weight (g)</th>
-          <th>Variance</th>
+          <th><%= sortable :name, 'ID' %></th>
+          <th><%= sortable :strain %></th>
+          <th><%= sortable :category %></th>
+          <th><%= sortable :initial_weight, 'Initial Weight (g)' %></th>
+          <th><%= sortable :current_weight, 'Current Weight (g)' %></th>
+          <th><%= sortable :variance %></th>
         </tr>
 
         <% bags.each do |bag| %>

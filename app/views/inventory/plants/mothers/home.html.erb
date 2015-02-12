@@ -9,14 +9,18 @@
     <div role="tabpanel" class="tab-pane active" id="mothers">
       <table class="table table-striped">
         <tr>
-          <th>Name</th>
-          <th>Strain</th>
+          <th><%= sortable :name, 'ID' %></th>
+          <th><%= sortable :strain_id %></th>
+          <th><%= sortable :status_id %></th>
+          <th><%= sortable :format_id %></th>
         </tr>
 
-        <% mothers.each do |mother| %>
+        <% mothers.each do |plant| %>
           <tr>
-            <td><%= mother.try(:to_s) %></td>
-            <td><%= strain_for mother.try(:strain) %></td>
+            <td><%= plant %></td>
+            <td><%= strain_for plant.strain %></td>
+            <td><%= plant.status %></td>
+            <td><%= format_for plant.format %></td>
           </tr>
         <% end %>
       </table>
