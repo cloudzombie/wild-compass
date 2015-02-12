@@ -18,15 +18,23 @@ class Container < ActiveRecord::Base
 
   def water_loss
     bagged_dry_weight = 0.0
-    bags.each do |b|
-      bagged_dry_weight += b.initial_weight
-    end    
-    initial_weight - bagged_dry_weight - processing_waste_produced
+    
+    if bags.present?
+      bags.each do |b|
+        bagged_dry_weight += b.initial_weight.nil? ? 0.0 : b.initial_weight
+      end
+    end
+
+    ( initial_weight.nil? ? 0.0 : initial_weight )
+    - bagged_dry_weight
+    - ( processing_waste_produced.nil? ? 0.0 : processing_waste_produced )
   end
 
   
 
   ### Containers
+
+  # Dat finest piece of design #trololol #softeng
 
   belongs_to :container
 
