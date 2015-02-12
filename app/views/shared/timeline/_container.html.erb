@@ -28,39 +28,11 @@
 </tr>
 <% end %>
 
-<% if container.trim_added && container.trim_added > 0.0 %>
-<tr>
-  <td>
-    <%# date_for container.processing_completed_at %>
-  </td>
-  
-  <td>
-    <%= link_to 'Trim Added', '#', class: 'btn-sm btn-flat btn-danger' %>
-  </td>
-  
-  <td>
-    <%= fa_icon 'arrow-left' %>
-  </td>
-  
-  <td>
-    <%= weight_for container.trim_added %>
-  </td>
-  
-  <td>
-    <%= fa_icon 'arrow-left' %>
-  </td>
-  
-  <td>
-    <%= link_to "#{container.container}".html_safe, container.container, class: "btn-sm btn-flat btn-primary" %>
-  </td>
-</tr>
-<% end %>
-
-<%# if container.containers.present? %>
-  <%# container.containers.each do |cont| %>
-    <%# render partial: 'shared/timeline/container/stage1', locals: { from: cont, to: container } %>
-  <%# end %>
-<%# end %>
+<%= if container.containers.present? %>
+  <%= container.containers.each do |cont| %>
+    <%= render partial: 'shared/timeline/container/stage1', locals: { from: cont, to: container } %>
+  <%= end %>
+<%= end %>
 
 <% if container.water_loss && container.water_loss > 0.0 %>
 <tr class="danger text-danger">
