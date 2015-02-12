@@ -12,10 +12,20 @@ class Container < ActiveRecord::Base
   scope :by_categories, -> (category = nil) { where(category: category).uniq }
   scope :by_trims,      -> { by_categories 'Trim' }  
   scope :by_buds,       -> { by_categories 'Buds' }
-  scope :by_brands,     -> (brand = nil) { Container.joins(:strains).merge(Strain.where(brand: brand)).uniq }
+  scope :by_brands,     -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
+
+
+  def water_loss
+    bagged_dry_weight = 0.0
+    bags.each do |b|
+      bagged_dry_weight += b.initial_weight
+    end    
+    initial_weight - bagged_dry_weight - processing_waste_produced
+  end
 
   
+
   ### Containers
 
   belongs_to :container

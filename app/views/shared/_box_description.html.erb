@@ -66,6 +66,13 @@
           <td><%= date_for described.updated_at %></td> 
         </tr>
         <% end %>
+
+        <% if described.respond_to? :water_loss %>
+        <tr>
+          <th>Water Loss :</th>
+          <td><%= weight_for described.water_loss %></td> 
+        </tr>
+        <% end %>
    
         </table>
       </div>
