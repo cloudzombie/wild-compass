@@ -2,10 +2,9 @@ class SeedsController < ApplicationController
   include Authorizable
   include Scannable
   include SetWeightable
+  include SetSortable
 
   respond_to :html
-
-  helper_method :sort_column, :sort_direction
 
   expose(:recent) { seed.lots.order(updated_at: :desc).first }
   
@@ -70,16 +69,6 @@ class SeedsController < ApplicationController
 
     def seed_params
       params.require(:seed).permit(:name, :stock, :weight, :message, :initial_weight, :current_weight, { plant_ids: [] })
-    end
-
-    # Set column to sort in order.
-    def sort_column
-      %w(id name initial_weight current_weight created_at updated_at).include?(params[:sort]) ? params[:sort] : 'created_at'
-    end
-
-    # Set sort direction to ascending or descending.
-    def sort_direction
-      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
 end

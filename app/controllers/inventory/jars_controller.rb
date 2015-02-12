@@ -1,3 +1,7 @@
 class Inventory::JarsController < InventoryController
-  expose(:jars) { Jar.all }
+  
+  include SetSortable
+
+  expose(:jars) { Jar.sort(sort_column, sort_direction) }
+  
 end
