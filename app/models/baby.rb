@@ -1,2 +1,2 @@
-class Clone < Plant::BabyPlant
+class Baby < Plant::BabyPlant
 end
