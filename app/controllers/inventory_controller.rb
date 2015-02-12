@@ -4,7 +4,9 @@ class InventoryController < ApplicationController
   helper_method :total_weight
   
   expose(:strains) { Strain.all }
+
   expose(:categories) { ['Trim', 'Buds'] }
+  
   expose(:brands) { Brand.all }
   
   def home

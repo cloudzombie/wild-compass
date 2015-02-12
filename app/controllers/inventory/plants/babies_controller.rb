@@ -1,3 +1,3 @@
 class Inventory::Plants::BabiesController < InventoryController
-  expose(:babies) { Baby.all }
+  expose(:babies) { Plant::BabyPlant.all }
 end
