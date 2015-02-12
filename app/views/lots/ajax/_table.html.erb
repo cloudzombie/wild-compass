@@ -1,5 +1,5 @@
 <% lots.each do |lot| %>
-  <tr user-id="<%= lot.id %>">
+  <tr data-lot-id="<%= lot.id %>">
     <td></td>
     <td>
       <% if can? :show, lot %>

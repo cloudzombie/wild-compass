@@ -82,12 +82,12 @@ ActiveRecord::Schema.define(version: 20150211235720) do
     t.datetime "updated_at"
     t.integer  "history_id"
     t.string   "category"
-    t.integer  "location_id"
-    t.string   "type",                                               default: "Container", null: false
+    t.integer  "location_id",               limit: 255
+    t.string   "type",                                                           default: "Container", null: false
     t.integer  "container_id"
     t.datetime "airdrying_stage_ended_at"
     t.datetime "processing_completed_at"
-    t.decimal  "processing_waste_produced", precision: 16, scale: 4
+    t.decimal  "processing_waste_produced",             precision: 16, scale: 4
   end
 
   create_table "containers_lots", force: true do |t|
@@ -211,12 +211,12 @@ ActiveRecord::Schema.define(version: 20150211235720) do
     t.integer  "rfid_id"
     t.string   "name"
     t.integer  "history_id"
-    t.decimal  "current_weight",      precision: 16, scale: 4
-    t.decimal  "initial_weight",      precision: 16, scale: 4
-    t.integer  "location_id"
+    t.decimal  "current_weight",                  precision: 16, scale: 4
+    t.decimal  "initial_weight",                  precision: 16, scale: 4
+    t.integer  "location_id",         limit: 255
     t.datetime "partial_harvest_at"
     t.datetime "complete_harvest_at"
-    t.string   "type",                                         default: "Plant", null: false
+    t.string   "type",                                                     default: "Plant", null: false
     t.integer  "plant_id"
     t.integer  "seed_id"
   end
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(version: 20150211235720) do
     t.decimal  "initial_weight",  precision: 16, scale: 4
     t.decimal  "current_weight",  precision: 16, scale: 4
     t.integer  "stock"
+    t.integer  "plant_ids"
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
     t.integer  "history_id"
