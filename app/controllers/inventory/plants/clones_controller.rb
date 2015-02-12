@@ -1,3 +1,3 @@
 class Inventory::Plants::ClonesController < InventoryController
-  expose(:clones) { Clone.all }
+  expose(:clones) { Plant::ClonePlant.all }
 end

@@ -24,7 +24,7 @@ class Bag < ActiveRecord::Base
   scope :archived, -> { where archived: true }
 
   def self.first_available(brand, weight)
-    by_brands(brand).by_buds.where(current_weight: weight..Float::INFINITY, tested: false, archived: false).first
+    by_brands(brand).by_buds.where(current_weight: weight..Float::INFINITY, sent_to_lab: false, tested: false, archived: false).first
   end
 
 
