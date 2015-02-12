@@ -25,7 +25,10 @@ class Container < ActiveRecord::Base
       end
     end
 
-    ( initial_weight.nil? ? 0.0 : initial_weight ) - bagged_dry_weight - ( processing_waste_produced.nil? ? 0.0 : processing_waste_produced )
+    (( initial_weight.nil? ? 0.0 : initial_weight ) -
+    bagged_dry_weight -
+    ( processing_waste_produced.nil? ? 0.0 : processing_waste_produced ) -
+    ( trim_added.nil? ? 0.0 : trim_added ))
   end
 
   
