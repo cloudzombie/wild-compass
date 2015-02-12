@@ -1,7 +1,7 @@
 <%= render partial: 'shared/timeline/container/stage2', locals: { ctn: container } %>
 
 <% if container.processing_waste_produced && container.processing_waste_produced > 0.0 %>
-<tr class="danger">
+<tr class="danger text-danger">
   <td>
     <%= date_for container.processing_completed_at %>
   </td>
@@ -11,15 +11,15 @@
   </td>
   
   <td>
-    <span class="text-danger"><%= fa_icon 'arrow-left' %></span>
+    <%= fa_icon 'arrow-left' %>
   </td>
   
   <td>
-    <span class="text-danger"><%= weight_for container.processing_waste_produced %></span>
+    <%= weight_for container.processing_waste_produced %>
   </td>
   
   <td>
-    <span class="text-danger"><%= fa_icon 'arrow-left' %></span>
+    <%= fa_icon 'arrow-left' %>
   </td>
   
   <td>
@@ -32,4 +32,32 @@
   <% container.containers.each do |cont| %>
     <%= render partial: 'shared/timeline/container/stage1', locals: { from: cont, to: container } %>
   <% end %>
+<% end %>
+
+<% if container.water_loss %>
+<tr class="info text-info">
+  <td>
+    <%# date_for container.processing_completed_at %>
+  </td>
+  
+  <td>
+    <%= link_to 'Water Loss', '#', class: 'btn-sm btn-flat btn-info' %>
+  </td>
+  
+  <td>
+    <%= fa_icon 'arrow-left' %>
+  </td>
+  
+  <td>
+    <%= weight_for container.water_loss %>
+  </td>
+  
+  <td>
+    <%= fa_icon 'arrow-left' %>
+  </td>
+  
+  <td>
+    <%= link_to "#{container}".html_safe, container, class: "btn-sm btn-flat btn-primary" %>
+  </td>
+</tr>
 <% end %>
