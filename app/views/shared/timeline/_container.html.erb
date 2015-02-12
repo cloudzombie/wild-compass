@@ -29,13 +29,13 @@
 <% end %>
 
 <% if container.trim_added && container.trim_added > 0.0 %>
-<tr class="danger text-danger">
+<tr>
   <td>
     <%# date_for container.processing_completed_at %>
   </td>
   
   <td>
-    <%= link_to 'Waste', '#', class: 'btn-sm btn-flat btn-danger' %>
+    <%= link_to 'Trim Added', '#', class: 'btn-sm btn-flat btn-danger' %>
   </td>
   
   <td>
