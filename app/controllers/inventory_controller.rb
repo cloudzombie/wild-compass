@@ -14,9 +14,9 @@ class InventoryController < ApplicationController
       format.html
       format.pdf do
         render( pdf:          'report.pdf',
-                show_as_html: params[:debug].present?,
+                show_as_html:  params[:debug].present?,
                 disposition:  'inline',
-                template:     'inventory/report/summary.pdf.erb',
+                template:     "inventory/report/#{controller_name}.pdf.erb",
                 layout:       'report.html'
         )
       end
@@ -25,7 +25,7 @@ class InventoryController < ApplicationController
 
   # Create downloadable pdf if inventory.
   def download
-  	html = render_to_string 'inventory/report/summary.pdf', layout: 'report.html'
+  	html = render_to_string "inventory/report/#{controller_name}.pdf.erb", layout: 'report.html'
   	pdf = WickedPdf.new.pdf_from_string(html)
   	send_data( pdf, filename: 'report.pdf', disposition: 'attachment' )
   end
