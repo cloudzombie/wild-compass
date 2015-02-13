@@ -11,10 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require turbolinks
-//= require jquery_ujs
-//= require jquery-ui/core
 //= require jquery.turbolinks
+//= require jquery_ujs
+//= require turbolinks
+//= require jquery-ui/core
 //= require jquery-tablesorter
 //= require bootstrap
 //= require adminlte/app
@@ -51,7 +51,6 @@
 
 $(document).ready(function() {
   $("input:text").attr("autocomplete", "off");
-  $("#timeline").tablesorter();
 });
 
 (function ($, window) {

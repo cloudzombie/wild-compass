@@ -2875,6 +2875,7 @@ textarea.input-lg {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  -o-user-select: none;
   user-select: none;
 }
 
@@ -8752,18 +8753,6 @@ td.visible-print {
   }
 }
 
-@-ms-keyframes spin {
-  /* line 112, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-rails-1.3.3/vendor/assets/stylesheets/font-awesome.scss */
-  0% {
-    -ms-transform: rotate(0deg);
-  }
-
-  /* line 115, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-rails-1.3.3/vendor/assets/stylesheets/font-awesome.scss */
-  100% {
-    -ms-transform: rotate(359deg);
-  }
-}
-
 @keyframes spin {
   /* line 120, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-rails-1.3.3/vendor/assets/stylesheets/font-awesome.scss */
   0% {
@@ -11320,18 +11309,6 @@ td.visible-print {
   /* line 582, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-rails-1.3.3/vendor/assets/stylesheets/ionicons.scss */
   100% {
     -webkit-transform: rotate(359deg);
-  }
-}
-
-@-ms-keyframes spin {
-  /* line 593, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-rails-1.3.3/vendor/assets/stylesheets/ionicons.scss */
-  0% {
-    -ms-transform: rotate(0deg);
-  }
-
-  /* line 596, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-rails-1.3.3/vendor/assets/stylesheets/ionicons.scss */
-  100% {
-    -ms-transform: rotate(359deg);
   }
 }
 
@@ -14110,18 +14087,6 @@ td.visible-print {
   }
 }
 
-@-ms-keyframes spin {
-  /* line 112, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-1.3.0.1/vendor/assets/stylesheets/font-awesome.css.scss */
-  0% {
-    -ms-transform: rotate(0deg);
-  }
-
-  /* line 115, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-1.3.0.1/vendor/assets/stylesheets/font-awesome.css.scss */
-  100% {
-    -ms-transform: rotate(359deg);
-  }
-}
-
 @keyframes spin {
   /* line 120, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-1.3.0.1/vendor/assets/stylesheets/font-awesome.css.scss */
   0% {
@@ -16678,18 +16643,6 @@ td.visible-print {
   /* line 582, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-1.3.0.1/vendor/assets/stylesheets/ionicons.css.scss */
   100% {
     -webkit-transform: rotate(359deg);
-  }
-}
-
-@-ms-keyframes spin {
-  /* line 593, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-1.3.0.1/vendor/assets/stylesheets/ionicons.css.scss */
-  0% {
-    -ms-transform: rotate(0deg);
-  }
-
-  /* line 596, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/adminlte-1.3.0.1/vendor/assets/stylesheets/ionicons.css.scss */
-  100% {
-    -ms-transform: rotate(359deg);
   }
 }
 
@@ -22213,6 +22166,7 @@ textarea.input-lg {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  -o-user-select: none;
   user-select: none;
 }
 
@@ -28465,6 +28419,7 @@ Gradient Background colors
 .bg-teal-gradient {
   background: #39cccc !important;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #39cccc), color-stop(1, #7adddd)) !important;
+  background: -o-linear-gradient(#7adddd, #39cccc) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7adddd', endColorstr='#39cccc', GradientType=0) !important;
   color: #fff;
 }
@@ -28473,6 +28428,7 @@ Gradient Background colors
 .bg-light-blue-gradient {
   background: #3c8dbc !important;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3c8dbc), color-stop(1, #67a8ce)) !important;
+  background: -o-linear-gradient(#67a8ce, #3c8dbc) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#67a8ce', endColorstr='#3c8dbc', GradientType=0) !important;
   color: #fff;
 }
@@ -28481,6 +28437,7 @@ Gradient Background colors
 .bg-blue-gradient {
   background: #0073b7 !important;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0073b7), color-stop(1, #0089db)) !important;
+  background: -o-linear-gradient(#0089db, #0073b7) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0089db', endColorstr='#0073b7', GradientType=0) !important;
   color: #fff;
 }
@@ -28489,6 +28446,7 @@ Gradient Background colors
 .bg-aqua-gradient {
   background: #00c0ef !important;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00c0ef), color-stop(1, #14d1ff)) !important;
+  background: -o-linear-gradient(#14d1ff, #00c0ef) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#14d1ff', endColorstr='#00c0ef', GradientType=0) !important;
   color: #fff;
 }
@@ -28497,6 +28455,7 @@ Gradient Background colors
 .bg-yellow-gradient {
   background: #f39c12 !important;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f39c12), color-stop(1, #f7bc60)) !important;
+  background: -o-linear-gradient(#f7bc60, #f39c12) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7bc60', endColorstr='#f39c12', GradientType=0) !important;
   color: #fff;
 }
@@ -28505,6 +28464,7 @@ Gradient Background colors
 .bg-purple-gradient {
   background: #932ab6 !important;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #932ab6), color-stop(1, #b959d9)) !important;
+  background: -o-linear-gradient(#b959d9, #932ab6) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b959d9', endColorstr='#932ab6', GradientType=0) !important;
   color: #fff;
 }
@@ -28513,6 +28473,7 @@ Gradient Background colors
 .bg-green-gradient {
   background: #00a65a !important;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00a65a), color-stop(1, #00ca6d)) !important;
+  background: -o-linear-gradient(#00ca6d, #00a65a) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ca6d', endColorstr='#00a65a', GradientType=0) !important;
   color: #fff;
 }
@@ -28521,6 +28482,7 @@ Gradient Background colors
 .bg-red-gradient {
   background: #f56954 !important;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f56954), color-stop(1, #f89384)) !important;
+  background: -o-linear-gradient(#f89384, #f56954) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f89384', endColorstr='#f56954', GradientType=0) !important;
   color: #fff;
 }
@@ -28529,6 +28491,7 @@ Gradient Background colors
 .bg-black-gradient {
   background: #222222 !important;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #222222), color-stop(1, #3c3c3c)) !important;
+  background: -o-linear-gradient(#3c3c3c, #222222) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c3c3c', endColorstr='#222222', GradientType=0) !important;
   color: #fff;
 }
@@ -28537,6 +28500,7 @@ Gradient Background colors
 .bg-maroon-gradient {
   background: #85144b !important;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #85144b), color-stop(1, #b11b64)) !important;
+  background: -o-linear-gradient(#b11b64, #85144b) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b11b64', endColorstr='#85144b', GradientType=0) !important;
   color: #fff;
 }
@@ -32590,7 +32554,7 @@ fieldset[disabled] .btn-vk.active {
 /*
 Version: 3.5.2 Timestamp: Sat Nov  1 14:43:36 EDT 2014
 */
-/* line 5, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 5, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container {
   margin: 0;
   position: relative;
@@ -32601,7 +32565,7 @@ Version: 3.5.2 Timestamp: Sat Nov  1 14:43:36 EDT 2014
   vertical-align: middle;
 }
 
-/* line 18, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 18, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container,
 .select2-drop,
 .select2-search,
@@ -32617,7 +32581,7 @@ Version: 3.5.2 Timestamp: Sat Nov  1 14:43:36 EDT 2014
   /* css3 */
 }
 
-/* line 29, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 29, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container .select2-choice {
   display: block;
   height: 26px;
@@ -32639,33 +32603,35 @@ Version: 3.5.2 Timestamp: Sat Nov  1 14:43:36 EDT 2014
   background-color: #fff;
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eeeeee), color-stop(0.5, white));
   background-image: -webkit-linear-gradient(center bottom, #eeeeee 0%, white 50%);
+  background-image: -moz-linear-gradient(center bottom, #eeeeee 0%, white 50%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#eeeeee', GradientType = 0);
   background-image: -webkit-linear-gradient(bottom, #eeeeee 0%, white 50%);
   background-image: linear-gradient(to top, #eeeeee 0%, white 50%);
 }
 
-/* line 60, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 60, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-container .select2-choice {
   padding: 0 8px 0 0;
 }
 
-/* line 64, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 64, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container.select2-drop-above .select2-choice {
   border-bottom-color: #aaa;
   border-radius: 0 0 4px 4px;
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eeeeee), color-stop(0.9, white));
   background-image: -webkit-linear-gradient(center bottom, #eeeeee 0%, white 90%);
+  background-image: -moz-linear-gradient(center bottom, #eeeeee 0%, white 90%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0);
   background-image: -webkit-linear-gradient(top, #eeeeee 0%, white 90%);
   background-image: linear-gradient(to bottom, #eeeeee 0%, white 90%);
 }
 
-/* line 76, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 76, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container.select2-allowclear .select2-choice .select2-chosen {
   margin-right: 42px;
 }
 
-/* line 80, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 80, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container .select2-choice > .select2-chosen {
   margin-right: 26px;
   display: block;
@@ -32676,13 +32642,13 @@ html[dir="rtl"] .select2-container .select2-choice {
   width: auto;
 }
 
-/* line 92, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 92, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-container .select2-choice > .select2-chosen {
   margin-left: 26px;
   margin-right: 0;
 }
 
-/* line 97, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 97, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container .select2-choice abbr {
   display: none;
   width: 12px;
@@ -32698,18 +32664,18 @@ html[dir="rtl"] .select2-container .select2-choice > .select2-chosen {
   outline: 0;
 }
 
-/* line 114, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 114, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container.select2-allowclear .select2-choice abbr {
   display: inline-block;
 }
 
-/* line 118, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 118, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container .select2-choice abbr:hover {
   background-position: right -11px;
   cursor: pointer;
 }
 
-/* line 123, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 123, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-drop-mask {
   border: 0;
   margin: 0;
@@ -32728,7 +32694,7 @@ html[dir="rtl"] .select2-container .select2-choice > .select2-chosen {
   filter: alpha(opacity=0);
 }
 
-/* line 141, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 141, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-drop {
   width: 100%;
   margin-top: -1px;
@@ -32743,7 +32709,7 @@ html[dir="rtl"] .select2-container .select2-choice > .select2-chosen {
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
 }
 
-/* line 159, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 159, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-drop.select2-drop-above {
   margin-top: 1px;
   border-top: 1px solid #aaa;
@@ -32752,29 +32718,29 @@ html[dir="rtl"] .select2-container .select2-choice > .select2-chosen {
   box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.15);
 }
 
-/* line 170, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 170, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-drop-active {
   border: 1px solid #5897fb;
   border-top: none;
 }
 
-/* line 175, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 175, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-drop.select2-drop-above.select2-drop-active {
   border-top: 1px solid #5897fb;
 }
 
-/* line 179, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 179, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-drop-auto-width {
   border-top: 1px solid #aaa;
   width: auto;
 }
 
-/* line 184, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 184, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-drop-auto-width .select2-search {
   padding-top: 4px;
 }
 
-/* line 188, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 188, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container .select2-choice .select2-arrow {
   display: inline-block;
   width: 18px;
@@ -32788,12 +32754,13 @@ html[dir="rtl"] .select2-container .select2-choice > .select2-chosen {
   background: #ccc;
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #cccccc), color-stop(0.6, #eeeeee));
   background-image: -webkit-linear-gradient(center bottom, #cccccc 0%, #eeeeee 60%);
+  background-image: -moz-linear-gradient(center bottom, #cccccc 0%, #eeeeee 60%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#eeeeee', endColorstr = '#cccccc', GradientType = 0);
   background-image: -webkit-linear-gradient(bottom, #cccccc 0%, #eeeeee 60%);
   background-image: linear-gradient(to top, #cccccc 0%, #eeeeee 60%);
 }
 
-/* line 209, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 209, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-container .select2-choice .select2-arrow {
   left: 0;
   right: auto;
@@ -32802,7 +32769,7 @@ html[dir="rtl"] .select2-container .select2-choice .select2-arrow {
   border-radius: 4px 0 0 4px;
 }
 
-/* line 218, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 218, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container .select2-choice .select2-arrow b {
   display: block;
   width: 100%;
@@ -32810,12 +32777,12 @@ html[dir="rtl"] .select2-container .select2-choice .select2-arrow {
   background: url(/assets/select2.png) no-repeat 0 1px;
 }
 
-/* line 225, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 225, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-container .select2-choice .select2-arrow b {
   background-position: 2px 1px;
 }
 
-/* line 229, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 229, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-search {
   display: inline-block;
   width: 100%;
@@ -32828,7 +32795,7 @@ html[dir="rtl"] .select2-container .select2-choice .select2-arrow b {
   white-space: nowrap;
 }
 
-/* line 243, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 243, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-search input {
   width: 100%;
   height: auto !important;
@@ -32848,7 +32815,7 @@ html[dir="rtl"] .select2-container .select2-choice .select2-arrow b {
   background: url(/assets/select2.png) no-repeat 100% -22px, linear-gradient(to bottom, white 85%, #eeeeee 99%) 0 0;
 }
 
-/* line 267, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 267, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-search input {
   padding: 4px 5px 4px 20px;
   background: white url(/assets/select2.png) no-repeat -37px -22px;
@@ -32858,12 +32825,12 @@ html[dir="rtl"] .select2-search input {
   background: url(/assets/select2.png) no-repeat -37px -22px, linear-gradient(to bottom, white 85%, #eeeeee 99%) 0 0;
 }
 
-/* line 277, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 277, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-drop.select2-drop-above .select2-search input {
   margin-top: 4px;
 }
 
-/* line 281, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 281, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-search input.select2-active {
   background: white url(/assets/select2-spinner.gif) no-repeat 100%;
   background: url(/assets/select2-spinner.gif) no-repeat 100%, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));
@@ -32872,7 +32839,7 @@ html[dir="rtl"] .select2-search input {
   background: url(/assets/select2-spinner.gif) no-repeat 100%, linear-gradient(to bottom, white 85%, #eeeeee 99%) 0 0;
 }
 
-/* line 290, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 290, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-active .select2-choice,
 .select2-container-active .select2-choices {
   border: 1px solid #5897fb;
@@ -32880,7 +32847,7 @@ html[dir="rtl"] .select2-search input {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-/* line 298, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 298, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-dropdown-open .select2-choice {
   border-bottom-color: transparent;
   box-shadow: 0 1px 0 #fff inset;
@@ -32889,24 +32856,26 @@ html[dir="rtl"] .select2-search input {
   background-color: #eee;
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, white), color-stop(0.5, #eeeeee));
   background-image: -webkit-linear-gradient(center bottom, white 0%, #eeeeee 50%);
+  background-image: -moz-linear-gradient(center bottom, white 0%, #eeeeee 50%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0);
   background-image: -webkit-linear-gradient(bottom, white 0%, #eeeeee 50%);
   background-image: linear-gradient(to top, white 0%, #eeeeee 50%);
 }
 
-/* line 315, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 315, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-dropdown-open.select2-drop-above .select2-choice,
 .select2-dropdown-open.select2-drop-above .select2-choices {
   border: 1px solid #5897fb;
   border-top-color: transparent;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, white), color-stop(0.5, #eeeeee));
   background-image: -webkit-linear-gradient(center top, white 0%, #eeeeee 50%);
+  background-image: -moz-linear-gradient(center top, white 0%, #eeeeee 50%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0);
   background-image: -webkit-linear-gradient(top, white 0%, #eeeeee 50%);
   background-image: linear-gradient(to bottom, white 0%, #eeeeee 50%);
 }
 
-/* line 326, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 326, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-dropdown-open .select2-choice .select2-arrow {
   background: transparent;
   border-left: none;
@@ -32914,22 +32883,22 @@ html[dir="rtl"] .select2-search input {
           filter: none;
 }
 
-/* line 331, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 331, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-dropdown-open .select2-choice .select2-arrow {
   border-right: none;
 }
 
-/* line 335, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 335, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-dropdown-open .select2-choice .select2-arrow b {
   background-position: -18px 1px;
 }
 
-/* line 339, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 339, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-dropdown-open .select2-choice .select2-arrow b {
   background-position: -16px 1px;
 }
 
-/* line 343, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 343, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-hidden-accessible {
   border: 0;
   clip: rect(0 0 0 0);
@@ -32942,7 +32911,7 @@ html[dir="rtl"] .select2-dropdown-open .select2-choice .select2-arrow b {
 }
 
 /* results */
-/* line 355, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 355, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results {
   max-height: 200px;
   padding: 0 0 0 4px;
@@ -32953,31 +32922,31 @@ html[dir="rtl"] .select2-dropdown-open .select2-choice .select2-arrow b {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/* line 365, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 365, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-results {
   padding: 0 4px 0 0;
   margin: 4px 0 4px 4px;
 }
 
-/* line 370, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 370, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results ul.select2-result-sub {
   margin: 0;
   padding-left: 0;
 }
 
-/* line 375, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 375, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results li {
   list-style: none;
   display: list-item;
   background-image: none;
 }
 
-/* line 381, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 381, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results li.select2-result-with-children > .select2-result-label {
   font-weight: bold;
 }
 
-/* line 385, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 385, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results .select2-result-label {
   padding: 3px 7px 4px;
   margin: 0;
@@ -32990,65 +32959,65 @@ html[dir="rtl"] .select2-results {
   user-select: none;
 }
 
-/* line 399, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 399, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results-dept-1 .select2-result-label {
   padding-left: 20px;
 }
 
-/* line 400, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 400, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results-dept-2 .select2-result-label {
   padding-left: 40px;
 }
 
-/* line 401, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 401, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results-dept-3 .select2-result-label {
   padding-left: 60px;
 }
 
-/* line 402, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 402, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results-dept-4 .select2-result-label {
   padding-left: 80px;
 }
 
-/* line 403, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 403, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results-dept-5 .select2-result-label {
   padding-left: 100px;
 }
 
-/* line 404, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 404, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results-dept-6 .select2-result-label {
   padding-left: 110px;
 }
 
-/* line 405, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 405, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results-dept-7 .select2-result-label {
   padding-left: 120px;
 }
 
-/* line 407, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 407, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results .select2-highlighted {
   background: #3875d7;
   color: #fff;
 }
 
-/* line 412, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 412, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results li em {
   background: #feffde;
   font-style: normal;
 }
 
-/* line 417, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 417, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results .select2-highlighted em {
   background: transparent;
 }
 
-/* line 421, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 421, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results .select2-highlighted ul {
   background: #fff;
   color: #000;
 }
 
-/* line 429, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 429, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results .select2-no-results,
 .select2-results .select2-searching,
 .select2-results .select2-ajax-error,
@@ -33061,7 +33030,7 @@ html[dir="rtl"] .select2-results {
 /*
 disabled look for disabled choices in the results dropdown
 */
-/* line 438, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 438, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results .select2-disabled.select2-highlighted {
   color: #666;
   background: #f4f4f4;
@@ -33069,36 +33038,36 @@ disabled look for disabled choices in the results dropdown
   cursor: default;
 }
 
-/* line 444, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 444, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results .select2-disabled {
   background: #f4f4f4;
   display: list-item;
   cursor: default;
 }
 
-/* line 450, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 450, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results .select2-selected {
   display: none;
 }
 
-/* line 454, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 454, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-more-results.select2-active {
   background: #f4f4f4 url(/assets/select2-spinner.gif) no-repeat 100%;
 }
 
-/* line 458, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 458, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-results .select2-ajax-error {
   background: rgba(255, 50, 50, 0.2);
 }
 
-/* line 462, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 462, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-more-results {
   background: #f4f4f4;
   display: list-item;
 }
 
 /* disabled styles */
-/* line 469, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 469, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container.select2-container-disabled .select2-choice {
   background-color: #f4f4f4;
   background-image: none;
@@ -33106,20 +33075,20 @@ disabled look for disabled choices in the results dropdown
   cursor: default;
 }
 
-/* line 476, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 476, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container.select2-container-disabled .select2-choice .select2-arrow {
   background-color: #f4f4f4;
   background-image: none;
   border-left: 0;
 }
 
-/* line 482, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 482, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container.select2-container-disabled .select2-choice abbr {
   display: none;
 }
 
 /* multiselect */
-/* line 489, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 489, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-choices {
   height: auto !important;
   height: 1%;
@@ -33135,47 +33104,47 @@ disabled look for disabled choices in the results dropdown
   background-image: linear-gradient(to bottom, #eeeeee 1%, white 15%);
 }
 
-/* line 507, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 507, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-container-multi .select2-choices {
   padding: 0 0 0 5px;
 }
 
-/* line 511, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 511, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-locked {
   padding: 3px 5px 3px 5px !important;
 }
 
-/* line 515, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 515, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-choices {
   min-height: 26px;
 }
 
-/* line 519, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 519, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi.select2-container-active .select2-choices {
   border: 1px solid #5897fb;
   outline: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-/* line 526, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 526, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-choices li {
   float: left;
   list-style: none;
 }
 
-/* line 531, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 531, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-container-multi .select2-choices li {
   float: right;
 }
 
-/* line 534, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 534, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-choices .select2-search-field {
   margin: 0;
   padding: 0;
   white-space: nowrap;
 }
 
-/* line 540, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 540, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-choices .select2-search-field input {
   padding: 5px;
   margin: 1px 0;
@@ -33188,17 +33157,17 @@ html[dir="rtl"] .select2-container-multi .select2-choices li {
   background: transparent !important;
 }
 
-/* line 554, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 554, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-choices .select2-search-field input.select2-active {
   background: white url(/assets/select2-spinner.gif) no-repeat 100% !important;
 }
 
-/* line 558, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 558, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-default {
   color: #999 !important;
 }
 
-/* line 562, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 562, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-choices .select2-search-choice {
   padding: 3px 5px 3px 18px;
   margin: 3px 0 3px 5px;
@@ -33222,23 +33191,23 @@ html[dir="rtl"] .select2-container-multi .select2-choices li {
   background-image: linear-gradient(to bottom, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
 }
 
-/* line 593, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 593, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-container-multi .select2-choices .select2-search-choice {
   margin: 3px 5px 3px 0;
   padding: 3px 18px 3px 5px;
 }
 
-/* line 597, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 597, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-choices .select2-search-choice .select2-chosen {
   cursor: default;
 }
 
-/* line 600, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 600, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-choices .select2-search-choice-focus {
   background: #d4d4d4;
 }
 
-/* line 604, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 604, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-search-choice-close {
   display: block;
   width: 12px;
@@ -33251,35 +33220,35 @@ html[dir="rtl"] .select2-container-multi .select2-choices .select2-search-choice
   background: url(/assets/select2.png) right top no-repeat;
 }
 
-/* line 616, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 616, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-search-choice-close {
   right: auto;
   left: 3px;
 }
 
-/* line 621, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 621, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-search-choice-close {
   left: 3px;
 }
 
-/* line 625, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 625, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   left: auto;
   right: 2px;
 }
 
-/* line 630, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 630, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:hover {
   background-position: right -11px;
 }
 
-/* line 633, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 633, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi .select2-choices .select2-search-choice-focus .select2-search-choice-close {
   background-position: right -11px;
 }
 
 /* disabled styles */
-/* line 638, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 638, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi.select2-container-disabled .select2-choices {
   background-color: #f4f4f4;
   background-image: none;
@@ -33287,7 +33256,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   cursor: default;
 }
 
-/* line 645, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 645, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi.select2-container-disabled .select2-choices .select2-search-choice {
   padding: 3px 5px 3px 5px;
   border: 1px solid #ddd;
@@ -33295,20 +33264,20 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   background-color: #f4f4f4;
 }
 
-/* line 652, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 652, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-container-multi.select2-container-disabled .select2-choices .select2-search-choice .select2-search-choice-close {
   display: none;
   background: none;
 }
 
 /* end multiselect */
-/* line 659, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 659, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-result-selectable .select2-match,
 .select2-result-unselectable .select2-match {
   text-decoration: underline;
 }
 
-/* line 663, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 663, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-offscreen, .select2-offscreen:focus {
   clip: rect(0 0 0 0) !important;
   width: 1px !important;
@@ -33323,12 +33292,12 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   top: 0px !important;
 }
 
-/* line 677, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 677, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-display-none {
   display: none;
 }
 
-/* line 681, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+/* line 681, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
 .select2-measure-scrollbar {
   position: absolute;
   top: -10000px;
@@ -33339,8 +33308,8 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 }
 
 /* Retina-ize icons */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 2dppx) {
-  /* line 696, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 2dppx) {
+  /* line 696, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
   .select2-search input,
   .select2-search-choice-close,
   .select2-container .select2-choice abbr,
@@ -33350,111 +33319,845 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
     background-size: 60px 40px !important;
   }
 
-  /* line 702, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2.scss */
+  /* line 702, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2.scss */
   .select2-search input {
     background-position: 100% -21px !important;
   }
 }
-/* line 1, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.form-control .select2-choice {
-  border: 0;
-  border-radius: 2px;
-}
-
-/* line 6, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.form-control .select2-choice .select2-arrow {
-  border-radius: 0 2px 2px 0;
-}
-
-/* line 10, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.form-control.select2-container {
-  height: auto !important;
+/**
+ * Select2 Bootstrap 3 CSS v1.4.1
+ * Tested with Bootstrap v3.2.0 and Select2 v3.3.2, v3.4.1-v3.4.5, v3.5.1, master
+ * in latest Chrome, Safari, Firefox, Opera (Mac) and IE8-IE11
+ * MIT License
+ */
+/**
+ * Reset Bootstrap 3 .form-control styles which - if applied to the
+ * original <select>-element the Select2-plugin may be run against -
+ * are copied to the .select2-container.
+ *
+ * 1. Overwrite .select2-container's original display:inline-block
+ *    with Bootstrap 3's default for .form-control, display:block;
+ *    courtesy of @juristr (@see https://github.com/fk/select2-bootstrap-css/pull/1)
+ */
+/* line 17, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container.form-control {
+  background: transparent;
+  border: none;
+  display: block;
+  /* 1 */
+  margin: 0;
   padding: 0;
 }
 
-/* line 15, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.form-control.select2-container.select2-dropdown-open {
-  border-color: #5897FB;
-  border-radius: 3px 3px 0 0;
+/**
+ * Adjust Select2 inputs to fit Bootstrap 3 default .form-control appearance.
+ */
+/* line 31, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container .select2-choices .select2-search-field input,
+.select2-container .select2-choice,
+.select2-container .select2-choices {
+  background: none;
+  padding: 0;
+  border-color: #cccccc;
+  border-radius: 4px;
+  color: #555555;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: white;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
-/* line 20, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.form-control .select2-container.select2-dropdown-open .select2-choices {
-  border-radius: 3px 3px 0 0;
+/* line 44, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-search input {
+  border-color: #cccccc;
+  border-radius: 4px;
+  color: #555555;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: white;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
-/* line 24, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.form-control.select2-container .select2-choices {
-  border: 0 !important;
+/* line 55, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container .select2-choices .select2-search-field input {
+  box-shadow: none;
+}
+
+/**
+ * Adjust Select2 input heights to match the Bootstrap default.
+ */
+/* line 63, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container .select2-choice {
+  height: 34px;
+  line-height: 1.42857;
+}
+
+/**
+ * Address Multi Select2's height which - depending on how many elements have been selected -
+ * may grown higher than their initial size.
+ */
+/* line 72, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container.select2-container-multi.form-control {
+  height: auto;
+}
+
+/**
+ * Address Bootstrap 3 control sizing classes
+ * @see http://getbootstrap.com/css/#forms-control-sizes
+ */
+/* line 81, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container.input-sm .select2-choice,
+.input-group-sm .select2-container .select2-choice {
+  height: 30px;
+  line-height: 1.5;
   border-radius: 3px;
 }
 
-/* line 35, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.control-group.warning .select2-container .select2-choice,
-.control-group.warning .select2-container .select2-choices,
-.control-group.warning .select2-container-active .select2-choice,
-.control-group.warning .select2-container-active .select2-choices,
-.control-group.warning .select2-dropdown-open.select2-drop-above .select2-choice,
-.control-group.warning .select2-dropdown-open.select2-drop-above .select2-choices,
-.control-group.warning .select2-container-multi.select2-container-active .select2-choices {
-  border: 1px solid #C09853 !important;
+/* line 88, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container.input-lg .select2-choice,
+.input-group-lg .select2-container .select2-choice {
+  height: 46px;
+  line-height: 1.33;
+  border-radius: 6px;
 }
 
-/* line 39, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.control-group.warning .select2-container .select2-choice div {
-  border-left: 1px solid #C09853 !important;
-  background: #FCF8E3 !important;
+/* line 94, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container-multi .select2-choices .select2-search-field input {
+  height: 32px;
 }
 
-/* line 50, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.control-group.error .select2-container .select2-choice,
-.control-group.error .select2-container .select2-choices,
-.control-group.error .select2-container-active .select2-choice,
-.control-group.error .select2-container-active .select2-choices,
-.control-group.error .select2-dropdown-open.select2-drop-above .select2-choice,
-.control-group.error .select2-dropdown-open.select2-drop-above .select2-choices,
-.control-group.error .select2-container-multi.select2-container-active .select2-choices {
-  border: 1px solid #B94A48 !important;
+/* line 99, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container-multi.input-sm .select2-choices .select2-search-field input,
+.input-group-sm .select2-container-multi .select2-choices .select2-search-field input {
+  height: 28px;
 }
 
-/* line 54, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.control-group.error .select2-container .select2-choice div {
-  border-left: 1px solid #B94A48 !important;
-  background: #F2DEDE !important;
+/* line 104, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container-multi.input-lg .select2-choices .select2-search-field input,
+.input-group-lg .select2-container-multi .select2-choices .select2-search-field input {
+  height: 44px;
 }
 
-/* line 65, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.control-group.info .select2-container .select2-choice,
-.control-group.info .select2-container .select2-choices,
-.control-group.info .select2-container-active .select2-choice,
-.control-group.info .select2-container-active .select2-choices,
-.control-group.info .select2-dropdown-open.select2-drop-above .select2-choice,
-.control-group.info .select2-dropdown-open.select2-drop-above .select2-choices,
-.control-group.info .select2-container-multi.select2-container-active .select2-choices {
-  border: 1px solid #3A87AD !important;
+/**
+ * Adjust height and line-height for .select2-search-field amd multi-select Select2 widgets.
+ *
+ * 1. Class repetition to address missing .select2-chosen in Select2 < 3.3.2.
+ */
+/* line 113, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container-multi .select2-choices .select2-search-field input {
+  margin: 0;
 }
 
-/* line 69, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.control-group.info .select2-container .select2-choice div {
-  border-left: 1px solid #3A87AD !important;
-  background: #D9EDF7 !important;
+/* line 119, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-chosen,
+.select2-choice > span:first-child,
+.select2-container .select2-choices .select2-search-field input {
+  padding: 6px 12px;
 }
 
-/* line 80, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.control-group.success .select2-container .select2-choice,
-.control-group.success .select2-container .select2-choices,
-.control-group.success .select2-container-active .select2-choice,
-.control-group.success .select2-container-active .select2-choices,
-.control-group.success .select2-dropdown-open.select2-drop-above .select2-choice,
-.control-group.success .select2-dropdown-open.select2-drop-above .select2-choices,
-.control-group.success .select2-container-multi.select2-container-active .select2-choices {
-  border: 1px solid #468847 !important;
+/* line 128, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.input-sm .select2-chosen,
+.input-group-sm .select2-chosen,
+.input-sm .select2-choice > span:first-child,
+.input-group-sm .select2-choice > span:first-child,
+.input-sm .select2-choices .select2-search-field input,
+.input-group-sm .select2-choices .select2-search-field input {
+  padding: 5px 10px;
 }
 
-/* line 84, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.2/vendor/assets/stylesheets/select2-bootstrap.css */
-.control-group.success .select2-container .select2-choice div {
-  border-left: 1px solid #468847 !important;
-  background: #DFF0D8 !important;
+/* line 137, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.input-lg .select2-chosen,
+.input-group-lg .select2-chosen,
+.input-lg .select2-choice > span:first-child,
+.input-group-lg .select2-choice > span:first-child,
+.input-lg .select2-choices .select2-search-field input,
+.input-group-lg .select2-choices .select2-search-field input {
+  padding: 10px 16px;
+}
+
+/* line 141, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container-multi .select2-choices .select2-search-choice {
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+/* line 147, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container-multi.input-sm .select2-choices .select2-search-choice,
+.input-group-sm .select2-container-multi .select2-choices .select2-search-choice {
+  margin-top: 3px;
+  margin-bottom: 2px;
+}
+
+/* line 153, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container-multi.input-lg .select2-choices .select2-search-choice,
+.input-group-lg .select2-container-multi .select2-choices .select2-search-choice {
+  line-height: 24px;
+}
+
+/**
+ * Adjust the single Select2's dropdown arrow button appearance.
+ *
+ * 1. For Select2 v.3.3.2.
+ */
+/* line 163, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container .select2-choice .select2-arrow,
+.select2-container .select2-choice div {
+  border-left: 1px solid #cccccc;
+  background: none;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
+/* line 170, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-dropdown-open .select2-choice .select2-arrow,
+.select2-dropdown-open .select2-choice div {
+  border-left-color: transparent;
+  background: none;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
+/**
+ * Adjust the dropdown arrow button icon position for the single-select Select2 elements
+ * to make it line up vertically now that we increased the height of .select2-container.
+ *
+ * 1. Class repetition to address missing .select2-chosen in Select2 v.3.3.2.
+ */
+/* line 183, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container .select2-choice .select2-arrow b,
+.select2-container .select2-choice div b {
+  background-position: 0 3px;
+}
+
+/* line 188, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-dropdown-open .select2-choice .select2-arrow b,
+.select2-dropdown-open .select2-choice div b {
+  background-position: -18px 3px;
+}
+
+/* line 195, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container.input-sm .select2-choice .select2-arrow b,
+.input-group-sm .select2-container .select2-choice .select2-arrow b,
+.select2-container.input-sm .select2-choice div b,
+.input-group-sm .select2-container .select2-choice div b {
+  background-position: 0 1px;
+}
+
+/* line 202, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-dropdown-open.input-sm .select2-choice .select2-arrow b,
+.input-group-sm .select2-dropdown-open .select2-choice .select2-arrow b,
+.select2-dropdown-open.input-sm .select2-choice div b,
+.input-group-sm .select2-dropdown-open .select2-choice div b {
+  background-position: -18px 1px;
+}
+
+/* line 209, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container.input-lg .select2-choice .select2-arrow b,
+.input-group-lg .select2-container .select2-choice .select2-arrow b,
+.select2-container.input-lg .select2-choice div b,
+.input-group-lg .select2-container .select2-choice div b {
+  background-position: 0 9px;
+}
+
+/* line 216, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-dropdown-open.input-lg .select2-choice .select2-arrow b,
+.input-group-lg .select2-dropdown-open .select2-choice .select2-arrow b,
+.select2-dropdown-open.input-lg .select2-choice div b,
+.input-group-lg .select2-dropdown-open .select2-choice div b {
+  background-position: -18px 9px;
+}
+
+/**
+ * Address Bootstrap's validation states and change Select2's border colors and focus states.
+ * Apply .has-warning, .has-danger or .has-succes to #select2-drop to match Bootstraps' colors.
+ */
+/* line 225, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-warning .select2-choice,
+.has-warning .select2-choices {
+  border-color: #8a6d3b;
+}
+
+/* line 229, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-warning .select2-container-active .select2-choice,
+.has-warning .select2-container-multi.select2-container-active .select2-choices {
+  border-color: #66512c;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
+}
+
+/* line 234, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-warning.select2-drop-active {
+  border-color: #66512c;
+}
+
+/* line 237, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-warning.select2-drop-active.select2-drop.select2-drop-above {
+  border-top-color: #66512c;
+}
+
+/* line 242, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-error .select2-choice,
+.has-error .select2-choices {
+  border-color: #a94442;
+}
+
+/* line 246, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-error .select2-container-active .select2-choice,
+.has-error .select2-container-multi.select2-container-active .select2-choices {
+  border-color: #843534;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+}
+
+/* line 251, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-error.select2-drop-active {
+  border-color: #843534;
+}
+
+/* line 254, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-error.select2-drop-active.select2-drop.select2-drop-above {
+  border-top-color: #843534;
+}
+
+/* line 259, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-success .select2-choice,
+.has-success .select2-choices {
+  border-color: #3c763d;
+}
+
+/* line 263, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-success .select2-container-active .select2-choice,
+.has-success .select2-container-multi.select2-container-active .select2-choices {
+  border-color: #2b542c;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
+}
+
+/* line 268, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-success.select2-drop-active {
+  border-color: #2b542c;
+}
+
+/* line 271, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.has-success.select2-drop-active.select2-drop.select2-drop-above {
+  border-top-color: #2b542c;
+}
+
+/**
+ * Make Select2's active-styles - applied to .select2-container when the widget receives focus -
+ * fit Bootstrap 3's .form-element:focus appearance.
+ */
+/* line 280, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container-active .select2-choice,
+.select2-container-multi.select2-container-active .select2-choices {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+/* line 290, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-drop-active {
+  border-color: #66afe9;
+}
+
+/* line 295, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-drop-auto-width,
+.select2-drop.select2-drop-above.select2-drop-active {
+  border-top-color: #66afe9;
+}
+
+/**
+ * Select2 widgets in Bootstrap Input Groups
+ *
+ * When Select2 widgets are combined with other elements using Bootstrap 3's
+ * "Input Group" component, we don't want specific edges of the Select2 container
+ * to have a border-radius.
+ *
+ * In Bootstrap 2, input groups required a markup where these style adjustments
+ * could be bound to a CSS-class identifying if the additional elements are appended,
+ * prepended or both.
+ *
+ * Bootstrap 3 doesn't rely on these classes anymore, so we have to use our own.
+ * Use .select2-bootstrap-prepend and .select2-bootstrap-append on a Bootstrap 3 .input-group
+ * to let the contained Select2 widget know which edges should not be rounded as they are
+ * directly followed by another element.
+ *
+ * @see http://getbootstrap.com/components/#input-groups
+ */
+/* line 317, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.input-group.select2-bootstrap-prepend [class^="select2-choice"] {
+  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
+/* line 322, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.input-group.select2-bootstrap-append [class^="select2-choice"] {
+  border-bottom-right-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+/* line 327, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-dropdown-open [class^="select2-choice"] {
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+/* line 332, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-dropdown-open.select2-drop-above [class^="select2-choice"] {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-right-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+}
+
+/* line 338, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.input-group.select2-bootstrap-prepend .select2-dropdown-open.select2-drop-above [class^="select2-choice"] {
+  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
+/* line 342, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.input-group.select2-bootstrap-append .select2-dropdown-open.select2-drop-above [class^="select2-choice"] {
+  border-bottom-right-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+/* line 346, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.input-group.input-group-sm.select2-bootstrap-prepend .select2-dropdown-open.select2-drop-above [class^="select2-choice"] {
+  border-bottom-right-radius: 3px !important;
+}
+
+/* line 349, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.input-group.input-group-lg.select2-bootstrap-prepend .select2-dropdown-open.select2-drop-above [class^="select2-choice"] {
+  border-bottom-right-radius: 6px !important;
+}
+
+/* line 352, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.input-group.input-group-sm.select2-bootstrap-append .select2-dropdown-open.select2-drop-above [class^="select2-choice"] {
+  border-bottom-left-radius: 3px !important;
+}
+
+/* line 355, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.input-group.input-group-lg.select2-bootstrap-append .select2-dropdown-open.select2-drop-above [class^="select2-choice"] {
+  border-bottom-left-radius: 6px !important;
+}
+
+/**
+ * Adjust Select2's choices hover and selected styles to match Bootstrap 3's default dropdown styles.
+ */
+/* line 362, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-results .select2-highlighted {
+  color: white;
+  background-color: #428bca;
+}
+
+/**
+ * Adjust alignment of Bootstrap 3 buttons in Bootstrap 3 Input Groups to address
+ * Multi Select2's height which - depending on how many elements have been selected -
+ * may grown higher than their initial size.
+ */
+/* line 377, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-bootstrap-append .select2-container-multiple,
+.select2-bootstrap-append .input-group-btn,
+.select2-bootstrap-append .input-group-btn .btn,
+.select2-bootstrap-prepend .select2-container-multiple,
+.select2-bootstrap-prepend .input-group-btn,
+.select2-bootstrap-prepend .input-group-btn .btn {
+  vertical-align: top;
+}
+
+/**
+ * Make Multi Select2's choices match Bootstrap 3's default button styles.
+ */
+/* line 384, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container-multi .select2-choices .select2-search-choice {
+  color: #555555;
+  background: white;
+  border-color: #cccccc;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  box-shadow: none;
+}
+
+/* line 393, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container-multi .select2-choices .select2-search-choice-focus {
+  background: #ebebeb;
+  border-color: #adadad;
+  color: #333333;
+  box-shadow: none;
+}
+
+/**
+ * Address Multi Select2's choice close-button vertical alignment.
+ */
+/* line 404, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-search-choice-close {
+  margin-top: -7px;
+  top: 50%;
+}
+
+/**
+ * Adjust the single Select2's clear button position (used to reset the select box
+ * back to the placeholder value and visible once a selection is made
+ * activated by Select2's "allowClear" option).
+ */
+/* line 414, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container .select2-choice abbr {
+  top: 50%;
+}
+
+/**
+ * Adjust "no results" and "selection limit" messages to make use
+ * of Bootstrap 3's default "Alert" style.
+ *
+ * @see http://getbootstrap.com/components/#alerts-default
+ */
+/* line 426, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-results .select2-no-results,
+.select2-results .select2-searching,
+.select2-results .select2-selection-limit {
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+}
+
+/**
+ * Address disabled Select2 styles.
+ *
+ * 1. For Select2 v.3.3.2.
+ * 2. Revert border-left:0 inherited from Select2's CSS to prevent the arrow
+ *    from jumping when switching from disabled to enabled state and vice versa.
+ */
+/* line 439, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container.select2-container-disabled .select2-choice,
+.select2-container.select2-container-disabled .select2-choices {
+  cursor: not-allowed;
+  background-color: #eeeeee;
+  border-color: #cccccc;
+}
+
+/* line 447, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-container.select2-container-disabled .select2-choice .select2-arrow,
+.select2-container.select2-container-disabled .select2-choice div,
+.select2-container.select2-container-disabled .select2-choices .select2-arrow,
+.select2-container.select2-container-disabled .select2-choices div {
+  background-color: transparent;
+  border-left: 1px solid transparent;
+  /* 2 */
+}
+
+/**
+ * Address Select2's loading indicator position - which should not stick
+ * to the right edge of Select2's search input.
+ *
+ * 1. in .select2-search input
+ * 2. in Multi Select2's .select2-search-field input
+ * 3. in the status-message of infinite-scroll with remote data (@see http://ivaynberg.github.io/select2/#infinite)
+ *
+ * These styles alter Select2's default background-position of 100%
+ * and supply the new background-position syntax to browsers which support it:
+ *
+ * 1. Android, Safari < 6/Mobile, IE<9: change to a relative background-position of 99%
+ * 2. Chrome 25+, Firefox 13+, IE 9+, Opera 10.5+: use the new CSS3-background-position syntax
+ *
+ * @see http://www.w3.org/TR/css3-background/#background-position
+ *
+ * @todo Since both Select2 and Bootstrap 3 only support IE8 and above,
+ * we could use the :after-pseudo-element to display the loading indicator.
+ * Alternatively, we could supply an altered loading indicator image which already
+ * contains an offset to the right.
+ */
+/* line 476, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-search input.select2-active,
+.select2-container-multi .select2-choices .select2-search-field input.select2-active,
+.select2-more-results.select2-active {
+  background-position: 99%;
+  /* 4 */
+  background-position: right 4px center;
+  /* 5 */
+}
+
+/**
+ * To support Select2 pre v3.4.2 in combination with Bootstrap v3.2.0,
+ * ensure that .select2-offscreen width, height and position can not be overwritten.
+ *
+ * This adresses changes in Bootstrap somewhere after the initial v3.0.0 which -
+ * in combination with Select2's pre-v3.4.2 CSS missing the "!important" after
+ * the following rules - allow Bootstrap to overwrite the latter, which results in
+ * the original <select> element Select2 is replacing not be properly being hidden
+ * when used in a "Bootstrap Input Group with Addon".
+ **/
+/* line 494, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/select2-rails-3.5.9.3/vendor/assets/stylesheets/select2-bootstrap.css */
+.select2-offscreen,
+.select2-offscreen:focus {
+  width: 1px !important;
+  height: 1px !important;
+  position: absolute !important;
+}
+
+/*************
+  Blue Theme
+ *************/
+/* overall */
+/* line 6, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue {
+  width: 100%;
+  background-color: #fff;
+  margin: 10px 0 15px;
+  text-align: left;
+  border-spacing: 0;
+  border: #cdcdcd 1px solid;
+  border-width: 1px 0 0 1px;
+}
+
+/* line 16, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue th,
+.tablesorter-blue td {
+  border: #cdcdcd 1px solid;
+  border-width: 0 1px 1px 0;
+}
+
+/* header */
+/* line 23, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue th,
+.tablesorter-blue thead td {
+  font: bold 12px/18px Arial, Sans-serif;
+  color: #000;
+  background-color: #99bfe6;
+  border-collapse: collapse;
+  padding: 4px;
+  text-shadow: 0 1px 0 rgba(204, 204, 204, 0.7);
+}
+
+/* line 33, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue tbody td,
+.tablesorter-blue tfoot th,
+.tablesorter-blue tfoot td {
+  padding: 4px;
+  vertical-align: top;
+}
+
+/* line 38, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue .header,
+.tablesorter-blue .tablesorter-header {
+  /* black (unsorted) double arrow */
+  background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
+  /* white (unsorted) double arrow */
+  /* background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); */
+  /* image */
+  /* background-image: url(/assets/jquery-tablesorter/black-unsorted.gif); */
+  background-repeat: no-repeat;
+  background-position: center right;
+  padding: 4px 18px 4px 4px;
+  white-space: normal;
+  cursor: pointer;
+}
+
+/* line 53, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue .headerSortUp,
+.tablesorter-blue .tablesorter-headerSortUp,
+.tablesorter-blue .tablesorter-headerAsc {
+  background-color: #9fbfdf;
+  /* black asc arrow */
+  background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+  /* white asc arrow */
+  /* background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7); */
+  /* image */
+  /* background-image: url(/assets/jquery-tablesorter/black-asc.gif); */
+}
+
+/* line 64, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue .headerSortDown,
+.tablesorter-blue .tablesorter-headerSortDown,
+.tablesorter-blue .tablesorter-headerDesc {
+  background-color: #8cb3d9;
+  /* black desc arrow */
+  background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+  /* white desc arrow */
+  /* background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7); */
+  /* image */
+  /* background-image: url(/assets/jquery-tablesorter/black-desc.gif); */
+}
+
+/* line 73, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue thead .sorter-false {
+  background-image: none;
+  cursor: default;
+  padding: 4px;
+}
+
+/* tfoot */
+/* line 83, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue tfoot .tablesorter-headerSortUp,
+.tablesorter-blue tfoot .tablesorter-headerSortDown,
+.tablesorter-blue tfoot .tablesorter-headerAsc,
+.tablesorter-blue tfoot .tablesorter-headerDesc {
+  /* remove sort arrows from footer */
+  background-image: none;
+}
+
+/* tbody */
+/* line 89, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue td {
+  color: #3d3d3d;
+  background-color: #fff;
+  padding: 4px;
+  vertical-align: top;
+}
+
+/* hovered row colors
+ you'll need to add additional lines for
+ rows with more than 2 child rows
+ */
+/* line 105, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue tbody > tr:hover > td,
+.tablesorter-blue tbody > tr:hover + tr.tablesorter-childRow > td,
+.tablesorter-blue tbody > tr:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td,
+.tablesorter-blue tbody > tr.even:hover > td,
+.tablesorter-blue tbody > tr.even:hover + tr.tablesorter-childRow > td,
+.tablesorter-blue tbody > tr.even:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td {
+  background: #d9d9d9;
+}
+
+/* line 110, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue tbody > tr.odd:hover > td,
+.tablesorter-blue tbody > tr.odd:hover + tr.tablesorter-childRow > td,
+.tablesorter-blue tbody > tr.odd:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td {
+  background: #bfbfbf;
+}
+
+/* table processing indicator */
+/* line 115, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue .tablesorter-processing {
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  /* background-image: url(../addons/pager/icons/loading.gif) !important; */
+  background-image: url("data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=") !important;
+}
+
+/* Zebra Widget - row alternating colors */
+/* line 123, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue tbody tr.odd > td {
+  background-color: #ebf2fa;
+}
+
+/* line 126, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue tbody tr.even > td {
+  background-color: #fff;
+}
+
+/* Column Widget - column sort colors */
+/* line 132, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue td.primary,
+.tablesorter-blue tr.odd td.primary {
+  background-color: #99b3e6;
+}
+
+/* line 135, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue tr.even td.primary {
+  background-color: #c2d1f0;
+}
+
+/* line 139, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue td.secondary,
+.tablesorter-blue tr.odd td.secondary {
+  background-color: #c2d1f0;
+}
+
+/* line 142, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue tr.even td.secondary {
+  background-color: #d6e0f5;
+}
+
+/* line 146, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue td.tertiary,
+.tablesorter-blue tr.odd td.tertiary {
+  background-color: #d6e0f5;
+}
+
+/* line 149, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue tr.even td.tertiary {
+  background-color: #ebf0fa;
+}
+
+/* caption */
+/* line 154, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+caption {
+  background: #fff;
+}
+
+/* filter widget */
+/* line 159, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue .tablesorter-filter-row {
+  background: #eee;
+}
+
+/* line 162, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue .tablesorter-filter-row td {
+  background: #eee;
+  line-height: normal;
+  text-align: center;
+  /* center the input */
+  -webkit-transition: line-height 0.1s ease;
+  transition: line-height 0.1s ease;
+}
+
+/* optional disabled input styling */
+/* line 172, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue .tablesorter-filter-row .disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: not-allowed;
+}
+
+/* hidden filter row */
+/* line 178, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue .tablesorter-filter-row.hideme td {
+  /*** *********************************************** ***/
+  /*** change this padding to modify the thickness     ***/
+  /*** of the closed filter row (height = padding x 2) ***/
+  padding: 2px;
+  /*** *********************************************** ***/
+  margin: 0;
+  line-height: 0;
+  cursor: pointer;
+}
+
+/* line 188, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue .tablesorter-filter-row.hideme * {
+  height: 1px;
+  min-height: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  /* don't use visibility: hidden because it disables tabbing */
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+/* filters */
+/* line 200, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter-blue input.tablesorter-filter,
+.tablesorter-blue select.tablesorter-filter {
+  width: 98%;
+  height: auto;
+  margin: 0;
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #bbb;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-transition: height 0.1s ease;
+  transition: height 0.1s ease;
+}
+
+/* rows hidden by filtering (needed for child rows) */
+/* line 217, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter .filtered {
+  display: none;
+}
+
+/* ajax error row */
+/* line 222, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+.tablesorter .tablesorter-errorRow td {
+  text-align: center;
+  cursor: pointer;
+  background-color: #e6bf99;
 }
 
 /* line 1, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
