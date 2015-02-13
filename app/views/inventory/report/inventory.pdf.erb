@@ -1,0 +1,16 @@
+<%= render 'inventory/report/summary', weightable: Lot %><br>
+
+<%= render 'inventory/report/summary', weightable: Container %><br>
+
+<%= render 'inventory/report/summary', weightable: Bag %><br>
+
+<%= render 'inventory/report/summary', weightable: Jar %><br>
+
+<table class="summary">
+  <tr>
+    <th class="col-md-10"><strong class="summary-total">Grand Total</strong></th>
+    <th class="col-md-2 double-underlines text-right"><span class="summary-total right">
+      <%= weight_for total_weight, '' %>
+    </span></th>
+  </tr>
+</table>
