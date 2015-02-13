@@ -21,13 +21,14 @@
           'Container::Stage1Container::UnprocessedContainer',
           'Container::Stage1Container::BudsOnStemContainer',
           'Container::Stage1Container::TrimContainer'
-        ]), {}, class: 'form-control' %>
+        ]), { selected: container.type }, class: 'form-control' %>
     <%= display_error_for container, :type %>
   </div>
 
   <div class="form-group">
     <%= f.label :category, 'Type' %>
-    <%= f.select :category, ['Buds', 'Trim', 'Unprocessed', 'BudsOnStem'], {}, class: 'form-control' %>
+    <%= f.select :category, ['Buds', 'Trim', 'Unprocessed', 'BudsOnStem'],
+        { selected: container.category }, class: 'form-control' %>
     <%= display_error_for container, :category %>
   </div>
 
