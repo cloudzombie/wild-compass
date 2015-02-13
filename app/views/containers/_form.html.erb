@@ -15,13 +15,13 @@
 
   <div class="form-group">
     <%= f.label :type %>
-    <%= f.select :type, options_for_select([
+    <%= f.select :type, [
           'Container::Stage2Container::BudsContainer',
           'Container::Stage2Container::TrimContainer',
           'Container::Stage1Container::UnprocessedContainer',
           'Container::Stage1Container::BudsOnStemContainer',
           'Container::Stage1Container::TrimContainer'
-        ]), { selected: container.type }, class: 'form-control' %>
+        ], { selected: container.type }, class: 'form-control' %>
     <%= display_error_for container, :type %>
   </div>
 
