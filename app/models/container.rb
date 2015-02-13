@@ -37,9 +37,13 @@ class Container < ActiveRecord::Base
 
   # Dat finest piece of design #trololol #softeng
 
-  belongs_to :container
+  # belongs_to :container
 
-  has_many :containers, -> { uniq }
+  # has_many :containers, -> { uniq }
+
+  def transactions
+    Transaction.where('source_id = ? AND source_type = ? OR target_id = ? AND target_type = ?', self.id, self.class, self.id, self.class)
+  end
 
 
 
