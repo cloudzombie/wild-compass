@@ -1,5 +1,5 @@
 <% container.transactions.each do |transaction| %>
-  <tr>
+  <tr class="<%= !transaction.target.nil? && transaction.target.kind_of?(Waste) ? 'danger' : '' %>">
     <td>
       <%= date_for transaction.event %>
     </td>
@@ -21,7 +21,7 @@
     </td>
     
     <td>
-      <%= link_to_unless (transaction.source.nil? || transaction.source.kind_of?(Waste) || transaction.source.kind_of?(Harvest)), "#{transaction.source}", transaction.source, class: "btn-sm btn-flat btn-warning" %>
+      <%= link_to_unless (transaction.source.nil? || transaction.source.kind_of?(Waste) || transaction.source.kind_of?(Harvest)), "#{transaction.source}", transaction.source, class: "btn-sm btn-flat btn-primary" %>
     </td>
   </tr>
 <% end %>
