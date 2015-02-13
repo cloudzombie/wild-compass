@@ -45,15 +45,15 @@ class Container < ActiveRecord::Base
   # Dat finest piece of design #trololol #softeng
 
   def incoming_transactions
-    Transaction.where('target_id = ? AND target_type = ?', id, self.class)
+    Transaction.where('target_id = ? AND target_type = ?', id, self.class).uniq
   end
 
   def outgoing_transactions
-    Transaction.where('source_id = ? AND source_type = ?', id, self.class)
+    Transaction.where('source_id = ? AND source_type = ?', id, self.class).uniq
   end
 
   def transactions
-    Transaction.where('source_id = ? AND source_type = ? OR target_id = ? AND target_type = ?', id, self.class, id, self.class)
+    Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class).uniq
   end
 
 
