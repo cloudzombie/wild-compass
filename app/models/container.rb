@@ -21,14 +21,21 @@ class Container < ActiveRecord::Base
     
     if bags.present?
       bags.each do |b|
-        bagged_dry_weight += b.initial_weight.nil? ? 0.0 : b.initial_weight
+        bagged_dry_weight += (b.initial_weight.nil? ? 0.0 : b.initial_weight)
       end
     end
 
-    (( initial_weight.nil? ? 0.0 : initial_weight ) -
-    bagged_dry_weight -
-    ( processing_waste_produced.nil? ? 0.0 : processing_waste_produced ) -
-    ( trim_added.nil? ? 0.0 : trim_added ))
+    incoming_weight = 0.0
+    incoming_transactions.each do |transaction|
+      incoming_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
+    end
+
+    outgoing_weight = 0.0
+    outgoing_transactions.each do |transaction|
+      outgoing_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
+    end
+
+    ( incoming_weight - outgoing_weight ) - bagged_dry_weight
   end
 
   
@@ -37,12 +44,16 @@ class Container < ActiveRecord::Base
 
   # Dat finest piece of design #trololol #softeng
 
-  # belongs_to :container
+  def incoming_transactions
+    Transaction.where('target_id = ? AND target_type = ?', id, self.class)
+  end
 
-  # has_many :containers, -> { uniq }
+  def outgoing_transactions
+    Transaction.where('source_id = ? AND source_type = ?', id, self.class)
+  end
 
   def transactions
-    Transaction.where('source_id = ? AND source_type = ? OR target_id = ? AND target_type = ?', self.id, self.class, self.id, self.class)
+    Transaction.where('source_id = ? AND source_type = ? OR target_id = ? AND target_type = ?', id, self.class, id, self.class)
   end
 
 
