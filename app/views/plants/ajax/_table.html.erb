@@ -3,8 +3,6 @@
     <td><%= check_box_tag :accept %></td>
     <td><%= link_to plant, plant %></td>
     <td><%= strain_for plant.try(:strain) %></td>
-    <td><%= plant.try(:plant) %></td>
-    <td><%= plant.try(:seed) %></td>
     <td><%= plant.try(:status) %></td>
     <td><%= format_for plant.try(:format) %></td>
     <td><%= plant.try(:location) %></td>
