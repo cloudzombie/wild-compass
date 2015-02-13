@@ -24409,7 +24409,11 @@ var saveAs = saveAs
         widgets: ["zebra", "columns"]
       });
       $("#timeline").tablesorter({
+        dateFormat: "mmddyyyy",
         headers: {
+          0: {
+            sorter: "shortDate"
+          },
           2: {
             sorter: false
           },
