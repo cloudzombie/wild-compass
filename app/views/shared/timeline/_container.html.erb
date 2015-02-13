@@ -5,7 +5,19 @@
     </td>
     
     <td>
-      <%= link_to_unless (transaction.target.nil? || transaction.target.kind_of?(Waste) || transaction.target.kind_of?(Harvest)), "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-primary" %>
+      <% if transaction.target.kind_of? Waste %>
+        <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-danger" %>
+      <% elsif transaction.target.kind_of? Harvest %>
+        <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-success" %>
+      <% elsif transaction.target.kind_of? Plant %>
+        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-success" %>
+      <% elsif transaction.target.kind_of? Container %>
+        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-primary" %>
+      <% elsif transaction.target.kind_of? Bag %>
+        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-warning" %>
+      <% else %>
+        <%= "#{transaction.target}" %>
+      <% end %>
     </td>
     
     <td>
@@ -21,7 +33,19 @@
     </td>
     
     <td>
-      <%= link_to_unless (transaction.source.nil? || transaction.source.kind_of?(Waste) || transaction.source.kind_of?(Harvest)), "#{transaction.source}", transaction.source, class: "btn-sm btn-flat btn-primary" %>
+      <% if transaction.source.kind_of? Waste %>
+        <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-danger" %>
+      <% elsif transaction.source.kind_of? Harvest %>
+        <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-success" %>
+      <% elsif transaction.source.kind_of? Plant %>
+        <%= link_to "#{transaction.source}", transaction.source, class: "btn-sm btn-flat btn-success" %>
+      <% elsif transaction.source.kind_of? Container %>
+        <%= link_to "#{transaction.source}", transaction.source, class: "btn-sm btn-flat btn-primary" %>
+      <% elsif transaction.source.kind_of? Bag %>
+        <%= link_to "#{transaction.source}", transaction.source, class: "btn-sm btn-flat btn-warning" %>
+      <% else %>
+        <%= "#{transaction.source}" %>
+      <% end %>
     </td>
   </tr>
 <% end %>
