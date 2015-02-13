@@ -41,7 +41,7 @@ class Plant < ActiveRecord::Base
 
 
   def to_s
-    "#{name unless name.nil? }-#{ id unless id.nil? }"
+    "#{self.class}-#{id}".upcase
   end
 
   def container
