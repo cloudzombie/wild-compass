@@ -82,6 +82,8 @@ module ApplicationHelper
     when '45 G', '45G'
       "<small class=\"badge alert-warning\">#{format}</small>".html_safe
     when '15 G', '15G'
+      "<small class=\"badge alert-primary\">#{format}</small>".html_safe
+    else
       "<small class=\"badge\">#{format}</small>".html_safe
     end
   rescue

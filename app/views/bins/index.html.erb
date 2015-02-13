@@ -34,7 +34,7 @@
   <%= link_to "#{fa_icon 'square'} New bin".html_safe, '#', class: 'btn btn-flat btn-warning',
       data: { toggle: 'modal', target: '.new-bin'} %>
 
-  <%#= paginate bins %>
+  <%= paginate bins %>
 </div>
 
 <%= render 'bins/modal/new' %>

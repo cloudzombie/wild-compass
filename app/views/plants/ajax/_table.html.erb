@@ -11,8 +11,12 @@
     <td><%= date_for plant.try(:created_at) %></td>
     <td><%= date_for plant.try(:updated_at) %></td>
     <td>
-      <% if can? :edit, plant %>
-      <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
+      <% if can? :label, Plant %>
+      <%= link_to 'Print Label', label_plant_path(plant), class: 'btn-sm btn-flat btn-primary' %>
+      <% end %>
+
+      <% if can? :edit, Plant %>
+      <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-warning" %>
       <% end %>
     </td>
   </tr>

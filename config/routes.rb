@@ -70,7 +70,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :plants
+  resources :plants do
+    member do
+      get 'label'
+    end
+  end
   
   resources :jars do
     member do
