@@ -25,9 +25,10 @@ class Container < ActiveRecord::Base
       end
     end
 
-    ( initial_weight.nil? ? 0.0 : initial_weight )
-    - bagged_dry_weight
-    - ( processing_waste_produced.nil? ? 0.0 : processing_waste_produced )
+    (( initial_weight.nil? ? 0.0 : initial_weight ) -
+    bagged_dry_weight -
+    ( processing_waste_produced.nil? ? 0.0 : processing_waste_produced ) -
+    ( trim_added.nil? ? 0.0 : trim_added ))
   end
 
   
@@ -36,9 +37,13 @@ class Container < ActiveRecord::Base
 
   # Dat finest piece of design #trololol #softeng
 
-  belongs_to :container
+  # belongs_to :container
 
-  has_many :containers, -> { uniq }
+  # has_many :containers, -> { uniq }
+
+  def transactions
+    Transaction.where('source_id = ? AND source_type = ? OR target_id = ? AND target_type = ?', self.id, self.class, self.id, self.class)
+  end
 
 
 

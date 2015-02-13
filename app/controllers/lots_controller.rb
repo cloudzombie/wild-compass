@@ -19,7 +19,7 @@ class LotsController < ApplicationController
   def create 
     self.lot = Lot.new(lot_params)
 
-    Transaction.from( nil ).to( lot ).take( lot.weight ).by( current_user ).commit
+    TransactionManager.from( nil ).to( lot ).take( lot.weight ).by( current_user ).commit
 
     respond_to do |format|
       if lot.save

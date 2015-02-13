@@ -1,13 +1,17 @@
 <table class="table table-striped">
   <tr>
-    <th>Name</th>
-    <th>Strain</th>
+    <th><%= sortable :id, 'ID' %></th>
+    <th><%= sortable :strain_id %></th>
+    <th><%= sortable :status_id %></th>
+    <th><%= sortable :format_id %></th>
   </tr>
 
   <% plants.each do |plant| %>
     <tr>
-      <td><%= plant.try(:to_s) if plant.present? %></td>
-      <td><%= strain_for plant.try(:strain) if plant.present? %></td>
+      <td><%= plant %></td>
+      <td><%= strain_for plant.strain %></td>
+      <td><%= plant.status %></td>
+      <td><%= format_for plant.format %></td>
     </tr>
   <% end %>
 </table>

@@ -19602,7 +19602,11 @@ var saveAs = saveAs
     function BagsController() {}
 
     BagsController.prototype.init = function() {
-      console.log('bags#init');
+      return console.log('bags#init');
+    };
+
+    BagsController.prototype.index = function() {
+      console.log('bags#index');
       return $(document).ready(function() {
         return $.get('http://localhost:8080').fail(function() {
           $('.reweight').prop('disabled', true);
@@ -19611,10 +19615,6 @@ var saveAs = saveAs
           return $('.reweight').prop('disabled', false);
         });
       });
-    };
-
-    BagsController.prototype.index = function() {
-      return console.log('bags#index');
     };
 
     BagsController.prototype.show = function() {
@@ -20018,10 +20018,6 @@ var saveAs = saveAs
 (function() {
   var SeedsController, readScale1, reweightErrorResetProcess, reweightSeedStep1, reweightSeedStep2, reweightSeedStep3, scale1AutoRefresh, scanSeed;
 
-  jQuery(function() {
-    return $('#seed_plant_ids').select2({});
-  });
-
   SeedsController = (function() {
     function SeedsController() {}
 
@@ -20135,6 +20131,10 @@ var saveAs = saveAs
     });
   };
 
+  jQuery(function() {
+    return $('#seed_plant_ids').select2({});
+  });
+
 }).call(this);
 (function() {
 
@@ -20209,7 +20209,7 @@ $(document).ready(function() {
 
 
 
-    
+(function ($, window) {
     
     
     $.fn.contextMenu = function (settings) {
@@ -20218,7 +20218,6 @@ $(document).ready(function() {
 
             // Open context menu
             $(this).on("contextmenu", function (e) {
-                contextMenuPile.
                 //open menu
                 $(settings.menuSelector)
                     .data("invokedOn", $(e.target))
@@ -20280,16 +20279,16 @@ $(document).ready(function() {
         }
 
     };
-(jQuery, window);
+})(jQuery, window);
 
 var contextMenuPile = [];
 
-$('#myTable tbody tr').each(function() {
+$('#lot-table tbody#table tr').each(function() {
     
     
             
             var currentRow = $(this);
-            var userId = currentRow.attr('user-id');
+            var userId = currentRow.attr('data-lot-id');
 
     
             if (-1 == contextMenuPile.indexOf(userId)) {
@@ -20340,7 +20339,7 @@ $('#myTable tbody tr').each(function() {
                 $(this).contextMenu({
                     menuSelector: "#contextMenu_" + userId,
                     menuSelected: function (invokedOn, selectedMenu) {
-                        var userId = invokedOn.parent().attr("user-id");
+                        var userId = invokedOn.parent().attr("data-lot-id");
                         
                         console.log(invokedOn.parent());
                     }

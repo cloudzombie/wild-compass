@@ -1,3 +1,7 @@
 class Inventory::SeedsController < InventoryController
-  expose(:seeds) { Seed.all }
+  
+  include SetSortable
+
+  expose(:seeds) { Seed.sort(sort_column, sort_direction) }
+
 end

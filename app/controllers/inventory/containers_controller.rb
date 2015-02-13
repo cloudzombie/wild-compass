@@ -1,3 +1,7 @@
 class Inventory::ContainersController < InventoryController
-  expose(:containers) { Container.all }
+
+  include SetSortable
+
+  expose(:containers) { Container.sort(sort_column, sort_direction) }
+  
 end

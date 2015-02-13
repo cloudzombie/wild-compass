@@ -20,12 +20,13 @@
             <th></th>
             <th><%= sortable :id, 'ID' %></th>
             <th>Name </th>
-            <th><%= Location %></th>
+            <th><%= sortable :location_id %></th>
             <th><%= sortable :strain %></th>
             <th><%= sortable :category %></th>
             <th><%= sortable :lot_id %></th>
             <th><%= sortable :initial_weight %></th>
             <th><%= sortable :current_weight %></th>
+            <th><%= sortable :water_loss %></th>
             <th><%= sortable :created_at %></th>
             <th><%= sortable :updated_at %></th>
             <th>Actions </th>
@@ -41,7 +42,7 @@
     <div class="tableFooter">
         <a href="#" class="btn btn-flat btn-primary" data-toggle="modal" data-target=".new-container"><i class="fa fa-tags"></i> New container</a>
         <div id="paginator">
-          <%=  paginate containers %>
+          <%= paginate containers %>
         </div>
     </div>
 

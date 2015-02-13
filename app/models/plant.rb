@@ -37,12 +37,11 @@ class Plant < ActiveRecord::Base
 
   has_one :brand, through: :strain
 
-
-
-
   def to_s
-    "#{self.class}-#{id}".upcase
+    "Plant-#{id}".upcase
   end
+
+  alias_method :name, :to_s
 
   def container
     containers.first

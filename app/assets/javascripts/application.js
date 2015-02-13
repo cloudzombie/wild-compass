@@ -16,7 +16,7 @@
 //= require jquery-ui/core
 //= require jquery.turbolinks
 //= require bootstrap
-//= require admin-lte
+//= require adminlte/app
 //= require wild_compass
 //= require jspdf
 //= require jspdf.plugin.addimage
