@@ -15,7 +15,7 @@ class ContainersController < ApplicationController
   def create
     self.container = Container.new(container_params)
 
-    Transaction.from( container.plant ).to( container ).take( container.weight ).by( current_user ).commit
+    TransactionManager.from( container.plant ).to( container ).take( container.weight ).by( current_user ).commit
 
     respond_to do |format|
       if container.save

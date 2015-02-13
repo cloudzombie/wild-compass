@@ -42,6 +42,8 @@ Rails.application.routes.draw do
 
   match 'access', to: 'access#check', via: [ :get, :post ]
 
+  resources :transactions
+
   # Resources
   resources :orders do
     member do

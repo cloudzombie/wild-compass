@@ -31,7 +31,7 @@ class BagsController < ApplicationController
   def create
     self.bag = Bag.new(bag_params)
 
-    Transaction.from( bag.container ).to( bag ).take( bag.weight ).by( current_user ).commit
+    TransactionManager.from( bag.container ).to( bag ).take( bag.weight ).by( current_user ).commit
 
     respond_to do |format|
       if bag.save && bag.container.save
@@ -50,7 +50,7 @@ class BagsController < ApplicationController
       bag.quantity    = bag_params[:weight].to_d
       bag.tare_weight = bag_params[:tare_weight].to_d + 0.3
 
-      if Transaction.reweight( bag ).weight( bag.weight -= bag.tare_weight ).by( current_user ).because( bag.message ).commit
+      if TransactionManager.reweight( bag ).weight( bag.weight -= bag.tare_weight ).by( current_user ).because( bag.message ).commit
         redirect_to bag, notice: 'Bag was successfully reweighted.'
       else
         redirect_to bag, notice: 'Bag was not successfully reweighted.'

@@ -1,11 +1,11 @@
-class Transaction
+class TransactionManager
 
   def self.from(source)
-    Transaction.new(source, :transaction)
+    TransactionManager.new(source, :transaction)
   end
 
   def self.reweight(source)
-    Transaction.new(source, :reweight)
+    TransactionManager.new(source, :reweight)
   end
 
 
