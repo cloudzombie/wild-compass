@@ -6,11 +6,10 @@
     <td><%= plant.try(:plant) %></td>
     <td><%= plant.try(:seed) %></td>
     <td><%= plant.try(:status) %></td>
+    <td><%= format_for plant.try(:format) %></td>
+    <td><%= plant.try(:location) %></td>
     <td><%= date_for plant.try(:created_at) %></td>
     <td><%= date_for plant.try(:updated_at) %></td>
-    <td><%= format_for plant.try(:format) %></td>
-    <td><%= plant.try(:location_id) %></td>
-    <td><%= plant.try(:rfid) %></td>
     <td>
       <% if can? :edit, plant %>
       <%= link_to 'Edit', edit_plant_path(plant), class: "btn-sm btn-flat btn-primary" %>
