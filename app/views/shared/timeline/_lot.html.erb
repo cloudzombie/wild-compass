@@ -1,27 +1,29 @@
-<% lot.plants.each do |plant| %>
-  <tr>
-    <td>
-      <%= date_for lot.created_at %>
-    </td>
+<tr>
+  <td>
+    <%= date_for lot.created_at %>
+  </td>
 
-    <td>
-      <%= link_to "#{lot}", lot, class: "btn-sm btn-flat btn-info" %>
-    </td>
-    
-    <td>
-      <%= fa_icon 'arrow-left' %>
-    </td>
-    
-    <td>
-      <%= weight_for lot.initial_weight / lot.plants.count %>
-    </td>
-    
-    <td>
-      <%= fa_icon 'arrow-left' %>
-    </td>
+  <td>
+    <%= link_to "#{lot}".html_safe, lot, class: "btn-sm btn-flat btn-info" %>
+  </td>
+  
+  <td>
+    <%= fa_icon 'arrow-left' %>
+  </td>
+  
+  <td>
+    <%= weight_for lot.initial_weight %>
+  </td>
+  
+  <td>
+    <%= fa_icon 'arrow-left' %>
+  </td>
 
-    <td>
-      <%= link_to "#{plant}", plant, class: "btn-sm btn-flat btn-success" %>
-    </td>
-  </tr>
-<% end %>
+  <td>
+    <% lot.plants.each_slice(4) do |slice| %>
+      <% slice.each do |plant| %>
+        <%= link_to plant.id, plant, class: "btn-sm btn-flat btn-success" %>
+      <% end %>
+    <% end %>
+  </td>
+</tr>
