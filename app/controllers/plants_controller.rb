@@ -40,6 +40,12 @@ class PlantsController < ApplicationController
     end
   end
 
+  def label
+    respond_to do |format|
+      format.html
+    end
+  end
+
   private
 
     def plant_params

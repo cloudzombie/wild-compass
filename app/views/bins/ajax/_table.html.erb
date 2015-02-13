@@ -10,9 +10,11 @@
       <% end %>
     </td>
     <td>
+      <% if can? :label, Bin %>
       <%= render 'shared/print_label', item: bin %>
+      <% end %>
 
-      <% if can? :edit, bin %>
+      <% if can? :edit, Bin %>
       <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bin_path(bin), class: "btn-sm btn-flat btn-warning" %>
       <% end %>
     </td>

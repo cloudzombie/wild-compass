@@ -5,7 +5,7 @@ class Plant < ActiveRecord::Base
   include Storyable
   include Searchable
   include Sortable
-
+  include Encodable
 
 
   scope :by_strains,  -> (strain = nil) { where(strain: strain) }

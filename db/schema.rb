@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213014805) do
+ActiveRecord::Schema.define(version: 20150213193834) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -225,8 +225,11 @@ ActiveRecord::Schema.define(version: 20150213014805) do
     t.string   "type",                                         default: "Plant", null: false
     t.integer  "plant_id"
     t.integer  "seed_id"
+    t.string   "datamatrix_hash"
+    t.string   "datamatrix_text"
   end
 
+  add_index "plants", ["datamatrix_text", "datamatrix_hash"], name: "index_plants_on_datamatrix_text_and_datamatrix_hash", unique: true
   add_index "plants", ["format_id"], name: "index_plants_on_format_id"
   add_index "plants", ["rfid_id"], name: "index_plants_on_rfid_id"
   add_index "plants", ["seed_id"], name: "index_plants_on_seed_id"
