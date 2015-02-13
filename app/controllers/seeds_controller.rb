@@ -37,11 +37,11 @@ class SeedsController < ApplicationController
       seed.message     = seed_params[:message]
       seed.quantity    = seed_params[:weight].to_d
 
-      if Transaction.reweight(seed)
-                    .weight(seed.weight)
-                    .by(current_user)
-                    .because(seed.message)
-                    .commit
+      if TransactionManager.reweight(seed)
+                           .weight(seed.weight)
+                           .by(current_user)
+                           .because(seed.message)
+                           .commit
 
         redirect_to seed, notice: 'Seed was successfully reweighted.'
       else

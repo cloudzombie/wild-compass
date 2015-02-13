@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212202814) do
+ActiveRecord::Schema.define(version: 20150212233740) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -263,6 +263,20 @@ ActiveRecord::Schema.define(version: 20150212202814) do
     t.integer  "brand_id"
     t.string   "description"
   end
+
+  create_table "transactions", force: true do |t|
+    t.datetime "event",                                null: false
+    t.integer  "source_id"
+    t.string   "source_type"
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.decimal  "weight",      precision: 16, scale: 4, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "transactions", ["source_id", "source_type"], name: "index_transactions_on_source_id_and_source_type"
+  add_index "transactions", ["target_id", "target_type"], name: "index_transactions_on_target_id_and_target_type"
 
   create_table "user_group_roles", force: true do |t|
     t.datetime "created_at"

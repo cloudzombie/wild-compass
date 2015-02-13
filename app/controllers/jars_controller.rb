@@ -15,7 +15,7 @@ class JarsController < ApplicationController
   def create 
     self.jar = Jar.new(jar_params)
 
-    Transaction.from( jar.bag ).to( jar ).take( jar.weight ).by( current_user ).commit
+    TransactionManager.from( jar.bag ).to( jar ).take( jar.weight ).by( current_user ).commit
 
     respond_to do |format|
       if jar.save && jar.bag.save
