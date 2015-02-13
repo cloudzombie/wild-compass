@@ -64,7 +64,7 @@ module ApplicationHelper
   end
 
   def date_for(datetime)
-    datetime.to_s(:short)
+    datetime.strftime("%m/%d/%Y %H:%M") 
   rescue
     ''
   end
