@@ -43,8 +43,6 @@ class Plant < ActiveRecord::Base
 
   alias_method :name, :to_s
 
-
-
   def container
     containers.first
   rescue

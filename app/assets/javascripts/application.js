@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require jquery-ui/core
 //= require jquery.turbolinks
+//= require jquery-tablesorter
 //= require bootstrap
 //= require adminlte/app
 //= require wild_compass
@@ -50,10 +51,8 @@
 
 $(document).ready(function() {
   $("input:text").attr("autocomplete", "off");
+  $("#timeline").tablesorter();
 });
-
-
-
 
 (function ($, window) {
     

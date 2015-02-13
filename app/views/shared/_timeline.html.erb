@@ -6,47 +6,50 @@
   
   <div class="box-body">
     <table id="timeline" class="table table-hover">
+      <thead>
+        <tr>
+          <th class="col-md-2">Event</th>
+          <th class="col-md-3">Target</th>
+          <th class="col-md-1"></th>
+          <th class="col-md-2">Weight</th>
+          <th class="col-md-1"></th>
+          <th class="col-md-3">Source</th>
+        </tr>
+      </thead>
 
-      <tr>
-        <th class="col-md-2">Event</th>
-        <th class="col-md-3">Target</th>
-        <th class="col-md-1"></th>
-        <th class="col-md-2">Weight</th>
-        <th class="col-md-1"></th>
-        <th class="col-md-3">Source</th>
-      </tr>
+      <tbody>
+        <% if    described.kind_of? Lot %>
+          <%= render partial: 'shared/timeline/lot',        locals: { lot:  described } %>
+        <% elsif described.respond_to? :lots %>
+          <%= render partial: 'shared/timeline/lots',       locals: { lots: described.lots } %>
+        <% elsif described.respond_to? :lot %>
+          <%= render partial: 'shared/timeline/lot',        locals: { lot:  described.lot } %>
+        <% end %>
+        
+        <% if    described.kind_of? Container %>
+          <%= render partial: 'shared/timeline/container',  locals: { container:  described } %>
+        <% elsif described.respond_to? :containers %>
+          <%= render partial: 'shared/timeline/containers', locals: { containers: described.containers } %>
+        <% elsif described.respond_to? :container %>
+          <%= render partial: 'shared/timeline/container',  locals: { container:  described.container } %>
+        <% end %>
 
-      <% if    described.kind_of? Lot %>
-        <%= render partial: 'shared/timeline/lot',        locals: { lot:  described } %>
-      <% elsif described.respond_to? :lots %>
-        <%= render partial: 'shared/timeline/lots',       locals: { lots: described.lots } %>
-      <% elsif described.respond_to? :lot %>
-        <%= render partial: 'shared/timeline/lot',        locals: { lot:  described.lot } %>
-      <% end %>
-      
-      <% if    described.kind_of? Container %>
-        <%= render partial: 'shared/timeline/container',  locals: { container:  described } %>
-      <% elsif described.respond_to? :containers %>
-        <%= render partial: 'shared/timeline/containers', locals: { containers: described.containers } %>
-      <% elsif described.respond_to? :container %>
-        <%= render partial: 'shared/timeline/container',  locals: { container:  described.container } %>
-      <% end %>
-
-      <% if    described.kind_of? Bag %>
-        <%= render partial: 'shared/timeline/bag',        locals: { bag:  described } %>
-      <% elsif described.respond_to? :bags %>
-        <%= render partial: 'shared/timeline/bags',       locals: { bags: described.bags } %>
-      <% elsif described.respond_to? :bag %>
-        <%= render partial: 'shared/timeline/bag',        locals: { bag:  described.bag } %>
-      <% end %>
-      
-      <% if    described.kind_of? Jar %>
-        <%= render partial: 'shared/timeline/jar',        locals: { jar:  described } %>
-      <% elsif described.respond_to? :jars %>
-        <%= render partial: 'shared/timeline/jars',       locals: { jars: described.jars } %>
-      <% elsif described.respond_to? :jar %>
-        <%= render partial: 'shared/timeline/jar',        locals: { jar:  described.jar } %>
-      <% end %>
+        <% if    described.kind_of? Bag %>
+          <%= render partial: 'shared/timeline/bag',        locals: { bag:  described } %>
+        <% elsif described.respond_to? :bags %>
+          <%= render partial: 'shared/timeline/bags',       locals: { bags: described.bags } %>
+        <% elsif described.respond_to? :bag %>
+          <%= render partial: 'shared/timeline/bag',        locals: { bag:  described.bag } %>
+        <% end %>
+        
+        <% if    described.kind_of? Jar %>
+          <%= render partial: 'shared/timeline/jar',        locals: { jar:  described } %>
+        <% elsif described.respond_to? :jars %>
+          <%= render partial: 'shared/timeline/jars',       locals: { jars: described.jars } %>
+        <% elsif described.respond_to? :jar %>
+          <%= render partial: 'shared/timeline/jar',        locals: { jar:  described.jar } %>
+        <% end %>
+      </tbody>
       
     </table>
   </div>

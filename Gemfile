@@ -95,3 +95,6 @@ gem 'select2-rails'
 gem 'unicorn', group: :production
 
 gem 'rack-timeout', group: :production
+
+# Table sorter
+gem 'jquery-tablesorter'
