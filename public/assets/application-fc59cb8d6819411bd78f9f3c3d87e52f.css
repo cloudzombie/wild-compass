@@ -34282,6 +34282,11 @@ div.box-default > div.box-header {
   color: #3c8dbc;
 }
 
+/* line 101, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.table-borderless td {
+  border: none;
+}
+
 /* line 5, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/bags.css.scss */
 .origin-table > tr, th, td {
   padding: 5px;
