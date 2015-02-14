@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>THC-ICS REPORT</title>
+    <title>THC-ICS <%= controller_name.titleize %> Report</title>
     <%= wicked_pdf_stylesheet_link_tag 'application' %>
     
     <script src="//code.jquery.com/jquery-2.1.3.min.js/"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <style>
+      .table-borderless table,
+      .table-borderless tr,
+      .table-borderless td,
+      .table-borderless th,
+      .table-borderless tbody tr td,
+      .table-borderless thead tr th {
+        border: none !important;
+      }
+    </style>
   </head>
 
   <body>
     <section id="report-header" class="col-md-10 col-md-offset-1" style="padding-top: 50px; padding-bottom: 50px;">
-      <table class="table table-bordered">
+      <table class="table table-borderless">
         <tr>
           <th rowspan="2" class="col-md-3 text-center">
-            <%= image_tag '//ics.thc.vc/logo-black.png', width: 80, height: 80 %><br>
-            THC-ICS REPORT<br>
-            <small>The Hydropothecary Corp.</small>
+            <%= image_tag '//ics.thc.vc/logo-black.png', width: 180, height: 80 %><br>
+            THC-ICS <%= controller_name.titleize %> Report
           </th>
-          <th class="col-md-9 text-right">Date</th>
+          <th class="col-md-9 text-right"><%= Time.now.strftime("%m/%d/%Y") %></th>
         </tr>
 
         <tr>
-          <td class="text-right"><%= Time.now %></td>
+          
         </tr>
       </table>
     </section>
