@@ -64,7 +64,7 @@ module ApplicationHelper
   end
 
   def date_for(datetime)
-    datetime.strftime("%m/%d/%Y %H:%M") 
+    datetime.strftime("%m/%d/%Y %H:%M")
   rescue
     ''
   end
