@@ -6,9 +6,9 @@ class ContainersController < ApplicationController
 
   expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
 
-  expose(:containers) { Container::Stage2Container.search(params[:search])
-                                                  .sort(sort_column, sort_direction)
-                                                  .page(params[:page]) }
+  expose(:containers) { Container.search(params[:search])
+                                 .sort(sort_column, sort_direction)
+                                 .page(params[:page]) }
 
   expose(:plants) { Plant.order(id: :asc) }
 
