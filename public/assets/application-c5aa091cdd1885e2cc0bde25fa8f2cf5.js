@@ -24413,12 +24413,6 @@ var saveAs = saveAs
         headers: {
           0: {
             sorter: "shortDate"
-          },
-          2: {
-            sorter: false
-          },
-          4: {
-            sorter: false
           }
         },
         sortList: [[0, 0]],
