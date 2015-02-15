@@ -18,7 +18,7 @@
           </th>
           <% strains.each do |strain| %>
           <td>
-            <%= bag.current_weight.to_s + ' g' if bag.strain == strain %> 
+            <%= bag.initial_weight.to_s + ' g' if bag.strain == strain %> 
           </td>
           <% end %>
           </tr>
@@ -29,7 +29,7 @@
           <td>
             <% w = 0 %>
             <% strain.bags.where(tested: true).each do |bag| %>
-            <% w += bag.current_weight %>
+            <% w += bag.initial_weight %>
             <% end %>
             <%= w.to_s + ' g' %>
           </td>
