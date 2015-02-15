@@ -1,35 +1,7 @@
 <% container.transactions.each do |transaction| %>
-  <tr class="<%= !transaction.target.nil? && transaction.target.kind_of?(Waste) ? 'danger' : '' %>">
+  <tr>
     <td>
       <%= date_for transaction.event %>
-    </td>
-    
-    <td>
-      <% if transaction.target.kind_of? Waste %>
-        <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-danger" %>
-      <% elsif transaction.target.kind_of? Harvest %>
-        <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-success" %>
-      <% elsif transaction.target.kind_of? Plant %>
-        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-success" %>
-      <% elsif transaction.target.kind_of? Container %>
-        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-primary" %>
-      <% elsif transaction.target.kind_of? Bag %>
-        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-warning" %>
-      <% else %>
-        <%= "#{transaction.target}" %>
-      <% end %>
-    </td>
-    
-    <td>
-      <%= fa_icon 'arrow-left' %>
-    </td>
-    
-    <td>
-      <%= weight_for transaction.weight %>
-    </td>
-    
-    <td>
-      <%= fa_icon 'arrow-left' %>
     </td>
     
     <td>
@@ -47,33 +19,45 @@
         <%= "#{transaction.source}" %>
       <% end %>
     </td>
+    
+    <td>
+      
+    </td>
+    
+    <td>
+      <%= weight_for transaction.weight %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <%= date_for transaction.event %>
+    </td>
+
+    <td>
+      <% if transaction.target.kind_of? Waste %>
+        <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-danger" %>
+      <% elsif transaction.target.kind_of? Harvest %>
+        <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-success" %>
+      <% elsif transaction.target.kind_of? Plant %>
+        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-success" %>
+      <% elsif transaction.target.kind_of? Container %>
+        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-primary" %>
+      <% elsif transaction.target.kind_of? Bag %>
+        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-warning" %>
+      <% else %>
+        <%= "#{transaction.target}" %>
+      <% end %>
+    </td>
+    
+    <td>
+      <%= weight_for transaction.weight %>
+    </td>
+    
+    <td>
+      
+    </td>
   </tr>
 <% end %>
 
-<% if container.water_loss && container.water_loss > 0.0 %>
-  <tr>
-    <td>
-      <%= date_for container.processing_completed_at %>
-    </td>
-    
-    <td>
-      <%= link_to 'Water Loss', '#', class: 'btn-sm btn-flat btn-danger' %>
-    </td>
-    
-    <td>
-      <%= fa_icon 'arrow-left' %>
-    </td>
-    
-    <td>
-      <%= weight_for container.water_loss %>
-    </td>
-    
-    <td>
-      <%= fa_icon 'arrow-left' %>
-    </td>
-    
-    <td>
-      <%= link_to "#{container}", container, class: 'btn-sm btn-flat btn-primary' %>
-    </td>
-  </tr>
-<% end %>
+<%= render 'shared/timeline/container/water_loss', container: container %>
