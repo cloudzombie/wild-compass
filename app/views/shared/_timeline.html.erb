@@ -20,11 +20,12 @@
       <tbody>
         <% if    described.kind_of? Lot %>
           <%= render partial: 'shared/timeline/lot',        locals: { lot:  described } %>
-        <% elsif described.respond_to? :lots %>
-          <%= render partial: 'shared/timeline/lots',       locals: { lots: described.lots } %>
-        <% elsif described.respond_to? :lot %>
-          <%= render partial: 'shared/timeline/lot',        locals: { lot:  described.lot } %>
         <% end %>
+        <%# elsif described.respond_to? :lots %>
+          <%# render partial: 'shared/timeline/lots',       locals: { lots: described.lots } %>
+        <%# elsif described.respond_to? :lot %>
+          <%# render partial: 'shared/timeline/lot',        locals: { lot:  described.lot } %>
+        <%# end %>
         
         <% if    described.kind_of? Container %>
           <%= render partial: 'shared/timeline/container',  locals: { container:  described } %>
