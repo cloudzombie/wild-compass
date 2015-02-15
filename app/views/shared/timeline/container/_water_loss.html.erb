@@ -5,6 +5,24 @@
     </td>
     
     <td>
+      <%= link_to "#{container}", container, class: 'btn-sm btn-flat btn-primary' %>
+    </td>
+    
+    <td>
+      
+    </td>
+    
+    <td>
+      <%= weight_for container.water_loss %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <%= date_for container.processing_completed_at %>
+    </td>
+    
+    <td>
       <%= link_to 'Water Loss', '#', class: 'btn-sm btn-flat btn-danger' %>
     </td>
     
@@ -13,7 +31,7 @@
     </td>
     
     <td>
-      <%= link_to "#{container}", container, class: 'btn-sm btn-flat btn-primary' %>
+      
     </td>
   </tr>
 <% end %>

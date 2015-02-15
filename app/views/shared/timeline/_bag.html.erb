@@ -4,6 +4,24 @@
   </td>
   
   <td>
+    <%= link_to "#{bag.container}", bag.container, class: "btn-sm btn-flat btn-primary" %>
+  </td>
+  
+  <td>
+    
+  </td>
+  
+  <td>
+    <%= weight_for bag.initial_weight %>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <%= date_for bag.created_at %>
+  </td>
+  
+  <td>
     <%= link_to "#{bag}".html_safe, bag, class: "btn-sm btn-flat btn-warning" %>
   </td>
   
@@ -12,6 +30,6 @@
   </td>
   
   <td>
-    <%= link_to bag.container, bag.container, class: "btn-sm btn-flat btn-primary" %>
+    
   </td>
 </tr>
