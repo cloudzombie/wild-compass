@@ -49,3 +49,31 @@
     </td>
   </tr>
 <% end %>
+
+<% if container.water_loss && container.water_loss > 0.0 %>
+  <tr>
+    <td>
+      <%= date_for container.processing_completed_at %>
+    </td>
+    
+    <td>
+      <%= link_to 'Water Loss', '#', class: 'btn-sm btn-flat btn-danger' %>
+    </td>
+    
+    <td>
+      <%= fa_icon 'arrow-left' %>
+    </td>
+    
+    <td>
+      <%= weight_for container.water_loss %>
+    </td>
+    
+    <td>
+      <%= fa_icon 'arrow-left' %>
+    </td>
+    
+    <td>
+      <%= link_to "#{container}", container, class: 'btn-sm btn-flat btn-warning' %>
+    </td>
+  </tr>
+<% end %>
