@@ -17,7 +17,7 @@
 //= require jquery-ui/core
 //= require jquery-tablesorter
 //= require bootstrap
-//= require adminlte/app
+//= require admin-lte
 //= require wild_compass
 //= require jspdf
 //= require jspdf.plugin.addimage
