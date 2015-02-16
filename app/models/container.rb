@@ -35,7 +35,9 @@ class Container < ActiveRecord::Base
       outgoing_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
     end
 
-    ( incoming_weight - outgoing_weight ) - bagged_dry_weight
+    water_loss = ( incoming_weight - outgoing_weight ) - bagged_dry_weight
+    return water_loss if water_loss > 0.0
+    0.0
   end
 
   
@@ -59,6 +61,14 @@ class Container < ActiveRecord::Base
 
 
   def current_weight
+    bagged_dry_weight = 0.0
+    
+    if bags.present?
+      bags.each do |b|
+        bagged_dry_weight += (b.initial_weight.nil? ? 0.0 : b.initial_weight)
+      end
+    end
+
     incoming_weight = 0.0
     incoming_transactions.each do |transaction|
       incoming_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
@@ -69,7 +79,14 @@ class Container < ActiveRecord::Base
       outgoing_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
     end
 
-    incoming_weight - outgoing_weight
+    ( incoming_weight - outgoing_weight ) - bagged_dry_weight
+  end
+
+  def initial_weight
+    return incoming_transactions.order(event: :asc).first.weight unless incoming_transactions.empty?
+    0.0
+  rescue
+    0.0
   end
 
 
