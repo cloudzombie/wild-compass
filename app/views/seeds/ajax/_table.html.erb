@@ -9,6 +9,7 @@
       <% end %>
     </td>
     <td><%= seed.stock %></td>
+    <td><%= seed.initial_stock %></td>
     <td><%= weight_for seed.try(:initial_weight) if seed.present? %></td>
     <td><%= weight_for seed.try(:current_weight) if seed.present? %></td>
     <td><%= date_for seed.try(:created_at) if seed.present? %></td>
