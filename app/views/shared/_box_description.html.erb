@@ -32,7 +32,7 @@
         </tr>
         <% end %>
 
-        <% if described.respond_to? :category %>        
+        <% if !described.kind_of?(Container) && described.respond_to?(:category) %>        
         <tr>
           <th>Category :</th>
           <td><%= category_for described.category %></td>
