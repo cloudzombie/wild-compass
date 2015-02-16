@@ -10,15 +10,15 @@
         <tr>
           <th class="col-md-3">Event</th>
           <th class="col-md-3">Object</th>
-          <th class="col-md-3">Debit</th>
-          <th class="col-md-3">Credit</th>
+          <th class="col-md-3">Debit (g)</th>
+          <th class="col-md-3">Credit (g)</th>
         </tr>
       </thead>
 
       <tbody>
-        <% if    described.kind_of? Lot %>
-          <%= render partial: 'shared/timeline/lot',        locals: { lot:  described } %>
-        <% end %>
+        <%# if    described.kind_of? Lot %>
+          <%# render partial: 'shared/timeline/lot',        locals: { lot:  described } %>
+        <%# end %>
         <%# elsif described.respond_to? :lots %>
           <%# render partial: 'shared/timeline/lots',       locals: { lots: described.lots } %>
         <%# elsif described.respond_to? :lot %>

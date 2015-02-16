@@ -8,11 +8,11 @@
   </td>
 
   <td>
-    
+    <%= weight_for jar.current_weight, '' %>
   </td>
-  
+
   <td>
-    <%= weight_for jar.current_weight %>
+    
   </td>
 </tr>
 
@@ -24,12 +24,12 @@
   <td>
     <%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %>
   </td>
-
-  <td>
-    <%= weight_for jar.current_weight %>
-  </td>
   
   <td>
     
+  </td>
+
+  <td>
+    <%= weight_for jar.current_weight, '' %>
   </td>
 </tr>
