@@ -35,9 +35,9 @@ class Container < ActiveRecord::Base
       outgoing_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
     end
 
-    water_loss = ( incoming_weight - outgoing_weight ) - bagged_dry_weight
-    return water_loss if water_loss > 0.0
-    0.0
+    loss = ( incoming_weight - outgoing_weight ) - bagged_dry_weight
+    update(water_loss: loss) if self[:water_loss] != loss
+    self[:water_loss]
   end
 
   
@@ -53,6 +53,10 @@ class Container < ActiveRecord::Base
   def outgoing_transactions
     Transaction.where('source_id = ? AND source_type = ?', id, self.class)
   end
+
+  has_many :incoming_transactions, as: 'source', dependent: :destroy
+
+  has_many :outgoing_transactions, as: 'target', dependent: :destroy
 
   def transactions
     Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class)

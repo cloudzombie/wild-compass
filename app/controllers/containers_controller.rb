@@ -1,8 +1,7 @@
 class ContainersController < ApplicationController
   include Authorizable
   include SetWeightable
-  
-  helper_method :sort_column, :sort_direction
+  include SetSortable
 
   expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
 
@@ -53,16 +52,6 @@ class ContainersController < ApplicationController
 
     def container_params
       params.require(:container).permit(:name, :lot_id, :location_id, :category, :current_weight, :initial_weight, :weight, :type, { plant_ids: [] })
-    end
-
-    # Set column to sort in order.
-    def sort_column
-      %w(id lot_id strain category location name initial_weight current_weight created_at updated_at container_id).include?(params[:sort]) ? params[:sort] : 'created_at'
-    end
-
-    # Set sort direction to ascending or descending.
-    def sort_direction
-      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
     
 end
