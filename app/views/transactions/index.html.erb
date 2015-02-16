@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Event</th>
       <th>Source</th>
       <th>Target</th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @transactions.each do |transaction| %>
       <tr>
+        <td><%= transaction.id %></td>
         <td><%= transaction.event %></td>
         <td><%= transaction.source %></td>
         <td><%= transaction.target %></td>
