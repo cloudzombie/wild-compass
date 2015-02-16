@@ -3,6 +3,8 @@
     <td>
       <%= date_for transaction.event %>
     </td>
+
+    <td><%= link_to transaction.id, transaction %></td>
     
     <td>
       <% if transaction.source.kind_of? Waste %>
@@ -33,6 +35,8 @@
     <td>
       <%= date_for transaction.event %>
     </td>
+
+    <td><%= link_to transaction.id, transaction %></td>
 
     <td>
       <% if transaction.target.kind_of? Waste %>
