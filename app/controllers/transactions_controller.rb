@@ -42,6 +42,6 @@ class TransactionsController < ApplicationController
     end
 
     def transaction_params
-      params.require(:transaction).permit(:event, :source_id, :target_id, :weight)
+      params.require(:transaction).permit(:event, :source_type, :source_id, :target_type, :target_id, :weight)
     end
 end
