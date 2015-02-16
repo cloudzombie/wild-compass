@@ -8,40 +8,9 @@
   </div> 
   
   <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label :name, 'ID' %>
     <%= f.text_field :name, class: 'form-control' %>
     <%= display_error_for container, :name %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :type %>
-    <%= f.select :type, [
-          'Container::Stage2Container::BudsContainer',
-          'Container::Stage2Container::TrimContainer',
-          'Container::Stage1Container::UnprocessedContainer',
-          'Container::Stage1Container::BudsOnStemContainer',
-          'Container::Stage1Container::TrimContainer'
-        ], { selected: container.type }, class: 'form-control' %>
-    <%= display_error_for container, :type %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :category, 'Type' %>
-    <%= f.select :category, ['Buds', 'Trim', 'Unprocessed', 'BudsOnStem'],
-        { selected: container.category }, class: 'form-control' %>
-    <%= display_error_for container, :category %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :initial_weight %>
-    <%= f.text_field :initial_weight, class: 'form-control', value: weight_for(container.initial_weight, '') %>
-    <%= display_error_for container, :initial_weight %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :current_weight %>
-    <%= f.text_field :current_weight, class: 'form-control', value: weight_for(container.current_weight, '') %>
-    <%= display_error_for container, :current_weight %>
   </div>
 
   <div class="form-group">

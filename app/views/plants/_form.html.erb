@@ -1,44 +1,56 @@
 <%= form_for(plant) do |f| %>
 
   <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label :name, 'ID' %>
     <%= f.text_field :name, class: 'form-control' %>
     <%= display_error_for plant, :name %>
   </div>
 
   <div class="form-group">
+    <%= f.label :type %>
+    <%= f.select :type, [
+          'Plant::ClonePlant',
+          'Plant::BabyPlant',
+          'Plant::MotherPlant'
+        ], { selected: plant.type }, class: 'form-control' %>
+    <%= display_error_for plant, :type %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :location_id %>
-    <%= f.collection_select(:location_id, Location.all, :id, :to_s, {}, { class: 'form-control' }) %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :plant_id, 'Origin' %>
-    <%= f.collection_select(:plant_id, Plant.all, :id, :to_s, {}, { class: 'form-control' }) %>
-    <%= display_error_for plant, :plant_id %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :seed_id, 'Origin' %>
-    <%= f.collection_select(:seed_id, Seed.all, :id, :to_s, {}, { class: 'form-control' }) %>
-    <%= display_error_for plant, :seed_id %>
+    <%= f.collection_select(:location_id, Location.all, :id, :to_s,
+        { selected: plant.location_id }, { class: 'form-control' }) %>
   </div>
 
   <div class="form-group">
     <%= f.label :strain_id %>
-    <%= f.collection_select(:strain_id, Strain.all, :id, :to_s, {}, { class: 'form-control' }) %>
+    <%= f.collection_select(:strain_id, Strain.all, :id, :to_s,
+        { selected: plant.strain_id }, { class: 'form-control' }) %>
     <%= display_error_for plant, :strain_id %>
   </div>
 
   <div class="form-group">
     <%= f.label :format_id %>
-    <%= f.collection_select(:format_id, Format.all, :id, :to_s, {}, { class: 'form-control' }) %>
+    <%= f.collection_select(:format_id, Format.all, :id, :to_s,
+        { selected: plant.format_id }, { class: 'form-control' }) %>
     <%= display_error_for plant, :format_id %>
   </div>
 
   <div class="form-group">
-    <%= f.label :status %>
-    <%= f.collection_select(:status_id, Status.all, :id, :to_s, {}, { class: 'form-control' }) %>
-    <%= display_error_for plant, :status %>
+    <%= f.label :status_id %>
+    <%= f.collection_select(:status_id, Status.all, :id, :to_s,
+        { selected: plant.status_id }, { class: 'form-control' }) %>
+    <%= display_error_for plant, :status_id %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :harvested_at %><br>
+    <%= f.datetime_select :harvested_at, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :destroyed_at %><br>
+    <%= f.datetime_select :destroyed_at, class: 'form-control' %>
   </div>
   
   <div class="input-group">
