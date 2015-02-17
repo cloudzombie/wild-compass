@@ -99,7 +99,7 @@ class BagsController < ApplicationController
       params.require(:bag).permit(
         :quantity,     :weight, :message,        :initial_weight,
         :container_id, :name,   :current_weight, :bin_id,
-        :lot_id,       :tare_weight
+        :lot_id,       :tare_weight, :packaged_at
       )
     end
 
