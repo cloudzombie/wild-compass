@@ -20,7 +20,7 @@
           <th class="col-md-2">
             <%= sortable :strain_id %>
             <%= select_tag :strain_filter,
-                options_from_collection_for_select(Strain.all, "id", "name"),
+                options_from_collection_for_select(Strain.all, "id", "acronym"),
                 selected: Strain.first,
                 class: 'filter form-control',
                 id: 'strain-filter',
@@ -30,8 +30,8 @@
           <th class="col-md-2">
             <%= sortable :status_id %>
             <%= select_tag :status_filter,
-                options_from_collection_for_select(Format.all, "id", "name"),
-                selected: Format.first,
+                options_from_collection_for_select(Status.all, "id", "name"),
+                selected: Status.first,
                 class: 'filter form-control',
                 id: 'status-filter',
                 data: { url: inventory_plants_path } %>
@@ -40,8 +40,8 @@
           <th class="col-md-2">
             <%= sortable :format_id %>
             <%= select_tag :format_filter,
-                options_from_collection_for_select(Status.all, "id", "name"),
-                selected: Status.first,
+                options_from_collection_for_select(Format.all, "id", "name"),
+                selected: Format.first,
                 class: 'filter form-control',
                 id: 'format-filter',
                 data: { url: inventory_plants_path } %>
@@ -50,7 +50,7 @@
           <th class="col-md-2">
             <%= sortable :type %>
             <%= select_tag :type_filter,
-                ['Plant', 'Plant::BabyPlant', 'Plant::ClonePlant', 'Plant::MotherPlant'],
+                options_for_select(['Plant', 'Plant::BabyPlant', 'Plant::ClonePlant', 'Plant::MotherPlant']),
                 selected: 'Plant',
                 class: 'filter form-control',
                 id: 'type-filter',
