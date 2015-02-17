@@ -19,12 +19,12 @@
           <th><%= sortable :format_id %></th>
         </tr>
 
-        <% clones.each do |plant| %>
+        <% clones.each do |clone| %>
           <tr>
-            <td><%= plant %></td>
-            <td><%= strain_for plant.strain %></td>
-            <td><%= plant.status %></td>
-            <td><%= format_for plant.format %></td>
+            <td><%= clone %></td>
+            <td><%= strain_for clone.strain %></td>
+            <td><%= clone.status %></td>
+            <td><%= format_for clone.format %></td>
           </tr>
         <% end %>
       </table>

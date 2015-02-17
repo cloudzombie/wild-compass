@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get 'inventory/plants/mothers/download', to: 'inventory/plants/mothers#home'
   get 'inventory/plants/clones',           to: 'inventory/plants/clones#home'
   get 'inventory/plants/clones/download',  to: 'inventory/plants/clones#home'
+  get 'inventory/plants/babies',           to: 'inventory/plants/babies#home'
+  get 'inventory/plants/babies/download',  to: 'inventory/plants/babies#home'
 
   # Users and sessions
   devise_for :users, controllers: { sessions:       'users/sessions',
