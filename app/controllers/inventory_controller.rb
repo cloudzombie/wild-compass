@@ -14,6 +14,12 @@ class InventoryController < ApplicationController
       format.html
       format.pdf do
         render( pdf:          'report.pdf',
+                margin: {
+                  top: 25,
+                  bottom: 25,
+                  left: 25,
+                  right: 25
+                },
                 show_as_html:  params[:debug].present?,
                 disposition:  'inline',
                 template:     "inventory/report/#{controller_name}.pdf.erb",
