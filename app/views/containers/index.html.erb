@@ -30,23 +30,9 @@
             <th><%= sortable :updated_at %></th>
             <th>Actions </th>
           </tr>
-          <tbody id="table">
-            <%= render 'containers/ajax/table' %>
-          </tbody>
-          <tfoot>
-            <td></td>
-            <th>Total</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><%= weight_for total_initial_weight, '' %></td>
-            <td><%= weight_for total_current_weight, '' %></td>
-            <td><%= weight_for total_water_loss, '' %></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tfoot>
+          
+          <%= render 'containers/ajax/table' %>
+          
         </table>
       </div><!-- /.box-body -->
     </div>

@@ -1,3 +1,4 @@
+<tbody id="table">
 <% containers.each do |container| %>
   <tr>
     <td><%# check_box_tag :accept %></td>
@@ -20,3 +21,17 @@
     </td>
   </tr>
 <% end %>
+</tbody>
+<tfoot>
+  <th colspan="2">Total</th>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td><%= weight_for containers.sum(:initial_weight), '' %></td>
+  <td><%= weight_for containers.sum(:current_weight), '' %></td>
+  <td><%= weight_for containers.sum(:water_loss), '' %></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tfoot>
