@@ -13,11 +13,11 @@
     <div role="tabpanel" class="tab-pane active" id="plants">
       <table class="table table-striped">
         <tr>
-          <th class="col-md-3">
+          <th class="col-md-2">
             <%= sortable :name, 'ID' %>
           </th>
 
-          <th class="col-md-3">
+          <th class="col-md-2">
             <%= sortable :strain_id %>
             <%= select_tag :strain_filter,
                 options_from_collection_for_select(Strain.all, "id", "name"),
@@ -27,7 +27,7 @@
                 data: { url: inventory_plants_path } %>
           </th>
 
-          <th class="col-md-3">
+          <th class="col-md-2">
             <%= sortable :status_id %>
             <%= select_tag :status_filter,
                 options_from_collection_for_select(Format.all, "id", "name"),
@@ -37,13 +37,23 @@
                 data: { url: inventory_plants_path } %>
           </th>
 
-          <th class="col-md-3">
+          <th class="col-md-2">
             <%= sortable :format_id %>
             <%= select_tag :format_filter,
                 options_from_collection_for_select(Status.all, "id", "name"),
                 selected: Status.first,
                 class: 'filter form-control',
                 id: 'format-filter',
+                data: { url: inventory_plants_path } %>
+          </th>
+
+          <th class="col-md-2">
+            <%= sortable :type %>
+            <%= select_tag :type_filter,
+                ['Plant', 'Plant::BabyPlant', 'Plant::ClonePlant', 'Plant::MotherPlant'],
+                selected: 'Plant',
+                class: 'filter form-control',
+                id: 'type-filter',
                 data: { url: inventory_plants_path } %>
           </th>
         </tr>
@@ -54,6 +64,7 @@
             <td><%= strain_for plant.strain %></td>
             <td><%= plant.status %></td>
             <td><%= format_for plant.format %></td>
+            <td><%= plant.type %></td>
           </tr>
         <% end %>
       </table>
