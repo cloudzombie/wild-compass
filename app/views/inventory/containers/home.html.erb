@@ -1,5 +1,9 @@
 <div role="tabpanel">
-  <%= link_to 'Print PDF', inventory_containers_download_path, class: 'btn btn-primary pull-right' %>
+  <% if Rails.env.development? %>
+  <%= link_to 'Print PDF', inventory_containers_path(format: :pdf, debug: 1), class: 'btn btn-primary pull-right' %>
+  <% else %>
+  <%= link_to 'Print PDF', inventory_containers_path(format: :pdf), class: 'btn btn-primary pull-right' %>
+  <% end %>
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
   
@@ -14,6 +18,7 @@
           <th><%= sortable :category_id %></th>
           <th><%= sortable :initial_weight, 'Initial Weight (g)' %></th>
           <th><%= sortable :current_weight, 'Current Weight (g)' %></th>
+          <th><%= sortable :processing_waste_produced, 'Waste (g)' %></th>
         </tr>
 
         <% containers.each do |container| %>
@@ -23,6 +28,7 @@
             <td><%= container.try(:category) %></td>
             <td><%= weight_for container.try(:initial_weight), '' %></td>
             <td><%= weight_for container.try(:current_weight), '' %></td>
+            <td><%= weight_for container.try(:processing_waste_produced), '' %></td>
           </tr>
         <% end %>
       </table>

@@ -1,0 +1,17 @@
+<table class="table table-bordered">
+  <tr>
+    <th class="col-md-3">ID</th>
+    <th class="col-md-3">Strain</th>
+    <th class="col-md-3">Status</th>
+    <th class="col-md-3">Format</th>
+  </tr>
+
+  <% clones.each do |clone| %>
+    <tr>
+      <td><%= clone %></td>
+      <td><%= clone.strain %></td>
+      <td><%= clone.status %></td>
+      <td><%= clone.format %></td>
+    </tr>
+  <% end %>
+</table>

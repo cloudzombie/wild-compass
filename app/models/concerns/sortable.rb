@@ -5,7 +5,7 @@ module Sortable
     def sort(attribute, direction)
       return order(attribute.to_sym => direction.to_sym) if column_names.include?(attribute.to_s)
       return by_delegated_attribute(attribute, direction) if respond_to?(attribute.to_sym)
-      order(id: :asc)
+      all
     end
 
     private
