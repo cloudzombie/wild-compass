@@ -3,6 +3,8 @@ class ContainersController < ApplicationController
   include SetWeightable
   include SetSortable
 
+  helper_method :total_water_loss, :total_initial_weight, :total_current_weight
+
   expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
 
   expose(:containers) { Container.search(params[:search])
@@ -52,6 +54,18 @@ class ContainersController < ApplicationController
 
     def container_params
       params.require(:container).permit(:name, :lot_id, :location_id, :weight, { plant_ids: [] })
+    end
+
+    def total_water_loss
+      containers.sum(:water_loss)
+    end
+
+    def total_initial_weight
+      containers.sum(:initial_weight)
+    end
+
+    def total_current_weight
+      containers.sum(:current_weight)
     end
     
 end
