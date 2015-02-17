@@ -1,5 +1,9 @@
 <div role="tabpanel">
-  <%= link_to 'Print PDF', inventory_plants_clones_download_path, class: 'btn btn-primary pull-right' %>
+  <% if Rails.env.development? %>
+  <%= link_to 'Print PDF', inventory_plants_clones_path(format: :pdf, debug: 1), class: 'btn btn-primary pull-right' %>
+  <% else %>
+  <%= link_to 'Print PDF', inventory_plants_clones_path(format: :pdf), class: 'btn btn-primary pull-right' %>
+  <% end %>
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
   

@@ -24269,12 +24269,12 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  $(function() {
+  $(document).ready(function() {
     $(document).on("click", "#sort th a", function() {
       $.getScript(this.href);
       return false;
     });
-    $("#search_form input").change(function() {
+    return $("#search_form input").change(function() {
       $.get($("#search_form").attr("action"), $("#search_form").serialize(), null, "script");
       return false;
     });

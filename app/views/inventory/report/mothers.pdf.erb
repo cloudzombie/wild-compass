@@ -1,0 +1,17 @@
+<table class="table table-bordered">
+  <tr>
+    <th class="col-md-3">ID</th>
+    <th class="col-md-3">Strain</th>
+    <th class="col-md-3">Status</th>
+    <th class="col-md-3">Format</th>
+  </tr>
+
+  <% mothers.each do |mother| %>
+    <tr>
+      <td><%= mother %></td>
+      <td><%= mother.strain %></td>
+      <td><%= mother.status %></td>
+      <td><%= mother.format %></td>
+    </tr>
+  <% end %>
+</table>
