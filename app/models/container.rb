@@ -59,25 +59,7 @@ class Container < ActiveRecord::Base
 
 
   def current_weight
-    bagged_dry_weight = 0.0
-    
-    if bags.present?
-      bags.each do |b|
-        bagged_dry_weight += (b.initial_weight.nil? ? 0.0 : b.initial_weight)
-      end
-    end
-
-    incoming_weight = 0.0
-    incoming_transactions.each do |transaction|
-      incoming_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
-    end
-
-    outgoing_weight = 0.0
-    outgoing_transactions.each do |transaction|
-      outgoing_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
-    end
-
-    weight = (( incoming_weight - outgoing_weight ) - bagged_dry_weight ) - water_loss
+    weight = incoming_weight - outgoing_weight - bagged_weight - water_loss
     # update(current_weight: weight) if self[:current_weight] != weight
     # self[:current_weight]
   end
