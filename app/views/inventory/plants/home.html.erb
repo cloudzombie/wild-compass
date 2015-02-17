@@ -13,10 +13,39 @@
     <div role="tabpanel" class="tab-pane active" id="plants">
       <table class="table table-striped">
         <tr>
-          <th><%= sortable :name, 'ID' %></th>
-          <th><%= sortable :strain_id %></th>
-          <th><%= sortable :status_id %></th>
-          <th><%= sortable :format_id %></th>
+          <th class="col-md-3">
+            <%= sortable :name, 'ID' %>
+          </th>
+
+          <th class="col-md-3">
+            <%= sortable :strain_id %>
+            <%= select_tag :strain_filter,
+                options_from_collection_for_select(Strain.all, "id", "name"),
+                selected: Strain.first,
+                class: 'filter form-control',
+                id: 'strain-filter',
+                data: { url: inventory_plants_path } %>
+          </th>
+
+          <th class="col-md-3">
+            <%= sortable :status_id %>
+            <%= select_tag :status_filter,
+                options_from_collection_for_select(Format.all, "id", "name"),
+                selected: Format.first,
+                class: 'filter form-control',
+                id: 'status-filter',
+                data: { url: inventory_plants_path } %>
+          </th>
+
+          <th class="col-md-3">
+            <%= sortable :format_id %>
+            <%= select_tag :format_filter,
+                options_from_collection_for_select(Status.all, "id", "name"),
+                selected: Status.first,
+                class: 'filter form-control',
+                id: 'format-filter',
+                data: { url: inventory_plants_path } %>
+          </th>
         </tr>
 
         <% plants.each do |plant| %>

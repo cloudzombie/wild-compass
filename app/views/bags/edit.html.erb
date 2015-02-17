@@ -1,39 +1,6 @@
 <h1>Editing bag</h1>
 
-<%= form_for(bag) do |f| %>
-  <div class="form-group">
-    <%= f.label :container_id %>
-    <%= f.collection_select :container_id, Container.all, :id, :name, {}, selected: params[:container_id], class: 'form-control' %>
-    <%= display_error_for bag, :container_id %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
-    <%= display_error_for bag, :name %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :initial_weight %>
-    <%= f.text_field :initial_weight, class: 'form-control', value: number_with_precision(bag.initial_weight, precision: 2) %>
-    <%= display_error_for bag, :initial_weight %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :current_weight %>
-    <%= f.text_field :current_weight, class: 'form-control', value: number_with_precision(bag.current_weight, precision: 2) %>
-    <%= display_error_for bag, :current_weight %>
-  </div>
-
-   <div class="form-group">
-    <%= f.label :location %>
-    <%= f.text_field :location, class: 'form-control' %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'Show', bag %> |
 <%= link_to 'Back', bags_path %>
