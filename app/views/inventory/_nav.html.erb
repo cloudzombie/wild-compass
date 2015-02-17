@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs" roles="tablist">
-  <li role="presentation" class="<%= params[:controller] == 'inventory' ? 'active' : '' %>">
-    <%= link_to 'Summary', inventory_path, role: 'tab' %>
-  </li>
+  <!-- <li role="presentation" class="<%# params[:controller] == 'inventory' ? 'active' : '' %>"> -->
+    <%# link_to 'Summary', inventory_path, role: 'tab' %>
+  <!-- </li> -->
 
   <li role="presentation" class="<%= params[:controller] == 'inventory/plants' ? 'active' : '' %>">
     <%= link_to 'Plants', inventory_plants_path, role: 'tab' %>

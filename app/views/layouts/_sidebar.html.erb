@@ -21,7 +21,7 @@
       </li> -->
 
       <li class="<%= params[:controller] == 'inventory' ? 'active' : nil %>">
-        <%= link_to "#{fa_icon('list')} <span>Inventory</span>".html_safe, inventory_path %>
+        <%= link_to "#{fa_icon('list')} <span>Inventory</span>".html_safe, inventory_plants_path %>
       </li>
 
       <li  class="<%= params[:controller] == 'orders' ? 'active' : nil %>">
