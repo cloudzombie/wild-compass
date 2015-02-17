@@ -4,6 +4,7 @@
     <th class="col-md-3">Strain</th>
     <th class="col-md-3">Status</th>
     <th class="col-md-3">Format</th>
+    <th class="col-md-3">Type</th>
   </tr>
 
   <% plants.each do |plant| %>
@@ -12,6 +13,7 @@
       <td><%= plant.strain %></td>
       <td><%= plant.status %></td>
       <td><%= plant.format %></td>
+      <td><%= plant.type %></td>
     </tr>
   <% end %>
 </table>
