@@ -34292,6 +34292,12 @@ div.box-default > div.box-header {
   border: none;
 }
 
+/* line 109, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.btn-sm {
+  line-height: 240%;
+  white-space: nowrap;
+}
+
 /* line 5, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/bags.css.scss */
 .origin-table > tr, th, td {
   padding: 5px;

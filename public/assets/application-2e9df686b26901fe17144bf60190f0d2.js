@@ -24009,7 +24009,17 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-
+  $(document).ready(function() {
+    $('#format-filter').change(function() {
+      return $.get($('#format-filter').data('url'));
+    });
+    $('#strain-filter').change(function() {
+      return $.get($('#strain-filter').data('url'));
+    });
+    return $('#status-filter').change(function() {
+      return $.get($('#status-filter').data('url'));
+    });
+  });
 
 }).call(this);
 (function() {
