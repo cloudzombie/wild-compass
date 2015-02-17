@@ -10,8 +10,8 @@ class Bag < ActiveRecord::Base
   include Sortable
   
   def update_category_and_strain
-    self[:category] = category
-    self[:strain] = strain
+    self[:category] = category.titleize
+    self[:strain] = strain.acronym.upcase
     save
   end
 
