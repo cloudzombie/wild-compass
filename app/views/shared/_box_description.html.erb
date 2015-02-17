@@ -39,7 +39,7 @@
         </tr>
         <% end %>
           
-        <% if described.respond_to? :initial_weight %>
+        <% if !described.kind_of?(Lot) && described.respond_to?(:initial_weight) %>
         <tr>
           <th>Initial Weight :</th>
           <td><%= weight_for described.initial_weight %></td>
@@ -53,19 +53,19 @@
         </tr>
         <% end %>
 
-        <% if described.respond_to? :created_at %>
-        <tr>
-          <th>Created At :</th>
-          <td><%= date_for described.created_at %></td>
-        </tr>
-        <% end %>
+        <%# if described.respond_to? :created_at %>
+        <!-- <tr> -->
+          <!-- <th>Created At :</th> -->
+          <!-- <td><%# date_for described.created_at %></td> -->
+        <!-- </tr> -->
+        <%# end %>
 
-        <% if described.respond_to? :updated_at %>
-        <tr>
-          <th>Updated At :</th>
-          <td><%= date_for described.updated_at %></td> 
-        </tr>
-        <% end %>
+        <%# if described.respond_to? :updated_at %>
+        <!-- <tr> -->
+          <!-- <th>Updated At :</th> -->
+          <!-- <td><%# date_for described.updated_at %></td>  -->
+        <!-- </tr> -->
+        <%# end %>
 
         <% if described.respond_to?(:water_loss) && described.water_loss > 0.0 %>
         <tr>
@@ -77,7 +77,7 @@
         </table>
       </div>
 
-      <% if described.respond_to?(:initial_weight) && described.respond_to?(:current_weight) %>
+      <% if !described.kind_of?(Lot) && described.respond_to?(:initial_weight) && described.respond_to?(:current_weight) %>
       <%= render 'shared/progress_bar', weightable: described, color: color %>
       <% end %>
 
