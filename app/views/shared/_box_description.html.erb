@@ -12,9 +12,15 @@
         <tr>
           <th>ID :</th>
           <% if described.respond_to? :name %>
-          <td><%= link_to "#{described.name}".upcase, described %></td>
+          <td><%= link_to "#{described.name}".upcase, described %>
+          <% if described.class == Bag then %>
+              <%= test_for described  %>
+              <%= archive_for described %>
+            <% end %></td>
           <% else %>
-          <td><%= link_to "#{described}".upcase, described %></td>
+          <td>
+            <%= link_to "#{described}".upcase, described %>
+          </td>
           <% end %>
         </tr>
 

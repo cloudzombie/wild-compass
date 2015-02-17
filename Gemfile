@@ -98,3 +98,5 @@ gem 'rack-timeout', group: :production
 
 # Table sorter
 gem 'jquery-tablesorter'
+
+
