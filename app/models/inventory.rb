@@ -1,41 +1,28 @@
 class Inventory < ActiveRecord::Base
 
-  @@cache            = {}
+  @@containers = Container.all
+  @@jars       = Jar.all
+  @@lots       = Lot.all
+  @@bags       = Bag.all
 
-  def self.total_weight
-    @@cache[:total_weight] = Lot.total_weight + Bag.total_weight + Jar.total_weight + Plant.total_weight unless @@cache[:total_weight]
+  def total_weight
+    containers.total_weight + bags.total_weight + jars.total_weight + lots.total_weight
   end
 
-  def self.plants
-    @@cache[:plants] = {} unless @@cache[:plants]
+  def containers
+    @@containers
   end
 
-  def self.jars
-    @@cache[:jars]   = {} unless @@cache[:jars]
+  def jars
+    @@jars
   end
 
-  def self.lots
-    @@cache[:lots]   = {} unless @@cache[:lots]
+  def lots
+    @@lots
   end
 
-  def self.bags
-    @@cache[:bags]   = {} unless @@cache[:bags]
-  end
-
-  def plants.total_weight
-    @@cache[:plants][:total_weight] = Plant.total_weight unless @@cache[:plants][:total_weight]
-  end
-
-  def lots.total_weight
-    @@cache[:lots][:total_weight] = Lot.total_weight unless @@cache[:lots][:total_weight]
-  end
-
-  def bags.total_weight
-    @@cache[:bags][:total_weight] = Bag.total_weight unless @@cache[:bags][:total_weight]
-  end
-
-  def jars.total_weight
-    @@cache[:jars][:total_weight] = Jar.total_weight unless @@cache[:jars][:total_weight]
+  def bags
+    @@bags
   end
   
 end

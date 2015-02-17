@@ -23,7 +23,12 @@
 
   <div class="form-group">
     <%= f.label :source_type %>
-    <%= f.text_field :source_type, class: 'form-control' %>
+    <%= f.select :source_type, [
+          'Container',
+          'Harvest',
+          'Waste'
+        ], { selected: @transaction.source_type }, class: 'form-control' %>
+    <%= display_error_for @transaction, :source_type %>
   </div>
   
   <div class="form-group">
@@ -33,7 +38,12 @@
 
   <div class="form-group">
     <%= f.label :target_type %>
-    <%= f.text_field :target_type, class: 'form-control' %>
+    <%= f.select :target_type, [
+          'Container',
+          'Harvest',
+          'Waste'
+        ], { selected: @transaction.target_type }, class: 'form-control' %>
+    <%= display_error_for @transaction, :target_type %>
   </div>
   
   <div class="form-group">

@@ -1,7 +1,5 @@
 class InventoryController < ApplicationController
   include Authorizable
-
-  helper_method :total_weight
   
   expose(:strains) { Strain.all }
 
@@ -31,13 +29,5 @@ class InventoryController < ApplicationController
   	pdf = WickedPdf.new.pdf_from_string(html)
   	send_data( pdf, filename: 'report.pdf', disposition: 'attachment' )
   end
-
-
-
-  private
-
-    def total_weight
-      Inventory.total_weight
-    end
     
 end
