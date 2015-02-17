@@ -43,7 +43,7 @@ class Bag < ActiveRecord::Base
 
   has_many :jars, -> { uniq }
 
-  has_many :plants, -> { uniq }, through: :lot
+  has_many :plants, -> { uniq }, through: :containers
 
   has_many :strains, -> { uniq }, through: :plants
 
