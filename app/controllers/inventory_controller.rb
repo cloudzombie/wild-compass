@@ -8,6 +8,8 @@ class InventoryController < ApplicationController
   expose(:categories) { ['Trim', 'Buds'] }
   
   expose(:brands) { Brand.all }
+
+  expose(:inventory) { Inventory.new }
   
   def home
     respond_to do |format|
@@ -35,7 +37,7 @@ class InventoryController < ApplicationController
   private
 
     def total_weight
-      Plant.total_weight + Bag.total_weight + Jar.total_weight + Lot.total_weight
+      Inventory.total_weight
     end
     
 end

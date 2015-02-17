@@ -36,8 +36,8 @@ class Container < ActiveRecord::Base
     end
 
     loss = ( incoming_weight - outgoing_weight ) - bagged_dry_weight
-    update(water_loss: loss) if self[:water_loss] != loss
-    self[:water_loss]
+    # update(water_loss: loss) if self[:water_loss] != loss
+    # self[:water_loss]
   end
 
   
@@ -84,14 +84,14 @@ class Container < ActiveRecord::Base
     end
 
     weight = (( incoming_weight - outgoing_weight ) - bagged_dry_weight ) - water_loss
-    update(current_weight: weight) if self[:current_weight] != weight
-    self[:current_weight]
+    # update(current_weight: weight) if self[:current_weight] != weight
+    # self[:current_weight]
   end
 
   def initial_weight
     weight = incoming_transactions.order(event: :asc).first.weight unless incoming_transactions.empty?
-    update(initial_weight: weight) if self[:initial_weight] != weight
-    self[:initial_weight]
+    # update(initial_weight: weight) if self[:initial_weight] != weight
+    # self[:initial_weight]
   end
 
 
