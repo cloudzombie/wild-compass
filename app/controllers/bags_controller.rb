@@ -4,6 +4,7 @@ class BagsController < ApplicationController
   include SetWeightable
   include SetRecallable
   include SetQuarantineable
+  include SetSortable
   include Scannable
 
   respond_to :html, :xml, :json
@@ -101,16 +102,6 @@ class BagsController < ApplicationController
         :container_id, :name,   :current_weight, :bin_id,
         :lot_id,       :tare_weight, :packaged_at
       )
-    end
-
-    # Set column to sort in order.
-    def sort_column
-      %w(id strain status category name initial_weight current_weight created_at updated_at lot_id tested).include?(params[:sort]) ? params[:sort] : 'name'
-    end
-
-    # Set sort direction to ascending or descending.
-    def sort_direction
-      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
 end
