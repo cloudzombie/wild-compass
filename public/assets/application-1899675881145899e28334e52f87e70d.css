@@ -34283,7 +34283,8 @@ div.box-default > div.box-header {
 }
 
 /* line 101, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
-.context-menu > ul > li > a.light-blue-link {
+1
+.context-menu   > ul > li > a.light-blue-link {
   color: #3c8dbc;
 }
 
@@ -34293,6 +34294,11 @@ div.box-default > div.box-header {
 }
 
 /* line 109, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.variance-outline {
+  background-color: #000;
+}
+
+/* line 113, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
 .btn-sm {
   line-height: 240%;
   white-space: nowrap;
@@ -34588,6 +34594,48 @@ ul.holder li.bit-box-focus a.closebutton, ul.holder li.bit-box-focus a.closebutt
 /* line 66, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/inventory.css.scss */
 .double-underlines {
   border-bottom: 3px double #444;
+}
+
+/* line 6, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/lots.css.scss */
+.brand-1 {
+  background: url("gm_logo_s.jpg");
+  height: 100%;
+  width: 100%;
+}
+
+/* line 12, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/lots.css.scss */
+.brand-2 {
+  background: url("md_logo_s.jpg");
+  height: 100%;
+  width: 100%;
+}
+
+/* line 18, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/lots.css.scss */
+.brand-3 {
+  background: url("after-dinner_logo_s.jpg");
+  height: 100%;
+  width: 100%;
+}
+
+/* line 24, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/lots.css.scss */
+.brand-4 {
+  background: url("bt_logo_s.jpg");
+  height: 100%;
+  width: 100%;
+}
+
+/* line 29, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/lots.css.scss */
+.transparent-box {
+  opacity: 0.95;
+  transition: opacity .15s ease-in-out;
+  -moz-transition: opacity .15s ease-in-out;
+  -webkit-transition: opacity .15s ease-in-out;
+  -o-transition: opacity .15s ease-in-out;
+}
+
+/* line 38, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/lots.css.scss */
+.transparent-box:hover {
+  opacity: 1;
 }
 
 /* line 5, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/plants.css.scss */
