@@ -1,5 +1,5 @@
 <% page_width = '100' %>
-<% cols_width = '16.67' %>
+<% cols_width = '12.5' %>
 
 <% bags.group_by { |bag| bag.strain }.each do |strains, bags| %>
   <table style="width: <%= page_width %>%;">
@@ -11,6 +11,8 @@
         <th style="width: <%= cols_width %>%;">Initial Weight (g)</th>
         <th style="width: <%= cols_width %>%;">Current Weight (g)</th>
         <th style="width: <%= cols_width %>%;">Variance</th>
+        <th style="width: <%= cols_width %>%;">Delta1</th>
+        <th style="width: <%= cols_width %>%;">Delta2</th>
       </tr>
     </thead>
   
@@ -22,7 +24,9 @@
           <td style="width: <%= cols_width %>%;"><%= bag.try(:category) %></td>
           <td style="width: <%= cols_width %>%;"><%= weight_for bag.try(:initial_weight), '' %></td>
           <td style="width: <%= cols_width %>%;"><%= weight_for bag.try(:current_weight), '' %></td>
-          <td style="width: <%= cols_width %>%;"><%= variance_for bag.try(:initial_weight), bag.try(:current_weight) %></td>
+          <td style="width: <%= cols_width %>%;"><%= bag.variance %></td>
+          <td style="width: <%= cols_width %>%;"><%= bag.delta %></td>
+          <td style="width: <%= cols_width %>%;"><%= bag.delta_old %></td>
         </tr>
       <% end %>
     </tbody>
@@ -34,7 +38,9 @@
         <td style="width: <%= cols_width %>%;"></td>
         <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :initial_weight), '' %></td>
         <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :current_weight), '' %></td>
-        <td style="width: <%= cols_width %>%;"></td>
+        <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :variance), '' %></td>
+        <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :delta), '' %></td>
+        <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :delta_old), '' %></td>
       </tr>
     </tfoot>
   </table>
@@ -42,13 +48,15 @@
 
 <table>
   <tfoot style="width: <%= page_width %>%;">
-      <tr style="width: <%= page_width %>%;">
-        <th style="width: <%= cols_width %>%;">Grand Total</th>
-        <td style="width: <%= cols_width %>%;"></td>
-        <td style="width: <%= cols_width %>%;"></td>
-        <td style="width: <%= cols_width %>%;"><%= weight_for bags.sum(:initial_weight), '' %></td>
-        <td style="width: <%= cols_width %>%;"><%= weight_for bags.sum(:current_weight), '' %></td>
-        <td style="width: <%= cols_width %>%;"></td>
-      </tr>
-    </tfoot>
-  </table>
+    <tr style="width: <%= page_width %>%;">
+      <th style="width: <%= cols_width %>%;">Grand Total</th>
+      <td style="width: <%= cols_width %>%;"></td>
+      <td style="width: <%= cols_width %>%;"></td>
+      <td style="width: <%= cols_width %>%;"><%= weight_for bags.sum(:initial_weight), '' %></td>
+      <td style="width: <%= cols_width %>%;"><%= weight_for bags.sum(:current_weight), '' %></td>
+      <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :variance), '' %></td>
+      <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :delta), '' %></td>
+      <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :delta_old), '' %></td>
+    </tr>
+  </tfoot>
+</table>

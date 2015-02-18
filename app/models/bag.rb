@@ -36,6 +36,31 @@ class Bag < ActiveRecord::Base
     by_brands(brand).by_buds.where(current_weight: weight..Float::INFINITY, sent_to_lab: false, tested: false, archived: false).first
   end
 
+  def variance
+    bags = Bag.where(tested: false, sent_to_lab: false)
+    (bags.sum(:current_weight) / bags.count) - current_weight
+  end
+
+  def delta
+    initial_weight - current_weight
+  end
+
+  def delta_old
+    if history.history_lines.reweight.first.nil?
+      first = 0.0
+    else
+      first = history.history_lines.reweight.first.quantity
+    end
+
+    if history.history_lines.reweight.last.nil?
+      last = 0.0
+    else
+      last = history.history_lines.reweight.last.quantity
+    end
+
+    first - last
+  end
+
 
 
   belongs_to :lot
