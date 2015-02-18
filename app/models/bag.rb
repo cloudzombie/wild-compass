@@ -40,12 +40,7 @@ class Bag < ActiveRecord::Base
     bags = Bag.where(tested: false, sent_to_lab: false)
     mean = bags.sum(:current_weight) / bags.count
 
-    total = 0.0
-    bags.each do |b|
-      total += (b.current_weight - mean)**2
-    end
-
-    update(variance: total)
+    update(variance: (current_weight - mean)**2)
   end
 
   def update_delta
