@@ -16,7 +16,7 @@
 
 <table style="width: <%= page_width %>%;">
   <tbody style="width: <%= page_width %>%;">
-    <% bags[0..25].each do |bag| %>
+    <% bags[0..20].each do |bag| %>
       <tr style="width: <%= page_width %>%;">
         <td style="width: <%= col_width %>%;">
           <%= bag.try(:to_s) %>
@@ -47,8 +47,8 @@
 </table>
 <div style="display: block; clear: both; page-break-after: always;"></div>
 
-<% if !bags[25..bags.length].nil? %>
-  <% bags[25..bags.length].each_slice(32) do |slice| %>
+<% if !bags[20..bags.length].nil? %>
+  <% bags[20..bags.length].each_slice(32) do |slice| %>
     <table style="width: <%= page_width %>%;">
       <tbody style="width: <%= page_width %>%;">
         <% slice.each do |bag| %>
