@@ -36,7 +36,7 @@ class Bag < ActiveRecord::Base
     by_brands(brand).by_buds.where(current_weight: weight..Float::INFINITY, sent_to_lab: false, tested: false, archived: false).first
   end
 
-  def variance
+  def update_variance
     bags = Bag.where(tested: false, sent_to_lab: false)
     sum = bags.sum(:current_weight)
     n = bags.count
@@ -46,14 +46,14 @@ class Bag < ActiveRecord::Base
     bags.each do |b|
       total += b.current_weight**2
     end
-    total - sum**2
+    update(variance: total - sum**2)
   end
 
-  def delta
-    initial_weight - current_weight
+  def update_delta
+    update(delta: initial_weight - current_weight)
   end
 
-  def delta_old
+  def update_delta_old
     if history.history_lines.reweight.first.nil?
       first = 0.0
     else
@@ -66,7 +66,7 @@ class Bag < ActiveRecord::Base
       last = history.history_lines.reweight.last.quantity
     end
 
-    first - last
+    update(delta_old: first - last)
   end
 
 

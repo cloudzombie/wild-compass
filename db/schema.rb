@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218155824) do
+ActiveRecord::Schema.define(version: 20150218210246) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(version: 20150218155824) do
     t.datetime "packaged_at"
     t.string   "strain"
     t.string   "category"
+    t.decimal  "variance",        precision: 16, scale: 4, default: 0.0
+    t.decimal  "delta",           precision: 16, scale: 4, default: 0.0
+    t.decimal  "delta_old",       precision: 16, scale: 4, default: 0.0
     t.index ["datamatrix_text", "datamatrix_hash"], :name => "index_bags_on_datamatrix_text_and_datamatrix_hash", :unique => true
   end
 
