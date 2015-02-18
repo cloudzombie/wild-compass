@@ -7,6 +7,8 @@
     <td>
       <% if transaction.source.kind_of? Waste %>
         <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-danger" %>
+      <% elsif transaction.source.kind_of? Transactions::Lab %>
+        <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-danger" %>
       <% elsif transaction.source.kind_of? Harvest %>
         <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-success" %>
       <% elsif transaction.source.kind_of? Plant %>
@@ -36,6 +38,8 @@
 
     <td>
       <% if transaction.target.kind_of? Waste %>
+        <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-danger" %>
+      <% elsif transaction.target.kind_of? Transactions::Lab %>
         <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-danger" %>
       <% elsif transaction.target.kind_of? Harvest %>
         <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-success" %>

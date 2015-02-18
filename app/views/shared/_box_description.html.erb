@@ -79,27 +79,13 @@
           </tr>
         <% end %>
 
-        <%# if described.respond_to? :seed %>
+        <% if described.respond_to?(:seed) %>
           <tr>
             <th>Seed :</th>
             <td><%= described.seed %></td>
           </tr>
-        <%# end %>
-        <!--
-        <% if described.respond_to? :created_at %>
-        <tr>
-          <th>Created At :</th>
-          <td><%= date_for described.created_at %></td>
-        </tr>
         <% end %>
-
-        <% if described.respond_to? :updated_at %>
-        <tr>
-          <th>Updated At :</th>
-          <td><%= date_for described.updated_at %></td> 
-        </tr>
-        <% end %>
-        -->
+        
         <% if described.respond_to?(:water_loss) && described.water_loss > 0.0 %>
         <tr>
           <th>Water Loss :</th>
