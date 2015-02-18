@@ -10,7 +10,6 @@
         <th style="width: <%= cols_width %>%;">Category</th>
         <th style="width: <%= cols_width %>%;">Initial Weight (g)</th>
         <th style="width: <%= cols_width %>%;">Current Weight (g)</th>
-        <th style="width: <%= cols_width %>%;">Variance</th>
         <th style="width: <%= cols_width %>%;">Delta1</th>
         <th style="width: <%= cols_width %>%;">Delta2</th>
       </tr>
@@ -24,7 +23,6 @@
           <td style="width: <%= cols_width %>%;"><%= bag.try(:category) %></td>
           <td style="width: <%= cols_width %>%;"><%= weight_for bag.try(:initial_weight), '' %></td>
           <td style="width: <%= cols_width %>%;"><%= weight_for bag.try(:current_weight), '' %></td>
-          <td style="width: <%= cols_width %>%;"><%= bag.variance %></td>
           <td style="width: <%= cols_width %>%;"><%= bag.delta %></td>
           <td style="width: <%= cols_width %>%;"><%= bag.delta_old %></td>
         </tr>
@@ -38,7 +36,6 @@
         <td style="width: <%= cols_width %>%;"></td>
         <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :initial_weight), '' %></td>
         <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :current_weight), '' %></td>
-        <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :variance), '' %></td>
         <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :delta), '' %></td>
         <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :delta_old), '' %></td>
       </tr>
@@ -54,7 +51,6 @@
       <td style="width: <%= cols_width %>%;"></td>
       <td style="width: <%= cols_width %>%;"><%= weight_for bags.sum(:initial_weight), '' %></td>
       <td style="width: <%= cols_width %>%;"><%= weight_for bags.sum(:current_weight), '' %></td>
-      <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :variance), '' %></td>
       <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :delta), '' %></td>
       <td style="width: <%= cols_width %>%;"><%= weight_for sum(bags, :delta_old), '' %></td>
     </tr>

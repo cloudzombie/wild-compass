@@ -26,7 +26,6 @@
             <th><%= sortable :category %></th>
             <th><%= sortable :initial_weight, 'Initial Weight (g)' %></th>
             <th><%= sortable :current_weight, 'Current Weight (g)' %></th>
-            <th><%= sortable :variance %></th>
             <th><%= sortable :delta_1 %></th>
             <th><%= sortable :delta_2 %></th>
           </tr>
@@ -40,7 +39,6 @@
               <td><%= category_for bag.try(:category) %></td>
               <td><%= weight_for bag.try(:initial_weight), '' %></td>
               <td><%= weight_for bag.try(:current_weight), '' %></td>
-              <td><%= weight_for bag.variance, '' %></td>
               <td><%= weight_for bag.delta, '' %></td>
               <td><%= weight_for bag.delta_old, '' %></td>
             </tr>
@@ -54,7 +52,6 @@
             <td></td>
             <td><%= weight_for bags.sum(:initial_weight), '' %></td>
             <td><%= weight_for bags.sum(:current_weight), '' %></td>
-            <td><%= weight_for sum(bags, :variance), '' %></td>
             <td><%= weight_for sum(bags, :delta), '' %></td>
             <td><%= weight_for sum(bags, :delta_old), '' %></td>
           </tr>
