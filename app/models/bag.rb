@@ -38,12 +38,15 @@ class Bag < ActiveRecord::Base
 
   def variance
     bags = Bag.where(tested: false, sent_to_lab: false)
-    mean = bags.sum(:current_weight) / bags.count
+    sum = bags.sum(:current_weight)
+    n = bags.count
+
+    mean = sum / n
     total = 0.0
     bags.each do |b|
-      total += (b.current_weight - mean)**2
+      total += b.current_weight**2
     end
-    total
+    total - sum**2
   end
 
   def delta
