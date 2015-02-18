@@ -3,11 +3,22 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
+  $('#id-filter').change ->
+    $('filter-form').submit
+
   $('#format-filter').change ->
-    $.get $('#format-filter').data('url')
+    $('filter-form').submit
 
   $('#strain-filter').change ->
-    $.get $('#strain-filter').data('url')
+    $('filter-form').submit
 
   $('#status-filter').change ->
-    $.get $('#status-filter').data('url')
+    $('filter-form').submit
+
+  $('#type-filter').change ->
+    $('filter-form').submit
+
+  $("#table-form").on("ajax:success", (e, data, status, xhr) ->
+    $("#table-form").append xhr.responseText
+  ).on "ajax:error", (e, xhr, status, error) ->
+    $("#table-form").append "<p>ERROR</p>"

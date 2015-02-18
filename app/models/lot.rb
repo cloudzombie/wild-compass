@@ -7,6 +7,7 @@ class Lot < ActiveRecord::Base
   include Quarantineable
   include Recallable
   include Sortable
+  include Filterable
   
 
 

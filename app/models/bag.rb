@@ -8,6 +8,7 @@ class Bag < ActiveRecord::Base
   include Recallable
   include Quarantineable
   include Sortable
+  include Filterable
 
   after_save -> { lot.bag_changed }
 

@@ -5,6 +5,7 @@ class Container < ActiveRecord::Base
   include Storyable
   include Searchable
   include Sortable
+  include Filterable
 
 
 
