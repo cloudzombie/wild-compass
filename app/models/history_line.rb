@@ -10,6 +10,11 @@ class HistoryLine < ActiveRecord::Base
   #########################
 
 
+
+  scope :reweight, -> { where(event: 'reweight') }
+
+
+
   ### Quantity
 
   validates :quantity, presence: true, numericality: { greater_than: 0.0 }
