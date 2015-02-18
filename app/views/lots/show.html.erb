@@ -1,29 +1,45 @@
-<div class="row">
-  <div class="col-lg-6">
-    <div class="row">
-      <div class="col-lg-6">
-        <%= render 'shared/box_description', title: lot, described: lot, color: 'info', icon: 'tags' %>
+<div class="brand-<%= lot.strain.brand.id %>"> 
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class='transparent-box'>
+            <%= render 'shared/box_description', title: lot, described: lot, color: 'info', icon: 'tags' %>
+          </div>
+        </div>  
+          <%# case lot.strain.brand.id  %>
+          <%# when 1 %>
+            <%#= image_tag "gm_logo_s.jpg", width: "100%" %>
+          <%# when 2 %>
+            <%#= image_tag "md_log_s.jpg", width: "100%" %>
+          <%# when 3 %>
+            <%#= image_tag "after_dinner_logo_s.jpg", width: "100%" %>
+          <%# when 4 %>
+            <%#= image_tag "bt_logo_s.jpg", width: "100%" %>
+          <%# end %>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class='transparent-box'>
+            <%= render 'shared/box_origins', described: lot, origins: lot.plants, color: 'success', icon: 'leaf', title: 'Plants' %>
+          </div>
+        </div>
       </div>
       
-      <div class="col-lg-6">
-        <%= render 'shared/box_description', title: recent, described: recent, color: 'primary', icon: 'square' %>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class='transparent-box'>
+            <%= render 'shared/box_history', described: lot %>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-lg-12">
-       <%= render 'shared/box_origins', described: lot, origins: lot.plants, color: 'success', icon: 'leaf', title: 'Plants' %>
+    <div class="col-lg-6">
+      <div class='transparent-box'>
+        <%= render 'shared/timeline', described: lot %>
       </div>
     </div>
-    
-    <div class="row">
-      <div class="col-lg-12">
-        <%= render 'shared/box_history', described: lot %>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-6">
-    <%= render 'shared/timeline', described: lot %>
   </div>
 </div>

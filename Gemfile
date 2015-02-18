@@ -100,3 +100,5 @@ gem 'rack-timeout', group: :production
 gem 'jquery-tablesorter'
 
 gem 'schema_plus'
+
+gem 'descriptive-statistics'

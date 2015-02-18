@@ -44,23 +44,11 @@ class Container < ActiveRecord::Base
     outgoing_transactions.sum(:weight)
   end
 
-  
+  ### Transactions
 
-  ### Containers
+  has_many :incoming_transactions, as: 'target', class_name: 'Transaction', dependent: :destroy
 
-  # Dat finest piece of design #trololol #softeng
-
-  def incoming_transactions
-    Transaction.where('target_id = ? AND target_type = ?', id, self.class)
-  end
-
-  def outgoing_transactions
-    Transaction.where('source_id = ? AND source_type = ?', id, self.class)
-  end
-
-  has_many :incoming_transactions, as: 'source', dependent: :destroy
-
-  has_many :outgoing_transactions, as: 'target', dependent: :destroy
+  has_many :outgoing_transactions, as: 'source', class_name: 'Transaction', dependent: :destroy
 
   def transactions
     Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class)

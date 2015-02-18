@@ -9,8 +9,6 @@
     <td><%= weight_for container.try(:initial_weight), '' %></td>
     <td><%= weight_for container.try(:current_weight), '' %></td>
     <td><%= weight_for container.try(:water_loss), '' %></td>
-    <td><%= date_for container.try(:created_at) %></td>
-    <td><%= date_for container.try(:updated_at) %></td>
     <td>
       <%= link_to "#{fa_icon('tag')} New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-warning',
           data: { toggle: 'modal', target: '.new-bag' } %>

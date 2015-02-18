@@ -12,9 +12,15 @@
         <tr>
           <th>ID :</th>
           <% if described.respond_to? :name %>
-          <td><%= link_to "#{described.name}".upcase, described %></td>
+          <td><%= link_to "#{described.name}".upcase, described %>
+          <% if described.class == Bag then %>
+              <%= test_for described  %>
+              <%= archive_for described %>
+            <% end %></td>
           <% else %>
-          <td><%= link_to "#{described}".upcase, described %></td>
+          <td>
+            <%= link_to "#{described}".upcase, described %>
+          </td>
           <% end %>
         </tr>
 
@@ -32,7 +38,7 @@
         </tr>
         <% end %>
 
-        <% if !described.kind_of?(Container) && described.respond_to?(:category) %>        
+        <% if described.respond_to?(:category) && !described.kind_of?(Container) %>        
         <tr>
           <th>Category :</th>
           <td><%= category_for described.category %></td>
@@ -52,21 +58,34 @@
           <td><%= weight_for described.current_weight %></td>
         </tr>
         <% end %>
+       <% if described.respond_to? :initial_stock %>
+          <tr>
+            <th>Initial Stock :</th>
+            <td><%= described.initial_stock %></td>
+          </tr>
+        <% end %>
 
-        <%# if described.respond_to? :created_at %>
-        <!-- <tr> -->
-          <!-- <th>Created At :</th> -->
-          <!-- <td><%# date_for described.created_at %></td> -->
-        <!-- </tr> -->
-        <%# end %>
+        <% if described.respond_to? :stock %>
+          <tr>
+            <th>Stock :</th>
+            <td><%= described.stock %></td>
+          </tr>
+        <% end %>
 
-        <%# if described.respond_to? :updated_at %>
-        <!-- <tr> -->
-          <!-- <th>Updated At :</th> -->
-          <!-- <td><%# date_for described.updated_at %></td>  -->
-        <!-- </tr> -->
-        <%# end %>
+        <% if described.is_a?(Bag) %>
+          <tr>
+            <th>Variance :</th>
+            <td><%= bag_variance described %></td>
+          </tr>
+        <% end %>
 
+        <% if described.respond_to?(:seed) %>
+          <tr>
+            <th>Seed :</th>
+            <td><%= described.seed %></td>
+          </tr>
+        <% end %>
+        
         <% if described.respond_to?(:water_loss) && described.water_loss > 0.0 %>
         <tr>
           <th>Water Loss :</th>
@@ -76,11 +95,9 @@
    
         </table>
       </div>
-
       <% if !described.kind_of?(Lot) && described.respond_to?(:initial_weight) && described.respond_to?(:current_weight) %>
       <%= render 'shared/progress_bar', weightable: described, color: color %>
       <% end %>
-
     </div>
   </div> 
 </div>

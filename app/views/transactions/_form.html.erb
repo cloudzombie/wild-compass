@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :event %>
+    <%= f.label :event %><br>
     <%= f.datetime_select :event, class: 'form-control' %>
   </div>
   
@@ -23,11 +23,10 @@
 
   <div class="form-group">
     <%= f.label :source_type %>
-    <%= f.select :source_type, [
+    <%= f.select :source_type, options_for_select([
           'Container',
-          'Harvest',
-          'Waste'
-        ], { selected: @transaction.source_type }, class: 'form-control' %>
+          'Harvest'
+        ]), { selected: @transaction.source_type }, class: 'form-control' %>
     <%= display_error_for @transaction, :source_type %>
   </div>
   
@@ -38,11 +37,11 @@
 
   <div class="form-group">
     <%= f.label :target_type %>
-    <%= f.select :target_type, [
+    <%= f.select :target_type, options_for_select([
           'Container',
-          'Harvest',
+          'Transactions::Lab',
           'Waste'
-        ], { selected: @transaction.target_type }, class: 'form-control' %>
+        ]), { selected: @transaction.target_type }, class: 'form-control' %>
     <%= display_error_for @transaction, :target_type %>
   </div>
   

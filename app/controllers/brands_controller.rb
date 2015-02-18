@@ -36,9 +36,9 @@ class BrandsController < ApplicationController
   def available
     respond_to do |format|
       if brand.available?
-        format.html { redirect_to brands_url, notice: "brand available" }
+        format.html { redirect_to brands_url, notice: " #{brand.available} g of brand available." }
       else
-        format.html { redirect_to brands_url, notice: "brand not available" }
+        format.html { redirect_to brands_url, notice: "brand not available (#{brand.available})" }
       end
     end
   end

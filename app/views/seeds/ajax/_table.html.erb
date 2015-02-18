@@ -12,8 +12,6 @@
     <td><%= seed.initial_stock %></td>
     <td><%= weight_for seed.try(:initial_weight) if seed.present? %></td>
     <td><%= weight_for seed.try(:current_weight) if seed.present? %></td>
-    <td><%= date_for seed.try(:created_at) if seed.present? %></td>
-    <td><%= date_for seed.try(:updated_at) if seed.present? %></td>
     <td>
       <% if can? :label, Seed %>
       <%= link_to "Print Label", label_seed_path(seed), class: 'btn-sm btn-flat btn-primary' %>

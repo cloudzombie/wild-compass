@@ -24,7 +24,17 @@ class API::V1::LotsController < API::V1::APIController
   def recall
     render json: {
       data: {
-        recall: Lot.find(id_param).recall
+        recall: Lot.find(id_param).recall,
+        quantity: Lot.find(id_param).initial_weight
+      }
+    }
+  end
+
+  def unrecall
+    render json: {
+      data: {
+        unrecall: Lot.find(id_param).unrecall,
+        quantity: Lot.find(id_param).initial_weight
       }
     }
   end
@@ -32,7 +42,17 @@ class API::V1::LotsController < API::V1::APIController
   def quarantine
     render json: {
       data: {
-        recall: Lot.find(id_param).quarantine
+        quarantine: Lot.find(id_param).quarantine,
+        quantity: Lot.find(id_param).initial_weight
+      }
+    }
+  end
+
+  def unquarantine
+    render json: {
+      data: {
+        unquarantine: Lot.find(id_param).unquarantine,
+        quantity: Lot.find(id_param).initial_weight
       }
     }
   end

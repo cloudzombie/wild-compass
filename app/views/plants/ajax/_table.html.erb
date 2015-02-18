@@ -6,8 +6,6 @@
     <td><%= plant.try(:status) %></td>
     <td><%= format_for plant.try(:format) %></td>
     <td><%= plant.try(:location) %></td>
-    <td><%= date_for plant.try(:created_at) %></td>
-    <td><%= date_for plant.try(:updated_at) %></td>
     <td>
       <% if can? :label, Plant %>
       <%= link_to 'Print Label', label_plant_path(plant), class: 'btn-sm btn-flat btn-primary' %>

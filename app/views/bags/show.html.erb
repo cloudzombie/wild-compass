@@ -12,7 +12,21 @@
 
     <div class="row">
       <div class="col-lg-12">
-       <%= render 'shared/box_origins', described: bag  , origins: bag.plants, color: 'success', icon: 'leaf', title: 'Plants' %>
+        <% if bag.tested? %>
+          <%= render 'shared/box_origins',
+              described: bag,
+              origins: bag.lot.plants,
+              color: 'success',
+              icon: 'leaf',
+              title: 'Plants' %>
+        <% else %>
+          <%= render 'shared/box_origins',
+              described: bag,
+              origins: bag.plants,
+              color: 'success',
+              icon: 'leaf',
+              title: 'Plants' %>
+       <% end %>
       </div>
     </div>
 
