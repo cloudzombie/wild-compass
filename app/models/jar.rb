@@ -6,6 +6,7 @@ class Jar < ActiveRecord::Base
   include Searchable
   include Encodable
   include Sortable
+  include Filterable
 
 
 

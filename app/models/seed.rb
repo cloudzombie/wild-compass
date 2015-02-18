@@ -5,6 +5,7 @@ class Seed < ActiveRecord::Base
   include Encodable
   include Storyable
   include Sortable
+  include Filterable
 
   has_many :plants
 

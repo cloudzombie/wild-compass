@@ -12,6 +12,8 @@ class InventoryController < ApplicationController
   def home
     respond_to do |format|
       format.html
+      format.json
+      format.js
       format.pdf do
         render( pdf:          'report.pdf',
                 margin: {

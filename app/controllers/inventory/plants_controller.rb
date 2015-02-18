@@ -2,10 +2,12 @@ class Inventory::PlantsController < InventoryController
 
   include SetSortable
 
-  expose(:plants) { Plant.filter( id: params[:id],
-                                  strain_id: params[:strain_id],
-                                  format_id: params[:format_id],
-                                  status_id: params[:status_id])
-                         .sort(sort_column, sort_direction) }
+  expose(:plants) { Plant.filter(filtering_params).sort(sort_column, sort_direction) }
+
+  private
+
+    def filtering_params
+      params.slice(:id, :type, :strain_id, :format_id, :status_id)
+    end
 
 end
