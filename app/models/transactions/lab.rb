@@ -1,4 +1,4 @@
-class Waste < ActiveRecord::Base
+class Transactions::Lab < ActiveRecord::Base
 
   has_many :incoming_transactions, class_name: 'Transaction', as: 'target'
 
@@ -11,7 +11,7 @@ class Waste < ActiveRecord::Base
   end
 
   def to_s
-    'Waste'
+    'To Lab'
   end
 
   alias_method :name, :to_s

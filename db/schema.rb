@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217201843) do
+ActiveRecord::Schema.define(version: 20150218155824) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -80,14 +80,14 @@ ActiveRecord::Schema.define(version: 20150217201843) do
     t.datetime "updated_at"
     t.integer  "history_id"
     t.string   "category"
-    t.integer  "location_id",               limit: 255
-    t.string   "type",                                                           default: "Container", null: false
+    t.integer  "location_id"
+    t.string   "type",                                               default: "Container", null: false
     t.integer  "container_id"
     t.datetime "airdrying_stage_ended_at"
     t.datetime "processing_completed_at"
-    t.decimal  "processing_waste_produced",             precision: 16, scale: 4
-    t.decimal  "trim_added",                            precision: 16, scale: 4
-    t.decimal  "water_loss",                            precision: 16, scale: 4
+    t.decimal  "processing_waste_produced", precision: 16, scale: 4
+    t.decimal  "trim_added",                precision: 16, scale: 4
+    t.decimal  "water_loss",                precision: 16, scale: 4
   end
 
   create_table "containers_lots", force: true do |t|
@@ -216,12 +216,12 @@ ActiveRecord::Schema.define(version: 20150217201843) do
     t.integer  "rfid_id"
     t.string   "name"
     t.integer  "history_id"
-    t.decimal  "current_weight",                  precision: 16, scale: 4
-    t.decimal  "initial_weight",                  precision: 16, scale: 4
-    t.integer  "location_id",         limit: 255
+    t.decimal  "current_weight",      precision: 16, scale: 4
+    t.decimal  "initial_weight",      precision: 16, scale: 4
+    t.integer  "location_id"
     t.datetime "partial_harvest_at"
     t.datetime "complete_harvest_at"
-    t.string   "type",                                                     default: "Plant", null: false
+    t.string   "type",                                         default: "Plant", null: false
     t.integer  "plant_id"
     t.integer  "seed_id"
     t.string   "datamatrix_hash"
@@ -249,7 +249,6 @@ ActiveRecord::Schema.define(version: 20150217201843) do
     t.decimal  "initial_weight",  precision: 16, scale: 4
     t.decimal  "current_weight",  precision: 16, scale: 4
     t.integer  "stock"
-    t.integer  "plant_ids"
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
     t.integer  "history_id"
@@ -284,6 +283,11 @@ ActiveRecord::Schema.define(version: 20150217201843) do
     t.datetime "updated_at"
     t.index ["source_id", "source_type"], :name => "index_transactions_on_source_id_and_source_type"
     t.index ["target_id", "target_type"], :name => "index_transactions_on_target_id_and_target_type"
+  end
+
+  create_table "transactions_labs", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_group_roles", force: true do |t|

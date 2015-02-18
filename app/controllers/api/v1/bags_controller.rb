@@ -32,7 +32,8 @@ class API::V1::BagsController < API::V1::APIController
   def recall
     render json: {
       data: {
-        recall: Bag.find(id_param).recall
+        recall: Bag.find(id_param).recall,
+        quantity: Bag.find(id_param).lot.initial_weight
       }
     }
   end
@@ -40,7 +41,17 @@ class API::V1::BagsController < API::V1::APIController
   def unrecall
     render json: {
       data: {
-        recall: Bag.find(id_param).unrecall
+        unrecall: Bag.find(id_param).unrecall,
+        quantity: Bag.find(id_param).lot.initial_weight
+      }
+    }
+  end
+
+  def quarantine
+    render json: {
+      data: {
+        quarantine: Bag.find(id_param).quarantine,
+        quantity: Bag.find(id_param).lot.initial_weight
       }
     }
   end
@@ -48,7 +59,8 @@ class API::V1::BagsController < API::V1::APIController
   def unquarantine
     render json: {
       data: {
-        recall: Bag.find(id_param).unquarantine
+        unquarantine: Bag.find(id_param).unquarantine,
+        quantity: Bag.find(id_param).lot.initial_weight
       }
     }
   end

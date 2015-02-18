@@ -1,6 +1,10 @@
 class Harvest < ActiveRecord::Base
 
-  has_many :outgoing_transactions, as: 'target'
+  has_many :outgoing_transactions, class_name: 'Transaction', as: 'source'
+
+  def transactions
+    outgoing_transactions
+  end
 
   def outgoing_weight
     outgoing_transactions.sum(:weight)
