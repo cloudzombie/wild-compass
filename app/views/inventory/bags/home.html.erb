@@ -1,5 +1,16 @@
 <div role="tabpanel">
-  <%= link_to 'Print PDF', inventory_bags_download_path, class: 'btn btn-primary pull-right' %>
+  <% if Rails.env.development? %>
+    <%= link_to 'Print PDF', inventory_bags_path( format: :pdf,
+                                                  debug: 1,
+                                                  direction: sort_direction,
+                                                  sort: sort_column),
+                 class: 'btn btn-primary pull-right' %>
+  <% else %>
+    <%= link_to 'Print PDF', inventory_bags_path( format: :pdf,
+                                                  direction: sort_direction,
+                                                  sort: sort_column),
+                 class: 'btn btn-primary pull-right' %>
+  <% end %>
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
   
@@ -8,25 +19,40 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="bags">
       <table class="table table-striped">
-        <tr>
-          <th><%= sortable :name, 'ID' %></th>
-          <th><%= sortable :strain %></th>
-          <th><%= sortable :category %></th>
-          <th><%= sortable :initial_weight, 'Initial Weight (g)' %></th>
-          <th><%= sortable :current_weight, 'Current Weight (g)' %></th>
-          <th><%= sortable :variance %></th>
-        </tr>
-
-        <% bags.each do |bag| %>
+        <thead>
           <tr>
-            <td><%= bag.try(:to_s) %></td>
-            <td><%= strain_for bag.try(:strain) %></td>
-            <td><%= bag.try(:category) %></td>
-            <td><%= weight_for bag.try(:initial_weight), '' %></td>
-            <td><%= weight_for bag.try(:current_weight), '' %></td>
-            <td><%= variance_for bag.try(:initial_weight), bag.try(:current_weight) %></td>
+            <th><%= sortable :name, 'ID' %></th>
+            <th><%= sortable :strain %></th>
+            <th><%= sortable :category %></th>
+            <th><%= sortable :initial_weight, 'Initial Weight (g)' %></th>
+            <th><%= sortable :current_weight, 'Current Weight (g)' %></th>
+            <th><%= sortable :variance %></th>
           </tr>
-        <% end %>
+        </thead>
+
+        <tbody>
+          <% bags.each do |bag| %>
+            <tr>
+              <td><%= bag.try(:to_s) %></td>
+              <td><%= strain_for bag.try(:strain) %></td>
+              <td><%= category_for bag.try(:category) %></td>
+              <td><%= weight_for bag.try(:initial_weight), '' %></td>
+              <td><%= weight_for bag.try(:current_weight), '' %></td>
+              <td><%= variance_for bag.try(:initial_weight), bag.try(:current_weight) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <th>Total</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><%= weight_for bags.sum(:current_weight), '' %></td>
+            <td></td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>

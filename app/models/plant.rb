@@ -6,10 +6,13 @@ class Plant < ActiveRecord::Base
   include Searchable
   include Sortable
   include Encodable
+  include Filterable
 
 
   scope :by_strains,  -> (strain = nil) { where(strain: strain) }
   scope :by_brands,   -> (brand = nil) { where(brand: brand) }
+
+
 
   belongs_to :plant 
 
@@ -36,6 +39,8 @@ class Plant < ActiveRecord::Base
   has_many :jars, -> { uniq }, through: :containers
 
   has_one :brand, through: :strain
+
+  before_save :record_change, if: :changed?
 
   def to_s
     "Plant-#{id}".upcase
@@ -66,5 +71,11 @@ class Plant < ActiveRecord::Base
   rescue
     ''
   end
+
+  private
+
+    def record_change
+      history.add_line(self, self, 0.0, :change, nil, "#{changed_attributes}")
+    end
 
 end

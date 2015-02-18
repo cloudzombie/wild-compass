@@ -3,7 +3,6 @@
     <th>Name</th>
     <th>Strain</th>
     <th>Category</th>
-    <th>Initial Weight (g)</th>
     <th>Current Weight (g)</th>
   </tr>
 
@@ -12,7 +11,6 @@
       <td><%= lot.try(:to_s) %></td>
       <td><%= strain_for lot.try(:strain) %></td>
       <td><%= lot.try(:category) %></td>
-      <td><%= weight_for lot.try(:initial_weight), '' %></td>
       <td><%= weight_for lot.try(:current_weight), '' %></td>
     </tr>
   <% end %>

@@ -14,12 +14,22 @@ class Container < ActiveRecord::Base
   scope :by_buds,       -> { by_categories 'Buds' }
   scope :by_brands,     -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
+  def transaction_changed
+    inc = incoming_weight
+    out = outgoing_weight
+    bag = bagged_weight
+    wat = inc - out - bag
 
+    initial = 0.0
+    begin
+      initial = incoming_transactions.order(event: :asc).first.weight
+    rescue
+      initial = 0.0
+    end
 
-  def water_loss
-    loss = incoming_weight - outgoing_weight - bagged_weight
-    # update(water_loss: loss) if self[:water_loss] != loss
-    # self[:water_loss]
+    update(water_loss: wat)
+    update(current_weight: 0)
+    update(initial_weight: initial)
   end
 
   def bagged_weight
@@ -54,20 +64,6 @@ class Container < ActiveRecord::Base
 
   def transactions
     Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class)
-  end
-
-
-
-  def current_weight
-    weight = incoming_weight - outgoing_weight - bagged_weight - water_loss
-    # update(current_weight: weight) if self[:current_weight] != weight
-    # self[:current_weight]
-  end
-
-  def initial_weight
-    weight = incoming_transactions.order(event: :asc).first.weight unless incoming_transactions.empty?
-    # update(initial_weight: weight) if self[:initial_weight] != weight
-    # self[:initial_weight]
   end
 
 

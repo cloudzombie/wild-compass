@@ -5,6 +5,7 @@
     <th>Category</th>
     <th>Initial Weight (g)</th>
     <th>Current Weight (g)</th>
+    <th>Waste (g)</th>
   </tr>
 
   <% containers.each do |container| %>
@@ -14,6 +15,7 @@
       <td><%= container.try(:category) %></td>
       <td><%= weight_for container.try(:initial_weight), '' %></td>
       <td><%= weight_for container.try(:current_weight), '' %></td>
+      <td><%= weight_for container.try(:processing_waste_produced), '' %></td>
     </tr>
   <% end %>
 </table>

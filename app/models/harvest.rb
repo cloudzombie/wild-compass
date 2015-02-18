@@ -4,4 +4,7 @@ class Harvest < ActiveRecord::Base
   end
 
   alias_method :name, :to_s
+
+  def transaction_changed
+  end
 end

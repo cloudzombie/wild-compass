@@ -13,7 +13,6 @@
     <td><%= percent_for lot.try(:thc_composition) if lot.present? %></td>
     <td><%= percent_for lot.try(:cbd_composition) if lot.present? %></td>
     <td><%= percent_for lot.try(:cbn_composition) if lot.present? %></td>
-    <td><%= weight_for lot.try(:initial_weight) if lot.present? %></td>
     <td><%= weight_for lot.try(:current_weight) if lot.present? %></td>
     <td><%= recall_for lot.try(:recalled) if lot.present? %></td>
     <td><%= quarantine_for lot.try(:quarantined) if lot.present? %></td>

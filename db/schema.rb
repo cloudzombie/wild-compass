@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216230543) do
+ActiveRecord::Schema.define(version: 20150217201843) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20150216230543) do
     t.integer  "bags_status_id"
     t.boolean  "sent_to_lab",                              default: false, null: false
     t.datetime "packaged_at"
+    t.string   "strain"
+    t.string   "category"
     t.index ["datamatrix_text", "datamatrix_hash"], :name => "index_bags_on_datamatrix_text_and_datamatrix_hash", :unique => true
   end
 

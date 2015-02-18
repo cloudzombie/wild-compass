@@ -24009,7 +24009,17 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-
+  $(document).ready(function() {
+    $('#format-filter').change(function() {
+      return $.get($('#format-filter').data('url'));
+    });
+    $('#strain-filter').change(function() {
+      return $.get($('#strain-filter').data('url'));
+    });
+    return $('#status-filter').change(function() {
+      return $.get($('#status-filter').data('url'));
+    });
+  });
 
 }).call(this);
 (function() {
@@ -24269,12 +24279,12 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  $(function() {
+  $(document).ready(function() {
     $(document).on("click", "#sort th a", function() {
       $.getScript(this.href);
       return false;
     });
-    $("#search_form input").change(function() {
+    return $("#search_form input").change(function() {
       $.get($("#search_form").attr("action"), $("#search_form").serialize(), null, "script");
       return false;
     });

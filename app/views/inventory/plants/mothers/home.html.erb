@@ -1,5 +1,17 @@
 <div role="tabpanel">
-  <%= link_to 'Print PDF', inventory_plants_mothers_download_path, class: 'btn btn-primary pull-right' %>
+  <% if Rails.env.development? %>
+    <%= link_to 'Print PDF', inventory_plants_mothers_path( format: :pdf,
+                                                            debug: 1,
+                                                            direction: sort_direction,
+                                                            sort: sort_column),
+                 class: 'btn btn-primary pull-right' %>
+  <% else %>
+
+    <%= link_to 'Print PDF', inventory_plants_mothers_path( format: :pdf,
+                                                            direction: sort_direction,
+                                                            sort: sort_column),
+                 class: 'btn btn-primary pull-right' %>
+  <% end %>
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
   
@@ -15,12 +27,12 @@
           <th><%= sortable :format_id %></th>
         </tr>
 
-        <% mothers.each do |plant| %>
+        <% mothers.each do |mother| %>
           <tr>
-            <td><%= plant %></td>
-            <td><%= strain_for plant.strain %></td>
-            <td><%= plant.status %></td>
-            <td><%= format_for plant.format %></td>
+            <td><%= mother %></td>
+            <td><%= strain_for mother.strain %></td>
+            <td><%= mother.status %></td>
+            <td><%= format_for mother.format %></td>
           </tr>
         <% end %>
       </table>

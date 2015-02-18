@@ -45,7 +45,7 @@
         </tr>
         <% end %>
           
-        <% if described.respond_to? :initial_weight %>
+        <% if !described.kind_of?(Lot) && described.respond_to?(:initial_weight) %>
         <tr>
           <th>Initial Weight :</th>
           <td><%= weight_for described.initial_weight %></td>
@@ -58,8 +58,7 @@
           <td><%= weight_for described.current_weight %></td>
         </tr>
         <% end %>
-
-        <% if described.respond_to? :initial_stock %>
+       <% if described.respond_to? :initial_stock %>
           <tr>
             <th>Initial Stock :</th>
             <td><%= described.initial_stock %></td>
@@ -110,9 +109,8 @@
    
         </table>
       </div>
-
-      <% if described.respond_to?(:initial_weight) && described.respond_to?(:current_weight) %>
-        <%= render 'shared/progress_bar', weightable: described, color: color %>
+      <% if !described.kind_of?(Lot) && described.respond_to?(:initial_weight) && described.respond_to?(:current_weight) %>
+      <%= render 'shared/progress_bar', weightable: described, color: color %>
       <% end %>
     </div>
   </div> 

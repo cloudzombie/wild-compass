@@ -2,32 +2,44 @@
 <html>
   <head>
     <title>THC-ICS <%= controller_name.titleize %> Report</title>
-    <%= wicked_pdf_stylesheet_link_tag 'application' %>
-    
-    <script src="//code.jquery.com/jquery-2.1.3.min.js/"></script>
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <style>
-      .table-borderless table,
-      .table-borderless tr,
-      .table-borderless td,
-      .table-borderless th,
-      .table-borderless tbody tr td,
-      .table-borderless thead tr th {
-        border: none !important;
+      #report-body table {
+        width: 100%;
+        text-align: center;
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      #report-body tr, #report-body th, #report-body td {
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        text-align: center;
+        border: 1px solid black;
+      }
+
+      #report-header table {
+        width: 100%;
+        text-align: left;
+      }
+
+      #report-header {
+        padding-top: 50px;
+        padding-bottom: 50px;
       }
     </style>
   </head>
 
   <body>
-    <section id="report-header" class="col-md-10 col-md-offset-1" style="padding-top: 50px; padding-bottom: 50px;">
-      <table class="table table-borderless">
+    <section id="report-header">
+      <table>
         <tr>
-          <th rowspan="2" class="col-md-3 text-center">
-            <%= image_tag '//ics.thc.vc/logo-black.png', width: 180, height: 80 %><br>
+          <th rowspan="2">
+            <%= wicked_pdf_image_tag '//ics.thc.vc/logo-black.png', width: 180, height: 80 %><br>
             THC-ICS <%= controller_name.titleize %> Report
           </th>
-          <th class="col-md-9 text-right"><%= Time.now.strftime("%m/%d/%Y") %></th>
+          <th style="text-align: right;"><%= Time.now.strftime("%m/%d/%Y") %></th>
         </tr>
 
         <tr>

@@ -1,12 +1,12 @@
 <div role="tabpanel">
   <% if Rails.env.development? %>
-    <%= link_to 'Print PDF', inventory_plants_clones_path( format: :pdf,
+    <%= link_to 'Print PDF', inventory_plants_babies_path( format: :pdf,
                                                            debug: 1,
                                                            direction: sort_direction,
-                                                           sort: sort_column),
+                                                           sort: sort_direction),
                  class: 'btn btn-primary pull-right' %>
   <% else %>
-    <%= link_to 'Print PDF', inventory_plants_clones_path( format: :pdf,
+    <%= link_to 'Print PDF', inventory_plants_babies_path( format: :pdf,
                                                            direction: sort_direction,
                                                            sort: sort_column),
                  class: 'btn btn-primary pull-right' %>
@@ -17,7 +17,7 @@
   <%= render 'inventory/nav' %>
 
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="clones">
+    <div role="tabpanel" class="tab-pane active" id="babies">
       <table class="table table-striped">
         <tr>
           <th><%= sortable :name, 'ID' %></th>
@@ -26,12 +26,12 @@
           <th><%= sortable :format_id %></th>
         </tr>
 
-        <% clones.each do |clone| %>
+        <% babies.each do |baby| %>
           <tr>
-            <td><%= clone %></td>
-            <td><%= strain_for clone.strain %></td>
-            <td><%= clone.status %></td>
-            <td><%= format_for clone.format %></td>
+            <td><%= baby %></td>
+            <td><%= strain_for baby.strain %></td>
+            <td><%= baby.status %></td>
+            <td><%= format_for baby.format %></td>
           </tr>
         <% end %>
       </table>

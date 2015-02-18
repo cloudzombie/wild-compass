@@ -1,5 +1,16 @@
 <div role="tabpanel">
-  <%= link_to 'Print PDF', inventory_jars_download_path, class: 'btn btn-primary pull-right' %>
+  <% if Rails.env.development? %>
+    <%= link_to 'Print PDF', inventory_jars_path( format: :pdf,
+                                                  debug: 1,
+                                                  direction: sort_direction,
+                                                  sort: sort_column),
+                 class: 'btn btn-primary pull-right' %>
+  <% else %>
+    <%= link_to 'Print PDF', inventory_jars_path( format: :pdf,
+                                                  direction: sort_direction,
+                                                  sort: sort_column),
+                 class: 'btn btn-primary pull-right' %>
+  <% end %>
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
   

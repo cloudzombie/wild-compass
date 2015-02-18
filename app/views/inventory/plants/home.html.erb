@@ -1,5 +1,16 @@
 <div role="tabpanel">
-  <%= link_to 'Print PDF', inventory_plants_download_path, class: 'btn btn-primary pull-right' %>
+  <% if Rails.env.development? %>
+    <%= link_to 'Print PDF', inventory_plants_path( format: :pdf,
+                                                    debug: 1,
+                                                    direction: sort_direction,
+                                                    sort: sort_column),
+                 class: 'btn btn-primary pull-right' %>
+  <% else %>
+    <%= link_to 'Print PDF', inventory_plants_path( format: :pdf,
+                                                    direction: sort_direction,
+                                                    sort: sort_column),
+                 class: 'btn btn-primary pull-right' %>
+  <% end %>
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
   
@@ -9,10 +20,50 @@
     <div role="tabpanel" class="tab-pane active" id="plants">
       <table class="table table-striped">
         <tr>
-          <th><%= sortable :name, 'ID' %></th>
-          <th><%= sortable :strain_id %></th>
-          <th><%= sortable :status_id %></th>
-          <th><%= sortable :format_id %></th>
+          <th class="col-md-2">
+            <%= sortable :name, 'ID' %>
+            <%= number_field_tag :id_filter, nil, class: 'filter form-control' %>
+          </th>
+
+          <th class="col-md-2">
+            <%= sortable :strain_id %>
+            <%= select_tag :strain_filter,
+                options_from_collection_for_select(Strain.all, "id", "acronym"),
+                selected: Strain.first,
+                class: 'filter form-control',
+                id: 'strain-filter',
+                data: { url: inventory_plants_path } %>
+          </th>
+
+          <th class="col-md-2">
+            <%= sortable :status_id %>
+            <%= select_tag :status_filter,
+                options_from_collection_for_select(Status.all, "id", "name"),
+                selected: Status.first,
+                class: 'filter form-control',
+                id: 'status-filter',
+                data: { url: inventory_plants_path } %>
+          </th>
+
+          <th class="col-md-2">
+            <%= sortable :format_id %>
+            <%= select_tag :format_filter,
+                options_from_collection_for_select(Format.all, "id", "name"),
+                selected: Format.first,
+                class: 'filter form-control',
+                id: 'format-filter',
+                data: { url: inventory_plants_path } %>
+          </th>
+
+          <th class="col-md-2">
+            <%= sortable :type %>
+            <%= select_tag :type_filter,
+                options_for_select(['Plant', 'Plant::BabyPlant', 'Plant::ClonePlant', 'Plant::MotherPlant']),
+                selected: 'Plant',
+                class: 'filter form-control',
+                id: 'type-filter',
+                data: { url: inventory_plants_path } %>
+          </th>
         </tr>
 
         <% plants.each do |plant| %>
@@ -21,6 +72,7 @@
             <td><%= strain_for plant.strain %></td>
             <td><%= plant.status %></td>
             <td><%= format_for plant.format %></td>
+            <td><%= plant.type %></td>
           </tr>
         <% end %>
       </table>

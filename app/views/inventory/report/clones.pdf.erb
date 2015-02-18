@@ -4,16 +4,14 @@
     <th class="col-md-3">Strain</th>
     <th class="col-md-3">Status</th>
     <th class="col-md-3">Format</th>
-    <th class="col-md-3">Type</th>
   </tr>
 
-  <% plants.each do |plant| %>
+  <% clones.each do |clone| %>
     <tr>
-      <td><%= plant %></td>
-      <td><%= plant.strain %></td>
-      <td><%= plant.status %></td>
-      <td><%= plant.format %></td>
-      <td><%= plant.type %></td>
+      <td><%= clone %></td>
+      <td><%= clone.strain %></td>
+      <td><%= clone.status %></td>
+      <td><%= clone.format %></td>
     </tr>
   <% end %>
 </table>

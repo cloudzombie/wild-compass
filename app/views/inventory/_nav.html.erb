@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs" roles="tablist">
-  <li role="presentation" class="<%= params[:controller] == 'inventory' ? 'active' : '' %>">
-    <%= link_to 'Summary', inventory_path, role: 'tab' %>
-  </li>
+  <!-- <li role="presentation" class="<%# params[:controller] == 'inventory' ? 'active' : '' %>"> -->
+    <%# link_to 'Summary', inventory_path, role: 'tab' %>
+  <!-- </li> -->
 
   <li role="presentation" class="<%= params[:controller] == 'inventory/plants' ? 'active' : '' %>">
     <%= link_to 'Plants', inventory_plants_path, role: 'tab' %>
@@ -13,6 +13,14 @@
 
   <li role="presentation" class="<%= params[:controller] == 'inventory/plants/clones' ? 'active' : '' %>">
     <%= link_to 'Clones', inventory_plants_clones_path, role: 'tab' %>
+  </li>
+
+  <li role="presentation" class="<%= params[:controller] == 'inventory/plants/babies' ? 'active' : '' %>">
+    <%= link_to 'Babies', inventory_plants_babies_path, role: 'tab' %>
+  </li>
+
+  <li role="presentation" class="<%= params[:controller] == 'inventory/seeds' ? 'active' : '' %>">
+    <%= link_to 'Seeds', inventory_seeds_path, role: 'tab' %>
   </li>
 
   <li role="presentation" class="<%= params[:controller] == 'inventory/jars' ? 'active' : '' %>">

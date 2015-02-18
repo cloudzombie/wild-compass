@@ -31,6 +31,18 @@
           <tbody id="table">
             <%= render 'containers/ajax/table' %>
           </tbody>
+          
+          <tfoot>
+            <th colspan="2">Total</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><%= weight_for containers.sum(:initial_weight), '' %></td>
+            <td><%= weight_for containers.sum(:current_weight), '' %></td>
+            <td><%= weight_for containers.sum(:water_loss), '' %></td>
+            <td></td>
+          </tfoot>
         </table>
       </div><!-- /.box-body -->
     </div>

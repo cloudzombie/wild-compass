@@ -9,7 +9,11 @@ class Bag < ActiveRecord::Base
   include Quarantineable
   include Sortable
   
-
+  def update_category_and_strain
+    self[:category] = category.titleize
+    self[:strain] = strain.acronym.upcase
+    save
+  end
 
   scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
   scope :by_categories,    -> (category = nil) { joins(:container).merge(Container.where(category: category)) }
@@ -39,7 +43,7 @@ class Bag < ActiveRecord::Base
 
   has_many :jars, -> { uniq }
 
-  has_many :plants, -> { uniq }, through: :lot
+  has_many :plants, -> { uniq }, through: :container
 
   has_many :strains, -> { uniq }, through: :plants
 

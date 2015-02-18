@@ -10,4 +10,14 @@ class Transaction < ActiveRecord::Base
   validates :weight,  presence: true, numericality: { greater_than_or_equal_to: 0.0 }
 
   validates :event,   presence: true
+
+  after_save :transaction_changed
+
+  private
+    
+    def transaction_changed
+      source.transaction_changed
+      target.transaction_changed
+    end
+
 end
