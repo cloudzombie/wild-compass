@@ -1,27 +1,30 @@
-<table style="width: 100%;">
-  <thead style="width: 100%;">
-    <tr style="width: 100%;">
-      <th style="width: 16.67%;">Name</th>
-      <th style="width: 16.67%;">Strain</th>
-      <th style="width: 16.67%;">Category</th>
-      <th style="width: 16.67%;">Initial Weight (g)</th>
-      <th style="width: 16.67%;">Current Weight (g)</th>
-      <th style="width: 16.67%;">Variance</th>
+<% page_width = '100' %>
+<% col_width = '16.67' %>
+
+<table style="width: <%= page_width %>%;">
+  <thead style="width: <%= page_width %>%;">
+    <tr style="width: <%= page_width %>%;">
+      <th style="width: <%= col_width %>%;">Name</th>
+      <th style="width: <%= col_width %>%;">Strain</th>
+      <th style="width: <%= col_width %>%;">Category</th>
+      <th style="width: <%= col_width %>%;">Initial Weight (g)</th>
+      <th style="width: <%= col_width %>%;">Current Weight (g)</th>
+      <th style="width: <%= col_width %>%;">Variance</th>
     </tr>
   </thead>
 </table>
 
-<% bags.each_slice(20) do |slice| %>
-  <table style="width: 100%;">
+<% bags.each_slice(30) do |slice| %>
+  <table style="width: <%= page_width %>%;">
     <% slice.each do |bag| %>
-    <tbody style="width: 100%;">
-      <tr style="width: 100%;">
-        <td style="width: 16.67%;"><%= bag.try(:to_s) %></td>
-        <td style="width: 16.67%;"><%= strain_for bag.try(:strain) %></td>
-        <td style="width: 16.67%;"><%= bag.try(:category) %></td>
-        <td style="width: 16.67%;"><%= weight_for bag.try(:initial_weight), '' %></td>
-        <td style="width: 16.67%;"><%= weight_for bag.try(:current_weight), '' %></td>
-        <td style="width: 16.67%;"><%= variance_for bag.try(:initial_weight), bag.try(:current_weight) %></td>
+    <tbody style="width: <%= page_width %>%;">
+      <tr style="width: <%= page_width %>%;">
+        <td style="width: <%= col_width %>%;"><%= bag.try(:to_s) %></td>
+        <td style="width: <%= col_width %>%;"><%= strain_for bag.try(:strain) %></td>
+        <td style="width: <%= col_width %>%;"><%= bag.try(:category) %></td>
+        <td style="width: <%= col_width %>%;"><%= weight_for bag.try(:initial_weight), '' %></td>
+        <td style="width: <%= col_width %>%;"><%= weight_for bag.try(:current_weight), '' %></td>
+        <td style="width: <%= col_width %>%;"><%= variance_for bag.try(:initial_weight), bag.try(:current_weight) %></td>
       </tr>
     </tbody>
     <% end %>
@@ -29,15 +32,15 @@
   <div style="display: block; clear: both; page-break-after: always;"></div>
 <% end %>
 
-<table style="width: 100%;">
-  <tfoot style="width: 100%;">
-    <tr style="width: 100%;">
-      <th style="width: 16.67%;">Total</th>
-      <td style="width: 16.67%;"></td>
-      <td style="width: 16.67%;"></td>
-      <td style="width: 16.67%;"><%= weight_for bags.sum(:current_weight), '' %></td>
-      <td style="width: 16.67%;"></td>
-      <td style="width: 16.67%;"></td>
+<table style="width: <%= page_width %>%;">
+  <tfoot style="width: <%= page_width %>%;">
+    <tr style="width: <%= page_width %>%;">
+      <th style="width: <%= col_width %>%;">Total</th>
+      <td style="width: <%= col_width %>%;"></td>
+      <td style="width: <%= col_width %>%;"></td>
+      <td style="width: <%= col_width %>%;"><%= weight_for bags.sum(:current_weight), '' %></td>
+      <td style="width: <%= col_width %>%;"></td>
+      <td style="width: <%= col_width %>%;"></td>
     </tr>
   </tfoot>
 </table>
