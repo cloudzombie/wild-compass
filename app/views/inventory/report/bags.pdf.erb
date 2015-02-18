@@ -48,7 +48,7 @@
 <div style="display: block; clear: both; page-break-after: always;"></div>
 
 <% if !bags[20..bags.length].nil? %>
-  <% bags[20..bags.length].each_slice(32) do |slice| %>
+  <% slices = bags[20..bags.length].each_slice(32).with_index do |slice, i| %>
     <table style="width: <%= page_width %>%;">
       <tbody style="width: <%= page_width %>%;">
         <% slice.each do |bag| %>
@@ -81,7 +81,7 @@
       </tbody>
     </table>
     
-    <% unless slice.peek.nil? %>
+    <% unless slice == slices.last %>
       <div style="display: block; clear: both; page-break-after: always;"></div>
     <% end %>
   <% end %>
