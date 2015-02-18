@@ -143,10 +143,25 @@ module ApplicationHelper
   def variance_for(initial, current)
     return percent_for 0.00, 2 if initial - current == 0.0 && initial == 0.0
     variance = (initial - current) / initial
-    if variance > 0.01
-      "<span class=\"text-warning\">#{percent_for variance, 2}</span>".html_safe
+    if variance > 0.01905
+      "<span class=\"badge bg-maroon\">#{percent_for variance, 4}</span>".html_safe
     else
-      percent_for variance, 2
+      percent_for variance
     end
   end
+
+  def bag_variance(bag)
+    if bag.history.history_lines.where(source_id: bag.id, target_id: bag.id)[-2].present? && bag.history.history_lines.where(source_id: bag.id, target_id: bag.id)[-1].present? then
+      variance_for bag.history.history_lines.where(source_id: bag.id, target_id: bag.id)[-2].quantity, bag.history.history_lines.where(source_id: bag.id, target_id: bag.id)[-1].quantity
+    end
+  end
+
+  #def monthly_variance_for(item)
+  #  variance = item.history.history_lines.where(source == target).current_weight.variance
+  #  if variance/current_weight > 0.01905
+  #    "<span class=\"badge bg-maroon\">#{percent_for variance, 2}</span>".html_safe
+  #  else
+  #    percent_for variance, 2
+  # end
+  #end
 end

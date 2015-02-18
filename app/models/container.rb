@@ -17,27 +17,21 @@ class Container < ActiveRecord::Base
 
 
   def water_loss
-    bagged_dry_weight = 0.0
-    
-    if bags.present?
-      bags.each do |b|
-        bagged_dry_weight += (b.initial_weight.nil? ? 0.0 : b.initial_weight)
-      end
-    end
+    loss = incoming_weight - outgoing_weight - bagged_weight
+    # update(water_loss: loss) if self[:water_loss] != loss
+    # self[:water_loss]
+  end
 
-    incoming_weight = 0.0
-    incoming_transactions.each do |transaction|
-      incoming_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
-    end
+  def bagged_weight
+    bags.sum(:initial_weight)
+  end
 
-    outgoing_weight = 0.0
-    outgoing_transactions.each do |transaction|
-      outgoing_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
-    end
+  def incoming_weight
+    incoming_transactions.sum(:weight)
+  end
 
-    loss = ( incoming_weight - outgoing_weight ) - bagged_dry_weight
-    update(water_loss: loss) if self[:water_loss] != loss
-    self[:water_loss]
+  def outgoing_weight
+    outgoing_transactions.sum(:weight)
   end
 
   
@@ -65,33 +59,15 @@ class Container < ActiveRecord::Base
 
 
   def current_weight
-    bagged_dry_weight = 0.0
-    
-    if bags.present?
-      bags.each do |b|
-        bagged_dry_weight += (b.initial_weight.nil? ? 0.0 : b.initial_weight)
-      end
-    end
-
-    incoming_weight = 0.0
-    incoming_transactions.each do |transaction|
-      incoming_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
-    end
-
-    outgoing_weight = 0.0
-    outgoing_transactions.each do |transaction|
-      outgoing_weight += (transaction.weight.nil? ? 0.0 : transaction.weight)
-    end
-
-    weight = (( incoming_weight - outgoing_weight ) - bagged_dry_weight ) - water_loss
-    update(current_weight: weight) if self[:current_weight] != weight
-    self[:current_weight]
+    weight = incoming_weight - outgoing_weight - bagged_weight - water_loss
+    # update(current_weight: weight) if self[:current_weight] != weight
+    # self[:current_weight]
   end
 
   def initial_weight
     weight = incoming_transactions.order(event: :asc).first.weight unless incoming_transactions.empty?
-    update(initial_weight: weight) if self[:initial_weight] != weight
-    self[:initial_weight]
+    # update(initial_weight: weight) if self[:initial_weight] != weight
+    # self[:initial_weight]
   end
 
 

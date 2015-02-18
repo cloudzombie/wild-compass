@@ -51,6 +51,7 @@ GEM
       execjs
     coffee-script-source (1.9.0)
     decent_exposure (2.3.2)
+    descriptive-statistics (2.1.2)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -138,6 +139,9 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
+    schema_plus (1.8.7)
+      activerecord (>= 3.2, < 4.3)
+      valuable
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -169,6 +173,7 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     url_safe_base64 (0.2.2)
+    valuable (0.9.9)
     warden (1.2.3)
       rack (>= 1.0)
     wicked_pdf (0.11.0)
@@ -188,6 +193,7 @@ DEPENDENCIES
   chunky_png
   coffee-rails (~> 4.0.0)
   decent_exposure
+  descriptive-statistics
   devise
   devise_token_auth
   font-awesome-rails
@@ -205,6 +211,7 @@ DEPENDENCIES
   rails (= 4.1.6)
   rails_12factor
   sass-rails (~> 4.0.3)
+  schema_plus
   sdoc (~> 0.4.0)
   select2-rails
   spreadsheet

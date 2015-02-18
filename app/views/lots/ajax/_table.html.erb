@@ -17,7 +17,5 @@
     <td><%= weight_for lot.try(:current_weight) if lot.present? %></td>
     <td><%= recall_for lot.try(:recalled) if lot.present? %></td>
     <td><%= quarantine_for lot.try(:quarantined) if lot.present? %></td>
-    <td><%= date_for lot.try(:created_at) if lot.present? %></td>
-    <td><%= date_for lot.try(:updated_at) if lot.present? %></td>
   </tr>
 <% end %>

@@ -6,7 +6,6 @@
     <td><%= category_for jar.try(:category) if jar.present? %></td>
     <td><%= weight_for jar.try(:current_weight) if jar.present? %></td>
     <td><%= date_for jar.try(:created_at) if jar.present? %></td>
-    <td><%= date_for jar.try(:updated_at) if jar.present? %></td>
     <td>
       <%= link_to "#{fa_icon('tag')} #{jar.bag}".html_safe, jar.bag, class: "btn-sm btn-flat btn-warning" %>
     </td>

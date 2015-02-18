@@ -8,19 +8,19 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="summary">
 
-      <%= render 'inventory/summary', weightable: Lot %>
+      <%= render 'inventory/summary', title: 'Lots', weightable: inventory.lots %>
 
-      <%= render 'inventory/summary', weightable: Container %>
+      <%= render 'inventory/summary', title: 'Containers', weightable: inventory.containers %>
       
-      <%= render 'inventory/summary', weightable: Bag %>
+      <%= render 'inventory/summary', title: 'Bags', weightable: inventory.bags %>
       
-      <%= render 'inventory/summary', weightable: Jar %>
+      <%= render 'inventory/summary', title: 'Jars', weightable: inventory.jars %>
 
       <table class="table table-hover summary">
         <tr>
           <th class="col-md-10"><strong class="summary-total">Grand Total</strong></th>
           <th class="col-md-2 double-underlines text-right"><span class="summary-total right">
-            <%= weight_for total_weight, '' %>
+            <%= weight_for inventory.total_weight, '' %>
           </span></th>
         </tr>
       </table>

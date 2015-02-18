@@ -68,7 +68,7 @@ class SeedsController < ApplicationController
   private
 
     def seed_params
-      params.require(:seed).permit(:name, :stock, :weight, :message, :initial_weight, :current_weight, { plant_ids: [] })
+      params.require(:seed).permit(:name, :stock, :weight, :message, :initial_weight, :seed, :current_weight, { plant_ids: [] })
     end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216191500) do
+ActiveRecord::Schema.define(version: 20150216230543) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -33,17 +33,15 @@ ActiveRecord::Schema.define(version: 20150216191500) do
     t.integer  "bags_status_id"
     t.boolean  "sent_to_lab",                              default: false, null: false
     t.datetime "packaged_at"
+    t.index ["datamatrix_text", "datamatrix_hash"], :name => "index_bags_on_datamatrix_text_and_datamatrix_hash", :unique => true
   end
-
-  add_index "bags", ["datamatrix_text", "datamatrix_hash"], name: "index_bags_on_datamatrix_text_and_datamatrix_hash", unique: true
 
   create_table "bags_statuses", force: true do |t|
     t.string   "name",       default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["name"], :name => "index_bags_statuses_on_name", :unique => true
   end
-
-  add_index "bags_statuses", ["name"], name: "index_bags_statuses_on_name", unique: true
 
   create_table "bins", force: true do |t|
     t.datetime "created_at"
@@ -52,9 +50,8 @@ ActiveRecord::Schema.define(version: 20150216191500) do
     t.string   "name"
     t.string   "datamatrix_hash"
     t.string   "datamatrix_text"
+    t.index ["datamatrix_text", "datamatrix_hash"], :name => "index_bins_on_datamatrix_text_and_datamatrix_hash", :unique => true
   end
-
-  add_index "bins", ["datamatrix_text", "datamatrix_hash"], name: "index_bins_on_datamatrix_text_and_datamatrix_hash", unique: true
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -69,10 +66,9 @@ ActiveRecord::Schema.define(version: 20150216191500) do
     t.integer  "user_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["target_id", "target_type"], :name => "index_checkouts_on_target_id_and_target_type", :unique => true
+    t.index ["user_id"], :name => "index_checkouts_on_user_id"
   end
-
-  add_index "checkouts", ["target_id", "target_type"], name: "index_checkouts_on_target_id_and_target_type", unique: true
-  add_index "checkouts", ["user_id"], name: "index_checkouts_on_user_id"
 
   create_table "containers", force: true do |t|
     t.string   "name"
@@ -95,18 +91,16 @@ ActiveRecord::Schema.define(version: 20150216191500) do
   create_table "containers_lots", force: true do |t|
     t.integer "lot_id"
     t.integer "container_id"
+    t.index ["container_id"], :name => "index_containers_lots_on_container_id"
+    t.index ["lot_id"], :name => "index_containers_lots_on_lot_id"
   end
-
-  add_index "containers_lots", ["container_id"], name: "index_containers_lots_on_container_id"
-  add_index "containers_lots", ["lot_id"], name: "index_containers_lots_on_lot_id"
 
   create_table "containers_plants", force: true do |t|
     t.integer "plant_id"
     t.integer "container_id"
+    t.index ["container_id"], :name => "index_containers_plants_on_container_id"
+    t.index ["plant_id"], :name => "index_containers_plants_on_plant_id"
   end
-
-  add_index "containers_plants", ["container_id"], name: "index_containers_plants_on_container_id"
-  add_index "containers_plants", ["plant_id"], name: "index_containers_plants_on_plant_id"
 
   create_table "formats", force: true do |t|
     t.datetime "created_at"
@@ -136,9 +130,13 @@ ActiveRecord::Schema.define(version: 20150216191500) do
     t.string   "event"
     t.integer  "user_id"
     t.text     "message",                              default: "", null: false
+    t.index ["history_id"], :name => "index_history_lines_on_history_id"
   end
 
-  add_index "history_lines", ["history_id"], name: "index_history_lines_on_history_id"
+  create_table "inventories", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "jars", force: true do |t|
     t.datetime "created_at"
@@ -155,9 +153,8 @@ ActiveRecord::Schema.define(version: 20150216191500) do
     t.boolean  "fulfilled",                                default: false, null: false
     t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
     t.decimal  "ordered_amount",  precision: 16, scale: 4, default: 0.0,   null: false
+    t.index ["datamatrix_text", "datamatrix_hash"], :name => "index_jars_on_datamatrix_text_and_datamatrix_hash", :unique => true
   end
-
-  add_index "jars", ["datamatrix_text", "datamatrix_hash"], name: "index_jars_on_datamatrix_text_and_datamatrix_hash", unique: true
 
   create_table "locations", force: true do |t|
     t.string   "name"
@@ -204,9 +201,8 @@ ActiveRecord::Schema.define(version: 20150216191500) do
     t.integer  "ces_order_id"
     t.string   "created_by",   default: "", null: false
     t.string   "placed_by",    default: "", null: false
+    t.index ["ces_order_id"], :name => "index_orders_on_ces_order_id", :unique => true
   end
-
-  add_index "orders", ["ces_order_id"], name: "index_orders_on_ces_order_id", unique: true
 
   create_table "plants", force: true do |t|
     t.datetime "created_at"
@@ -229,14 +225,14 @@ ActiveRecord::Schema.define(version: 20150216191500) do
     t.string   "datamatrix_hash"
     t.string   "datamatrix_text"
     t.datetime "destroyed_at"
+    t.datetime "harvested_at"
+    t.index ["datamatrix_text", "datamatrix_hash"], :name => "index_plants_on_datamatrix_text_and_datamatrix_hash", :unique => true
+    t.index ["format_id"], :name => "index_plants_on_format_id"
+    t.index ["rfid_id"], :name => "index_plants_on_rfid_id"
+    t.index ["seed_id"], :name => "index_plants_on_seed_id"
+    t.index ["status_id"], :name => "index_plants_on_status_id"
+    t.index ["strain_id"], :name => "index_plants_on_strain_id"
   end
-
-  add_index "plants", ["datamatrix_text", "datamatrix_hash"], name: "index_plants_on_datamatrix_text_and_datamatrix_hash", unique: true
-  add_index "plants", ["format_id"], name: "index_plants_on_format_id"
-  add_index "plants", ["rfid_id"], name: "index_plants_on_rfid_id"
-  add_index "plants", ["seed_id"], name: "index_plants_on_seed_id"
-  add_index "plants", ["status_id"], name: "index_plants_on_status_id"
-  add_index "plants", ["strain_id"], name: "index_plants_on_strain_id"
 
   create_table "rfids", force: true do |t|
     t.datetime "created_at"
@@ -256,9 +252,8 @@ ActiveRecord::Schema.define(version: 20150216191500) do
     t.string   "datamatrix_hash"
     t.integer  "history_id"
     t.integer  "initial_stock"
+    t.index ["datamatrix_text", "datamatrix_hash"], :name => "index_seeds_on_datamatrix_text_and_datamatrix_hash", :unique => true
   end
-
-  add_index "seeds", ["datamatrix_text", "datamatrix_hash"], name: "index_seeds_on_datamatrix_text_and_datamatrix_hash", unique: true
 
   create_table "statuses", force: true do |t|
     t.datetime "created_at"
@@ -285,10 +280,9 @@ ActiveRecord::Schema.define(version: 20150216191500) do
     t.decimal  "weight",      precision: 16, scale: 4, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["source_id", "source_type"], :name => "index_transactions_on_source_id_and_source_type"
+    t.index ["target_id", "target_type"], :name => "index_transactions_on_target_id_and_target_type"
   end
-
-  add_index "transactions", ["source_id", "source_type"], name: "index_transactions_on_source_id_and_source_type"
-  add_index "transactions", ["target_id", "target_type"], name: "index_transactions_on_target_id_and_target_type"
 
   create_table "user_group_roles", force: true do |t|
     t.datetime "created_at"
@@ -338,10 +332,9 @@ ActiveRecord::Schema.define(version: 20150216191500) do
     t.text     "tokens"
     t.integer  "temporary_role_id"
     t.datetime "temporary_role_expires_at"
+    t.index ["email"], :name => "index_users_on_email", :unique => true
+    t.index ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "wastes", force: true do |t|
     t.datetime "created_at"

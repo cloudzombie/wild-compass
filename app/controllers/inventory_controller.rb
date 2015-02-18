@@ -1,13 +1,13 @@
 class InventoryController < ApplicationController
   include Authorizable
-
-  helper_method :total_weight
   
   expose(:strains) { Strain.all }
 
   expose(:categories) { ['Trim', 'Buds'] }
   
   expose(:brands) { Brand.all }
+
+  expose(:inventory) { Inventory.new }
   
   def home
     respond_to do |format|
@@ -29,13 +29,5 @@ class InventoryController < ApplicationController
   	pdf = WickedPdf.new.pdf_from_string(html)
   	send_data( pdf, filename: 'report.pdf', disposition: 'attachment' )
   end
-
-
-
-  private
-
-    def total_weight
-      Plant.total_weight + Bag.total_weight + Jar.total_weight + Lot.total_weight
-    end
     
 end

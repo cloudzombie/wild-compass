@@ -51,7 +51,7 @@ class ContainersController < ApplicationController
     end
 
     def container_params
-      params.require(:container).permit(:name, :lot_id, :location_id, :category, :current_weight, :initial_weight, :weight, :type, { plant_ids: [] })
+      params.require(:container).permit(:name, :lot_id, :location_id, :weight, { plant_ids: [] })
     end
     
 end
