@@ -80,7 +80,10 @@
         <% end %>
       </tbody>
     </table>
-    <div style="display: block; clear: both; page-break-after: always;"></div>
+    
+    <% unless slice.peek.nil? %>
+      <div style="display: block; clear: both; page-break-after: always;"></div>
+    <% end %>
   <% end %>
 <% end %>
 
