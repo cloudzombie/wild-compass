@@ -48,14 +48,14 @@ class Bag < ActiveRecord::Base
   end
 
   def update_delta_old
-    if (history.history_lines.reweight.order(asc: :created_at))[-2].nil? 
-      y = (history.history_lines.reweight.order(asc: :created_at))[-2].quantity
+    if (history.history_lines.reweight.order(created_at: :asc))[-2].nil? 
+      y = (history.history_lines.reweight.order(created_at: :asc))[-2].quantity
     else
       y = current_weight
     end
       
-    if (history.history_lines.reweight.order(asc: :created_at))[-1].nil?
-      x = (history.history_lines.reweight.order(asc: :created_at))[-1].quantity
+    if (history.history_lines.reweight.order(created_at: :asc))[-1].nil?
+      x = (history.history_lines.reweight.order(created_at: :asc))[-1].quantity
     else
       x = initial_weight
     end
