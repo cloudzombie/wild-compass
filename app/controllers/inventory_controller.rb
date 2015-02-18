@@ -20,6 +20,11 @@ class InventoryController < ApplicationController
                   left: 25,
                   right: 25
                 },
+                page_size: 'Letter',
+                font_size: 12,
+                footer: {
+                  right: 'Page [page]'
+                },
                 show_as_html:  params[:debug].present?,
                 disposition:  'inline',
                 template:     "inventory/report/#{controller_name}.pdf.erb",
