@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Quantity</th>
+    <th>Weight (g)</th>
+  </tr>
+
+  <% seeds.each do |seed| %>
+    <tr>
+      <td><%= seed.name %></td>
+      <td><%= seed.quantity %></td>
+      <td><%= weight_for seed.current_weight, '' %></td>
+    </tr>
+  <% end %>
+</table>
