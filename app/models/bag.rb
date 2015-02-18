@@ -8,6 +8,10 @@ class Bag < ActiveRecord::Base
   include Recallable
   include Quarantineable
   include Sortable
+
+  after_save -> { lot.bag_changed }
+
+
   
   def update_category_and_strain
     self[:category] = category.titleize

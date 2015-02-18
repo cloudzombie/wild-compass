@@ -35,6 +35,11 @@ class Lot < ActiveRecord::Base
   has_many :brands, -> { uniq }, through: :strains
 
 
+  def bag_changed
+    update(current_weight: bags.sum(:current_weight))
+  end
+
+
 
   def to_s
     "#{ name.upcase unless name.nil? }"

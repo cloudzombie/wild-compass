@@ -2,23 +2,23 @@
   <tr>
     <td><%= check_box_tag :accept %></td>
     <td>
-      <% if can? :show, bag %>
-      <%= link_to bag.try(:to_s), bag if bag.present? %>
-      <%= test_for bag if bag.present? %>
-      <%= archive_for bag if bag.present? %>
+      <% if can? :show, Bag %>
+        <%= link_to "#{bag}", bag %>
+        <%= test_for bag %>
+        <%= archive_for bag %>
       <% else %>
-      <%= bag.try(:to_s) if bag.present? %>
-      <%= test_for bag if bag.present? %>
-      <%= archive_for bag if bag.present? %>
+        <%= bag %>
+        <%= test_for bag %>
+        <%= archive_for bag %>
       <% end %>
     </td>
-    <td><%= strain_for bag.try(:strain) if bag.present? %></td>
-    <td><%= category_for bag.try(:category) if bag.present? %></td>
-    <td><%= weight_for bag.try(:initial_weight) if bag.present? %></td>
-    <td><%= weight_for bag.try(:current_weight) if bag.present? %></td>
+    <td><%= strain_for bag.try(:strain) %></td>
+    <td><%= category_for bag.try(:category) %></td>
+    <td><%= weight_for bag.try(:initial_weight) %></td>
+    <td><%= weight_for bag.try(:current_weight) %></td>
     <td><%= link_to bag.bin, bag.bin, class: 'btn-sm btn-flat btn-primary' %></td>
     <td><%= bag_variance bag %></td>
-    <td><%= bag.try(:status) if bag.present? %></td>
+    <td><%= bag.try(:status) %></td>
     <td>
       <% if can? :show, Lot %>
       <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" %>
