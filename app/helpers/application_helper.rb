@@ -156,6 +156,14 @@ module ApplicationHelper
     end
   end
 
+  def sum(collection, attribute)
+    total = 0
+    collection.each do |item|
+      total += item.send(attribute) || 0
+    end
+    total
+  end
+
   #def monthly_variance_for(item)
   #  variance = item.history.history_lines.where(source == target).current_weight.variance
   #  if variance/current_weight > 0.01905

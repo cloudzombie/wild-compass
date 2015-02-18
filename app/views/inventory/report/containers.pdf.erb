@@ -1,21 +1,54 @@
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Strain</th>
-    <th>Category</th>
-    <th>Initial Weight (g)</th>
-    <th>Current Weight (g)</th>
-    <th>Waste (g)</th>
-  </tr>
+<% page_width = '100.0' %>
+<% cols_width = '16.67' %>
 
-  <% containers.each do |container| %>
-    <tr>
-      <td><%= container.try(:to_s) %></td>
-      <td><%= strain_for container.try(:strain) %></td>
-      <td><%= container.try(:category) %></td>
-      <td><%= weight_for container.try(:initial_weight), '' %></td>
-      <td><%= weight_for container.try(:current_weight), '' %></td>
-      <td><%= weight_for container.try(:processing_waste_produced), '' %></td>
+<% containers.group_by { |container| container.strain }.each do |strains, containers| %>
+  <table style="width: <%= page_width %>%;">
+    <thead style="width: <%= page_width %>%;">
+      <tr style="width: <%= page_width %>%;">
+        <th style="width: <%= cols_width%>%">ID</th>
+        <th style="width: <%= cols_width%>%">Strain</th>
+        <th style="width: <%= cols_width%>%">Category</th>
+        <th style="width: <%= cols_width%>%">Initial Weight (g)</th>
+        <th style="width: <%= cols_width%>%">Current Weight (g)</th>
+        <th style="width: <%= cols_width%>%">Waste (g)</th>
+      </tr>
+    </thead>
+
+    <tbody style="width: <%= page_width %>%;">
+      <% containers.each do |container| %>
+        <tr style="width: <%= page_width %>%;">
+          <td style="width: <%= cols_width%>%"><%= container.try(:to_s) %></td>
+          <td style="width: <%= cols_width%>%"><%= strain_for container.try(:strain) %></td>
+          <td style="width: <%= cols_width%>%"><%= container.try(:category) %></td>
+          <td style="width: <%= cols_width%>%"><%= weight_for container.try(:initial_weight), '' %></td>
+          <td style="width: <%= cols_width%>%"><%= weight_for container.try(:current_weight), '' %></td>
+          <td style="width: <%= cols_width%>%"><%= weight_for container.try(:processing_waste_produced), '' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+    <tfoot style="width: <%= page_width %>%;">
+      <tr style="width: <%= page_width %>%;">
+        <th style="width: <%= cols_width%>%">Sub Total</th>
+        <td style="width: <%= cols_width%>%"></td>
+        <td style="width: <%= cols_width%>%"></td>
+        <td style="width: <%= cols_width%>%"><%= weight_for sum(containers, :initial_weight), '' %></td>
+        <td style="width: <%= cols_width%>%"><%= weight_for sum(containers, :current_weight), '' %></td>
+        <td style="width: <%= cols_width%>%"><%= weight_for sum(containers, :processing_waste_produced), '' %></td>
+      </tr>
+    </tfoot>
+  </table>
+<% end %>
+
+<table style="width: <%= page_width %>%;">
+  <tfoot style="width: <%= page_width %>%;">
+    <tr style="width: <%= page_width %>%;">
+      <th style="width: <%= cols_width%>%">Grand Total</th>
+      <td style="width: <%= cols_width%>%"></td>
+      <td style="width: <%= cols_width%>%"></td>
+      <td style="width: <%= cols_width%>%"><%= weight_for containers.sum(:initial_weight), '' %></td>
+      <td style="width: <%= cols_width%>%"><%= weight_for containers.sum(:current_weight), '' %></td>
+      <td style="width: <%= cols_width%>%"><%= weight_for containers.sum(:processing_waste_produced), '' %></td>
     </tr>
-  <% end %>
+  </tfoot>
 </table>
