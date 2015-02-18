@@ -1,18 +1,49 @@
 <div role="tabpanel">
-  <%= link_to 'Print PDF', inventory_seeds_download_path, class: 'btn btn-primary pull-right' %>
+  <% if Rails.env.development? %>
+    <%= link_to 'Print PDF', inventory_seeds_path( format: :pdf,
+                                                    debug: 1,
+                                                    direction: sort_direction,
+                                                    sort: sort_column),
+                 class: 'btn btn-primary pull-right' %>
+  <% else %>
+    <%= link_to 'Print PDF', inventory_seeds_path( format: :pdf,
+                                                    direction: sort_direction,
+                                                    sort: sort_column),
+                 class: 'btn btn-primary pull-right' %>
+  <% end %>
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
   
   <%= render 'inventory/nav' %>
 
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane" id="summary"></div>
-    <div role="tabpanel" class="tab-pane" id="plants"></div>
-    <div role="tabpanel" class="tab-pane" id="mothers"></div>
-    <div role="tabpanel" class="tab-pane" id="clones"></div>
-    <div role="tabpanel" class="tab-pane" id="jars"></div>
-    <div role="tabpanel" class="tab-pane" id="lots"></div>
-    <div role="tabpanel" class="tab-pane" id="containers"></div>
-    <div role="tabpanel" class="tab-pane" id="bags"></div>
+    <div role="tabpanel" class="tab-pane active" id="seeds">
+      <table class="table table-striped">
+        <tr>
+          <th class="col-md-4">
+            <%= sortable :name, 'ID' %>
+            <%= number_field_tag :id_filter, nil, class: 'filter form-control' %>
+          </th>
+
+          <th class="col-md-4">
+            <%= sortable :quantity %>
+            <%= number_field_tag :quantity, nil, class: 'filter form-control' %>
+          </th>
+
+          <th class="col-md-4">
+            <%= sortable :current_weight, 'Weight (g)' %>
+            <%= number_field_tag :current_weight, nil, class: 'filter form-control' %>
+          </th>          
+        </tr>
+
+        <% seeds.each do |seed| %>
+          <tr>
+            <td><%= seed.name %></td>
+            <td><%= seed.quantity %></td>
+            <td><%= weight_for seed.current_weight, '' %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>

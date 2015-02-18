@@ -19,6 +19,10 @@
     <%= link_to 'Babies', inventory_plants_babies_path, role: 'tab' %>
   </li>
 
+  <li role="presentation" class="<%= params[:controller] == 'inventory/seeds' ? 'active' : '' %>">
+    <%= link_to 'Seeds', inventory_seeds_path, role: 'tab' %>
+  </li>
+
   <li role="presentation" class="<%= params[:controller] == 'inventory/jars' ? 'active' : '' %>">
     <%= link_to 'Jars', inventory_jars_path, role: 'tab' %>
   </li>
