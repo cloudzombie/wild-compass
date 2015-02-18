@@ -48,7 +48,8 @@
 <div style="display: block; clear: both; page-break-after: always;"></div>
 
 <% if !bags[20..bags.length].nil? %>
-  <% slices = bags[20..bags.length].each_slice(32).with_index do |slice, i| %>
+  <% slices = bags[20..bags.length].each_slice(32) %>
+  <% slices.with_index do |slice, i| %>
     <table style="width: <%= page_width %>%;">
       <tbody style="width: <%= page_width %>%;">
         <% slice.each do |bag| %>
