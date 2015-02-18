@@ -1,36 +1,42 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Strain</th>
-      <th>Category</th>
-      <th>Initial Weight (g)</th>
-      <th>Current Weight (g)</th>
-      <th>Variance</th>
+<table style="width: 100%;">
+  <thead style="width: 100%;">
+    <tr style="width: 100%;">
+      <th style="width: 16.67%;">Name</th>
+      <th style="width: 16.67%;">Strain</th>
+      <th style="width: 16.67%;">Category</th>
+      <th style="width: 16.67%;">Initial Weight (g)</th>
+      <th style="width: 16.67%;">Current Weight (g)</th>
+      <th style="width: 16.67%;">Variance</th>
     </tr>
   </thead>
+</table>
 
-  <tbody>
-    <% bags.each do |bag| %>
-      <tr>
-        <td><%= bag.try(:to_s) %></td>
-        <td><%= strain_for bag.try(:strain) %></td>
-        <td><%= bag.try(:category) %></td>
-        <td><%= weight_for bag.try(:initial_weight), '' %></td>
-        <td><%= weight_for bag.try(:current_weight), '' %></td>
-        <td><%= variance_for bag.try(:initial_weight), bag.try(:current_weight) %></td>
+<% bags.each_slice(20) do |slice| %>
+  <table style="width: 100%;">
+    <% slice.each do |bag| %>
+    <tbody style="width: 100%;">
+      <tr style="width: 100%;">
+        <td style="width: 16.67%;"><%= bag.try(:to_s) %></td>
+        <td style="width: 16.67%;"><%= strain_for bag.try(:strain) %></td>
+        <td style="width: 16.67%;"><%= bag.try(:category) %></td>
+        <td style="width: 16.67%;"><%= weight_for bag.try(:initial_weight), '' %></td>
+        <td style="width: 16.67%;"><%= weight_for bag.try(:current_weight), '' %></td>
+        <td style="width: 16.67%;"><%= variance_for bag.try(:initial_weight), bag.try(:current_weight) %></td>
       </tr>
+    </tbody>
     <% end %>
-  </tbody>
+  </table>
+<% end %>
 
-  <tfoot>
-    <tr>
-      <th>Total</th>
-      <td></td>
-      <td></td>
-      <td><%= weight_for bags.sum(:current_weight), '' %></td>
-      <td></td>
-      <td></td>
+<table style="width: 100%;">
+  <tfoot style="width: 100%;">
+    <tr style="width: 100%;">
+      <th style="width: 16.67%;">Total</th>
+      <td style="width: 16.67%;"></td>
+      <td style="width: 16.67%;"></td>
+      <td style="width: 16.67%;"><%= weight_for bags.sum(:current_weight), '' %></td>
+      <td style="width: 16.67%;"></td>
+      <td style="width: 16.67%;"></td>
     </tr>
   </tfoot>
 </table>
