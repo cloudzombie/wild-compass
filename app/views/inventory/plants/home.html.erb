@@ -18,7 +18,7 @@
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="plants">
-      <%= form_for inventory_plants_path, remote: true, id: 'filter-form' do |f| %>
+      <%= form_for :filter, url: inventory_plants_path, remote: true, id: 'filter-form' do |f| %>
         <table class="table table-striped">
           <tr>
             <th class="col-md-2">
@@ -46,20 +46,13 @@
 
             <th class="col-md-2">
               <%= sortable :type %>
-              <%= f.select :type, options_for_select(['Plant', 'Plant::BabyPlant', 'Plant::ClonePlant', 'Plant::MotherPlant']), { selected: 'Plant' }, class: 'filter form-control', id: 'type-filter' %>
+              <%= f.select :type, options_for_select(['Plant', 'Plant::BabyPlant', 'Plant::ClonePlant', 'Plant::MotherPlant']),
+                  { selected: 'Plant' }, class: 'filter form-control', id: 'type-filter' %>
             </th>
           </tr>
 
           <tbody id="table-body">
-            <% plants.each do |plant| %>
-              <tr>
-                <td><%= plant %></td>
-                <td><%= strain_for plant.strain %></td>
-                <td><%= plant.status %></td>
-                <td><%= format_for plant.format %></td>
-                <td><%= plant.type %></td>
-              </tr>
-            <% end %>
+            <%= render 'inventory/plants/ajax/table' %>
           </tbody>
         </table>
       <% end %>
