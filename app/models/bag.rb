@@ -20,6 +20,27 @@ class Bag < ActiveRecord::Base
     save
   end
 
+  def transaction_changed
+  end
+
+  def incoming_weight
+    incoming_transactions.sum(:weight)
+  end
+
+  def outgoing_weight
+    outgoing_transactions.sum(:weight)
+  end
+
+  ### Transactions
+
+  has_many :incoming_transactions, as: 'target', class_name: 'Transaction', dependent: :destroy
+
+  has_many :outgoing_transactions, as: 'source', class_name: 'Transaction', dependent: :destroy
+
+  def transactions
+    Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class)
+  end
+
   scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
   scope :by_categories,    -> (category = nil) { joins(:container).merge(Container.where(category: category)) }
   scope :by_trims,         -> { by_categories 'Trim' }

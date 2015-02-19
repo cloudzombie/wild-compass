@@ -7,26 +7,26 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#home'
 
   # Inventory
-  get 'inventory',                         to: 'inventory#home'
-  get 'inventory/download',                to: 'inventory#download'
-  get 'inventory/seeds',                   to: 'inventory/seeds#home'
-  get 'inventory/seeds/download',          to: 'inventory/seeds#home'
-  get 'inventory/plants',                  to: 'inventory/plants#home'
-  get 'inventory/plants/download',         to: 'inventory/plants#home'
-  get 'inventory/lots',                    to: 'inventory/lots#home'
-  get 'inventory/lots/download',           to: 'inventory/lots#home'
-  get 'inventory/bags',                    to: 'inventory/bags#home'
-  get 'inventory/bags/download',           to: 'inventory/bags#home'
-  get 'inventory/jars',                    to: 'inventory/jars#home'
-  get 'inventory/jars/download',           to: 'inventory/jars#home'
-  get 'inventory/containers',              to: 'inventory/containers#home'
-  get 'inventory/containers/download',     to: 'inventory/containers#home'
-  get 'inventory/plants/mothers',          to: 'inventory/plants/mothers#home'
-  get 'inventory/plants/mothers/download', to: 'inventory/plants/mothers#home'
-  get 'inventory/plants/clones',           to: 'inventory/plants/clones#home'
-  get 'inventory/plants/clones/download',  to: 'inventory/plants/clones#home'
-  get 'inventory/plants/babies',           to: 'inventory/plants/babies#home'
-  get 'inventory/plants/babies/download',  to: 'inventory/plants/babies#home'
+  match 'inventory',                         to: 'inventory#home',                via: [:get, :post]
+  match 'inventory/download',                to: 'inventory#download',            via: [:get, :post]
+  match 'inventory/seeds',                   to: 'inventory/seeds#home',          via: [:get, :post]
+  match 'inventory/seeds/download',          to: 'inventory/seeds#home',          via: [:get, :post]
+  match 'inventory/plants',                  to: 'inventory/plants#home',         via: [:get, :post]
+  match 'inventory/plants/download',         to: 'inventory/plants#home',         via: [:get, :post]
+  match 'inventory/lots',                    to: 'inventory/lots#home',           via: [:get, :post]
+  match 'inventory/lots/download',           to: 'inventory/lots#home',           via: [:get, :post]
+  match 'inventory/bags',                    to: 'inventory/bags#home',           via: [:get, :post]
+  match 'inventory/bags/download',           to: 'inventory/bags#home',           via: [:get, :post]
+  match 'inventory/jars',                    to: 'inventory/jars#home',           via: [:get, :post]
+  match 'inventory/jars/download',           to: 'inventory/jars#home',           via: [:get, :post]
+  match 'inventory/containers',              to: 'inventory/containers#home',     via: [:get, :post]
+  match 'inventory/containers/download',     to: 'inventory/containers#home',     via: [:get, :post]
+  match 'inventory/plants/mothers',          to: 'inventory/plants/mothers#home', via: [:get, :post]
+  match 'inventory/plants/mothers/download', to: 'inventory/plants/mothers#home', via: [:get, :post]
+  match 'inventory/plants/clones',           to: 'inventory/plants/clones#home',  via: [:get, :post]
+  match 'inventory/plants/clones/download',  to: 'inventory/plants/clones#home',  via: [:get, :post]
+  match 'inventory/plants/babies',           to: 'inventory/plants/babies#home',  via: [:get, :post]
+  match 'inventory/plants/babies/download',  to: 'inventory/plants/babies#home',  via: [:get, :post]
 
   # Users and sessions
   devise_for :users, controllers: { sessions:       'users/sessions',

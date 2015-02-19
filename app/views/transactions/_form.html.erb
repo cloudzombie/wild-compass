@@ -24,6 +24,7 @@
   <div class="form-group">
     <%= f.label :source_type %>
     <%= f.select :source_type, options_for_select([
+          'Bag',
           'Container',
           'Harvest'
         ]), { selected: @transaction.source_type }, class: 'form-control' %>

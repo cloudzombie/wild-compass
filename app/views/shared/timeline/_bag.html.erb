@@ -1,3 +1,69 @@
+<% bag.transactions.each do |transaction| %>
+  <tr>
+    <td>
+      <%= date_for transaction.event %>
+    </td>
+    
+    <td>
+      <% if transaction.source.kind_of? Waste %>
+        <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-danger" %>
+      <% elsif transaction.source.kind_of? Transactions::Lab %>
+        <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-danger" %>
+      <% elsif transaction.source.kind_of? Harvest %>
+        <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-success" %>
+      <% elsif transaction.source.kind_of? Plant %>
+        <%= link_to "#{transaction.source}", transaction.source, class: "btn-sm btn-flat btn-success" %>
+      <% elsif transaction.source.kind_of? Container %>
+        <%= link_to "#{transaction.source}", transaction.source, class: "btn-sm btn-flat btn-primary" %>
+      <% elsif transaction.source.kind_of? Bag %>
+        <%= link_to "#{transaction.source}", transaction.source, class: "btn-sm btn-flat btn-warning" %>
+      <% else %>
+        <%= "#{transaction.source}" %>
+      <% end %>
+    </td>
+    
+    <td>
+      <%= weight_for transaction.weight, '' %>
+    </td>
+
+    <td>
+      
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <%= date_for transaction.event %>
+    </td>
+
+    <td>
+      <% if transaction.target.kind_of? Waste %>
+        <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-danger" %>
+      <% elsif transaction.target.kind_of? Transactions::Lab %>
+        <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-danger" %>
+      <% elsif transaction.target.kind_of? Harvest %>
+        <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-success" %>
+      <% elsif transaction.target.kind_of? Plant %>
+        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-success" %>
+      <% elsif transaction.target.kind_of? Container %>
+        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-primary" %>
+      <% elsif transaction.target.kind_of? Bag %>
+        <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-warning" %>
+      <% else %>
+        <%= "#{transaction.target}" %>
+      <% end %>
+    </td>
+    
+    <td>
+      
+    </td>
+
+    <td>
+      <%= weight_for transaction.weight, '' %>
+    </td>
+  </tr>
+<% end %>
+
 <tr>
   <td>
     <%= date_for bag.created_at %>
