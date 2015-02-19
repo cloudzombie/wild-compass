@@ -1,19 +1,8 @@
 <%= form_for(plant) do |f| %>
-
   <div class="form-group">
     <%= f.label :name, 'ID' %>
     <%= f.text_field :name, class: 'form-control' %>
     <%= display_error_for plant, :name %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :type %>
-    <%= f.select :type, [
-          'Plant::ClonePlant',
-          'Plant::BabyPlant',
-          'Plant::MotherPlant'
-        ], { selected: plant.type }, class: 'form-control' %>
-    <%= display_error_for plant, :type %>
   </div>
 
   <div class="form-group">
@@ -30,8 +19,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :seed %>
-    <%= f.collection_select(:seed, Seed.all, :id, :to_s,
+    <%= f.label :seed_id %>
+    <%= f.collection_select(:seed_id, Seed.all, :id, :to_s,
         { selected: plant.seed }, { class: 'form-control' }) %>
   </div>
 

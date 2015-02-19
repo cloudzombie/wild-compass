@@ -1,0 +1,9 @@
+<% babies.each do |baby| %>
+  <tr>
+    <td><%= baby %></td>
+    <td><%= strain_for baby.strain %></td>
+    <td><%= baby.status %></td>
+    <td><%= format_for baby.format %></td>
+    <td><%= baby.type %></td>
+  </tr>
+<% end %>
