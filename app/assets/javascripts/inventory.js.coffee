@@ -4,4 +4,6 @@
 
 $(document).ready ->
   $('.filter').change ->
-    $('#filter-form').submit
+    $('#filter-form').submit()
+    return
+  return

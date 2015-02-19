@@ -24010,8 +24010,8 @@ var saveAs = saveAs
 }).call(this);
 (function() {
   $(document).ready(function() {
-    return $('.filter').change(function() {
-      return $('#filter-form').submit;
+    $('.filter').change(function() {
+      $('#filter-form').submit();
     });
   });
 
