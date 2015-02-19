@@ -24010,25 +24010,8 @@ var saveAs = saveAs
 }).call(this);
 (function() {
   $(document).ready(function() {
-    $('#id-filter').change(function() {
-      return $('filter-form').submit;
-    });
-    $('#format-filter').change(function() {
-      return $('filter-form').submit;
-    });
-    $('#strain-filter').change(function() {
-      return $('filter-form').submit;
-    });
-    $('#status-filter').change(function() {
-      return $('filter-form').submit;
-    });
-    $('#type-filter').change(function() {
-      return $('filter-form').submit;
-    });
-    return $("#table-form").on("ajax:success", function(e, data, status, xhr) {
-      return $("#table-form").append(xhr.responseText);
-    }).on("ajax:error", function(e, xhr, status, error) {
-      return $("#table-form").append("<p>ERROR</p>");
+    return $('.filter').change(function() {
+      return $('#filter-form').submit;
     });
   });
 
