@@ -4,12 +4,12 @@
                                                     debug: 1,
                                                     direction: sort_direction,
                                                     sort: sort_column),
-                 class: 'btn btn-primary pull-right' %>
+                                                    class: 'btn btn-primary pull-right' %>
   <% else %>
     <%= link_to 'Print PDF', inventory_seeds_path( format: :pdf,
                                                     direction: sort_direction,
                                                     sort: sort_column),
-                 class: 'btn btn-primary pull-right' %>
+                                                    class: 'btn btn-primary pull-right' %>
   <% end %>
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
@@ -18,32 +18,30 @@
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="seeds">
-      <table class="table table-striped">
-        <tr>
-          <th class="col-md-4">
-            <%= sortable :name, 'ID' %>
-            <%= number_field_tag :id_filter, nil, class: 'filter form-control' %>
-          </th>
-
-          <th class="col-md-4">
-            <%= sortable :quantity %>
-            <%= number_field_tag :quantity, nil, class: 'filter form-control' %>
-          </th>
-
-          <th class="col-md-4">
-            <%= sortable :current_weight, 'Weight (g)' %>
-            <%= number_field_tag :current_weight, nil, class: 'filter form-control' %>
-          </th>          
-        </tr>
-
-        <% seeds.each do |seed| %>
+      <%= form_for :filter, url: inventory_seeds_path, remote: true, html: { id: 'filter-form' } do |f| %>
+        <table class="table table-striped">
           <tr>
-            <td><%= seed.name %></td>
-            <td><%= seed.quantity %></td>
-            <td><%= weight_for seed.current_weight, '' %></td>
+            <th class="col-md-4">
+              <%= sortable :name, 'ID' %>
+              <%= f.number_field :name, id: 'id-filter', class: 'filter form-control' %>
+            </th>
+
+            <th class="col-md-4">
+              <%= sortable :stock, 'Quantity' %>
+              <%= f.number_field :stock, id: 'stock-filter', class: 'filter form-control' %>
+            </th>
+            
+            <th class="col-md-4">
+              <%= sortable :current_weight %>
+              <%= f.number_field :current_weight, id: 'current-weight-filter', class: 'filter form-control' %>
+            </th>
           </tr>
-        <% end %>
-      </table>
+
+          <tbody id="table-body">
+            <%= render 'inventory/seeds/ajax/table' %>
+          </tbody>
+        </table>
+      <% end %>
     </div>
   </div>
 </div>
