@@ -3,7 +3,7 @@
     <%= link_to 'Print PDF', inventory_plants_clones_path( format: :pdf,
                                                            debug: 1,
                                                            direction: sort_direction,
-                                                           sort: sort_column),
+                                                           sort: sort_direction),
                  class: 'btn btn-primary pull-right' %>
   <% else %>
     <%= link_to 'Print PDF', inventory_plants_clones_path( format: :pdf,
@@ -18,23 +18,38 @@
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="clones">
-      <table class="table table-striped">
-        <tr>
-          <th><%= sortable :name, 'ID' %></th>
-          <th><%= sortable :strain_id %></th>
-          <th><%= sortable :status_id %></th>
-          <th><%= sortable :format_id %></th>
-        </tr>
-
-        <% clones.each do |clone| %>
+      <%= form_for :filter, url: inventory_plants_clones_path, remote: true, html: { id: 'filter-form' } do |f| %>
+        <table class="table table-striped">
           <tr>
-            <td><%= clone %></td>
-            <td><%= strain_for clone.strain %></td>
-            <td><%= clone.status %></td>
-            <td><%= format_for clone.format %></td>
+            <th class="col-md-3">
+              <%= sortable :name, 'ID' %>
+              <%= f.number_field :id, id: 'id-filter', class: 'filter form-control' %>
+            </th>
+
+            <th class="col-md-3">
+              <%= sortable :strain_id %>
+              <%= f.collection_select :strain_id, Strain.all, :id, :acronym,
+                  { include_blank: true }, class: 'filter form-control', id: 'strain-filter' %>
+            </th>
+
+            <th class="col-md-3">
+              <%= sortable :status_id %>
+              <%= f.collection_select :status_id, Status.all, :id, :name,
+                  { include_blank: true }, class: 'filter form-control', id: 'status-filter' %>
+            </th>
+
+            <th class="col-md-3">
+              <%= sortable :format_id %>
+              <%= f.collection_select :format_id, Format.all, :id, :name,
+                  { include_blank: true }, class: 'filter form-control', id: 'format-filter' %>
+            </th>
           </tr>
-        <% end %>
-      </table>
+
+          <tbody id="table-body">
+            <%= render 'inventory/plants/clones/ajax/table' %>
+          </tbody>
+        </table>
+      <% end %>
     </div>
   </div>
 </div>

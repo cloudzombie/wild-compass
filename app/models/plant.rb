@@ -82,6 +82,7 @@ class Plant < ActiveRecord::Base
 
     def record_change
       history.add_line(self, self, 0.0, :change, nil, "#{changed_attributes}")
+      true
     end
 
 end

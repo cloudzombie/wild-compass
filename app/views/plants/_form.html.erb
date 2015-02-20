@@ -6,9 +6,17 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :type %>
+    <%= f.select :type, options_for_select(['Plant', 'Plant::ClonePlant', 'Plant::MotherPlant', 'Plant::BabyPlant']),
+        { selected: plant.type }, { class: 'form-control' } %>
+    <%= display_error_for plant, :type %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :location_id %>
     <%= f.collection_select(:location_id, Location.all, :id, :to_s,
         { selected: plant.location_id }, { class: 'form-control' }) %>
+    <%= display_error_for plant, :location_id %>
   </div>
 
   <div class="form-group">
@@ -22,6 +30,7 @@
     <%= f.label :seed_id %>
     <%= f.collection_select(:seed_id, Seed.all, :id, :to_s,
         { selected: plant.seed }, { class: 'form-control' }) %>
+    <%= display_error_for plant, :seed_id %>
   </div>
 
   <div class="form-group">

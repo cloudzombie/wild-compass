@@ -1,0 +1,8 @@
+<% mothers.each do |mother| %>
+  <tr>
+    <td><%= mother %></td>
+    <td><%= strain_for mother.strain %></td>
+    <td><%= mother.status %></td>
+    <td><%= format_for mother.format %></td>
+  </tr>
+<% end %>
