@@ -1,0 +1,8 @@
+<% clones.each do |clone| %>
+  <tr>
+    <td><%= clone %></td>
+    <td><%= strain_for clone.strain %></td>
+    <td><%= clone.status %></td>
+    <td><%= format_for clone.format %></td>
+  </tr>
+<% end %>

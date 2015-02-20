@@ -18,23 +18,38 @@
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="babies">
-      <table class="table table-striped">
-        <tr>
-          <th><%= sortable :name, 'ID' %></th>
-          <th><%= sortable :strain_id %></th>
-          <th><%= sortable :status_id %></th>
-          <th><%= sortable :format_id %></th>
-        </tr>
-
-        <% babies.each do |baby| %>
+      <%= form_for :filter, url: inventory_plants_babies_path, remote: true, html: { id: 'filter-form' } do |f| %>
+        <table class="table table-striped">
           <tr>
-            <td><%= baby %></td>
-            <td><%= strain_for baby.strain %></td>
-            <td><%= baby.status %></td>
-            <td><%= format_for baby.format %></td>
+            <th class="col-md-3">
+              <%= sortable :name, 'ID' %>
+              <%= f.number_field :id, id: 'id-filter', class: 'filter form-control' %>
+            </th>
+
+            <th class="col-md-3">
+              <%= sortable :strain_id %>
+              <%= f.collection_select :strain_id, Strain.all, :id, :acronym,
+                  { include_blank: true }, class: 'filter form-control', id: 'strain-filter' %>
+            </th>
+
+            <th class="col-md-3">
+              <%= sortable :status_id %>
+              <%= f.collection_select :status_id, Status.all, :id, :name,
+                  { include_blank: true }, class: 'filter form-control', id: 'status-filter' %>
+            </th>
+
+            <th class="col-md-3">
+              <%= sortable :format_id %>
+              <%= f.collection_select :format_id, Format.all, :id, :name,
+                  { include_blank: true }, class: 'filter form-control', id: 'format-filter' %>
+            </th>
           </tr>
-        <% end %>
-      </table>
+
+          <tbody id="table-body">
+            <%= render 'inventory/plants/babies/ajax/table' %>
+          </tbody>
+        </table>
+      <% end %>
     </div>
   </div>
 </div>

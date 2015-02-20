@@ -4,12 +4,12 @@
                                                   debug: 1,
                                                   direction: sort_direction,
                                                   sort: sort_column),
-                 class: 'btn btn-primary pull-right' %>
+                                                  class: 'btn btn-primary pull-right' %>
   <% else %>
     <%= link_to 'Print PDF', inventory_lots_path( format: :pdf,
                                                   direction: sort_direction,
                                                   sort: sort_column),
-                 class: 'btn btn-primary pull-right' %>
+                                                  class: 'btn btn-primary pull-right' %>
   <% end %>
 
   <%#= link_to 'Print Monthly Report', inventory_download_path, class: 'btn btn-primary pull-right'%>
@@ -18,23 +18,37 @@
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="lots">
-      <table class="table table-striped">
-        <tr>
-          <th class="col-md-3"><%= sortable :name, 'ID'%></th>
-          <th class="col-md-3"><%= sortable :strain %></th>
-          <th class="col-md-3"><%= sortable :category %></th>
-          <th class="col-md-3"><%= sortable :current_weight, 'Current Weight (g)' %></th>
-        </tr>
-
-        <% lots.each do |lot| %>
+      <%= form_for :filter, url: inventory_lots_path, remote: true, html: { id: 'filter-form' } do |f| %>
+        <table class="table table-striped">
           <tr>
-            <td><%= lot.try(:to_s) %></td>
-            <td><%= strain_for lot.try(:strain) %></td>
-            <td><%= lot.try(:category) %></td>
-            <td><%= weight_for lot.try(:current_weight), '' %></td>
+            <th class="col-md-2">
+              <%= sortable :name, 'ID' %>
+              <%= f.number_field :id, id: 'id-filter', class: 'filter form-control' %>
+            </th>
+
+            <th class="col-md-2">
+              <%= sortable :strain %>
+              <%= f.collection_select :strain, Strain.all, :id, :acronym,
+                  { include_blank: true }, class: 'filter form-control', id: 'strain-filter' %>
+            </th>
+
+            <th class="col-md-2">
+              <%= sortable :category %>
+              <%= f.select :category, options_for_select(['Trim', 'Buds', 'Unprocessed']),
+                  { include_blank: true }, class: 'filter form-control', id: 'category-filter' %>
+            </th>
+
+            <th class="col-md-2">
+              <%= sortable :current_weight, 'Weight' %>
+              <%= f.number_field :current_weight, id: 'current-weight-filter', class: 'filter form-control' %>
+            </th>
           </tr>
-        <% end %>
-      </table>
+
+          <tbody id="table-body">
+            <%= render 'inventory/lots/ajax/table' %>
+          </tbody>
+        </table>
+      <% end %>
     </div>
   </div>
 </div>
