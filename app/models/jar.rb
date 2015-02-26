@@ -16,10 +16,15 @@ class Jar < ActiveRecord::Base
   scope :by_buds,       -> { by_categories 'Buds' }
   scope :by_brands,     -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
-  scope :fulfilled,   -> { uniq.where fulfilled: true  } 
-  scope :unfulfilled, -> { uniq.where fulfilled: false }
+  scope :fulfilled,     -> { uniq.where fulfilled: true  } 
+  scope :unfulfilled,   -> { uniq.where fulfilled: false }
 
-
+  def perform_return
+    update(returned: true)
+    true
+  rescue
+    false
+  end
 
   def next
     jars = []

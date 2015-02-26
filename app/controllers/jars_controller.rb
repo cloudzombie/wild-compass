@@ -74,6 +74,19 @@ class JarsController < ApplicationController
     end
   end
 
+  def perform_return
+    respond_to do |format|
+      format.html { redirect_to jars_path, notice: "returned: #{jar.returned?}" }
+      format.json do
+        render json: {
+          jar: {
+            returned: jar.returned?
+          }
+        }
+      end
+    end
+  end
+
 
 
   # Never trust parameters from the scary internet, only allow the white list through.
