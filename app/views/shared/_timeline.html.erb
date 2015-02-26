@@ -16,14 +16,13 @@
       </thead>
 
       <tbody>
-        <%# if    described.kind_of? Lot %>
-          <%# render partial: 'shared/timeline/lot',        locals: { lot:  described } %>
-        <%# end %>
-        <%# elsif described.respond_to? :lots %>
-          <%# render partial: 'shared/timeline/lots',       locals: { lots: described.lots } %>
-        <%# elsif described.respond_to? :lot %>
-          <%# render partial: 'shared/timeline/lot',        locals: { lot:  described.lot } %>
-        <%# end %>
+        <% if    described.kind_of? Plant %>
+          <%= render partial: 'shared/timeline/plant',  locals: { plant:  described } %>
+        <% elsif described.respond_to? :plants %>
+          <%= render partial: 'shared/timeline/plants', locals: { plants: described.plants } %>
+        <% elsif described.respond_to? :plant %>
+          <%= render partial: 'shared/timeline/plant',  locals: { plant:  described.plant } %>
+        <% end %>
         
         <% if    described.kind_of? Container %>
           <%= render partial: 'shared/timeline/container',  locals: { container:  described } %>
