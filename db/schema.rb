@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226172154) do
+ActiveRecord::Schema.define(version: 20150226183847) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -287,6 +287,11 @@ ActiveRecord::Schema.define(version: 20150226172154) do
     t.datetime "updated_at"
     t.index ["source_id", "source_type"], :name => "index_transactions_on_source_id_and_source_type"
     t.index ["target_id", "target_type"], :name => "index_transactions_on_target_id_and_target_type"
+  end
+
+  create_table "transactions_destructions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "transactions_labs", force: true do |t|

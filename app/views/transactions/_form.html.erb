@@ -26,8 +26,9 @@
     <%= f.select :source_type, options_for_select([
           'Bag',
           'Container',
+          'Plant',
           'Harvest'
-        ]), { selected: @transaction.source_type }, class: 'form-control' %>
+        ], selected: @transaction.source_type), {}, class: 'form-control' %>
     <%= display_error_for @transaction, :source_type %>
   </div>
   
@@ -39,11 +40,12 @@
   <div class="form-group">
     <%= f.label :target_type %>
     <%= f.select :target_type, options_for_select([
-          'Bag',
-          'Container',
-          'Transactions::Lab',
-          'Waste'
-        ]), { selected: @transaction.target_type }, class: 'form-control' %>
+          [ 'Bag', 'Bag' ],
+          [ 'Container', 'Container' ],
+          [ 'Sent to Lab', 'Transactions::Lab' ],
+          [ 'Destruction', 'Transactions::Destruction' ],
+          [ 'Waste', 'Waste' ]
+        ], selected: @transaction.target_type), {}, class: 'form-control' %>
     <%= display_error_for @transaction, :target_type %>
   </div>
   
