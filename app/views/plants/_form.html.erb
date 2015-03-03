@@ -10,7 +10,7 @@
   <div class="form-group">
     <%= f.label :type %>
     <%= f.select :type, options_for_select(['Plant', 'Plant::ClonePlant', 'Plant::MotherPlant', 'Plant::BabyPlant']),
-        { selected: plant.type }, { class: 'form-control' } %>
+        { selected: plant.type }, { class: 'form-control', id: 'plant-type' } %>
     <%= display_error_for plant, :type %>
   </div>
 
@@ -28,11 +28,18 @@
     <%= display_error_for plant, :strain_id %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :seed_id %>
+  <div class="form-group" id="seed-origin-container">
+    <%= f.label :seed, 'Origin' %>
     <%= f.collection_select(:seed_id, Seed.all, :id, :to_s,
-        { include_blank: true, selected: plant.seed }, { class: 'form-control' }) %>
-    <%= display_error_for plant, :seed_id %>
+        { include_blank: true, selected: plant.seed }, { class: 'form-control', id: 'seed-origin' }) %>
+    <%= display_error_for plant, :seed %>
+  </div>
+
+  <div class="form-group" id="plant-origin-container">
+    <%= f.label :plant, 'Origin' %>
+    <%= f.collection_select(:plant_id, Plant.all, :id, :to_s,
+        { include_blank: true, selected: plant.plant }, { class: 'form-control', id: 'plant-origin' }) %>
+    <%= display_error_for plant, :plant %>
   </div>
 
   <div class="form-group">
@@ -43,11 +50,12 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :status_id %>
+    <%= f.label :status %>
     <%= f.collection_select(:status_id, Status.all, :id, :to_s,
-        { include_blank: true, selected: (action_name == 'new' || action_name == 'index' ? Status.find_by(name: 'growing').id : plant.status_id) },
+        { include_blank: true,
+          selected: (action_name == 'new' || action_name == 'index' ? Status.find_by(name: 'growing').id : plant.status_id) },
         { class: 'form-control' }) %>
-    <%= display_error_for plant, :status_id %>
+    <%= display_error_for plant, :status %>
   </div>
 
   <% if action_name == 'edit' %>
