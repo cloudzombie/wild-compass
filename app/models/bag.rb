@@ -19,9 +19,9 @@ class Bag < ActiveRecord::Base
   before_save :update_category
   before_save :update_strain
 
-  def update_all_delegated_attributes
-    update_delta
-    update_delta_old
+  def update_all_delegated_attributes!
+    update_delta!
+    update_delta_old!
     update_category
     update_strain
     save
@@ -160,6 +160,26 @@ class Bag < ActiveRecord::Base
         
         self.delta_old = y - x
       end
+    end
+
+    def update_delta!
+      self.delta = initial_weight - current_weight
+    end
+
+    def update_delta_old!
+      if (history.history_lines.reweight.order(created_at: :asc))[-2].nil? 
+        y = current_weight
+      else
+        y = (history.history_lines.reweight.order(created_at: :asc))[-2].quantity
+      end
+        
+      if (history.history_lines.reweight.order(created_at: :asc))[-1].nil?
+        x = initial_weight
+      else
+        x = (history.history_lines.reweight.order(created_at: :asc))[-1].quantity
+      end
+      
+      self.delta_old = y - x
     end
 
     def update_category
