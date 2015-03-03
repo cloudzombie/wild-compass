@@ -10,15 +10,23 @@ class Bag < ActiveRecord::Base
   include Sortable
   include Filterable
 
+
+
   after_save -> { lot.bag_changed }
 
+  before_save :update_delta
+  before_save :update_delta_old
+  before_save :update_category
+  before_save :update_strain
 
-  
-  def update_category_and_strain
-    self[:category] = category.titleize
-    self[:strain] = strain.acronym.upcase
+  def update_all_delegated_attributes
+    update_delta
+    update_delta_old
+    update_category
+    update_strain
     save
   end
+
 
   def transaction_changed
   end
@@ -41,47 +49,27 @@ class Bag < ActiveRecord::Base
     Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class)
   end
 
+
+
   scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
   scope :by_categories,    -> (category = nil) { joins(:container).merge(Container.where(category: category)) }
   scope :by_trims,         -> { by_categories 'Trim' }
   scope :by_buds,          -> { by_categories 'Buds' }
   scope :by_brands,        -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)) }
 
-  scope :fulfilled,   -> { uniq.joins(:jars).merge( Jar.fulfilled   )}
-  scope :unfulfilled, -> { uniq.joins(:jars).merge( Jar.unfulfilled )}
+  scope :fulfilled,        -> { uniq.joins(:jars).merge( Jar.fulfilled   )}
+  scope :unfulfilled,      -> { uniq.joins(:jars).merge( Jar.unfulfilled )}
 
-  scope :tested,   -> { where tested: true }
-  scope :archived, -> { where archived: true }
+  scope :tested,           -> { where tested: true }
+  scope :archived,         -> { where archived: true }
 
   def self.first_available(brand, weight)
-    by_brands(brand).by_buds.where(current_weight: weight..Float::INFINITY, sent_to_lab: false, tested: false, archived: false).first
-  end
-
-  def update_variance
-    bags = Bag.where(tested: false, sent_to_lab: false)
-    mean = bags.sum(:current_weight) / bags.count
-
-    update(variance: Math.sqrt((current_weight - mean)**2))
-  end
-
-  def update_delta
-    update(delta: initial_weight - current_weight)
-  end
-
-  def update_delta_old
-    if (history.history_lines.reweight.order(created_at: :asc))[-2].nil? 
-      y = current_weight
-    else
-      y = (history.history_lines.reweight.order(created_at: :asc))[-2].quantity
-    end
-      
-    if (history.history_lines.reweight.order(created_at: :asc))[-1].nil?
-      x = initial_weight
-    else
-      x = (history.history_lines.reweight.order(created_at: :asc))[-1].quantity
-    end
-    
-    update(delta_old: y - x)
+    by_brands(brand).by_buds.where(
+      current_weight: weight..Float::INFINITY,
+      sent_to_lab: false,
+      tested: false,
+      archived: false
+    ).first
   end
 
 
@@ -147,5 +135,39 @@ class Bag < ActiveRecord::Base
   rescue
     ''
   end
+
+  private
+
+    def update_delta
+      if initial_weight_changed? || current_weight_changed?
+        self.delta = initial_weight - current_weight
+      end
+    end
+
+    def update_delta_old
+      if initial_weight_changed? || current_weight_changed?
+        if (history.history_lines.reweight.order(created_at: :asc))[-2].nil? 
+          y = current_weight
+        else
+          y = (history.history_lines.reweight.order(created_at: :asc))[-2].quantity
+        end
+          
+        if (history.history_lines.reweight.order(created_at: :asc))[-1].nil?
+          x = initial_weight
+        else
+          x = (history.history_lines.reweight.order(created_at: :asc))[-1].quantity
+        end
+        
+        self.delta_old = y - x
+      end
+    end
+
+    def update_category
+      self[:category] = category.titleize
+    end
+
+    def update_strain
+      self[:strain] = strain.acronym.upcase
+    end
 
 end
