@@ -6,7 +6,7 @@ class API::V1::BagsController < API::V1::APIController
   end
 
   def show
-    respond_with Bag.find(id_param)
+    respond_with Bag.find(params[:id])
   end
 
   def create
@@ -18,22 +18,22 @@ class API::V1::BagsController < API::V1::APIController
   end
 
   def destroy
-    respond_with Bag.destroy(id_param)
+    respond_with Bag.destroy(params[:id])
   end
 
   def datamatrix
-    send_data Bag.find(id_param).datamatrix, type: 'image/png', disposition: 'attachment'
+    send_data Bag.find(params[:id]).datamatrix, type: 'image/png', disposition: 'attachment'
   end
 
   def label
-    send_data Bag.find(id_param).label, type: 'image/png', disposition: 'attachment'
+    send_data Bag.find(params[:id]).label, type: 'image/png', disposition: 'attachment'
   end
 
   def recall
     render json: {
       data: {
-        recall: Bag.find(id_param).recall,
-        quantity: Bag.find(id_param).lot.initial_weight
+        recall: Bag.find(params[:id]).recall,
+        quantity: Bag.find(params[:id]).lot.initial_weight
       }
     }
   end
@@ -41,8 +41,8 @@ class API::V1::BagsController < API::V1::APIController
   def unrecall
     render json: {
       data: {
-        unrecall: Bag.find(id_param).unrecall,
-        quantity: Bag.find(id_param).lot.initial_weight
+        unrecall: Bag.find(params[:id]).unrecall,
+        quantity: Bag.find(params[:id]).lot.initial_weight
       }
     }
   end
@@ -50,8 +50,8 @@ class API::V1::BagsController < API::V1::APIController
   def quarantine
     render json: {
       data: {
-        quarantine: Bag.find(id_param).quarantine,
-        quantity: Bag.find(id_param).lot.initial_weight
+        quarantine: Bag.find(params[:id]).quarantine,
+        quantity: Bag.find(params[:id]).lot.initial_weight
       }
     }
   end
@@ -59,8 +59,8 @@ class API::V1::BagsController < API::V1::APIController
   def unquarantine
     render json: {
       data: {
-        unquarantine: Bag.find(id_param).unquarantine,
-        quantity: Bag.find(id_param).lot.initial_weight
+        unquarantine: Bag.find(params[:id]).unquarantine,
+        quantity: Bag.find(params[:id]).lot.initial_weight
       }
     }
   end
@@ -69,10 +69,6 @@ class API::V1::BagsController < API::V1::APIController
     
     def bag_params
       params.require(:bag).permit(:weight, :initial_weight, :container_id, :name, :created_at, :current_weight)
-    end
-
-    def id_param
-      params[:id]
     end
 
 end
