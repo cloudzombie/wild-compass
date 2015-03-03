@@ -24254,7 +24254,49 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
+  var hidePlantOrigin, hideSeedOrigin, showPlantOrigin, showSeedOrigin;
 
+  $(document).ready(function() {
+    $('#plant-type').change(function() {
+      if (this.value === 'Plant') {
+        showSeedOrigin();
+        hidePlantOrigin();
+      }
+      if (this.value === 'Plant::MotherPlant') {
+        showSeedOrigin();
+        hidePlantOrigin();
+      }
+      if (this.value === 'Plant::ClonePlant') {
+        showPlantOrigin();
+        hideSeedOrigin();
+      }
+      if (this.value === 'Plant::BabyPlant') {
+        showPlantOrigin();
+        hideSeedOrigin();
+      }
+    });
+    $('#plant-type').change();
+  });
+
+  hidePlantOrigin = function() {
+    $('#plant-origin').prop('disabled', true);
+    $('#plant-origin-container').hide();
+  };
+
+  showPlantOrigin = function() {
+    $('#plant-origin').prop('disabled', false);
+    $('#plant-origin-container').show();
+  };
+
+  hideSeedOrigin = function() {
+    $('#seed-origin').prop('disabled', true);
+    $('#seed-origin-container').hide();
+  };
+
+  showSeedOrigin = function() {
+    $('#seed-origin').prop('disabled', false);
+    $('#seed-origin-container').show();
+  };
 
 }).call(this);
 (function() {
