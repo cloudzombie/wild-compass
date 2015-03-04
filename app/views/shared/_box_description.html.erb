@@ -72,10 +72,17 @@
           </tr>
         <% end %>
 
-        <% if described.is_a?(Bag) %>
+        <% if described.respond_to? :delta %>
           <tr>
-            <th>Variance :</th>
-            <td><%= bag_variance described %></td>
+            <th>Delta :</th>
+            <td><%= weight_for described.delta %></td>
+          </tr>
+        <% end %>
+
+        <% if described.respond_to? :delta_old %>
+          <tr>
+            <th>Prev. Delta :</th>
+            <td><%= weight_for described.delta_old %></td>
           </tr>
         <% end %>
 

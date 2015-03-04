@@ -17,7 +17,8 @@
     <td><%= weight_for bag.try(:initial_weight) %></td>
     <td><%= weight_for bag.try(:current_weight) %></td>
     <td><%= link_to bag.bin, bag.bin, class: 'btn-sm btn-flat btn-primary' %></td>
-    <td><%= bag_variance bag %></td>
+    <td><%= weight_for bag.delta, '' %></td>
+    <td><%= weight_for bag.delta_old, '' %></td>
     <td><%= bag.try(:status) %></td>
     <td>
       <% if can? :show, Lot %>

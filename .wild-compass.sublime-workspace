@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"hide",
+				"hidePlantOrigin"
+			],
+			[
+				"update",
+				"update_delta_old"
+			],
+			[
+				"up",
+				"update_delta"
+			],
+			[
+				"cu",
+				"current_weight_changed"
+			],
+			[
+				"init",
+				"initial_weight_changed"
+			],
+			[
+				"update_delta",
+				"update_delta"
+			],
+			[
+				"Action",
+				"ApplicationController"
+			],
+			[
 				"filter",
 				"filter_params"
 			],
@@ -164,10 +192,6 @@
 				"self"
 			],
 			[
-				"up",
-				"update"
-			],
-			[
 				"class",
 				"class_name"
 			],
@@ -290,10 +314,6 @@
 			[
 				"Co",
 				"Container"
-			],
-			[
-				"cu",
-				"current"
 			],
 			[
 				"chec",
@@ -494,76 +514,32 @@
 			[
 				"fi",
 				"find_by_name"
-			],
-			[
-				"au",
-				"authorize"
-			],
-			[
-				"lin",
-				"link_to"
-			],
-			[
-				"conver",
-				"convertImgToBase64URL"
-			],
-			[
-				"SCALE",
-				"SCALE1_URL"
-			],
-			[
-				"Re",
-				"ReweightScale"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "app/models/transactions/destruction.rb",
+			"file": "app/models/bag.rb",
 			"settings":
 			{
-				"buffer_size": 354,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/transactions/_form.html.erb",
-			"settings":
-			{
-				"buffer_size": 1781,
+				"buffer_size": 4249,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/models/plant.rb",
+			"file": "app/views/plants/_form.html.erb",
 			"settings":
 			{
-				"buffer_size": 2044,
+				"buffer_size": 2731,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/views/shared/_timeline.html.erb",
+			"file": "app/assets/javascripts/plants.js.coffee",
 			"settings":
 			{
-				"buffer_size": 2373,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views/shared/timeline/_plants.html.erb",
-			"settings":
-			{
-				"buffer_size": 105,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views/shared/timeline/_plant.html.erb",
-			"settings":
-			{
-				"buffer_size": 2733,
+				"buffer_size": 1097,
 				"line_ending": "Windows"
 			}
 		}
@@ -604,6 +580,18 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/api_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/Gemfile",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/bags_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/environments/development.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/transactions/destruction.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/transactions/_form.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/plant.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_timeline.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_plants.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_plant.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/config/initializers/exception_handler.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/exception_handler/exception_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/jars_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/seeds/home.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/inventory/seeds_controller.rb",
@@ -614,7 +602,6 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/seeds/home.js.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/plants_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/plants/_form.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/plant.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/babies/ajax/_table.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/clones/ajax/_table.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/mothers/ajax/_table.html.erb",
@@ -638,7 +625,6 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/inventory.js.coffee",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_bag.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/bag.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/transactions/_form.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/home.js.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/ajax/_table.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/inventory_controller.rb",
@@ -661,7 +647,6 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_box_description.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_container.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/lots_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/bags_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/brand.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/brands_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/show.html.erb",
@@ -704,10 +689,8 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/models/ability.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_jar.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/_form.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/Gemfile",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/container/_water_loss.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/transactions/index.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_timeline.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/transactions_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_lot.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150216191500_add_water_loss_to_containers.rb",
@@ -724,14 +707,7 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/views/bins/index.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150213195832_add_destroyed_at_to_plants.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150213193834_add_datamatrix_to_plants.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/bins/ajax/_table.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/lib/transaction_manager.rb",
-		"/C/Users/Maxime/Documents/wild-compass/db/schema.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/container/_old_container.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150212202814_add_trim_added_to_containers.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/container/_stage1.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150212233740_create_transactions.rb",
-		"/C/Users/Maxime/Documents/wild-compass/lib/transaction.rb"
+		"/C/Users/Maxime/Documents/wild-compass/app/views/bins/ajax/_table.html.erb"
 	],
 	"find":
 	{
@@ -749,6 +725,13 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"seed_id",
+			"update_variance",
+			"bag",
+			"|e|",
+			"exception",
+			"id_param",
+			"authenticate_user!",
 			"cont",
 			"container",
 			"containers",
@@ -869,14 +852,7 @@
 			"plants",
 			".html_safe",
 			"les",
-			"bag",
-			"from",
-			"to",
-			"from",
-			"info",
-			"<span class=\"text-danger\">",
-			"<span class=\"text-info\">",
-			"info"
+			"bag"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -899,18 +875,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "app/models/transactions/destruction.rb",
+					"file": "app/models/bag.rb",
 					"settings":
 					{
-						"buffer_size": 354,
+						"buffer_size": 4249,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								183,
-								183
+								3957,
+								3957
 							]
 						],
 						"settings":
@@ -927,18 +903,18 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/views/transactions/_form.html.erb",
+					"file": "app/views/plants/_form.html.erb",
 					"settings":
 					{
-						"buffer_size": 1781,
+						"buffer_size": 2731,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								564,
-								564
+								1414,
+								1414
 							]
 						],
 						"settings":
@@ -948,117 +924,33 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 240.0,
+						"translation.y": 210.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "app/models/plant.rb",
+					"file": "app/assets/javascripts/plants.js.coffee",
 					"settings":
 					{
-						"buffer_size": 2044,
+						"buffer_size": 1097,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								729,
-								729
+								640,
+								640
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 7.0,
-						"translation.y": 810.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/views/shared/_timeline.html.erb",
-					"settings":
-					{
-						"buffer_size": 2373,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								622,
-								622
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/views/shared/timeline/_plants.html.erb",
-					"settings":
-					{
-						"buffer_size": 105,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								90,
-								90
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/views/shared/timeline/_plant.html.erb",
-					"settings":
-					{
-						"buffer_size": 2733,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								178,
-								178
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 120.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
