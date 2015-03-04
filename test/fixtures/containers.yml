@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  lot_id: 1
-  current_weight: 9.99
-  initial_weight: 9.99
+ctn_1:
+  name: CTN-1
+  current_weight: 100.0
+  initial_weight: 100.0
 
-two:
-  name: MyString
-  lot_id: 1
-  current_weight: 9.99
-  initial_weight: 9.99
+ctn_2:
+  name: CTN-2
+  current_weight: 100.0
+  initial_weight: 100.0
