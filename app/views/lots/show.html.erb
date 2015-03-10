@@ -1,4 +1,4 @@
-<div class="brand-<%= lot.strain.brand.id %>"> 
+<div class="<%= lot.brand.nil? ? '' : "brand-#{lot.brand.id}" %>"> 
   <div class="row">
     <div class="col-lg-6">
       <div class="row">
@@ -6,17 +6,7 @@
           <div class='transparent-box'>
             <%= render 'shared/box_description', title: lot, described: lot, color: 'info', icon: 'tags' %>
           </div>
-        </div>  
-          <%# case lot.strain.brand.id  %>
-          <%# when 1 %>
-            <%#= image_tag "gm_logo_s.jpg", width: "100%" %>
-          <%# when 2 %>
-            <%#= image_tag "md_log_s.jpg", width: "100%" %>
-          <%# when 3 %>
-            <%#= image_tag "after_dinner_logo_s.jpg", width: "100%" %>
-          <%# when 4 %>
-            <%#= image_tag "bt_logo_s.jpg", width: "100%" %>
-          <%# end %>
+        </div>
       </div>
 
       <div class="row">

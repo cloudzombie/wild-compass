@@ -1,21 +1,27 @@
 class User::Role < ActiveRecord::Base
-  has_many :users
 
   def self.user
-    find(1)
+    find_by(name: 'user')
   end
 
   def self.manager
-    find(2)
+    find_by(name: 'manager')
   end
 
   def self.admin
-    find(3)
+    find_by(name: 'admin')
   end
 
   def self.super_user
-    find(4)
+    find_by(name: 'super_user')
   end
+
+  ADMIN      = User::Role.admin
+  MANAGER    = User::Role.manager
+  USER       = User::Role.user
+  SUPER_USER = User::Role.super_user
+
+  has_many :users
 
   validates :name, presence: true
 
