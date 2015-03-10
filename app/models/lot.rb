@@ -40,6 +40,10 @@ class Lot < ActiveRecord::Base
     update(current_weight: bags.sum(:current_weight))
   end
 
+  def brand
+    brands.first
+  end
+
 
 
   def to_s

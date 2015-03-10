@@ -8,7 +8,11 @@ class Jar < ActiveRecord::Base
   include Sortable
   include Filterable
 
-
+  scope :id, -> (id = nil) { id.nil? ? all : where(id: id) }
+  scope :strain_id, -> (strain_id = nil) { strain_id.nil? ? all : where(strain_id: strain_id) }
+  scope :status_id, -> (status_id = nil) { status_id.nil? ? all : where(status_id: status_id) }
+  scope :format_id, -> (format_id = nil) { format_id.nil? ? all : where(format_id: format_id) }
+  scope :type, -> (type = nil) { type.nil? ? all : where(type: type) }
 
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
   scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)).uniq }
