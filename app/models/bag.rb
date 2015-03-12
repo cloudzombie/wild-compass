@@ -82,13 +82,13 @@ class Bag < ActiveRecord::Base
 
   belongs_to :status, class_name: 'Bags::Status', foreign_key: 'bags_status_id'
 
-  has_many :jars, -> { uniq }
+  has_many :jars,    -> { uniq }
 
-  has_many :plants, -> { uniq }, through: :container
+  has_many :plants,  -> { uniq }, through: :container
 
   has_many :strains, -> { uniq }, through: :plants
 
-  has_many :brands, -> { uniq }, through: :strains
+  has_many :brands,  -> { uniq }, through: :strains
 
   
 

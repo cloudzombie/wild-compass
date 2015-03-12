@@ -537,6 +537,30 @@
 				"buffer_size": 2334,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "app/views/lots/show.html.erb",
+			"settings":
+			{
+				"buffer_size": 1020,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/models/lot.rb",
+			"settings":
+			{
+				"buffer_size": 1480,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/dashboard/home.html.erb",
+			"settings":
+			{
+				"buffer_size": 10234,
+				"line_ending": "Windows"
+			}
 		}
 	],
 	"build_system": "",
@@ -720,6 +744,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"brand",
 			"self.",
 			"9.99",
 			"deleta",
@@ -846,8 +871,7 @@
 			"Transaction",
 			"trans",
 			"transac",
-			"Transaction",
-			"plants"
+			"Transaction"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -865,7 +889,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -920,6 +944,90 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/lots/show.html.erb",
+					"settings":
+					{
+						"buffer_size": 1020,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								350,
+								350
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/models/lot.rb",
+					"settings":
+					{
+						"buffer_size": 1480,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1152,
+								1152
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 339.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/views/dashboard/home.html.erb",
+					"settings":
+					{
+						"buffer_size": 10234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1183,
+								1183
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1477.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
