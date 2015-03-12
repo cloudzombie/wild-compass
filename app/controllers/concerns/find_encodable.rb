@@ -5,7 +5,7 @@ module FindEncodable
     if params[:id].nil?
       resource.new
     else 
-      resource.find_by(datamatrix_hash: params[:id]) || resource.find(params[:id])
+      resource.find_by(datamatrix_hash: params[:id].downcase) || resource.find(params[:id])
     end
   end
 
