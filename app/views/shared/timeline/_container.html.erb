@@ -1,5 +1,5 @@
 <% container.transactions.each do |transaction| %>
-  <%= render 'shared/timeline/transaction' %>
+  <%= render 'shared/timeline/transaction', transaction: transaction %>
 <% end %>
 
 <%= render 'shared/timeline/container/water_loss', container: container %>
