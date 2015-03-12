@@ -16,7 +16,7 @@
       </thead>
 
       <tbody>
-        <% transactions.each do |transaction| %>
+        <% described.transactions.each do |transaction| %>
           <%= render 'shared/timeline/transaction', transaction: transaction %>
         <% end %>
       </tbody>
