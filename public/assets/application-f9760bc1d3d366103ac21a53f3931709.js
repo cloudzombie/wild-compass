@@ -24315,6 +24315,41 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
+  var ScanController, scan;
+
+  ScanController = (function() {
+    function ScanController() {}
+
+    ScanController.prototype.init = function() {
+      console.log('scan#init');
+    };
+
+    ScanController.prototype.scan = function() {
+      console.log('scan#scan');
+      $(document).ready(function() {
+        $('#scan-form').submit(function(event) {
+          event.preventDefault();
+          scan();
+        });
+      });
+    };
+
+    return ScanController;
+
+  })();
+
+  this.WildCompass.scan = new ScanController;
+
+  scan = function() {
+    return $.post($('#scanned_hash').data('href') + '.json', {
+      scanned_hash: $('#scanned_hash').val()
+    }).done(function(data) {
+      return $('#scannable').html = data;
+    });
+  };
+
+}).call(this);
+(function() {
   $(document).ready(function() {
     $(document).on("click", "#sort th a", function() {
       $.getScript(this.href);

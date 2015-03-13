@@ -1,4 +1,4 @@
-<div class="row" style="height: 300px;">
+<div class="row" style="height: 200px;">
   <div class="col-md-6" style="height: 100%;">
     <%= render 'shared/scan', message: "Please scan bag...", scannable: 'Bag', height: "100%" %>
   </div>
@@ -10,9 +10,9 @@
       </div>
 
       <div class="panel-body">
-        <ul>
+        <ul style="list-style-type: none; padding-left: 0;">
           <% bags.each do |bag| %>
-            <li class="col-md-4"><%= link_to bag, bag %></li>
+            <li class="col-md-3"><%= link_to bag, bag %></li>
           <% end %>
         </ul>
       </div>
