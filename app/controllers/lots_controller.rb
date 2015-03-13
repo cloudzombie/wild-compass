@@ -1,4 +1,5 @@
 class LotsController < ApplicationController
+  
   include Authorizable
   include SetRecallable
   include SetQuarantineable
@@ -13,13 +14,15 @@ class LotsController < ApplicationController
 
   expose(:containers) { Container.order(id: :asc) }
   expose(:recent) { lot.containers.order(updated_at: :desc).first }
+
+  expose(:bags) { lot.bags }
   expose(:bag) { Bag.new }
   
   # Create new lot.
   def create 
     self.lot = Lot.new(lot_params)
 
-    TransactionManager.from( nil ).to( lot ).take( lot.weight ).by( current_user ).commit
+    # TransactionManager.from( nil ).to( lot ).take( lot.weight ).by( current_user ).commit
 
     respond_to do |format|
       if lot.save
@@ -52,6 +55,10 @@ class LotsController < ApplicationController
       format.html { redirect_to lots_url, notice: 'Lot was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def relot
+    
   end
 
   private

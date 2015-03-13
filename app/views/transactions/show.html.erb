@@ -2,23 +2,23 @@
 
 <p>
   <strong>Event:</strong>
-  <%= @transaction.event %>
+  <%= transaction.event %>
 </p>
 
 <p>
   <strong>Source:</strong>
-  <%= @transaction.source %>
+  <%= transaction.source %>
 </p>
 
 <p>
   <strong>Target:</strong>
-  <%= @transaction.target %>
+  <%= transaction.target %>
 </p>
 
 <p>
   <strong>Weight:</strong>
-  <%= @transaction.weight %>
+  <%= transaction.weight %>
 </p>
 
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'Edit', edit_transaction_path(transaction) %> |
 <%= link_to 'Back', transactions_path %>

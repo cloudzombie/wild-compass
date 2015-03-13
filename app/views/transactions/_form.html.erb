@@ -1,10 +1,10 @@
-<%= form_for(@transaction) do |f| %>
-  <% if @transaction.errors.any? %>
+<%= form_for(transaction) do |f| %>
+  <% if transaction.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
 
       <ul>
-      <% @transaction.errors.full_messages.each do |message| %>
+      <% transaction.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <%= f.label :event %><br>
-    <%= f.datetime_select :event, class: 'form-control' %>
+    <%= f.datetime_select :event, class: 'form-control', id: 'transaction-event'  %>
   </div>
   
   <div class="form-group">
@@ -28,8 +28,8 @@
           'Container',
           'Plant',
           'Harvest'
-        ], selected: @transaction.source_type), {}, class: 'form-control' %>
-    <%= display_error_for @transaction, :source_type %>
+        ], selected: transaction.source_type), {}, class: 'form-control' %>
+    <%= display_error_for transaction, :source_type %>
   </div>
   
   <div class="form-group">
@@ -45,8 +45,8 @@
           [ 'Sent to Lab', 'Transactions::Lab' ],
           [ 'Destruction', 'Transactions::Destruction' ],
           [ 'Waste', 'Waste' ]
-        ], selected: @transaction.target_type), {}, class: 'form-control' %>
-    <%= display_error_for @transaction, :target_type %>
+        ], selected: transaction.target_type), {}, class: 'form-control' %>
+    <%= display_error_for transaction, :target_type %>
   </div>
   
   <div class="form-group">

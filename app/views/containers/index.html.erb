@@ -1,65 +1,66 @@
+<div class="box box-solid box-primary">
+  <div class="box-header">
+    <h3 class="box-title">Listing containers</h3>
+    <div class="box-tools">
+      <div class="input-group">
+        
+        <%= form_tag(containers_path, method: :get, id: "search-form", remote: true, autocomplete: 'off') do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
+        <% end %>
 
-    <div class="box box-solid box-primary">
-      <div class="box-header">
-        <h3 class="box-title">Listing containers</h3>
-        <div class="box-tools">
-          <div class="input-group">
-            <%= form_tag(containers_path, method: :get, id: "search-form", remote: true, autocomplete: 'off') do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
-            <% end %>
-            <div class="input-group-btn">
-              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-            </div>
-          </div>
+        <div class="input-group-btn">
+          <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
         </div>
-      </div><!-- /.box-header -->
 
-      <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
-          <tr>
-            <th></th>
-            <th><%= sortable :id, 'ID' %></th>
-            <th>Name </th>
-            <th><%= sortable :location_id %></th>
-            <th><%= sortable :strain %></th>
-            <th><%= sortable :lot_id %></th>
-            <th><%= sortable :initial_weight, 'Initial Weight (g)' %></th>
-            <th><%= sortable :current_weight, 'Current Weight (g)' %></th>
-            <th><%= sortable :water_loss, 'Water Loss (g)' %></th>
-            <th>Actions </th>
-          </tr>
-          <tbody id="table">
-            <%= render 'containers/ajax/table' %>
-          </tbody>
-          
-          <tfoot>
-            <th colspan="2">Total</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><%= weight_for containers.sum(:initial_weight), '' %></td>
-            <td><%= weight_for containers.sum(:current_weight), '' %></td>
-            <td><%= weight_for containers.sum(:water_loss), '' %></td>
-            <td></td>
-          </tfoot>
-        </table>
-      </div><!-- /.box-body -->
-    </div>
-
-
-    <div class="tableFooter">
-        <a href="#" class="btn btn-flat btn-primary" data-toggle="modal" data-target=".new-container"><i class="fa fa-tags"></i> New container</a>
-        <div id="paginator">
-          <%= paginate containers %>
-        </div>
-    </div>
-
-    <div class="modal fade new-container" tabindex="-1" role="dialog" aria-labelledby="New Container" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <h3>Create a new container</h3>
-          <%= render 'containers/form' %>
-        </div>
       </div>
     </div>
+  </div><!-- /.box-header -->
+
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-hover">
+      <tr>
+        <th><%= sortable :name, 'ID' %></th>
+        <th><%= sortable :location_id %></th>
+        <th><%= sortable :strain %></th>
+        <th><%= sortable :lot_id %></th>
+        <th><%= sortable :initial_weight, 'Initial Weight (g)' %></th>
+        <th><%= sortable :current_weight, 'Current Weight (g)' %></th>
+        <th><%= sortable :water_loss, 'Water Loss (g)' %></th>
+        <th>Actions </th>
+      </tr>
+      <tbody id="table">
+        <%= render 'containers/ajax/table' %>
+      </tbody>
+      
+      <tfoot>
+        <th colspan="2">Total</th>
+        <td></td>
+        <td></td>
+        <td><%= weight_for containers.sum(:initial_weight), '' %></td>
+        <td><%= weight_for containers.sum(:current_weight), '' %></td>
+        <td><%= weight_for containers.sum(:water_loss), '' %></td>
+        <td></td>
+      </tfoot>
+    </table>
+  </div><!-- /.box-body -->
+</div>
+
+
+<div class="tableFooter">
+  <a href="#" class="btn btn-flat btn-primary" data-toggle="modal" data-target=".new-container">
+    <i class="fa fa-tags"></i> New container
+  </a>
+  
+  <div id="paginator">
+    <%= paginate containers %>
+  </div>
+</div>
+
+<div id="new-transaction" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="New Transaction" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <h3>New Transaction</h3>
+      <%= render 'transactions/form' %>
+    </div>
+  </div>
+</div>

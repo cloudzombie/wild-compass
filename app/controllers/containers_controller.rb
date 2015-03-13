@@ -11,6 +11,8 @@ class ContainersController < ApplicationController
 
   expose(:plants) { Plant.order(id: :asc) }
 
+  expose(:transaction) { Transaction.new }
+
   def create
     self.container = Container.new(container_params)
 
