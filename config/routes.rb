@@ -29,8 +29,8 @@ Rails.application.routes.draw do
   match 'inventory/plants/babies/download',  to: 'inventory/plants/babies#home',  via: [:get, :post]
 
   # Users and sessions
-  devise_for :users, controllers: { sessions:       'users/sessions',
-                                    registrations:  'users/registrations' }
+  devise_for :users, controllers: { sessions:      'users/sessions',
+                                    registrations: 'users/registrations' }
   
   resources :users
 
@@ -115,6 +115,8 @@ Rails.application.routes.draw do
 
       get 'unquarantine'
       get 'unrecall'
+
+      match 'relot', via: [ :get, :post ]
     end
   end
 

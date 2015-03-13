@@ -54,6 +54,10 @@ class LotsController < ApplicationController
     end
   end
 
+  def relot
+    
+  end
+
   private
 
     def lot_params
