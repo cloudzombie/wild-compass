@@ -130,6 +130,8 @@ Rails.application.routes.draw do
 
   resources :containers
 
+  match :scan, to: 'scan#scan', via: [ :get, :post ]
+
 
   # API
   namespace :api, defaults: { format: :json } do

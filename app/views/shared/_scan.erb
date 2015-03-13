@@ -1,0 +1,38 @@
+<% scannable = '' if local_assigns[:scannable].nil? %>
+<% message  = "Please scan #{scannable}" if local_assigns[:message].nil? %>
+<% height = "auto" if local_assigns[:height].nil? %>
+
+<div class="panel panel-primary" id="scan-panel" style="height: <%= height %>;">
+  <div class="panel-heading">
+    <h3 class="no-margin no-padding">Scan</h3>
+  </div>
+
+  <div class="panel-body">
+    
+    <div id="scan-form-alert">
+      <p class="alert alert-info">
+        <strong><%= message %></strong>
+      </p>
+    </div>
+
+    <%= form_for scan_path, method: :post, html: { id: 'scan-form' } do |f| %>
+
+      <div class="form-group">
+        <div class="input-group">
+          <%= f.label :scanned_hash, class: 'input-group-addon' do %>
+            <strong class="text-primary">
+              Scan <%= scannable %> :
+            </strong>
+          <% end %>
+
+          <%= f.text_field :scanned_hash, id: 'scanned_hash',
+              class: 'form-control', data: { href: scan_path }, autofocus: true %>
+        </div>
+      </div>
+
+    <% end %>
+
+    <div id="scannable"></div>
+
+  </div>
+</div>

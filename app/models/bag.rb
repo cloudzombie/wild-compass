@@ -10,8 +10,6 @@ class Bag < ActiveRecord::Base
   include Sortable
   include Filterable
 
-
-
   after_save -> { lot.bag_changed }
 
   before_save :update_delta
@@ -48,8 +46,6 @@ class Bag < ActiveRecord::Base
   def transactions
     Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class)
   end
-
-
 
   scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
   scope :by_categories,    -> (category = nil) { joins(:container).merge(Container.where(category: category)) }
@@ -183,11 +179,11 @@ class Bag < ActiveRecord::Base
     end
 
     def update_category
-      self[:category] = category.titleize
+      self[:category] = category.titleize unless category.nil?
     end
 
     def update_strain
-      self[:strain] = strain.acronym.upcase
+      self[:strain] = strain.acronym.upcase unless strain.nil?
     end
 
 end
