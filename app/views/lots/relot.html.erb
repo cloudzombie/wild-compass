@@ -12,7 +12,7 @@
       <div class="panel-body">
         <ul>
           <% bags.each do |bag| %>
-            <li><%= bag %></li>
+            <li class="col-md-4"><%= link_to bag, bag %></li>
           <% end %>
         </ul>
       </div>
