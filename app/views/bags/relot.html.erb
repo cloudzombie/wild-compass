@@ -1,0 +1,10 @@
+<%= form_for bag do |f| %>
+  <div class="form-group">
+    <%= f.label :lot_id %>
+    <%= f.collection_select :lot_id, Lot.all, :id, :name, {}, include_blank: true, class: 'form-control' %>
+  </div>
+
+  <div class="input-group">
+    <%= f.submit 'Commit', class: 'btn btn-primary form-control' %>
+  </div>
+<% end %>

@@ -58,7 +58,6 @@ class LotsController < ApplicationController
   end
 
   def relot
-    
   end
 
   private
