@@ -1,7 +1,7 @@
-class Transactions::Lab < ActiveRecord::Base
+class Transactions::Adjustment < ActiveRecord::Base
 
   def self.instance
-    first || Transactions::Lab.create
+    first || Transactions::Adjustment.create
   end
 
   has_many :incoming_transactions, class_name: 'Transaction', as: 'target'
@@ -15,11 +15,12 @@ class Transactions::Lab < ActiveRecord::Base
   end
 
   def to_s
-    'To Lab'
+    'Adjustment'
   end
 
   alias_method :name, :to_s
 
   def transaction_changed
   end
+
 end

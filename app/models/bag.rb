@@ -17,6 +17,8 @@ class Bag < ActiveRecord::Base
   before_save :update_category
   before_save :update_strain
 
+  before_save :adjust_current_weight
+
   def update_all_delegated_attributes!
     update_delta!
     update_delta_old!
@@ -24,7 +26,6 @@ class Bag < ActiveRecord::Base
     update_strain
     save
   end
-
 
   def transaction_changed
   end
@@ -37,6 +38,19 @@ class Bag < ActiveRecord::Base
     outgoing_transactions.sum(:weight)
   end
 
+  def adjust_current_weight
+    if current_weight_changed?
+      Transaction.create(
+        event: Time.now,
+        source: self,
+        target: Transactions::Adjustment.instance,
+        weight: current_weight_was - current_weight
+      )
+    else
+      true
+    end
+  end
+
   ### Transactions
 
   has_many :incoming_transactions, as: 'target', class_name: 'Transaction', dependent: :destroy
@@ -44,7 +58,7 @@ class Bag < ActiveRecord::Base
   has_many :outgoing_transactions, as: 'source', class_name: 'Transaction', dependent: :destroy
 
   def transactions
-    Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class)
+    Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class).uniq
   end
 
   scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }

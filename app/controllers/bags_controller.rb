@@ -93,6 +93,9 @@ class BagsController < ApplicationController
     end
   end
 
+  def relot
+  end
+
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -105,6 +105,8 @@ Rails.application.routes.draw do
       
       get 'unquarantine'
       get 'unrecall'
+
+      get 'relot'
     end
   end
 
@@ -116,7 +118,7 @@ Rails.application.routes.draw do
       get 'unquarantine'
       get 'unrecall'
 
-      match 'relot', via: [ :get, :post ]
+      get 'relot'
     end
   end
 

@@ -1,5 +1,9 @@
 class Transactions::Destruction < ActiveRecord::Base
   
+  def self.instance
+    first || Transactions::Destruction.create
+  end
+
   has_many :incoming_transactions, class_name: 'Transaction', as: 'target'
 
   def transactions
