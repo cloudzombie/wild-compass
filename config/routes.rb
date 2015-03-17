@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'plants/report', to: 'plants#report'
+  get 'lots/report',   to: 'lots#report'
 
   # Root redirect
   root to: 'root#redirect'
