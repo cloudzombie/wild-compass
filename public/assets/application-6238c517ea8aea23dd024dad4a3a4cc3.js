@@ -24027,7 +24027,13 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  var Lot, LotsController;
+  var Lot, LotsController, Relot, autoRefreshScale1, autoRefreshScale2, process;
+
+  autoRefreshScale1 = null;
+
+  autoRefreshScale2 = null;
+
+  process = null;
 
   $(document).ready(function() {
     $('#lot_container_ids').select2({});
@@ -24040,39 +24046,84 @@ var saveAs = saveAs
       $.post($('#scanned_hash').data('href') + '.json', {
         scanned_hash: $('#scanned_hash').val()
       }).done(function(data) {
-        $('#scanner').fadeOut(function() {
-          $('#scannable').fadeIn();
-          return $('#relot-step-1').fadeIn();
-        });
-        $('#box-description-title').text(data.name);
-        $('#box-description-id').text(data.name);
-        $.each(data, function(key, value) {
-          if (key === 'location') {
-            if (value === null) {
-              return $('#box-description-table').append("<tr><th>LOCATION : </th><td></td></tr>");
-            } else {
-              return $('#box-description-table').append("<tr><th>LOCATION : </th><td>" + value.name + "</td></tr>");
+        if (data.lot_id === $('#lot').data('id')) {
+          $('#scanner').fadeOut(function() {
+            $('#scannable').fadeIn();
+            $('#relot-step-1').fadeIn();
+            process = new Relot;
+            return process.step1();
+          });
+          $('#box-description-title').text(data.name);
+          $('#box-description-id').text(data.name);
+          $.each(data, function(key, value) {
+            if (key === 'location') {
+              if (value === null) {
+                return $('#box-description-table').append("<tr><th>LOCATION : </th><td></td></tr>");
+              } else {
+                return $('#box-description-table').append("<tr><th>LOCATION : </th><td>" + value.name + "</td></tr>");
+              }
+            } else if (key === 'container_id') {
+              return $.get('/containers/' + value + '.json').done(function(data) {
+                return $('#box-description-table').append("<tr><th>CONTAINER : </th><td><a href=\"/containers/" + data.id + "\" >" + data.name + "</a></td></tr>");
+              });
+            } else if (key === 'bags_status_id') {
+              if (value === null) {
+                return $('#box-description-table').append("<tr><th>STATUS : </th><td></td></tr>");
+              } else {
+                return $('#box-description-table').append("<tr><th>STATUS : </th><td>" + value.name + "</td></tr>");
+              }
+            } else if (key === 'strain') {
+              return $('#box-description-table').append("<tr><th>" + key.replace(/_/g, ' ').toUpperCase() + " : </th><td>" + value.acronym + "</td></tr>");
+            } else if (key !== 'id' && key !== 'name' && key !== 'delta' && key !== 'delta_old' && key !== 'variance' && key !== 'archived' && key !== 'tare_weight' && key !== 'sent_to_lab' && key !== 'datamatrix_text' && key !== 'datamatrix_hash' && key !== 'origin' && key !== 'history_id' && key !== 'tested' && key !== 'packaged_at') {
+              return $('#box-description-table').append("<tr><th>" + key.replace(/_/g, ' ').toUpperCase() + " : </th><td>" + value + "</td></tr>");
             }
-          } else if (key === 'container_id') {
-            return $.get('/containers/' + value + '.json').done(function(data) {
-              return $('#box-description-table').append("<tr><th>CONTAINER : </th><td><a href=\"/containers/" + data.id + "\" >" + data.name + "</a></td></tr>");
-            });
-          } else if (key === 'bags_status_id') {
-            if (value === null) {
-              return $('#box-description-table').append("<tr><th>STATUS : </th><td></td></tr>");
-            } else {
-              return $('#box-description-table').append("<tr><th>STATUS : </th><td>" + value.name + "</td></tr>");
-            }
-          } else if (key === 'strain') {
-            return $('#box-description-table').append("<tr><th>" + key.replace(/_/g, ' ').toUpperCase() + " : </th><td>" + value.acronym + "</td></tr>");
-          } else if (key !== 'id' && key !== 'name' && key !== 'delta' && key !== 'delta_old' && key !== 'variance' && key !== 'archived' && key !== 'tare_weight' && key !== 'sent_to_lab' && key !== 'datamatrix_text' && key !== 'datamatrix_hash' && key !== 'origin' && key !== 'history_id' && key !== 'tested' && key !== 'packaged_at') {
-            return $('#box-description-table').append("<tr><th>" + key.replace(/_/g, ' ').toUpperCase() + " : </th><td>" + value + "</td></tr>");
-          }
-        });
+          });
+        } else {
+          alert('Bag is not in current lot!');
+        }
+      }).error(function(data) {
+        console.log(data);
+        if (data.status === 404) {
+          return alert("404 - Record Not Found");
+        } else if (data.status === 500) {
+          return alert("500 - Application Error");
+        } else {
+          return alert(data.status);
+        }
       });
     };
 
     return Lot;
+
+  })();
+
+  Relot = (function() {
+    var readScale1, readScale2;
+
+    function Relot() {}
+
+    Relot.prototype.step1 = function() {
+      autoRefreshScale1 = setInterval(readScale1, 100);
+      return autoRefreshScale2 = setInterval(readScale2, 100);
+    };
+
+    readScale1 = function() {
+      return $.get('http://localhost:8080/data').done(function(data) {
+        $('#scale-display-1').val(data);
+        return $('#scale-display-1').change();
+      });
+    };
+
+    readScale2 = function() {
+      return $.get('http://localhost:8081/data').done(function(data) {
+        $('#scale-display-2').val(data);
+        return $('#scale-display-2').change();
+      });
+    };
+
+    Relot.prototype.step2 = function() {};
+
+    return Relot;
 
   })();
 
@@ -24091,6 +24142,11 @@ var saveAs = saveAs
           event.preventDefault();
           lot = new Lot;
           lot.scanBag();
+        });
+        $('#scale-display-1').change(function() {
+          clearInterval(autoRefreshScale1);
+          clearInterval(autoRefreshScale2);
+          return process.step2();
         });
       });
     };
@@ -24376,14 +24432,45 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  var Scale;
+  var ScaleController;
 
-  Scale = (function() {
-    function Scale() {}
+  ScaleController = (function() {
+    var readScale1, readScale2;
 
-    return Scale;
+    function ScaleController() {}
+
+    ScaleController.prototype.init = function() {
+      console.log('scale#init');
+    };
+
+    ScaleController.prototype.scale = function() {
+      console.log('scale#scale');
+      $(document).ready(function() {
+        var autoRefreshScale1, autoRefreshScale2;
+        autoRefreshScale1 = setInterval(readScale1, 100);
+        autoRefreshScale2 = setInterval(readScale2, 100);
+      });
+    };
+
+    readScale1 = function() {
+      return $.get('http://localhost:8080/data').done(function(data) {
+        $('#scale-display-1').val(data);
+        return $('#scale-display-1').change();
+      });
+    };
+
+    readScale2 = function() {
+      return $.get('http://localhost:8081/data').done(function(data) {
+        $('#scale-display-2').val(data);
+        return $('#scale-display-2').change();
+      });
+    };
+
+    return ScaleController;
 
   })();
+
+  this.WildCompass.scale = new ScaleController;
 
 }).call(this);
 (function() {

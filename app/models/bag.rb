@@ -40,12 +40,22 @@ class Bag < ActiveRecord::Base
 
   def adjust_current_weight
     if current_weight_changed?
-      Transaction.create(
-        event: Time.now,
-        source: self,
-        target: Transactions::Adjustment.instance,
-        weight: current_weight_was - current_weight
-      )
+      weight = current_weight_was - current_weight
+      if weight < 0
+        Transaction.create(
+          event:  Time.now,
+          source: self,
+          target: Transactions::Adjustment.instance,
+          weight: weight.abs
+        )
+      elsif weight > 0
+        Transaction.create(
+          event:  Time.now,
+          source: Transactions::Adjustment.instance,
+          target: self,
+          weight: weight
+        )
+      end
     else
       true
     end
