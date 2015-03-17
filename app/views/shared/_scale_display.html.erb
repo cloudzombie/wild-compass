@@ -1,0 +1,43 @@
+<% message ||= '' %>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong>Scale Display</strong></h3>
+  </div>
+
+  <div class="panel-body">    
+
+    <%= form_for scale_path, method: :post, html: { id: 'scale-display-form' } do |f| %>
+      <div id="scale-display-alert" style="<%= message.empty? ? 'display: none;' : '' %>">
+        <p class="alert alert-info"><strong><%= message %></strong></p>
+      </div>
+
+      <div id="scale-display-container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+              <div class="input-group">
+                <%= f.label :scale1, class: 'input-group-addon' do %>
+                  <strong class="text-primary">Weight (Scale 1) :</strong>
+                <% end %>
+
+                <%= f.text_field :weight1, id: 'scale-display-1', class: 'form-control text-center', readonly: true %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <%= f.label :scale2, class: 'input-group-addon' do %>
+                  <strong class="text-primary">Weight (Scale 2) :</strong>
+                <% end %>
+
+                <%= f.text_field :weight2, id: 'scale-display-2', class: 'form-control text-center', readonly: true %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

@@ -9,15 +9,17 @@ $(document).ready ->
 
   return
 
-# Scan bag's datamatrix
 class Lot
+  # Scan bag's datamatrix
   scanBag: ->
     $.post(
       $('#scanned_hash').data('href') + '.json', scanned_hash: $('#scanned_hash').val()
-    ).done (data) ->
+    ).done( (data) ->
       $('#scanner').fadeOut ->
         $('#scannable').fadeIn()
         $('#relot-step-1').fadeIn()
+        relot = new Relot
+        relot.step1()
       $('#box-description-title').text(data.name)
       $('#box-description-id').text(data.name)
       $.each(data, (key, value) ->
@@ -40,7 +42,20 @@ class Lot
           $('#box-description-table').append("<tr><th>" + key.replace(/_/g, ' ').toUpperCase() + " : </th><td>" + value + "</td></tr>")
       )
       return
+    ).error( (data) ->
+      console.log data
+      if data.status == 404
+        alert("404 - Record Not Found")
+      else if data.status == 500
+        alert("500 - Application Error")
+      else
+        alert(data.status)
+    )
     return
+
+class Relot
+  step1: ->
+    
 
 class LotsController
   init: ->

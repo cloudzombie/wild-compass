@@ -130,12 +130,23 @@ Rails.application.routes.draw do
     end
   end
 
+  # Containers
+
   resources :containers
 
-  match :scan, to: 'scan#scan', via: [ :get, :post ]
+  # Utility
+
+  match :scan,  to: 'scan#scan',   via: [ :get, :post ]
+  match :scale, to: 'scale#scale', via: [ :get, :post ]
 
 
-  # API
+
+  ######################################################
+  ######################################################
+  ### API
+  ######################################################
+  ######################################################
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       # Auth
