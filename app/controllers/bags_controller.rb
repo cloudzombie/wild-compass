@@ -32,10 +32,10 @@ class BagsController < ApplicationController
   def create
     self.bag = Bag.new(bag_params)
 
-    TransactionManager.from( bag.container ).to( bag ).take( bag.weight ).by( current_user ).commit
+    # TransactionManager.from( bag.container ).to( bag ).take( bag.weight ).by( current_user ).commit
 
     respond_to do |format|
-      if bag.save && bag.container.save
+      if bag.save # && bag.container.save
         format.html { redirect_to bag, notice: 'Bag was successfully created.' }
       else
         format.html { render :new }

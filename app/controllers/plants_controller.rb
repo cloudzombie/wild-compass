@@ -1,3 +1,5 @@
+require 'csv'
+
 class PlantsController < ApplicationController
   include Authorizable
   include SetSortable
@@ -43,6 +45,12 @@ class PlantsController < ApplicationController
   def label
     respond_to do |format|
       format.html
+    end
+  end
+
+  def report
+    respond_to do |format|
+      format.csv { send_data plants.to_csv }
     end
   end
 

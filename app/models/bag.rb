@@ -39,6 +39,7 @@ class Bag < ActiveRecord::Base
   end
 
   def adjust_current_weight
+    return true if current_weight_was.nil?
     if current_weight_changed?
       weight = current_weight_was - current_weight
       if weight < 0
