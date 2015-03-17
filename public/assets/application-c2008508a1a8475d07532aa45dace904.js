@@ -23999,9 +23999,11 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  jQuery(function() {
+  $(document).ready(function() {
     return $('#container_plant_ids').select2({});
   });
+
+  return;
 
 }).call(this);
 (function() {
@@ -24025,9 +24027,79 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  jQuery(function() {
-    return $('#lot_container_ids').select2({});
+  var Lot, LotsController;
+
+  $(document).ready(function() {
+    $('#lot_container_ids').select2({});
   });
+
+  Lot = (function() {
+    function Lot() {}
+
+    Lot.prototype.scanBag = function() {
+      $.post($('#scanned_hash').data('href') + '.json', {
+        scanned_hash: $('#scanned_hash').val()
+      }).done(function(data) {
+        $('#scanner').fadeOut(function() {
+          $('#scannable').fadeIn();
+          return $('#relot-step-1').fadeIn();
+        });
+        $('#box-description-title').text(data.name);
+        $('#box-description-id').text(data.name);
+        $.each(data, function(key, value) {
+          if (key === 'location') {
+            if (value === null) {
+              return $('#box-description-table').append("<tr><th>LOCATION : </th><td></td></tr>");
+            } else {
+              return $('#box-description-table').append("<tr><th>LOCATION : </th><td>" + value.name + "</td></tr>");
+            }
+          } else if (key === 'container_id') {
+            return $.get('/containers/' + value + '.json').done(function(data) {
+              return $('#box-description-table').append("<tr><th>CONTAINER : </th><td><a href=\"/containers/" + data.id + "\" >" + data.name + "</a></td></tr>");
+            });
+          } else if (key === 'bags_status_id') {
+            if (value === null) {
+              return $('#box-description-table').append("<tr><th>STATUS : </th><td></td></tr>");
+            } else {
+              return $('#box-description-table').append("<tr><th>STATUS : </th><td>" + value.name + "</td></tr>");
+            }
+          } else if (key === 'strain') {
+            return $('#box-description-table').append("<tr><th>" + key.replace(/_/g, ' ').toUpperCase() + " : </th><td>" + value.acronym + "</td></tr>");
+          } else if (key !== 'id' && key !== 'name' && key !== 'delta' && key !== 'delta_old' && key !== 'variance' && key !== 'archived' && key !== 'tare_weight' && key !== 'sent_to_lab' && key !== 'datamatrix_text' && key !== 'datamatrix_hash' && key !== 'origin' && key !== 'history_id' && key !== 'tested' && key !== 'packaged_at') {
+            return $('#box-description-table').append("<tr><th>" + key.replace(/_/g, ' ').toUpperCase() + " : </th><td>" + value + "</td></tr>");
+          }
+        });
+      });
+    };
+
+    return Lot;
+
+  })();
+
+  LotsController = (function() {
+    function LotsController() {}
+
+    LotsController.prototype.init = function() {
+      console.log('lots#init');
+    };
+
+    LotsController.prototype.relot = function() {
+      console.log('lots#relot');
+      $(document).ready(function() {
+        $('#scan-form').submit(function(event) {
+          var lot;
+          event.preventDefault();
+          lot = new Lot;
+          lot.scanBag();
+        });
+      });
+    };
+
+    return LotsController;
+
+  })();
+
+  this.WildCompass.lots = new LotsController;
 
 }).call(this);
 (function() {
@@ -24315,7 +24387,30 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  var ScanController, scan;
+  var ScanController, Scanner;
+
+  Scanner = (function() {
+    function Scanner() {}
+
+    Scanner.prototype.scan = function() {
+      $.post($('#scanned_hash').data('href') + '.json', {
+        scanned_hash: $('#scanned_hash').val()
+      }).done(function(data) {
+        console.log(data);
+        $('#scanner').fadeOut(function() {
+          return $('#scannable').fadeIn();
+        });
+        $('#box-description-title').text(data.name);
+        $('#box-description-id').text(data.name);
+        $.each(data, function(key, value) {
+          return $('#box-description-table').append("<tr><th>" + key.toUpperCase() + " : </th><td>" + value + "</td></tr>");
+        });
+      });
+    };
+
+    return Scanner;
+
+  })();
 
   ScanController = (function() {
     function ScanController() {}
@@ -24328,8 +24423,10 @@ var saveAs = saveAs
       console.log('scan#scan');
       $(document).ready(function() {
         $('#scan-form').submit(function(event) {
+          var scanner;
           event.preventDefault();
-          scan();
+          scanner = new Scanner;
+          scanner.scan();
         });
       });
     };
@@ -24339,14 +24436,6 @@ var saveAs = saveAs
   })();
 
   this.WildCompass.scan = new ScanController;
-
-  scan = function() {
-    return $.post($('#scanned_hash').data('href') + '.json', {
-      scanned_hash: $('#scanned_hash').val()
-    }).done(function(data) {
-      return $('#scannable').html = data;
-    });
-  };
 
 }).call(this);
 (function() {

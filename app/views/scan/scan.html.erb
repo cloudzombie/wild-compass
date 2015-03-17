@@ -1,1 +1,7 @@
-<%= render 'shared/scan' %>
+<div id="scanner">
+  <%= render 'shared/scan' %>
+</div>
+
+<div id="scannable" style="display: none;">
+  <%= render 'shared/box_description', described: nil, color: 'primary', icon: 'tag', title: 'Scannable' %>
+</div>

@@ -1,27 +1,27 @@
 <div class="box box-solid box-<%= color %>">
   <div class="box-header">
     <%= fa_icon icon %>
-    <h3 class="box-title"><%= title %></h3>
+    <h3 id="box-description-title" class="box-title"><%= title %></h3>
   </div>
 
   <div class="box-body">
     <div class="row">
       <div class="col-lg-10">
-      <table class="table table-hover description">
+      <table id="box-description-table" class="table table-hover description">
 
         <tr>
           <th>ID :</th>
-          <% if described.respond_to? :name %>
-          <td><%= link_to "#{described.name}".upcase, described %>
-          <% if described.class == Bag then %>
-              <%= test_for described  %>
-              <%= archive_for described %>
-            <% end %></td>
-          <% else %>
-          <td>
-            <%= link_to "#{described}".upcase, described %>
+          <td id="box-description-id">
+            <% if described.respond_to? :name %>
+              <%= link_to "#{described.name}".upcase, described %>
+              <% if described.class == Bag then %>
+                <%= test_for described  %>
+                <%= archive_for described %>
+              <% end %>
+            <% else %>
+              <%= link_to "#{described}".upcase, described %>
+            <% end %>
           </td>
-          <% end %>
         </tr>
 
         <% if described.respond_to? :status %>
@@ -102,8 +102,9 @@
    
         </table>
       </div>
+      
       <% if !described.kind_of?(Lot) && described.respond_to?(:initial_weight) && described.respond_to?(:current_weight) %>
-      <%= render 'shared/progress_bar', weightable: described, color: color %>
+        <%= render 'shared/progress_bar', weightable: described, color: color %>
       <% end %>
     </div>
   </div> 
