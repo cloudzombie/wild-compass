@@ -47,12 +47,21 @@
 
 
 <div class="tableFooter">
-  <a href="#" class="btn btn-flat btn-primary" data-toggle="modal" data-target=".new-container">
+  <a href="#" class="btn btn-flat btn-primary" data-toggle="modal" data-target="#new-container">
     <i class="fa fa-tags"></i> New container
   </a>
   
   <div id="paginator">
     <%= paginate containers %>
+  </div>
+</div>
+
+<div id="new-container" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="New Container" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <h3>New Container</h3>
+      <%= render 'containers/form' %>
+    </div>
   </div>
 </div>
 

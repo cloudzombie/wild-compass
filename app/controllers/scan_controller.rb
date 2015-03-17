@@ -17,6 +17,11 @@ class ScanController < ApplicationController
       [ Plant, Bag, Jar, Bin, Seed ].each do |model|
         scannable << model.find_by( datamatrix_hash: params[:scanned_hash] )
       end
-      scannable.compact.first
+      result = scannable.compact.first
+      if result.nil?
+        raise ActiveRecord::RecordNotFound
+      else
+        result
+      end
     end
 end
