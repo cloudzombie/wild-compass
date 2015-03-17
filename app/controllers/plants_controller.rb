@@ -50,6 +50,7 @@ class PlantsController < ApplicationController
   end
 
   def report
+    self.plants = Plant.all
     respond_to do |format|
       format.csv { send_data plants.to_csv }
     end
