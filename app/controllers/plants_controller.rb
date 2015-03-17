@@ -1,6 +1,5 @@
-require 'csv'
-
 class PlantsController < ApplicationController
+
   include Authorizable
   include SetSortable
 
