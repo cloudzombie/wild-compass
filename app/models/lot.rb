@@ -1,3 +1,5 @@
+require 'csv'
+
 class Lot < ActiveRecord::Base
 
   include Weightable
@@ -9,7 +11,16 @@ class Lot < ActiveRecord::Base
   include Sortable
   include Filterable
   
-
+  def self.to_csv
+    CSV.generate { |csv|
+      csv << [ 'Lot ID', 'Plant ID' ]
+      all.each { |lot|
+        lot.plants.each do |plant|
+          csv << [ lot.id, plant.id ]
+        end
+      }
+    }
+  end
 
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
   scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)).uniq }

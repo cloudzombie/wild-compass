@@ -1,3 +1,5 @@
+require 'csv'
+
 class LotsController < ApplicationController
   
   include Authorizable
@@ -58,6 +60,13 @@ class LotsController < ApplicationController
   end
 
   def relot
+  end
+
+  def report
+    self.lots = Lot.all
+    respond_to do |format|
+      format.csv { send_data lots.to_csv }
+    end
   end
 
   private
