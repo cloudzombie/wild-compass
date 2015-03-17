@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'plants/report', to: 'plants#report'
+
   # Root redirect
   root to: 'root#redirect'
 

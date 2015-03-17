@@ -19,6 +19,14 @@ class Plant < ActiveRecord::Base
   scope :type, -> (type = nil) { type.nil? ? all : where(type: type) }
 
 
+  def self.to_csv
+    CSV.generate { |csv|
+      csv << [ 'Plant ID', 'Lot ID' ]
+      all.each { |plant|
+        csv << [ plant.name, ( plant.lot.nil? ? nil : plant.lot.id ) ]
+      }
+    }
+  end
 
   def transaction_changed
   end
