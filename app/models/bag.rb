@@ -112,10 +112,6 @@ class Bag < ActiveRecord::Base
     "#{ name.upcase unless name.nil? }"
   end
 
-  def location
-    bag.bin.location
-  end
-
   def strain
     strains.first
   rescue

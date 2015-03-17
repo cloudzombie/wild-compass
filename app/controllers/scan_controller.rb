@@ -6,7 +6,7 @@ class ScanController < ApplicationController
     respond_to do |format|
       format.html 
       format.json { render json: find_scannable }
-      format.xml
+      format.xml { render xml: find_scannable }
     end
   end
 
@@ -14,8 +14,8 @@ class ScanController < ApplicationController
 
     def find_scannable
       scannable = []
-      [Plant, Bag, Jar, Bin, Seed].each do |model|
-        scannable << model.find_by(datamatrix_hash: params[:scanned_hash] )
+      [ Plant, Bag, Jar, Bin, Seed ].each do |model|
+        scannable << model.find_by( datamatrix_hash: params[:scanned_hash] )
       end
       scannable.compact.first
     end
