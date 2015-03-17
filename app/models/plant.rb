@@ -1,3 +1,5 @@
+require 'csv'
+
 class Plant < ActiveRecord::Base
 
   include Weightable
