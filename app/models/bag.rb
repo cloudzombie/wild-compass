@@ -30,6 +30,7 @@ class Bag < ActiveRecord::Base
   def transaction_changed
     @skip_adjust = true
     update(current_weight: incoming_weight - outgoing_weight)
+    @skip_adjust = false
   end
 
   def incoming_weight
@@ -43,7 +44,7 @@ class Bag < ActiveRecord::Base
   def adjust_current_weight
     return true if current_weight_was.nil? || @skip_adjust
     if current_weight_changed?
-      weight = current_weight_was - current_weight
+      weight = current_weight_was.abs - current_weight.abs
       if weight < 0
         Transaction.create(
           event:  Time.now,
@@ -56,7 +57,7 @@ class Bag < ActiveRecord::Base
           event:  Time.now,
           source: Transactions::Adjustment.instance,
           target: self,
-          weight: weight
+          weight: weight.abs
         )
       end
     else
