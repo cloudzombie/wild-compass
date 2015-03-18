@@ -24027,13 +24027,15 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  var Lot, LotsController, Relot, autoRefreshScale1, autoRefreshScale2, process;
+  var Lot, LotsController, Relot, autoRefreshScale1, autoRefreshScale2, bag, process;
 
   autoRefreshScale1 = null;
 
   autoRefreshScale2 = null;
 
   process = null;
+
+  bag = null;
 
   $(document).ready(function() {
     $('#lot_container_ids').select2({});
@@ -24046,6 +24048,7 @@ var saveAs = saveAs
       $.post($('#scanned_hash').data('href') + '.json', {
         scanned_hash: $('#scanned_hash').val()
       }).done(function(data) {
+        bag = data;
         if (data.lot_id === $('#lot').data('id')) {
           $('#scanner').fadeOut(function() {
             $('#scannable').fadeIn();
@@ -24144,9 +24147,18 @@ var saveAs = saveAs
           lot.scanBag();
         });
         $('#scale-display-1').change(function() {
-          clearInterval(autoRefreshScale1);
-          clearInterval(autoRefreshScale2);
-          return process.step2();
+          if (Math.abs(parseFloat($('#scale-display-1').val().trim()) - parseFloat(bag.current_weight)) < 0.101) {
+            $('#relot-transaction-source').val(bag.id);
+            $('#relot-transaction-weight').val(parseFloat($('#scale-display-1').val().trim()));
+            $('#relot-step-1').fadeOut(function() {
+              return $('#relot-step-2').fadeIn();
+            });
+            clearInterval(autoRefreshScale1);
+            clearInterval(autoRefreshScale2);
+            return process.step2();
+          } else if (Math.abs(parseFloat($('#scale-display-1').val().trim()) - parseFloat(bag.current_weight)) < 5.101) {
+            return alert("Bag weight doesn't match inventory weight");
+          }
         });
       });
     };
