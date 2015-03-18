@@ -25,12 +25,51 @@
     </div>
   </div>
 
-  <div id="relot-step-1" class="col-md-6 hide" style="padding-top: 30px;">
+  <div id="relot-step-1" class="col-md-6" style="display: none; padding-top: 30px;">
     <%= render 'shared/scale_display', message: 'Please put bag on scale 1' %>
   </div>
 
-  <div id="relot-step-2" class="col-md-6" style="display: none">
-    <%= form_for transactions_path do |f| %>
-    <% end %>
+  <div id="relot-step-2" class="col-md-6" style="display: none; padding-top: 30px;">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="no-padding no-margin">Transaction to Container</h3>
+      </div>
+
+      <div class="panel-body">
+        <%= form_for Transaction.new, url: transactions_path, html: { id: 'relot-transaction', data: { url: transactions_path } } do |f| %>
+
+          <%= f.hidden_field :event,       value: Time.now %>
+          <%= f.hidden_field :source_type, value: 'Bag' %>
+          <%= f.hidden_field :target_type, value: 'Container' %>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :source, 'Bag' %>
+                <%= f.text_field :source_id, id: 'relot-transaction-source', class: 'form-control', readonly: true %>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :target, 'Container' %>
+                <%= f.collection_select :target_id, Container.all, :id, :to_s,
+                    { selected: Container.last.id }, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :weight %>
+            <%= f.text_field :weight, readonly: true, id: 'relot-transaction-weight', class: 'form-control' %>
+          </div>
+
+          <div class="input-group">
+            <%= f.submit 'Commit', class: 'btn btn-primary form-control' %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

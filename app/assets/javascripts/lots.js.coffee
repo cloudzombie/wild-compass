@@ -7,6 +7,8 @@ autoRefreshScale2 = null
 
 process = null
 
+bag = null
+
 $(document).ready ->
   $('#lot_container_ids').select2({
     
@@ -20,6 +22,7 @@ class Lot
     $.post(
       $('#scanned_hash').data('href') + '.json', scanned_hash: $('#scanned_hash').val()
     ).done( (data) ->
+      bag = data
       if data.lot_id == $('#lot').data('id')
         $('#scanner').fadeOut ->
           $('#scannable').fadeIn()
@@ -99,9 +102,16 @@ class LotsController
         return
 
       $('#scale-display-1').change ->
-        clearInterval(autoRefreshScale1)
-        clearInterval(autoRefreshScale2)
-        process.step2()
+        if Math.abs(parseFloat($('#scale-display-1').val().trim()) - parseFloat(bag.current_weight)) < 0.101
+          $('#relot-transaction-source').val(bag.id)
+          $('#relot-transaction-weight').val(parseFloat($('#scale-display-1').val().trim()))
+          $('#relot-step-1').fadeOut ->
+            $('#relot-step-2').fadeIn()
+          clearInterval(autoRefreshScale1)
+          clearInterval(autoRefreshScale2)
+          process.step2()
+        else if Math.abs(parseFloat($('#scale-display-1').val().trim()) - parseFloat(bag.current_weight)) < 5.101
+          alert "Bag weight doesn't match inventory weight"
 
       return
     return
