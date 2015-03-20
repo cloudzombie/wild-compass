@@ -16,8 +16,6 @@ class ContainersController < ApplicationController
   def create
     self.container = Container.new(container_params)
 
-    TransactionManager.from( container.plant ).to( container ).take( container.weight ).by( current_user ).commit
-
     respond_to do |format|
       if container.save
         format.html { redirect_to container, notice: 'Container was successfully created.' }
