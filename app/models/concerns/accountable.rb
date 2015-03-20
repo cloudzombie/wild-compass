@@ -33,6 +33,7 @@ module Accountable
     @skip_adjust = true
     update(current_weight: incoming_weight - outgoing_weight)
     @skip_adjust = false
+    true
   end
 
   def incoming_weight
