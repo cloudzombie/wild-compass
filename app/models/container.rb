@@ -15,6 +15,8 @@ class Container < ActiveRecord::Base
   scope :by_buds,       -> { by_categories 'Buds' }
   scope :by_brands,     -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
+
+
   def transaction_changed
     inc = incoming_weight
     out = outgoing_weight
@@ -35,24 +37,6 @@ class Container < ActiveRecord::Base
 
   def bagged_weight
     bags.sum(:initial_weight)
-  end
-
-  def incoming_weight
-    incoming_transactions.sum(:weight)
-  end
-
-  def outgoing_weight
-    outgoing_transactions.sum(:weight)
-  end
-
-  ### Transactions
-
-  has_many :incoming_transactions, as: 'target', class_name: 'Transaction', dependent: :destroy
-
-  has_many :outgoing_transactions, as: 'source', class_name: 'Transaction', dependent: :destroy
-
-  def transactions
-    Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class)
   end
 
 

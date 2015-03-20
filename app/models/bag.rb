@@ -10,70 +10,10 @@ class Bag < ActiveRecord::Base
   include Sortable
   include Filterable
 
-  after_save -> { lot.bag_changed }
+  after_save -> { lot.bag_changed unless lot.nil? }
 
-  before_save :update_delta
-  before_save :update_delta_old
   before_save :update_category
   before_save :update_strain
-
-  before_save :adjust_current_weight
-
-  def update_all_delegated_attributes!
-    update_delta!
-    update_delta_old!
-    update_category
-    update_strain
-    save
-  end
-
-  def transaction_changed
-    @skip_adjust = true
-    update(current_weight: incoming_weight - outgoing_weight)
-    @skip_adjust = false
-  end
-
-  def incoming_weight
-    incoming_transactions.sum(:weight)
-  end
-
-  def outgoing_weight
-    outgoing_transactions.sum(:weight)
-  end
-
-  def adjust_current_weight
-    return true if current_weight_was.nil? || @skip_adjust
-    if current_weight_changed?
-      weight = current_weight_was.abs - current_weight.abs
-      if weight < 0
-        Transaction.create(
-          event:  Time.now,
-          source: self,
-          target: Transactions::Adjustment.instance,
-          weight: weight.abs
-        )
-      elsif weight > 0
-        Transaction.create(
-          event:  Time.now,
-          source: Transactions::Adjustment.instance,
-          target: self,
-          weight: weight.abs
-        )
-      end
-    else
-      true
-    end
-  end
-
-  ### Transactions
-
-  has_many :incoming_transactions, as: 'target', class_name: 'Transaction', dependent: :destroy
-
-  has_many :outgoing_transactions, as: 'source', class_name: 'Transaction', dependent: :destroy
-
-  def transactions
-    Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class).uniq
-  end
 
   scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
   scope :by_categories,    -> (category = nil) { joins(:container).merge(Container.where(category: category)) }
@@ -86,6 +26,8 @@ class Bag < ActiveRecord::Base
 
   scope :tested,           -> { where tested: true }
   scope :archived,         -> { where archived: true }
+
+
 
   def self.first_available(brand, weight)
     by_brands(brand).by_buds.where(
@@ -157,50 +99,6 @@ class Bag < ActiveRecord::Base
   end
 
   private
-
-    def update_delta
-      if initial_weight_changed? || current_weight_changed?
-        self.delta = initial_weight - current_weight
-      end
-    end
-
-    def update_delta_old
-      if initial_weight_changed? || current_weight_changed?
-        if (history.history_lines.reweight.order(created_at: :asc))[-2].nil? 
-          y = current_weight
-        else
-          y = (history.history_lines.reweight.order(created_at: :asc))[-2].quantity
-        end
-          
-        if (history.history_lines.reweight.order(created_at: :asc))[-1].nil?
-          x = initial_weight
-        else
-          x = (history.history_lines.reweight.order(created_at: :asc))[-1].quantity
-        end
-        
-        self.delta_old = y - x
-      end
-    end
-
-    def update_delta!
-      self.delta = initial_weight - current_weight
-    end
-
-    def update_delta_old!
-      if (history.history_lines.reweight.order(created_at: :asc))[-2].nil? 
-        y = current_weight
-      else
-        y = (history.history_lines.reweight.order(created_at: :asc))[-2].quantity
-      end
-        
-      if (history.history_lines.reweight.order(created_at: :asc))[-1].nil?
-        x = initial_weight
-      else
-        x = (history.history_lines.reweight.order(created_at: :asc))[-1].quantity
-      end
-      
-      self.delta_old = y - x
-    end
 
     def update_category
       self[:category] = category.titleize unless category.nil?
