@@ -10,6 +10,8 @@ class Bag < ActiveRecord::Base
   include Sortable
   include Filterable
 
+  after_create :set_name, unless: :has_name?
+
   after_save -> { lot.bag_changed unless lot.nil? }
 
   before_save :update_category
@@ -99,6 +101,10 @@ class Bag < ActiveRecord::Base
   end
 
   private
+
+    def set_name
+      update(name: "BAG-#{id}")
+    end
 
     def update_category
       self[:category] = category.titleize unless category.nil?

@@ -1,5 +1,3 @@
-require 'wild/compass/math'
-
 module Accountable
   extend ActiveSupport::Concern
 
@@ -10,9 +8,9 @@ module Accountable
   ### Included
 
   included do
-    before_save :update_delta if respond_to? :delta
-    before_save :update_delta_old if respond_to? :delta_old
-    before_save :adjust_current_weight if respond_to? :current_weight
+    before_save :update_delta, if: :responds_to_delta?
+    before_save :update_delta_old, if: :responds_to_delta_old?
+    before_save :adjust_current_weight, if: :responds_to_current_weight?
 
     has_many :incoming_transactions, as: 'target', class_name: 'Transaction', dependent: :destroy
     has_many :outgoing_transactions, as: 'source', class_name: 'Transaction', dependent: :destroy
@@ -47,22 +45,13 @@ module Accountable
   def adjust_current_weight
     return true if current_weight_was.nil? || @skip_adjust
     if current_weight_changed?
-      weight = current_weight_was.abs - current_weight.abs
-      if weight < 0
-        Transaction.create(
-          event:  Time.now,
-          source: self,
-          target: Transactions::Adjustment.instance,
-          weight: weight.abs
-        )
-      elsif weight > 0
-        Transaction.create(
-          event:  Time.now,
-          source: Transactions::Adjustment.instance,
-          target: self,
-          weight: weight.abs
-        )
-      end
+      weight = current_weight - current_weight_was
+      Transaction.create(
+        event:  Time.now,
+        source: Transactions::Adjustment.instance,
+        target: self,
+        weight: weight
+      )
     else
       true
     end
@@ -96,6 +85,18 @@ module Accountable
 
   private
 
+    def responds_to_delta?
+      respond_to? :delta
+    end
+
+    def responds_to_current_weight?
+      respond_to? :current_weight
+    end
+
+    def responds_to_delta_old?
+      respond_to? :delta_old
+    end
+
     def update_delta
       if initial_weight_changed? || current_weight_changed?
         self[:delta] = initial_weight - current_weight
@@ -107,7 +108,7 @@ module Accountable
         previous = (history.history_lines.reweight.order(created_at: :asc))[-2]
         last = (history.history_lines.reweight.order(created_at: :asc))[-1]
 
-        self[:delta_old] = delta(previous, last, current_weight, initial_weight)
+        self[:delta_old] = compute_delta(previous, last, current_weight, initial_weight)
       end
     end
 
@@ -119,7 +120,7 @@ module Accountable
       previous = (history.history_lines.reweight.order(created_at: :asc))[-2]
       last = (history.history_lines.reweight.order(created_at: :asc))[-1]
       
-      self[:delta_old] = delta(previous, last, current_weight, initial_weight)
+      self[:delta_old] = compute_delta(previous, last, current_weight, initial_weight)
     end
 
 end

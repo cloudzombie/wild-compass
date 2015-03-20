@@ -1,7 +1,7 @@
 module Wild
   module Compass
     module Math
-      def delta(previous, last, current_weight, initial_weight)
+      def compute_delta(previous, last, current_weight, initial_weight)
         if previous.nil? 
           y = current_weight
         else

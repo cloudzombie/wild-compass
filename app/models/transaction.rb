@@ -7,7 +7,7 @@ class Transaction < ActiveRecord::Base
 
   validates :target,  presence: true
 
-  validates :weight,  presence: true, numericality: { greater_than_or_equal_to: 0.0 }
+  # validates :weight,  presence: true, numericality: { greater_than_or_equal_to: 0.0 }
 
   validates :event,   presence: true
 
