@@ -10,6 +10,7 @@ module Accountable
   included do
     before_save :update_delta, if: :responds_to_delta?
     before_save :update_delta_old, if: :responds_to_delta_old?
+    
     before_save :adjust_current_weight, if: :responds_to_current_weight?
 
     has_many :incoming_transactions, as: 'target', class_name: 'Transaction', dependent: :destroy
