@@ -28,8 +28,8 @@ class Transaction < ActiveRecord::Base
     end
   end
 
-  def self.reweight(source)
-    new(source: source) do |t|
+  def self.reweight(target)
+    new(source: Transactions::Adjustment.instance, target: target) do |t|
       t.instance_variable_set(:@mode, :reweight)
     end
   end
@@ -66,7 +66,7 @@ class Transaction < ActiveRecord::Base
       source.history.add_line(source, target, weight, :decrease_current_weight, @user, 'SYSTEM TRANSACTION (-)')
       target.history.add_line(target, source, weight, :increase_current_weight, @user, 'SYSTEM TRANSACTION (+)')
     when :reweight
-      source.history.add_line(source, source, weight, :reweight, @user, @message)
+      target.history.add_line(target, target, weight, :reweight, @user, @message)
     end
 
     save

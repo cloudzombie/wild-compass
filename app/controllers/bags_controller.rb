@@ -47,9 +47,11 @@ class BagsController < ApplicationController
       bag.weight      = bag_params[:weight].to_d
       bag.message     = bag_params[:message]
       bag.quantity    = bag_params[:weight].to_d
-      bag.tare_weight = bag_params[:tare_weight].to_d + 0.3
+      bag.tare_weight = bag_params[:tare_weight].to_d # + 0.3 wth?
+      
+      weight = bag.weight - bag.tare_weight - bag.current_weight
 
-      if Transaction.reweight( bag ).amount( bag.weight -= bag.tare_weight ).by( current_user ).because( bag.message ).commit
+      if Transaction.reweight( bag ).amount( weight ).by( current_user ).because( bag.message ).commit
         redirect_to bag, notice: 'Bag was successfully reweighted.'
       else
         redirect_to bag, notice: 'Bag was not successfully reweighted.'
