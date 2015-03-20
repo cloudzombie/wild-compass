@@ -24,8 +24,6 @@ class LotsController < ApplicationController
   def create 
     self.lot = Lot.new(lot_params)
 
-    # TransactionManager.from( nil ).to( lot ).take( lot.weight ).by( current_user ).commit
-
     respond_to do |format|
       if lot.save
         format.html { redirect_to lot, notice: 'Lot was successfully created.' }

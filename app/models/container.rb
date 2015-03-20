@@ -7,6 +7,8 @@ class Container < ActiveRecord::Base
   include Sortable
   include Filterable
 
+  include Wild::Compass::Math
+
 
 
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
@@ -16,6 +18,8 @@ class Container < ActiveRecord::Base
   scope :by_brands,     -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
 
+
+  ### Remember that this should be temporary
 
   def transaction_changed
     inc = incoming_weight

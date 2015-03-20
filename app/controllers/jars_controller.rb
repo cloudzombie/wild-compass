@@ -15,8 +15,6 @@ class JarsController < ApplicationController
   def create 
     self.jar = Jar.new(jar_params)
 
-    TransactionManager.from( jar.bag ).to( jar ).take( jar.weight ).by( current_user ).commit
-
     respond_to do |format|
       if jar.save && jar.bag.save
         format.html { redirect_to jar, notice: 'jar was successfully created.' }
