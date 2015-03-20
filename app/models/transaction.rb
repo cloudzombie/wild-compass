@@ -49,6 +49,16 @@ class Transaction < ActiveRecord::Base
     self
   end
 
+  def tare(tare_weight)
+    @tare = tare_weight
+    self
+  end
+
+  def total(total_weight)
+    @total = total_weight
+    self
+  end
+
   def by(user)
     @user = user
     self
@@ -66,7 +76,7 @@ class Transaction < ActiveRecord::Base
       source.history.add_line(source, target, weight, :decrease_current_weight, @user, 'SYSTEM TRANSACTION (-)')
       target.history.add_line(target, source, weight, :increase_current_weight, @user, 'SYSTEM TRANSACTION (+)')
     when :reweight
-      target.history.add_line(target, target, weight, :reweight, @user, @message)
+      target.history.add_line(target, target, @total - @tare, :reweight, @user, @message)
     end
 
     save
