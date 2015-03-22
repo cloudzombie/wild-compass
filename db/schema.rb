@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322180204) do
+ActiveRecord::Schema.define(version: 20150322182041) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -88,11 +88,7 @@ ActiveRecord::Schema.define(version: 20150322180204) do
     t.integer  "history_id"
     t.string   "category"
     t.integer  "location_id"
-    t.datetime "airdrying_stage_ended_at"
-    t.datetime "processing_completed_at"
-    t.decimal  "processing_waste_produced", precision: 16, scale: 4
-    t.decimal  "trim_added",                precision: 16, scale: 4
-    t.decimal  "water_loss",                precision: 16, scale: 4
+    t.decimal  "water_loss",     precision: 16, scale: 4
   end
 
   create_table "containers_lots", force: true do |t|
