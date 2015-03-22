@@ -95,10 +95,24 @@
         <% end %>
         
         <% if described.respond_to?(:water_loss) && !described.water_loss.nil? && described.water_loss > 0.0 %>
-        <tr>
-          <th>Water Loss :</th>
-          <td><%= weight_for described.water_loss %></td> 
-        </tr>
+          <tr>
+            <th>Water Loss :</th>
+            <td><%= weight_for described.water_loss %></td> 
+          </tr>
+        <% end %>
+
+        <% if described.respond_to? :bin %>
+          <tr>
+            <th>Bin :</th>
+            <td><%= described.bin %></td> 
+          </tr>
+        <% end %>
+
+        <% if described.respond_to? :location %>
+          <tr>
+            <th>Location :</th>
+            <td><%= described.location %></td> 
+          </tr>
         <% end %>
    
         </table>
