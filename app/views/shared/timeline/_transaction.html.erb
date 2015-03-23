@@ -4,7 +4,7 @@
   </td>
   
   <td>
-    <% if transaction.source.kind_of? Waste %>
+    <% if    transaction.source.kind_of? Transactions::Waste %>
       <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-danger" %>
     <% elsif transaction.source.kind_of? Transactions::Lab %>
       <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-danger" %>
@@ -14,7 +14,7 @@
       <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-info" %>
     <% elsif transaction.source.kind_of? Transactions::WaterLoss %>
       <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-danger" %>
-    <% elsif transaction.source.kind_of? Harvest %>
+    <% elsif transaction.source.kind_of? Transactions::Harvest %>
       <%= link_to "#{transaction.source}", '#', class: "btn-sm btn-flat btn-success" %>
     <% elsif transaction.source.kind_of? Plant %>
       <%= link_to "#{transaction.source}", transaction.source, class: "btn-sm btn-flat btn-success" %>
@@ -42,7 +42,7 @@
   </td>
 
   <td>
-    <% if transaction.target.kind_of? Waste %>
+    <% if    transaction.target.kind_of? Transactions::Waste %>
       <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-danger" %>
     <% elsif transaction.target.kind_of? Transactions::Lab %>
       <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-danger" %>
@@ -52,7 +52,7 @@
       <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-info" %>
     <% elsif transaction.target.kind_of? Transactions::WaterLoss %>
       <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-danger" %>
-    <% elsif transaction.target.kind_of? Harvest %>
+    <% elsif transaction.target.kind_of? Transactions::Harvest %>
       <%= link_to "#{transaction.target}", '#', class: "btn-sm btn-flat btn-success" %>
     <% elsif transaction.target.kind_of? Plant %>
       <%= link_to "#{transaction.target}", transaction.target, class: "btn-sm btn-flat btn-success" %>

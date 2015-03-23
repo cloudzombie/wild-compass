@@ -25,4 +25,5 @@ class Strain < ActiveRecord::Base
     def upcase_acronym
       self.acronym = acronym.to_s.upcase
     end
+    
 end

@@ -1,4 +1,8 @@
-class Waste < ActiveRecord::Base
+class Transactions::Waste < ActiveRecord::Base
+
+  def self.instance
+    first || Transactions::Waste.create
+  end
 
   has_many :incoming_transactions, class_name: 'Transaction', as: 'target'
 

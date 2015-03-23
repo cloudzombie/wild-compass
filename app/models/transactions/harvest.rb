@@ -1,4 +1,8 @@
-class Harvest < ActiveRecord::Base
+class Transactions::Harvest < ActiveRecord::Base
+
+  def self.instance
+    first || Transactions::Harvest.create
+  end
 
   has_many :outgoing_transactions, class_name: 'Transaction', as: 'source'
 

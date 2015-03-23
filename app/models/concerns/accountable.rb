@@ -59,6 +59,10 @@ module Accountable
     end
   end
 
+  def water_loss
+    Transaction.where(source: self, target: Transactions::WaterLoss.instance).sum(:weight)
+  end
+
 
 
   ### Class methods
