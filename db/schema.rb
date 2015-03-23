@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323184201) do
+ActiveRecord::Schema.define(version: 20150323191108) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 20150323184201) do
     t.integer  "history_id"
     t.string   "category"
     t.integer  "location_id"
-    t.decimal  "water_loss",     precision: 16, scale: 4
   end
 
   create_table "containers_lots", force: true do |t|
