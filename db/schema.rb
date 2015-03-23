@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323191108) do
+ActiveRecord::Schema.define(version: 20150323202405) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -110,11 +110,6 @@ ActiveRecord::Schema.define(version: 20150323191108) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-  end
-
-  create_table "harvests", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "histories", force: true do |t|
@@ -304,7 +299,17 @@ ActiveRecord::Schema.define(version: 20150323191108) do
     t.datetime "updated_at"
   end
 
+  create_table "transactions_harvests", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "transactions_labs", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions_wastes", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -366,10 +371,5 @@ ActiveRecord::Schema.define(version: 20150323191108) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "wastes", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end

@@ -18,10 +18,6 @@ class Container < ActiveRecord::Base
   scope :by_brands,     -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
 
-  def water_loss
-    Transaction.where(source: self, target: Transactions::WaterLoss.instance).sum(:weight)
-  end
-
 
   ### Plants
 
