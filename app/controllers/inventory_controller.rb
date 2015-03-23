@@ -42,5 +42,9 @@ class InventoryController < ApplicationController
   	pdf = WickedPdf.new.pdf_from_string(html)
   	send_data( pdf, filename: 'report.pdf', disposition: 'attachment' )
   end
+
+  def controller_name
+    'inventory'
+  end
     
 end
