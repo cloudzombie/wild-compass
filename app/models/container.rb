@@ -19,32 +19,6 @@ class Container < ActiveRecord::Base
 
 
 
-  ### Remember that this should be temporary
-
-  def transaction_changed
-    inc = incoming_weight
-    out = outgoing_weight
-    bag = bagged_weight
-    wat = inc - out - bag
-
-    initial = 0.0
-    begin
-      initial = incoming_transactions.order(event: :asc).first.weight
-    rescue
-      initial = 0.0
-    end
-
-    update(water_loss: wat)
-    update(current_weight: 0)
-    update(initial_weight: initial)
-  end
-
-  def bagged_weight
-    bags.sum(:initial_weight)
-  end
-
-
-
   ### Plants
 
   has_and_belongs_to_many :plants, -> { uniq }

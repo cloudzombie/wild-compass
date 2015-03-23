@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322182041) do
+ActiveRecord::Schema.define(version: 20150323184201) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -306,6 +306,11 @@ ActiveRecord::Schema.define(version: 20150322182041) do
   end
 
   create_table "transactions_labs", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions_water_losses", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
