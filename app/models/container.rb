@@ -19,7 +19,7 @@ class Container < ActiveRecord::Base
 
 
   def water_loss
-    transactions.where(target: Transactions::WaterLoss).sum(:weight)
+    Transaction.where(source: self, target: Transactions::WaterLoss.instance).sum(:weight)
   end
 
 
