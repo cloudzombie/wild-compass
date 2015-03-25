@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323202405) do
+ActiveRecord::Schema.define(version: 20150325195130) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -110,6 +110,11 @@ ActiveRecord::Schema.define(version: 20150323202405) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+  end
+
+  create_table "harvests", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "histories", force: true do |t|
@@ -229,6 +234,7 @@ ActiveRecord::Schema.define(version: 20150323202405) do
     t.string   "datamatrix_text"
     t.datetime "destroyed_at"
     t.datetime "harvested_at"
+    t.integer  "harvest_id"
   end
 
   add_index "plants", ["datamatrix_text", "datamatrix_hash"], name: "index_plants_on_datamatrix_text_and_datamatrix_hash", unique: true
@@ -295,11 +301,6 @@ ActiveRecord::Schema.define(version: 20150323202405) do
   end
 
   create_table "transactions_destructions", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "transactions_harvests", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
