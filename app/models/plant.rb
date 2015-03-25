@@ -33,19 +33,15 @@ class Plant < ActiveRecord::Base
   def transaction_changed
   end
 
-  ### Transactions
 
-  has_many :incoming_transactions, as: 'target', class_name: 'Transaction', dependent: :destroy
 
-  has_many :outgoing_transactions, as: 'source', class_name: 'Transaction', dependent: :destroy
+  belongs_to :lot
 
-  def transactions
-    Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class)
-  end
+  has_many :bags, -> { uniq }, through: :lot
 
 
 
-  belongs_to :plant 
+  belongs_to :plant
 
   belongs_to :seed
 
@@ -59,19 +55,19 @@ class Plant < ActiveRecord::Base
 
   belongs_to :rfid
 
+
+
   has_and_belongs_to_many :containers, -> { uniq }
 
   accepts_nested_attributes_for :containers
 
-  has_many :lots, -> { uniq }, through: :containers
-
-  has_many :bags, -> { uniq }, through: :containers
+  
 
   has_many :jars, -> { uniq }, through: :containers
 
   has_one :brand, through: :strain
 
-  before_save :record_change, if: :changed?
+
 
   def to_s
     "Plant-#{id}".upcase
@@ -85,18 +81,6 @@ class Plant < ActiveRecord::Base
     ''
   end
 
-  def bag
-    bags.first
-  rescue
-      ''
-  end
-
-  def lot
-    lots.first
-  rescue
-    ''
-  end
-
   def jar
     jars.first
   rescue
@@ -104,10 +88,5 @@ class Plant < ActiveRecord::Base
   end
 
   private
-
-    def record_change
-      history.add_line(self, self, 0.0, :change, nil, "#{changed_attributes}")
-      true
-    end
 
 end

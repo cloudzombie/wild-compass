@@ -44,6 +44,10 @@ class Bag < ActiveRecord::Base
 
   belongs_to :lot
 
+  has_many :plants,  -> { uniq }, through: :lot
+
+
+
   belongs_to :container
 
   belongs_to :bin
@@ -52,7 +56,7 @@ class Bag < ActiveRecord::Base
 
   has_many :jars,    -> { uniq }
 
-  has_many :plants,  -> { uniq }, through: :container
+  
 
   has_many :strains, -> { uniq }, through: :plants
 
@@ -78,12 +82,6 @@ class Bag < ActiveRecord::Base
 
   def jar
     jars.first
-  rescue
-    ''
-  end
-
-  def plant
-    plants.first
   rescue
     ''
   end

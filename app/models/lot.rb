@@ -36,9 +36,13 @@ class Lot < ActiveRecord::Base
 
   accepts_nested_attributes_for :containers
 
-  has_many :plants, -> { uniq }, through: :containers
   
-  has_many :bags, -> { uniq }
+
+  has_many :plants
+  
+  has_many :bags
+
+
 
   has_many :jars, -> { uniq }, through: :bags
 
