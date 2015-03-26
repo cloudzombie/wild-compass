@@ -45,30 +45,6 @@ class Container < ActiveRecord::Base
 
 
 
-  ### Bags
-
-  has_many :bags
-
-  def bag
-    bags.first
-  rescue
-    ''
-  end
-
-
-
-  ### Jars
-
-  has_many :jars, through: :bags
-
-  def jar
-    jars.first
-  rescue
-    ''
-  end
-
-
-
   ### Strains
 
   has_many :strains, -> { uniq }, through: :plants

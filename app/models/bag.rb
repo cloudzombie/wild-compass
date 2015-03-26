@@ -17,17 +17,17 @@ class Bag < ActiveRecord::Base
   before_save :update_category
   before_save :update_strain
 
-  scope :by_strains,       -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
-  scope :by_categories,    -> (category = nil) { joins(:container).merge(Container.where(category: category)) }
-  scope :by_trims,         -> { by_categories 'Trim' }
-  scope :by_buds,          -> { by_categories 'Buds' }
-  scope :by_brands,        -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)) }
+  scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
+  scope :by_categories, -> (category = nil) { joins(:container).merge(Container.where(category: category)) }
+  scope :by_trims,      -> { by_categories 'Trim' }
+  scope :by_buds,       -> { by_categories 'Buds' }
+  scope :by_brands,     -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)) }
 
-  scope :fulfilled,        -> { uniq.joins(:jars).merge( Jar.fulfilled   )}
-  scope :unfulfilled,      -> { uniq.joins(:jars).merge( Jar.unfulfilled )}
+  scope :fulfilled,     -> { uniq.joins(:jars).merge( Jar.fulfilled   )}
+  scope :unfulfilled,   -> { uniq.joins(:jars).merge( Jar.unfulfilled )}
 
-  scope :tested,           -> { where tested: true }
-  scope :archived,         -> { where archived: true }
+  scope :tested,        -> { where tested: true }
+  scope :archived,      -> { where archived: true }
 
 
 
@@ -44,15 +44,15 @@ class Bag < ActiveRecord::Base
 
   belongs_to :lot
 
-  belongs_to :container
+  has_many :plants,  -> { uniq }, through: :lot
+
+
 
   belongs_to :bin
 
   belongs_to :status, class_name: 'Bags::Status', foreign_key: 'bags_status_id'
 
-  has_many :jars,    -> { uniq }
-
-  has_many :plants,  -> { uniq }, through: :container
+  
 
   has_many :strains, -> { uniq }, through: :plants
 
@@ -72,18 +72,6 @@ class Bag < ActiveRecord::Base
 
   def strain
     strains.first
-  rescue
-    ''
-  end
-
-  def jar
-    jars.first
-  rescue
-    ''
-  end
-
-  def plant
-    plants.first
   rescue
     ''
   end
