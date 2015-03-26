@@ -528,14 +528,6 @@
 			}
 		},
 		{
-			"file": ".elasticbeanstalk/config.yml",
-			"settings":
-			{
-				"buffer_size": 208,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "app/models/harvest.rb",
 			"settings":
 			{
@@ -556,6 +548,14 @@
 			"settings":
 			{
 				"buffer_size": 1190,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Gemfile",
+			"settings":
+			{
+				"buffer_size": 2172,
 				"line_ending": "Windows"
 			}
 		}
@@ -596,6 +596,7 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Maxime/Documents/wild-compass/.elasticbeanstalk/config.yml",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150325193230_rename_transactions_harvests_to_harvests.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/schema.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/container.rb",
@@ -722,8 +723,7 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/filterable.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/inventory.js.coffee",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/home.js.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/ajax/_table.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/_plant.html.erb"
+		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/ajax/_table.html.erb"
 	],
 	"find":
 	{
@@ -886,7 +886,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -919,32 +919,6 @@
 				},
 				{
 					"buffer": 1,
-					"file": ".elasticbeanstalk/config.yml",
-					"settings":
-					{
-						"buffer_size": 208,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/YAML/YAML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "app/models/harvest.rb",
 					"settings":
 					{
@@ -972,7 +946,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "app/models/bag.rb",
 					"settings":
 					{
@@ -1000,7 +974,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "app/models/container.rb",
 					"settings":
 					{
@@ -1023,6 +997,32 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 285.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Gemfile",
+					"settings":
+					{
+						"buffer_size": 2172,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2138,
+								2138
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1119.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
