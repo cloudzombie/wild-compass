@@ -1,14 +1,11 @@
-require 'csv'
-
 class Plant < ActiveRecord::Base
 
-  include Weightable
-  include Accountable
   include Storyable
   include Searchable
   include Sortable
   include Encodable
   include Filterable
+
 
 
   scope :by_strains,  -> (strain = nil) { where(strain: strain) }
@@ -20,26 +17,7 @@ class Plant < ActiveRecord::Base
   scope :format_id, -> (format_id = nil) { format_id.nil? ? all : where(format_id: format_id) }
   scope :type, -> (type = nil) { type.nil? ? all : where(type: type) }
 
-
-  def self.to_csv
-    CSV.generate { |csv|
-      csv << [ 'Plant ID', 'Lot ID' ]
-      all.each { |plant|
-        csv << [ plant.name, ( plant.lot.nil? ? nil : plant.lot.id ) ]
-      }
-    }
-  end
-
-  def transaction_changed
-  end
-
-
-
-  belongs_to :lot
-
-  has_many :bags, -> { uniq }, through: :lot
-
-
+  belongs_to :harvest
 
   belongs_to :plant
 
@@ -55,16 +33,6 @@ class Plant < ActiveRecord::Base
 
   belongs_to :rfid
 
-
-
-  has_and_belongs_to_many :containers, -> { uniq }
-
-  accepts_nested_attributes_for :containers
-
-  
-
-  has_many :jars, -> { uniq }, through: :containers
-
   has_one :brand, through: :strain
 
 
@@ -72,21 +40,5 @@ class Plant < ActiveRecord::Base
   def to_s
     "Plant-#{id}".upcase
   end
-
-  alias_method :name, :to_s
-
-  def container
-    containers.first
-  rescue
-    ''
-  end
-
-  def jar
-    jars.first
-  rescue
-    ''
-  end
-
-  private
 
 end

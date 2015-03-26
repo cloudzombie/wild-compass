@@ -3,8 +3,6 @@ module Accountable
 
   include Wild::Compass::Math
 
-
-
   ### Included
 
   included do
@@ -15,12 +13,37 @@ module Accountable
 
     has_many :incoming_transactions, as: 'target', class_name: 'Transaction', dependent: :destroy
     has_many :outgoing_transactions, as: 'source', class_name: 'Transaction', dependent: :destroy
-  end
+    
+    has_many :incoming_bags, through: :incoming_transactions, source: :source, source_type: 'Bag'
+    has_many :outgoing_bags, through: :outgoing_transactions, source: :target, source_type: 'Bag'
+    
+    has_many :incoming_jars, through: :incoming_transactions, source: :source, source_type: 'Jar'
+    has_many :outgoing_jars, through: :outgoing_transactions, source: :target, source_type: 'Jar'
 
-  
+    has_many :incoming_containers, through: :incoming_transactions, source: :source, source_type: 'Container'
+    has_many :outgoing_containers, through: :outgoing_transactions, source: :target, source_type: 'Container'
+
+    has_many :incoming_harvests, through: :incoming_transactions, source: :source, source_type: 'Harvest'
+  end
 
   def transactions
     Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class).uniq
+  end
+
+  def bags
+    Bag.joins('LEFT JOIN transactions ON transactions.source_id = bags.id OR transactions.target_id = bags.id').merge(transactions).uniq
+  end
+
+  def containers
+    Container.joins('LEFT JOIN transactions ON transactions.source_id = containers.id OR transactions.target_id = containers.id').merge(transactions).uniq
+  end
+
+  def jars
+    Jar.joins('LEFT JOIN transactions ON transactions.source_id = jars.id OR transactions.target_id = jars.id').merge(transactions).uniq
+  end
+
+  def harvests
+    incoming_harvests.uniq
   end
 
   def update_all_delegated_attributes!
