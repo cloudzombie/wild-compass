@@ -94,6 +94,7 @@ Rails.application.routes.draw do
     collection do
       get 'tested',   to: 'bags/tested#home'
       get 'archived', to: 'bags/archived#home'
+      get 'load_suggestions', to: 'bags/suggestions'
     end
 
     member do

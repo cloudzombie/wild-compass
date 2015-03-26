@@ -13,6 +13,10 @@
         <p>Hello, <%= current_user %></p>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
+
+      <%= form_tag(bags_path, :method => "get", id: "search-form", remote: true, autocomplete: 'off') do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
+      <% end %>
     </div>
         
     <ul class="sidebar-menu"><!--
