@@ -94,6 +94,9 @@ gem 'select2-rails'
 # Unicorn Web Server
 # gem 'unicorn', group: :production
 
+# Puma Web Server
+# gem 'puma'
+
 gem 'rack-timeout', group: :production
 
 # Table sorter
