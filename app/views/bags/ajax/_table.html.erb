@@ -1,5 +1,5 @@
 <% bags.each do |bag| %>
-  <tr>
+  <tr id="<%= bag.id %>">
     <td><%= check_box_tag :accept %></td>
     <td>
       <% if can? :show, Bag %>
@@ -31,31 +31,46 @@
       <% end %>
     </td>
     <td>
-      <% if can? :label, Bag %>
-      <%= link_to "Print Label", label_bag_path(bag), class: 'btn-sm btn-flat btn-primary' %>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn-xs btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Actions <span class="caret"></span></button>
+      <ul class="dropdown-menu pull-right" role="menu">
+        <li>
+          <% if can? :label, Bag %>
+            <%= link_to "Print Label", label_bag_path(bag), class: 'text-aqua' %>
+          <% end %>
+        </li>
+        <li>
+          <% if can? :send_to_lab, Bag %>
+      <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: 'text-light-blue' %>
       <% end %>
-
-      <% if can? :send_to_lab, Bag %>
-      <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: "btn-sm btn-flat btn-info" %>
-      <% end %>
-
-      <% if can? :reweight, Bag %>
+        </li>
+        <li>
+           <% if can? :reweight, Bag %>
       <%= link_to "#{fa_icon 'flask'} Reweight".html_safe, reweight_bag_path(bag),
-          class: 'btn-sm btn-flat btn-danger reweight',
+          class: 'text-light-blue reweight',
           data: { href: reweight_bag_path(bag) } %>
       <% end %>
-
-      <% if can? :recall, Bag %>
-      <%= link_to "Recall", recall_bag_path(bag), class: 'btn-sm btn-flat btn-danger' %>
+        </li>
+        <li>
+          <% if can? :recall, Bag %>
+      <%= link_to "Recall", recall_bag_path(bag), class: 'text-red' %>
       <% end %>
-
-      <% if can? :quarantine, Bag %>
-      <%= link_to "Quarantine", quarantine_bag_path(bag), class: 'btn-sm btn-flat btn-danger' %>
+        </li>
+        <li>
+          <% if can? :quarantine, Bag %>
+      <%= link_to "Quarantine", quarantine_bag_path(bag), class: 'text-red' %>
       <% end %>
-
+        </li>
+         <li>
+          
       <% if can? :edit, Bag %>
-      <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: "btn-sm btn-flat btn-warning" %>
+      <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: 'text-yellow' %>
       <% end %>
+        </li>
+      </ul>
+    </div>  
+
     </td>
   </tr>
+
 <% end %>

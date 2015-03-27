@@ -1,0 +1,8 @@
+$("#ajax-content").html("<%= escape_javascript(render("bags/ajax/object_content")) %>");
+
+$('#search').typeahead([
+  {
+    prefetch: 'bags/suggestion.json' #route to the method 'load_suggestions'
+    #This way, typeahead will prefecth the data from the remote url
+   }
+]);
