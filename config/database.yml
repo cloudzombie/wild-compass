@@ -9,11 +9,7 @@ default: &default
   pool: 5
   timeout: 5000
 
-development:
-  <<: *default
-  database: db/development.sqlite3
-  
-staging:
+live: &live
   adapter: postgresql
   pool: 5
   timeout: 5000
@@ -31,8 +27,12 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+development:
+  <<: *default
+  database: db/development.sqlite3
+  
+staging:
+  <<: *live
+
 production:
-  adapter: postgresql
-  pool: 5
-  timeout: 5000
-  encoding: unicode
+  <<: *live
