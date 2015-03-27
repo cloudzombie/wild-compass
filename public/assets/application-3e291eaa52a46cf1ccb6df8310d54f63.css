@@ -33894,7 +33894,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   Blue Theme
  *************/
 /* overall */
-/* line 6, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 6, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue {
   width: 100%;
   background-color: #fff;
@@ -33905,7 +33905,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   border-width: 1px 0 0 1px;
 }
 
-/* line 16, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 16, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue th,
 .tablesorter-blue td {
   border: #cdcdcd 1px solid;
@@ -33913,7 +33913,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 }
 
 /* header */
-/* line 23, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 23, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue th,
 .tablesorter-blue thead td {
   font: bold 12px/18px Arial, Sans-serif;
@@ -33924,7 +33924,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   text-shadow: 0 1px 0 rgba(204, 204, 204, 0.7);
 }
 
-/* line 33, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 33, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue tbody td,
 .tablesorter-blue tfoot th,
 .tablesorter-blue tfoot td {
@@ -33932,7 +33932,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   vertical-align: top;
 }
 
-/* line 38, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 38, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue .header,
 .tablesorter-blue .tablesorter-header {
   /* black (unsorted) double arrow */
@@ -33948,7 +33948,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   cursor: pointer;
 }
 
-/* line 53, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 53, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue .headerSortUp,
 .tablesorter-blue .tablesorter-headerSortUp,
 .tablesorter-blue .tablesorter-headerAsc {
@@ -33961,7 +33961,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   /* background-image: url(/assets/jquery-tablesorter/black-asc.gif); */
 }
 
-/* line 64, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 64, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue .headerSortDown,
 .tablesorter-blue .tablesorter-headerSortDown,
 .tablesorter-blue .tablesorter-headerDesc {
@@ -33974,7 +33974,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   /* background-image: url(/assets/jquery-tablesorter/black-desc.gif); */
 }
 
-/* line 73, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 73, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue thead .sorter-false {
   background-image: none;
   cursor: default;
@@ -33982,7 +33982,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 }
 
 /* tfoot */
-/* line 83, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 83, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue tfoot .tablesorter-headerSortUp,
 .tablesorter-blue tfoot .tablesorter-headerSortDown,
 .tablesorter-blue tfoot .tablesorter-headerAsc,
@@ -33992,7 +33992,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 }
 
 /* tbody */
-/* line 89, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 89, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue td {
   color: #3d3d3d;
   background-color: #fff;
@@ -34004,7 +34004,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
  you'll need to add additional lines for
  rows with more than 2 child rows
  */
-/* line 105, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 105, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue tbody > tr:hover > td,
 .tablesorter-blue tbody > tr:hover + tr.tablesorter-childRow > td,
 .tablesorter-blue tbody > tr:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td,
@@ -34014,7 +34014,7 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
   background: #d9d9d9;
 }
 
-/* line 110, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 110, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue tbody > tr.odd:hover > td,
 .tablesorter-blue tbody > tr.odd:hover + tr.tablesorter-childRow > td,
 .tablesorter-blue tbody > tr.odd:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td {
@@ -34022,72 +34022,72 @@ html[dir="rtl"] .select2-container-multi .select2-search-choice-close {
 }
 
 /* table processing indicator */
-/* line 115, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 115, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue .tablesorter-processing {
   background-position: center center !important;
   background-repeat: no-repeat !important;
-  /* background-image: url(../addons/pager/icons/loading.gif) !important; */
+  /* background-image: url(/assets/jquery-tablesorter/loading.gif) !important; */
   background-image: url("data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=") !important;
 }
 
 /* Zebra Widget - row alternating colors */
-/* line 123, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 123, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue tbody tr.odd > td {
   background-color: #ebf2fa;
 }
 
-/* line 126, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 126, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue tbody tr.even > td {
   background-color: #fff;
 }
 
 /* Column Widget - column sort colors */
-/* line 132, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 132, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue td.primary,
 .tablesorter-blue tr.odd td.primary {
   background-color: #99b3e6;
 }
 
-/* line 135, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 135, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue tr.even td.primary {
   background-color: #c2d1f0;
 }
 
-/* line 139, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 139, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue td.secondary,
 .tablesorter-blue tr.odd td.secondary {
   background-color: #c2d1f0;
 }
 
-/* line 142, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 142, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue tr.even td.secondary {
   background-color: #d6e0f5;
 }
 
-/* line 146, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 146, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue td.tertiary,
 .tablesorter-blue tr.odd td.tertiary {
   background-color: #d6e0f5;
 }
 
-/* line 149, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 149, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue tr.even td.tertiary {
   background-color: #ebf0fa;
 }
 
 /* caption */
-/* line 154, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 154, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 caption {
   background: #fff;
 }
 
 /* filter widget */
-/* line 159, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 159, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue .tablesorter-filter-row {
   background: #eee;
 }
 
-/* line 162, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 162, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue .tablesorter-filter-row td {
   background: #eee;
   line-height: normal;
@@ -34098,7 +34098,7 @@ caption {
 }
 
 /* optional disabled input styling */
-/* line 172, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 172, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue .tablesorter-filter-row .disabled {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -34106,7 +34106,7 @@ caption {
 }
 
 /* hidden filter row */
-/* line 178, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 178, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue .tablesorter-filter-row.hideme td {
   /*** *********************************************** ***/
   /*** change this padding to modify the thickness     ***/
@@ -34118,7 +34118,7 @@ caption {
   cursor: pointer;
 }
 
-/* line 188, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 188, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue .tablesorter-filter-row.hideme * {
   height: 1px;
   min-height: 0;
@@ -34131,7 +34131,7 @@ caption {
 }
 
 /* filters */
-/* line 200, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 200, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter-blue input.tablesorter-filter,
 .tablesorter-blue select.tablesorter-filter {
   width: 98%;
@@ -34147,13 +34147,13 @@ caption {
 }
 
 /* rows hidden by filtering (needed for child rows) */
-/* line 217, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 217, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter .filtered {
   display: none;
 }
 
 /* ajax error row */
-/* line 222, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.14.1/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
+/* line 222, c:/Ruby21-x64/lib/ruby/gems/2.1.0/gems/jquery-tablesorter-1.16.2/vendor/assets/stylesheets/jquery-tablesorter/theme.blue.css */
 .tablesorter .tablesorter-errorRow td {
   text-align: center;
   cursor: pointer;
@@ -34302,6 +34302,31 @@ div.box-default > div.box-header {
 .btn-sm {
   line-height: 240%;
   white-space: nowrap;
+}
+
+/* line 118, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.text-red:hover {
+  color: white !important;
+}
+
+/* line 121, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.text-aqua:hover {
+  color: white !important;
+}
+
+/* line 124, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.text-light-blue:hover {
+  color: white !important;
+}
+
+/* line 127, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.text-yellow:hover {
+  color: white !important;
+}
+
+/* line 130, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.text-green:hover {
+  color: white !important;
 }
 
 /* line 5, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/bags.css.scss */
