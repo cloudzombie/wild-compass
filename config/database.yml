@@ -36,3 +36,6 @@ staging:
 
 production:
   <<: *live
+
+testing:
+  <<: *live
