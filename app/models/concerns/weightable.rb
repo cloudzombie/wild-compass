@@ -32,26 +32,6 @@ module Weightable
     attr_accessor :quantity
     attr_accessor :message
 
-    # validates :current_weight,
-    #            presence: false,
-    #            allow_blank: true,
-    #            numericality: { greater_than_or_equal_to: 0.0 }
-
-    # validates :initial_weight,
-    #            presence: false,
-    #            allow_blank: true,
-    #            numericality: { greater_than_or_equal_to: 0.0 }
-
-    # validates :weight,
-    #            presence: false,
-    #            allow_blank: true,
-    #            numericality: { greater_than_or_equal_to: 0.0 }
-    
-    # validates :quantity,
-    #            presence: false,
-    #            allow_blank: true,
-    #            numericality: { greater_than_or_equal_to: 0.0 }
-
     after_save :set_name, unless: :has_name?
 
     after_initialize :initialize_weight, unless: :has_weight?
@@ -118,12 +98,7 @@ module Weightable
            Plant::ClonePlant,
            Plant::MotherPlant
         'PLANT'
-      when Container,
-           Container::Stage1Container::TrimContainer,
-           Container::Stage1Container::BudsOnStemContainer,
-           Container::Stage1Container::UnprocessedContainer,
-           Container::Stage2Container::BudsContainer,
-           Container::Stage2Container::TrimContainer
+      when Container
         'CTN'
       when Bin
         'BIN'
