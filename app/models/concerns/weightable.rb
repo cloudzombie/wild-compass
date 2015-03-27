@@ -118,12 +118,7 @@ module Weightable
            Plant::ClonePlant,
            Plant::MotherPlant
         'PLANT'
-      when Container,
-           Container::Stage1Container::TrimContainer,
-           Container::Stage1Container::BudsOnStemContainer,
-           Container::Stage1Container::UnprocessedContainer,
-           Container::Stage2Container::BudsContainer,
-           Container::Stage2Container::TrimContainer
+      when Container
         'CTN'
       when Bin
         'BIN'
