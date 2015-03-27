@@ -105,3 +105,6 @@ gem 'jquery-tablesorter'
 # gem 'schema_plus'
 
 gem 'descriptive-statistics'
+
+#Twitter-Typeahead.js
+gem 'twitter-typeahead-rails'
