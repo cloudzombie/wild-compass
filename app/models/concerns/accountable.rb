@@ -6,8 +6,6 @@ module Accountable
   ### Included
 
   included do
-    scope :from_transactions, -> (model_id = 'id') { joins(transactions_joins, model_id, model_id).merge(transactions).uniq }
-
     before_save :update_delta, if: :responds_to_delta?
     before_save :update_delta_old, if: :responds_to_delta_old?
     
@@ -29,19 +27,27 @@ module Accountable
   end
 
   def transactions
-    Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class).uniq
+    Transaction.where(transactions_query, id, self.class, id, self.class).uniq
+  end
+
+  def transactions_query
+    '(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)'
+  end
+
+  def joins_transactions_query(query)
+    "LEFT JOIN transactions ON transactions.source_id = #{query} OR transactions.target_id = #{query}"
   end
 
   def bags
-    Bag.from_transactions('bags.id')
+    Bag.joins(joins_transactions_query('bags.id')).merge(transactions).uniq
   end
 
   def containers
-    Container.from_transactions('containers.id')
+    Container.joins(joins_transactions_query('containers.id')).merge(transactions).uniq
   end
 
   def jars
-    Jar.from_transactions('jars.id')
+    Jar.joins(joins_transactions_query('jars.id')).merge(transactions).uniq
   end
 
   def harvests
@@ -106,19 +112,15 @@ module Accountable
     end
 
     def total_weight
-      all.sum(:current_weight)
+      sum(:current_weight)
     end
 
     def total_initial_weight
-      all.sum(:initial_weight)
+      sum(:initial_weight)
     end
   end
 
   private
-
-    def joins_transactions_query
-      'LEFT JOIN transactions ON transactions.source_id = ? OR transactions.target_id = ?'
-    end
 
     def responds_to_delta?
       respond_to? :delta

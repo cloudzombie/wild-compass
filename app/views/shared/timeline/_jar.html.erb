@@ -1,35 +1,3 @@
-<tr>
-  <td>
-    <%= date_for jar.created_at %>
-  </td>
-  
-  <td>
-    <%= link_to "#{jar.bag}", jar.bag, class: "btn-sm btn-flat btn-warning" %>
-  </td>
-
-  <td>
-    <%= weight_for jar.current_weight, '' %>
-  </td>
-
-  <td>
-    
-  </td>
-</tr>
-
-<tr>
-  <td>
-    <%= date_for jar.created_at %>
-  </td>
-  
-  <td>
-    <%= link_to "#{jar}".html_safe, jar, class: "btn-sm btn-flat btn-danger" %>
-  </td>
-  
-  <td>
-    
-  </td>
-
-  <td>
-    <%= weight_for jar.current_weight, '' %>
-  </td>
-</tr>
+<% jar.transactions.each do |transaction| %>
+  <%= render 'shared/timeline/transaction', transaction: transaction %>
+<% end %>
