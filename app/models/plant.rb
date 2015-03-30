@@ -18,6 +18,8 @@ class Plant < ActiveRecord::Base
   scope :format_id, -> (format_id = nil) { format_id.nil? ? all : where(format_id: format_id) }
   scope :type, -> (type = nil) { type.nil? ? all : where(type: type) }
 
+  has_and_belongs_to_many :lots, -> { uniq }
+
   belongs_to :harvest
 
   belongs_to :plant
