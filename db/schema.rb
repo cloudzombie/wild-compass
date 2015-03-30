@@ -192,12 +192,12 @@ ActiveRecord::Schema.define(version: 20150330184936) do
   end
 
   create_table "lots_plants", id: false, force: true do |t|
-    t.integer "plants_id"
-    t.integer "lots_id"
+    t.integer "plant_id"
+    t.integer "lot_id"
   end
 
-  add_index "lots_plants", ["lots_id"], name: "index_lots_plants_on_lots_id"
-  add_index "lots_plants", ["plants_id"], name: "index_lots_plants_on_plants_id"
+  add_index "lots_plants", ["lot_id"], name: "index_lots_plants_on_lot_id"
+  add_index "lots_plants", ["plant_id"], name: "index_lots_plants_on_plant_id"
 
   create_table "order_lines", force: true do |t|
     t.decimal  "quantity",   precision: 16, scale: 4
