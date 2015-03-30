@@ -6,6 +6,8 @@ module Accountable
   ### Included
 
   included do
+    scope :from_transactions, -> (model_id = 'id') { joins(transactions_joins, model_id, model_id).merge(transactions).uniq }
+
     before_save :update_delta, if: :responds_to_delta?
     before_save :update_delta_old, if: :responds_to_delta_old?
     
@@ -31,15 +33,15 @@ module Accountable
   end
 
   def bags
-    Bag.joins('LEFT JOIN transactions ON transactions.source_id = bags.id OR transactions.target_id = bags.id').merge(transactions).uniq
+    Bag.from_transactions('bags.id')
   end
 
   def containers
-    Container.joins('LEFT JOIN transactions ON transactions.source_id = containers.id OR transactions.target_id = containers.id').merge(transactions).uniq
+    Container.from_transactions('containers.id')
   end
 
   def jars
-    Jar.joins('LEFT JOIN transactions ON transactions.source_id = jars.id OR transactions.target_id = jars.id').merge(transactions).uniq
+    Jar.from_transactions('jars.id')
   end
 
   def harvests
@@ -113,6 +115,10 @@ module Accountable
   end
 
   private
+
+    def joins_transactions_query
+      'LEFT JOIN transactions ON transactions.source_id = ? OR transactions.target_id = ?'
+    end
 
     def responds_to_delta?
       respond_to? :delta
