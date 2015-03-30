@@ -5,7 +5,7 @@ class Harvest < ActiveRecord::Base
   has_many :plants
 
   def to_s
-    "#{class_name}-#{id}"
+    "Harvest"
   end
  
   alias_method :name, :to_s
