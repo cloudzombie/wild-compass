@@ -54,6 +54,76 @@ module Accountable
     incoming_harvests.uniq
   end
 
+  def timeline_transactions
+    txn = []
+    
+    incoming_transactions.each do |t|
+      txn << t
+    end
+    
+    incoming_jars.each do |jar|
+      jar.incoming_transactions.each do |t|
+        txn << t
+      end
+
+      jar.incoming_bags.each do |bag|
+        bag.incoming_transactions.each do |t|
+          txn << t
+        end
+
+        bag.incoming_containers.each do |container|
+          container.incoming_transactions.each do |t|
+            txn << t
+          end
+
+          container.incoming_harvests.each do |harvest|
+            harvest.incoming_transactions.each do |t|
+              txn << t
+            end
+          end
+        end
+      end
+    end
+    
+    incoming_bags.each do |bag|
+      bag.incoming_transactions.each do |t|
+        txn << t
+      end
+
+      bag.incoming_containers.each do |container|
+        container.incoming_transactions.each do |t|
+          txn << t
+        end
+
+        container.incoming_harvests.each do |harvest|
+          harvest.incoming_transactions.each do
+            txn << t
+          end
+        end
+      end
+    end
+
+    incoming_containers.each do |container|
+      container.incoming_transactions.each do |t|
+        txn << t
+      end
+
+      container.incoming_harvests.each do |harvest|
+        harvest.incoming_transactions.each do |t|
+          txn << t
+        end
+      end
+    end
+
+    incoming_harvests.each do |harvest|
+      harvest.incoming_transactions.each do |t|
+        txn << t
+      end
+    end
+
+    txn.uniq
+  end
+
   def update_all_delegated_attributes!
     update_delta! if respond_to? :delta
     update_delta_old! if respond_to? :delta_old
