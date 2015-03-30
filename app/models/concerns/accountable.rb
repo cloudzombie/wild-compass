@@ -131,6 +131,7 @@ module Accountable
   end
 
   def transaction_changed
+    return false unless self.respond_to?(:current_weight)
     @skip_adjust = true
     update(current_weight: incoming_weight - outgoing_weight)
     @skip_adjust = false
