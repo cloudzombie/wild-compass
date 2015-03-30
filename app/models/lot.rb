@@ -38,7 +38,7 @@ class Lot < ActiveRecord::Base
 
   
 
-  has_many :plants
+  has_and_belongs_to_many :plants, -> { uniq }
   
   has_many :bags
 
