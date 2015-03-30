@@ -1,2 +1,3 @@
 $("#table").html("<%= escape_javascript(render("bags/ajax/table")) %>");
 $('#paginator').html('<%= escape_javascript(paginate(bags, :remote => true).to_s) %>');
+

@@ -65,6 +65,10 @@ class BagsController < ApplicationController
     end
   end
 
+  def load_suggestions
+    render json: bags
+  end
+
   # Update bag column.
   def update
     respond_to do |format|

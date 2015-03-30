@@ -33,8 +33,6 @@ class Order < ActiveRecord::Base
     first_unfulfilled == nil
   end
 
-
-
   ### Order lines
 
   has_many :jars, -> { uniq }, through: :order_lines
