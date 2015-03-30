@@ -43,6 +43,9 @@ class Jar < ActiveRecord::Base
     order_line.quantity / order_line.jars.count
   end
 
+  def bag
+    bags.first
+  end
 
 
   ### Order_line
