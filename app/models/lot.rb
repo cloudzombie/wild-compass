@@ -10,6 +10,18 @@ class Lot < ActiveRecord::Base
   include Recallable
   include Sortable
   include Filterable
+
+  def timeline_transactions
+    txn = []
+
+    bags.each do |b|
+      b.timeline_transactions.each do |t|
+        txn << t
+      end
+    end
+
+    txn.uniq
+  end
   
   def self.to_csv
     CSV.generate { |csv|
