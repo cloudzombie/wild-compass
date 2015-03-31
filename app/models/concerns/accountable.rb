@@ -57,7 +57,7 @@ module Accountable
   def timeline_transactions
     txn = []
     
-    incoming_transactions.each do |t|
+    transactions.each do |t|
       txn << t
     end
     
