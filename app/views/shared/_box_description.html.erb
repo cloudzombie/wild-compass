@@ -31,11 +31,20 @@
         </tr>
         <% end %>
 
-        <% if described.respond_to? :strain %>
-        <tr>
-          <th>Strain :</th>
-          <td><%= strain_for described.strain %></td>
-        </tr>
+        <% if described.respond_to? :strains %>
+          <tr>
+            <th>Strains :</th>
+            <td>
+              <% described.strains.each do |strain| %>
+                <%= strain_for strain %>
+              <% end %>
+            </td>
+          </tr>
+        <% elsif described.respond_to? :strain %>
+          <tr>
+            <th>Strain :</th>
+            <td><%= strain_for described.strain %></td>
+          </tr>
         <% end %>
 
         <% if described.respond_to?(:category) && !described.kind_of?(Container) %>        
