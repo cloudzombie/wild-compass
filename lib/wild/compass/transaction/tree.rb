@@ -15,6 +15,7 @@ class Wild::Compass::Transaction::Tree
   end
 
   def recursive_reverse_walk_tree(ary, x)
+    return unless x.respond_to? :incoming_transactions
     x.incoming_transactions.each do |t|
       ary << t
       recursive_reverse_walk_tree(ary, t.source)
@@ -22,6 +23,7 @@ class Wild::Compass::Transaction::Tree
   end
 
   def recursive_forward_walk_tree(ary, x)
+    return unless x.respond_to? :outgoing_transactions
     x.outgoing_transactions.each do |t|
       ary << t
       recursive_forward_walk_tree(ary, t.target)
