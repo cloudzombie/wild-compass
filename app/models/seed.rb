@@ -14,7 +14,7 @@ class Seed < ActiveRecord::Base
   has_many :containers, through: :plants
   has_many :bags, through: :plants
   has_many :jars, through: :plants
-  has_many :strains, -> { uniq } ,through: :plants
+  has_many :strains, -> { uniq }, through: :plants
   
 
   

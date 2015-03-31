@@ -92,12 +92,12 @@ gem 'url_safe_base64'
 gem 'select2-rails'
 
 # Unicorn Web Server
-# gem 'unicorn', group: :production
+gem 'unicorn', group: :production
 
 # Puma Web Server
 # gem 'puma', group: :production
 
-# gem 'rack-timeout', group: :production
+gem 'rack-timeout', group: :production
 
 # Table sorter
 gem 'jquery-tablesorter'

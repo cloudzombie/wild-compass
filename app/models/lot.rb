@@ -58,7 +58,11 @@ class Lot < ActiveRecord::Base
 
   has_many :jars, -> { uniq }, through: :bags
 
-  #  has_many :brands, -> { uniq }, through: :strains
+
+  # delegate :category, to: :container, prefix: false, allow_nil: true
+
+  #has_many :brands, -> { uniq }, through: :strains
+
   belongs_to :brand
 
 
@@ -66,9 +70,9 @@ class Lot < ActiveRecord::Base
     update(current_weight: bags.sum(:current_weight))
   end
 
-  def brand
-    brands.first
-  end
+#  def brand
+#    brands.first
+#  end
 
 
 
