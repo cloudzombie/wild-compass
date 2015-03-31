@@ -46,9 +46,8 @@ class Lot < ActiveRecord::Base
 
   has_many :jars, -> { uniq }, through: :bags
 
-  # delegate :category, to: :container, prefix: false, allow_nil: true
-
   has_many :brands, -> { uniq }, through: :strains
+
 
 
   def bag_changed
