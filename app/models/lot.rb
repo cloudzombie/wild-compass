@@ -10,6 +10,18 @@ class Lot < ActiveRecord::Base
   include Recallable
   include Sortable
   include Filterable
+
+  def timeline_transactions
+    txn = []
+
+    bags.each do |b|
+      b.timeline_transactions.each do |t|
+        txn << t
+      end
+    end
+
+    txn.uniq
+  end
   
   def self.to_csv
     CSV.generate { |csv|
@@ -38,7 +50,7 @@ class Lot < ActiveRecord::Base
 
   
 
-  has_many :plants
+  has_and_belongs_to_many :plants, -> { uniq }
   
   has_many :bags
 
@@ -46,18 +58,20 @@ class Lot < ActiveRecord::Base
 
   has_many :jars, -> { uniq }, through: :bags
 
-  delegate :category, to: :container, prefix: false, allow_nil: true
+  # delegate :category, to: :container, prefix: false, allow_nil: true
 
-  has_many :brands, -> { uniq }, through: :strains
+  #has_many :brands, -> { uniq }, through: :strains
+
+  belongs_to :brand
 
 
   def bag_changed
     update(current_weight: bags.sum(:current_weight))
   end
 
-  def brand
-    brands.first
-  end
+#  def brand
+#    brands.first
+#  end
 
 
 

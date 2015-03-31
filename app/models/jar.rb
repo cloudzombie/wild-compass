@@ -8,11 +8,11 @@ class Jar < ActiveRecord::Base
   include Sortable
   include Filterable
 
-  scope :id, -> (id = nil) { id.nil? ? all : where(id: id) }
-  scope :strain_id, -> (strain_id = nil) { strain_id.nil? ? all : where(strain_id: strain_id) }
-  scope :status_id, -> (status_id = nil) { status_id.nil? ? all : where(status_id: status_id) }
-  scope :format_id, -> (format_id = nil) { format_id.nil? ? all : where(format_id: format_id) }
-  scope :type, -> (type = nil) { type.nil? ? all : where(type: type) }
+  scope :id,            -> (id = nil) { id.nil? ? all : where(id: id) }
+  scope :strain_id,     -> (strain_id = nil) { strain_id.nil? ? all : where(strain_id: strain_id) }
+  scope :status_id,     -> (status_id = nil) { status_id.nil? ? all : where(status_id: status_id) }
+  scope :format_id,     -> (format_id = nil) { format_id.nil? ? all : where(format_id: format_id) }
+  scope :type,          -> (type = nil) { type.nil? ? all : where(type: type) }
 
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
   scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)).uniq }
@@ -43,12 +43,9 @@ class Jar < ActiveRecord::Base
     order_line.quantity / order_line.jars.count
   end
 
-  ### Bag
-
-  belongs_to :bag
-
-  validates :bag, presence: true
-
+  def bag
+    bags.first
+  end
 
 
   ### Order_line
@@ -61,19 +58,17 @@ class Jar < ActiveRecord::Base
 
   ### Plants
 
-  has_many :plants, -> { uniq }, through: :bag
+  has_many :plants, -> { uniq }, through: :lots
   
-  
+  has_many :strains, -> { uniq }, through: :plants
+
+  has_many :brands, -> { uniq }, through: :strains
+
+
 
   ### Lot
 
-  has_many :lots, -> { uniq }, through: :bag
-
-  has_many :strains, -> { uniq }, through: :plants
-
-  has_many :containers, -> { uniq }, through: :bag 
-
-  has_many :brands, -> { uniq }, through: :strains
+  has_many :lots, -> { uniq }, through: :incoming_bags
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 

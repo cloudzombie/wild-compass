@@ -14,14 +14,14 @@ class Seed < ActiveRecord::Base
   has_many :containers, through: :plants
   has_many :bags, through: :plants
   has_many :jars, through: :plants
-  has_many :strains, -> { uniq } ,through: :plants
+  has_many :strains, -> { uniq }, through: :plants
   
 
   
 
   #delegate :category, to: :container, prefix: false, allow_nil: true
 
-  has_one :location, through: :bin
+  # has_one :location, through: :bin
   
 
   def to_s

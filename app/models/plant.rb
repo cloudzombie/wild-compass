@@ -1,5 +1,6 @@
 class Plant < ActiveRecord::Base
 
+  include Accountable
   include Storyable
   include Searchable
   include Sortable
@@ -16,6 +17,8 @@ class Plant < ActiveRecord::Base
   scope :status_id, -> (status_id = nil) { status_id.nil? ? all : where(status_id: status_id) }
   scope :format_id, -> (format_id = nil) { format_id.nil? ? all : where(format_id: format_id) }
   scope :type, -> (type = nil) { type.nil? ? all : where(type: type) }
+
+  has_and_belongs_to_many :lots, -> { uniq }
 
   belongs_to :harvest
 

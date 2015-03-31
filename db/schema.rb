@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325195130) do
+ActiveRecord::Schema.define(version: 20150331075756) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -189,7 +189,18 @@ ActiveRecord::Schema.define(version: 20150325195130) do
     t.boolean  "recalled",                                 default: false, null: false
     t.boolean  "quarantined",                              default: false, null: false
     t.decimal  "cbn_composition", precision: 5,  scale: 2
+    t.boolean  "released",                                 default: false, null: false
+    t.boolean  "tested",                                   default: false, null: false
+    t.integer  "brand_id"
   end
+
+  create_table "lots_plants", id: false, force: true do |t|
+    t.integer "plant_id"
+    t.integer "lot_id"
+  end
+
+  add_index "lots_plants", ["lot_id"], name: "index_lots_plants_on_lot_id"
+  add_index "lots_plants", ["plant_id"], name: "index_lots_plants_on_plant_id"
 
   create_table "order_lines", force: true do |t|
     t.decimal  "quantity",   precision: 16, scale: 4

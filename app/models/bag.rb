@@ -23,8 +23,8 @@ class Bag < ActiveRecord::Base
   scope :by_buds,       -> { by_categories 'Buds' }
   scope :by_brands,     -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)) }
 
-  scope :fulfilled,     -> { uniq.joins(:jars).merge( Jar.fulfilled   )}
-  scope :unfulfilled,   -> { uniq.joins(:jars).merge( Jar.unfulfilled )}
+  scope :fulfilled,     -> { uniq.joins(:outgoing_jars).merge( Jar.fulfilled   )}
+  scope :unfulfilled,   -> { uniq.joins(:outgoing_jars).merge( Jar.unfulfilled )}
 
   scope :tested,        -> { where tested: true }
   scope :archived,      -> { where archived: true }

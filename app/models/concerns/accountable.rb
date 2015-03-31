@@ -27,23 +27,101 @@ module Accountable
   end
 
   def transactions
-    Transaction.where('(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)', id, self.class, id, self.class).uniq
+    Transaction.where(transactions_query, id, self.class, id, self.class).uniq
+  end
+
+  def transactions_query
+    '(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)'
+  end
+
+  def joins_transactions_query(query)
+    "LEFT JOIN transactions ON transactions.source_id = #{query} OR transactions.target_id = #{query}"
   end
 
   def bags
-    Bag.joins('LEFT JOIN transactions ON transactions.source_id = bags.id OR transactions.target_id = bags.id').merge(transactions).uniq
+    Bag.joins(joins_transactions_query('bags.id')).merge(transactions).uniq
   end
 
   def containers
-    Container.joins('LEFT JOIN transactions ON transactions.source_id = containers.id OR transactions.target_id = containers.id').merge(transactions).uniq
+    Container.joins(joins_transactions_query('containers.id')).merge(transactions).uniq
   end
 
   def jars
-    Jar.joins('LEFT JOIN transactions ON transactions.source_id = jars.id OR transactions.target_id = jars.id').merge(transactions).uniq
+    Jar.joins(joins_transactions_query('jars.id')).merge(transactions).uniq
   end
 
   def harvests
     incoming_harvests.uniq
+  end
+
+  def timeline_transactions
+    txn = []
+    
+    transactions.each do |t|
+      txn << t
+    end
+    
+    incoming_jars.each do |jar|
+      jar.incoming_transactions.each do |t|
+        txn << t
+      end
+
+      jar.incoming_bags.each do |bag|
+        bag.incoming_transactions.each do |t|
+          txn << t
+        end
+
+        bag.incoming_containers.each do |container|
+          container.incoming_transactions.each do |t|
+            txn << t
+          end
+
+          container.incoming_harvests.each do |harvest|
+            harvest.incoming_transactions.each do |t|
+              txn << t
+            end
+          end
+        end
+      end
+    end
+    
+    incoming_bags.each do |bag|
+      bag.incoming_transactions.each do |t|
+        txn << t
+      end
+
+      bag.incoming_containers.each do |container|
+        container.incoming_transactions.each do |t|
+          txn << t
+        end
+
+        container.incoming_harvests.each do |harvest|
+          harvest.incoming_transactions.each do
+            txn << t
+          end
+        end
+      end
+    end
+
+    incoming_containers.each do |container|
+      container.incoming_transactions.each do |t|
+        txn << t
+      end
+
+      container.incoming_harvests.each do |harvest|
+        harvest.incoming_transactions.each do |t|
+          txn << t
+        end
+      end
+    end
+
+    incoming_harvests.each do |harvest|
+      harvest.incoming_transactions.each do |t|
+        txn << t
+      end
+    end
+
+    txn.uniq
   end
 
   def update_all_delegated_attributes!
@@ -53,6 +131,7 @@ module Accountable
   end
 
   def transaction_changed
+    return false unless self.respond_to?(:current_weight)
     @skip_adjust = true
     update(current_weight: incoming_weight - outgoing_weight)
     @skip_adjust = false
@@ -104,11 +183,11 @@ module Accountable
     end
 
     def total_weight
-      all.sum(:current_weight)
+      sum(:current_weight)
     end
 
     def total_initial_weight
-      all.sum(:initial_weight)
+      sum(:initial_weight)
     end
   end
 
