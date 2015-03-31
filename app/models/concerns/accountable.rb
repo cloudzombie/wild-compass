@@ -1,3 +1,5 @@
+require 'wild/compass/transaction/tree'
+
 module Accountable
   extend ActiveSupport::Concern
 
@@ -55,73 +57,8 @@ module Accountable
   end
 
   def timeline_transactions
-    txn = []
-    
-    transactions.each do |t|
-      txn << t
-    end
-    
-    incoming_jars.each do |jar|
-      jar.incoming_transactions.each do |t|
-        txn << t
-      end
-
-      jar.incoming_bags.each do |bag|
-        bag.incoming_transactions.each do |t|
-          txn << t
-        end
-
-        bag.incoming_containers.each do |container|
-          container.incoming_transactions.each do |t|
-            txn << t
-          end
-
-          container.incoming_harvests.each do |harvest|
-            harvest.incoming_transactions.each do |t|
-              txn << t
-            end
-          end
-        end
-      end
-    end
-    
-    incoming_bags.each do |bag|
-      bag.incoming_transactions.each do |t|
-        txn << t
-      end
-
-      bag.incoming_containers.each do |container|
-        container.incoming_transactions.each do |t|
-          txn << t
-        end
-
-        container.incoming_harvests.each do |harvest|
-          harvest.incoming_transactions.each do
-            txn << t
-          end
-        end
-      end
-    end
-
-    incoming_containers.each do |container|
-      container.incoming_transactions.each do |t|
-        txn << t
-      end
-
-      container.incoming_harvests.each do |harvest|
-        harvest.incoming_transactions.each do |t|
-          txn << t
-        end
-      end
-    end
-
-    incoming_harvests.each do |harvest|
-      harvest.incoming_transactions.each do |t|
-        txn << t
-      end
-    end
-
-    txn.uniq
+    txn = Wild::Compass::Transaction::Tree.new(self)
+    txn.transactions
   end
 
   def update_all_delegated_attributes!
