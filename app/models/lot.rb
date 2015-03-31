@@ -58,8 +58,8 @@ class Lot < ActiveRecord::Base
 
   has_many :jars, -> { uniq }, through: :bags
 
-  has_many :brands, -> { uniq }, through: :strains
-
+  #  has_many :brands, -> { uniq }, through: :strains
+  belongs_to :brand
 
 
   def bag_changed
