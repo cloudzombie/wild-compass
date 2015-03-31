@@ -16,8 +16,16 @@
       </thead>
 
       <tbody>
-        <% described.timeline_transactions.each do |transaction| %>
-          <%= render 'shared/timeline/transaction', transaction: transaction %>
+        <% if described.kind_of? Lot %>
+          <% described.bags.each do |b| %>
+            <% b.timeline_transactions.each do |transaction| %>
+              <%= render 'shared/timeline/transaction', transaction: transaction %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <% described.timeline_transactions.each do |transaction| %>
+            <%= render 'shared/timeline/transaction', transaction: transaction %>
+          <% end %>
         <% end %>
       </tbody>
       
