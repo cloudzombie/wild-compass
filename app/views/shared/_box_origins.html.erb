@@ -5,8 +5,10 @@
   </div>
 
   <div class="box-body object-enum">
-    <% ordered_by_id(origins).each do |origin| %>
-      <%= link_to origin, origin, class: "btn-sm btn-flat btn-#{color}" %>
+    <% ordered_by_id(origins).each_slice(6) do |slice| %>
+      <% slice.each do |origin| %>
+        <%= link_to origin, origin, class: "btn-sm btn-flat btn-#{color}" %>
+      <% end %>
     <% end %>    
   </div>
 </div>
