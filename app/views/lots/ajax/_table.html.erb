@@ -8,7 +8,11 @@
         <%= lot.try(:to_s) if lot.present? %>
       <% end %>
     </td>
-    <td><%= strain_for lot.try(:strain) if lot.present? %></td>
+    <td>
+      <% lot.strains.each do |strain| %>
+        <%= strain_for strain %>
+      <% end %>
+    </td>
     <td><%= category_for lot.try(:category) if lot.present? %></td>
     <td><%= percent_for lot.try(:thc_composition) if lot.present? %></td>
     <td><%= percent_for lot.try(:cbd_composition) if lot.present? %></td>
