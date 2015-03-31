@@ -48,16 +48,17 @@ class Lot < ActiveRecord::Base
 
   # delegate :category, to: :container, prefix: false, allow_nil: true
 
-  has_many :brands, -> { uniq }, through: :strains
+  #has_many :brands, -> { uniq }, through: :strains
 
+  belongs_to :brand
 
   def bag_changed
     update(current_weight: bags.sum(:current_weight))
   end
 
-  def brand
-    brands.first
-  end
+#  def brand
+#    brands.first
+#  end
 
 
 

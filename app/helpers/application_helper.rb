@@ -136,6 +136,22 @@ module ApplicationHelper
     end
   end
 
+  def released_for(item)
+    if item
+      'Yes'
+    else
+      'No'
+    end
+  end
+
+  def tested_for(item)
+    if item
+      'Yes'
+    else
+      'No'
+    end
+  end
+
   def recall_for(item)
     quarantine_for(item)
   end

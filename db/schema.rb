@@ -11,22 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330184936) do
+ActiveRecord::Schema.define(version: 20150331075756) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lot_id"
     t.string   "name"
-    t.integer  "origin"
     t.decimal  "current_weight",  precision: 16, scale: 4
+    t.integer  "origin"
     t.decimal  "initial_weight",  precision: 16, scale: 4
     t.integer  "history_id"
     t.integer  "container_id"
     t.boolean  "tested",                                   default: false
-    t.integer  "lot_id"
+    t.string   "location"
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
-    t.string   "location"
     t.integer  "bin_id"
     t.boolean  "archived",                                 default: false, null: false
     t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
@@ -148,8 +148,8 @@ ActiveRecord::Schema.define(version: 20150330184936) do
     t.datetime "updated_at"
     t.integer  "bag_id"
     t.string   "name"
-    t.integer  "origin"
     t.decimal  "current_weight",  precision: 16, scale: 4
+    t.integer  "origin"
     t.decimal  "initial_weight",  precision: 16, scale: 4
     t.integer  "history_id"
     t.string   "datamatrix_text"
@@ -177,9 +177,9 @@ ActiveRecord::Schema.define(version: 20150330184936) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.decimal  "current_weight",  precision: 16, scale: 4
     t.string   "category"
     t.integer  "origin"
-    t.decimal  "current_weight",  precision: 16, scale: 4
     t.decimal  "initial_weight",  precision: 16, scale: 4
     t.integer  "plant_id"
     t.integer  "history_id"
@@ -189,6 +189,9 @@ ActiveRecord::Schema.define(version: 20150330184936) do
     t.boolean  "recalled",                                 default: false, null: false
     t.boolean  "quarantined",                              default: false, null: false
     t.decimal  "cbn_composition", precision: 5,  scale: 2
+    t.boolean  "released",                                 default: false, null: false
+    t.boolean  "tested",                                   default: false, null: false
+    t.integer  "brand_id"
   end
 
   create_table "lots_plants", id: false, force: true do |t|

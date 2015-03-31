@@ -114,6 +114,27 @@
             <td><%= described.location %></td> 
           </tr>
         <% end %>
+
+        <% if described.respond_to? :tested %>
+          <tr>
+            <th>Tested :</th>
+            <td><%= tested_for described.tested %></td> 
+          </tr>
+        <% end %>
+
+        <% if described.respond_to? :released %>
+          <tr>
+            <th>Released :</th>
+            <td><%= released_for described.released %></td> 
+          </tr>
+        <% end %>
+
+        <% if described.respond_to? :brand %>
+          <tr>
+            <th>Brand :</th>
+            <td><%= described.brand %></td> 
+          </tr>
+        <% end %>
    
         </table>
       </div>
