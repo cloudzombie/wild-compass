@@ -131,7 +131,7 @@ module Accountable
   end
 
   def transaction_changed
-    return false unless self.respond_to?(:current_weight)
+    return true unless self.respond_to?(:current_weight)
     @skip_adjust = true
     update(current_weight: incoming_weight - outgoing_weight)
     @skip_adjust = false
@@ -147,7 +147,7 @@ module Accountable
   end
 
   def adjust_current_weight
-    return true if current_weight_was.nil? || @skip_adjust
+    return true if current_weight_was.nil? || @skip_adjust || self.kind_of?(Lot)
     if current_weight_changed?
       weight = current_weight - current_weight_was
       Transaction.create(
