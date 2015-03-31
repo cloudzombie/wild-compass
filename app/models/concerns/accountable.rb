@@ -1,3 +1,5 @@
+require 'wild/compass/transaction/tree'
+
 module Accountable
   extend ActiveSupport::Concern
 
@@ -55,73 +57,8 @@ module Accountable
   end
 
   def timeline_transactions
-    txn = []
-    
-    transactions.each do |t|
-      txn << t
-    end
-    
-    incoming_jars.each do |jar|
-      jar.incoming_transactions.each do |t|
-        txn << t
-      end
-
-      jar.incoming_bags.each do |bag|
-        bag.incoming_transactions.each do |t|
-          txn << t
-        end
-
-        bag.incoming_containers.each do |container|
-          container.incoming_transactions.each do |t|
-            txn << t
-          end
-
-          container.incoming_harvests.each do |harvest|
-            harvest.incoming_transactions.each do |t|
-              txn << t
-            end
-          end
-        end
-      end
-    end
-    
-    incoming_bags.each do |bag|
-      bag.incoming_transactions.each do |t|
-        txn << t
-      end
-
-      bag.incoming_containers.each do |container|
-        container.incoming_transactions.each do |t|
-          txn << t
-        end
-
-        container.incoming_harvests.each do |harvest|
-          harvest.incoming_transactions.each do
-            txn << t
-          end
-        end
-      end
-    end
-
-    incoming_containers.each do |container|
-      container.incoming_transactions.each do |t|
-        txn << t
-      end
-
-      container.incoming_harvests.each do |harvest|
-        harvest.incoming_transactions.each do |t|
-          txn << t
-        end
-      end
-    end
-
-    incoming_harvests.each do |harvest|
-      harvest.incoming_transactions.each do |t|
-        txn << t
-      end
-    end
-
-    txn.uniq
+    txn = Wild::Compass::Transaction::Tree.new(self)
+    txn.transactions
   end
 
   def update_all_delegated_attributes!
@@ -131,7 +68,7 @@ module Accountable
   end
 
   def transaction_changed
-    return false unless self.respond_to?(:current_weight)
+    return true unless self.respond_to?(:current_weight)
     @skip_adjust = true
     update(current_weight: incoming_weight - outgoing_weight)
     @skip_adjust = false
@@ -147,7 +84,7 @@ module Accountable
   end
 
   def adjust_current_weight
-    return true if current_weight_was.nil? || @skip_adjust
+    return true if current_weight_was.nil? || @skip_adjust || self.kind_of?(Lot)
     if current_weight_changed?
       weight = current_weight - current_weight_was
       Transaction.create(
