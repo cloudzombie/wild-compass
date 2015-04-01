@@ -149,6 +149,7 @@ module Accountable
     end
 
     def update_delta_old
+      return if history.nil?
       if initial_weight_changed? || current_weight_changed?
         previous = (history.history_lines.reweight.order(created_at: :asc))[-2]
         last = (history.history_lines.reweight.order(created_at: :asc))[-1]
@@ -162,6 +163,7 @@ module Accountable
     end
 
     def update_delta_old!
+      return if history.nil?
       previous = (history.history_lines.reweight.order(created_at: :asc))[-2]
       last = (history.history_lines.reweight.order(created_at: :asc))[-1]
       

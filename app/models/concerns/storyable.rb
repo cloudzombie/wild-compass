@@ -3,19 +3,16 @@ module Storyable
 
   included do
     belongs_to :history, dependent: :destroy
-    before_save :create_history, unless: :history_exists?
-    before_destroy :log_history
-  end
 
-  def initialize(args = {})
-    super
-    create_history unless history_exists?
+    before_destroy :log_history
+
+    before_save :create_history, unless: :history_exists?
   end
 
   private
 
     def create_history 
-      self.history = History.create
+      self.history = History.new
     end
 
     def history_exists?
