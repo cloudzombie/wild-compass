@@ -2,7 +2,7 @@ module SetQuarantineable
   extend ActiveSupport::Concern
 
   def quarantine
-    model.quarantine
+    model.quarantine(current_user)
     respond_to do |format|
       format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was successfully quarantined." }
       format.json { head :no_content }
@@ -15,7 +15,7 @@ module SetQuarantineable
   end
 
   def unquarantine
-    model.unquarantine
+    model.unquarantine(current_user)
     respond_to do |format|
       format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was successfully unquarantined." }
       format.json { head :no_content }
