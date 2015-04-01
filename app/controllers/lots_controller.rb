@@ -62,7 +62,28 @@ class LotsController < ApplicationController
 
   def release
     lot.release(current_user)
-    redirect_to lots_path
+    respond_to do |format|
+      format.html { redirect_to lots_path, notice: "Lot was successfully released." }
+      format.json { head :no_content }
+    end
+  rescue
+    respond_to do |format|
+      format.html { redirect_to lots_path, notice: "Lot was not successfully released." }
+      format.json { head :no_content }
+    end
+  end
+
+  def unrelease
+    lot.unrelease(current_user)
+    respond_to do |format|
+      format.html { redirect_to lots_path, notice: "Lot was successfully unreleased." }
+      format.json { head :no_content }
+    end
+  rescue
+    respond_to do |format|
+      format.html { redirect_to lots_path, notice: "Lot was not successfully unreleased." }
+      format.json { head :no_content }
+    end
   end
 
   def report
@@ -85,7 +106,7 @@ class LotsController < ApplicationController
 
     # Set column to sort in order.
     def sort_column
-      %w(id name category strain initial_weight current_weight created_at updated_at thc_composition cbd_composition cbn_composition).include?(params[:sort]) ? params[:sort] : 'id'
+      %w(id name category strain initial_weight current_weight created_at updated_at thc_composition cbd_composition cbn_composition recalled quarantined tested released).include?(params[:sort]) ? params[:sort] : 'id'
     end
 
     # Set sort direction to ascending or descending.

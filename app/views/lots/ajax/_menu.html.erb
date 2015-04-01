@@ -1,0 +1,62 @@
+<div class="btn-group" role="group">
+  <button type="button" class="btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    Actions <span class="caret"></span>
+  </button>
+  
+  <ul class="dropdown-menu pull-right" role="menu">
+    <% if can? :update, lot %>
+      <li>
+        <%= link_to "#{fa_icon 'tag' } Edit".html_safe, edit_lot_path(lot), class: "orange-link" %>
+      </li>
+    <% end %>
+  
+    <% if can?(:recall, lot) && !lot.recalled? %>
+      <li>
+        <%= link_to "#{fa_icon 'tag' } Recall".html_safe, recall_lot_path(lot), class: 'red-link',
+            data: { confirm: "WARNING : RECALLING LOT\r\nAre you sure?" } %>
+      </li>
+    <% end %>
+
+    <% if can?(:unrecall, lot) && lot.recalled? %>
+      <li>
+        <%= link_to "#{fa_icon 'tag' } Unrecall".html_safe, unrecall_lot_path(lot), class: 'red-link',
+            data: { confirm: "WARNING : UNRECALLING LOT\r\nAre you sure?" } %>
+      </li>
+    <% end %>
+  
+    <% if can?(:quarantine, lot) && !lot.quarantined? %>
+      <li>
+        <%= link_to "#{fa_icon 'tag' } Quarantine".html_safe, quarantine_lot_path(lot), class: 'red-link',
+            data: { confirm: "WARNING : QUARANTINING LOT\r\nAre you sure?" } %>
+      </li>
+    <% end %>
+
+    <% if can?(:unquarantine, lot) && lot.quarantined? %>
+      <li>
+        <%= link_to "#{fa_icon 'tag' } Unquarantine".html_safe, unquarantine_lot_path(lot), class: 'red-link',
+            data: { confirm: "WARNING : UNQUARANTINING LOT\r\nAre you sure?" } %>
+      </li>
+    <% end %>
+
+    <% if can?(:release, lot) && !lot.released? %>
+      <li>
+        <%= link_to "#{fa_icon 'tag' } Release".html_safe, release_lot_path(lot), class: 'red-link',
+            data: { confirm: "WARNING : RELEASING LOT\r\nAre you sure?" } %>
+      </li>
+    <% end %>
+
+    <% if can?(:unrelease, lot) && lot.released? %>
+      <li>
+        <%= link_to "#{fa_icon 'tag' } Unrelease".html_safe, unrelease_lot_path(lot), class: 'red-link',
+            data: { confirm: "WARNING : UNRELEASING LOT\r\nAre you sure?" } %>
+      </li>
+    <% end %>
+
+    <% if can? :relot, lot %>
+      <li>
+        <%= link_to "#{fa_icon 'tag' } Relot".html_safe, relot_lot_path(lot), class: 'red-link',
+            data: { confirm: "WARNING : RELOTTING\r\nAre you sure?" } %>
+      </li>
+    <% end %>
+  </ul>
+</div>
