@@ -17,7 +17,7 @@ class HistoryLine < ActiveRecord::Base
 
   ### Quantity
 
-  validates :quantity, presence: true
+  # validates :quantity, presence: true
 
 
 

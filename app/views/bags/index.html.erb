@@ -19,15 +19,16 @@
         <th><%= check_box_tag :accept %></th>
         <th><%= sortable :name, 'ID' %></th>
         <th><%= sortable :strain %></th>
-        <th><%= sortable :category %></th>
+        <!--<th><%#= sortable :category %></th>-->
         <th><%= sortable :initial_weight %></th>
         <th><%= sortable :current_weight %></th>
         <th><%= sortable :location %></th>
-        <th><%= sortable :delta, 'Delta' %></th>
-        <th><%= sortable :delta_old, 'Prev. Delta' %></th>
+        <% if can? :manage, Bag %>
+          <th><%= sortable :delta, 'Delta' %></th>
+          <th><%= sortable :delta_old, 'Prev. Delta' %></th>
+        <% end %>
         <th><%= sortable :status %></th>
         <th><%= sortable :lot %></th>
-        <th><%= sortable :container %></th>
         <th>Actions</th>
       </tr>
       <tbody id="table">

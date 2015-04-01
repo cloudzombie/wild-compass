@@ -34,6 +34,11 @@ class Lot < ActiveRecord::Base
     }
   end
 
+  def release(user)
+    update(released: true)
+    history.add_line(self, self, nil, :release, user, "Released for sale by #{user}.")
+  end
+
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
   scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)).uniq }
   scope :by_trims,      -> { by_categories 'Trim' }
@@ -57,6 +62,7 @@ class Lot < ActiveRecord::Base
 
 
   has_many :jars, -> { uniq }, through: :bags
+
 
   # delegate :category, to: :container, prefix: false, allow_nil: true
 
