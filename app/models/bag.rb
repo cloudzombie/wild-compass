@@ -64,7 +64,15 @@ class Bag < ActiveRecord::Base
 
   has_one :location, through: :bin
   
-
+  def destruction(user)
+    if !is_destroyed
+      history.add_line(self, self, nil, :destruction, user, "Destroyed by #{user} from #{bin}")
+      update(is_destroyed: true, bin: nil)
+    else
+      history.add_line(self, self, nil, :destruction, user, "Restored by #{user}")
+      update(is_destroyed: false)
+    end
+  end
 
   def to_s
     "#{ name.upcase unless name.nil? }"

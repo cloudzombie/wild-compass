@@ -6,28 +6,31 @@
         <%= link_to "#{bag}", bag %>
         <%= test_for bag %>
         <%= archive_for bag %>
+        <%= destroyed_for bag %>
       <% else %>
         <%= bag %>
         <%= test_for bag %>
         <%= archive_for bag %>
+        <%= destroyed_for bag %>
       <% end %>
     </td>
     <td><%= strain_for bag.try(:strain) %></td>
     <td><%= category_for bag.try(:category) %></td>
     <td><%= weight_for bag.try(:initial_weight) %></td>
     <td><%= weight_for bag.try(:current_weight) %></td>
-    <td><%= link_to bag.bin, bag.bin, class: 'btn-sm btn-flat btn-primary' %></td>
+    <td>
+      <% if bag.is_destroyed? %>
+      <a class="btn-sm btn-flat btn-danger">Destroyed</a>
+      <% else %>
+      <%= link_to bag.bin, bag.bin, class: 'btn-sm btn-flat btn-primary' %>
+      <% end %>
+    </td>
     <td><%= weight_for bag.delta, '' %></td>
     <td><%= weight_for bag.delta_old, '' %></td>
     <td><%= bag.try(:status) %></td>
     <td>
       <% if can? :show, Lot %>
       <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" %>
-      <% end %>
-    </td>
-    <td>
-      <% if can? :show, Container %>
-      <%= link_to "#{fa_icon('square')} #{bag.try(:container)}".html_safe, bag.try(:container), class: "btn-sm btn-flat btn-primary" %>
       <% end %>
     </td>
     <td>
@@ -41,31 +44,39 @@
         </li>
         <li>
           <% if can? :send_to_lab, Bag %>
-      <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: 'text-light-blue' %>
-      <% end %>
-        </li>
-        <li>
-           <% if can? :reweight, Bag %>
-      <%= link_to "#{fa_icon 'flask'} Reweight".html_safe, reweight_bag_path(bag),
-          class: 'text-light-blue reweight',
-          data: { href: reweight_bag_path(bag) } %>
-      <% end %>
-        </li>
-        <li>
-          <% if can? :recall, Bag %>
-      <%= link_to "Recall", recall_bag_path(bag), class: 'text-red' %>
-      <% end %>
-        </li>
-        <li>
-          <% if can? :quarantine, Bag %>
-      <%= link_to "Quarantine", quarantine_bag_path(bag), class: 'text-red' %>
-      <% end %>
-        </li>
-         <li>
-          
-      <% if can? :edit, Bag %>
-      <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: 'text-yellow' %>
-      <% end %>
+          <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: 'text-light-blue' %>
+          <% end %>
+            </li>
+            <li>
+               <% if can? :reweight, Bag %>
+          <%= link_to "#{fa_icon 'flask'} Reweight".html_safe, reweight_bag_path(bag),
+              class: 'text-light-blue reweight',
+              data: { href: reweight_bag_path(bag) } %>
+          <% end %>
+            </li>
+            <li>
+              <% if can? :recall, Bag %>
+          <%= link_to "Recall", recall_bag_path(bag), class: 'text-red' %>
+          <% end %>
+            </li>
+            <li>
+              <% if can? :quarantine, Bag %>
+          <%= link_to "Quarantine", quarantine_bag_path(bag), class: 'text-red' %>
+          <% end %>
+            </li>
+             <li>
+              
+          <% if can? :edit, Bag %>
+          <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: 'text-yellow' %>
+          <% end %>
+
+          <% if can? :edit, Bag %>
+            <% if bag.is_destroyed? %>
+              <%= link_to "#{fa_icon('thumbs-up')} Restore".html_safe, destruction_bag_path(bag), class: 'text-green' %>
+            <% else %>
+              <%= link_to "#{fa_icon('thumbs-down')} Destroy".html_safe, destruction_bag_path(bag), class: 'text-red' %>
+            <% end %>
+          <% end %>
         </li>
       </ul>
     </div>  

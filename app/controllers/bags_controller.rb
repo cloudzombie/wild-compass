@@ -12,10 +12,8 @@ class BagsController < ApplicationController
   helper_method :sort_column, :sort_direction
   
   expose(:bag, params: :bag_params) { find(Bag) }
-  
-  expose(:bags) { Bag.search(params[:search])
-                     .sort(sort_column, sort_direction)
-                     .page(params[:page]) }
+
+  expose(:bags) { Bag.search(params[:search]).sort(sort_column, sort_direction).page(params[:page])  }
 
   expose(:jar) { Jar.new }
 
@@ -65,8 +63,22 @@ class BagsController < ApplicationController
     end
   end
 
-  def load_suggestions
+  def suggestions
     render json: bags
+  end
+
+  def destruction
+    bag.destruction(current_user)
+
+    respond_to do |format|
+      if bag.save && !bag.is_destroyed?
+        format.html { redirect_to bags_url, notice: 'Bag was successfully restored.' }
+      elsif bag.save && bag.is_destroyed?
+        format.html { redirect_to bags_url, notice: 'Bag was successfully destroyed.' }
+      else
+        format.html { redirect_to bags_url, notice: 'Bag could not be destroyed/restored.' }
+      end
+    end
   end
 
   # Update bag column.

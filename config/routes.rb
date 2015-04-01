@@ -94,7 +94,7 @@ Rails.application.routes.draw do
     collection do
       get 'tested',   to: 'bags/tested#home'
       get 'archived', to: 'bags/archived#home'
-      get 'load_suggestions', to: 'bags/suggestions'
+      get 'suggestions'
     end
 
     member do
@@ -111,6 +111,8 @@ Rails.application.routes.draw do
       get 'unrecall'
 
       get 'relot'
+
+      get 'destruction'
     end
   end
 
