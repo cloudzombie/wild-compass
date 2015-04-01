@@ -2,12 +2,14 @@ class Brand < ActiveRecord::Base
 
   has_many :strains
 
+  has_many :lots
+
   def available?
-    available > 150.0
+    available >= 150.0
   end
 
   def available
-    strains.bags.sum(:current_weight)
+    lots.where(released: true).sum(:current_weight)
   end
 
   def to_s
