@@ -130,13 +130,6 @@
           </tr>
         <% end %>
 
-        <% if described.respond_to? :tested %>
-          <tr>
-            <th>Tested :</th>
-            <td><%= tested_for described.tested %></td> 
-          </tr>
-        <% end %>
-
         <% if described.respond_to? :released %>
           <tr>
             <th>Released :</th>
@@ -145,6 +138,11 @@
         <% end %>
 
         <% if described.class == :lot %>
+          <tr>
+            <th>Tested :</th>
+            <td><%= tested_for described.tested %></td> 
+          </tr>
+
           <tr>
             <th>Brand :</th>
             <td><%= described.brand %></td> 
