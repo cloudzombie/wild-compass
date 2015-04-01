@@ -3,6 +3,9 @@ module Searchable
 
   module ClassMethods
     def search(search)
+      return all.where(is_destroyed: true) if search == 'destroyed'
+      return all.where(archived: true) if search == 'archived'
+      return all.where(tested: true) if search == 'tested'
       return all if search.nil? || search.empty?
       query = find_by_hash(search)
       if query.empty?
