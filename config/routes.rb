@@ -119,6 +119,8 @@ Rails.application.routes.draw do
 
   resources :lots do
     member do
+      get 'release'
+
       get 'quarantine'
       get 'recall'
 

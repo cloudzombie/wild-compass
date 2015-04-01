@@ -60,6 +60,11 @@ class LotsController < ApplicationController
   def relot
   end
 
+  def release
+    lot.release(current_user)
+    redirect_to lots_path
+  end
+
   def report
     self.lots = Lot.all
     respond_to do |format|

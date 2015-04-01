@@ -22,6 +22,11 @@
     <td><%= quarantine_for lot.try(:quarantined) if lot.present? %></td>
     <td><%= tested_for lot.try(:tested) if lot.present? %></td>
     <td><%= released_for lot.try(:released) if lot.present? %></td>
-    <td><%= link_to "#{fa_icon 'tag' } Relot".html_safe, relot_lot_path(lot), class: 'btn-sm btn-flat btn-warning' %></td>
+    <td>
+      <% if !lot.released? %>
+      <%= link_to "#{fa_icon 'tag' } Release".html_safe, release_lot_path(lot), class: 'btn-sm btn-flat btn-success' %>
+      <% end %>
+      <%= link_to "#{fa_icon 'tag' } Relot".html_safe, relot_lot_path(lot), class: 'btn-sm btn-flat btn-warning' %>
+    </td>
   </tr>
 <% end %>
