@@ -36,7 +36,12 @@ class Lot < ActiveRecord::Base
 
   def release(user)
     update(released: true)
-    history.add_line(self, self, nil, :release, user, "Released for sale by #{user}.")
+    history.add_line(self, self, nil, :release, user, "Lot released for sale by #{user}.")
+  end
+
+  def unrelease(user)
+    update(released: false)
+    history.add_line(self, self, nil, :unrelease, user, "Lot unreleased for sale by #{user}.")
   end
 
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }

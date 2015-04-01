@@ -1,23 +1,23 @@
 module Recallable
   include ActiveSupport::Concern
 
-  def recall
+  def recall(user)
     case self
     when Lot
-      recall_lot
+      recall_lot(user)
     when Bag
-      recall_bag
+      recall_bag(user)
     else
       raise "Recall not yet implemented!"
     end
   end
 
-  def unrecall
+  def unrecall(user)
     case self
     when Lot
-      unrecall_lot
+      unrecall_lot(user)
     when Bag
-      unrecall_bag
+      unrecall_bag(user)
     else
       raise "Unrecall not yet implemented!"
     end
@@ -25,7 +25,8 @@ module Recallable
 
   private
 
-    def recall_lot
+    def recall_lot(user)
+      history.add_line(self, self, nil, :recall, user, "Lot recalled by #{user}.")
       update(recalled: true) unless recalled?
       bags.each do |bag|
         bag.recall unless bag.recalled?
@@ -35,7 +36,8 @@ module Recallable
       false
     end
 
-    def unrecall_lot
+    def unrecall_lot(user)
+      history.add_line(self, self, nil, :unrecall, user, "Lot unrecalled by #{user}.")
       update(recalled: false) if recalled?
       bags.each do |bag|
         bag.unrecall if bag.recalled?
@@ -45,7 +47,8 @@ module Recallable
       false
     end
 
-    def recall_bag
+    def recall_bag(user)
+      history.add_line(self, self, nil, :recall, user, "Bag recalled by #{user}.")
       update(recalled: true) unless recalled?
       lot.recall unless lot.recalled?
       true
@@ -53,7 +56,8 @@ module Recallable
       false
     end
 
-    def unrecall_bag
+    def unrecall_bag(user)
+      history.add_line(self, self, nil, :unrecall, user, "Bag unrecalled by #{user}.")
       update(recalled: false) if recalled?
       lot.unrecall if lot.recalled?
       true
