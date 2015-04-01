@@ -6,7 +6,7 @@ module Storyable
 
     before_destroy :log_history
 
-    before_create :create_history, unless: :history_exists?
+    before_save :create_history, unless: :history_exists?
   end
 
   private
