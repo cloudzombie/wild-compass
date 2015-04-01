@@ -25,13 +25,6 @@ module Searchable
       end
     end
 
-
-
-    def single_search(search)
-      search(search).first
-    end
-
-
     private
 
       def find_by_name(search)

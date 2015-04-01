@@ -4,29 +4,31 @@
     <td>
       <% if can? :show, Bag %>
         <%= link_to "#{bag}", bag %>
-        <%= test_for bag %>
-        <%= archive_for bag %>
-        <%= destroyed_for bag %>
       <% else %>
         <%= bag %>
-        <%= test_for bag %>
-        <%= archive_for bag %>
-        <%= destroyed_for bag %>
       <% end %>
+      <%= test_for bag %>
+      <%= archive_for bag %>
+      <%= destroyed_for bag %>
+      <%= sent_to_lab_for bag %>
     </td>
     <td><%= strain_for bag.try(:strain) %></td>
-    <td><%= category_for bag.try(:category) %></td>
+    <!--<td><%#= category_for bag.try(:category) %></td>-->
     <td><%= weight_for bag.try(:initial_weight) %></td>
     <td><%= weight_for bag.try(:current_weight) %></td>
     <td>
       <% if bag.is_destroyed? %>
-      <a class="btn-sm btn-flat btn-danger">Destroyed</a>
+        <a class="btn-sm btn-flat btn-danger">Destroyed</a>
+      <% elsif bag.sent_to_lab? %>
+        <a class="btn-sm btn-flat btn-info"><span class="fa-icon-flask"></span>Sent to lab</a> 
       <% else %>
       <%= link_to bag.bin, bag.bin, class: 'btn-sm btn-flat btn-primary' %>
       <% end %>
     </td>
-    <td><%= weight_for bag.delta, '' %></td>
-    <td><%= weight_for bag.delta_old, '' %></td>
+    <% if can? :manage, Bag %>
+      <td><%= weight_for bag.delta, '' %></td>
+      <td><%= weight_for bag.delta_old, '' %></td>
+    <% end %>
     <td><%= bag.try(:status) %></td>
     <td>
       <% if can? :show, Lot %>
@@ -44,7 +46,11 @@
         </li>
         <li>
           <% if can? :send_to_lab, Bag %>
-          <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, '#', class: 'text-light-blue' %>
+            <% if bag.sent_to_lab? %>
+              <%= link_to "#{fa_icon 'flask'} Recovered from Lab".html_safe, send_to_lab_bag_path(bag), class: 'text-light-blue' %>
+            <% else %>
+              <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, send_to_lab_bag_path(bag), class: 'text-light-blue' %>
+            <% end %>  
           <% end %>
             </li>
             <li>

@@ -26,4 +26,12 @@ module BagsHelper
       ''
     end
   end
+
+  def sent_to_lab_for(bag)
+    if bag.sent_to_lab?
+      "<small class=\"badge alert-info\">L</small>".html_safe
+    else
+      ''
+    end
+  end
 end

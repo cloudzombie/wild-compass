@@ -1,9 +1,15 @@
 <div class="box box-solid box-<%= color %>">
   <div class="box-header">
     <%= fa_icon icon %>
-    <h3 id="box-description-title" class="box-title"><%= title %></h3>
+    <h3 id="box-description-title" class="box-title">
+      <%= title %>
+      <% if described.respond_to? :is_destroyed %>
+        <% if described.is_destroyed? %>
+          <span style="color:black">DESTROYED</span>
+        <% end %>
+      <% end %>
+    </h3>
   </div>
-
   <div class="box-body">
     <div class="row">
       <div class="col-lg-10">
@@ -138,7 +144,7 @@
           </tr>
         <% end %>
 
-        <% if described.respond_to? :brand %>
+        <% if described.class == :lot %>
           <tr>
             <th>Brand :</th>
             <td><%= described.brand %></td> 

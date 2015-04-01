@@ -81,6 +81,23 @@ class BagsController < ApplicationController
     end
   end
 
+
+def send_to_lab
+    bag.send_to_lab(current_user)
+
+    respond_to do |format|
+      if bag.save && bag.sent_to_lab?
+        format.html { redirect_to bags_url, notice: 'Bag was successfully sent to Lab.' }
+      elsif bag.save && !bag.sent_to_lab?
+        format.html { redirect_to bags_url, notice: 'Bag was successfully recovered from lab.' }
+      elsif bag.sent_to_lab?
+        format.html { redirect_to bags_url, notice: 'Bag could not be recovered.' }
+      else
+        format.html { redirect_to bags_url, notice: 'Bag could not be sent.' }
+      end
+    end
+  end
+
   # Update bag column.
   def update
     respond_to do |format|

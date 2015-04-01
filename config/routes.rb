@@ -113,6 +113,7 @@ Rails.application.routes.draw do
       get 'relot'
 
       get 'destruction'
+      get 'send_to_lab'
     end
   end
 
