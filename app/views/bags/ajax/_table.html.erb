@@ -47,9 +47,9 @@
         <li>
           <% if can? :send_to_lab, Bag %>
             <% if bag.sent_to_lab? %>
-              <%= link_to "#{fa_icon 'flask'} Recovered from Lab".html_safe, send_to_lab_bag_path(bag), class: 'text-light-blue' %>
+              <%= link_to "#{fa_icon 'flask'} Recovered from Lab".html_safe, send_to_lab_bag_path(bag), data: { confirm: "Please confirm sending #{bag} to lab." }, class: 'text-light-blue' %>
             <% else %>
-              <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, send_to_lab_bag_path(bag), class: 'text-light-blue' %>
+              <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, send_to_lab_bag_path(bag), data: { confirm: "Please confirm sending #{bag} to lab." }, class: 'text-light-blue' %>
             <% end %>  
           <% end %>
             </li>
@@ -76,11 +76,11 @@
           <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: 'text-yellow' %>
           <% end %>
 
-          <% if can? :edit, Bag %>
+          <% if can? :manage, Bag %>
             <% if bag.is_destroyed? %>
-              <%= link_to "#{fa_icon('thumbs-up')} Restore".html_safe, destruction_bag_path(bag), class: 'text-green' %>
+              <%= link_to "#{fa_icon('thumbs-up')} Restore".html_safe, destruction_bag_path(bag),  data: { confirm: "Please confirm destruction of #{bag}." }, class: 'text-green' %>
             <% else %>
-              <%= link_to "#{fa_icon('thumbs-down')} Destroy".html_safe, destruction_bag_path(bag), class: 'text-red' %>
+              <%= link_to "#{fa_icon('thumbs-down')} Destroy".html_safe, destruction_bag_path(bag),  data: { confirm: "Please confirm destruction of #{bag}." }, class: 'text-red' %>
             <% end %>
           <% end %>
         </li>
