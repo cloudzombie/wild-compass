@@ -10,7 +10,7 @@ class Bag < ActiveRecord::Base
   include Sortable
   include Filterable
 
-  after_create :set_name, unless: :has_name?
+  after_create :update_name, unless: :has_name?
 
   after_save -> { lot.bag_changed unless lot.nil? }
 
@@ -29,15 +29,10 @@ class Bag < ActiveRecord::Base
   scope :tested,        -> { where tested: true }
   scope :archived,      -> { where archived: true }
 
+  scope :available,     -> { where(current_weight: 0..Float::INFINITY, sent_to_lab: false, tested: false, archived: false) }
 
-
-  def self.first_available(brand, weight)
-    by_brands(brand).by_buds.where(
-      current_weight: weight..Float::INFINITY,
-      sent_to_lab: false,
-      tested: false,
-      archived: false
-    ).first
+  def self.first_available
+    by_buds.available.first
   end
 
 
@@ -108,16 +103,28 @@ class Bag < ActiveRecord::Base
 
   private
 
-    def set_name
-      update(name: "BAG-#{id}")
+    def update_name
+      update_attributes!(name: "BAG-#{id}")
+      true
+    rescue ActiveRecord::RecordInvalid => e
+      Raven.capture_exception(e)
+      false
     end
 
     def update_category
-      self[:category] = category.titleize unless category.nil?
+      update_attributes!(category: category.titleize)
+      true
+    rescue NoMethodError, ActiveRecord::RecordInvalid => e
+      Raven.capture_exception(e)
+      false
     end
 
     def update_strain
-      self[:strain] = strain.acronym.upcase unless strain.nil?
+      update_attributes!(strain: strain.acronym.upcase)
+      true
+    rescue NoMethodError, ActiveRecord::RecordInvalid => e
+      Raven.capture_exception(e)
+      false
     end
 
 end

@@ -9,7 +9,11 @@ class Brand < ActiveRecord::Base
   end
 
   def available
-    lots.where(released: true).sum(:current_weight)
+    lots.available.sum(:current_weight)
+  end
+
+  def first_available
+    lots.first_available
   end
 
   def to_s
