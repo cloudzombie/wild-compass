@@ -35,59 +35,7 @@
       <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" %>
       <% end %>
     </td>
-    <td>
-    <div class="btn-group" role="group">
-      <button type="button" class="btn-xs btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Actions <span class="caret"></span></button>
-      <ul class="dropdown-menu pull-right" role="menu">
-        <li>
-          <% if can? :label, Bag %>
-            <%= link_to "Print Label", label_bag_path(bag), class: 'text-aqua' %>
-          <% end %>
-        </li>
-        <li>
-          <% if can? :send_to_lab, Bag %>
-            <% if bag.sent_to_lab? %>
-              <%= link_to "#{fa_icon 'flask'} Recovered from Lab".html_safe, send_to_lab_bag_path(bag), data: { confirm: "Please confirm sending #{bag} to lab." }, class: 'text-light-blue' %>
-            <% else %>
-              <%= link_to "#{fa_icon 'flask'} To Lab".html_safe, send_to_lab_bag_path(bag), data: { confirm: "Please confirm sending #{bag} to lab." }, class: 'text-light-blue' %>
-            <% end %>  
-          <% end %>
-            </li>
-            <li>
-               <% if can? :reweight, Bag %>
-          <%= link_to "#{fa_icon 'flask'} Reweight".html_safe, reweight_bag_path(bag),
-              class: 'text-light-blue reweight',
-              data: { href: reweight_bag_path(bag) } %>
-          <% end %>
-            </li>
-            <li>
-              <% if can? :recall, Bag %>
-          <%= link_to "Recall", recall_bag_path(bag), class: 'text-red' %>
-          <% end %>
-            </li>
-            <li>
-              <% if can? :quarantine, Bag %>
-          <%= link_to "Quarantine", quarantine_bag_path(bag), class: 'text-red' %>
-          <% end %>
-            </li>
-             <li>
-              
-          <% if can? :edit, Bag %>
-          <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_bag_path(bag), class: 'text-yellow' %>
-          <% end %>
-
-          <% if can? :manage, Bag %>
-            <% if bag.is_destroyed? %>
-              <%= link_to "#{fa_icon('thumbs-up')} Restore".html_safe, destruction_bag_path(bag),  data: { confirm: "Please confirm destruction of #{bag}." }, class: 'text-green' %>
-            <% else %>
-              <%= link_to "#{fa_icon('thumbs-down')} Destroy".html_safe, destruction_bag_path(bag),  data: { confirm: "Please confirm destruction of #{bag}." }, class: 'text-red' %>
-            <% end %>
-          <% end %>
-        </li>
-      </ul>
-    </div>  
-
-    </td>
+    <td><%= render 'bags/ajax/menu', bag: bag %></td>
   </tr>
 
 <% end %>
