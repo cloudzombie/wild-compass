@@ -29,6 +29,9 @@ class Ability
       can :unrecall, Bag
       can :unrecall, Lot
 
+      can :release, Lot
+      can :unrelease, Lot
+
     elsif user.manager?
       can :manage, Brand
       can :manage, Plant
@@ -58,6 +61,8 @@ class Ability
 
       can :quarantine, Bag
       can :quarantine, Lot
+
+      can :release, Lot
       
     else
       can :read, Brand

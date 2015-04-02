@@ -2,7 +2,7 @@ module SetRecallable
   extend ActiveSupport::Concern
 
   def recall
-    model.recall
+    model.recall(current_user)
     respond_to do |format|
       format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was successfully recalled." }
       format.json { head :no_content }
@@ -15,7 +15,7 @@ module SetRecallable
   end
 
   def unrecall
-    model.unrecall
+    model.unrecall(current_user)
     respond_to do |format|
       format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was successfully unrecalled." }
       format.json { head :no_content }

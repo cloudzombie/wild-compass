@@ -1,5 +1,50 @@
 Rails.application.routes.draw do
 
+  concern :recallable do
+    member do
+      get 'recall'
+      get 'unrecall'
+    end
+  end
+
+  concern :quarantineable do
+    member do
+      get 'quarantine'
+      get 'unquarantine'
+    end
+  end
+
+  concern :releaseable do
+    member do
+      get 'release'
+      get 'unrelease'
+    end
+  end
+
+  concern :labelable do
+    member do
+      get 'label'
+    end
+  end
+
+  concern :encodeable do
+    member do
+      get 'datamatrix'
+    end
+  end
+
+  concern :reweightable do
+    member do
+      match 'reweight', via: [ :get, :post ]
+    end
+  end
+
+  concern :scannable do
+    member do
+      match 'scan', via: [ :get, :post ]
+    end
+  end
+
   get 'plants/report', to: 'plants#report'
   get 'lots/report',   to: 'lots#report'
 
@@ -58,39 +103,15 @@ Rails.application.routes.draw do
 
   resources :locations
 
-  resources :seeds do
-    member do
-      get 'datamatrix'
-      get 'label'
+  resources :seeds, concerns: [ :labelable, :encodeable, :reweightable, :scannable ]
 
-      match 'reweight', via: [ :get, :post ]
-      match 'scan',     via: [ :get, :post ]
-    end
-  end
+  resources :bins, concerns: [ :labelable, :encodeable ]
 
-  resources :bins do 
-    member do
-      get 'datamatrix'
-      get 'label'
-    end
-  end
-
-  resources :plants do
-    member do
-      get 'label'
-    end
-  end
+  resources :plants, concerns: [ :labelable ]
   
-  resources :jars do
-    member do
-      get  'datamatrix'
-      get  'label'
-
-      match 'scan', via: [ :get, :post ]
-    end
-  end
+  resources :jars, concerns: [ :labelable, :encodeable, :scannable ]
   
-  resources :bags do
+  resources :bags, concerns: [ :recallable, :quarantineable, :labelable, :encodeable, :reweightable, :scannable ] do
     collection do
       get 'tested',   to: 'bags/tested#home'
       get 'archived', to: 'bags/archived#home'
@@ -98,18 +119,6 @@ Rails.application.routes.draw do
     end
 
     member do
-      get  'datamatrix'
-      get  'label'
-      
-      match 'reweight', via: [ :get, :post ]
-      match 'scan',     via: [ :get, :post ]
-
-      get 'quarantine'
-      get 'recall'
-      
-      get 'unquarantine'
-      get 'unrecall'
-
       get 'relot'
 
       get 'destruction'
@@ -117,16 +126,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :lots do
+  resources :lots, concerns: [ :recallable, :quarantineable, :releaseable ] do
     member do
-      get 'release'
-
-      get 'quarantine'
-      get 'recall'
-
-      get 'unquarantine'
-      get 'unrecall'
-
       get 'relot'
     end
   end
@@ -167,35 +168,11 @@ Rails.application.routes.draw do
 
       resources :plants
       
-      resources :jars do
-        member do
-          get 'datamatrix'
-          get 'label'
-        end
-      end
+      resources :jars, concerns: [ :labelable, :encodeable ]
       
-      resources :bags do
-        member do
-          get 'datamatrix'
-          get 'label'
+      resources :bags, concerns: [ :recallable, :quarantineable, :labelable, :encodeable ]
 
-          get 'quarantine'
-          get 'recall'
-
-          get 'unquarantine'
-          get 'unrecall'
-        end
-      end
-
-      resources :lots do
-        member do 
-          get 'quarantine'
-          get 'recall'
-
-          get 'unquarantine'
-          get 'unrecall'
-        end
-      end
+      resources :lots, concerns: [ :recallable, :quarantineable ]
 
       resources :strains
       

@@ -13,9 +13,6 @@ module WildCompass
     config.time_zone = 'Eastern Time (US & Canada)'
 
     config.autoload_paths += Dir[[Rails.root, 'lib/**/'].join('/')]
-
-    # config.sass.load_paths << File.expand_path([Rails.root, 'lib/assets/stylesheets/'].join('/'))
-    # config.sass.load_paths << File.expand_path([Rails.root, 'vendor/assets/stylesheets/'].join('/'))
     
   end
 end
