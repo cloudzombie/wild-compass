@@ -108,3 +108,5 @@ gem 'descriptive-statistics'
 
 #Twitter-Typeahead.js
 gem 'twitter-typeahead-rails'
+
+gem "sentry-raven", git: "https://github.com/getsentry/raven-ruby.git"

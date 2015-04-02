@@ -60,11 +60,7 @@ class Order < ActiveRecord::Base
   ## 
   # Computes order's total weight
   def total_weight
-    w = 0.0
-    order_lines.each do |line|
-      w += line.quantity
-    end
-    w
+    order_lines.sum(:quantity)
   end
 
 end
