@@ -4,10 +4,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.6'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development
+gem 'sqlite3', group: [ :development, :test ]
 
 # PostGreSQL
-gem 'pg', group: :production
+gem 'pg', group: [ :production, :staging, :testing ]
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -63,7 +63,7 @@ gem 'decent_exposure'
 # gem 'elastic-beanstalk'
 
 # 12 factors (needed for Heroku)
-gem 'rails_12factor', group: :production
+gem 'rails_12factor', group: [ :production, :staging, :testing ]
 
 # HTML and XML tree parser
 gem 'nokogiri'
@@ -97,7 +97,7 @@ gem 'select2-rails'
 # Puma Web Server
 gem 'puma', group: :production
 
-gem 'rack-timeout', group: :production
+gem 'rack-timeout', group:  [ :production, :staging, :testing ]
 
 # Table sorter
 gem 'jquery-tablesorter'
@@ -108,3 +108,5 @@ gem 'descriptive-statistics'
 
 #Twitter-Typeahead.js
 gem 'twitter-typeahead-rails'
+
+gem "sentry-raven", git: "https://github.com/getsentry/raven-ruby.git"

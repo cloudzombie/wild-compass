@@ -33,11 +33,17 @@ class OrderLine < ActiveRecord::Base
 
 
   def name
-    "#{ brand unless brand.nil? }"
+    "#{brand}"
+  rescue NoMethodError => e
+    Raven.capture_exception(e)
+    ''
   end
 
   def to_s
-    "#{ name unless name.nil? } --- #{ quantity }"
+    "#{name} --- #{quantity}"
+  rescue NoMethodError => e
+    Raven.capture_exception(e)
+    ''
   end
 
   private
@@ -45,14 +51,23 @@ class OrderLine < ActiveRecord::Base
     def create_jars
       return if self.quantity == 0.0 || self.quantity.nil?
       for i in 0...(self.quantity.to_f/10.0).ceil
-        self.jars << Jar.create(bag: Bag.first_available(self.brand, self.quantity.to_f))
+        # self.jars << Jar.create!(bag: Bag.first_available(self.brand, self.quantity.to_f))
+        self.jars << Jar.create!
       end
+      true
+    rescue ActiveRecord::RecordInvalid => e
+      Raven.capture_exception(e)
+      false
     end
 
     def set_ordered_amount
       jars.each do |jar|
-        jar.update(ordered_amount: jar.amount_to_fill)
+        jar.update_attributes!(ordered_amount: jar.amount_to_fill)
       end
+      true
+    rescue ActiveRecord::RecordInvalid =>
+      Raven.capture_exception(e)
+      false
     end
 
 end
