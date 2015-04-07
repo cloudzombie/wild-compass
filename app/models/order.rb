@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
 
   include Searchable
+  include Sortable
   include Fulfillable
 
 
