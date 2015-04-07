@@ -1,3 +1,5 @@
+require 'wild/compass/product'
+
 class OrderLine < ActiveRecord::Base
 
   MINIMUM_ORDER_QUANTITY =   0.0
