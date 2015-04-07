@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   include Authorizable
+  include SetSortable
 
   # Expose sort_column and sort_direction private methods as helper methods
   # to make them available in views
