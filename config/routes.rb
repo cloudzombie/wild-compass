@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
-  concern :encodeable do
+  concern :encodable do
     member do
       get 'datamatrix'
     end
@@ -103,15 +103,15 @@ Rails.application.routes.draw do
 
   resources :locations
 
-  resources :seeds, concerns: [ :labelable, :encodeable, :reweightable, :scannable ]
+  resources :seeds, concerns: [ :labelable, :encodable, :reweightable, :scannable ]
 
-  resources :bins, concerns: [ :labelable, :encodeable ]
+  resources :bins, concerns: [ :labelable, :encodable ]
 
   resources :plants, concerns: [ :labelable ]
   
-  resources :jars, concerns: [ :labelable, :encodeable, :scannable ]
+  resources :jars, concerns: [ :labelable, :encodable, :scannable ]
   
-  resources :bags, concerns: [ :recallable, :quarantineable, :labelable, :encodeable, :reweightable, :scannable ] do
+  resources :bags, concerns: [ :recallable, :quarantineable, :labelable, :encodable, :reweightable, :scannable ] do
     collection do
       get 'tested',   to: 'bags/tested#home'
       get 'archived', to: 'bags/archived#home'
@@ -168,9 +168,13 @@ Rails.application.routes.draw do
 
       resources :plants
       
-      resources :jars, concerns: [ :labelable, :encodeable ]
+      resources :jars, concerns: [ :labelable, :encodable ] do
+        member do
+          get 'perform_return'
+        end
+      end
       
-      resources :bags, concerns: [ :recallable, :quarantineable, :labelable, :encodeable ]
+      resources :bags, concerns: [ :recallable, :quarantineable, :labelable, :encodable ]
 
       resources :lots, concerns: [ :recallable, :quarantineable ]
 

@@ -19,8 +19,11 @@ module Encodable
     return self.datamatrix_hash if has_datamatrix_hash?
     text = "#{identifier}-#{unique_identifier}"
     hash = Digest::MD5.hexdigest(text)
-    update datamatrix_text: text, datamatrix_hash: hash unless has_datamatrix_hash?
+    update_attributes!(datamatrix_text: text, datamatrix_hash: hash) unless has_datamatrix_hash?
     hash
+  rescue ActiveRecord::RecordInvalid => e
+    Raven.capture_exception(e)
+    ''
   end
 
   private
