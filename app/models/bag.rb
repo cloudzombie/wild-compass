@@ -14,9 +14,6 @@ class Bag < ActiveRecord::Base
 
   after_save -> { lot.bag_changed unless lot.nil? }
 
-  before_save :update_category
-  before_save :update_strain
-
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)) }
   scope :by_categories, -> (category = nil) { joins(:container).merge(Container.where(category: category)) }
   scope :by_trims,      -> { by_categories 'Trim' }
@@ -30,6 +27,8 @@ class Bag < ActiveRecord::Base
   scope :archived,      -> { where archived: true }
 
   scope :available,     -> { where(current_weight: 0..Float::INFINITY, sent_to_lab: false, tested: false, archived: false) }
+
+
 
   def self.first_available
     by_buds.available.first
