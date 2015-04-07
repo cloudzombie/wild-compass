@@ -1,4 +1,5 @@
 class BagsController < ApplicationController
+  
   include Authorizable
   include FindEncodable
   include SetWeightable
@@ -10,6 +11,8 @@ class BagsController < ApplicationController
   respond_to :html, :xml, :json
 
   helper_method :sort_column, :sort_direction
+
+  expose(:template_engine) { Wild::Compass::Template::Engine.new(Bag) }
   
   expose(:bag, params: :bag_params) { find(Bag) }
 

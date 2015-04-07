@@ -4,12 +4,112 @@
 		"selected_items":
 		[
 			[
+				"unl",
+				"unloaded_attributes"
+			],
+			[
+				"ti",
+				"titleize"
+			],
+			[
+				"upda",
+				"update_attributes"
+			],
+			[
+				"first",
+				"first_available"
+			],
+			[
+				"ca",
+				"capture_exception"
+			],
+			[
+				"unrel",
+				"unreleased"
+			],
+			[
+				"lots",
+				"lots_path"
+			],
+			[
+				"qua",
+				"quarantine"
+			],
+			[
+				"rele",
+				"releaseable"
+			],
+			[
+				"cont",
+				"container"
+			],
+			[
+				"sca",
+				"scannable"
+			],
+			[
+				"rewe",
+				"reweightable"
+			],
+			[
+				"en",
+				"encodeable"
+			],
+			[
+				"label",
+				"labelable"
+			],
+			[
+				"la",
+				"labelable"
+			],
+			[
+				"recall",
+				"recallable"
+			],
+			[
+				"con",
+				"concerns"
+			],
+			[
+				"rev",
+				"reverse_map"
+			],
+			[
+				"his",
+				"history_exists"
+			],
+			[
+				"recu",
+				"recursive_forward_walk_tree"
+			],
+			[
+				"incoming",
+				"incoming_transactions"
+			],
+			[
 				"inco",
+				"incoming_transactions"
+			],
+			[
+				"incom",
 				"incoming_harvests"
+			],
+			[
+				"contai",
+				"container"
+			],
+			[
+				"ha",
+				"harvest"
 			],
 			[
 				"tra",
 				"transactions"
+			],
+			[
+				"tran",
+				"transaction"
 			],
 			[
 				"o",
@@ -72,10 +172,6 @@
 				"fadeIn"
 			],
 			[
-				"sca",
-				"scale-display-1"
-			],
-			[
 				"cu",
 				"current_weight"
 			],
@@ -90,10 +186,6 @@
 			[
 				"sc",
 				"scanned_hash"
-			],
-			[
-				"tran",
-				"transaction_params"
 			],
 			[
 				"html",
@@ -162,18 +254,6 @@
 			[
 				"inven",
 				"inventory_plants_path"
-			],
-			[
-				"contai",
-				"containers"
-			],
-			[
-				"con",
-				"container"
-			],
-			[
-				"cont",
-				"containers"
 			],
 			[
 				"id",
@@ -264,10 +344,6 @@
 				"inventory"
 			],
 			[
-				"ca",
-				"cache"
-			],
-			[
 				"to",
 				"total_weight"
 			],
@@ -302,10 +378,6 @@
 			[
 				"table",
 				"table-borderless"
-			],
-			[
-				"la",
-				"label"
 			],
 			[
 				"tar",
@@ -384,10 +456,6 @@
 				"initial_weight"
 			],
 			[
-				"his",
-				"history"
-			],
-			[
 				"hist",
 				"history_exists"
 			],
@@ -424,10 +492,6 @@
 				"ordered_amount"
 			],
 			[
-				"qua",
-				"quarantined"
-			],
-			[
 				"Qa",
 				"quarantine"
 			],
@@ -437,10 +501,6 @@
 			],
 			[
 				"reca",
-				"recall_lot"
-			],
-			[
-				"recall",
 				"recall_lot"
 			],
 			[
@@ -454,108 +514,35 @@
 			[
 				"order",
 				"order_lines"
-			],
-			[
-				"next",
-				"nextUrl"
-			],
-			[
-				"fulfill-order-jar",
-				"fulfill-order-scan-jar-input"
-			],
-			[
-				"ful",
-				"fulfill-order"
-			],
-			[
-				"quara",
-				"quarantined"
-			],
-			[
-				"col",
-				"column_names"
-			],
-			[
-				"JAR",
-				"jarWeight"
-			],
-			[
-				"trAN",
-				"transactionWeight"
-			],
-			[
-				"scales",
-				"scalesLowerBoundBalances"
-			],
-			[
-				"fulfillOrder",
-				"fulfillOrderStep5"
-			],
-			[
-				"jar",
-				"jarLowerBoundBalances"
-			],
-			[
-				"scale",
-				"scaleLowerBoundBalances"
-			],
-			[
-				"rese",
-				"resetScale2"
-			],
-			[
-				"ste",
-				"fulfillOrderStep1"
-			],
-			[
-				"Jar",
-				"jarWeight"
-			],
-			[
-				"reset",
-				"resetScale1"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "app/models/concerns/accountable.rb",
+			"contents": "<div class=\"box box-solid box-warning\">\n  <div class=\"box-header\">\n    <h3 class=\"box-title\">Listing bags</h3>\n    \n    <div class=\"box-tools\">\n      <div class=\"input-group\">\n        <%= form_tag(bags_path, method: 'get', id: 'search-form', remote: true, autocomplete: 'off') do %>\n          <%= text_field_tag :search, params[:search], placeholder: \"Search\", class: \"form-control input-sm pull-right\" %>\n        <% end %>\n        \n        <div class=\"input-group-btn\">\n          <button class=\"btn btn-sm btn-default\"><i class=\"fa fa-search\"></i></button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"box-body table-responsive no-padding\">\n    <table class=\"table table-hover\">\n      <tr>\n        <th><%= check_box_tag :accept %></th>\n        <th><%= sortable :name, 'ID' %></th>\n        <th><%= sortable :strain %></th>\n        <!--<th><%#= sortable :category %></th>-->\n        <th><%= sortable :initial_weight %></th>\n        <th><%= sortable :current_weight %></th>\n        <th><%= sortable :location %></th>\n        <% if can? :manage, Bag %>\n          <th><%= sortable :delta, 'Delta' %></th>\n          <th><%= sortable :delta_old, 'Prev. Delta' %></th>\n        <% end %>\n        <th><%= sortable :status %></th>\n        <th><%= sortable :lot %></th>\n        <th>Actions</th>\n      </tr>\n      <tbody id=\"table\">\n        <%= render 'bags/ajax/table' %>\n      </tbody>\n    </table>\n  </div><!-- /.box-body -->    \n</div><!-- /.box -->\n\n<div class=\"tableFooter\">\n  <%= link_to \"#{fa_icon 'tag'} New Bag\".html_safe, '#', class: 'btn btn-flat btn-warning',\n      data: { toggle: 'modal', target: '.new-bag'} %>\n  <div id=\"paginator\">\n    <%= paginate bags %>\n  </div>\n</div>\n\n\n<%= render 'jars/modal/new' %>\n<%= render 'bags/modal/new' %>\n\n",
+			"file": "app/views/bags/index.html.erb",
+			"file_size": 1803,
+			"file_write_time": 130723841126936377,
 			"settings":
 			{
-				"buffer_size": 4366,
+				"buffer_size": 1762,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/models/harvest.rb",
+			"file": "app/controllers/bags_controller.rb",
 			"settings":
 			{
-				"buffer_size": 157,
+				"buffer_size": 3828,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/models/bag.rb",
+			"file": "lib/wild/compass/template/engine.rb",
 			"settings":
 			{
-				"buffer_size": 2136,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/models/container.rb",
-			"settings":
-			{
-				"buffer_size": 1190,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Gemfile",
-			"settings":
-			{
-				"buffer_size": 2172,
+				"buffer_size": 485,
 				"line_ending": "Windows"
 			}
 		}
@@ -596,16 +583,83 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Maxime/Documents/wild-compass/app/models/order_line.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/order.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/brand.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/lot.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/bag.rb",
+		"/C/Users/Maxime/Documents/wild-compass/Gemfile",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/fulfillable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/releasable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/releaseable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/environments/testing.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/environments/test.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/environments/staging.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/environments/production.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/environments/development.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/initializers/devise.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/initializers/raven.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/routes.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/ajax/_table.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/ajax/_menu.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/index.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/ajax/_menu.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/lots_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/ajax/_table.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/quarantineable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/ability.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/recallable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/concerns/set_quarantineable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/concerns/set_recallable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/accountable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/lib/wild/compass/transaction/tree.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/history_line.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/application.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/brands_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/brands_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/storyable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_box_origins.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_timeline.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/lib/wild/compass/transactions/tree.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_box_description.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/show.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/orders_controller.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/orders/_fulfillment_list.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/bin.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_jar.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/jar.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/plant.rb",
+		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150330184936_habtm_plants.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_box_history.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_flash_messages.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_print_label.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_progress_bar.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_scale_display.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/harvest.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/seed.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/seeds/show.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_old_timeline.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_transaction.html.erb",
+		"/C/Users/Maxime/Documents/wild-compass/config/initializers/devise_token_auth.rb",
+		"/C/Users/Maxime/Documents/wild-compass/.elasticbeanstalk/config",
+		"/C/Users/Maxime/Documents/wild-compass/config/database.yml",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/weightable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/db/seeds.rb",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/status.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/unicorn.rb",
+		"/C/Users/Maxime/Documents/wild-compass/config/secrets.yml",
+		"/C/Users/Maxime/Documents/wild-compass/.ebextensions/seed.config",
+		"/C/Users/Maxime/Downloads/BundleLogs-1427407518802/var/log/puma/puma.log",
+		"/C/Users/Maxime/Documents/wild-compass/.elasticbeanstalk/optionsettings.ics-staging",
+		"/C/Users/Maxime/Documents/wild-compass/.ebextensions/packages.config",
+		"/C/Users/Maxime/Downloads/BundleLogs-1427398937737/var/log/puma/puma.log",
+		"/C/Users/Maxime/Documents/wild-compass/.elasticbeanstalk/optionsettings.staging",
+		"/C/Users/Maxime/Documents/wild-compass/app/models/container.rb",
 		"/C/Users/Maxime/Documents/wild-compass/.elasticbeanstalk/config.yml",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150325193230_rename_transactions_harvests_to_harvests.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/schema.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/container.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/plant.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/bag.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/lot.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/inventory_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/checkout.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_transaction.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/transactions/_form.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/strain.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/transactions/harvest.rb",
@@ -615,34 +669,25 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_container.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/index.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/transactions/water_loss.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_box_description.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150322182041_drop_airdrying_date_and_trim_added_from_containers.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150322181647_drop_waste_and_waste_date_from_containers.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/history_line.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/bags_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/transaction.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150322180204_drop_type_and_container_id_from_containers.rb",
-		"/C/Users/Maxime/Documents/wild-compass/Gemfile",
 		"/C/Users/Maxime/Desktop/additionneur/additionneur_n_bits.vhd",
 		"/C/Users/Maxime/Documents/wild-compass/.wild-compass.sublime-project",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/accountable.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/containers_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/jars_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/lots_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/seeds_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_timeline.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/harvest.rb",
 		"/C/Users/Maxime/Documents/wild-compass/lib/wild/compass/math.rb",
 		"/C/Users/Maxime/Documents/wild-compass/config/initializers/wild_compass.rb",
 		"/C/Users/Maxime/Documents/wild-compass/lib/math.rb",
 		"/C/Users/Maxime/Documents/radiant-sands/Gemfile",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/relot.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/lots.js.coffee",
-		"/C/Users/Maxime/Documents/wild-compass/config/routes.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/plants_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/scale.js.coffee",
 		"/C/Users/Maxime/Documents/wild-compass/lib/tasks/report.rake",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/_scale_display.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/lib/transaction_manager.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/index.json.jbuilder",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/show.json.jbuilder",
@@ -656,11 +701,8 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/models/transactions/adjustment.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/transactions/destruction.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/transactions/lab.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/index.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/ajax/_table.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/transactions.js.coffee",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/transactions/index.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/ajax/_table.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/transactions_controller.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/transactions/edit.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/transactions/index.json.jbuilder",
@@ -668,62 +710,7 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/views/transactions/show.json.jbuilder",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_bag.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_plant.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/concerns/find_encodable.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/concerns/set_transactional.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_transaction_old.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/inventory/jars_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/jar.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/show.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/dashboard/home.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/test/fixtures/bags.yml",
-		"/C/Users/Maxime/Documents/wild-compass/test/controllers/bags_controller_test.rb",
-		"/C/Users/Maxime/Documents/wild-compass/test/fixtures/containers.yml",
-		"/C/Users/Maxime/Documents/wild-compass/test/fixtures/users.yml",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/user/role.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/user/group.rb",
-		"/C/Users/Maxime/Documents/wild-compass/test/fixtures/user/groups.yml",
-		"/C/Users/Maxime/Documents/wild-compass/test/fixtures/user/roles.yml",
-		"/C/Users/Maxime/Documents/wild-compass/db/seeds.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/concerns/authorizable.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/index.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/ajax/_table.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/plants/_form.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/plants.js.coffee",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/api_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/bags_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/config/environments/development.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/timeline/_plants.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/config/initializers/exception_handler.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/exception_handler/exception_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/seeds/home.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/inventory/seeds_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/seeds/ajax/_table.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150226172154_add_returned_to_jars.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/api/v1/jars_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/seeds/home.js.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/babies/ajax/_table.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/clones/ajax/_table.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/mothers/ajax/_table.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/babies/home.js.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/clones/home.js.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/mothers/home.js.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/clones/home.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/mothers/home.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/lots/home.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/lots/home.js.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/lots/ajax/_table.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/inventory/lots_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/home.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/inventory/plants_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/inventory/plants/babies_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/inventory/plants/clones_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/inventory/plants/mothers_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/babies/home.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/weightable.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/filterable.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/inventory.js.coffee",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/home.js.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/inventory/plants/ajax/_table.html.erb"
+		"/C/Users/Maxime/Documents/wild-compass/app/controllers/concerns/find_encodable.rb"
 	],
 	"find":
 	{
@@ -741,6 +728,39 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"update_cate",
+			"set_name",
+			"show",
+			"show_excep",
+			"belongs_to",
+			"models_url",
+			"release",
+			"scan",
+			"reweight",
+			"datamatrix",
+			"label",
+			"brands",
+			"brand",
+			"lots",
+			"'",
+			"update_delta",
+			"y",
+			"adjust",
+			"lots",
+			"bin",
+			"category",
+			"bag",
+			"transaction_changed",
+			"Harvest",
+			"lot",
+			"plant",
+			"container",
+			"?",
+			"bags",
+			"bags.id",
+			"model_id",
+			"transactions_joins",
+			"'LEFT JOIN transactions ON transactions.source_id = bags.id OR transactions.target_id = bags.id'",
 			"bags",
 			"contributed",
 			"incoming_transactions",
@@ -835,40 +855,7 @@
 			"weight",
 			"quantity",
 			"plant",
-			"quantity",
-			"plant",
-			"plants",
-			"category",
-			"strain",
-			"plant",
-			"lots",
-			"plants",
-			"clone",
-			"mother",
-			"clone",
-			"clones",
-			"baby",
-			"babies",
-			"location_id",
-			"validate",
-			"plants",
-			"presence",
-			"validate",
-			"seed",
-			"@transaction",
-			"plant",
-			"turb",
-			"container",
-			"js",
-			"table-form",
-			"$('filter-form').submit",
-			"page:",
-			"via:",
-			"get",
-			"reports",
-			"asc: :created_at",
-			"first",
-			" style=\"width: <%= cols_width %>%;\""
+			"quantity"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -886,51 +873,50 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/models/concerns/accountable.rb",
+					"file": "app/views/bags/index.html.erb",
 					"settings":
 					{
-						"buffer_size": 4366,
+						"buffer_size": 1762,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1909,
-								1909
+								566,
+								566
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 240.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/models/harvest.rb",
+					"file": "app/controllers/bags_controller.rb",
 					"settings":
 					{
-						"buffer_size": 157,
+						"buffer_size": 3828,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								77,
-								77
+								360,
+								360
 							]
 						],
 						"settings":
@@ -947,18 +933,18 @@
 				},
 				{
 					"buffer": 2,
-					"file": "app/models/bag.rb",
+					"file": "lib/wild/compass/template/engine.rb",
 					"settings":
 					{
-						"buffer_size": 2136,
+						"buffer_size": 485,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								268,
-								268
+								260,
+								260
 							]
 						],
 						"settings":
@@ -968,61 +954,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 195.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/models/container.rb",
-					"settings":
-					{
-						"buffer_size": 1190,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								739,
-								739
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 285.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "Gemfile",
-					"settings":
-					{
-						"buffer_size": 2172,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2138,
-								2138
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1119.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
