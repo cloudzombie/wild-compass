@@ -1,3 +1,5 @@
+require 'wild/compass/product'
+
 class API::V1::BrandsController < API::V1::APIController  
   respond_to :json
 
