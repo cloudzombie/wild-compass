@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   expose(:orders) { Order.select('DISTINCT(orders.id), orders.*')
                          .search(params[:search])
                          .unfulfilled
-                         .order("orders.#{sort_column} #{sort_direction}")
+                         .sort(sort_column, sort_direction)
                   }
 
   expose(:jar) { Jar.new }
