@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   include Authorizable
+  include SetSortable
 
   # Expose sort_column and sort_direction private methods as helper methods
   # to make them available in views
@@ -12,7 +13,7 @@ class OrdersController < ApplicationController
   expose(:orders) { Order.select('DISTINCT(orders.id), orders.*')
                          .search(params[:search])
                          .unfulfilled
-                         .order("orders.#{sort_column} #{sort_direction}")
+                         .sort(sort_column, sort_direction)
                   }
 
   expose(:jar) { Jar.new }

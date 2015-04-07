@@ -23,25 +23,40 @@ class Jar < ActiveRecord::Base
   scope :fulfilled,     -> { uniq.where fulfilled: true  } 
   scope :unfulfilled,   -> { uniq.where fulfilled: false }
 
-  def perform_return
-    update(returned: true)
+
+
+  def perform_return(user)
+    history.add_line(self, self, nil, :return, user, "Jar returned by #{user}.")
+    update_attributes!(returned: true)
     true
-  rescue
+  rescue ActiveRecord::RecordInvalid => e
+    Raven.capture_exception(e)
     false
   end
 
+
+
   def next
-    jars = []
+    unfulfilled_jars = []
+    
     order_line.jars.order(id: :asc).each do |jar|
       next if jar == self
-      jars << jar if jar.unfulfilled?
+      unfulfilled_jars << jar if jar.unfulfilled?
     end
-    jars.first
+
+    unfulfilled_jars.first
   end
+
+
 
   def amount_to_fill
     order_line.quantity / order_line.jars.count
+  rescue ZeroDivisionError => e
+    Raven.capture_exception(e)
+    0.0
   end
+
+
 
   def bag
     bags.first

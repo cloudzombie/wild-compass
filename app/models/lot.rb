@@ -10,17 +10,16 @@ class Lot < ActiveRecord::Base
   include Recallable
   include Sortable
   include Filterable
+  include Releasable
 
   def timeline_transactions
     txn = []
 
     bags.each do |b|
-      b.timeline_transactions.each do |t|
-        txn << t
-      end
+      txn << b.timeline_transactions
     end
 
-    txn.uniq
+    txn.flatten.uniq
   end
   
   def self.to_csv
@@ -34,16 +33,6 @@ class Lot < ActiveRecord::Base
     }
   end
 
-  def release(user)
-    update(released: true)
-    history.add_line(self, self, nil, :release, user, "Lot released for sale by #{user}.")
-  end
-
-  def unrelease(user)
-    update(released: false)
-    history.add_line(self, self, nil, :unrelease, user, "Lot unreleased for sale by #{user}.")
-  end
-
   scope :by_strains,    -> (strain = nil) { joins(:plants).merge(Plant.where(strain: strain)).uniq }
   scope :by_categories, -> (category = nil) { joins(:containers).merge(Container.where(category: category)).uniq }
   scope :by_trims,      -> { by_categories 'Trim' }
@@ -52,7 +41,7 @@ class Lot < ActiveRecord::Base
 
   
 
-  has_many :strains, -> { uniq }, through: :plants
+  ### Container
 
   has_and_belongs_to_many :containers, -> { uniq }
 
@@ -60,35 +49,44 @@ class Lot < ActiveRecord::Base
 
   
 
+  ### Plant
+
   has_and_belongs_to_many :plants, -> { uniq }
+
+
+
+  ### Strain
+
+  has_many :strains, -> { uniq }, through: :plants
   
+
+
+  ### Bag
+
   has_many :bags
 
 
 
-  has_many :jars, -> { uniq }, through: :bags
-
-
-  # delegate :category, to: :container, prefix: false, allow_nil: true
-
-  # has_many :brands, -> { uniq }, through: :strains
+  ### Brand
 
   belongs_to :brand
 
 
-  def bag_changed
-    update(current_weight: bags.sum(:current_weight))
-  end
 
-#  def brand
-#    brands.first
-#  end
+  def bag_changed
+    update_attributes! current_weight: bags.sum(:current_weight)
+  rescue ActiveRecord::InvalidRecord => e
+    Raven.capture_exception(e)
+    false
+  end
 
 
 
   def to_s
     "#{ name.upcase unless name.nil? }"
   end
+
+
 
   def container
     containers.first
