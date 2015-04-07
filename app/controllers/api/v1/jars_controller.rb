@@ -1,4 +1,6 @@
-class API::V1::JarsController < API::V1::APIController  
+require 'base64'
+
+class API::V1::JarsController < API::V1::APIController
   respond_to :json
 
   def index
@@ -22,7 +24,11 @@ class API::V1::JarsController < API::V1::APIController
   end
 
   def datamatrix
-    send_data Jar.find(params[:id]).datamatrix, type: 'image/png', disposition: 'attachment'
+    render json: {
+      data: {
+        datamatrix: "data:image/png;base64,#{Base64.strict_encode64(Jar.find(params[:id]).datamatrix)}"
+      }
+    }
   end
 
   def label
@@ -36,6 +42,8 @@ class API::V1::JarsController < API::V1::APIController
       }
     }
   end
+
+
 
   private
     

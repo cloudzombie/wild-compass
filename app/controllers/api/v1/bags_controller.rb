@@ -1,3 +1,5 @@
+require 'base64'
+
 class API::V1::BagsController < API::V1::APIController
   respond_to :json
 
@@ -22,7 +24,11 @@ class API::V1::BagsController < API::V1::APIController
   end
 
   def datamatrix
-    send_data Bag.find(params[:id]).datamatrix, type: 'image/png', disposition: 'attachment'
+    render json: {
+      data: {
+        datamatrix: "data:image/png;base64,#{Base64.strict_encode64(Bag.find(params[:id]).datamatrix)}"
+      }
+    }
   end
 
   def label
