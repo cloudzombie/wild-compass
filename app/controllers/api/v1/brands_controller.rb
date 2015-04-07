@@ -25,7 +25,7 @@ class API::V1::BrandsController < API::V1::APIController
     render json: {
       data: {
         brand: {
-          available: Brand.find(id_param).available?
+          available: Wild::Compass::Product.available?(Brand.find(id_param))
         }
       }
     }

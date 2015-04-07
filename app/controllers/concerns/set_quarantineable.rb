@@ -3,26 +3,32 @@ module SetQuarantineable
 
   def quarantine
     model.quarantine(current_user)
+
     respond_to do |format|
-      format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was successfully quarantined." }
+      format.html { redirect_to models_url, notice: "#{model_name.humanize} was successfully quarantined." }
       format.json { head :no_content }
     end
-  rescue
+
+  rescue ActiveRecord::InvalidRecord, NoMethodError => e
+    Raven.capture_exception(e)
     respond_to do |format|
-      format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was not quarantined." }
+      format.html { redirect_to models_url, notice: "#{model_name.humanize} was not quarantined." }
       format.json { head :no_content }
     end
   end
 
   def unquarantine
     model.unquarantine(current_user)
+
     respond_to do |format|
-      format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was successfully unquarantined." }
+      format.html { redirect_to models_url, notice: "#{model_name.humanize} was successfully unquarantined." }
       format.json { head :no_content }
     end
-  rescue
+
+  rescue ActiveRecord::InvalidRecord, NoMethodError => e
+    Raven.capture_exception(e)
     respond_to do |format|
-      format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was not unquarantined." }
+      format.html { redirect_to models_url, notice: "#{model_name.humanize} was not unquarantined." }
       format.json { head :no_content }
     end
   end
@@ -37,11 +43,11 @@ module SetQuarantineable
     end
 
     def model
-      self.send(model_name)
+      self.send(model_name.to_sym)
     end
 
     def model_name
-      controller_name.classify.downcase.to_sym
+      controller_name.classify.downcase
     end
 
 end

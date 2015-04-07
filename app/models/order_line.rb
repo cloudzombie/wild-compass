@@ -65,9 +65,17 @@ class OrderLine < ActiveRecord::Base
 
       jars.each do |jar|
         jar.update_attributes!(ordered_amount: jar.amount_to_fill)
+        
+        Transaction.create!(
+          source: Wild::Compass::Product.first_available_bag_by_brand(brand),
+          target: jar,
+          weight: 0.0,
+          event: Time.now
+        )
       end
       
       true
+
     rescue ActiveRecord::RecordInvalid => e
       Raven.capture_exception(e)
       false
