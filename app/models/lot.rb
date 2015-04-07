@@ -39,12 +39,6 @@ class Lot < ActiveRecord::Base
   scope :by_buds,       -> { by_categories 'Buds' }
   scope :by_brands,     -> (brand = nil) { joins(:strains).merge(Strain.where(brand: brand)).uniq }
 
-  scope :available,     -> { where(released: true) }
-
-  def self.first_available
-    available.first
-  end
-
   
 
   ### Container
@@ -78,19 +72,21 @@ class Lot < ActiveRecord::Base
   belongs_to :brand
 
 
-  def bag_changed
-    update(current_weight: bags.sum(:current_weight))
-  end
 
-#  def brand
-#    brands.first
-#  end
+  def bag_changed
+    update_attributes! current_weight: bags.sum(:current_weight)
+  rescue ActiveRecord::InvalidRecord => e
+    Raven.capture_exception(e)
+    false
+  end
 
 
 
   def to_s
     "#{ name.upcase unless name.nil? }"
   end
+
+
 
   def container
     containers.first

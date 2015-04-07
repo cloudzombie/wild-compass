@@ -32,7 +32,7 @@ class API::V1::JarsController < API::V1::APIController
   def perform_return
     render json: {
       data: {
-        returned: Jar.find(params[:id]).perform_return
+        returned: Jar.find(params[:id]).perform_return(current_user)
       }
     }
   end

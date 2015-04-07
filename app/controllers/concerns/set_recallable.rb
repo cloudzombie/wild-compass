@@ -3,26 +3,32 @@ module SetRecallable
 
   def recall
     model.recall(current_user)
+
     respond_to do |format|
-      format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was successfully recalled." }
+      format.html { redirect_to models_url, notice: "#{model_name.humanize} was successfully recalled." }
       format.json { head :no_content }
     end
-  rescue
+
+  rescue ActiveRecord::InvalidRecord, NoMethodError => e
+    Raven.capture_exception(e)
     respond_to do |format|
-      format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was not recalled." }
+      format.html { redirect_to models_url, notice: "#{model_name.humanize} was not recalled." }
       format.json { head :no_content }
     end
   end
 
   def unrecall
     model.unrecall(current_user)
+    
     respond_to do |format|
-      format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was successfully unrecalled." }
+      format.html { redirect_to models_url, notice: "#{model_name.humanize} was successfully unrecalled." }
       format.json { head :no_content }
     end
-  rescue
+
+  rescue ActiveRecord::InvalidRecord, NoMethodError => e
+    Raven.capture_exception(e)
     respond_to do |format|
-      format.html { redirect_to models_url, notice: "#{model_name.to_s.humanize} was not unrecalled." }
+      format.html { redirect_to models_url, notice: "#{model_name.humanize} was not unrecalled." }
       format.json { head :no_content }
     end
   end
@@ -37,11 +43,11 @@ module SetRecallable
     end
 
     def model
-      self.send(model_name)
+      self.send(model_name.to_sym)
     end
 
     def model_name
-      controller_name.classify.downcase.to_sym
+      controller_name.classify.downcase
     end
 
 end

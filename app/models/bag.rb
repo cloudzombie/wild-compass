@@ -26,14 +26,6 @@ class Bag < ActiveRecord::Base
   scope :tested,        -> { where tested: true }
   scope :archived,      -> { where archived: true }
 
-  scope :available,     -> { where(current_weight: 0..Float::INFINITY, sent_to_lab: false, tested: false, archived: false) }
-
-
-
-  def self.first_available
-    by_buds.available.first
-  end
-
 
 
   belongs_to :lot

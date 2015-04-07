@@ -27,6 +27,7 @@ class ContainersController < ApplicationController
 
   def update
     params[:container][:plant_ids] ||= []
+    
     respond_to do |format|
       if container.update(container_params)
         format.html { redirect_to container, notice: 'Container was successfully updated.' }

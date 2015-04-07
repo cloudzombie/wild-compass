@@ -5,6 +5,7 @@ class LotsController < ApplicationController
   include Authorizable
   include SetRecallable
   include SetQuarantineable
+  include SetReleasable
 
   helper_method :sort_column, :sort_direction
 
@@ -58,32 +59,6 @@ class LotsController < ApplicationController
   end
 
   def relot
-  end
-
-  def release
-    lot.release(current_user)
-    respond_to do |format|
-      format.html { redirect_to lots_path, notice: "Lot was successfully released." }
-      format.json { head :no_content }
-    end
-  rescue
-    respond_to do |format|
-      format.html { redirect_to lots_path, notice: "Lot was not successfully released." }
-      format.json { head :no_content }
-    end
-  end
-
-  def unrelease
-    lot.unrelease(current_user)
-    respond_to do |format|
-      format.html { redirect_to lots_path, notice: "Lot was successfully unreleased." }
-      format.json { head :no_content }
-    end
-  rescue
-    respond_to do |format|
-      format.html { redirect_to lots_path, notice: "Lot was not successfully unreleased." }
-      format.json { head :no_content }
-    end
   end
 
   def report
