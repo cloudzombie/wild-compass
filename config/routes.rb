@@ -101,6 +101,13 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :process do
+    resources :fulfills, only: [ :new, :create ]
+    resources :relots, only: [ :new, :create ]
+    resources :reweights, only: [ :new, :create ]
+    resources :scales, only: [ :new, :create ]
+  end
+
   resources :locations
 
   resources :seeds, concerns: [ :labelable, :encodable, :reweightable, :scannable ]
