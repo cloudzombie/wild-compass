@@ -7,8 +7,8 @@ class Wild::Compass::Process::Scale
   end
 
   def zero
-    url = URI.parse([@url, 'zero'].join('/'))
-    req = Net::HTTP::Get.new(url.to_s)
+    url = URI.parse([@url.to_s, 'zero'].join('/'))
+    req = Net::HTTP::Get.new(@url.to_s)
     
     res = Net::HTTP.start(url.host, url.port) do |http|
       http.request(req)
@@ -20,10 +20,12 @@ class Wild::Compass::Process::Scale
   alias_method :tare, :zero
 
   def weight
-    url = URI.parse([@url, 'data'].join('/'))
+    url = URI.parse([@url.to_s, 'data'].join('/'))
     req = Net::HTTP::Get.new(url.to_s)
-    res = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
-    res.body
+    res = Net::HTTP.start(url.host, url.port) do |http|
+      http.request(req)
+    end
+    res.body.to_f
   end
 
   alias_method :read, :weight
