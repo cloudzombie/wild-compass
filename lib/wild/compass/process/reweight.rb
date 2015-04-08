@@ -5,7 +5,7 @@ class Wild::Compass::Process::Reweight
   end
 
   def read_from_scale
-    (@scale ||= Scale.new('localhost', 8080)).read
+    (@scale ||= Scale.new('http://localhost:8080')).read
   end
 
 end

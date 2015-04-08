@@ -5,12 +5,11 @@ class Wild::Compass::Process::Relot
   end
 
   def read_from_scale_1
-    (@scale1 ||= Scale.new('localhost', 8080)).read
+    (@scale1 ||= Scale.new('http://localhost:8080')).read
   end
 
   def read_from_scale_2
-    (@scale2 ||= Scale.new('localhost', 8081)).read
+    (@scale2 ||= Scale.new('http://localhost:8081')).read
   end
-
 
 end
