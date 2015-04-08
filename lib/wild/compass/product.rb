@@ -4,11 +4,11 @@ class Wild::Compass::Product
 
   class << self
     def available_brands
-      Brand.joins(:lots).merge(available_lots)
+      Brand.joins(:lots).merge(available_lots).order(id: :asc)
     end
 
     def available_lots
-      Lot.where(released: true).joins(:bags).merge(available_bags)
+      Lot.where(released: true).joins(:bags).merge(available_bags).order(id: :asc)
     end
 
     def available_bags
@@ -17,7 +17,7 @@ class Wild::Compass::Product
         sent_to_lab: false,
         tested: false,
         archived: false
-      )
+      ).order(id: :asc)
     end
 
     def available?(brand)
