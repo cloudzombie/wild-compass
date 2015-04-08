@@ -6,8 +6,9 @@ class Wild::Compass::Process::Reweight
   class CommitFailed < ReweightError
   end
 
-  def initialize(bag_id)
-    @bag = Bag.find(bag_id)
+  def initialize(bag)
+    raise ReweightError, "" if bag.nil?
+    @bag = bag
   end
 
   def read_from_scale

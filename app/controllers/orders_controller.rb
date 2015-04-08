@@ -93,7 +93,7 @@ class OrdersController < ApplicationController
 
     # Set column to sort in order
     def sort_column
-      %w(id customer total_weight ordered_at shipped_at).include?(params[:sort]) ? params[:sort] : 'ordered_at'
+      %w(ces_order_id customer total_weight ordered_at shipped_at).include?(params[:sort]) ? params[:sort] : 'ces_order_id'
     end
 
     # Set sort direction to ascending or descending
