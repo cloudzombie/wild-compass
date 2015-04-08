@@ -1,21 +1,30 @@
 require 'net/http'
 
 class Wild::Compass::Process::Scale
+  class ScaleError < StandardError
+  end
 
-  class ScaleServerUnavailableException < Exception
+  class ScaleServerUnavailable < ScaleError
   end
 
   class Reading
-    class InvalidReadingException < Exception
+    class ReadingError < StandardError
     end
 
-    class NullReadingException < InvalidReadingException
+    class InvalidReading < ReadingError
+    end
+
+    class NullReading < InvalidReading
+    end
+
+    class UnstableReading < ReadingError
     end
 
     def initialize(read)
-      raise InvalidReadingException, "Scale did not read a string" if !read.kind_of?(String)
-      raise NullReadingException, "Scale read null" if read.nil?
+      raise InvalidReading, "Reading did not receive a string" unless read.kind_of?(String)
+      raise NullReading, "Reading is null" if read.nil?
       @read = read
+      raise UnstableReading, "Reading an unstable weight" unless stable?
     end
 
     def stable?
@@ -35,7 +44,7 @@ class Wild::Compass::Process::Scale
     end
     Reading.new(res.body)
   rescue Errno::ECONNREFUSED => e
-    raise ScaleServerUnavailableException.new(e), "Could not connect to scale server"
+    raise ScaleServerUnavailable.new(e), "Could not connect to scale server"
   end
 
   alias_method :tare, :zero
@@ -48,7 +57,7 @@ class Wild::Compass::Process::Scale
     end
     Reading.new(res.body)
   rescue Errno::ECONNREFUSED => e
-    raise ScaleServerUnavailableException.new(e), "Could not connect to scale server"
+    raise ScaleServerUnavailable.new(e), "Could not connect to scale server"
   end
 
   alias_method :read, :weight
