@@ -10,6 +10,8 @@ namespace :demo do
 
   DEMO_PLANT_NAME = 'DEMO-PLANT'
 
+  DEMO_BIN_NAME = 'DEMO-BIN'
+
   DEMO_BAG_NAME = 'DEMO-BAG'
 
   DEMO_LOT_NAME = 'DEMO-LOT'
@@ -32,6 +34,10 @@ namespace :demo do
       strain: strain
     )
 
+    bin = Bin.create(
+      name: DEMO_BIN_NAME
+    )
+
     container = Container.create(
       name: DEMO_CONTAINER_NAME
     )
@@ -41,7 +47,9 @@ namespace :demo do
     )
     
     lot = Lot.create(
-      name: DEMO_LOT_NAME
+      name: DEMO_LOT_NAME,
+      bags: [ bag ],
+      plants: [ plant ]
     )
 
   end
@@ -58,6 +66,9 @@ namespace :demo do
     container = Container.find_by(name: DEMO_CONTAINER_NAME)
     container.delete
 
+    bin = Bin.find_by(name: DEMO_BIN_NAME)
+    bin.delete
+
     plant = Plant.find_by(name: DEMO_PLANT_NAME)
     plant.delete
 
@@ -66,7 +77,7 @@ namespace :demo do
 
     strain = Strain.find_by(name: DEMO_STRAIN_NAME)
     strain.delete
-    
+
   end
 
 end
