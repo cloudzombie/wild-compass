@@ -1,32 +1,6 @@
 <div class="box box-solid box-info">
-  
   <%= render 'shared/box_header', described: :lots %>
-
-  <div class="box-body table-responsive no-padding">
-    <table id="lot-table" class="table table-hover" >
-      <thead>
-        <tr> 
-          <th></th>
-          <th><%= sortable :name %></th>
-          <th><%= sortable :strain %></th>
-          <th><%= sortable :category %></th>
-          <th><%= sortable :thc_composition, 'THC (%)' %></th>
-          <th><%= sortable :cbd_composition, 'CBD (%)' %></th>
-          <th><%= sortable :cbn_composition, 'CBN (%)' %></th>
-          <th><%= sortable :current_weight %></th>
-          <th><%= sortable :recalled %></th>
-          <th><%= sortable :quarantined %></th>
-          <th><%= sortable :tested %></th>
-          <th><%= sortable :released %></th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      
-      <tbody id="table">
-        <%= render 'lots/ajax/table' %>
-      </tbody>
-    </table>
-  </div><!-- /.box-body -->
+  <%= render 'shared/box_table', described: :lots %>
 </div>
 
 <div class="tableFooter">

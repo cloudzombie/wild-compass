@@ -1,29 +1,51 @@
-class Engine
-  def initialize(model)
-    @attributes = []
-    @unloaded_attributes = []
+class Wild::Compass::Template::Engine
+  
+  attr_accessor :config
 
-    model.column_names.each do |name|
-      register_attribute(name)
+  @@instances = {}
+  
+  class << self
+    def load(model)
+      engine = @@instances[model] ||= instance_for(model)
+      yield engine.config ||= Config.instance_for(model)
+      engine
+    end
+
+    def instance_for(model)
+      @@instances[model] ||= new(model)
     end
   end
 
-  def unload_attribute(attribute)
-    @unloaded_attributes << attribute
+  def initialize(model)
+    @model = model
   end
 
-  def reload_attribute(attribute)
-    @unloaded_attributes.delete(attribute)
+  def columns
+    @model.columns
   end
 
   def attributes
-    @attributes - @unloaded_attributes
+    @model.columns
   end
 
-  private
+  class Config
+    @@instances = {}
 
-    def register_attribute(name)
-      self.attributes << name
+    def self.instance_for(model)
+      @@instances[model] ||= Config.new
     end
+
+    def initialize
+      @attributes = []
+    end
+
+    def unload(attribute)
+      @attributes.delete(attribute)
+    end
+
+    def load(attribute)
+      @attributes << attribute
+    end
+  end
 
 end
