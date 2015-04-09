@@ -9,17 +9,11 @@ class BagsController < ApplicationController
   include Scannable
 
   respond_to :html, :xml, :json
-
-  helper_method :sort_column, :sort_direction
-
-  expose(:template_engine) { Wild::Compass::Template::Engine.new(Bag) }
   
-  expose(:bag, params: :bag_params) { find(Bag) }
-
-  expose(:bags) { Bag.search(params[:search]).sort(sort_column, sort_direction).page(params[:page])  }
+  expose(:bag, params: :bag_params) { find(Bag).decorate }
+  expose(:bags) { Bag.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate  }
 
   expose(:jar) { Jar.new }
-
   expose(:strains) { Strain.all }
   
   ##

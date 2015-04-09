@@ -1,31 +1,7 @@
 <div class="box box-solid box-warning">
-  
   <%= render 'shared/box_header', described: :bags %>
-
-  <div class="box-body table-responsive no-padding">
-    <table class="table table-hover">
-      <tr>
-        <th><%= check_box_tag :accept %></th>
-        <th><%= sortable :name, 'ID' %></th>
-        <th><%= sortable :strain %></th>
-        <!--<th><%#= sortable :category %></th>-->
-        <th><%= sortable :initial_weight %></th>
-        <th><%= sortable :current_weight %></th>
-        <th><%= sortable :location %></th>
-        <% if can? :manage, Bag %>
-          <th><%= sortable :delta, 'Delta' %></th>
-          <th><%= sortable :delta_old, 'Prev. Delta' %></th>
-        <% end %>
-        <th><%= sortable :status %></th>
-        <th><%= sortable :lot %></th>
-        <th>Actions</th>
-      </tr>
-      <tbody id="table">
-        <%= render 'bags/ajax/table' %>
-      </tbody>
-    </table>
-  </div><!-- /.box-body -->    
-</div><!-- /.box -->
+  <%= render 'shared/box_table', described: :bags %>
+</div>
 
 <div class="tableFooter">
   <%= link_to "#{fa_icon 'tag'} New Bag".html_safe, '#', class: 'btn btn-flat btn-warning',
@@ -38,4 +14,3 @@
 
 <%= render 'jars/modal/new' %>
 <%= render 'bags/modal/new' %>
-

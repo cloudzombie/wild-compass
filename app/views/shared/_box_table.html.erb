@@ -11,5 +11,15 @@
     <tbody id="table">
       <%= render 'shared/ajax/table', described: described %>
     </tbody>
+
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <% described.to_s.classify.constantize.columns.each do |column| %>
+        <td></td>
+        <% end %>
+        <td></td>
+      </tr>
+    </tfoot>
   </table>
 </div>

@@ -1,16 +1,13 @@
 class BinsController < ApplicationController
+
   include Authorizable
   include FindEncodable
+  include SetSortable
 
   respond_to :html, :xml, :json
 
-  helper_method :sort_column, :sort_direction
-
-  expose(:bin, params: :bin_params) { find(Bin) }
-
-  expose(:bins) { Bin.search(params[:search])
-                     .sort(sort_column, sort_direction)
-                     .page(params[:page]) }
+  expose(:bin, params: :bin_params) { find(Bin).decorate }
+  expose(:bins) { Bin.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
   def create
     self.bin = Bin.new(bin_params)
@@ -37,16 +34,6 @@ class BinsController < ApplicationController
 
 
   private
-
-    # Set column to sort in order.
-    def sort_column
-      %w(id name).include?(params[:sort]) ? params[:sort] : 'name'
-    end
-
-    # Set sort direction to ascending or descending.
-    def sort_direction
-      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
-    end
 
     def id_param
       params[:id]

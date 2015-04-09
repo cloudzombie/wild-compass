@@ -1,23 +1,7 @@
 <div class="box box-solid box-warning">
-  
   <%= render 'shared/box_header', described: :bins %>
-
-  <div class="box-body table-responsive no-padding">
-    <table class="table table-hover" id="bin-table">
-      <tr>
-        <th><%= check_box_tag :accept %></th>
-        <th><%= sortable :id, 'ID' %></th>
-        <th><%= sortable :name %></th>
-        <th><%= sortable :location %></th>
-        <th><%= sortable :content %></th>
-        <th class="col-lg-3">Actions</th>
-      </tr>
-      <tbody id="table">
-        <%= render 'bins/ajax/table' %>
-      </tbody>
-    </table>
-  </div><!-- /.box-body -->    
-</div><!-- /.box -->
+  <%= render 'shared/box_table', described: :bins %>
+</div>
 
 <div class="tableFooter">
   <%= link_to "#{fa_icon 'square'} New bin".html_safe, '#', class: 'btn btn-flat btn-warning',
