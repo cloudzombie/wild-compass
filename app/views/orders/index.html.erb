@@ -6,25 +6,7 @@
 <div class="box box-solid">
   <%= render 'shared/box_header', described: :orders %>
 
-  <div class="box-body table-responsive no-padding">
-    <table class="table table-hover">
-      <tr>
-        <th><%= check_box_tag :accept %></th>
-        <th><%= sortable :ces_order_id, 'ID' %></th>
-        <th><%= sortable :customer %></th>
-        <th><%= sortable :created_by %></th>
-        <th><%= sortable :placed_by %></th>
-        <th><%= sortable :description %></th>
-        <th><%= sortable :total_weight %></th>
-        <th><%= sortable :ordered_at %></th>
-        <th><%= sortable :shipped_at %></th>
-        <th>Actions</th>
-      </tr>
-      <tbody id="table">
-        <%= render 'orders/ajax/table' %>
-      </tbody>
-    </table>
-  </div><!-- /.box-body -->
+  <%= render 'shared/box_table', described: :orders %>
 </div>
 
 <div class="tableFooter"></div>
