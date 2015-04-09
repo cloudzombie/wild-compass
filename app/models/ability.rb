@@ -8,7 +8,6 @@ class Ability
 
       can :send_to_lab, Bag
       can :home, Inventory
-      can :home, Dashboard
       can :download, Inventory
 
       can :fulfill, Order
@@ -47,7 +46,6 @@ class Ability
       
       can :send_to_lab, Bag
       can :home, Inventory
-      can :home, Dashboard
       can :download, Inventory
 
       can :fulfill, Order
@@ -76,7 +74,6 @@ class Ability
       can :read, Seed
 
       can :home, Inventory
-      can :home, Dashboard
       can :download, Inventory
 
       can :fulfill, Order
