@@ -51,9 +51,6 @@ Rails.application.routes.draw do
   # Root redirect
   root to: 'root#redirect'
 
-  # Dashboard
-  get 'dashboard', to: 'dashboard#home'
-
   # Inventory
   match 'inventory',                         to: 'inventory#home',                via: [:get, :post]
   match 'inventory/download',                to: 'inventory#download',            via: [:get, :post]
