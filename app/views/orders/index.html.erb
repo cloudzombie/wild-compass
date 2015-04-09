@@ -4,19 +4,7 @@
 </div>
 
 <div class="box box-solid">
-  <div class="box-header">
-    <h3 class="box-title">Listing orders</h3>
-    <div class="box-tools">
-      <div class="input-group">
-        <%= form_tag(orders_path, method: 'get', id: 'search-form', remote: true) do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
-        <% end %>
-        <div class="input-group-btn">
-          <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-        </div>
-      </div>
-    </div>
-  </div><!-- /.box-header -->
+  <%= render 'shared/box_header', described: :orders %>
 
   <div class="box-body table-responsive no-padding">
     <table class="table table-hover">

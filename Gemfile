@@ -110,3 +110,5 @@ gem 'descriptive-statistics'
 gem 'twitter-typeahead-rails'
 
 gem "sentry-raven"
+
+gem 'draper'

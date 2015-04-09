@@ -1,102 +1,88 @@
+<div class="box box-solid box-info">
+  
+  <%= render 'shared/box_header', described: :lots %>
 
-    <div class="box box-solid box-info">
-      <div class="box-header">
-        <h3 class="box-title">Listing lots</h3>
-        <div class="box-tools">
-          <div class="input-group">
-            <%= form_tag(lots_path, :method => "get", id: "search-form", remote: true, autocomplete: 'off') do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
-            <% end %>
-            <div class="input-group-btn">
-              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-            </div>
-          </div>
-        </div>
-      </div><!-- /.box-header -->
+  <div class="box-body table-responsive no-padding">
+    <table id="lot-table" class="table table-hover" >
+      <thead>
+        <tr> 
+          <th></th>
+          <th><%= sortable :name %></th>
+          <th><%= sortable :strain %></th>
+          <th><%= sortable :category %></th>
+          <th><%= sortable :thc_composition, 'THC (%)' %></th>
+          <th><%= sortable :cbd_composition, 'CBD (%)' %></th>
+          <th><%= sortable :cbn_composition, 'CBN (%)' %></th>
+          <th><%= sortable :current_weight %></th>
+          <th><%= sortable :recalled %></th>
+          <th><%= sortable :quarantined %></th>
+          <th><%= sortable :tested %></th>
+          <th><%= sortable :released %></th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      
+      <tbody id="table">
+        <%= render 'lots/ajax/table' %>
+      </tbody>
+    </table>
+  </div><!-- /.box-body -->
+</div>
 
-      <div class="box-body table-responsive no-padding">
-      <table id="lot-table" class="table table-hover" >
-          <tr> 
-            <th></th>
-            <th><%= sortable :name %></th>
-            <th><%= sortable :strain %></th>
-            <th><%= sortable :category %></th>
-            <th><%= sortable :thc_composition, 'THC (%)' %></th>
-            <th><%= sortable :cbd_composition, 'CBD (%)' %></th>
-            <th><%= sortable :cbn_composition, 'CBN (%)' %></th>
-            <th><%= sortable :current_weight %></th>
-            <th><%= sortable :recalled %></th>
-            <th><%= sortable :quarantined %></th>
-            <th><%= sortable :tested %></th>
-            <th><%= sortable :released %></th>
-            <th>Actions</th>
+<div class="tableFooter">
+  <%= link_to "#{fa_icon 'tags'} New Lot".html_safe, '#', data: { toggle: 'modal', target: '.new-lot' },
+      class: 'btn btn-flat btn-info' %>
+  <div id="paginator">
+    <%= paginate lots, remote: true %>
+  </div>
+</div>
+
+<% lots.each do |lot| %>
+<div class="modal fade" id="<%= lot.id %>" tabindex="-1" role="dialog" aria-labelledby="Containers" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <h3>Containers for <%= link_to "#{fa_icon('tags')} #{lot}".html_safe, lot, class: "btn btn-flat btn-info" %></h3>
+        <table class="table table-hover">
+          <tr>
+            <th>Name :</th>
+            <th>Weight :</th>
+            <th>Category :</th>
+            <th>Actions :</th>
           </tr>
-          <tbody id="table">
-          <%= render 'lots/ajax/table' %>
-          </tbody>
-          </table>
-          <div id="contextMenus">
-    
-          </div>
 
-        </div>
-      </div><!-- /.box-body -->
-
-
-    <div class="tableFooter">
-      <%= link_to "#{fa_icon 'tags'} New Lot".html_safe, '#', data: { toggle: 'modal', target: '.new-lot' },
-          class: 'btn btn-flat btn-info' %>
-      <div id="paginator">
-        <%= paginate lots, remote: true %>
-      </div>
-    </div>
-
-    <% lots.each do |lot| %>
-    <div class="modal fade" id="<%= lot.id %>" tabindex="-1" role="dialog" aria-labelledby="Containers" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <h3>Containers for <%= link_to "#{fa_icon('tags')} #{lot}".html_safe, lot, class: "btn btn-flat btn-info" %></h3>
-            <table class="table table-hover">
-              <tr>
-                <th>Name :</th>
-                <th>Weight :</th>
-                <th>Category :</th>
-                <th>Actions :</th>
-              </tr>
-
-              <% ordered_by_id(lot.try(:containers)).each do |container| %>
-              <tr>
-                <td><%= link_to container.try(:to_s), container if container.present? %></td>
-                <td><%= weight_for container.try(:current_weight) if container.present? %></td>
-                <td><%= category_for container.try(:category) if container.present? %></td>
-                <td> 
-                  <% if can? :create, Lot %>
-                    <%= link_to "New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-danger',
-                      data: { toggle: 'modal', target: '.new-bag' } %>
-                  <% end %>
-                </td> 
-              </tr>
+          <% ordered_by_id(lot.try(:containers)).each do |container| %>
+          <tr>
+            <td><%= link_to container.try(:to_s), container if container.present? %></td>
+            <td><%= weight_for container.try(:current_weight) if container.present? %></td>
+            <td><%= category_for container.try(:category) if container.present? %></td>
+            <td> 
+              <% if can? :create, Lot %>
+                <%= link_to "New Bag".html_safe, '#', class: 'btn-sm btn-flat btn-danger',
+                  data: { toggle: 'modal', target: '.new-bag' } %>
               <% end %>
-            </table>
-        </div>
-      </div>
+            </td> 
+          </tr>
+          <% end %>
+        </table>
     </div>
-    <% end %>
-    
-    <div class="modal fade new-bag" tabindex="-1" role="dialog" aria-labelledby="New Bag" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <h3>Create a new bag</h3>
-          <%= render 'bags/form' %>
-        </div>
-      </div>
-    </div>
+  </div>
+</div>
+<% end %>
 
-    <div class="modal fade new-lot" tabindex="-1" role="dialog" aria-labelledby="New Lot" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <h3>Create a new lot</h3>
-          <%= render 'lots/form' %>
-        </div>
-      </div>
+<div class="modal fade new-bag" tabindex="-1" role="dialog" aria-labelledby="New Bag" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <h3>Create a new bag</h3>
+      <%= render 'bags/form' %>
     </div>
+  </div>
+</div>
+
+<div class="modal fade new-lot" tabindex="-1" role="dialog" aria-labelledby="New Lot" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <h3>Create a new lot</h3>
+      <%= render 'lots/form' %>
+    </div>
+  </div>
+</div>

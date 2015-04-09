@@ -179,13 +179,4 @@ module ApplicationHelper
     end
     total
   end
-
-  #def monthly_variance_for(item)
-  #  variance = item.history.history_lines.where(source == target).current_weight.variance
-  #  if variance/current_weight > 0.01905
-  #    "<span class=\"badge bg-maroon\">#{percent_for variance, 2}</span>".html_safe
-  #  else
-  #    percent_for variance, 2
-  # end
-  #end
 end
