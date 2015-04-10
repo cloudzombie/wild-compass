@@ -4,7 +4,4 @@ class BagDecorator < ApplicationDecorator
 
   delegate_all
 
-  def actions
-  end
-
 end

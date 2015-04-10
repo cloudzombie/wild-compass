@@ -13,11 +13,11 @@ class OrderDecorator < ApplicationDecorator
   private
 
     def fulfill
-      link_to_if_can? :fulfill, model, 'Fulfill', h.fulfill_order_path(model), class: "text-green", data: { href: h.fulfill_order_path(model) }
+      link_to_if_can? :fulfill, 'Fulfill', h.fulfill_order_path(model), class: "text-green", data: { href: h.fulfill_order_path(model) }
     end
 
     def update
-      link_to_if_can? :update, Order, 'Edit', h.edit_order_path(model), class: "text-yellow"
+      link_to_if_can? :update, 'Edit', h.edit_order_path(model), class: "text-yellow"
     end
 
 end

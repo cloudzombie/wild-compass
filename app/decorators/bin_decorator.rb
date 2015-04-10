@@ -4,7 +4,4 @@ class BinDecorator < ApplicationDecorator
 
   delegate_all
 
-  def actions
-  end
-
 end

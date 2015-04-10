@@ -13,11 +13,11 @@ class PlantDecorator < ApplicationDecorator
   private
 
     def label
-      link_to_if_can? :label, Plant, 'Label', h.label_plant_path(model), class: "text-green"
+      link_to_if_can? :label, 'Label', h.label_plant_path(model), class: "text-green"
     end
 
     def update
-      link_to_if_can? :update, Plant, 'Edit', h.edit_plant_path(model), class: "text-yellow"
+      link_to_if_can? :update, 'Edit', h.edit_plant_path(model), class: "text-yellow"
     end
 
 end

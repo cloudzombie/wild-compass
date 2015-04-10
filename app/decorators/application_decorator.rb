@@ -10,8 +10,8 @@ class ApplicationDecorator < Draper::Decorator
     end
   end
 
-  def link_to_if_can?(action, resource, *content)
-    h.link_to_if h.can?(action, resource), *content
+  def link_to_if_can?(action, *content)
+    h.link_to_if h.can?(action, model), *content
   end
 
   private
