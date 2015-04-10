@@ -5,11 +5,8 @@ class JarsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
   
-  expose(:jar, params: :jar_params) { find(Jar) }
-
-  expose(:jars) { Jar.search(params[:search])
-                     .sort(sort_column, sort_direction)
-                     .page(params[:page]) }
+  expose(:jar, params: :jar_params) { find(Jar).decorate }
+  expose(:jars) { Jar.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
   # Create new jar.
   def create 

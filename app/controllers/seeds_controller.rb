@@ -7,12 +7,9 @@ class SeedsController < ApplicationController
   respond_to :html
 
   expose(:recent) { seed.lots.order(updated_at: :desc).first }
-  
-  expose(:seed, params: :seed_params) { params[:id].nil? ? Seed.new : Seed.find(params[:id]) }
 
-  expose(:seeds) { Seed.search(params[:search])
-                       .sort(sort_column, sort_direction)
-                       .page(params[:page]) }
+  expose(:seed, params: :seed_params) { params[:id].nil? ? Seed.new.decorate : Seed.find(params[:id]).decorate }
+  expose(:seeds) { Seed.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
   def create
     self.seed = Seed.new(seed_params)

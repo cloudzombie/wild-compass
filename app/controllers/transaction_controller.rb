@@ -2,7 +2,6 @@ class TransactionController < ApplicationController
   include Authorizable
 
   expose(:checkouts) { Checkout.all }
-  
   expose(:checkout, params: :checkout_params) { params[:id].nil? ? Checkout.new : Checkout.find(params[:id]) }
 
   def checkin

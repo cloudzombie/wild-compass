@@ -6,7 +6,6 @@ class OrdersController < ApplicationController
   # Expose order and orders for views 
   # If no id is specified, a new order is instanciated (not created)
   expose(:order, params: :order_params) { params[:id].nil? ? Order.new.decorate : Order.find(params[:id]).decorate }
-  
   expose(:orders) { Order.search(params[:search]).unfulfilled.sort(sort_column, sort_direction).decorate }
 
   expose(:jar) { Jar.new }
