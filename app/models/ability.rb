@@ -6,7 +6,6 @@ class Ability
     elsif user.admin?
       can :manage, :all
 
-      can :send_to_lab, Bag
       can :home, Inventory
       can :home, Dashboard
       can :download, Inventory
@@ -30,6 +29,11 @@ class Ability
       can :unrecall, Lot
 
       can :perform_return, Jar
+      can :destruction, Jar
+      can :send_to_lab, Jar
+
+      can :send_to_lab, Bag
+      can :destruction, Bag
 
       can :release, Lot
       can :unrelease, Lot
@@ -47,7 +51,6 @@ class Ability
       can :manage, User
       can :manage, Seed
       
-      can :send_to_lab, Bag
       can :home, Inventory
       can :home, Dashboard
       can :download, Inventory
@@ -65,6 +68,11 @@ class Ability
       can :quarantine, Lot
 
       can :perform_return, Jar
+      can :destruction, Jar
+      can :send_to_lab, Jar
+
+      can :send_to_lab, Bag
+      can :destruction, Bag
 
       can :release, Lot
       

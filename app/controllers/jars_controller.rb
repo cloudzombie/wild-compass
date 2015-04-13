@@ -4,6 +4,8 @@ class JarsController < ApplicationController
   include FindEncodable
   include SetWeightable
   include SetReturnable
+  include SetDestroyable
+  include SetSendableToLab
 
   helper_method :sort_column, :sort_direction
   

@@ -4,7 +4,7 @@ module Destroyable
   def destruction(user)
     if !is_destroyed
       history.add_line(self, self, nil, :destruction, user, "Destroyed by #{user} from #{bin}.")
-      status.update(is_destroyed: true, bin: nil)
+      status.update(is_destroyed: true)
     else
       history.add_line(self, self, nil, :destruction, user, "Restored by #{user}.")
       status.update(is_destroyed: false)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413190823) do
+ActiveRecord::Schema.define(version: 20150413195908) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -48,6 +48,11 @@ ActiveRecord::Schema.define(version: 20150413190823) do
     t.integer  "bag_id"
     t.boolean  "is_destroyed", default: false, null: false
     t.boolean  "sent_to_lab",  default: false, null: false
+    t.boolean  "quarantined",  default: false, null: false
+    t.boolean  "cleared",      default: false, null: false
+    t.boolean  "recalled",     default: false, null: false
+    t.boolean  "released",     default: false, null: false
+    t.boolean  "tested",       default: false, null: false
   end
 
   create_table "bins", force: true do |t|

@@ -7,6 +7,8 @@ class BagsController < ApplicationController
   include SetQuarantineable
   include SetSortable
   include Scannable
+  include SetDestroyable
+  include SetSendableToLab
 
   respond_to :html, :xml, :json
 
@@ -68,37 +70,6 @@ class BagsController < ApplicationController
 
   def suggestions
     render json: bags
-  end
-
-  def destruction
-    bag.destruction(current_user)
-
-    respond_to do |format|
-      if bag.save && !bag.is_destroyed?
-        format.html { redirect_to bags_url, notice: 'Bag was successfully restored.' }
-      elsif bag.save && bag.is_destroyed?
-        format.html { redirect_to bags_url, notice: 'Bag was successfully destroyed.' }
-      else
-        format.html { redirect_to bags_url, notice: 'Bag could not be destroyed/restored.' }
-      end
-    end
-  end
-
-
-def send_to_lab
-    bag.send_to_lab(current_user)
-
-    respond_to do |format|
-      if bag.save && bag.sent_to_lab?
-        format.html { redirect_to bags_url, notice: 'Bag was successfully sent to Lab.' }
-      elsif bag.save && !bag.sent_to_lab?
-        format.html { redirect_to bags_url, notice: 'Bag was successfully recovered from lab.' }
-      elsif bag.sent_to_lab?
-        format.html { redirect_to bags_url, notice: 'Bag could not be recovered.' }
-      else
-        format.html { redirect_to bags_url, notice: 'Bag could not be sent.' }
-      end
-    end
   end
 
   # Update bag column.

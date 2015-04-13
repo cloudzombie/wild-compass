@@ -122,7 +122,12 @@ Rails.application.routes.draw do
 
   resources :plants, concerns: [ :labelable ]
   
-  resources :jars, concerns: [ :labelable, :encodable, :scannable, :returnable ]
+  resources :jars, concerns: [ :labelable, :encodable, :scannable, :returnable ] do
+    member do
+      get 'destruction'
+      get 'send_to_lab'
+    end
+  end
   
   resources :bags, concerns: [ :recallable, :quarantineable, :labelable, :encodable, :reweightable, :scannable ] do
     collection do

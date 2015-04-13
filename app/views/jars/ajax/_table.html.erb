@@ -20,6 +20,14 @@
       <%= link_to "#{fa_icon 'square' } Return".html_safe, perform_return_jar_path(jar), class: "btn-sm btn-flat btn-danger", data: { confirm: "RETURN JAR TO INVENTORY\r\nAre you sure?" } %>
       <% end %>
 
+      <% if can? :send_to_lab, jar %>
+      <%= link_to "#{fa_icon 'flask' } Send to Lab".html_safe, send_to_lab_jar_path(jar), class: "btn-sm btn-flat btn-danger", data: { confirm: "SEND JAR TO LAB\r\nAre you sure?" } %>
+      <% end %>
+
+      <% if can? :destruction, jar %>
+      <%= link_to "#{fa_icon 'times' } Destruction".html_safe, destruction_jar_path(jar), class: "btn-sm btn-flat btn-danger", data: { confirm: "DESTROY JAR\r\nAre you sure?" } %>
+      <% end %>
+
     </td>
   </tr>
 <% end %>
