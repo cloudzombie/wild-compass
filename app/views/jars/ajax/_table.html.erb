@@ -13,7 +13,11 @@
       <a class="btn-sm btn-flat btn-info">New Order</a>
       
       <% if can? :edit, jar %>
-      <%= link_to "#{fa_icon('circle')} Edit".html_safe, edit_jar_path(jar), class: "btn-sm btn-flat btn-warning" %>
+      <%= link_to "#{fa_icon 'circle' } Edit".html_safe, edit_jar_path(jar), class: "btn-sm btn-flat btn-warning" %>
+      <% end %>
+
+      <% if can? :perform_return, jar %>
+      <%= link_to "#{fa_icon 'square' } Return".html_safe, perform_return_jar_path(jar), class: "btn-sm btn-flat btn-danger", data: { confirm: "RETURN JAR TO INVENTORY\r\nAre you sure?" } %>
       <% end %>
 
     </td>

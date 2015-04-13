@@ -29,6 +29,8 @@ class Ability
       can :unrecall, Bag
       can :unrecall, Lot
 
+      can :perform_return, Jar
+
       can :release, Lot
       can :unrelease, Lot
 
@@ -61,6 +63,8 @@ class Ability
 
       can :quarantine, Bag
       can :quarantine, Lot
+
+      can :perform_return, Jar
 
       can :release, Lot
       
