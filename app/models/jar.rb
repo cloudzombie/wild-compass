@@ -8,9 +8,13 @@ class Jar < ActiveRecord::Base
   include Sortable
   include Filterable
   include Returnable
+  include SendableToLab
+  include Destroyable
 
   include Wild::Compass::Model::Jar::HasJarStatus
   include Wild::Compass::Model::Location::HasLocationThroughBin
+
+
 
   scope :id,            -> (id = nil) { id.nil? ? all : where(id: id) }
   scope :strain_id,     -> (strain_id = nil) { strain_id.nil? ? all : where(strain_id: strain_id) }
