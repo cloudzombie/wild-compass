@@ -19,8 +19,15 @@ class BinsController < ApplicationController
   end
 
   def update
-    bin.update(bin_params)
-    respond_with(bin)
+    params[:bin][:bag_ids] ||= []
+
+    respond_to do |format|
+      if bin.update(bin_params)
+        format.html { redirect_to bin, notice: 'Bin was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
   end
 
   def destroy

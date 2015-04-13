@@ -19,11 +19,16 @@ class Bin < ActiveRecord::Base
 
   has_many :outgoing_jars, through: :bags
 
+  belongs_to :location
+
+
+  accepts_nested_attributes_for :bags
+
+
   def jars
     outgoing_jars
   end
 
-  belongs_to :location
 
   def available?
     true

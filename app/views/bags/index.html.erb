@@ -16,27 +16,59 @@
   </div>
 
   <div class="box-body table-responsive no-padding">
-    <table class="table table-hover">
-      <tr>
-        <th><%= check_box_tag :accept %></th>
-        <th><%= sortable :name, 'ID' %></th>
-        <th><%= sortable :strain %></th>
-        <!--<th><%#= sortable :category %></th>-->
-        <th><%= sortable :initial_weight %></th>
-        <th><%= sortable :current_weight %></th>
-        <th><%= sortable :location %></th>
-        <% if can? :manage, Bag %>
-          <th><%= sortable :delta, 'Delta' %></th>
-          <th><%= sortable :delta_old, 'Prev. Delta' %></th>
-        <% end %>
-        <th><%= sortable :status %></th>
-        <th><%= sortable :lot %></th>
-        <th>Actions</th>
-      </tr>
-      <tbody id="table">
-        <%= render 'bags/ajax/table' %>
-      </tbody>
-    </table>
+  
+      <table class="table table-hover">
+        <%= form_for :filter, url: bags_path, :html => { :id => "filter-form", :method => 'GET' }, remote: true do |f| %>
+
+        <tr>
+
+          <th><%= check_box_tag :accept %></th>
+          <th><%= sortable :name, 'ID' %></th>
+          <th class="col-lg-1">
+            <%= sortable :strain %>
+            <%= f.collection_select :strain_id, Strain.all, :id, :name,
+              { include_blank: true }, class: 'filter form-control', id: 'strain-filter' %>
+          </th>
+          <!--<th><%#= sortable :category %></th>-->
+          <th>
+            <%= sortable :initial_weight %>
+            <%= f.number_field :initial_weight, id: 'initial-weight-min-filter', placeholder: 'Min', style: 'width: 50%', 
+              class: 'filter form-control input-sm' %>
+            <%= f.number_field :initial_weight, id: 'initial-weight-max-filter', placeholder: 'Max', style: 'width: 50%',
+              class: 'filter form-control input-sm' %>
+          </th>
+          <th>
+            <%= sortable :current_weight %>
+            <%= f.number_field :current_weight, id: 'current-weight-min-filter', placeholder: 'Min', style: 'width: 50%', 
+              class: 'filter form-control input-sm' %>
+            <%= f.number_field :current_weight, id: 'current-weight-max-filter', placeholder: 'Max', style: 'width: 50%',
+              class: 'filter form-control input-sm' %>
+          </th>
+          <th class="col-lg-1">
+            <%= sortable :location %>
+            <%= f.collection_select :bin_id, Bin.all, :id, :name,
+              { include_blank: true }, class: 'filter form-control', id: 'bin-filter' %>
+          </th>
+          <% if can? :manage, Bag %>
+            <th><%= sortable :delta, 'Delta' %></th>
+            <th><%= sortable :delta_old, 'Prev. Delta' %></th>
+          <% end %>
+          <th>
+            <%= sortable :status %>
+          </th>
+          <th class="col-lg-2">
+            <%= sortable :lot %>
+            <%= f.collection_select :lot_id, Lot.all, :id, :name,
+              { include_blank: true }, class: 'filter form-control', id: 'lot-filter' %>
+          </th>
+          <th class="col-lg-1">Actions</th>
+        </tr>
+    <% end %>
+
+        <tbody id="table">
+          <%= render 'bags/ajax/table' %>
+        </tbody>
+      </table>
   </div><!-- /.box-body -->    
 </div><!-- /.box -->
 

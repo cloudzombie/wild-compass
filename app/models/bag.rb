@@ -49,6 +49,8 @@ class Bag < ActiveRecord::Base
   delegate :category, to: :container, prefix: false, allow_nil: true
 
   has_one :location, through: :bin
+
+  add_filters_for :strains, :sent_to_lab, :is_destroyed, :location, :bin_id, :lot_id, :delta, :current_weight, :inital_weight, :status, :created_at, :updated_at
   
   def destruction(user)
     if !is_destroyed

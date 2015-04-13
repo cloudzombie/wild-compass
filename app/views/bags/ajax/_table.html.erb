@@ -22,7 +22,7 @@
       <% elsif bag.sent_to_lab? %>
         <a class="btn-sm btn-flat btn-info"><span class="fa-icon-flask"></span>Sent to lab</a> 
       <% else %>
-      <%= link_to bag.bin, bag.bin, class: 'btn-sm btn-flat btn-primary' %>
+      <%= link_to bag.bin, bag.bin.to_s, class: 'btn-sm btn-flat btn-primary' %>
       <% end %>
     </td>
     <% if can? :manage, Bag %>

@@ -100,3 +100,14 @@ readScale1 = ->
   $.get('http://localhost:8080/data').done (data) ->
     $('#reweight-bag-scale-1-readings').val(data)
     $('#reweight-bag-scale-1-readings').change()
+
+
+
+# textboxlist
+$(document).ready ->
+    $('.textboxlist').select2({})
+
+   $('#search-input').change ->
+      $('#search-form').submit()
+      return
+  return
