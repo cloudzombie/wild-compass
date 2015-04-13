@@ -9,6 +9,9 @@ class Jar < ActiveRecord::Base
   include Filterable
   include Returnable
 
+  include Wild::Compass::Model::Jar::HasJarStatus
+  include Wild::Compass::Model::Location::HasLocationThroughBin
+
   scope :id,            -> (id = nil) { id.nil? ? all : where(id: id) }
   scope :strain_id,     -> (strain_id = nil) { strain_id.nil? ? all : where(strain_id: strain_id) }
   scope :status_id,     -> (status_id = nil) { status_id.nil? ? all : where(status_id: status_id) }

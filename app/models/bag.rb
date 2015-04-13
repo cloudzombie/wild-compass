@@ -10,6 +10,9 @@ class Bag < ActiveRecord::Base
   include Sortable
   include Filterable
 
+  include Wild::Compass::Model::Bag::HasBagStatus
+  include Wild::Compass::Model::Location::HasLocationThroughBin
+
   after_create :update_name, unless: :has_name?
 
   after_save -> { lot.bag_changed unless lot.nil? }
@@ -32,12 +35,6 @@ class Bag < ActiveRecord::Base
 
   has_many :plants,  -> { uniq }, through: :lot
 
-
-
-  belongs_to :bin
-
-  belongs_to :status, class_name: 'Bags::Status', foreign_key: 'bags_status_id'
-
   
 
   has_many :strains, -> { uniq }, through: :plants
@@ -48,7 +45,9 @@ class Bag < ActiveRecord::Base
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 
-  has_one :location, through: :bin
+  
+
+
   
   def destruction(user)
     if !is_destroyed

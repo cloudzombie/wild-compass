@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331232426) do
+ActiveRecord::Schema.define(version: 20150413183106) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20150331232426) do
     t.integer  "bin_id"
     t.boolean  "archived",                                 default: false, null: false
     t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
-    t.integer  "bags_status_id"
     t.boolean  "sent_to_lab",                              default: false, null: false
     t.datetime "packaged_at"
     t.string   "strain"
@@ -47,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150331232426) do
     t.string   "name",       default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bag_id"
   end
 
   add_index "bags_statuses", ["name"], name: "index_bags_statuses_on_name", unique: true
@@ -160,9 +160,18 @@ ActiveRecord::Schema.define(version: 20150331232426) do
     t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
     t.decimal  "ordered_amount",  precision: 16, scale: 4, default: 0.0,   null: false
     t.boolean  "returned",                                 default: false, null: false
+    t.integer  "bin_id"
   end
 
   add_index "jars", ["datamatrix_text", "datamatrix_hash"], name: "index_jars_on_datamatrix_text_and_datamatrix_hash", unique: true
+
+  create_table "jars_statuses", force: true do |t|
+    t.integer  "jar_id",                      null: false
+    t.boolean  "sent_to_lab", default: false, null: false
+    t.boolean  "returned",    default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "locations", force: true do |t|
     t.string   "name"
