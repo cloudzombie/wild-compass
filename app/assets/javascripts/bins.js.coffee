@@ -2,8 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
-jQuery ->
-    $('#bin_bag_ids').select2({ 
-    
-    })
+$(document).ready ->
+  $('#bin_bag_ids').select2({})
+  return

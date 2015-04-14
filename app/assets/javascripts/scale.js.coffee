@@ -1,26 +1,38 @@
+# Default scales URL (from the client perspective)
+SCALE1_URL = "http://localhost:8080"
+SCALE2_URL = "http://localhost:8081"
+
+# Default selector to update weights display
+SCALE1_SELECTOR = "#scale-display-1"
+SCALE2_SELECTOR = "#scale-display-2"
+
+class Scale
+  constructor: (@url) ->
+
+  start: (selector) ->
+    @autoRefresh = setInterval(read(selector), 100)
+    return
+
+  stop: ->
+    clearInterval(@autoRefresh)
+    return
+
+  read: (selector) ->
+    $.get(SCALE1_URL + "/data").done (data) ->
+      $(selector).val(data)
+      $(selector).change()
+
 class ScaleController
   init: ->
     console.log 'scale#init'
+    @scale1 = new Scale(SCALE1_URL)
+    @scale2 = new Scale(SCALE2_URL)
     return
 
   scale: ->
     console.log 'scale#scale'
-    $(document).ready ->
-      autoRefreshScale1 = setInterval(readScale1, 100)
-      autoRefreshScale2 = setInterval(readScale2, 100)
-      return
+    @scale1.start(SCALE1_SELECTOR)
+    @scale2.start(SCALE2_SELECTOR)
     return
-
-  # Read data from scale 1
-  readScale1 = ->
-    $.get('http://localhost:8080/data').done (data) ->
-      $('#scale-display-1').val(data)
-      $('#scale-display-1').change()
-  
-  # Read data from scale 2
-  readScale2 = ->
-    $.get('http://localhost:8081/data').done (data) ->
-      $('#scale-display-2').val(data)
-      $('#scale-display-2').change()
 
 this.WildCompass.scale = new ScaleController
