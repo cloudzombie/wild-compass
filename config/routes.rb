@@ -33,6 +33,12 @@ Rails.application.routes.draw do
     end
   end
 
+  concern :returnable do
+    member do
+      get 'perform_return'
+    end
+  end
+
   concern :reweightable do
     member do
       match 'reweight', via: [ :get, :post ]
@@ -116,7 +122,12 @@ Rails.application.routes.draw do
 
   resources :plants, concerns: [ :labelable ]
   
-  resources :jars, concerns: [ :labelable, :encodable, :scannable ]
+  resources :jars, concerns: [ :labelable, :encodable, :scannable, :returnable ] do
+    member do
+      get 'destruction'
+      get 'send_to_lab'
+    end
+  end
   
   resources :bags, concerns: [ :recallable, :quarantineable, :labelable, :encodable, :reweightable, :scannable ] do
     collection do
@@ -175,11 +186,7 @@ Rails.application.routes.draw do
 
       resources :plants
       
-      resources :jars, concerns: [ :labelable, :encodable ] do
-        member do
-          get 'perform_return'
-        end
-      end
+      resources :jars, concerns: [ :labelable, :encodable, :returnable ]
       
       resources :bags, concerns: [ :recallable, :quarantineable, :labelable, :encodable ]
 

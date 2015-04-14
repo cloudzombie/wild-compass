@@ -3,7 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-    $('#container_plant_ids').select2({ 
-    
-    })
+  $('#container_plant_ids').select2({})
   return
