@@ -36,20 +36,19 @@ module Accountable
     '(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)'
   end
 
-  def joins_transactions_query(query_id, query_type)
-    "LEFT JOIN transactions ON (transactions.source_id = #{query_id} AND transactions.source_type = #{query_type}) OR (transactions.target_id = #{query_id} AND transactions.source_type = #{query_type})"
-  end
-
   def bags
-    Bag.joins(joins_transactions_query('bags.id', "'Bag'")).merge(transactions).uniq
+    [ Bag.joins(:incoming_transactions).merge(transactions).uniq,
+      Bag.joins(:outgoing_transactions).merge(transactions).uniq ].flatten.uniq
   end
 
   def containers
-    Container.joins(joins_transactions_query('containers.id', "'Container'")).merge(transactions).uniq
+    [ Container.joins(:incoming_transactions).merge(transactions).uniq,
+      Container.joins(:outgoing_transactions).merge(transactions).uniq ].flatten.uniq
   end
 
   def jars
-    Jar.joins(joins_transactions_query('jars.id', "'Jar'")).merge(transactions).uniq
+    [ Jar.joins(:incoming_transactions).merge(transactions).uniq,
+      Jar.joins(:outgoing_transactions).merge(transactions).uniq ].flatten.uniq
   end
 
   def harvests
