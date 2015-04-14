@@ -1,15 +1,17 @@
 class JarsController < ApplicationController
+  
   include Authorizable
   include FindEncodable
   include SetWeightable
+  include SetReturnable
+  include SetDestroyable
+  include SetSendableToLab
 
   helper_method :sort_column, :sort_direction
   
   expose(:jar, params: :jar_params) { find(Jar) }
 
-  expose(:jars) { Jar.search(params[:search])
-                     .sort(sort_column, sort_direction)
-                     .page(params[:page]) }
+  expose(:jars) { Jar.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]) }
 
   # Create new jar.
   def create 
@@ -68,19 +70,6 @@ class JarsController < ApplicationController
             match: self.jar == Jar.find_by(datamatrix_hash: jar_params[:scanned_hash])
           }
         } 
-      end
-    end
-  end
-
-  def perform_return
-    respond_to do |format|
-      format.html { redirect_to jars_path, notice: "returned: #{jar.returned?}" }
-      format.json do
-        render json: {
-          jar: {
-            returned: jar.returned?
-          }
-        }
       end
     end
   end

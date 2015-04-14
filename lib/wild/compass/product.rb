@@ -4,20 +4,20 @@ class Wild::Compass::Product
 
   class << self
     def available_brands
-      Brand.joins(:lots).merge(available_lots)
+      Brand.joins(:lots).merge(available_lots).order(id: :asc)
     end
 
     def available_lots
-      Lot.where(released: true).joins(:bags).merge(available_bags)
+      Lot.where(released: true).joins(:bags).merge(available_bags).order(id: :asc)
     end
 
     def available_bags
       Bag.where(
-        current_weight: 0..Float::INFINITY,
+        current_weight: MINIMUM_AVAILABLE_WEIGHT..Float::INFINITY,
         sent_to_lab: false,
         tested: false,
         archived: false
-      )
+      ).order(id: :asc)
     end
 
     def available?(brand)
@@ -40,12 +40,20 @@ class Wild::Compass::Product
       available_bags.first
     end
 
+    def available_lots_by_brand(brand)
+      available_lots.where(brand: brand)
+    end
+
     def first_available_lot_by_brand(brand)
-      available_lots.where(brand: brand).first
+      available_lots_by_brand(brand).first
+    end
+
+    def available_bags_by_brand(brand)
+      available_bags.joins(:lot).merge(available_lots_by_brand(brand))
     end
 
     def first_available_bag_by_brand(brand)
-      available_bags.joins(:lot).merge(Lot.where(brand: brand)).first
+      available_bags_by_brand(brand).first
     end
   end
 end

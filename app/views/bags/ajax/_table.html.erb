@@ -29,7 +29,7 @@
       <td><%= weight_for bag.delta, '' %></td>
       <td><%= weight_for bag.delta_old, '' %></td>
     <% end %>
-    <td><%= bag.try(:status) %></td>
+    <td><%= bag.status %></td>
     <td>
       <% if can? :show, Lot %>
       <%= link_to "#{fa_icon('tag')} #{bag.try(:lot)}".html_safe, bag.try(:lot), class: "btn-sm btn-flat btn-info" %>

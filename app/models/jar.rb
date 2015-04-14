@@ -7,6 +7,14 @@ class Jar < ActiveRecord::Base
   include Encodable
   include Sortable
   include Filterable
+  include Returnable
+  include SendableToLab
+  include Destroyable
+
+  include Wild::Compass::Model::Jar::HasJarStatus
+  include Wild::Compass::Model::Location::HasLocationThroughBin
+
+
 
   scope :id,            -> (id = nil) { id.nil? ? all : where(id: id) }
   scope :strain_id,     -> (strain_id = nil) { strain_id.nil? ? all : where(strain_id: strain_id) }
@@ -22,17 +30,6 @@ class Jar < ActiveRecord::Base
 
   scope :fulfilled,     -> { uniq.where fulfilled: true  } 
   scope :unfulfilled,   -> { uniq.where fulfilled: false }
-
-
-
-  def perform_return(user)
-    history.add_line(self, self, nil, :return, user, "Jar returned by #{user}.")
-    update_attributes!(returned: true)
-    true
-  rescue ActiveRecord::RecordInvalid => e
-    Raven.capture_exception(e)
-    false
-  end
 
 
 

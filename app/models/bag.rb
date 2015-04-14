@@ -9,6 +9,11 @@ class Bag < ActiveRecord::Base
   include Quarantineable
   include Sortable
   include Filterable
+  include SendableToLab
+  include Destroyable
+
+  include Wild::Compass::Model::Bag::HasBagStatus
+  include Wild::Compass::Model::Location::HasLocationThroughBin
 
   after_create :update_name, unless: :has_name?
 
@@ -32,12 +37,6 @@ class Bag < ActiveRecord::Base
 
   has_many :plants,  -> { uniq }, through: :lot
 
-
-
-  belongs_to :bin
-
-  belongs_to :status, class_name: 'Bags::Status', foreign_key: 'bags_status_id'
-
   
 
   has_many :strains, -> { uniq }, through: :plants
@@ -48,27 +47,7 @@ class Bag < ActiveRecord::Base
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 
-  has_one :location, through: :bin
   
-  def destruction(user)
-    if !is_destroyed
-      history.add_line(self, self, nil, :destruction, user, "Destroyed by #{user} from #{bin}.")
-      update(is_destroyed: true, bin: nil)
-    else
-      history.add_line(self, self, nil, :destruction, user, "Restored by #{user}.")
-      update(is_destroyed: false)
-    end
-  end
-
-  def send_to_lab(user)
-    if !sent_to_lab
-      history.add_line(self, self, nil, :send_to_lab, user, "Sent to lab by #{user}.")
-      update(sent_to_lab: true)
-    else
-      history.add_line(self, self, nil, :send_to_lab, user, "Received from lab by #{user}.")
-      update(sent_to_lab: false)
-    end
-  end
 
   def to_s
     "#{ name.upcase unless name.nil? }"
