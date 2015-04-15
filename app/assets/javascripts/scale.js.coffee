@@ -10,7 +10,7 @@ SCALE2_SELECTOR = "#scale-display-2"
 HUNDRED_MILLISECONDS = 100
 
 # Reusable code for handling scales
-class Scale
+this.WildCompass.Scale = class Scale
   constructor: (@url, @selector) ->
 
   # starts reading data from scale
