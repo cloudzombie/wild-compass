@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"fla",
+				"flatten"
+			],
+			[
+				"tran",
+				"transactions"
+			],
+			[
+				"quer",
+				"query_type"
+			],
+			[
+				"SC",
+				"SCALE2_SELECTOR"
+			],
+			[
+				"SCAL",
+				"SCALE1_SELECTOR"
+			],
+			[
+				"sca",
+				"scale1"
+			],
+			[
+				"read",
+				"readScale2"
+			],
+			[
 				"model",
 				"model_name"
 			],
@@ -112,10 +140,6 @@
 				"ScaleError"
 			],
 			[
-				"read",
-				"reading"
-			],
-			[
 				"DEMO_BRA",
 				"DEMO_BRAND_NAME"
 			],
@@ -192,10 +216,6 @@
 				"container"
 			],
 			[
-				"sca",
-				"scannable"
-			],
-			[
 				"rewe",
 				"reweightable"
 			],
@@ -250,10 +270,6 @@
 			[
 				"tra",
 				"transactions"
-			],
-			[
-				"tran",
-				"transaction"
 			],
 			[
 				"o",
@@ -498,22 +514,6 @@
 			[
 				"btn",
 				"btn-flat"
-			],
-			[
-				"table",
-				"table-borderless"
-			],
-			[
-				"tar",
-				"target_type"
-			],
-			[
-				"ta",
-				"target_id"
-			],
-			[
-				"sort",
-				"sort_direction"
 			]
 		]
 	},
@@ -528,10 +528,50 @@
 			}
 		},
 		{
-			"file": "db/schema.rb",
+			"file": "app/assets/javascripts/bags.js.coffee",
 			"settings":
 			{
-				"buffer_size": 14196,
+				"buffer_size": 2856,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/assets/javascripts/bins.js.coffee",
+			"settings":
+			{
+				"buffer_size": 273,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/assets/javascripts/containers.js.coffee",
+			"settings":
+			{
+				"buffer_size": 281,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/assets/javascripts/scale.js.coffee",
+			"settings":
+			{
+				"buffer_size": 865,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/models/jars/status.rb",
+			"settings":
+			{
+				"buffer_size": 115,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/models/concerns/accountable.rb",
+			"settings":
+			{
+				"buffer_size": 4721,
 				"line_ending": "Windows"
 			}
 		}
@@ -572,14 +612,17 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/accountable.rb",
+		"/C/Users/Maxime/Documents/wild-compass/lib/tasks/status.rake",
+		"/C/Users/Maxime/Documents/wild-compass/.wild-compass.sublime-workspace",
+		"/C/Users/Maxime/Documents/wild-compass/app/assets/javascripts/application.js",
+		"/C/Users/Maxime/Documents/wild-compass/db/schema.rb",
 		"/C/Users/Maxime/Desktop/Projet2/PROJET2/simulation.log",
 		"/C/Users/Maxime/Desktop/Projet2/PROJET2/simulation2.log",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/jars/ajax/_table.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/concerns/set_sendable_to_lab.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/bags/ajax/_table.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/bags/status.rb",
-		"/C/Users/Maxime/Documents/wild-compass/db/schema.rb",
-		"/C/Users/Maxime/Documents/wild-compass/lib/tasks/status.rake",
 		"/C/Users/Maxime/Documents/wild-compass/lib/wild/compass/model/jar/has_jar_status.rb",
 		"/C/Users/Maxime/Documents/wild-compass/lib/wild/compass/model/bag/has_bag_status.rb",
 		"/C/Users/Maxime/Documents/wild-compass/db/migrate/20150413195908_add_status_to_bags_statuses.rb",
@@ -695,11 +738,8 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/ajax/_table.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/quarantineable.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/recallable.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/accountable.rb",
 		"/C/Users/Maxime/Documents/wild-compass/lib/wild/compass/transaction/tree.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/models/history_line.rb",
-		"/C/Users/Maxime/Documents/wild-compass/config/application.rb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/brands_controller.rb"
+		"/C/Users/Maxime/Documents/wild-compass/app/models/history_line.rb"
 	],
 	"find":
 	{
@@ -717,6 +757,11 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			":tra",
+			"bags",
+			"jars",
+			"bags",
+			"Scale",
 			"is_destroyed",
 			"quarantined",
 			"'",
@@ -839,12 +884,7 @@
 			"has",
 			"delta",
 			"beta",
-			"alpha",
-			"beta",
-			"alpha",
-			"(history.history_lines.reweight.order(created_at: :asc))[-1]",
-			"(history.history_lines.reweight.order(created_at: :asc))[-2]",
-			"(history.history_lines.reweight.order(created_at: :asc))[-1]"
+			"alpha"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -862,7 +902,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -895,18 +935,152 @@
 				},
 				{
 					"buffer": 1,
-					"file": "db/schema.rb",
+					"file": "app/assets/javascripts/bags.js.coffee",
 					"settings":
 					{
-						"buffer_size": 14196,
+						"buffer_size": 2856,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2129,
-								2142
+								2856,
+								2856
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1005.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/assets/javascripts/bins.js.coffee",
+					"settings":
+					{
+						"buffer_size": 273,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								250,
+								250
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/assets/javascripts/containers.js.coffee",
+					"settings":
+					{
+						"buffer_size": 281,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								281,
+								281
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/assets/javascripts/scale.js.coffee",
+					"settings":
+					{
+						"buffer_size": 865,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								648,
+								648
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 90.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/models/jars/status.rb",
+					"settings":
+					{
+						"buffer_size": 115,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								82,
+								59
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/models/concerns/accountable.rb",
+					"settings":
+					{
+						"buffer_size": 4721,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2004,
+								2004
 							]
 						],
 						"settings":
@@ -916,7 +1090,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 347.0,
+						"translation.y": 330.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
