@@ -15,7 +15,7 @@ class Bag < ActiveRecord::Base
   include Wild::Compass::Model::Bag::HasBagStatus
   include Wild::Compass::Model::Location::HasLocationThroughBin
 
-  after_create :update_name, unless: :has_name?
+  after_create :set_name
 
   after_save -> { lot.bag_changed unless lot.nil? }
 
@@ -73,7 +73,7 @@ class Bag < ActiveRecord::Base
 
   private
 
-    def update_name
+    def set_name
       update_attributes!(name: "BAG-#{id}")
       true
     rescue ActiveRecord::RecordInvalid => e
