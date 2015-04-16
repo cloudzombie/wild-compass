@@ -63,6 +63,11 @@ GEM
     devise_token_auth (0.1.30)
       devise (~> 3.3)
       rails (~> 4.1)
+    draper (2.1.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
     erubis (2.7.0)
     execjs (2.4.0)
     font-awesome-rails (4.3.0.0)
@@ -134,6 +139,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    request_store (1.1.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     ruby-ole (1.2.11.8)
@@ -202,6 +208,7 @@ DEPENDENCIES
   descriptive-statistics
   devise
   devise_token_auth
+  draper
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails

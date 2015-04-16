@@ -1,0 +1,2 @@
+module Process::RelotsHelper
+end

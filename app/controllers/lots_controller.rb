@@ -1,19 +1,23 @@
 require 'csv'
+require 'wild/compass/template/engine'
 
 class LotsController < ApplicationController
-  
+
   include Authorizable
   include SetRecallable
   include SetQuarantineable
   include SetReleasable
+  include SetSortable
 
-  helper_method :sort_column, :sort_direction
+  expose(:lot, params: :lot_params) { params[:id].nil? ? Lot.new.decorate : Lot.find(params[:id]).decorate }
+  expose(:lots) { Lot.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
-  expose(:lot, params: :lot_params) { id_param.nil? ? Lot.new : Lot.find(id_param) }
-
-  expose(:lots) { Lot.search(params[:search])
-                     .sort(sort_column, sort_direction)
-                     .page(params[:page]) }
+  expose(:engine) do
+    Wild::Compass::Template::Engine.load(Lot) do |config|
+      config.unload :origin
+      config.unload :initial_weight
+    end
+  end
 
   expose(:containers) { Container.order(id: :asc) }
   expose(:recent) { lot.containers.order(updated_at: :desc).first }
@@ -73,20 +77,6 @@ class LotsController < ApplicationController
     def lot_params
       params.require(:lot).permit(:name, :weight, :initial_weight, :strain_id, :current_weight,
                                   :thc_composition, :cbd_composition, :cbn_composition, { container_ids: [] })
-    end
-
-    def id_param
-      params[:id]
-    end
-
-    # Set column to sort in order.
-    def sort_column
-      %w(id name category strain initial_weight current_weight created_at updated_at thc_composition cbd_composition cbn_composition recalled quarantined tested released).include?(params[:sort]) ? params[:sort] : 'id'
-    end
-
-    # Set sort direction to ascending or descending.
-    def sort_direction
-      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
 end

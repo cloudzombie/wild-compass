@@ -9,7 +9,7 @@ module SetRecallable
       format.json { head :no_content }
     end
 
-  rescue ActiveRecord::InvalidRecord, NoMethodError => e
+  rescue ActiveRecord::RecordInvalid, NoMethodError => e
     Raven.capture_exception(e)
     respond_to do |format|
       format.html { redirect_to models_url, notice: "#{model_name.humanize} was not recalled." }
@@ -25,7 +25,7 @@ module SetRecallable
       format.json { head :no_content }
     end
 
-  rescue ActiveRecord::InvalidRecord, NoMethodError => e
+  rescue ActiveRecord::RecordInvalid, NoMethodError => e
     Raven.capture_exception(e)
     respond_to do |format|
       format.html { redirect_to models_url, notice: "#{model_name.humanize} was not unrecalled." }

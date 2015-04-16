@@ -1,0 +1,25 @@
+<div class="box-body table-responsive no-padding">
+  <table class="table table-hover">
+    <tr>
+      <th><%= check_box_tag :table_selector %></th>
+      <% described.to_s.classify.constantize.columns.each do |col| %>
+      <th><%= sortable col.name %></th>
+      <% end %>
+      <th>Actions</th>
+    </tr>
+    
+    <tbody id="table">
+      <%= render 'shared/ajax/table', described: described %>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <% described.to_s.classify.constantize.columns.each do |column| %>
+        <td></td>
+        <% end %>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

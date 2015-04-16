@@ -5,11 +5,8 @@ class PlantsController < ApplicationController
   include Authorizable
   include SetSortable
 
-  expose(:plant, params: :plant_params) { params[:id].nil? ? Plant.new : Plant.find(params[:id]) }
-
-  expose(:plants) { Plant.search(params[:search])
-                         .sort(sort_column, sort_direction)
-                         .page(params[:page]) }
+  expose(:plant, params: :plant_params) { params[:id].nil? ? Plant.new.decorate : Plant.find(params[:id]).decorate }
+  expose(:plants) { Plant.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
   
   # Create new plant.
   def create 

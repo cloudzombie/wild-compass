@@ -1,48 +1,6 @@
 <div class="box box-solid box-primary">
-  <div class="box-header">
-    <h3 class="box-title">Listing containers</h3>
-    <div class="box-tools">
-      <div class="input-group">
-        
-        <%= form_tag(containers_path, method: :get, id: "search-form", remote: true, autocomplete: 'off') do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
-        <% end %>
-
-        <div class="input-group-btn">
-          <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-        </div>
-
-      </div>
-    </div>
-  </div><!-- /.box-header -->
-
-  <div class="box-body table-responsive no-padding">
-    <table class="table table-hover">
-      <tr>
-        <th><%= sortable :name, 'ID' %></th>
-        <th><%= sortable :location_id %></th>
-        <th><%= sortable :strain %></th>
-        <th><%= sortable :lot_id %></th>
-        <th><%= sortable :initial_weight, 'Initial Weight (g)' %></th>
-        <th><%= sortable :current_weight, 'Current Weight (g)' %></th>
-        <th><%= sortable :water_loss, 'Water Loss (g)' %></th>
-        <th>Actions </th>
-      </tr>
-      <tbody id="table">
-        <%= render 'containers/ajax/table' %>
-      </tbody>
-      
-      <tfoot>
-        <th colspan="2">Total</th>
-        <td></td>
-        <td></td>
-        <td><%= weight_for containers.sum(:initial_weight), '' %></td>
-        <td><%= weight_for containers.sum(:current_weight), '' %></td>
-        <td></td>
-        <td></td>
-      </tfoot>
-    </table>
-  </div><!-- /.box-body -->
+  <%= render 'shared/box_header', described: :containers %>
+  <%= render 'shared/box_table', described: :containers %>
 </div>
 
 

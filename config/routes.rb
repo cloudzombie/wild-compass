@@ -51,9 +51,6 @@ Rails.application.routes.draw do
   # Root redirect
   root to: 'root#redirect'
 
-  # Dashboard
-  get 'dashboard', to: 'dashboard#home'
-
   # Inventory
   match 'inventory',                         to: 'inventory#home',                via: [:get, :post]
   match 'inventory/download',                to: 'inventory#download',            via: [:get, :post]
@@ -99,6 +96,13 @@ Rails.application.routes.draw do
     member do
       match 'fulfill', via: [ :get, :post ]
     end
+  end
+
+  namespace :process do
+    resources :fulfills, only: [ :new, :create ]
+    resources :relots, only: [ :new, :create ]
+    resources :reweights, only: [ :new, :create ]
+    resources :scales, only: [ :new, :create ]
   end
 
   resources :locations

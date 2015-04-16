@@ -1,20 +1,12 @@
 class OrdersController < ApplicationController
+
   include Authorizable
   include SetSortable
 
-  # Expose sort_column and sort_direction private methods as helper methods
-  # to make them available in views
-  helper_method :sort_column, :sort_direction
-
   # Expose order and orders for views 
   # If no id is specified, a new order is instanciated (not created)
-  expose(:order, params: :order_params) { id_param.nil? ? Order.new : Order.find(id_param) }
-  
-  expose(:orders) { Order.select('DISTINCT(orders.id), orders.*')
-                         .search(params[:search])
-                         .unfulfilled
-                         .sort(sort_column, sort_direction)
-                  }
+  expose(:order, params: :order_params) { params[:id].nil? ? Order.new.decorate : Order.find(params[:id]).decorate }
+  expose(:orders) { Order.search(params[:search]).unfulfilled.sort(sort_column, sort_direction).decorate }
 
   expose(:jar) { Jar.new }
 
@@ -82,23 +74,9 @@ class OrdersController < ApplicationController
 
   private
 
-    def id_param
-      params[:id]
-    end
-
     def order_params
       params.require(:order).permit(:customer, :shipped_at, :ordered_at, :jar, :bag, :weight, :ces_order_id, :created_by, :placed_by,
       order_lines_attributes: [ :id, :brand_id, :jar_id, :quantity ])
-    end
-
-    # Set column to sort in order
-    def sort_column
-      %w(id customer total_weight ordered_at shipped_at).include?(params[:sort]) ? params[:sort] : 'ordered_at'
-    end
-
-    # Set sort direction to ascending or descending
-    def sort_direction
-      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
 end

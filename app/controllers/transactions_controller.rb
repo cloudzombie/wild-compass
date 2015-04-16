@@ -1,7 +1,7 @@
 class TransactionsController < ApplicationController
   
-  expose(:transaction, attributes: :transaction_params) { params[:id].nil? ? Transaction.new : Transaction.find(params[:id]) }
-  expose(:transactions) { Transaction.all }
+  expose(:transaction, attributes: :transaction_params) { params[:id].nil? ? Transaction.new.decorate : Transaction.find(params[:id]).decorate }
+  expose(:transactions) { Transaction.all.decorate }
 
   respond_to :html
 
