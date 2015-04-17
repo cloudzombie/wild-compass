@@ -31,24 +31,9 @@
     <td><%= order.try(:shipped_at) %></td>
     <td>
       <% if can? :fulfill, order %>
-      <%= link_to 'Fulfill', fulfill_order_path(order),
-          class: "btn-sm btn-flat btn-primary fulfill",
-          data: { href: fulfill_order_path(order) } %>
+        <%= link_to 'Fulfill', fulfill_order_path(order), class: "btn-sm btn-flat btn-primary fulfill",
+            data: { href: fulfill_order_path(order) } %>
       <% end %>
-
-      <% if can? :read, Order %>
-      <%= link_to 'Show',    order, class: "btn-sm btn-flat btn-success" %>
-      <% end %>
-
-      <% if can? :update, Order %>
-      <%= link_to 'Edit',    order, class: "btn-sm btn-flat btn-primary" %>
-      <% end %>
-
-      <%# if can? :destroy, Order %>
-      <%#= link_to 'Destroy', order, method: :delete,
-          data: { confirm: 'Are you sure?' },
-          class: "btn-sm btn-flat btn-danger" %>
-      <%# end %>
     </td>
   </tr>
 <% end %>
