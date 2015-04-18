@@ -9,9 +9,9 @@ class JarsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
   
-  expose(:jar, params: :jar_params) { find(Jar) }
+  expose(:jar, params: :jar_params) { find(Jar).decorate }
 
-  expose(:jars) { Jar.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]) }
+  expose(:jars) { Jar.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
   # Create new jar.
   def create 
@@ -32,7 +32,7 @@ class JarsController < ApplicationController
   # Update jar column.
   def update 
     respond_to do |format|
-      if jar.update(jar_params) 
+      if jar.update(current_user, jar_params) 
         format.html { redirect_to jar, notice: 'jar was successfully updated.' }
         format.json { render :show, status: :ok, location: jar }
       else
