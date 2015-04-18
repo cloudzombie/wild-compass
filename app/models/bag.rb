@@ -32,8 +32,7 @@ class Bag < ActiveRecord::Base
   scope :archived,      -> { where archived: true }
 
 
-
-  belongs_to :lot
+  belongs_to :lot  
 
   has_many :plants,  -> { uniq }, through: :lot
 

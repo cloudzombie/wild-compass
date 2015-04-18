@@ -49,7 +49,7 @@ module Quarantineable
 
     def quarantine_bag(user)
       history.add_line(self, self, nil, :quarantine, user, "Bag quarantined by #{user}.")
-      update(quarantined: true) unless quarantined?
+      status.update(quarantined: true) unless quarantined?
       lot.quarantine unless lot.quarantined?
       true
     rescue
@@ -58,7 +58,7 @@ module Quarantineable
 
     def unquarantine_bag(user)
       history.add_line(self, self, nil, :unquarantine, user, "Bag unquarantined by #{user}.")
-      update(quarantined: false) if quarantined?
+      status.update(quarantined: false) if quarantined?
       lot.unquarantine if lot.quarantined?
       true
     rescue
