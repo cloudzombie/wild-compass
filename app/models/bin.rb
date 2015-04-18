@@ -19,6 +19,7 @@ class Bin < ActiveRecord::Base
 
   has_many :outgoing_jars, through: :bags
 
+
   def jars
     outgoing_jars
   end
