@@ -4,8 +4,8 @@
     <td><%= container.try(:location) %></td>
     <td><%= strain_for container.try(:strain) %></td>
     <td><%= container.try(:lot) %></td>
-    <td><%= weight_for container.try(:initial_weight), '' %></td>
-    <td><%= weight_for container.try(:current_weight), '' %></td>
+    <td><%= weight_for container.initial_weight, '' %></td>
+    <td><%= weight_for container.current_weight, '' %></td>
     <td><%= weight_for container.try(:water_loss), '' %></td>
     <td><%= render 'containers/ajax/menu', container: container %></td>
   </tr>

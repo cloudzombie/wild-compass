@@ -36,8 +36,8 @@
         <th colspan="2">Total</th>
         <td></td>
         <td></td>
-        <td><%= weight_for containers.sum(:initial_weight), '' %></td>
-        <td><%= weight_for containers.sum(:current_weight), '' %></td>
+        <td><%= weight_for containers.total_initial_weight, '' %></td>
+        <td><%= weight_for containers.total_current_weight, '' %></td>
         <td></td>
         <td></td>
       </tfoot>

@@ -122,6 +122,8 @@ module Accountable
       sum(:current_weight)
     end
 
+    alias_method :total_current_weight, :total_weight
+
     def total_initial_weight
       sum(:initial_weight)
     end
