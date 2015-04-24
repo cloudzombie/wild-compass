@@ -1,5 +1,3 @@
-require "wild/compass/decorator/story"
-
 class BagDecorator < ApplicationDecorator
 
   include Wild::Compass::Decorator::Story

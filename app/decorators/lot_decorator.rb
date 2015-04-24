@@ -1,8 +1,8 @@
-class PlantDecorator < ApplicationDecorator
+class LotDecorator < ApplicationDecorator
 
   include Wild::Compass::Decorator::Story
 
-  decorates :plant
+  decorates :lot
 
   delegate_all
 

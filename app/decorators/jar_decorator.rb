@@ -1,5 +1,3 @@
-require "wild/compass/decorator/story"
-
 class JarDecorator < ApplicationDecorator
 
   include Wild::Compass::Decorator::Story
