@@ -2,6 +2,13 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+# Instantiate an order from rails model
+this.WildCompass.Order = class Order
+  ORDERS_PATH = "/orders/"
+  constructor: (@id) ->
+    $.get ORDERS_PATH + @id + ".json", (data) ->
+      alert(data)
+
 SCALE_RESOLUTION = 0.101
 
 bagId = null
@@ -16,68 +23,85 @@ transactionWeight = null
 hasNext = null
 nextUrl = null
 
-$(document).ready ->
+class OrdersController
+  init: ->
+    console.log 'orders#init'
 
-  bagId = $('#fulfill-order-bag').data('id')
-  jarId = $('#fulfill-order-jar').data('id')
-  jarQuantity = parseFloat($('#fulfill-order-jar').data('quantity'))
+  index: ->
+    console.log 'orders#index'
 
-  hasNext = Boolean($('#fulfill-order-next').data('next'))
-  nextUrl = $('#fulfill-order-next').data('next-url')
+  show: ->
+    console.log 'orders#show'
 
-  # Toggle disabled on Fulfill Button if scale 1 responds
-  $.get 'http://localhost:8080'
-    .done ->
-      $(".fulfill").prop('disabled', false)
-      # $(".fulfill").attr('href', this.data('href'))
-    .fail ->
-      $(".fulfill").prop('disabled', true)
-      $(".fulfill").removeAttr('href')
+  new: ->
+    console.log 'orders#new'
 
-  # Toggle disabled on fulfill Button if scale 2 responds
-  $.get 'http://localhost:8081'
-    .done ->
-      $(".fulfill").prop('disabled', false)
-      # $(".fulfill").attr('href', this.data('href'))
-    .fail ->
-      $(".fulfill").prop('disabled', true)
-      $(".fulfill").removeAttr('href')
+  edit: ->
+    console.log 'orders#edit'
 
-  # Zero scale 1
-  $("#zero-scale-1-btn").click (event) ->
-    event.preventDefault()
-    resetScale1()
+  fulfill: ->
+    console.log 'orders#fulfill'
 
-  # Zero scale 2
-  $("#zero-scale-2-btn").click (event) ->
-    event.preventDefault()
-    resetScale2()
+    bagId = $('#fulfill-order-bag').data('id')
+    jarId = $('#fulfill-order-jar').data('id')
+    jarQuantity = parseFloat($('#fulfill-order-jar').data('quantity'))
 
-  $('#fulfill-order-scale-1-input').submit (event) ->
-    event.preventDefault()
+    hasNext = Boolean($('#fulfill-order-next').data('next'))
+    nextUrl = $('#fulfill-order-next').data('next-url')
 
-  $('#fulfill-order-scale-2-input').submit (event) ->
-    event.preventDefault()
+    # Toggle disabled on Fulfill Button if scale 1 responds
+    $.get 'http://localhost:8080'
+      .done ->
+        $(".fulfill").prop('disabled', false)
+        # $(".fulfill").attr('href', this.data('href'))
+      .fail ->
+        $(".fulfill").prop('disabled', true)
+        $(".fulfill").removeAttr('href')
 
-  $('#fulfill-order-scan-jar-form').submit (event) ->
-    event.preventDefault()
-    fulfillScanJar()
+    # Toggle disabled on fulfill Button if scale 2 responds
+    $.get 'http://localhost:8081'
+      .done ->
+        $(".fulfill").prop('disabled', false)
+        # $(".fulfill").attr('href', this.data('href'))
+      .fail ->
+        $(".fulfill").prop('disabled', true)
+        $(".fulfill").removeAttr('href')
 
-  $('#fulfill-order-scan-bag-form').submit (event) ->
-    event.preventDefault()
-    fulfillScanBag()
+    # Zero scale 1
+    $("#zero-scale-1-btn").click (event) ->
+      event.preventDefault()
+      resetScale1()
 
-  $('#fulfill-order-scale-1-input').change (event) ->
-    weightChanged()
+    # Zero scale 2
+    $("#zero-scale-2-btn").click (event) ->
+      event.preventDefault()
+      resetScale2()
 
-  $('#fulfill-order-scale-2-input').change (event) ->
-    weightChanged()
+    $('#fulfill-order-scale-1-input').submit (event) ->
+      event.preventDefault()
 
-  $('#fulfill-order-commit').click (event) ->
-    event.preventDefault()
-    commit()
+    $('#fulfill-order-scale-2-input').submit (event) ->
+      event.preventDefault()
 
-  fulfillOrderStep1()
+    $('#fulfill-order-scan-jar-form').submit (event) ->
+      event.preventDefault()
+      fulfillScanJar()
+
+    $('#fulfill-order-scan-bag-form').submit (event) ->
+      event.preventDefault()
+      fulfillScanBag()
+
+    $('#fulfill-order-scale-1-input').change (event) ->
+      weightChanged()
+
+    $('#fulfill-order-scale-2-input').change (event) ->
+      weightChanged()
+
+    $('#fulfill-order-commit').click (event) ->
+      event.preventDefault()
+      commit()
+
+    fulfillOrderStep1()
 
 fulfillOrderScale1AutoRefresh = null
 fulfillOrderScale2AutoRefresh = null
