@@ -4,10 +4,8 @@
 
 # Instantiate an order from rails model
 this.WildCompass.Order = class Order
-  ORDERS_PATH = "/orders/"
-  constructor: (@id) ->
-    $.get ORDERS_PATH + @id + ".json", (data) ->
-      alert(data)
+  @find: (id, fn) ->
+    $.getJSON "/orders/" + id + ".json", (data) -> fn(data)
 
 SCALE_RESOLUTION = 0.101
 
@@ -22,6 +20,15 @@ transactionWeight = null
 
 hasNext = null
 nextUrl = null
+
+bagScaleReadings = []
+jarScaleReadings = []
+
+bagScalePreviousReadings = null
+jarScalePreviousReadings = null
+
+bagScaleCurrentReadings = null
+jarScaleCurrentReadings = null
 
 class OrdersController
   init: ->
@@ -205,15 +212,55 @@ fulfillOrderReadScale2 = ->
 
 # Detect a weight change on scales
 weightChanged = ->
-  bagWeight = parseFloat($('#fulfill-order-scale-1-input').val().trim())
-  jarWeight = parseFloat($('#fulfill-order-scale-2-input').val().trim())
+
+  # bagWeight = parseFloat($('#fulfill-order-scale-1-input').val().trim())
+  # jarWeight = parseFloat($('#fulfill-order-scale-2-input').val().trim())
+
+  console.log "Fetching data from scale..."
+  bagScaleText = $('#fulfill-order-scale-1-input').val().trim()
+  jarScaleText = $('#fulfill-order-scale-2-input').val().trim()
+  
+  console.log "Parsing weights..."
+  bagScaleCurrentReading = parseFloat(bagScaleText)
+  jarScaleCurrentReading = parseFloat(jarScaleText)
+
+  console.log "Pushing weights in buffer..."
+  bagScaleReadings.push bagScaleCurrentReading
+  jarScaleReadings.push jarScaleCurrentReading
+
+  console.log "Removing oldest buffer values..."
+  if bagScaleReadings.length > 30
+    bagScaleReadings.shift()
+  if jarScaleReadings.length > 30
+    jarScaleReadings.shift()
+
+  console.log "Displaying buffer..."
+  console.log bagScaleReadings
+  console.log jarScaleReadings
+
+  console.log "Computing buffer averages..."
+  bagWeightsSum = 0.0
+  jarWeightsSum = 0.0
+  # Sum of readings buffer
+  bagWeightsSum += i for i in bagScaleReadings
+  jarWeightsSum += j for j in jarScaleReadings
+  # Average of readings buffer
+  bagWeightsAverage = bagWeightsSum / bagScaleReadings.length
+  jarWeightsAverage = jarWeightsSum / jarScaleReadings.length  
+
+  console.log "Displaying buffer average..."
+  console.log bagWeightsAverage
+  console.log jarWeightsAverage
+
   transactionWeight = jarWeight
-  console.log("Scales lower bound : " + scalesLowerBoundBalances())
-  console.log("Scales higher bound : " + scalesHigherBoundBalances())
-  console.log("Jar lower bound : " + jarLowerBoundBalances())
-  console.log("Jar higher bound : " + jarHigherBoundBalances())
-  if scalesLowerBoundBalances() && scalesHigherBoundBalances() && jarLowerBoundBalances() && jarHigherBoundBalances()
+  
+  console.log "Checking scale stability criteria..."
+  if !(bagScaleText.indexOf('?') >= 0) && !(jarScaleText.indexOf('?') >= 0) && (bagScaleCurrentReading != null) && (bagScalePreviousReadings != null) && (jarScaleCurrentReading != null) && (jarScalePreviousReadings != null) && (Math.abs(bagScalePreviousReadings - bagScaleCurrentReading) <= 0.1) && (Math.abs(jarScalePreviousReadings - jarScaleCurrentReading) <= 0.1) && (bagScaleReadings.length == 30) && (jarScaleReadings.length == 30) && (Math.abs(bagWeightsAverage - bagScaleCurrentReading) <= 0.1) && (Math.abs(jarWeightsAverage - jarScaleCurrentReading) <= 0.1)
     fulfillOrderStep4()
+
+  console.log "Saving previous weights for next iteration..."
+  bagScalePreviousReadings = bagScaleCurrentReading
+  jarScalePreviousReadings = jarScalePreviousReadings
 
 scalesLowerBoundBalances = ->
   bagWeight + jarWeight <= SCALE_RESOLUTION
@@ -239,3 +286,5 @@ commit = ->
     setTimeout($(location).attr('href', nextUrl), 500)
   else
     setTimeout($(location).attr('href', '/orders'), 500)
+
+this.WildCompass.orders = new OrdersController

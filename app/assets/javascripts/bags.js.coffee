@@ -45,7 +45,11 @@ this.WildCompass.Reweight = class Reweight
     this.step1()
     return
 
+# Instantiate a bag from rails model
 this.WildCompass.Bag = class Bag
+  @find: (id, fn) ->
+    $.getJSON "/bags/" + id + ".json", (data) -> fn(data)
+
   constructor: ->
     @reweight = new Reweight
 

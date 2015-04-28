@@ -13,6 +13,18 @@ module WildCompass
     config.time_zone = 'Eastern Time (US & Canada)'
 
     config.autoload_paths += Dir[[Rails.root, 'lib/**/'].join('/')]
+
+    # Enable Cross-Origin request
+    # config.middleware.insert_before 0, Rack::Cors, logger: Rails.logger do
+    #   allow do
+    #     origins '*'
+
+    #     resource '*',
+    #       headers: "any",
+    #       methods: [ :get, :post, :delete, :put, :options, :head ]
+
+    #   end
+    # end
     
   end
 end
