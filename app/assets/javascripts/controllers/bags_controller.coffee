@@ -28,7 +28,7 @@ this.WildCompass.BagsController = class BagsController
     readings = []
     
     console.log "Creating bag instance..."
-    @bag = new Bag
+    @bag = new WildCompass.Bag
 
     console.log "Starting reweight process..."
     @bag.startReweight()

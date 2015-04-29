@@ -3,7 +3,7 @@ this.WildCompass.Bag = class Bag
     $.getJSON "/bags/" + id + ".json", (data) -> fn(data)
 
   constructor: ->
-    @reweight = new Reweight
+    @reweight = new WildCompass.Reweight
 
   startReweight: ->
     @reweight.step1()

@@ -24367,7 +24367,7 @@ var saveAs = saveAs
       previous_reading = null;
       readings = [];
       console.log("Creating bag instance...");
-      this.bag = new Bag;
+      this.bag = new WildCompass.Bag;
       console.log("Starting reweight process...");
       this.bag.startReweight();
       console.log("Attaching scan callbacks...");
@@ -24478,364 +24478,7 @@ var saveAs = saveAs
 
 }).call(this);
 (function() {
-  var ScalesController;
-
-  this.WildCompass.ScalesController = ScalesController = (function() {
-    function ScalesController() {}
-
-    ScalesController.prototype.init = function() {
-      console.log('scale#init');
-      this.scale1 = new Scale(SCALE1_URL, SCALE1_SELECTOR);
-      this.scale2 = new Scale(SCALE2_URL, SCALE2_SELECTOR);
-    };
-
-    ScalesController.prototype.scale = function() {
-      console.log('scale#scale');
-      this.scale1.start();
-      this.scale2.start();
-    };
-
-    return ScalesController;
-
-  })();
-
-  this.WildCompass.scales = new ScalesController;
-
-}).call(this);
-(function() {
-  var ScansController;
-
-  this.WildCompass.ScansController = ScansController = (function() {
-    function ScansController() {}
-
-    ScansController.prototype.init = function() {
-      return console.log('scan#init');
-    };
-
-    ScansController.prototype.scan = function() {
-      console.log('scan#scan');
-      return $('#scan-form').submit(function(event) {
-        var scanner;
-        event.preventDefault();
-        scanner = new Scanner;
-        return scanner.scan();
-      });
-    };
-
-    return ScansController;
-
-  })();
-
-  this.WildCompass.scans = new ScansController;
-
-}).call(this);
-(function() {
-  var SeedsController;
-
-  this.WildCompass.SeedsController = SeedsController = (function() {
-    function SeedsController() {}
-
-    SeedsController.prototype.init = function() {
-      return console.log('seeds#init');
-    };
-
-    SeedsController.prototype.index = function() {
-      console.log('seeds#index');
-      return $.get('http://localhost:8080').fail(function() {
-        $('.reweight').prop('disabled', true);
-        return $('.reweight').removeAttr('href');
-      }).done(function() {
-        return $('.reweight').prop('disabled', false);
-      });
-    };
-
-    SeedsController.prototype.show = function() {
-      return console.log('seeds#show');
-    };
-
-    SeedsController.prototype["new"] = function() {
-      return console.log('seeds#new');
-    };
-
-    SeedsController.prototype.edit = function() {
-      return console.log('seeds#edit');
-    };
-
-    SeedsController.prototype.reweight = function() {
-      console.log('seeds#reweight');
-      $('#reweight-seed-scan').submit(function(event) {
-        event.preventDefault();
-        return scanSeed();
-      });
-      $('#reweight-seed-weight').submit(function(event) {
-        var message;
-        message = $('#reweight-seed-message');
-        if (message && message.val()) {
-
-        } else {
-          return event.preventDefault();
-        }
-      });
-      $('#reweight-seed-scale-1-readings').change(function(event) {
-        var weight;
-        weight = parseFloat($('#reweight-seed-scale-1-readings').val().trim());
-        reweightSeedStep3();
-        return $('#reweight-seed-scale-1-readings').val(weight);
-      });
-      return reweightSeedStep1();
-    };
-
-    return SeedsController;
-
-  })();
-
-  this.WildCompass.seeds = new SeedsController;
-
-}).call(this);
-(function() {
-  $(document).ready(function() {
-    return $('.filter').change(function() {
-      return $('#filter-form').submit();
-    });
-  });
-
-}).call(this);
-(function() {
-  var Relot;
-
-  $(document).ready(function() {
-    return $('#lot_container_ids').select2({});
-  });
-
-  Relot = (function() {
-    var readScale1, readScale2;
-
-    function Relot() {}
-
-    Relot.prototype.step1 = function() {
-      var autoRefreshScale1, autoRefreshScale2;
-      autoRefreshScale1 = setInterval(readScale1, 100);
-      return autoRefreshScale2 = setInterval(readScale2, 100);
-    };
-
-    readScale1 = function() {
-      return $.get('http://localhost:8080/data').done(function(data) {
-        $('#scale-display-1').val(data);
-        return $('#scale-display-1').change();
-      });
-    };
-
-    readScale2 = function() {
-      return $.get('http://localhost:8081/data').done(function(data) {
-        $('#scale-display-2').val(data);
-        return $('#scale-display-2').change();
-      });
-    };
-
-    Relot.prototype.step2 = function() {};
-
-    return Relot;
-
-  })();
-
-}).call(this);
-(function() {
-  var Bag;
-
-  this.WildCompass.Bag = Bag = (function() {
-    Bag.find = function(id, fn) {
-      return $.getJSON("/bags/" + id + ".json", function(data) {
-        return fn(data);
-      });
-    };
-
-    function Bag() {
-      this.reweight = new Reweight;
-    }
-
-    Bag.prototype.startReweight = function() {
-      this.reweight.step1();
-    };
-
-    Bag.prototype.scan = function() {
-      $.post($('#reweight-bag').data('href') + '.json', {
-        bag: {
-          scanned_hash: $('#reweight-bag').val()
-        }
-      }).done((function(_this) {
-        return function(data) {
-          if (data.bag.match) {
-            return _this.reweight.step2();
-          } else {
-            return _this.reweight.reset();
-          }
-        };
-      })(this));
-    };
-
-    return Bag;
-
-  })();
-
-}).call(this);
-(function() {
-  var Bin;
-
-  this.WildCompass.Bin = Bin = (function() {
-    function Bin() {}
-
-    Bin.find = function(id, fn) {
-      return $.getJSON("/bins/" + id + ".json", function(data) {
-        return fn(data);
-      });
-    };
-
-    return Bin;
-
-  })();
-
-}).call(this);
-(function() {
-  var Lot;
-
-  this.WildCompass.Lot = Lot = (function() {
-    function Lot() {}
-
-    Lot.find = function(id, fn) {
-      return $.getJSON("/lots/" + id + ".json", function(data) {
-        return fn(data);
-      });
-    };
-
-    Lot.prototype.scanBag = function() {
-      $.post($('#scanned_hash').data('href') + '.json', {
-        scanned_hash: $('#scanned_hash').val()
-      }).done(function(data) {
-        var bag;
-        bag = data;
-        if (data.lot_id === $('#lot').data('id')) {
-          $('#scanner').fadeOut(function() {
-            var process;
-            $('#scannable').fadeIn();
-            $('#relot-step-1').fadeIn();
-            process = new Relot;
-            return process.step1();
-          });
-          $('#box-description-title').text(data.name);
-          $('#box-description-id').text(data.name);
-          $.each(data, function(key, value) {
-            if (key === 'location') {
-              if (value === null) {
-                return $('#box-description-table').append("<tr><th>LOCATION : </th><td></td></tr>");
-              } else {
-                return $('#box-description-table').append("<tr><th>LOCATION : </th><td>" + value.name + "</td></tr>");
-              }
-            } else if (key === 'container_id') {
-              return $.get('/containers/' + value + '.json').done(function(data) {
-                return $('#box-description-table').append("<tr><th>CONTAINER : </th><td><a href=\"/containers/" + data.id + "\" >" + data.name + "</a></td></tr>");
-              });
-            } else if (key === 'bags_status_id') {
-              if (value === null) {
-                return $('#box-description-table').append("<tr><th>STATUS : </th><td></td></tr>");
-              } else {
-                return $('#box-description-table').append("<tr><th>STATUS : </th><td>" + value.name + "</td></tr>");
-              }
-            } else if (key === 'strain') {
-              return $('#box-description-table').append("<tr><th>" + key.replace(/_/g, ' ').toUpperCase() + " : </th><td>" + value.acronym + "</td></tr>");
-            } else if (key !== 'id' && key !== 'name' && key !== 'delta' && key !== 'delta_old' && key !== 'variance' && key !== 'archived' && key !== 'tare_weight' && key !== 'sent_to_lab' && key !== 'datamatrix_text' && key !== 'datamatrix_hash' && key !== 'origin' && key !== 'history_id' && key !== 'tested' && key !== 'packaged_at') {
-              return $('#box-description-table').append("<tr><th>" + key.replace(/_/g, ' ').toUpperCase() + " : </th><td>" + value + "</td></tr>");
-            }
-          });
-        } else {
-          alert('Bag is not in current lot!');
-        }
-      }).error(function(data) {
-        console.log(data);
-        if (data.status === 404) {
-          return alert("404 - Record Not Found");
-        } else if (data.status === 500) {
-          return alert("500 - Application Error");
-        } else {
-          return alert(data.status);
-        }
-      });
-    };
-
-    return Lot;
-
-  })();
-
-}).call(this);
-(function() {
-  var Order;
-
-  this.WildCompass.Order = Order = (function() {
-    function Order() {}
-
-    Order.find = function(id, fn) {
-      return $.getJSON("/orders/" + id + ".json", function(data) {
-        return fn(data);
-      });
-    };
-
-    return Order;
-
-  })();
-
-}).call(this);
-(function() {
-  var HUNDRED_MILLISECONDS, SCALE1_SELECTOR, SCALE1_URL, SCALE2_SELECTOR, SCALE2_URL, Scale,
-    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-  SCALE1_URL = "http://localhost:8080";
-
-  SCALE2_URL = "http://localhost:8081";
-
-  SCALE1_SELECTOR = "#scale-display-1";
-
-  SCALE2_SELECTOR = "#scale-display-2";
-
-  HUNDRED_MILLISECONDS = 100;
-
-  this.WildCompass.Scale = Scale = (function() {
-    Scale.find = function(id, fn) {
-      return $.getJSON("/scales/" + id + ".json", function(data) {
-        return fn(data);
-      });
-    };
-
-    function Scale(url, selector) {
-      this.url = url;
-      this.selector = selector;
-      this.read = bind(this.read, this);
-    }
-
-    Scale.prototype.start = function() {
-      this.autoRefresh = setInterval(this.read, HUNDRED_MILLISECONDS);
-    };
-
-    Scale.prototype.stop = function() {
-      clearInterval(this.autoRefresh);
-    };
-
-    Scale.prototype.read = function() {
-      console.log('Reading scale (' + this.url + ') data...');
-      $.get(this.url + "/data").done((function(_this) {
-        return function(data) {
-          console.log('Read: ' + data);
-          $(_this.selector).val(data);
-          $(_this.selector).change();
-        };
-      })(this));
-    };
-
-    return Scale;
-
-  })();
-
-}).call(this);
-(function() {
-  var OrdersController, SCALE_RESOLUTION, bagId, bagReadingsNotNull, bagScaleCurrentReadings, bagScalePreviousReadings, bagScaleReadings, bagWeight, commit, errorResetProcess, fulfillOrderReadScale1, fulfillOrderReadScale2, fulfillOrderScale1AutoRefresh, fulfillOrderScale2AutoRefresh, fulfillOrderStep1, fulfillOrderStep2, fulfillOrderStep3, fulfillOrderStep4, fulfillScanBag, fulfillScanJar, full, hasNext, inBounds, jarId, jarQuantity, jarReadingsNotNull, jarScaleCurrentReadings, jarScalePreviousReadings, jarScaleReadings, jarWeight, nextUrl, resetScale1, resetScale2, stable, transactionWeight, weightChanged;
+  var OrdersController, SCALE_RESOLUTION, bagId, bagReadingsNotNull, bagScaleCurrentReading, bagScalePreviousReading, bagScaleReadings, bagScaleText, bagWeight, buffersFull, commit, errorResetProcess, fulfillOrderReadScale1, fulfillOrderReadScale2, fulfillOrderScale1AutoRefresh, fulfillOrderScale2AutoRefresh, fulfillOrderStep1, fulfillOrderStep2, fulfillOrderStep3, fulfillOrderStep4, fulfillScanBag, fulfillScanJar, full, hasNext, inBounds, isStable, jarId, jarQuantity, jarReadingsNotNull, jarScaleCurrentReading, jarScalePreviousReading, jarScaleReadings, jarScaleText, jarWeight, nextUrl, notNull, resetScale1, resetScale2, stable, transactionWeight, weightChanged, withinBound;
 
   SCALE_RESOLUTION = 0.101;
 
@@ -24855,19 +24498,23 @@ var saveAs = saveAs
 
   nextUrl = null;
 
+  bagScaleText = null;
+
+  jarScaleText = null;
+
   bagScaleReadings = [];
 
   jarScaleReadings = [];
 
-  bagScalePreviousReadings = null;
+  bagScalePreviousReading = null;
 
-  jarScalePreviousReadings = null;
+  jarScalePreviousReading = null;
 
-  bagScaleCurrentReadings = null;
+  bagScaleCurrentReading = null;
 
-  jarScaleCurrentReadings = null;
+  jarScaleCurrentReading = null;
 
-  OrdersController = (function() {
+  this.WildCompass.OrdersController = OrdersController = (function() {
     function OrdersController() {}
 
     OrdersController.prototype.init = function() {
@@ -25053,7 +24700,7 @@ var saveAs = saveAs
   };
 
   weightChanged = function() {
-    var bagScaleCurrentReading, bagScaleText, bagWeightsAverage, bagWeightsSum, i, j, jarScaleCurrentReading, jarScaleText, jarWeightsAverage, jarWeightsSum, k, l, len, len1;
+    var bagWeightsAverage, bagWeightsSum, i, j, jarWeightsAverage, jarWeightsSum, k, l, len, len1;
     console.log("Fetching data from scale...");
     bagScaleText = $('#fulfill-order-scale-1-input').val().trim();
     jarScaleText = $('#fulfill-order-scale-2-input').val().trim();
@@ -25089,14 +24736,18 @@ var saveAs = saveAs
     console.log("Displaying buffer average...");
     console.log(bagWeightsAverage);
     console.log(jarWeightsAverage);
-    transactionWeight = jarWeight;
     console.log("Checking scale stability criteria...");
-    if (stable(bagScaleText) && stable(jarScaleText) && bagReadingsNotNull() && jarReadingsNotNull() && inBounds(bagScalePreviousReadings, bagScaleCurrentReading) && inBounds(jarScalePreviousReadings, jarScaleCurrentReading) && full(bagScaleReadings) && full(jarScaleReadings) && inBounds(bagWeightsAverage, bagScaleCurrentReading) && inBounds(jarWeightsAverage, jarScaleCurrentReading)) {
+    console.log("null? " + notNull());
+    console.log("stable? " + isStable());
+    console.log("bounds? " + inBounds());
+    console.log("buffers? " + buffersFull());
+    if (notNull() && isStable() && inBounds() && buffersFull()) {
+      transactionWeight = jarScaleCurrentReading;
       fulfillOrderStep4();
     }
     console.log("Saving previous weights for next iteration...");
-    bagScalePreviousReadings = bagScaleCurrentReading;
-    return jarScalePreviousReadings = jarScalePreviousReadings;
+    bagScalePreviousReading = bagScaleCurrentReading;
+    return jarScalePreviousReading = jarScalePreviousReading;
   };
 
   stable = function(reading) {
@@ -25107,16 +24758,33 @@ var saveAs = saveAs
     return buffer.length === 30;
   };
 
-  inBounds = function(a, b) {
-    return Math.abs(a - b) <= SCALE_RESOLUTION;
+  withinBound = function(a, b) {
+    console.log(Math.abs(Math.abs(a) - Math.abs(b)) <= SCALE_RESOLUTION);
+    return Math.abs(Math.abs(a) - Math.abs(b)) <= SCALE_RESOLUTION;
+  };
+
+  notNull = function() {
+    return bagReadingsNotNull() && jarReadingsNotNull();
+  };
+
+  buffersFull = function() {
+    return full(bagScaleReadings) && full(jarScaleReadings);
+  };
+
+  isStable = function() {
+    return stable(bagScaleText) && stable(jarScaleText);
+  };
+
+  inBounds = function() {
+    return withinBound(bagScalePreviousReading, bagScaleCurrentReading) && withinBound(jarScalePreviousReading, jarScaleCurrentReading) && withinBound(bagWeightsAverage, bagScaleCurrentReading) && withinBound(jarWeightsAverage, jarScaleCurrentReading);
   };
 
   bagReadingsNotNull = function() {
-    return (bagScaleCurrentReading !== null) && (bagScalePreviousReadings !== null);
+    return (bagScaleCurrentReading !== null) && (bagScalePreviousReading !== null);
   };
 
   jarReadingsNotNull = function() {
-    return (jarScaleCurrentReading !== null) && (jarScalePreviousReadings !== null);
+    return (jarScaleCurrentReading !== null) && (jarScalePreviousReading !== null);
   };
 
   commit = function() {
@@ -25135,6 +24803,363 @@ var saveAs = saveAs
   };
 
   this.WildCompass.orders = new OrdersController;
+
+}).call(this);
+(function() {
+  var ScalesController;
+
+  this.WildCompass.ScalesController = ScalesController = (function() {
+    function ScalesController() {}
+
+    ScalesController.prototype.init = function() {
+      console.log('scale#init');
+      this.scale1 = new Scale(SCALE1_URL, SCALE1_SELECTOR);
+      this.scale2 = new Scale(SCALE2_URL, SCALE2_SELECTOR);
+    };
+
+    ScalesController.prototype.scale = function() {
+      console.log('scale#scale');
+      this.scale1.start();
+      this.scale2.start();
+    };
+
+    return ScalesController;
+
+  })();
+
+  this.WildCompass.scales = new ScalesController;
+
+}).call(this);
+(function() {
+  var ScansController;
+
+  this.WildCompass.ScansController = ScansController = (function() {
+    function ScansController() {}
+
+    ScansController.prototype.init = function() {
+      return console.log('scan#init');
+    };
+
+    ScansController.prototype.scan = function() {
+      console.log('scan#scan');
+      return $('#scan-form').submit(function(event) {
+        var scanner;
+        event.preventDefault();
+        scanner = new Scanner;
+        return scanner.scan();
+      });
+    };
+
+    return ScansController;
+
+  })();
+
+  this.WildCompass.scans = new ScansController;
+
+}).call(this);
+(function() {
+  var SeedsController;
+
+  this.WildCompass.SeedsController = SeedsController = (function() {
+    function SeedsController() {}
+
+    SeedsController.prototype.init = function() {
+      return console.log('seeds#init');
+    };
+
+    SeedsController.prototype.index = function() {
+      console.log('seeds#index');
+      return $.get('http://localhost:8080').fail(function() {
+        $('.reweight').prop('disabled', true);
+        return $('.reweight').removeAttr('href');
+      }).done(function() {
+        return $('.reweight').prop('disabled', false);
+      });
+    };
+
+    SeedsController.prototype.show = function() {
+      return console.log('seeds#show');
+    };
+
+    SeedsController.prototype["new"] = function() {
+      return console.log('seeds#new');
+    };
+
+    SeedsController.prototype.edit = function() {
+      return console.log('seeds#edit');
+    };
+
+    SeedsController.prototype.reweight = function() {
+      console.log('seeds#reweight');
+      $('#reweight-seed-scan').submit(function(event) {
+        event.preventDefault();
+        return scanSeed();
+      });
+      $('#reweight-seed-weight').submit(function(event) {
+        var message;
+        message = $('#reweight-seed-message');
+        if (message && message.val()) {
+
+        } else {
+          return event.preventDefault();
+        }
+      });
+      $('#reweight-seed-scale-1-readings').change(function(event) {
+        var weight;
+        weight = parseFloat($('#reweight-seed-scale-1-readings').val().trim());
+        reweightSeedStep3();
+        return $('#reweight-seed-scale-1-readings').val(weight);
+      });
+      return reweightSeedStep1();
+    };
+
+    return SeedsController;
+
+  })();
+
+  this.WildCompass.seeds = new SeedsController;
+
+}).call(this);
+(function() {
+  $(document).ready(function() {
+    return $('.filter').change(function() {
+      return $('#filter-form').submit();
+    });
+  });
+
+}).call(this);
+(function() {
+  var Relot;
+
+  $(document).ready(function() {
+    return $('#lot_container_ids').select2({});
+  });
+
+  Relot = (function() {
+    var readScale1, readScale2;
+
+    function Relot() {}
+
+    Relot.prototype.step1 = function() {
+      var autoRefreshScale1, autoRefreshScale2;
+      autoRefreshScale1 = setInterval(readScale1, 100);
+      return autoRefreshScale2 = setInterval(readScale2, 100);
+    };
+
+    readScale1 = function() {
+      return $.get('http://localhost:8080/data').done(function(data) {
+        $('#scale-display-1').val(data);
+        return $('#scale-display-1').change();
+      });
+    };
+
+    readScale2 = function() {
+      return $.get('http://localhost:8081/data').done(function(data) {
+        $('#scale-display-2').val(data);
+        return $('#scale-display-2').change();
+      });
+    };
+
+    Relot.prototype.step2 = function() {};
+
+    return Relot;
+
+  })();
+
+}).call(this);
+(function() {
+  var Bag;
+
+  this.WildCompass.Bag = Bag = (function() {
+    Bag.find = function(id, fn) {
+      return $.getJSON("/bags/" + id + ".json", function(data) {
+        return fn(data);
+      });
+    };
+
+    function Bag() {
+      this.reweight = new WildCompass.Reweight;
+    }
+
+    Bag.prototype.startReweight = function() {
+      this.reweight.step1();
+    };
+
+    Bag.prototype.scan = function() {
+      $.post($('#reweight-bag').data('href') + '.json', {
+        bag: {
+          scanned_hash: $('#reweight-bag').val()
+        }
+      }).done((function(_this) {
+        return function(data) {
+          if (data.bag.match) {
+            return _this.reweight.step2();
+          } else {
+            return _this.reweight.reset();
+          }
+        };
+      })(this));
+    };
+
+    return Bag;
+
+  })();
+
+}).call(this);
+(function() {
+  var Bin;
+
+  this.WildCompass.Bin = Bin = (function() {
+    function Bin() {}
+
+    Bin.find = function(id, fn) {
+      return $.getJSON("/bins/" + id + ".json", function(data) {
+        return fn(data);
+      });
+    };
+
+    return Bin;
+
+  })();
+
+}).call(this);
+(function() {
+  var Lot;
+
+  this.WildCompass.Lot = Lot = (function() {
+    function Lot() {}
+
+    Lot.find = function(id, fn) {
+      return $.getJSON("/lots/" + id + ".json", function(data) {
+        return fn(data);
+      });
+    };
+
+    Lot.prototype.scanBag = function() {
+      $.post($('#scanned_hash').data('href') + '.json', {
+        scanned_hash: $('#scanned_hash').val()
+      }).done(function(data) {
+        var bag;
+        bag = data;
+        if (data.lot_id === $('#lot').data('id')) {
+          $('#scanner').fadeOut(function() {
+            var process;
+            $('#scannable').fadeIn();
+            $('#relot-step-1').fadeIn();
+            process = new Relot;
+            return process.step1();
+          });
+          $('#box-description-title').text(data.name);
+          $('#box-description-id').text(data.name);
+          $.each(data, function(key, value) {
+            if (key === 'location') {
+              if (value === null) {
+                return $('#box-description-table').append("<tr><th>LOCATION : </th><td></td></tr>");
+              } else {
+                return $('#box-description-table').append("<tr><th>LOCATION : </th><td>" + value.name + "</td></tr>");
+              }
+            } else if (key === 'container_id') {
+              return $.get('/containers/' + value + '.json').done(function(data) {
+                return $('#box-description-table').append("<tr><th>CONTAINER : </th><td><a href=\"/containers/" + data.id + "\" >" + data.name + "</a></td></tr>");
+              });
+            } else if (key === 'bags_status_id') {
+              if (value === null) {
+                return $('#box-description-table').append("<tr><th>STATUS : </th><td></td></tr>");
+              } else {
+                return $('#box-description-table').append("<tr><th>STATUS : </th><td>" + value.name + "</td></tr>");
+              }
+            } else if (key === 'strain') {
+              return $('#box-description-table').append("<tr><th>" + key.replace(/_/g, ' ').toUpperCase() + " : </th><td>" + value.acronym + "</td></tr>");
+            } else if (key !== 'id' && key !== 'name' && key !== 'delta' && key !== 'delta_old' && key !== 'variance' && key !== 'archived' && key !== 'tare_weight' && key !== 'sent_to_lab' && key !== 'datamatrix_text' && key !== 'datamatrix_hash' && key !== 'origin' && key !== 'history_id' && key !== 'tested' && key !== 'packaged_at') {
+              return $('#box-description-table').append("<tr><th>" + key.replace(/_/g, ' ').toUpperCase() + " : </th><td>" + value + "</td></tr>");
+            }
+          });
+        } else {
+          alert('Bag is not in current lot!');
+        }
+      }).error(function(data) {
+        console.log(data);
+        if (data.status === 404) {
+          return alert("404 - Record Not Found");
+        } else if (data.status === 500) {
+          return alert("500 - Application Error");
+        } else {
+          return alert(data.status);
+        }
+      });
+    };
+
+    return Lot;
+
+  })();
+
+}).call(this);
+(function() {
+  var Order;
+
+  this.WildCompass.Order = Order = (function() {
+    function Order() {}
+
+    Order.find = function(id, fn) {
+      return $.getJSON("/orders/" + id + ".json", function(data) {
+        return fn(data);
+      });
+    };
+
+    return Order;
+
+  })();
+
+}).call(this);
+(function() {
+  var HUNDRED_MILLISECONDS, SCALE1_SELECTOR, SCALE1_URL, SCALE2_SELECTOR, SCALE2_URL, Scale,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  SCALE1_URL = "http://localhost:8080";
+
+  SCALE2_URL = "http://localhost:8081";
+
+  SCALE1_SELECTOR = "#scale-display-1";
+
+  SCALE2_SELECTOR = "#scale-display-2";
+
+  HUNDRED_MILLISECONDS = 100;
+
+  this.WildCompass.Scale = Scale = (function() {
+    Scale.find = function(id, fn) {
+      return $.getJSON("/scales/" + id + ".json", function(data) {
+        return fn(data);
+      });
+    };
+
+    function Scale(url, selector) {
+      this.url = url;
+      this.selector = selector;
+      this.read = bind(this.read, this);
+    }
+
+    Scale.prototype.start = function() {
+      this.autoRefresh = setInterval(this.read, HUNDRED_MILLISECONDS);
+    };
+
+    Scale.prototype.stop = function() {
+      clearInterval(this.autoRefresh);
+    };
+
+    Scale.prototype.read = function() {
+      console.log('Reading scale (' + this.url + ') data...');
+      $.get(this.url + "/data").done((function(_this) {
+        return function(data) {
+          console.log('Read: ' + data);
+          $(_this.selector).val(data);
+          $(_this.selector).change();
+        };
+      })(this));
+    };
+
+    return Scale;
+
+  })();
 
 }).call(this);
 (function() {

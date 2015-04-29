@@ -1,7 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 SCALE_RESOLUTION = 0.101
 
 bagId = null
@@ -16,16 +12,22 @@ transactionWeight = null
 hasNext = null
 nextUrl = null
 
+bagScaleText = null
+jarScaleText = null
+
 bagScaleReadings = []
 jarScaleReadings = []
 
-bagScalePreviousReadings = null
-jarScalePreviousReadings = null
+bagScalePreviousReading = null
+jarScalePreviousReading = null
 
-bagScaleCurrentReadings = null
-jarScaleCurrentReadings = null
+bagScaleCurrentReading = null
+jarScaleCurrentReading = null
 
-class OrdersController
+bagWeightsAverage = null
+jarWeightsAverage = null
+
+this.WildCompass.OrdersController = class OrdersController
   init: ->
     console.log 'orders#init'
 
@@ -101,6 +103,7 @@ class OrdersController
 
     $('#fulfill-order-commit').click (event) ->
       event.preventDefault()
+      $('fulfill-order-commit').fadeOut()
       commit()
 
     fulfillOrderStep1()
@@ -207,10 +210,6 @@ fulfillOrderReadScale2 = ->
 
 # Detect a weight change on scales
 weightChanged = ->
-
-  # bagWeight = parseFloat($('#fulfill-order-scale-1-input').val().trim())
-  # jarWeight = parseFloat($('#fulfill-order-scale-2-input').val().trim())
-
   console.log "Fetching data from scale..."
   bagScaleText = $('#fulfill-order-scale-1-input').val().trim()
   jarScaleText = $('#fulfill-order-scale-2-input').val().trim()
@@ -246,16 +245,15 @@ weightChanged = ->
   console.log "Displaying buffer average..."
   console.log bagWeightsAverage
   console.log jarWeightsAverage
-
-  transactionWeight = jarWeight
   
   console.log "Checking scale stability criteria..."
-  if stable(bagScaleText) && stable(jarScaleText) && bagReadingsNotNull() && jarReadingsNotNull() && inBounds(bagScalePreviousReadings, bagScaleCurrentReading) && inBounds(jarScalePreviousReadings, jarScaleCurrentReading) && full(bagScaleReadings) && full(jarScaleReadings) && inBounds(bagWeightsAverage, bagScaleCurrentReading) && inBounds(jarWeightsAverage, jarScaleCurrentReading)
+  if notNull() && isStable() && buffersFull() && inBounds() && weightMatches()
+    transactionWeight = jarScaleCurrentReading
     fulfillOrderStep4()
 
   console.log "Saving previous weights for next iteration..."
-  bagScalePreviousReadings = bagScaleCurrentReading
-  jarScalePreviousReadings = jarScalePreviousReadings
+  bagScalePreviousReading = bagScaleCurrentReading
+  jarScalePreviousReading = jarScaleCurrentReading
 
 stable = (reading) ->
   !(reading.indexOf('?') >= 0)
@@ -263,14 +261,23 @@ stable = (reading) ->
 full = (buffer) ->
   buffer.length == 30
 
-inBounds = (a, b) ->
-  Math.abs(a - b) <= SCALE_RESOLUTION
+withinBound = (a, b) -> Math.abs(Math.abs(a) - Math.abs(b)) <= SCALE_RESOLUTION
 
-bagReadingsNotNull = ->
-  (bagScaleCurrentReading != null) && (bagScalePreviousReadings != null)
+match = (a, b) -> Math.abs(a + b) <= SCALE_RESOLUTION
 
-jarReadingsNotNull = ->
-  (jarScaleCurrentReading != null) && (jarScalePreviousReadings != null)
+weightMatches = -> match(jarScaleCurrentReading, bagScaleCurrentReading) && match(jarWeightsAverage, bagWeightsAverage) && match(jarScalePreviousReading, bagScalePreviousReading) && match(jarScalePreviousReading, bagScaleCurrentReading) && match(jarScaleCurrentReading, bagScalePreviousReading)
+
+notNull = -> bagReadingsNotNull() && jarReadingsNotNull()
+
+buffersFull = -> full(bagScaleReadings) && full(jarScaleReadings)
+
+isStable = -> stable(bagScaleText) && stable(jarScaleText) 
+
+inBounds = -> withinBound(bagScalePreviousReading, bagScaleCurrentReading) && withinBound(jarScalePreviousReading, jarScaleCurrentReading) && withinBound(bagWeightsAverage, bagScaleCurrentReading) && withinBound(jarWeightsAverage, jarScaleCurrentReading)
+
+bagReadingsNotNull = -> (bagScaleCurrentReading != null) && (bagScalePreviousReading != null)
+
+jarReadingsNotNull = -> (jarScaleCurrentReading != null) && (jarScalePreviousReading != null)
 
 commit = ->
   $.post(
