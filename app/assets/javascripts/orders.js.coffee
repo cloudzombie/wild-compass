@@ -255,24 +255,21 @@ weightChanged = ->
   transactionWeight = jarWeight
   
   console.log "Checking scale stability criteria..."
-  if !(bagScaleText.indexOf('?') >= 0) && !(jarScaleText.indexOf('?') >= 0) && (bagScaleCurrentReading != null) && (bagScalePreviousReadings != null) && (jarScaleCurrentReading != null) && (jarScalePreviousReadings != null) && (Math.abs(bagScalePreviousReadings - bagScaleCurrentReading) <= 0.1) && (Math.abs(jarScalePreviousReadings - jarScaleCurrentReading) <= 0.1) && (bagScaleReadings.length == 30) && (jarScaleReadings.length == 30) && (Math.abs(bagWeightsAverage - bagScaleCurrentReading) <= 0.1) && (Math.abs(jarWeightsAverage - jarScaleCurrentReading) <= 0.1)
+  if stable(bagScaleText) && stable(jarScaleText) && (bagScaleCurrentReading != null) && (bagScalePreviousReadings != null) && (jarScaleCurrentReading != null) && (jarScalePreviousReadings != null) && inBounds(bagScalePreviousReadings, bagScaleCurrentReading) && inBounds(jarScalePreviousReadings, jarScaleCurrentReading) && full(bagScaleReadings) && full(jarScaleReadings) && inBounds(bagWeightsAverage, bagScaleCurrentReading) && inBounds(jarWeightsAverage, jarScaleCurrentReading)
     fulfillOrderStep4()
 
   console.log "Saving previous weights for next iteration..."
   bagScalePreviousReadings = bagScaleCurrentReading
   jarScalePreviousReadings = jarScalePreviousReadings
 
-scalesLowerBoundBalances = ->
-  bagWeight + jarWeight <= SCALE_RESOLUTION
+stable = (reading) ->
+  !(reading.indexOf('?') >= 0)
 
-scalesHigherBoundBalances = ->
-  bagWeight + jarWeight >= -SCALE_RESOLUTION
+full = (buffer) ->
+  buffer.length == 30
 
-jarLowerBoundBalances = ->
-  jarQuantity - jarWeight <= SCALE_RESOLUTION
-
-jarHigherBoundBalances = ->
-  jarQuantity - jarWeight >= -SCALE_RESOLUTION
+inBounds = (a, b) ->
+  Math.abs(a - b) <= SCALE_RESOLUTION
 
 commit = ->
   $.post(
