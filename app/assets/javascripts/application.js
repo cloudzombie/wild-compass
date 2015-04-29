@@ -28,28 +28,3 @@
 //= require_tree .
 //= require_self
 //= require select2
-
-(function($, undefined) {
-  $(function() {
-    var $body = $("body")
-    var controller = $body.data("controller").replace(/\//g, "_");
-    var action = $body.data("action");
-
-    var activeController = WildCompass[controller];
-
-    if (activeController !== undefined) {
-      if ($.isFunction(activeController.init)) {
-        activeController.init();
-      }
-
-      if ($.isFunction(activeController[action])) {
-        activeController[action]();
-      }
-    }
-  });
-})(jQuery);
-
-// Turn off autocomplete globally
-$(document).ready(function() {
-  $("input:text").attr("autocomplete", "off");
-});
