@@ -1,11 +1,12 @@
-require 'wild/compass/product'
-
 class OrderLine < ActiveRecord::Base
 
   MINIMUM_ORDER_QUANTITY =   0.0
   MAXIMUM_ORDER_QUANTITY = 150.0
 
 
+
+  include ActiveModel::Validations
+  validates_with AvailabilityValidator
 
   ### Order
 
