@@ -1,26 +1,28 @@
 <div class="panel panel-primary">
 
-  <div id ="fulfill-order"
+  <!-- <div id ="fulfill-order"
        style="display: hidden;"
-       data-href="<%= fulfill_order_path(order) unless order.nil? %>">
+       data-href="<%# fulfill_order_path(order) unless order.nil? %>">
   </div>
 
   <div id="fulfill-order-bag"
        style="display: hidden;"
-       data-id="<%= @bag.id unless @bag.nil? %>">
+       data-id="<%# @bag.id unless @bag.nil? %>">
   </div>
 
   <div id="fulfill-order-jar"
        style="display: hidden;"
-       data-id="<%= @jar.id unless @jar.nil? %>"
-       data-quantity="<%= @jar.amount_to_fill unless @jar.nil? %>">
+       data-id="<%# @jar.id unless @jar.nil? %>"
+       data-quantity="<%# @jar.amount_to_fill unless @jar.nil? %>">
   </div>
 
   <div id="fulfill-order-next"
        style="display: hidden;"
-       data-next="<%= @jar.next ? true : false %>"
-       data-next-url="<%= fulfill_order_path(@jar.order) unless @jar.order.nil? %>">
-  </div>
+       data-next="<%# @jar.next ? true : false %>"
+       data-next-url="<%# fulfill_order_path(@jar.order) unless @jar.order.nil? %>">
+  </div> -->
+
+  <div id="order" data-id="<%= order.id %>" style="display: hidden;"></div>
 
   <div class="panel-heading">
     <h3 class="panel-title"><strong>Order Fulfillment</strong></h3>

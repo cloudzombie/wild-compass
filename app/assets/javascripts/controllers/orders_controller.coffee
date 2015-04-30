@@ -34,6 +34,16 @@ this.WildCompass.OrdersController = class OrdersController
   index: ->
     console.log 'orders#index'
 
+    # Toggle disabled on Fulfill Button if scale 1 responds
+    $.get 'http://localhost:8080'
+      #.done -> $(".fulfill").prop('disabled', false).andSelf().fadeIn()
+      .fail -> $(".fulfill").prop('disabled', true).andSelf().removeAttr('href').andSelf().fadeOut()
+
+    # Toggle disabled on fulfill Button if scale 2 responds
+    $.get 'http://localhost:8081'
+      #.done -> $(".fulfill").prop('disabled', false).andSelf().fadeIn()
+      .fail -> $(".fulfill").prop('disabled', true).andSelf().removeAttr('href').andSelf().fadeOut()
+
   show: ->
     console.log 'orders#show'
 
@@ -46,66 +56,40 @@ this.WildCompass.OrdersController = class OrdersController
   fulfill: ->
     console.log 'orders#fulfill'
 
-    bagId = $('#fulfill-order-bag').data('id')
-    jarId = $('#fulfill-order-jar').data('id')
-    jarQuantity = parseFloat($('#fulfill-order-jar').data('quantity'))
+    console.log "Fetching order by id..."
+    WildCompass.Order.find $('#order').data('id'), (order) ->
+      $.each order.order_lines, (i, line) ->
+        $.each line.jars, (j, jar) ->
+          console.log jar
+          jarId = parseInt(jar.id)
+          jarQuantity = parseFloat(jar.ordered_amount)
+          bagId = jar.incoming_bags[0].id
+          next = jar.next
+          hasNext = Boolean(jar.next)
+          console.log jarId, jarQuantity, bagId, hasNext
 
-    hasNext = Boolean($('#fulfill-order-next').data('next'))
-    nextUrl = $('#fulfill-order-next').data('next-url')
+    # Prevent default actions on scales text inputs
+    # It serves as read only display for weights
+    $('#fulfill-order-scale-1-input').submit (event) -> event.preventDefault()
+    $('#fulfill-order-scale-2-input').submit (event) -> event.preventDefault()
 
-    # Toggle disabled on Fulfill Button if scale 1 responds
-    $.get 'http://localhost:8080'
-      .done ->
-        $(".fulfill").prop('disabled', false)
-        # $(".fulfill").attr('href', this.data('href'))
-      .fail ->
-        $(".fulfill").prop('disabled', true)
-        $(".fulfill").removeAttr('href')
+    # Prevent default actions on scans text inputs
+    $('#fulfill-order-scan-jar-form').submit (event) -> event.preventDefault()
+    $('#fulfill-order-scan-bag-form').submit (event) -> event.preventDefault()
+      #fulfillScanJar()
+      #fulfillScanBag()
 
-    # Toggle disabled on fulfill Button if scale 2 responds
-    $.get 'http://localhost:8081'
-      .done ->
-        $(".fulfill").prop('disabled', false)
-        # $(".fulfill").attr('href', this.data('href'))
-      .fail ->
-        $(".fulfill").prop('disabled', true)
-        $(".fulfill").removeAttr('href')
+    # Notify change handler
+    $('#fulfill-order-scale-1-input').change (event) -> weightChanged()
+    $('#fulfill-order-scale-2-input').change (event) -> weightChanged()
 
-    # Zero scale 1
-    $("#zero-scale-1-btn").click (event) ->
-      event.preventDefault()
-      resetScale1()
-
-    # Zero scale 2
-    $("#zero-scale-2-btn").click (event) ->
-      event.preventDefault()
-      resetScale2()
-
-    $('#fulfill-order-scale-1-input').submit (event) ->
-      event.preventDefault()
-
-    $('#fulfill-order-scale-2-input').submit (event) ->
-      event.preventDefault()
-
-    $('#fulfill-order-scan-jar-form').submit (event) ->
-      event.preventDefault()
-      fulfillScanJar()
-
-    $('#fulfill-order-scan-bag-form').submit (event) ->
-      event.preventDefault()
-      fulfillScanBag()
-
-    $('#fulfill-order-scale-1-input').change (event) ->
-      weightChanged()
-
-    $('#fulfill-order-scale-2-input').change (event) ->
-      weightChanged()
-
+    # Intercept commit action and handle it with commit function
     $('#fulfill-order-commit').click (event) ->
       event.preventDefault()
       $('fulfill-order-commit').fadeOut()
       commit()
 
+    # Begin fulfill
     fulfillOrderStep1()
 
 fulfillOrderScale1AutoRefresh = null
@@ -247,7 +231,7 @@ weightChanged = ->
   console.log jarWeightsAverage
   
   console.log "Checking scale stability criteria..."
-  if notNull() && isStable() && buffersFull() && inBounds() && weightMatches()
+  if notNull() && isStable() && buffersFull() && inBounds() && weightMatches() && transactionMatches()
     transactionWeight = jarScaleCurrentReading
     fulfillOrderStep4()
 
@@ -260,6 +244,8 @@ stable = (reading) ->
 
 full = (buffer) ->
   buffer.length == 30
+
+transactionMatches = -> withinBound(jarScaleCurrentReading, jarQuantity) && withinBound(bagScaleCurrentReading, jarQuantity)
 
 withinBound = (a, b) -> Math.abs(Math.abs(a) - Math.abs(b)) <= SCALE_RESOLUTION
 
@@ -280,16 +266,10 @@ bagReadingsNotNull = -> (bagScaleCurrentReading != null) && (bagScalePreviousRea
 jarReadingsNotNull = -> (jarScaleCurrentReading != null) && (jarScalePreviousReading != null)
 
 commit = ->
-  $.post(
-    $('#fulfill-order').data('href'),
-    order:
-      bag: bagId
-      jar: jarId
-      weight: transactionWeight
-  )
-  if hasNext
-    setTimeout($(location).attr('href', nextUrl), 500)
-  else
-    setTimeout($(location).attr('href', '/orders'), 500)
+  $.post $('#fulfill-order').data('href'), { order: { bag: bagId, jar: jarId, weight: transactionWeight }}, (data) ->
+    if hasNext
+      setTimeout($(location).attr('href', nextUrl), 500)
+    else
+      setTimeout($(location).attr('href', '/orders'), 500)
 
 this.WildCompass.orders = new OrdersController

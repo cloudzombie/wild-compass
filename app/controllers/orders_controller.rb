@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
   def show
     respond_with(order) do |format|
       format.html
-      format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
+      format.json { render json: order, include: [ order_lines: { include: [ jars: { methods: [ :next ], include: [ :lot, :incoming_bags ] } ] } ] }
     end
   end
 
