@@ -26,8 +26,11 @@ class OrdersController < ApplicationController
 
   respond_to :html, :xml, :json
 
-  def new
-    order.order_lines.build
+  rescue_from Wild::Compass::Product::ProductUnavailable do |e|
+    respond_to do |format|
+      format.html { redirect_to orders_path, alert: "ProductUnavailable: #{e.message}" }
+      format.json { render json: { exception: "ProductUnavailable: #{e.message}" }}
+    end
   end
 
   def show
@@ -39,10 +42,16 @@ class OrdersController < ApplicationController
 
   def create
     self.order = Order.new(order_params)
-    order.save
-    respond_with(order) do |format|
-      format.html { redirect_to order, notice: 'Order successfully created.' }
-      format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
+    if order.save
+      respond_with(order) do |format|
+        format.html { redirect_to order, notice: 'Order successfully created.' }
+        format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
+      end
+    else
+      respond_with(order) do |format|
+        format.html { render :new, notice: 'Order not successfully created.' }
+        format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
+      end
     end
   end
 
