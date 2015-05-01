@@ -1,42 +1,45 @@
 # default scale url
-SCALE1_URL = "http://localhost:8080"
-
-# default reweight scale selector
+SCALE1_URL     = "http://localhost:8080"
+STEP1_SELECTOR = "#reweight-bag-step-1"
+STEP2_SELECTOR = "#reweight-bag-step-2"
+STEP3_SELECTOR = "#reweight-bag-step-3"
+SCALE_SELECTOR = "#reweight-bag-scale-display"
 REWEIGHT_SELECTOR = "#reweight-bag-scale-1-readings"
+TARE_SELECTOR = '#reweight-bag-tare-weight'
 
 this.WildCompass.Reweight = class Reweight
   constructor: ->
     # Instantiate a scale
     @scale = new WildCompass.Scale(SCALE1_URL, REWEIGHT_SELECTOR)
+    $(STEP1_SELECTOR).show()
+    $(STEP2_SELECTOR).hide()
+    $(STEP3_SELECTOR).hide()
 
   # Step 1 of reweight process
   step1: ->
-    $('#reweight-bag-step-1').show()
-    $('#reweight-bag-step-2').hide()
-    $('#reweight-bag-step-3').hide()
-    $('#reweight-bag-scale-display').hide()
+    $(STEP2_SELECTOR).fadeOut -> $(STEP1_SELECTOR).fadeIn()
+    $(STEP3_SELECTOR).fadeOut -> $(STEP1_SELECTOR).fadeIn()
+    $(SCALE_SELECTOR).fadeOut -> $(STEP1_SELECTOR).fadeIn()
     @scale.stop()
-    return
 
   # Step 2 of reweight process
   step2: ->
-    $('#reweight-bag-step-1').hide()
-    $('#reweight-bag-step-2').show()
-    $('#reweight-bag-step-3').hide()
-    $('#reweight-bag-scale-display').show()
-    @scale.start()
-    return
+    $(STEP1_SELECTOR).fadeOut ->
+      $(STEP2_SELECTOR).fadeIn()
+      $(SCALE_SELECTOR).fadeIn()
+    $(STEP3_SELECTOR).fadeOut ->
+      $(STEP2_SELECTOR).fadeIn()
+      $(SCALE_SELECTOR).fadeIn()
+    @scale.start ->
+      $(REWEIGHT_SELECTOR).val(data)
+      $(REWEIGHT_SELECTOR).change()
 
   # Step 3 of reweight process
   step3: ->
-    $('#reweight-bag-step-1').hide()
-    $('#reweight-bag-step-2').hide()
-    $('#reweight-bag-step-3').show()
-    $('#reweight-bag-tare-weight').focus()
+    $(STEP1_SELECTOR).fadeOut -> $(STEP3_SELECTOR).fadeIn()
+    $(STEP2_SELECTOR).fadeOut -> $(STEP3_SELECTOR).fadeIn()
+    $(TARE_SELECTOR).focus()
     @scale.stop()
-    return
 
   # Reset Reweight Process
-  reset: ->
-    this.step1()
-    return
+  reset: -> @::step1

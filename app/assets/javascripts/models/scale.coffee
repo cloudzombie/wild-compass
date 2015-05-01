@@ -8,7 +8,7 @@ SCALE2_SELECTOR = "#scale-display-2"
 
 # Interval time
 HUNDRED_MILLISECONDS = 100
- 
+
 # Reusable code for handling scales
 this.WildCompass.Scale = class Scale
   @find: (id, fn) -> $.getJSON "/scales/" + id + ".json", (data) -> fn(data)
@@ -16,21 +16,17 @@ this.WildCompass.Scale = class Scale
   constructor: (@url, @selector) ->
 
   # starts reading data from scale
-  start: ->
-    @autoRefresh = setInterval(this.read, HUNDRED_MILLISECONDS)
-    return
+  start: (fn) -> @autoRefresh = setInterval @read(fn), HUNDRED_MILLISECONDS
 
   # stops reading data from scale
-  stop: ->
-    clearInterval(@autoRefresh)
-    return
+  stop: -> clearInterval @autoRefresh
 
   # Read data callback
-  read: =>
-    console.log 'Reading scale (' + @url + ') data...'
-    $.get(@url + "/data").done (data) =>
-      console.log 'Read: ' + data
-      $(@selector).val(data)
-      $(@selector).change()
-      return
-    return
+  read: (fn) ->
+    $.get @url + "/data", (data) ->
+      fn(data)
+        
+
+  zero: -> $.get @url + "/zero"
+
+  reset: -> @::zero

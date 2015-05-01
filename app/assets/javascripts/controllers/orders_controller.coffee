@@ -76,16 +76,16 @@ this.WildCompass.OrdersController = class OrdersController
 
     fulfillJar = (jar_id, jar_quantity, bag_id) ->
       fulfillOrderStep1()
-      $('#fulfill-order-scan-jar-form').submit (event) -> fulfillScanJar(jar_id)
-      $('#fulfill-order-scan-bag-form').submit (event) -> fulfillScanBag(bag_id)
+      $('#fulfill-order-scan-jar-form').submit (event) -> fulfillScanJar(jar_id, jar_quantity, bag_id)
 
     # Scan a jar's datamatrix
-    fulfillScanJar = (id) ->
+    fulfillScanJar = (id, quantity, bag_id) ->
       $.post "/jars/" + id + "/scan.json", { jar: { scanned_hash: $('#fulfill-order-scan-jar-input').val() }}
         .done (data) ->
           if data.jar.match
             WildCompass.Logger.debug "Jar matches proceeding to step 2..."
             fulfillOrderStep2()
+            $('#fulfill-order-scan-bag-form').submit (event) -> fulfillScanBag(bag_id)
     
     # Scan a bag's datamatrix
     fulfillScanBag = (id) ->
@@ -173,21 +173,22 @@ fulfillOrderStep3 = ->
   fulfillOrderScale2AutoRefresh = setInterval fulfillOrderReadScale2, 100
 
 fulfillOrderStep4 = ->
+  # Hide other steps
+  $('#step-1').hide()
+  $('#step-2').hide()
+
   # Display UI
-  $('#step-1').fadeOut()
-  $('#step-2').fadeOut()
-  $('#step-3').fadeOut()
-  $('#step-4').fadeIn()
-  $('.scale-display').fadeIn()
+  $('#step-3').fadeOut ->
+    $('#step-4').fadeIn()
+    $('.scale-display').fadeIn()
+
   # Stop reading
   clearInterval(fulfillOrderScale1AutoRefresh)
   clearInterval(fulfillOrderScale2AutoRefresh)
 
-resetScale1 = ->
-  $.get('http://localhost:8080/zero')
+resetScale1 = -> $.get('http://localhost:8080/zero')
 
-resetScale2 = ->
-  $.get('http://localhost:8081/zero')
+resetScale2 = -> $.get('http://localhost:8081/zero')
 
 # Read data from scale 1
 fulfillOrderReadScale1 = ->
