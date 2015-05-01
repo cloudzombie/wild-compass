@@ -84,7 +84,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def destroy 
+  def destroy
     order.destroy
     respond_with(order)
   end

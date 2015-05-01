@@ -1,5 +1,6 @@
 # Use as a namespace
 this.WildCompass ?= {}
+this.WildCompass.env ?= {}
 
 (($) ->
   $ ->

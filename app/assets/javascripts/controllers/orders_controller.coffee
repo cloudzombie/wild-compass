@@ -1,5 +1,3 @@
-SCALE_RESOLUTION = 0.101
-
 bagId = null
 bagWeight = null
 
@@ -27,46 +25,75 @@ jarScaleCurrentReading = null
 bagWeightsAverage = null
 jarWeightsAverage = null
 
+BAG_SCALE_URL = 'http://localhost:8080'
+JAR_SCALE_URL = 'http://localhost:8081'
+
+SCALE_RESOLUTION = 0.101
+
 this.WildCompass.OrdersController = class OrdersController
   init: ->
-    console.log 'orders#init'
+    WildCompass.Logger.info "Processing Javascript by OrdersController#init"
 
   index: ->
-    console.log 'orders#index'
+    WildCompass.Logger.info "Processing Javascript by OrdersController#index"
 
-    # Toggle disabled on Fulfill Button if scale 1 responds
-    $.get 'http://localhost:8080'
-      #.done -> $(".fulfill").prop('disabled', false).andSelf().fadeIn()
-      .fail -> $(".fulfill").prop('disabled', true).andSelf().removeAttr('href').andSelf().fadeOut()
+    # Toggle fulfill button if scales respond
+    setInterval( ->
+      $.get BAG_SCALE_URL
+        .done -> $(".fulfill").each -> $(this).prop('disabled', false).andSelf().prop('href', $(this).data('href')).andSelf().fadeIn()
+        .fail -> $(".fulfill").each -> $(this).prop('disabled', true).andSelf().prop('href', '#').andSelf().fadeOut()
 
-    # Toggle disabled on fulfill Button if scale 2 responds
-    $.get 'http://localhost:8081'
-      #.done -> $(".fulfill").prop('disabled', false).andSelf().fadeIn()
-      .fail -> $(".fulfill").prop('disabled', true).andSelf().removeAttr('href').andSelf().fadeOut()
+      # Toggle disabled on fulfill Button if scale 2 responds
+      $.get JAR_SCALE_URL
+        .done -> $(".fulfill").each -> $(this).prop('disabled', false).andSelf().prop('href', $(this).data('href')).andSelf().fadeIn()
+        .fail -> $(".fulfill").each -> $(this).prop('disabled', true).andSelf().prop('href', '#').andSelf().fadeOut()
+    , 1000)
 
   show: ->
-    console.log 'orders#show'
+    WildCompass.Logger.info "Processing Javascript by OrdersController#show"
 
   new: ->
-    console.log 'orders#new'
+    WildCompass.Logger.info "Processing Javascript by OrdersController#new"
 
   edit: ->
-    console.log 'orders#edit'
+    WildCompass.Logger.info "Processing Javascript by OrdersController#edit"
 
   fulfill: ->
-    console.log 'orders#fulfill'
+    WildCompass.Logger.info "Processing Javascript by OrdersController#fulfill"
+    WildCompass.Logger.debug 'Displaying interface...'
+    $('#step-1').show()
+    $('#step-2').hide()
+    $('#step-3').hide()
+    $('#step-4').hide()
+    $('.scale-display').hide()
+    $('#fulfill-order-scan-jar-input').focus()
 
-    console.log "Fetching order by id..."
+    WildCompass.Logger.debug "Fetching order by id..."
     WildCompass.Order.find $('#order').data('id'), (order) ->
       $.each order.order_lines, (i, line) ->
         $.each line.jars, (j, jar) ->
-          console.log jar
-          jarId = parseInt(jar.id)
-          jarQuantity = parseFloat(jar.ordered_amount)
-          bagId = jar.incoming_bags[0].id
-          next = jar.next
-          hasNext = Boolean(jar.next)
-          console.log jarId, jarQuantity, bagId, hasNext
+          fulfillJar parseInt(jar.id), parseFloat(jar.ordered_amount), jar.incoming_bags[0].id
+
+    fulfillJar = (jar_id, jar_quantity, bag_id) ->
+      fulfillOrderStep1()
+      $('#fulfill-order-scan-jar-form').submit (event) -> fulfillScanJar(jar_id)
+      $('#fulfill-order-scan-bag-form').submit (event) -> fulfillScanBag(bag_id)
+
+    # Scan a jar's datamatrix
+    fulfillScanJar = (id) ->
+      $.post "/jars/" + id + "/scan.json", { jar: { scanned_hash: $('#fulfill-order-scan-jar-input').val() }}
+        .done (data) ->
+          if data.jar.match
+            WildCompass.Logger.debug "Jar matches proceeding to step 2..."
+            fulfillOrderStep2()
+    
+    # Scan a bag's datamatrix
+    fulfillScanBag = (id) ->
+      $.post "/bags/" + id + "/scan.json", { bag: { scanned_hash: $('#fulfill-order-scan-bag-input').val() }}
+        .done (data) ->
+          if data.bag.match
+            WildCompass.Logger.debug "Bag matches proceeding to step 3..."
+            fulfillOrderStep3()
 
     # Prevent default actions on scales text inputs
     # It serves as read only display for weights
@@ -76,8 +103,6 @@ this.WildCompass.OrdersController = class OrdersController
     # Prevent default actions on scans text inputs
     $('#fulfill-order-scan-jar-form').submit (event) -> event.preventDefault()
     $('#fulfill-order-scan-bag-form').submit (event) -> event.preventDefault()
-      #fulfillScanJar()
-      #fulfillScanBag()
 
     # Notify change handler
     $('#fulfill-order-scale-1-input').change (event) -> weightChanged()
@@ -89,9 +114,6 @@ this.WildCompass.OrdersController = class OrdersController
       $('fulfill-order-commit').fadeOut()
       commit()
 
-    # Begin fulfill
-    fulfillOrderStep1()
-
 fulfillOrderScale1AutoRefresh = null
 fulfillOrderScale2AutoRefresh = null
 
@@ -99,86 +121,73 @@ fulfillOrderStep1 = ->
   # Tare scales
   resetScale1()
   resetScale2()
-  # Display UI
-  $('#step-1').show()
+  
+  # Hide other steps
   $('#step-2').hide()
   $('#step-3').hide()
   $('#step-4').hide()
   $('.scale-display').hide()
+  
+  # Display UI
+  setTimeout( ->
+    $('#step-1').fadeIn()
+  , 500)
+
   $('#fulfill-order-scan-jar-input').focus()
+
   # Stop reading
   clearInterval(fulfillOrderScale1AutoRefresh)
   clearInterval(fulfillOrderScale2AutoRefresh)
 
 fulfillOrderStep2 = ->
   # Display UI
-  $('#step-1').hide()
-  $('#step-2').show()
+  $('#step-1').fadeOut -> $('#step-2').fadeIn()
+
+  # Hide other steps
   $('#step-3').hide()
   $('#step-4').hide()
   $('.scale-display').hide()
+
   $('#fulfill-order-scan-bag-input').focus()
+
   # Stop reading
   clearInterval(fulfillOrderScale1AutoRefresh)
   clearInterval(fulfillOrderScale2AutoRefresh)
 
 fulfillOrderStep3 = ->
-  # Display UI
+  # Hide other steps
   $('#step-1').hide()
-  $('#step-2').hide()
-  $('#step-3').show()
   $('#step-4').hide()
-  $('.scale-display').show()
+
+  # Display UI
+  $('#step-2').fadeOut ->
+    $('#step-3').fadeIn()
+    $('.scale-display').fadeIn()
+
   # Tare scales
   resetScale1()
   resetScale2()
+
   # Start reading
   fulfillOrderScale1AutoRefresh = setInterval fulfillOrderReadScale1, 100
   fulfillOrderScale2AutoRefresh = setInterval fulfillOrderReadScale2, 100
 
 fulfillOrderStep4 = ->
   # Display UI
-  $('#step-1').hide()
-  $('#step-2').hide()
-  $('#step-3').hide()
-  $('#step-4').show()
-  $('.scale-display').show()
+  $('#step-1').fadeOut()
+  $('#step-2').fadeOut()
+  $('#step-3').fadeOut()
+  $('#step-4').fadeIn()
+  $('.scale-display').fadeIn()
   # Stop reading
   clearInterval(fulfillOrderScale1AutoRefresh)
   clearInterval(fulfillOrderScale2AutoRefresh)
-
-errorResetProcess = ->
-  fulfillOrderStep1()
 
 resetScale1 = ->
   $.get('http://localhost:8080/zero')
 
 resetScale2 = ->
   $.get('http://localhost:8081/zero')
-
-# Scan a bag's datamatrix
-fulfillScanBag = ->
-  $.post(
-    $('#fulfill-order-scan-bag-input').data('href') + '.json',
-    bag:
-      scanned_hash: $('#fulfill-order-scan-bag-input').val()
-  ).done (data) ->
-    if data.bag.match
-      fulfillOrderStep3()
-    else
-      errorResetProcess()
-
-# Scan a jar's datamatrix
-fulfillScanJar = ->
-  $.post(
-    $('#fulfill-order-scan-jar-input').data('href') + '.json',
-    jar:
-      scanned_hash: $('#fulfill-order-scan-jar-input').val()
-    ).done (data) ->
-      if data.jar.match
-        fulfillOrderStep2()
-      else
-        errorResetProcess()
 
 # Read data from scale 1
 fulfillOrderReadScale1 = ->
@@ -194,29 +203,29 @@ fulfillOrderReadScale2 = ->
 
 # Detect a weight change on scales
 weightChanged = ->
-  console.log "Fetching data from scale..."
+  # WildCompass.Logger.debug "Fetching data from scale..."
   bagScaleText = $('#fulfill-order-scale-1-input').val().trim()
   jarScaleText = $('#fulfill-order-scale-2-input').val().trim()
   
-  console.log "Parsing weights..."
+  # WildCompass.Logger.debug "Parsing weights..."
   bagScaleCurrentReading = parseFloat(bagScaleText)
   jarScaleCurrentReading = parseFloat(jarScaleText)
 
-  console.log "Pushing weights in buffer..."
+  # WildCompass.Logger.debug "Pushing weights in buffer..."
   bagScaleReadings.push bagScaleCurrentReading
   jarScaleReadings.push jarScaleCurrentReading
 
-  console.log "Removing oldest buffer values..."
+  # WildCompass.Logger.debug "Removing oldest buffer values..."
   if bagScaleReadings.length > 30
     bagScaleReadings.shift()
   if jarScaleReadings.length > 30
     jarScaleReadings.shift()
 
-  console.log "Displaying buffer..."
-  console.log bagScaleReadings
-  console.log jarScaleReadings
+  # WildCompass.Logger.debug "Displaying buffer..."
+  # WildCompass.Logger.debug bagScaleReadings
+  # WildCompass.Logger.debug jarScaleReadings
 
-  console.log "Computing buffer averages..."
+  # WildCompass.Logger.debug "Computing buffer averages..."
   bagWeightsSum = 0.0
   jarWeightsSum = 0.0
   # Sum of readings buffer
@@ -226,16 +235,16 @@ weightChanged = ->
   bagWeightsAverage = bagWeightsSum / bagScaleReadings.length
   jarWeightsAverage = jarWeightsSum / jarScaleReadings.length  
 
-  console.log "Displaying buffer average..."
-  console.log bagWeightsAverage
-  console.log jarWeightsAverage
+  # WildCompass.Logger.debug "Displaying buffer average..."
+  # WildCompass.Logger.debug bagWeightsAverage
+  # WildCompass.Logger.debug jarWeightsAverage
   
-  console.log "Checking scale stability criteria..."
+  # WildCompass.Logger.debug "Checking scale stability criteria..."
   if notNull() && isStable() && buffersFull() && inBounds() && weightMatches() && transactionMatches()
     transactionWeight = jarScaleCurrentReading
     fulfillOrderStep4()
 
-  console.log "Saving previous weights for next iteration..."
+  # WildCompass.Logger.debug "Saving previous weights for next iteration..."
   bagScalePreviousReading = bagScaleCurrentReading
   jarScalePreviousReading = jarScaleCurrentReading
 
