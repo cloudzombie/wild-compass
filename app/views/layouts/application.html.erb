@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= yield :head %>
+  <script>window.WildCompass.env.<%= Rails.env %> = true</script>
 </head>
 <% if user_signed_in? %>
   <body class="skin-black fixed"

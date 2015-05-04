@@ -23,16 +23,19 @@
   </div>
 
   <div class="form-group">
+    <% order.order_lines.build %>
+    
     <%= f.fields_for :order_lines do |order_lines_fields| %>
-    <div class="well">
-      <%= order_lines_fields.label :brand_id %>
-      <%= order_lines_fields.collection_select :brand_id, Brand.all, :id, :name, {} , class: 'form-control' %>
+    
+    <%= order_lines_fields.label :brand_id %>
+    <%= order_lines_fields.collection_select :brand_id, Brand.all, :id, :name, {} , class: 'form-control' %>
+    <%= display_error_for order_lines_fields.object, :brand %>
 
-      <%= order_lines_fields.label :quantity %>
-      <%= order_lines_fields.text_field :quantity, class: 'form-control' %>
-    </div>
+    <%= order_lines_fields.label :quantity %>
+    <%= order_lines_fields.text_field :quantity, class: 'form-control' %>
+    <%= display_error_for order_lines_fields.object, :quantity %>      
+    
     <% end %>
-    <%= display_error_for order, :order_lines %>
   </div>
 
   <div class="form-group">
