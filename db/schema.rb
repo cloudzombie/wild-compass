@@ -11,22 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413195908) do
+ActiveRecord::Schema.define(version: 20150504174617) do
 
   create_table "bags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "lot_id"
     t.string   "name"
-    t.decimal  "current_weight",  precision: 16, scale: 4
     t.integer  "origin"
+    t.decimal  "current_weight",  precision: 16, scale: 4
     t.decimal  "initial_weight",  precision: 16, scale: 4
     t.integer  "history_id"
     t.integer  "container_id"
     t.boolean  "tested",                                   default: false
-    t.string   "location"
+    t.integer  "lot_id"
     t.string   "datamatrix_text"
     t.string   "datamatrix_hash"
+    t.string   "location"
     t.integer  "bin_id"
     t.boolean  "archived",                                 default: false, null: false
     t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
@@ -153,8 +153,8 @@ ActiveRecord::Schema.define(version: 20150413195908) do
     t.datetime "updated_at"
     t.integer  "bag_id"
     t.string   "name"
-    t.decimal  "current_weight",  precision: 16, scale: 4
     t.integer  "origin"
+    t.decimal  "current_weight",  precision: 16, scale: 4
     t.decimal  "initial_weight",  precision: 16, scale: 4
     t.integer  "history_id"
     t.string   "datamatrix_text"
@@ -192,9 +192,9 @@ ActiveRecord::Schema.define(version: 20150413195908) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.decimal  "current_weight",  precision: 16, scale: 4
     t.string   "category"
     t.integer  "origin"
+    t.decimal  "current_weight",  precision: 16, scale: 4
     t.decimal  "initial_weight",  precision: 16, scale: 4
     t.integer  "plant_id"
     t.integer  "history_id"
@@ -398,5 +398,17 @@ ActiveRecord::Schema.define(version: 20150413195908) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "weights", force: true do |t|
+    t.integer  "weightable_id"
+    t.string   "weightable_type"
+    t.datetime "weighted_at",                              null: false
+    t.decimal  "value",           precision: 16, scale: 4, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weights", ["weightable_id", "weightable_type"], name: "index_weights_on_weightable_id_and_weightable_type"
+  add_index "weights", ["weighted_at", "value"], name: "index_weights_on_weighted_at_and_value", unique: true
 
 end
