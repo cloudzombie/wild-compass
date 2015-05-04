@@ -14,11 +14,10 @@ class BagsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
-  expose(:template_engine) { Wild::Compass::Template::Engine.new(Bag) }
-  
-  expose(:bag, params: :bag_params) { find(Bag) }
+  expose(:bag, params: :bag_params) { find(Bag).decorate }
+  expose(:bags) { Bag.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
-  expose(:bags) { Bag.search(params[:search]).sort(sort_column, sort_direction).page(params[:page])  }
+  expose(:template_engine) { Wild::Compass::Template::Engine.new(Bag) }
 
   expose(:jar) { Jar.new }
 
@@ -75,7 +74,7 @@ class BagsController < ApplicationController
   # Update bag column.
   def update
     respond_to do |format|
-      if bag.update(bag_params)
+      if bag.update(current_user, bag_params)
         format.html { redirect_to bag, notice: 'Bag was successfully updated.' }
       else
         format.html { render :edit }

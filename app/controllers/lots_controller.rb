@@ -9,11 +9,8 @@ class LotsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
-  expose(:lot, params: :lot_params) { id_param.nil? ? Lot.new : Lot.find(id_param) }
-
-  expose(:lots) { Lot.search(params[:search])
-                     .sort(sort_column, sort_direction)
-                     .page(params[:page]) }
+  expose(:lot, params: :lot_params) { id_param.nil? ? Lot.new.decorate : Lot.find(id_param).decorate }
+  expose(:lots) { Lot.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
   expose(:containers) { Container.order(id: :asc) }
   expose(:recent) { lot.containers.order(updated_at: :desc).first }
@@ -39,7 +36,7 @@ class LotsController < ApplicationController
     params[:lot][:container_ids] ||= []
 
     respond_to do |format|
-      if lot.update(lot_params)
+      if lot.update(current_user, lot_params)
         format.html { redirect_to lot, notice: 'Lot was successfully updated.' }
         format.json { render :show, status: :ok, location: lot }
       else

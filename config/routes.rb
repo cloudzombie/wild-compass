@@ -167,6 +167,17 @@ Rails.application.routes.draw do
   match :scan,  to: 'scan#scan',   via: [ :get, :post ]
   match :scale, to: 'scale#scale', via: [ :get, :post ]
 
+  # Logging
+  
+  namespace :logger do
+    post 'info'
+    post 'debug'
+    post 'warn'
+    post 'error'
+    post 'fatal'
+    post 'unknown'
+  end
+
 
 
   ######################################################

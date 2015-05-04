@@ -3,11 +3,8 @@ class ContainersController < ApplicationController
   include SetWeightable
   include SetSortable
 
-  expose(:container, params: :container_params) { id_param.nil? ? Container.new : Container.find(id_param) }
-
-  expose(:containers) { Container.search(params[:search])
-                                 .sort(sort_column, sort_direction)
-                                 .page(params[:page]) }
+  expose(:container, params: :container_params) { id_param.nil? ? Container.new.decorate : Container.find(id_param).decorate }
+  expose(:containers) { Container.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
   expose(:plants) { Plant.order(id: :asc) }
 
@@ -29,7 +26,7 @@ class ContainersController < ApplicationController
     params[:container][:plant_ids] ||= []
     
     respond_to do |format|
-      if container.update(container_params)
+      if container.update(current_user, container_params)
         format.html { redirect_to container, notice: 'Container was successfully updated.' }
       else
         format.html { render :edit }
