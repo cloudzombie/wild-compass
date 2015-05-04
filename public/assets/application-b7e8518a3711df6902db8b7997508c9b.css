@@ -34332,6 +34332,11 @@ div.box-default > div.box-header {
   color: white !important;
 }
 
+/* line 134, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.textboxlist {
+  width: 100%;
+}
+
 /* line 5, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/bags.css.scss */
 .origin-table > tr, th, td {
   padding: 5px;
