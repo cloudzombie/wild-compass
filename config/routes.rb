@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :weights
+
   concern :recallable do
     member do
       get 'recall'
@@ -113,13 +115,18 @@ Rails.application.routes.draw do
 
   resources :locations
 
-  resources :seeds, concerns: [ :labelable, :encodable, :reweightable, :scannable ]
+  resources :seeds, concerns: [ :labelable, :encodable, :reweightable, :scannable ] do
+    resources :weights
+  end
 
   resources :bins, concerns: [ :labelable, :encodable ]
 
-  resources :plants, concerns: [ :labelable ]
+  resources :plants, concerns: [ :labelable ] do
+    resources :weights
+  end
   
   resources :jars, concerns: [ :labelable, :encodable, :scannable, :returnable ] do
+    resources :weights
     member do
       get 'destruction'
       get 'send_to_lab'
@@ -127,6 +134,7 @@ Rails.application.routes.draw do
   end
   
   resources :bags, concerns: [ :recallable, :quarantineable, :labelable, :encodable, :reweightable, :scannable ] do
+    resources :weights
     collection do
       get 'tested',   to: 'bags/tested#home'
       get 'archived', to: 'bags/archived#home'
@@ -142,6 +150,7 @@ Rails.application.routes.draw do
   end
 
   resources :lots, concerns: [ :recallable, :quarantineable, :releaseable ] do
+    resources :weights
     member do
       get 'relot'
     end
@@ -157,7 +166,9 @@ Rails.application.routes.draw do
 
   # Containers
 
-  resources :containers
+  resources :containers do 
+    resources :weights
+  end
 
   # Utility
 

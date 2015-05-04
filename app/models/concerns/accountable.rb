@@ -8,6 +8,8 @@ module Accountable
   ### Included
 
   included do
+    has_many :weights, as: :weightable
+
     before_save :update_delta, if: :responds_to_delta?
     before_save :update_delta_old, if: :responds_to_delta_old?
     

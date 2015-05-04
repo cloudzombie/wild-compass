@@ -6,6 +6,7 @@ class Seed < ActiveRecord::Base
   include Storyable
   include Sortable
   include Filterable
+  include Accountable
 
   has_many :plants
 
