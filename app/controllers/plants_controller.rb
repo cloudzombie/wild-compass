@@ -24,7 +24,7 @@ class PlantsController < ApplicationController
   # Update plant column.
   def update 
     respond_to do |format|
-      if plant.update(plant_params)
+      if plant.update(current_user, plant_params)
         format.html { redirect_to plant, notice: 'Plant was successfully updated.' }
       else
         format.html { render :edit }

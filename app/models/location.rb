@@ -6,7 +6,7 @@ class Location < ActiveRecord::Base
 	
 	has_many :bins
 
-
+  has_many :jars
 
 
 

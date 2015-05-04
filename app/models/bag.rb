@@ -9,8 +9,13 @@ class Bag < ActiveRecord::Base
   include Quarantineable
   include Sortable
   include Filterable
+  include SendableToLab
+  include Destroyable
 
-  after_create :update_name, unless: :has_name?
+  include Wild::Compass::Model::Bag::HasBagStatus
+  include Wild::Compass::Model::Location::HasLocationThroughBin
+
+  after_create :set_name
 
   after_save -> { lot.bag_changed unless lot.nil? }
 
@@ -27,16 +32,9 @@ class Bag < ActiveRecord::Base
   scope :archived,      -> { where archived: true }
 
 
-
-  belongs_to :lot
+  belongs_to :lot  
 
   has_many :plants,  -> { uniq }, through: :lot
-
-
-
-  belongs_to :bin
-
-  belongs_to :status, class_name: 'Bags::Status', foreign_key: 'bags_status_id'
 
   
 
@@ -48,27 +46,7 @@ class Bag < ActiveRecord::Base
 
   delegate :category, to: :container, prefix: false, allow_nil: true
 
-  has_one :location, through: :bin
   
-  def destruction(user)
-    if !is_destroyed
-      history.add_line(self, self, nil, :destruction, user, "Destroyed by #{user} from #{bin}.")
-      update(is_destroyed: true, bin: nil)
-    else
-      history.add_line(self, self, nil, :destruction, user, "Restored by #{user}.")
-      update(is_destroyed: false)
-    end
-  end
-
-  def send_to_lab(user)
-    if !sent_to_lab
-      history.add_line(self, self, nil, :send_to_lab, user, "Sent to lab by #{user}.")
-      update(sent_to_lab: true)
-    else
-      history.add_line(self, self, nil, :send_to_lab, user, "Received from lab by #{user}.")
-      update(sent_to_lab: false)
-    end
-  end
 
   def to_s
     "#{ name.upcase unless name.nil? }"
@@ -94,7 +72,7 @@ class Bag < ActiveRecord::Base
 
   private
 
-    def update_name
+    def set_name
       update_attributes!(name: "BAG-#{id}")
       true
     rescue ActiveRecord::RecordInvalid => e

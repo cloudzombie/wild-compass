@@ -25,7 +25,7 @@ class ContainersController < ApplicationController
     params[:container][:plant_ids] ||= []
     
     respond_to do |format|
-      if container.update(container_params)
+      if container.update(current_user, container_params)
         format.html { redirect_to container, notice: 'Container was successfully updated.' }
       else
         format.html { render :edit }

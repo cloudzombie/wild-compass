@@ -36,20 +36,19 @@ module Accountable
     '(source_id = ? AND source_type = ?) OR (target_id = ? AND target_type = ?)'
   end
 
-  def joins_transactions_query(query)
-    "LEFT JOIN transactions ON transactions.source_id = #{query} OR transactions.target_id = #{query}"
-  end
-
   def bags
-    Bag.joins(joins_transactions_query('bags.id')).merge(transactions).uniq
+    [ Bag.joins(:incoming_transactions).merge(transactions).uniq,
+      Bag.joins(:outgoing_transactions).merge(transactions).uniq ].flatten.uniq
   end
 
   def containers
-    Container.joins(joins_transactions_query('containers.id')).merge(transactions).uniq
+    [ Container.joins(:incoming_transactions).merge(transactions).uniq,
+      Container.joins(:outgoing_transactions).merge(transactions).uniq ].flatten.uniq
   end
 
   def jars
-    Jar.joins(joins_transactions_query('jars.id')).merge(transactions).uniq
+    [ Jar.joins(:incoming_transactions).merge(transactions).uniq,
+      Jar.joins(:outgoing_transactions).merge(transactions).uniq ].flatten.uniq
   end
 
   def harvests
@@ -122,6 +121,8 @@ module Accountable
     def total_weight
       sum(:current_weight)
     end
+
+    alias_method :total_current_weight, :total_weight
 
     def total_initial_weight
       sum(:initial_weight)

@@ -7,11 +7,17 @@ class BagsController < ApplicationController
   include SetQuarantineable
   include SetSortable
   include Scannable
+  include SetDestroyable
+  include SetSendableToLab
 
   respond_to :html, :xml, :json
-  
+
+  helper_method :sort_column, :sort_direction
+
   expose(:bag, params: :bag_params) { find(Bag).decorate }
-  expose(:bags) { Bag.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate  }
+  expose(:bags) { Bag.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
+
+  expose(:template_engine) { Wild::Compass::Template::Engine.new(Bag) }
 
   expose(:jar) { Jar.new }
   expose(:strains) { Strain.all }
@@ -64,41 +70,10 @@ class BagsController < ApplicationController
     render json: bags
   end
 
-  def destruction
-    bag.destruction(current_user)
-
-    respond_to do |format|
-      if bag.save && !bag.is_destroyed?
-        format.html { redirect_to bags_url, notice: 'Bag was successfully restored.' }
-      elsif bag.save && bag.is_destroyed?
-        format.html { redirect_to bags_url, notice: 'Bag was successfully destroyed.' }
-      else
-        format.html { redirect_to bags_url, notice: 'Bag could not be destroyed/restored.' }
-      end
-    end
-  end
-
-
-def send_to_lab
-    bag.send_to_lab(current_user)
-
-    respond_to do |format|
-      if bag.save && bag.sent_to_lab?
-        format.html { redirect_to bags_url, notice: 'Bag was successfully sent to Lab.' }
-      elsif bag.save && !bag.sent_to_lab?
-        format.html { redirect_to bags_url, notice: 'Bag was successfully recovered from lab.' }
-      elsif bag.sent_to_lab?
-        format.html { redirect_to bags_url, notice: 'Bag could not be recovered.' }
-      else
-        format.html { redirect_to bags_url, notice: 'Bag could not be sent.' }
-      end
-    end
-  end
-
   # Update bag column.
   def update
     respond_to do |format|
-      if bag.update(bag_params)
+      if bag.update(current_user, bag_params)
         format.html { redirect_to bag, notice: 'Bag was successfully updated.' }
       else
         format.html { render :edit }

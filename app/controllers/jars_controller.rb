@@ -1,7 +1,11 @@
 class JarsController < ApplicationController
+  
   include Authorizable
   include FindEncodable
   include SetWeightable
+  include SetReturnable
+  include SetDestroyable
+  include SetSendableToLab
 
   helper_method :sort_column, :sort_direction
   
@@ -27,7 +31,7 @@ class JarsController < ApplicationController
   # Update jar column.
   def update 
     respond_to do |format|
-      if jar.update(jar_params) 
+      if jar.update(current_user, jar_params) 
         format.html { redirect_to jar, notice: 'jar was successfully updated.' }
         format.json { render :show, status: :ok, location: jar }
       else
@@ -69,23 +73,11 @@ class JarsController < ApplicationController
     end
   end
 
-  def perform_return
-    respond_to do |format|
-      format.html { redirect_to jars_path, notice: "returned: #{jar.returned?}" }
-      format.json do
-        render json: {
-          jar: {
-            returned: jar.returned?
-          }
-        }
-      end
-    end
-  end
-
 
 
   # Never trust parameters from the scary internet, only allow the white list through.
   private
+  
     def jar_params
       params.require(:jar).permit(:weight, :ordered_amount, :current_weight, :bag_id, :name, :initial_weight, :scanned_hash)
     end

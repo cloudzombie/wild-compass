@@ -111,4 +111,4 @@ gem 'twitter-typeahead-rails'
 
 gem "sentry-raven"
 
-gem 'draper'
+gem "draper"
