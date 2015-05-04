@@ -3,7 +3,7 @@
     <tr>
       <th><%= check_box_tag :table_selector %></th>
       <% described.to_s.classify.constantize.columns.each do |col| %>
-      <th><%= sortable col.name %></th>
+        <th id="<%= col.name %>"><%= sortable col.name %></th>
       <% end %>
       <th>Actions</th>
     </tr>
@@ -16,7 +16,7 @@
       <tr>
         <th>Total</th>
         <% described.to_s.classify.constantize.columns.each do |column| %>
-        <td></td>
+          <td></td>
         <% end %>
         <td></td>
       </tr>

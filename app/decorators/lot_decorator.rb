@@ -8,7 +8,7 @@ class LotDecorator < ApplicationDecorator
 
   def menu
     h.content_tag :ul, role: 'menu', class: 'dropdown-menu pull-right' do
-      [ h.content_tag(:li, update),
+      [ h.content_tag(:li, edit),
         h.content_tag(:li, recall),
         h.content_tag(:li, quarantine),
         h.content_tag(:li, release),
@@ -18,8 +18,8 @@ class LotDecorator < ApplicationDecorator
 
   private
 
-    def update
-      link_to_if_can? :update, 'Edit', h.edit_lot_path(model), class: "text-yellow"
+    def edit
+      link_to_if_can? :edit, "#{h.fa_icon 'tag' } Edit".html_safe, h.edit_lot_path(model), class: "text-yellow"
     end
 
     def recall

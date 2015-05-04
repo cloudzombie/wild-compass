@@ -1,0 +1,7 @@
+<tr id="lot-<%= lot.id %>">
+  <td><%= check_box_tag :row_selector %></td>
+  <% lot.attributes.each do |name, value| %>
+  <td><%= value %></td>
+  <% end %>
+  <td><%= lot.actions %></td>
+</tr>

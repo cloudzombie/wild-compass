@@ -4,6 +4,9 @@ this.WildCompass.LotsController = class LotsController
 
   index: ->
     console.log 'lots#index'
+    # Get index of parent TD among its siblings (add one for nth-child)
+    #$("#origin").hide()
+    $('td:nth-child(2)').hide()
 
   new: ->
     console.log 'lots#new'

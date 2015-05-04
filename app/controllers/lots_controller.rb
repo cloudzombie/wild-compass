@@ -9,13 +9,6 @@ class LotsController < ApplicationController
   expose(:lot, params: :lot_params) { params[:id].nil? ? Lot.new.decorate : Lot.find(params[:id]).decorate }
   expose(:lots) { Lot.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
-  expose(:engine) do
-    Wild::Compass::Template::Engine.load(Lot) do |config|
-      config.unload :origin
-      config.unload :initial_weight
-    end
-  end
-
   expose(:containers) { Container.order(id: :asc) }
   expose(:recent) { lot.containers.order(updated_at: :desc).first }
 
