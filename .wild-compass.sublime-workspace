@@ -555,15 +555,23 @@
 			"file": "Gemfile",
 			"settings":
 			{
-				"buffer_size": 2419,
+				"buffer_size": 2692,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "filterable.rb",
+			"file": "app/models/user.rb",
 			"settings":
 			{
-				"buffer_size": 475,
+				"buffer_size": 1322,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/models/container.rb",
+			"settings":
+			{
+				"buffer_size": 1209,
 				"line_ending": "Windows"
 			}
 		}
@@ -604,6 +612,8 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Maxime/Documents/wild-compass/Gemfile.lock",
+		"/C/Users/Maxime/Documents/wild-compass/filterable.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/models/concerns/filterable.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/_lot.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/shared/ajax/_table.html.erb",
@@ -685,7 +695,6 @@
 		"/C/Users/Maxime/Documents/wild-compass/lib/wild/compass/decorator/story.rb",
 		"/C/Users/Maxime/Documents/wild-compass/lib/wild/compass/process/fulfill.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/controllers/process/fulfills_controller.rb",
-		"/C/Users/Maxime/Documents/wild-compass/Gemfile.lock",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/containers/ajax/_table.html.erb",
 		"/C/Users/Maxime/Documents/wild-compass/app/decorators/history_decorator.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/decorators/story_decorator.rb",
@@ -730,8 +739,7 @@
 		"/C/Users/Maxime/Documents/wild-compass/app/decorators/seed_decorator.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/decorators/transaction_decorator.rb",
 		"/C/Users/Maxime/Documents/wild-compass/app/views/lots/ajax/_menu.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/views/plants/ajax/_table.html.erb",
-		"/C/Users/Maxime/Documents/wild-compass/app/controllers/transactions_controller.rb"
+		"/C/Users/Maxime/Documents/wild-compass/app/views/plants/ajax/_table.html.erb"
 	],
 	"find":
 	{
@@ -894,7 +902,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -1014,15 +1022,15 @@
 					"file": "Gemfile",
 					"settings":
 					{
-						"buffer_size": 2419,
+						"buffer_size": 2692,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2417,
-								2417
+								360,
+								360
 							]
 						],
 						"settings":
@@ -1030,25 +1038,53 @@
 							"syntax": "Packages/Ruby/Ruby.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1440.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "filterable.rb",
+					"file": "app/models/user.rb",
 					"settings":
 					{
-						"buffer_size": 475,
+						"buffer_size": 1322,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								457,
-								457
+								166,
+								166
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/models/container.rb",
+					"settings":
+					{
+						"buffer_size": 1209,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								140,
+								140
 							]
 						],
 						"settings":

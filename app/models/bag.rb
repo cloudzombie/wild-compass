@@ -8,12 +8,13 @@ class Bag < ActiveRecord::Base
   include Recallable
   include Quarantineable
   include Sortable
-  include Filterable
   include SendableToLab
   include Destroyable
 
   include Wild::Compass::Model::Bag::HasBagStatus
   include Wild::Compass::Model::Location::HasLocationThroughBin
+
+  filters_for :strains, :sent_to_lab, :is_destroyed, :location, :bin_id, :lot_id, :delta, :current_weight, :inital_weight, :status, :created_at, :updated_at
 
   after_create :set_name
 
@@ -48,8 +49,6 @@ class Bag < ActiveRecord::Base
 
 
   has_one :location, through: :bin
-
-  add_filters_for :strains, :sent_to_lab, :is_destroyed, :location, :bin_id, :lot_id, :delta, :current_weight, :inital_weight, :status, :created_at, :updated_at
   
 
   def to_s

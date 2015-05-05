@@ -5,7 +5,6 @@ class Plant < ActiveRecord::Base
   include Searchable
   include Sortable
   include Encodable
-  include Filterable
 
 
 
