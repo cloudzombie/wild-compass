@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.2.1'
+
+gem 'web-console', '~> 2.0'
+
+gem 'responders', '~> 2.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: [ :development, :test ]
@@ -112,3 +116,5 @@ gem 'twitter-typeahead-rails'
 gem "sentry-raven"
 
 gem "draper"
+
+gem 'filters-rails', github: "biximilien/filters-rails"
