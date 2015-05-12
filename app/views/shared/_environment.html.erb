@@ -1,0 +1,18 @@
+<div id="app-env" class="text-center">
+  <% if Rails.env.development? %>
+    <p class="env-color">
+      <strong>DEVELOPMENT</strong>
+    </p>
+
+  <% elsif Rails.env.staging? %>
+    <p class="env-color">
+      <strong>STAGING</strong>
+    </p>
+
+  <% elsif Rails.env.testing? %>
+    <p class="env-color">
+      <strong>TESTING</strong>
+    </p>
+
+  <% end %>
+</div>

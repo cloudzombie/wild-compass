@@ -14,6 +14,10 @@ class ApplicationDecorator < Draper::Decorator
     h.link_to_if h.can?(action, model), *content
   end
 
+  def menu
+    raise "Not yet implemented"
+  end
+
   private
 
     def menu_button

@@ -37,6 +37,10 @@ class Ability
       can :release, Lot
       can :unrelease, Lot
 
+      can :print_label, Bag
+      can :print_label, Jar
+      can :print_label, Bin
+
     elsif user.manager?
       can :manage, Brand
       can :manage, Plant
@@ -73,6 +77,10 @@ class Ability
       can :destruction, Bag
 
       can :release, Lot
+
+      can :print_label, Bag
+      can :print_label, Jar
+      can :print_label, Bin
       
     else
       can :read, Brand
@@ -93,6 +101,13 @@ class Ability
 
       can :scan, Bag
       can :scan, Jar
+
+      can :print_label, Bag
+      can :print_label, Jar
+      can :print_label, Bin
+
+      cannot :edit, :all
+      cannot :update, :all
     end
   end
 end

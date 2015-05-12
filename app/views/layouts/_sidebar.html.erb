@@ -6,22 +6,18 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <%#= image_tag "hydropothecary-icon.png", id: 'logo', class: 'img-responsive' %>
+        <%= image_tag "hydropothecary-icon.png", id: 'logo', class: 'img-responsive' %>
       </div>
 
       <div class="pull-left info">
         <p>Hello, <%= current_user %></p>
       </div>
-
-      <%# form_tag(bags_path, method: "get", id: "search-form", remote: true, autocomplete: 'off') do %>
-        <%# text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
-      <%# end %>
     </div>
         
     <ul class="sidebar-menu">
-      <li class="<%= params[:controller] == 'inventory' ? 'active' : nil %>">
-        <%= link_to "#{fa_icon('list')} <span>Inventory</span>".html_safe, inventory_plants_path %>
-      </li>
+      <!-- <li class="<%# params[:controller] == 'inventory' ? 'active' : nil %>"> -->
+        <%# link_to "#{fa_icon('list')} <span>Inventory</span>".html_safe, inventory_plants_path %>
+      <!-- </li> -->
 
       <li  class="<%= params[:controller] == 'orders' ? 'active' : nil %>">
         <%= link_to "#{fa_icon('shopping-cart')} <span>Orders</span>".html_safe, orders_path %>
@@ -46,50 +42,53 @@
       <li class="<%= params[:controller] == 'bins' ? 'active' : nil %>">
         <%= link_to "#{fa_icon('square')} <span>Bins</span>".html_safe, bins_path %>
       </li>
-      
-      <li class="treeview">
-        <%= link_to "#{fa_icon('tag')} <span>Bags</span> #{fa_icon('chevron-down',
-            class: 'pull-right')}".html_safe, bags_path %>
 
-        <ul class="treeview-menu">
-          <li class="<%= params[:controller] == 'bags' ? 'active' : nil %>">
-            <%= link_to "#{fa_icon('tag')} <span>Index</span>".html_safe, bags_path %>
-          </li>
-
-           <li class="<%= params[:controller] == 'bags/tested' ? 'active' : nil %>">
-            <%= link_to "#{fa_icon('pencil')} <span>Tested</span>".html_safe, tested_bags_path %>
-          </li>
-
-          <li class="<%= params[:controller] == 'bags/archived' ? 'active' : nil %>">
-            <%= link_to "#{fa_icon('folder')} <span>Archived</span>".html_safe, archived_bags_path %>
-          </li>
-        </ul>
+      <li class="<%= params[:controller] == 'bags' ? 'active' : nil %>">
+        <%= link_to "#{fa_icon('tag')} <span>Bags</span>".html_safe, bags_path %>
       </li>
+      
+      <!-- <li class="treeview"> -->
+        <%# link_to "#{fa_icon('tag')} <span>Bags</span> #{fa_icon('chevron-down', class: 'pull-right')}".html_safe, bags_path %>
+
+        <!-- <ul class="treeview-menu"> -->
+          <!-- <li class="<%# params[:controller] == 'bags' ? 'active' : nil %>">
+            <%# link_to "#{fa_icon('tag')} <span>Index</span>".html_safe, bags_path %>
+          </li>
+
+           <li class="<%# params[:controller] == 'bags/tested' ? 'active' : nil %>">
+            <%# link_to "#{fa_icon('pencil')} <span>Tested</span>".html_safe, tested_bags_path %>
+          </li>
+
+          <li class="<%# params[:controller] == 'bags/archived' ? 'active' : nil %>">
+            <%# link_to "#{fa_icon('folder')} <span>Archived</span>".html_safe, archived_bags_path %>
+          </li> -->
+        <!-- </ul> -->
+      <!-- </li> -->
       
       <li class="<%= params[:controller] == 'jars' ? 'active' : nil %>">
         <%= link_to "#{fa_icon('flask')} <span>Jars</span>".html_safe, jars_path %>
       </li>
 
-      <% if can? :manage, User %>
-      <li class="treeview">
-        <%= link_to "#{fa_icon('cog')} <span>Admin</span> #{fa_icon('chevron-down',
+      <%# if can? :manage, User %>
+      <!-- <li class="treeview">
+        <%# link_to "#{fa_icon('cog')} <span>Admin</span> #{fa_icon('chevron-down',
             class: 'pull-right')}".html_safe, users_path %>
 
         <ul class="treeview-menu">
-          <li class="<%= params[:controller] == 'users' ? 'active' : nil %>">
-            <%= link_to "#{fa_icon('user')} <span>Users</span>".html_safe, users_path %>
+          <li class="<%# params[:controller] == 'users' ? 'active' : nil %>">
+            <%# link_to "#{fa_icon('user')} <span>Users</span>".html_safe, users_path %>
           </li>
 
-          <li class="<%= params[:controller] == 'strains' ? 'active' : nil %>">
-            <%= link_to "#{fa_icon('square')} <span>Strains</span>".html_safe, strains_path %>
+          <li class="<%# params[:controller] == 'strains' ? 'active' : nil %>">
+            <%# link_to "#{fa_icon('square')} <span>Strains</span>".html_safe, strains_path %>
           </li>
 
-          <li class="<%= params[:controller] == 'locations' ? 'active' : nil %>">
-            <%= link_to "#{fa_icon('square')} <span>Locations</span>".html_safe, locations_path %>
+          <li class="<%# params[:controller] == 'locations' ? 'active' : nil %>">
+            <%# link_to "#{fa_icon('square')} <span>Locations</span>".html_safe, locations_path %>
           </li>
         </ul>
-      </li>
-      <% end %>
+      </li> -->
+      <%# end %>
     </ul>
   </section>
 </aside>

@@ -28,23 +28,6 @@
 
         <!-- Main content -->
         <section class="content">
-
-          <div id="app-env" class="text-center">
-            <% if Rails.env.development? %>
-              <p style="background-color: #f00; color: #fff; padding-top: 20px; padding-bottom: 20px;">
-                <strong>DEVELOPMENT</strong>
-              </p>
-            <% elsif Rails.env.staging? %>
-              <p style="background-color: #f00; color: #fff; padding-top: 20px; padding-bottom: 20px;">
-                <strong>STAGING</strong>
-              </p>
-            <% elsif Rails.env.testing? %>
-              <p style="background-color: #f00; color: #fff; padding-top: 20px; padding-bottom: 20px;">
-                <strong>TESTING</strong>
-              </p>
-            <% end %>
-          </div>
-
           <%= yield %>            
         </section><!-- /.content -->
       </aside><!-- /.right-side -->
