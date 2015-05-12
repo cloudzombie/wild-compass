@@ -1,0 +1,14 @@
+<div class="box-header">
+  <h3 class="box-title"><%= described.to_s.humanize %></h3>
+  <div class="box-tools">
+    <div class="input-group">
+      <%= form_tag(self.send(:"#{described}_path"), method: :get, id: "search-form", remote: true, autocomplete: 'off') do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
+      <% end %>
+
+      <div class="input-group-btn">
+        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

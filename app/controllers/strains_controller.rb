@@ -2,7 +2,6 @@ class StrainsController < ApplicationController
   include Authorizable
 
   expose(:strain, params: :strain_params) { id_param.nil? ? Strain.new : Strain.find(id_param) }
-  
   expose(:strains) { Strain.all }
 
   expose(:lot) { Lot.new }

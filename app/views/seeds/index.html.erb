@@ -1,48 +1,20 @@
-    <div class="box box-solid box-primary">
-      <div class="box-header">
-        <h3 class="box-title">Listing seeds</h3>
-        <div class="box-tools">
-          <div class="input-group">
-            <%= form_tag(seeds_path, :method => "get", id: "search-form", remote: true, autocomplete: 'off') do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
-            <% end %>
-            <div class="input-group-btn">
-              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-            </div>
-          </div>
-        </div>
-      </div><!-- /.box-header -->
-      <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
-          <tr>
-            <th></th>
-            <th><%= sortable :name %></th>
-            <th><%= sortable :stock, 'Quantity' %></th>
-            <th><%= sortable :initial_stock, 'Initial Quantity' %></th>
-            <th><%= sortable :initial_weight %></th>
-            <th><%= sortable :current_weight %></th>
-            <th>Actions </th>
-          </tr>
-          <tbody id="table">
-            <%= render 'seeds/ajax/table' %>
-          </tbody>
-        </table>
-      </div><!-- /.box-body -->
-    </div>
+<div class="box box-solid box-primary">    
+  <%= render 'shared/box_header', described: :seeds %>
+  <%= render 'shared/box_table', described: :seeds %>
+</div>
 
-
-    <div class="tableFooter">
-        <a href="#" class="btn btn-flat btn-primary" data-toggle="modal" data-target=".new-seed"><i class="fa fa-tags"></i> New seed</a>
-        <div id="paginator">
-          <%#=  paginate seeds %>
-        </div>
+<div class="tableFooter">
+    <a href="#" class="btn btn-flat btn-primary" data-toggle="modal" data-target=".new-seed"><i class="fa fa-tags"></i> New seed</a>
+    <div id="paginator">
+      <%#=  paginate seeds %>
     </div>
+</div>
 
-    <div class="modal fade new-seed" tabindex="-1" role="dialog" aria-labelledby="New seed" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <h3>Create a new seed</h3>
-          <%= render 'seeds/form' %>
-        </div>
-      </div>
+<div class="modal fade new-seed" tabindex="-1" role="dialog" aria-labelledby="New seed" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <h3>Create a new seed</h3>
+      <%= render 'seeds/form' %>
     </div>
+  </div>
+</div>

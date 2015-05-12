@@ -1,34 +1,7 @@
 <div class="box box-solid box-warning">
-  <div class="box-header">
-    <h3 class="box-title">Listing bins</h3>
-    <div class="box-tools">
-      <div class="input-group">
-        <%= form_tag(bins_path, :method => "get", id: "search-form", remote: true) do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
-        <% end %>
-        <div class="input-group-btn">
-          <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="box-body table-responsive no-padding">
-    <table class="table table-hover" id="bin-table">
-      <tr>
-        <th><%= check_box_tag :accept %></th>
-        <th><%= sortable :id, 'ID' %></th>
-        <th><%= sortable :name %></th>
-        <th><%= sortable :location %></th>
-        <th><%= sortable :content %></th>
-        <th class="col-lg-3">Actions</th>
-      </tr>
-      <tbody id="table">
-        <%= render 'bins/ajax/table' %>
-      </tbody>
-    </table>
-  </div><!-- /.box-body -->    
-</div><!-- /.box -->
+  <%= render 'shared/box_header', described: :bins %>
+  <%= render 'shared/box_table', described: :bins %>
+</div>
 
 <div class="tableFooter">
   <%= link_to "#{fa_icon 'square'} New bin".html_safe, '#', class: 'btn btn-flat btn-warning',

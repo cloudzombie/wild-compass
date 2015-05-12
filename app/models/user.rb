@@ -1,18 +1,13 @@
 class User < ActiveRecord::Base
 
+  # Fixed?
   # Temporary fix for token auth
-  before_save -> do
-    # self.uid = SecureRandom.uuid
-    skip_confirmation!
-  end
+  # before_save -> do
+  #   self.uid = SecureRandom.uuid
+  #   skip_confirmation!
+  # end
   
-  devise :database_authenticatable,
-         :registerable,
-         :recoverable,
-         :rememberable,
-         :trackable,
-         :validatable,
-         :omniauthable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   include DeviseTokenAuth::Concerns::User
   

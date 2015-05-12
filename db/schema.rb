@@ -11,38 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413195908) do
+ActiveRecord::Schema.define(version: 20150504174617) do
 
-  create_table "bags", force: true do |t|
+  create_table "bags", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "lot_id"
-    t.string   "name"
-    t.decimal  "current_weight",  precision: 16, scale: 4
+    t.string   "name",            limit: 255
     t.integer  "origin"
-    t.decimal  "initial_weight",  precision: 16, scale: 4
+    t.decimal  "current_weight",              precision: 16, scale: 4
+    t.decimal  "initial_weight",              precision: 16, scale: 4
     t.integer  "history_id"
     t.integer  "container_id"
-    t.boolean  "tested",                                   default: false
-    t.string   "location"
-    t.string   "datamatrix_text"
-    t.string   "datamatrix_hash"
+    t.boolean  "tested",                                               default: false
+    t.integer  "lot_id"
+    t.string   "datamatrix_text", limit: 255
+    t.string   "datamatrix_hash", limit: 255
+    t.string   "location",        limit: 255
     t.integer  "bin_id"
-    t.boolean  "archived",                                 default: false, null: false
-    t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
-    t.boolean  "sent_to_lab",                              default: false, null: false
+    t.boolean  "archived",                                             default: false, null: false
+    t.decimal  "tare_weight",                 precision: 16, scale: 4, default: 0.0,   null: false
+    t.boolean  "sent_to_lab",                                          default: false, null: false
     t.datetime "packaged_at"
-    t.string   "strain"
-    t.string   "category"
-    t.decimal  "variance",        precision: 16, scale: 4, default: 0.0
-    t.decimal  "delta",           precision: 16, scale: 4, default: 0.0
-    t.decimal  "delta_old",       precision: 16, scale: 4, default: 0.0
-    t.boolean  "is_destroyed",                             default: false, null: false
+    t.string   "strain",          limit: 255
+    t.string   "category",        limit: 255
+    t.decimal  "variance",                    precision: 16, scale: 4, default: 0.0
+    t.decimal  "delta",                       precision: 16, scale: 4, default: 0.0
+    t.decimal  "delta_old",                   precision: 16, scale: 4, default: 0.0
+    t.boolean  "is_destroyed",                                         default: false, null: false
   end
 
   add_index "bags", ["datamatrix_text", "datamatrix_hash"], name: "index_bags_on_datamatrix_text_and_datamatrix_hash", unique: true
 
-  create_table "bags_statuses", force: true do |t|
+  create_table "bags_statuses", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "bag_id"
@@ -55,28 +55,28 @@ ActiveRecord::Schema.define(version: 20150413195908) do
     t.boolean  "tested",       default: false, null: false
   end
 
-  create_table "bins", force: true do |t|
+  create_table "bins", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "location_id"
-    t.string   "name"
-    t.string   "datamatrix_hash"
-    t.string   "datamatrix_text"
+    t.string   "name",            limit: 255
+    t.string   "datamatrix_hash", limit: 255
+    t.string   "datamatrix_text", limit: 255
   end
 
   add_index "bins", ["datamatrix_text", "datamatrix_hash"], name: "index_bins_on_datamatrix_text_and_datamatrix_hash", unique: true
 
-  create_table "brands", force: true do |t|
-    t.string   "name"
-    t.string   "description"
+  create_table "brands", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "checkouts", force: true do |t|
-    t.integer  "target_id",   null: false
-    t.string   "target_type", null: false
-    t.integer  "user_id",     null: false
+  create_table "checkouts", force: :cascade do |t|
+    t.integer  "target_id",               null: false
+    t.string   "target_type", limit: 255, null: false
+    t.integer  "user_id",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -84,18 +84,18 @@ ActiveRecord::Schema.define(version: 20150413195908) do
   add_index "checkouts", ["target_id", "target_type"], name: "index_checkouts_on_target_id_and_target_type", unique: true
   add_index "checkouts", ["user_id"], name: "index_checkouts_on_user_id"
 
-  create_table "containers", force: true do |t|
-    t.string   "name"
+  create_table "containers", force: :cascade do |t|
+    t.string   "name",           limit: 255
     t.decimal  "current_weight"
     t.decimal  "initial_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "history_id"
-    t.string   "category"
+    t.string   "category",       limit: 255
     t.integer  "location_id"
   end
 
-  create_table "containers_lots", force: true do |t|
+  create_table "containers_lots", force: :cascade do |t|
     t.integer "lot_id"
     t.integer "container_id"
   end
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20150413195908) do
   add_index "containers_lots", ["container_id"], name: "index_containers_lots_on_container_id"
   add_index "containers_lots", ["lot_id"], name: "index_containers_lots_on_lot_id"
 
-  create_table "containers_plants", force: true do |t|
+  create_table "containers_plants", force: :cascade do |t|
     t.integer "plant_id"
     t.integer "container_id"
   end
@@ -111,65 +111,65 @@ ActiveRecord::Schema.define(version: 20150413195908) do
   add_index "containers_plants", ["container_id"], name: "index_containers_plants_on_container_id"
   add_index "containers_plants", ["plant_id"], name: "index_containers_plants_on_plant_id"
 
-  create_table "formats", force: true do |t|
+  create_table "formats", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string   "name",       limit: 255
   end
 
-  create_table "harvests", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "histories", force: true do |t|
+  create_table "harvests", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "history_lines", force: true do |t|
+  create_table "histories", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "history_lines", force: :cascade do |t|
     t.integer  "history_id"
     t.integer  "source_id"
-    t.string   "source_type"
+    t.string   "source_type", limit: 255
     t.integer  "target_id"
-    t.string   "target_type"
-    t.decimal  "quantity",    precision: 16, scale: 4
+    t.string   "target_type", limit: 255
+    t.decimal  "quantity",                precision: 16, scale: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "event"
+    t.string   "event",       limit: 255
     t.integer  "user_id"
-    t.text     "message",                              default: "", null: false
+    t.text     "message",                                          default: "", null: false
   end
 
   add_index "history_lines", ["history_id"], name: "index_history_lines_on_history_id"
 
-  create_table "inventories", force: true do |t|
+  create_table "inventories", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "jars", force: true do |t|
+  create_table "jars", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "bag_id"
-    t.string   "name"
-    t.decimal  "current_weight",  precision: 16, scale: 4
+    t.string   "name",            limit: 255
     t.integer  "origin"
-    t.decimal  "initial_weight",  precision: 16, scale: 4
+    t.decimal  "current_weight",              precision: 16, scale: 4
+    t.decimal  "initial_weight",              precision: 16, scale: 4
     t.integer  "history_id"
-    t.string   "datamatrix_text"
-    t.string   "datamatrix_hash"
+    t.string   "datamatrix_text", limit: 255
+    t.string   "datamatrix_hash", limit: 255
     t.integer  "order_line_id"
-    t.boolean  "fulfilled",                                default: false, null: false
-    t.decimal  "tare_weight",     precision: 16, scale: 4, default: 0.0,   null: false
-    t.decimal  "ordered_amount",  precision: 16, scale: 4, default: 0.0,   null: false
-    t.boolean  "returned",                                 default: false, null: false
+    t.boolean  "fulfilled",                                            default: false, null: false
+    t.decimal  "tare_weight",                 precision: 16, scale: 4, default: 0.0,   null: false
+    t.decimal  "ordered_amount",              precision: 16, scale: 4, default: 0.0,   null: false
+    t.boolean  "returned",                                             default: false, null: false
     t.integer  "bin_id"
   end
 
   add_index "jars", ["datamatrix_text", "datamatrix_hash"], name: "index_jars_on_datamatrix_text_and_datamatrix_hash", unique: true
 
-  create_table "jars_statuses", force: true do |t|
+  create_table "jars_statuses", force: :cascade do |t|
     t.integer  "jar_id",                       null: false
     t.boolean  "sent_to_lab",  default: false, null: false
     t.boolean  "returned",     default: false, null: false
@@ -178,9 +178,9 @@ ActiveRecord::Schema.define(version: 20150413195908) do
     t.boolean  "is_destroyed", default: false, null: false
   end
 
-  create_table "locations", force: true do |t|
-    t.string   "name"
-    t.string   "description"
+  create_table "locations", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "description",   limit: 255
     t.integer  "plant_ids"
     t.integer  "bin_ids"
     t.integer  "container_ids"
@@ -188,28 +188,28 @@ ActiveRecord::Schema.define(version: 20150413195908) do
     t.datetime "updated_at"
   end
 
-  create_table "lots", force: true do |t|
+  create_table "lots", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.decimal  "current_weight",  precision: 16, scale: 4
-    t.string   "category"
+    t.string   "name",            limit: 255
+    t.string   "category",        limit: 255
     t.integer  "origin"
-    t.decimal  "initial_weight",  precision: 16, scale: 4
+    t.decimal  "current_weight",              precision: 16, scale: 4
+    t.decimal  "initial_weight",              precision: 16, scale: 4
     t.integer  "plant_id"
     t.integer  "history_id"
     t.integer  "strain_id"
-    t.decimal  "thc_composition", precision: 5,  scale: 2
-    t.decimal  "cbd_composition", precision: 5,  scale: 2
-    t.boolean  "recalled",                                 default: false, null: false
-    t.boolean  "quarantined",                              default: false, null: false
-    t.decimal  "cbn_composition", precision: 5,  scale: 2
-    t.boolean  "released",                                 default: false, null: false
-    t.boolean  "tested",                                   default: false, null: false
+    t.decimal  "thc_composition",             precision: 5,  scale: 2
+    t.decimal  "cbd_composition",             precision: 5,  scale: 2
+    t.boolean  "recalled",                                             default: false, null: false
+    t.boolean  "quarantined",                                          default: false, null: false
+    t.decimal  "cbn_composition",             precision: 5,  scale: 2
+    t.boolean  "released",                                             default: false, null: false
+    t.boolean  "tested",                                               default: false, null: false
     t.integer  "brand_id"
   end
 
-  create_table "lots_plants", id: false, force: true do |t|
+  create_table "lots_plants", id: false, force: :cascade do |t|
     t.integer "plant_id"
     t.integer "lot_id"
   end
@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(version: 20150413195908) do
   add_index "lots_plants", ["lot_id"], name: "index_lots_plants_on_lot_id"
   add_index "lots_plants", ["plant_id"], name: "index_lots_plants_on_plant_id"
 
-  create_table "order_lines", force: true do |t|
+  create_table "order_lines", force: :cascade do |t|
     t.decimal  "quantity",   precision: 16, scale: 4
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -225,20 +225,20 @@ ActiveRecord::Schema.define(version: 20150413195908) do
     t.integer  "brand_id"
   end
 
-  create_table "orders", force: true do |t|
-    t.string   "customer",     default: "", null: false
+  create_table "orders", force: :cascade do |t|
+    t.string   "customer",     limit: 255, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "ordered_at"
     t.datetime "shipped_at"
     t.integer  "ces_order_id"
-    t.string   "created_by",   default: "", null: false
-    t.string   "placed_by",    default: "", null: false
+    t.string   "created_by",   limit: 255, default: "", null: false
+    t.string   "placed_by",    limit: 255, default: "", null: false
   end
 
   add_index "orders", ["ces_order_id"], name: "index_orders_on_ces_order_id", unique: true
 
-  create_table "plants", force: true do |t|
+  create_table "plants", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lot_id"
@@ -246,18 +246,18 @@ ActiveRecord::Schema.define(version: 20150413195908) do
     t.integer  "format_id"
     t.integer  "status_id"
     t.integer  "rfid_id"
-    t.string   "name"
+    t.string   "name",                limit: 255
     t.integer  "history_id"
-    t.decimal  "current_weight",      precision: 16, scale: 4
-    t.decimal  "initial_weight",      precision: 16, scale: 4
+    t.decimal  "current_weight",                  precision: 16, scale: 4
+    t.decimal  "initial_weight",                  precision: 16, scale: 4
     t.integer  "location_id"
     t.datetime "partial_harvest_at"
     t.datetime "complete_harvest_at"
-    t.string   "type",                                         default: "Plant", null: false
+    t.string   "type",                limit: 255,                          default: "Plant", null: false
     t.integer  "plant_id"
     t.integer  "seed_id"
-    t.string   "datamatrix_hash"
-    t.string   "datamatrix_text"
+    t.string   "datamatrix_hash",     limit: 255
+    t.string   "datamatrix_text",     limit: 255
     t.datetime "destroyed_at"
     t.datetime "harvested_at"
     t.integer  "harvest_id"
@@ -270,50 +270,50 @@ ActiveRecord::Schema.define(version: 20150413195908) do
   add_index "plants", ["status_id"], name: "index_plants_on_status_id"
   add_index "plants", ["strain_id"], name: "index_plants_on_strain_id"
 
-  create_table "rfids", force: true do |t|
+  create_table "rfids", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string   "name",       limit: 255
   end
 
-  create_table "seeds", force: true do |t|
-    t.string   "name"
+  create_table "seeds", force: :cascade do |t|
+    t.string   "name",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "initial_weight",  precision: 16, scale: 4
-    t.decimal  "current_weight",  precision: 16, scale: 4
+    t.decimal  "initial_weight",              precision: 16, scale: 4
+    t.decimal  "current_weight",              precision: 16, scale: 4
     t.integer  "stock"
-    t.string   "datamatrix_text"
-    t.string   "datamatrix_hash"
+    t.string   "datamatrix_text", limit: 255
+    t.string   "datamatrix_hash", limit: 255
     t.integer  "history_id"
     t.integer  "initial_stock"
   end
 
   add_index "seeds", ["datamatrix_text", "datamatrix_hash"], name: "index_seeds_on_datamatrix_text_and_datamatrix_hash", unique: true
 
-  create_table "statuses", force: true do |t|
+  create_table "statuses", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string   "name",       limit: 255
   end
 
-  create_table "strains", force: true do |t|
-    t.string   "name"
-    t.string   "acronym"
-    t.string   "info"
+  create_table "strains", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "acronym",     limit: 255
+    t.string   "info",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "brand_id"
-    t.string   "description"
+    t.string   "description", limit: 255
   end
 
-  create_table "transactions", force: true do |t|
-    t.datetime "event",                                null: false
+  create_table "transactions", force: :cascade do |t|
+    t.datetime "event",                                            null: false
     t.integer  "source_id"
-    t.string   "source_type"
+    t.string   "source_type", limit: 255
     t.integer  "target_id"
-    t.string   "target_type"
-    t.decimal  "weight",      precision: 16, scale: 4, null: false
+    t.string   "target_type", limit: 255
+    t.decimal  "weight",                  precision: 16, scale: 4, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -321,76 +321,76 @@ ActiveRecord::Schema.define(version: 20150413195908) do
   add_index "transactions", ["source_id", "source_type"], name: "index_transactions_on_source_id_and_source_type"
   add_index "transactions", ["target_id", "target_type"], name: "index_transactions_on_target_id_and_target_type"
 
-  create_table "transactions_adjustments", force: true do |t|
+  create_table "transactions_adjustments", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "transactions_destructions", force: true do |t|
+  create_table "transactions_destructions", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "transactions_labs", force: true do |t|
+  create_table "transactions_labs", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "transactions_wastes", force: true do |t|
+  create_table "transactions_wastes", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "transactions_water_losses", force: true do |t|
+  create_table "transactions_water_losses", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "user_group_roles", force: true do |t|
+  create_table "user_group_roles", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "manager",    default: false
-    t.boolean  "admin",      default: false
-    t.string   "name"
+    t.boolean  "manager",                default: false
+    t.boolean  "admin",                  default: false
+    t.string   "name",       limit: 255
   end
 
-  create_table "user_groups", force: true do |t|
+  create_table "user_groups", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_group_role_id"
-    t.string   "name"
+    t.string   "name",               limit: 255
   end
 
-  create_table "user_roles", force: true do |t|
+  create_table "user_roles", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "manager",    default: false
-    t.boolean  "admin",      default: false
-    t.string   "name"
+    t.boolean  "manager",                default: false
+    t.boolean  "admin",                  default: false
+    t.string   "name",       limit: 255
   end
 
-  create_table "users", force: true do |t|
-    t.string   "name"
+  create_table "users", force: :cascade do |t|
+    t.string   "name",                      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                     default: "", null: false
-    t.string   "encrypted_password",        default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                     limit: 255, default: "", null: false
+    t.string   "encrypted_password",        limit: 255, default: "", null: false
+    t.string   "reset_password_token",      limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",             default: 0,  null: false
+    t.integer  "sign_in_count",                         default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",        limit: 255
+    t.string   "last_sign_in_ip",           limit: 255
     t.integer  "user_group_id"
     t.integer  "user_role_id"
-    t.string   "provider",                  default: "", null: false
-    t.string   "uid",                       default: "", null: false
-    t.string   "confirmation_token"
+    t.string   "provider",                  limit: 255, default: "", null: false
+    t.string   "uid",                       limit: 255, default: "", null: false
+    t.string   "confirmation_token",        limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
+    t.string   "unconfirmed_email",         limit: 255
     t.text     "tokens"
     t.integer  "temporary_role_id"
     t.datetime "temporary_role_expires_at"
@@ -398,5 +398,17 @@ ActiveRecord::Schema.define(version: 20150413195908) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "weights", force: :cascade do |t|
+    t.integer  "weightable_id"
+    t.string   "weightable_type", limit: 255
+    t.datetime "weighted_at",                                          null: false
+    t.decimal  "value",                       precision: 16, scale: 4, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weights", ["weightable_id", "weightable_type"], name: "index_weights_on_weightable_id_and_weightable_type"
+  add_index "weights", ["weighted_at", "value"], name: "index_weights_on_weighted_at_and_value", unique: true
 
 end

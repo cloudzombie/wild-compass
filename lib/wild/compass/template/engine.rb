@@ -1,29 +1,22 @@
-class Engine
+class Wild::Compass::Template::Engine
+
+  class EngineError < StandardError
+  end
+
+  class NilModel < EngineError
+  end
+  
+  attr_accessor :config, :model
+
   def initialize(model)
-    @attributes = []
-    @unloaded_attributes = []
-
-    model.column_names.each do |name|
-      register_attribute(name)
-    end
-  end
-
-  def unload_attribute(attribute)
-    @unloaded_attributes << attribute
-  end
-
-  def reload_attribute(attribute)
-    @unloaded_attributes.delete(attribute)
+    raise NilModel, "Model cannot be nil" if model.nil?
+    self.model = model
+    self.config = {}
+    yield config
   end
 
   def attributes
-    @attributes - @unloaded_attributes
+    model.columns
   end
-
-  private
-
-    def register_attribute(name)
-      self.attributes << name
-    end
 
 end

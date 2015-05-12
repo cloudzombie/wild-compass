@@ -10,7 +10,6 @@ class JarsController < ApplicationController
   helper_method :sort_column, :sort_direction
   
   expose(:jar, params: :jar_params) { find(Jar).decorate }
-
   expose(:jars) { Jar.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
   # Create new jar.
@@ -78,6 +77,7 @@ class JarsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   private
+  
     def jar_params
       params.require(:jar).permit(:weight, :ordered_amount, :current_weight, :bag_id, :name, :initial_weight, :scanned_hash)
     end

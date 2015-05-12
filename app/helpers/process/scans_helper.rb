@@ -1,0 +1,2 @@
+module Process::ScansHelper
+end

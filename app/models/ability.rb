@@ -7,7 +7,6 @@ class Ability
       can :manage, :all
 
       can :home, Inventory
-      can :home, Dashboard
       can :download, Inventory
 
       can :fulfill, Order
@@ -52,7 +51,6 @@ class Ability
       can :manage, Seed
       
       can :home, Inventory
-      can :home, Dashboard
       can :download, Inventory
 
       can :fulfill, Order
@@ -88,7 +86,6 @@ class Ability
       can :read, Seed
 
       can :home, Inventory
-      can :home, Dashboard
       can :download, Inventory
 
       can :fulfill, Order

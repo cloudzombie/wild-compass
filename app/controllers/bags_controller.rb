@@ -15,12 +15,13 @@ class BagsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   expose(:bag, params: :bag_params) { find(Bag).decorate }
-  expose(:bags) { Bag.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
+  # expose(:bags) { Bag.filter(filter_params).search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate  }
+  expose(:bags) { Bag.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate  }
   expose(:template_engine) { Wild::Compass::Template::Engine.new(Bag) }
+  
 
   expose(:jar) { Jar.new }
-
   expose(:strains) { Strain.all }
   
   ##
@@ -105,12 +106,20 @@ class BagsController < ApplicationController
 
   private
 
+    def filter_params
+      if params[:filter].nil?
+        {}
+      else
+        params.require(:filter).permit(:id, :type, :strain_id, :status_id, :current_weight, :lot_id, :initial_weight)
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def bag_params
       params.require(:bag).permit(
         :quantity,     :weight, :message,        :initial_weight,
         :container_id, :name,   :current_weight, :bin_id,
-        :lot_id,       :tare_weight, :packaged_at
+        :lot_id,       :tare_weight, :packaged_at, :strain_id
       )
     end
 
