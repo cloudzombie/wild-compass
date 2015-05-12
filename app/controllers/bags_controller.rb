@@ -16,7 +16,8 @@ class BagsController < ApplicationController
 
   expose(:bag, params: :bag_params) { find(Bag).decorate }
 
-  expose(:bags) { Bag.filter(filter_params).search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate  }
+  # expose(:bags) { Bag.filter(filter_params).search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate  }
+  expose(:bags) { Bag.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate  }
   expose(:template_engine) { Wild::Compass::Template::Engine.new(Bag) }
   
 

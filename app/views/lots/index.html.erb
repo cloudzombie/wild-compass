@@ -24,7 +24,7 @@
             <th>Actions :</th>
           </tr>
 
-          <% ordered_by_id(lot.try(:containers)).each do |container| %>
+          <% lot.containers.each do |container| %>
           <tr>
             <td><%= link_to container.try(:to_s), container if container.present? %></td>
             <td><%= weight_for container.try(:current_weight) if container.present? %></td>

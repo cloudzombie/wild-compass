@@ -123,4 +123,4 @@ gem "sentry-raven"
 
 gem "draper"
 
-gem 'filters-rails', github: "biximilien/filters-rails"
+# gem 'filters-rails', github: "biximilien/filters-rails"

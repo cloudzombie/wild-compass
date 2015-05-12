@@ -1,3 +1,9 @@
 <% self.send(described).each do |row| %>
-  <%= render row %>
+  <tr>
+    <td><%= check_box_tag :row_select %></td>
+    <% row.attributes.each do |k, v| %>
+      <td><%= v %></td>
+    <% end %>
+    <td><%= row.actions %></td>
+  </tr>
 <% end %>

@@ -1,10 +1,3 @@
-GIT
-  remote: git://github.com/biximilien/filters-rails.git
-  revision: e5ce96adf47b76c7f25516cb188bf789dd1c3268
-  specs:
-    filters-rails (0.0.1)
-      rails (~> 4.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -133,7 +126,7 @@ GEM
       rack (~> 1.0)
     orm_adapter (0.5.0)
     pg (0.18.1-x64-mingw32)
-    rack (1.6.0)
+    rack (1.6.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.2.4)
@@ -194,7 +187,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.2.4)
+    sprockets-rails (2.3.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
@@ -244,7 +237,6 @@ DEPENDENCIES
   devise
   devise_token_auth
   draper
-  filters-rails!
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails

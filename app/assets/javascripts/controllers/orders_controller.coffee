@@ -83,6 +83,7 @@ this.WildCompass.OrdersController = class OrdersController
       $.post "/jars/" + id + "/scan.json", { jar: { scanned_hash: $('#fulfill-order-scan-jar-input').val() }}
         .done (data) ->
           if data.jar.match
+            jarQuantity = quantity
             WildCompass.Logger.debug "Jar matches proceeding to step 2..."
             fulfillOrderStep2()
             $('#fulfill-order-scan-bag-form').submit (event) -> fulfillScanBag(bag_id)
