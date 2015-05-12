@@ -34337,6 +34337,16 @@ div.box-default > div.box-header {
   width: 100%;
 }
 
+/* line 138, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.env-color {
+  font-size: 24px;
+  font-weight: bolder;
+  background-color: #f00;
+  color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 /* line 5, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/bags.css.scss */
 .origin-table > tr, th, td {
   padding: 5px;
