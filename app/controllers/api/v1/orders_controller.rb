@@ -13,7 +13,8 @@ class API::V1::OrdersController < API::V1::APIController
   end
 
   def create
-    order = Order.create!(order_params)
+    order = Order.create_with(order_params).find_or_create_by!(ces_order_id: order_params[:ces_order_id])
+
     respond_with order do |format|
       format.json { render json: order, include: [ order_lines: { include: [ jars: { include: [ :lot ] } ] } ] }
     end
