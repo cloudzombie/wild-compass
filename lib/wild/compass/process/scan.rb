@@ -1,3 +1,6 @@
+module Process::Scan
+end
+
 class Wild::Compass::Process::Scan
 
   class ScanError < StandardError
