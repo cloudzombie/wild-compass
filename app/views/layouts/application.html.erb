@@ -31,11 +31,17 @@
 
           <div id="app-env" class="text-center">
             <% if Rails.env.development? %>
-              <p class="alert alert-danger"><strong>DEVELOPMENT</strong></p>
+              <p style="background-color: #f00; color: #fff; padding-top: 20px; padding-bottom: 20px;">
+                <strong>DEVELOPMENT</strong>
+              </p>
             <% elsif Rails.env.staging? %>
-              <p class="alert alert-warning"><strong>STAGING</strong></p>
+              <p style="background-color: #f00; color: #fff; padding-top: 20px; padding-bottom: 20px;">
+                <strong>STAGING</strong>
+              </p>
             <% elsif Rails.env.testing? %>
-              <p class="alert alert-warning"><strong>TESTING</strong></p>
+              <p style="background-color: #f00; color: #fff; padding-top: 20px; padding-bottom: 20px;">
+                <strong>TESTING</strong>
+              </p>
             <% end %>
           </div>
 
