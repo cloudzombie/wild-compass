@@ -6,6 +6,56 @@ class LotDecorator < ApplicationDecorator
 
   delegate_all
 
+  def name
+    h.link_to model, model, class: "btn-sm btn-flat btn-info"
+  end
+
+  def strains
+    content = []
+
+    model.strains.each do |strain|
+      content << h.strain_for(strain)
+    end
+
+    content.join.html_safe
+  end
+
+  def category
+    h.category_for model.category
+  end
+
+  def thc_composition
+    h.percent_for model.thc_composition
+  end
+
+  def cbd_composition
+    h.percent_for model.cbd_composition
+  end
+
+  def cbn_composition
+    h.percent_for model.cbn_composition
+  end
+
+  def current_weight
+    h.weight_for model.current_weight
+  end
+
+  def recalled
+    h.assertion_for model.recalled
+  end
+
+  def quarantined
+    h.assertion_for model.quarantined
+  end
+
+  def tested
+    h.assertion_for model.tested
+  end
+
+  def released
+    h.assertion_for model.released
+  end
+
   def menu
     h.content_tag :ul, role: 'menu', class: 'dropdown-menu pull-right' do
       [ h.content_tag(:li, edit),

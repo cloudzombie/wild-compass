@@ -1,0 +1,9 @@
+<tr>
+  <td><%= check_box_tag :row_selector %></td>
+  <td><%= link_to plant, plant, class: "btn-sm btn-flat btn-success" %></td>
+  <td><%= strain_for plant.strain %></td>
+  <td><%= plant.status %></td>
+  <td><%= format_for plant.format %></td>
+  <td><%= plant.location %></td>
+  <td><%= plant.actions %></td>
+</tr>

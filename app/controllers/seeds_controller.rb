@@ -1,4 +1,5 @@
 class SeedsController < ApplicationController
+
   include Authorizable
   include Scannable
   include SetWeightable
@@ -6,13 +7,13 @@ class SeedsController < ApplicationController
 
   respond_to :html
 
-  expose(:recent) { seed.lots.order(updated_at: :desc).first }
-
   expose(:seed, params: :seed_params) { params[:id].nil? ? Seed.new.decorate : Seed.find(params[:id]).decorate }
   expose(:seeds) { Seed.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
+  expose(:recent) { seed.lots.order(updated_at: :desc).first }
+
   def create
-    self.seed = Seed.new(seed_params)
+    self.seed = Seed.new(seed_params).decorate
     seed.save
     respond_with(seed)
   end

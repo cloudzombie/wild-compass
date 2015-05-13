@@ -34347,6 +34347,26 @@ div.box-default > div.box-header {
   padding-bottom: 20px;
 }
 
+/* line 147, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.no-padding {
+  padding-left: 0;
+}
+
+/* line 151, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.no-bullets {
+  list-style-type: none;
+}
+
+/* line 155, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.spacer-left {
+  margin-left: 12px;
+}
+
+/* line 159, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/layout.css.scss */
+.spacer-right {
+  margin-right: 12px;
+}
+
 /* line 5, c:/Users/Maxime/Documents/wild-compass/app/assets/stylesheets/bags.css.scss */
 .origin-table > tr, th, td {
   padding: 5px;

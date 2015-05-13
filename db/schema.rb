@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504174617) do
+ActiveRecord::Schema.define(version: 20150513161525) do
 
   create_table "bags", force: :cascade do |t|
     t.datetime "created_at"
@@ -253,7 +253,7 @@ ActiveRecord::Schema.define(version: 20150504174617) do
     t.integer  "location_id"
     t.datetime "partial_harvest_at"
     t.datetime "complete_harvest_at"
-    t.string   "type",                limit: 255,                          default: "Plant", null: false
+    t.string   "old_type",            limit: 255,                          default: "Plant", null: false
     t.integer  "plant_id"
     t.integer  "seed_id"
     t.string   "datamatrix_hash",     limit: 255

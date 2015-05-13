@@ -1,6 +1,64 @@
 <div class="box box-solid box-info">
-  <%= render 'shared/box_header', described: :lots %>
-  <%= render 'shared/box_table', described: :lots %>
+  
+  <div class="box-header">
+    <h3 class="box-title">Lots</h3>
+    <div class="box-tools">
+      <div class="input-group">
+        <%= form_tag(lots_path, method: :get, id: "search-form", remote: true, autocomplete: 'off') do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
+        <% end %>
+
+        <div class="input-group-btn">
+          <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-hover">
+      <tr>
+        <th><%= check_box_tag :table_selector %></th>
+        <th><%= sortable :name, "ID" %></th>
+        <th><%= sortable :strain %></th>
+        <th><%= sortable :category %></th>
+        <th><%= sortable :thc_composition, "THC (%)" %></th>
+        <th><%= sortable :cbd_composition, "CBD (%)" %></th>
+        <th><%= sortable :cbn_composition, "CBN (%)" %></th>
+        <th><%= sortable :current_weight %></th>
+        <th><%= sortable :recalled %></th>
+        <th><%= sortable :quarantined %></th>
+        <th><%= sortable :tested %></th>
+        <th><%= sortable :released %></th>
+        <th>Actions</th>
+      </tr>
+      
+      <tbody id="table">
+        <% lots.each do |lot| %>
+          <%= render lot %>
+        <% end %>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
 </div>
 
 <div class="tableFooter">

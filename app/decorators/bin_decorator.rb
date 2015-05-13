@@ -4,6 +4,10 @@ class BinDecorator < ApplicationDecorator
 
   delegate_all
 
+  def name
+    h.link_to model, model, class: "btn-sm btn-flat btn-warning"
+  end
+
   def bags
     content = []
 

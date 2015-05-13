@@ -143,3 +143,19 @@ div.box-default > div.box-header {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+.no-padding {
+  padding-left: 0;
+}
+
+.no-bullets {
+  list-style-type: none;
+}
+
+.spacer-left {
+  margin-left: 12px;
+}
+
+.spacer-right {
+  margin-right: 12px;
+}

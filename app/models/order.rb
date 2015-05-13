@@ -36,4 +36,10 @@ class Order < ActiveRecord::Base
     order_lines.sum(:quantity)
   end
 
+  def to_s
+    "ORDER-#{ces_order_id}".upcase
+  end
+
+  alias_method :name, :to_s
+
 end

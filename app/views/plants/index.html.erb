@@ -1,6 +1,52 @@
 <div class="box box-solid box-success">
-  <%= render 'shared/box_header', described: :plants %>
-  <%= render 'shared/box_table', described: :plants %>
+  
+  <div class="box-header">
+    <h3 class="box-title">Plants</h3>
+    <div class="box-tools">
+      <div class="input-group">
+        <%= form_tag(plants_path, method: :get, id: "search-form", remote: true, autocomplete: 'off') do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control input-sm pull-right" %>
+        <% end %>
+
+        <div class="input-group-btn">
+          <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-hover">
+      <tr>
+        <th><%= check_box_tag :table_selector %></th>
+        <th><%= sortable :name, "ID" %></th>
+        <th><%= sortable :strain %></th>
+        <th><%= sortable :status %></th>
+        <th><%= sortable :format %></th>
+        <th><%= sortable :location %></th>
+        <th>Actions</th>
+      </tr>
+      
+      <tbody id="table">
+        <% plants.each do |plant| %>
+          <%= render plant, as: :plant %>
+        <% end %>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
 </div>
 
 <div class="tableFooter">

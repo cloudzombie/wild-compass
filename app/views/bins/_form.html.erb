@@ -7,15 +7,13 @@
 
   <div class="form-group">
     <%= f.label :location %>
-    <%= f.collection_select(:location_id, Location.all, :id, :to_s, {}, { class: 'form-control' }) %>
+    <%= f.collection_select(:location_id, locations, :id, :name, {}, { class: 'form-control' }) %>
   </div>
 
   <div class="form-group">
     <%= f.label :bags %>
-    <%= f.collection_select(:bag_ids, Bag.all, :id, :to_s, {}, { multiple: 'multiple', class: 'textboxlist form-control' }) %>
+    <%= f.collection_select(:bag_ids, bags, :id, :name, {}, { multiple: 'multiple', class: 'textboxlist form-control' }) %>
   </div>
-  
-
   
   <div class="actions">
     <%= f.submit :submit, class: 'btn btn-default' %>

@@ -1,8 +1,7 @@
 <%= form_for(bag) do |f| %>
   <div class="form-group">
     <%= f.label :lot_id %>
-    <%= f.collection_select :lot_id, Lot.all, :id, :name, {},
-        selected: bag.lot_id, class: 'form-control' %>
+    <%= f.collection_select :lot_id, Lot.all, :id, :name, {}, selected: bag.lot_id, class: 'form-control' %>
     <%= display_error_for bag, :lot_id %>
   </div>
 
@@ -15,8 +14,7 @@
 
   <div class="form-group">
     <%= f.label :bin_id %>
-    <%= f.collection_select :bin_id, Bin.all, :id, :name, {},
-        selected: bag.bin_id, class: 'form-control' %>
+    <%= f.collection_select :bin_id, Bin.all, :id, :name, {}, selected: bag.bin_id, class: 'form-control' %>
   </div>
 
   <div class="input-group">

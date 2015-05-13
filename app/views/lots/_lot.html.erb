@@ -1,7 +1,15 @@
-<tr id="lot-<%= lot.id %>">
+<tr>
   <td><%= check_box_tag :row_selector %></td>
-  <% lot.attributes.each do |name, value| %>
-  <td><%= value %></td>
-  <% end %>
+  <td><%= lot.name %></td>
+  <td><%= lot.strains %></td>
+  <td><%= lot.category %></td>
+  <td><%= lot.thc_composition %></td>
+  <td><%= lot.cbd_composition %></td>
+  <td><%= lot.cbn_composition %></td>
+  <td><%= lot.current_weight %></td>
+  <td><%= lot.recalled %></td>
+  <td><%= lot.quarantined %></td>
+  <td><%= lot.tested %></td>
+  <td><%= lot.released %></td>
   <td><%= lot.actions %></td>
 </tr>

@@ -9,6 +9,9 @@ class BinsController < ApplicationController
   expose(:bin, params: :bin_params) { find(Bin).decorate }
   expose(:bins) { Bin.search(params[:search]).sort(sort_column, sort_direction).page(params[:page]).decorate }
 
+  expose(:locations) { Location.all.decorate }
+  expose(:bags) { Bag.all.decorate }
+
   def create
     self.bin = Bin.new(bin_params)
     bin.save

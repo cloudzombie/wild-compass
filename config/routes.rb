@@ -53,33 +53,30 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'plants/report', to: 'plants#report'
-  get 'lots/report',   to: 'lots#report'
-
   # Root redirect
   root to: 'root#redirect'
 
   # Inventory
-  match 'inventory',                         to: 'inventory#home',                via: [:get, :post]
-  match 'inventory/download',                to: 'inventory#download',            via: [:get, :post]
-  match 'inventory/seeds',                   to: 'inventory/seeds#home',          via: [:get, :post]
-  match 'inventory/seeds/download',          to: 'inventory/seeds#home',          via: [:get, :post]
-  match 'inventory/plants',                  to: 'inventory/plants#home',         via: [:get, :post]
-  match 'inventory/plants/download',         to: 'inventory/plants#home',         via: [:get, :post]
-  match 'inventory/lots',                    to: 'inventory/lots#home',           via: [:get, :post]
-  match 'inventory/lots/download',           to: 'inventory/lots#home',           via: [:get, :post]
-  match 'inventory/bags',                    to: 'inventory/bags#home',           via: [:get, :post]
-  match 'inventory/bags/download',           to: 'inventory/bags#home',           via: [:get, :post]
-  match 'inventory/jars',                    to: 'inventory/jars#home',           via: [:get, :post]
-  match 'inventory/jars/download',           to: 'inventory/jars#home',           via: [:get, :post]
-  match 'inventory/containers',              to: 'inventory/containers#home',     via: [:get, :post]
-  match 'inventory/containers/download',     to: 'inventory/containers#home',     via: [:get, :post]
-  match 'inventory/plants/mothers',          to: 'inventory/plants/mothers#home', via: [:get, :post]
-  match 'inventory/plants/mothers/download', to: 'inventory/plants/mothers#home', via: [:get, :post]
-  match 'inventory/plants/clones',           to: 'inventory/plants/clones#home',  via: [:get, :post]
-  match 'inventory/plants/clones/download',  to: 'inventory/plants/clones#home',  via: [:get, :post]
-  match 'inventory/plants/babies',           to: 'inventory/plants/babies#home',  via: [:get, :post]
-  match 'inventory/plants/babies/download',  to: 'inventory/plants/babies#home',  via: [:get, :post]
+  # match 'inventory',                         to: 'inventory#home',                via: [:get, :post]
+  # match 'inventory/download',                to: 'inventory#download',            via: [:get, :post]
+  # match 'inventory/seeds',                   to: 'inventory/seeds#home',          via: [:get, :post]
+  # match 'inventory/seeds/download',          to: 'inventory/seeds#home',          via: [:get, :post]
+  # match 'inventory/plants',                  to: 'inventory/plants#home',         via: [:get, :post]
+  # match 'inventory/plants/download',         to: 'inventory/plants#home',         via: [:get, :post]
+  # match 'inventory/lots',                    to: 'inventory/lots#home',           via: [:get, :post]
+  # match 'inventory/lots/download',           to: 'inventory/lots#home',           via: [:get, :post]
+  # match 'inventory/bags',                    to: 'inventory/bags#home',           via: [:get, :post]
+  # match 'inventory/bags/download',           to: 'inventory/bags#home',           via: [:get, :post]
+  # match 'inventory/jars',                    to: 'inventory/jars#home',           via: [:get, :post]
+  # match 'inventory/jars/download',           to: 'inventory/jars#home',           via: [:get, :post]
+  # match 'inventory/containers',              to: 'inventory/containers#home',     via: [:get, :post]
+  # match 'inventory/containers/download',     to: 'inventory/containers#home',     via: [:get, :post]
+  # match 'inventory/plants/mothers',          to: 'inventory/plants/mothers#home', via: [:get, :post]
+  # match 'inventory/plants/mothers/download', to: 'inventory/plants/mothers#home', via: [:get, :post]
+  # match 'inventory/plants/clones',           to: 'inventory/plants/clones#home',  via: [:get, :post]
+  # match 'inventory/plants/clones/download',  to: 'inventory/plants/clones#home',  via: [:get, :post]
+  # match 'inventory/plants/babies',           to: 'inventory/plants/babies#home',  via: [:get, :post]
+  # match 'inventory/plants/babies/download',  to: 'inventory/plants/babies#home',  via: [:get, :post]
 
   # Users and sessions
   devise_for :users, controllers: { sessions:      'users/sessions',
@@ -123,6 +120,10 @@ Rails.application.routes.draw do
 
   resources :plants, concerns: [ :labelable ] do
     resources :weights
+    
+    collection do
+      get 'report'
+    end
   end
   
   resources :jars, concerns: [ :labelable, :encodable, :scannable, :returnable ] do
@@ -153,6 +154,10 @@ Rails.application.routes.draw do
     resources :weights
     member do
       get 'relot'
+    end
+
+    collection do
+      get 'report'
     end
   end
 
