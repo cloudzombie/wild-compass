@@ -61,9 +61,10 @@ gem 'devise_token_auth'
 # Authorization
 gem 'cancan'
 
-# Adminlte assets
-gem 'adminlte', platforms: [ :mingw, :x64_mingw ]
+# Adminlte
 gem 'adminlte-rails'
+
+# jquery ui
 gem 'jquery-ui-rails'
 
 # Use decent exposure instead @vars in controllers
@@ -78,16 +79,13 @@ gem 'rails_12factor', group: [ :production, :staging, :testing ]
 # HTML and XML tree parser
 gem 'nokogiri'
 
-# Generates UML
-gem 'railroady', group: [ :development, :test ]
-
 # PDF Generator
 gem 'wicked_pdf'
 
 # Provides the wkhtmltopdf binaries (required by wicked_pdf)
 gem 'wkhtmltopdf-heroku'
 
-# Spreadseet writer.
+# Spreadseet
 gem 'spreadsheet'
 
 # Pagination
@@ -96,9 +94,10 @@ gem 'kaminari'
 # Chunky
 gem 'chunky_png'
 
+# URL Safe Base64
 gem 'url_safe_base64'
 
-# Select2
+# select2.js
 gem 'select2-rails'
 
 # Unicorn Web Server
@@ -107,18 +106,24 @@ gem 'select2-rails'
 # Puma Web Server
 # gem 'puma', group: :production
 
+# Rack Middleware Timeout
 gem 'rack-timeout', group:  [ :production, :staging, :testing ]
 
 # Table sorter
 gem 'jquery-tablesorter'
 
-# gem 'schema_plus'
-
-gem 'descriptive-statistics'
-
-#Twitter-Typeahead.js
+# Twitter-Typeahead.js
 gem 'twitter-typeahead-rails'
 
+# Sentry
 gem "sentry-raven"
 
+# Decorators
 gem "draper"
+
+# Foundation
+gem 'foundation-rails'
+
+# Ember
+gem 'ember-rails'
+gem 'ember-source', '~> 1.9.0'

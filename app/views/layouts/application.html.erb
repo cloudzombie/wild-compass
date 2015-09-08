@@ -1,4 +1,27 @@
 <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application" 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <%= yield %>
+
+  </body>
+</html>
+
+<!-- <OLD></OLD> -->
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <title>THC-ICS</title>
@@ -11,24 +34,24 @@
 <% if user_signed_in? %>
   <body class="skin-black fixed"
         data-controller="<%= controller_name %>"
-        data-action="<%= action_name %>">        
-	  
+        data-action="<%= action_name %>">
+
     <%= render "layouts/navbar" %>
 
     <div class="wrapper row-offcanvas row-offcanvas-left">
-            
+
       <!-- Left side column. contains the logo and sidebar -->
       <%= render "layouts/sidebar" %>
 
       <!-- Right side column. Contains the navbar and content of the page -->
       <aside class="right-side" >
-                
+
         <!-- Content Header (Page header) -->
         <%= render "layouts/content_header" %>
 
         <!-- Main content -->
         <section class="content">
-          <%= yield %>            
+          <%= yield %>
         </section><!-- /.content -->
       </aside><!-- /.right-side -->
     </div><!-- ./wrapper -->
@@ -38,4 +61,4 @@
     <%= yield %>
   </body>
 <% end %>
-</html>
+</html> -->

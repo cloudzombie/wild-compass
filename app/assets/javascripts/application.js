@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require foundation
 //= require turbolinks
 //= require jquery-ui/core
 //= require jquery-tablesorter
@@ -28,3 +29,5 @@
 //= require_tree .
 //= require_self
 //= require select2
+
+$(function(){ $(document).foundation(); });
