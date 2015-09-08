@@ -1,7 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-su_admin:
-  name: Admin
-  email: su_admin@wild.compass
-  user_role_id: 4
-  user_group_id: 4

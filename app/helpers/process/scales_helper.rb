@@ -1,2 +1,0 @@
-module Process::ScalesHelper
-end

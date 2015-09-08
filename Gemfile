@@ -11,6 +11,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 end
 
+# Automatic responses
 gem 'responders', '~> 2.0'
 
 # Use sqlite3 as the database for Active Record

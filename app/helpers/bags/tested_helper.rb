@@ -1,2 +1,0 @@
-module Bags::TestedHelper
-end
