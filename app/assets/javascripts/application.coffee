@@ -10,7 +10,7 @@
 #= require ember-data
 #= require active-model-adapter
 #= require bootstrap
-#= require adminlte
+#= require admin-lte
 #= require jspdf
 #= require jspdf.plugin.addimage
 #= require jspdf.plugin.png_support
