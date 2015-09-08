@@ -1,18 +1,11 @@
-# Use as a namespace
-this.WildCompass ?= {}
-this.WildCompass.env ?= {}
-
-(($) ->
-  $ ->
-    $body = $('body')
-    controller = $body.data('controller').replace(/\//g, '_')
-    action = $body.data('action')
-    activeController = WildCompass[controller]
-    if activeController != undefined
-      if $.isFunction(activeController.init)
-        activeController.init()
-      if $.isFunction(activeController[action])
-        activeController[action]()
-    return
-  return
-) jQuery
+#= require_tree ./adapters
+#= require_tree ./mixins
+#= require_tree ./models
+#= require_tree ./controllers
+#= require_tree ./views
+#= require_tree ./helpers
+#= require_tree ./components
+#= require_tree ./templates
+#= require_tree ./routes
+#= require ./router
+#= require_self
