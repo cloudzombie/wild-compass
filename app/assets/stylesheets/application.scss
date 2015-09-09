@@ -1,18 +1,5 @@
-// Application CSS
-
-// Assets
-
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome";
-@import "ionicons";
-@import "admin-lte";
-
-@import "select2";
-@import "select2-bootstrap";
-
-@import "jquery-tablesorter/theme.blue";
-
-// Local files
-
-@import "layout";
+//= require font-awesome
+//= require select2
+//= require jquery-tablesorter/theme.blue
+//= require_tree .
+//= require_self

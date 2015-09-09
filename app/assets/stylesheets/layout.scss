@@ -1,0 +1,51 @@
+@import "foundation_and_overrides.scss";
+
+$brand: lighten(green, 42%);
+
+.box {
+  background-color: $vapor;
+  border: 1px solid $smoke;
+  box-shadow: 1px 1px 2px $oil;
+  margin: 40px;
+  padding: 40px;
+}
+
+html, body {
+  height: 100%;
+}
+
+#logo {
+  text-align: center;
+  margin: 15px;
+  padding: 0;
+}
+
+.wild {
+  font-weight: bold;
+  color: $brand;
+}
+
+.compass {
+  color: $brand;
+}
+
+#container {
+  height: 100%;
+  overflow: hidden;
+}
+
+#sidebar {
+  padding: 0;
+  height: 100%;
+  background-color: $oil;
+  overflow: auto;
+
+  ul > li a {
+    color: darken($brand, 2%);
+
+    &:hover {
+      background-color: darken($oil, 2%);
+      border-right: 4px solid lighten(red, 10%);
+    }
+  }
+}

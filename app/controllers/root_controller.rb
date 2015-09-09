@@ -1,11 +1,17 @@
 class RootController < ApplicationController
-  
+
+  def index
+  end
+
   def redirect
     if user_signed_in?
-      redirect_to orders_path
+      respond_to do |format|
+        format.html
+      end
+
     else
-      redirect_to sign_in_path
+      redirect_to new_user_session_path
     end
   end
-  
+
 end

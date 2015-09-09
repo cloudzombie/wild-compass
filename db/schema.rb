@@ -11,12 +11,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908142748) do
+ActiveRecord::Schema.define(version: 20150909111622) do
 
-  create_table "accounts", force: :cascade do |t|
-    t.integer  "number"
+  create_table "account_prefixes", force: :cascade do |t|
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "account_prefixes", ["name"], name: "index_account_prefixes_on_name", unique: true
+
+  create_table "account_transactions", force: :cascade do |t|
+    t.integer  "debit_account_id",                null: false
+    t.integer  "credit_account_id",               null: false
+    t.decimal  "value",             default: 0.0, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "account_transactions", ["credit_account_id"], name: "index_account_transactions_on_credit_account_id"
+  add_index "account_transactions", ["debit_account_id"], name: "index_account_transactions_on_debit_account_id"
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer  "number",            default: 1,   null: false
+    t.decimal  "value",             default: 0.0, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "account_prefix_id"
+  end
+
+  add_index "accounts", ["number"], name: "index_accounts_on_number", unique: true
+
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name",             default: "", null: false
+    t.string   "last_name",              default: "", null: false
+    t.string   "full_name",              default: "", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

@@ -4,61 +4,66 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title>Wild Compass :: Medical Marihuana Inventory System</title>
 
-    <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "application" 'data-turbolinks-track' => true %>
+
     <%= csrf_meta_tags %>
   </head>
 
   <body>
 
-    <%= yield %>
+    <div id="container" class="row">
+      <div class="large-9 push-3 columns">
+        <header class="row">
+          <div class="large-12 columns">
+            <ul class="inline-list right">
+              <li><a href="#">Accounts</a></li>
+              <li><a href="#">Books</a></li>
+              <li><a href="#">Archives</a></li>
+            </ul>
+          </div>
+        </header>
+
+        <div id="content">
+          <%= yield %>
+        </div>
+
+        <footer class="row">
+          <div class="large-12 columns">
+            <hr/>
+            <div class="row">
+              <div class="large-6 columns">
+                <p><small><span class="wild">Wild</span><span class="compass">Compass</span> is free software licensed under GNU GPL 2.0</small></p>
+              </div>
+
+              <div class="large-6 columns">
+                <ul class="inline-list right">
+                  <li><a href="#">Accounts</a></li>
+                  <li><a href="#">Books</a></li>
+                  <li><a href="#">Archives</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <div id="sidebar" class="large-3 pull-9 columns">
+        <h1 id="logo"><span class="wild">Wild</span><span class="compass">Compass<span></h1>
+
+        <ul class="side-nav">
+          <li><a href="#">Accounts</a></li>
+          <li><a href="#">Books</a></li>
+          <li><a href="#">Archives</a></li>
+          <li><a href="#">Section 4</a></li>
+          <li><a href="#">Section 5</a></li>
+          <li><a href="#">Section 6</a></li>
+        </ul>
+      </div>
+    </div>
 
   </body>
 </html>
-
-<!-- <OLD></OLD> -->
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <title>THC-ICS</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <%= yield :head %>
-  <script>window.WildCompass.env.<%= Rails.env %> = true</script>
-</head>
-<% if user_signed_in? %>
-  <body class="skin-black fixed"
-        data-controller="<%= controller_name %>"
-        data-action="<%= action_name %>">
-
-    <%= render "layouts/navbar" %>
-
-    <div class="wrapper row-offcanvas row-offcanvas-left">
-
-      <!-- Left side column. contains the logo and sidebar -->
-      <%= render "layouts/sidebar" %>
-
-      <!-- Right side column. Contains the navbar and content of the page -->
-      <aside class="right-side" >
-
-        <!-- Content Header (Page header) -->
-        <%= render "layouts/content_header" %>
-
-        <!-- Main content -->
-        <section class="content">
-          <%= yield %>
-        </section><!-- /.content -->
-      </aside><!-- /.right-side -->
-    </div><!-- ./wrapper -->
-  </body>
-<% else %>
-  <body class="bg-black">
-    <%= yield %>
-  </body>
-<% end %>
-</html> -->

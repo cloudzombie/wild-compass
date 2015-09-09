@@ -21,10 +21,10 @@ gem 'sqlite3', group: [ :development, :test ]
 gem 'pg', group: [ :production, :staging, :testing ]
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.4'
 
 # Bootstrap
-gem 'bootstrap-sass', '~> 3.3.1'
+# gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -63,7 +63,7 @@ gem 'devise_token_auth'
 gem 'cancan'
 
 # Adminlte
-gem 'adminlte-rails'
+# gem 'adminlte-rails'
 
 # jquery ui
 gem 'jquery-ui-rails'
