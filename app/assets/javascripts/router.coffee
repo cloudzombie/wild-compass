@@ -1,4 +1,6 @@
 # For more information see: http://emberjs.com/guides/routing/
 
 WildCompass.Router.map ()->
-  @route('accounts', { path: '/accounts' })
+  @route('accounts')
+
+  

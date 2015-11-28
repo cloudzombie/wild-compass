@@ -10,14 +10,26 @@ $brand: lighten(green, 42%);
   padding: 40px;
 }
 
-html, body {
+// Full height layout
+
+html, body, .ember-view, .ember-application {
   height: 100%;
 }
+
+// Branding styles
 
 #logo {
   text-align: center;
   margin: 15px;
   padding: 0;
+  line-height: 1.0;
+
+  small {
+    color: $vapor;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+  }
 }
 
 .wild {
@@ -29,10 +41,14 @@ html, body {
   color: $brand;
 }
 
+// Top level container
+
 #container {
   height: 100%;
   overflow: hidden;
 }
+
+// Sidebar
 
 #sidebar {
   padding: 0;
@@ -41,11 +57,50 @@ html, body {
   overflow: auto;
 
   ul > li a {
+    font-weight: bold;
+    margin: 0;
+    padding: {
+      top: 12px;
+      bottom: 12px;
+    }
+
     color: darken($brand, 2%);
 
     &:hover {
       background-color: darken($oil, 2%);
-      border-right: 4px solid lighten(red, 10%);
+      border-right: 4px solid darken($brand, 2%);
     }
   }
+}
+
+#top-bar {
+  padding: 0;
+  background-color: $silver;
+  margin-bottom: 20px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: 0;
+      padding: 0;
+
+      a {
+        font-weight: bold;
+        color: $oil;
+        padding: 15px;
+      }
+    }
+  }
+}
+
+#bottom-bar {
+  ul li a {
+    color: $oil;
+  }
+}
+
+table {
+  width: 100%;
 }

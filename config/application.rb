@@ -13,23 +13,16 @@ module WildCompass
     # Use the responders controller from the responders gem
     config.app_generators.scaffold_controller :responders_controller
 
+    # rspec
+    config.generators do |g|
+      g.test_framework :rspec
+    end
+
     config.time_zone = 'Eastern Time (US & Canada)'
 
     config.autoload_paths += Dir[[Rails.root, 'lib/**/'].join('/')]
 
     config.autoload_paths += Dir[[Rails.root, 'app/validators/**/'].join('/')]
-
-    # Enable Cross-Origin request
-    # config.middleware.insert_before 0, Rack::Cors, logger: Rails.logger do
-    #   allow do
-    #     origins '*'
-
-    #     resource '*',
-    #       headers: "any",
-    #       methods: [ :get, :post, :delete, :put, :options, :head ]
-
-    #   end
-    # end
 
   end
 end

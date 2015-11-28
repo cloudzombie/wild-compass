@@ -128,3 +128,7 @@ gem 'foundation-rails'
 # Ember
 gem 'ember-rails'
 gem 'ember-source', '~> 1.9.0'
+
+# Testing
+gem 'rspec-rails', '~> 3.0'
+gem 'factory_girl_rails'

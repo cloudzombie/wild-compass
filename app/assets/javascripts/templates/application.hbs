@@ -1,0 +1,53 @@
+<div id="container" class="row">
+
+  <div class="large-9 push-3 columns">
+
+    <header id="top-bar" class="row">
+      <div class="large-12 columns">
+        <ul class="inline-list right">
+          <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+          <li>{{#link-to 'accounts'}}Accounts{{/link-to}}</li>
+          <li><a href="/#/books">Books</a></li>
+          <li><a href="/#/archives">Archives</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div id="content">
+      {{outlet}}
+    </div>
+
+    <footer id="bottom-bar" class="row">
+      <div class="large-12 columns">
+        <hr/>
+        <div class="row">
+          <div class="large-6 columns">
+            <p><small><span class="wild">Wild</span><span class="compass">Compass</span> is free software licensed under GNU GPL 2.0</small></p>
+          </div>
+
+          <div class="large-6 columns">
+            <ul class="inline-list right">
+              <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+              <li>{{#link-to 'accounts'}}Accounts{{/link-to}}</li>
+              <li><a href="/#/books">Books</a></li>
+              <li><a href="/#/archives">Archives</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="sidebar" class="large-3 pull-9 columns">
+    <h1 id="logo"><span class="wild">Wild</span><span class="compass">Compass</span>
+      <small>Medical Marihuana Inventory System</small>
+    </h1>
+
+    <ul class="side-nav">
+      <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+      <li>{{#link-to 'accounts'}}Accounts{{/link-to}}</li>
+      <li><a href="/#/books">Books</a></li>
+      <li><a href="/#/archives">Archives</a></li>
+    </ul>
+  </div>
+</div>
