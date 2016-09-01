@@ -1,2 +1,2 @@
-# wild-compass
-WildCompass is a medical marijuana inventory management software
+# Wild Compass
+Wild Compass is a medical marijuana inventory management software
