@@ -113,8 +113,16 @@ gem 'kaminari'
 # Foundation
 gem 'foundation-rails'
 
-# Testing
 group :test do
+  # Test framework
   gem 'rspec-rails'
+
+  # Factories
   gem 'factory_girl_rails'
+
+  # Fake data
+  gem 'ffaker'
+
+  # Test matchers
+  gem 'shoulda-matchers', '~> 3.1'
 end
