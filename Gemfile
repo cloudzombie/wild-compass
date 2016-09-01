@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '5.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -12,26 +12,26 @@ group :development, :test do
 end
 
 # Automatic responses
-gem 'responders', '~> 2.0'
+# gem 'responders', '~> 2.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: [ :development, :test ]
 
 # PostGreSQL
-gem 'pg', group: [ :production, :staging, :testing ]
+gem 'pg', group: :production
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.4'
+gem 'sass-rails'
 
 # Bootstrap
 # gem 'bootstrap-sass', '~> 3.3.1'
-gem 'autoprefixer-rails'
+# gem 'autoprefixer-rails'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 
 # Font Awesome Icons
 gem "font-awesome-rails"
@@ -62,20 +62,8 @@ gem 'devise_token_auth'
 # Authorization
 gem 'cancan'
 
-# Adminlte
-# gem 'adminlte-rails'
-
-# jquery ui
-gem 'jquery-ui-rails'
-
-# Use decent exposure instead @vars in controllers
-gem 'decent_exposure'
-
-# For deployment on AWS
-# gem 'elastic-beanstalk'
-
 # 12 factors (needed for Heroku)
-gem 'rails_12factor', group: [ :production, :staging, :testing ]
+gem 'rails_12factor', group: :production
 
 # HTML and XML tree parser
 gem 'nokogiri'
@@ -93,13 +81,13 @@ gem 'spreadsheet'
 gem 'kaminari'
 
 # Chunky
-gem 'chunky_png'
+# gem 'chunky_png'
 
 # URL Safe Base64
-gem 'url_safe_base64'
+# gem 'url_safe_base64'
 
 # select2.js
-gem 'select2-rails'
+# gem 'select2-rails'
 
 # Unicorn Web Server
 # gem 'unicorn', group: :production
@@ -108,27 +96,25 @@ gem 'select2-rails'
 # gem 'puma', group: :production
 
 # Rack Middleware Timeout
-gem 'rack-timeout', group:  [ :production, :staging, :testing ]
+# gem 'rack-timeout', group: :production
 
 # Table sorter
-gem 'jquery-tablesorter'
+# gem 'jquery-tablesorter'
 
 # Twitter-Typeahead.js
-gem 'twitter-typeahead-rails'
+# gem 'twitter-typeahead-rails'
 
 # Sentry
-gem "sentry-raven"
+# gem "sentry-raven"
 
 # Decorators
-gem "draper"
+# gem "draper"
 
 # Foundation
 gem 'foundation-rails'
 
-# Ember
-gem 'ember-rails'
-gem 'ember-source', '~> 1.9.0'
-
 # Testing
-gem 'rspec-rails', '~> 3.0'
-gem 'factory_girl_rails'
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
